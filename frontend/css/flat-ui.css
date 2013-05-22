@@ -313,12 +313,6 @@ h6 {
       background-color: #f4d03f; }
     .btn.btn-warning:active, .btn.btn-warning.active {
       background-color: #cea70c; }
-   .btn.btn-pagelist {
-    background-color: #d2d2d2; color:#333;}
-    .btn.btn-pagelist:hover, .btn.btn-pagelist:focus {
-      background-color: #fff; color:#333; }
-    .btn.btn-pagelist:active, .btn.btn-pagelist.active {
-      background-color: #9dca49; color:#fff; }
   .btn-toolbar .btn {
     font-size: 18px;
     padding: 10px 14px 9px; }
