@@ -53,13 +53,67 @@
 	  $(".listpage_07").click(function(){ $('.pagewrap').load('page/listpage_06.html'); });
 	  $(".listpage_08").click(function(){ $('.pagewrap').load('page/listpage_07.html'); });
 	  
+	  
+	  var element1=$(".tip_auto");
+	  var element2=$(".tip_editor");
+	  var element3=$(".tip_static");
+	  var element4=$(".tip_ad");
+	  
+	  
+	  //划过Block 及 点击每个Block Icon
+	  $(".ico_autoblock").bind("click",function(){
+		  if (element1.hasClass("no_display")){
+		   	element1.removeClass("no_display");
+			element2.addClass("no_display");
+			element3.addClass("no_display");
+			element4.addClass("no_display");
+		  }else{
+		  	element1.addClass("no_display");
+		 }
+	  });
+	  
+	 $(".ico_autoeditor").bind("click",function(){
+		  if (element2.hasClass("no_display")){
+		   	element2.removeClass("no_display");
+			element1.addClass("no_display");
+			element3.addClass("no_display");
+			element4.addClass("no_display");
+		  }else{
+		  	element2.addClass("no_display");
+		 }
+	  });
+	  
+	  $(".ico_staticblock").bind("click",function(){
+		  if (element3.hasClass("no_display")){
+		   	element3.removeClass("no_display");
+			element1.addClass("no_display");
+			element2.addClass("no_display");
+			element4.addClass("no_display");
+		  }else{
+		  	element3.addClass("no_display");
+		 }
+	  });
+	  
+	  $(".ico_adblock").bind("click",function(){
+		  if (element4.hasClass("no_display")){
+		   	element4.removeClass("no_display");
+			element1.addClass("no_display");
+			element2.addClass("no_display");
+			element3.addClass("no_display");
+		  }else{
+		  	element4.addClass("no_display");
+		 }
+	  });
+	  
+	  
+	  
 				
 	  //Grid ToolTip
-	  if ($('.pagewrap').length) {
-      	$('.pagewrap').tooltip({
-          selector: '.show-grid > div'
-        , title: function () { return $(this).width() + 'px' }
-      	})
-      };
+	  //if ($('.pagewrap').length) {
+      //	$('.pagewrap').tooltip({
+      //    selector: '.show-grid > div'
+      //  , title: function () { return $(this).width() + 'px' }
+      //	})
+      // };
 	
 });
