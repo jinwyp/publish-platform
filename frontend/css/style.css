@@ -85,7 +85,8 @@ ul.layout_list .layout_list_current{ border:5px solid #6cb949; opacity:1;}
 						 -moz-transition: all 0.25s ease-in-out;
 	 					  -ms-transition: all 0.25s ease-in-out;
 						   -o-transition: all 0.25s ease-in-out;
-							  transition: all 0.25s ease-in-out;}
+							  transition: all 0.25s ease-in-out;
+							  }
 
 .null_header:hover,
 .null_banner:hover,
