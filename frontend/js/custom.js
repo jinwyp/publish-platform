@@ -24,8 +24,8 @@
 	  
 		
 	  //点击每一个Layout
-	  $(".layout_list li").click(function(){
-		  $(this).addClass("layout_list_current").siblings("li").removeClass("layout_list_current");
+	  $(".PageListBox a").click(function(){
+		  $(this).addClass("active").siblings("a").removeClass("active");
 	  });
 	  $(".ico_layout_00").click(function(){ $('#ajaxload').load('page.html .pagewrap'); });
 	  $(".ico_layout_01").click(function(){ $('.pagewrap').load('page/layout_01.html'); });
@@ -40,6 +40,9 @@
 	  
 	  
 	  //点击每个 ListPage
+	  $(".layout_list li").click(function(){
+		  $(this).addClass("layout_list_current").siblings("li").removeClass("layout_list_current");
+	  });
 	  $(".listpage_00").click(function(){ $('#ajaxload').load('page.html .pagewrap'); });
 	  $(".listpage_01").click(function(){ $('.pagewrap').load('page/listpage_01.html'); });
 	  $(".listpage_02").click(function(){ $('.pagewrap').load('page/listpage_02.html'); });
