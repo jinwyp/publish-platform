@@ -40,8 +40,13 @@
 	  
 	  
 	  //点击每个 ListPage
+<<<<<<< HEAD
 	  $(".layout_list li").click(function(){
 		  $(this).addClass("layout_list_current").siblings("li").removeClass("layout_list_current");
+=======
+	  $(".PageListBox a").click(function(){
+		  $(this).addClass("active").siblings("a").removeClass("active");
+>>>>>>> 20130522-1
 	  });
 	  $(".listpage_00").click(function(){ $('#ajaxload').load('page.html .pagewrap'); });
 	  $(".listpage_01").click(function(){ $('.pagewrap').load('page/listpage_01.html'); });
