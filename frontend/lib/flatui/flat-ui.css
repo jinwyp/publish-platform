@@ -1359,7 +1359,7 @@ textarea,
   color: #90111a !important; }
 
 .progress, .ui-slider {
-  background: #e8edf2;
+  background: #bbb;
   border-radius: 32px;
   height: 12px;
   -webkit-box-shadow: none;
@@ -1386,11 +1386,11 @@ textarea,
     filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); }
 
 .ui-slider {
-  margin-bottom: 20px;
   position: relative; }
 
 .ui-slider-handle {
-  background-color: #16a085;
+  background-color: #fff;
+  box-shadow:0 0 5px #000;
   border-radius: 50%;
   cursor: pointer;
   height: 18px;
@@ -1407,13 +1407,14 @@ textarea,
   .ui-slider-handle[style*='100'] {
     margin-left: -15px; }
   .ui-slider-handle:hover, .ui-slider-handle:focus {
-    background-color: #2fe2bf;
+    background-color: #fff;
     outline: none; }
+  
   .ui-slider-handle:active {
-    background-color: #16a085; }
+    background-color: #000; box-shadow:0 0 0 #000; }
 
 .ui-slider-range {
-  background-color: #1abc9c;
+  background-color: #8dbd33;
   border-radius: 30px 0 0 30px;
   display: block;
   height: 100%;
@@ -1421,7 +1422,7 @@ textarea,
   z-index: 1; }
 
 .ui-slider-segment {
-  background-color: #d6dbe0;
+  background-color: #fff;
   border-radius: 50%;
   float: left;
   height: 6px;
