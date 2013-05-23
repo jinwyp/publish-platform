@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app>
   <head>
     <meta charset="utf-8">
     <title>VCP</title>
@@ -157,8 +157,9 @@
         
         
         <!-- SideBar:Page List -->
-		<div class="PageList">
+		<div class="PageList" ng-controller="PagesController">
         		<div class="PageListBox">
+<<<<<<< HEAD
                   <a href="##" class="pagelist_btn active listpage_00"><span class="">Home</span></a>
                   <a href="##" class="pagelist_btn listpage_01"><span class="">About</span></a>
                   <a href="##" class="pagelist_btn listpage_02"><span class="">Service</span></a>
@@ -168,6 +169,12 @@
                   <a href="##" class="pagelist_btn listpage_06"><span class="">List Page 2</span></a>
                   <a href="##" class="pagelist_btn listpage_07"><span class="">List Page 3</span></a>
                   <a href="##" class="pagelist_btn listpage_08"><span class="">Article Page</span></a>
+=======
+                  <a href="##" class="pagelist_btn active listpage_00"><span class="pagelist_00">Home</span></a>
+
+                    <a href="##" class="pagelist_btn listpage_01" ng-repeat="page in pages" ><span class="">{{page.pagename}}</span></a>
+
+>>>>>>> 20130522-1
                 </div>
                 <a href="#" class="addpage_btn">+</a>
         </div>
@@ -196,6 +203,9 @@
 
                             
     <!-- Load JS -->
+    <script src="lib/angular/1.1.5/angular.min.js"></script>
+    <script src="app/js/page/pagecontrollers.js"></script>
+
     <script src="lib/jquery/jquery-1.8.2.min.js"></script>
     <script src="lib/boostrap/bootstrap.min.js"></script>
     <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
