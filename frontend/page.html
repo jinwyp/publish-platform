@@ -19,7 +19,8 @@
 		<h1>Auto pick block attribute</h1>
         <div class="tabbable tabs-below">
         	<div class="tab-content">
-                <div class="tab-pane active" id="A">
+            	<!-- Tab1: Layout -->
+                <div class="tab-pane active" id="tab-layout">
                    <dl class="clearfix">
                    		<dt>Layout</dt>
                         <dd>
@@ -43,21 +44,45 @@
                         </dd>
                    </dl>
                 </div>
-                <div class="tab-pane" id="B">
-                  <p>Howdy, I'm in Section B.</p>
-                  <p>Howdy, I'm in Section B.</p>
-                  <p>Howdy, I'm in Section B.</p>
-                  <p>Howdy, I'm in Section B.</p>
-                  <p>Howdy, I'm in Section B.</p>
+                <!-- Tab1: Layout //End -->
+                <!-- Tab2: Filter -->
+                <div class="tab-pane" id="tab-filter">
+                	<dl class="clearfix">
+                    	<dt>Catagory</dt>
+                        <dd>
+                        	<div class="tipbox_filter">
+                            <input type="text" data-provide="typeahead" data-items="10" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl class="clearfix">
+                    	<dt>Tag</dt>
+                        <dd>
+                        	<div class="tipbox_filter">
+                            <input name="tagsinput" id="tagsinput" class="tagsinput" value="Tag1,Tag2,Tag3" />
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl class="clearfix">
+                    	<dt>Author</dt>
+                        <dd>
+                        <div class="tipbox_filter">
+                            <input type="text" data-provide="typeahead" data-items="10" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                            </div>
+                        </dd>
+                    </dl>
                 </div>
-                <div class="tab-pane" id="C">
+                <!-- Tab2: Filter //End -->
+                <!-- Tab3: Sort -->
+                <div class="tab-pane" id="tab-Sort">
                   <p>What up girl, this is Section C.</p>
                 </div>
+                <!-- Tab3: Sort //End -->
           </div>
           <ul class="nav nav-tabs">
-            <li class="active"><a href="#A" data-toggle="tab">Layout</a></li>
-            <li><a href="#B" data-toggle="tab">Filter</a></li>
-            <li><a href="#C" data-toggle="tab">Sort</a></li>
+            <li class="active"><a href="#tab-layout" data-toggle="tab">Layout</a></li>
+            <li><a href="#tab-filter" data-toggle="tab">Filter</a></li>
+            <li><a href="#tab-Sort" data-toggle="tab">Sort</a></li>
           </ul>
         </div>
         
