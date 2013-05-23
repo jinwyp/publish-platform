@@ -1,6 +1,6 @@
 ;jQuery(function($){
 	
-	  // Ajax Load: Header
+	  // Ajax Load: Header22
 	  $('.header').load('header_login.html');
 	  // Ajax Load: Footer
 	  $('.footer').load('footer.html');
