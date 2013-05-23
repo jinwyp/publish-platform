@@ -1,0 +1,195 @@
+@charset "UTF-8";
+
+/* ========== VCP Wrap ============= */
+.vcpbox			{ width:100%; margin:60px 0 0 0; padding:0; }
+.vcpbox.page	{ background:url(img/pagebg.jpg) center top no-repeat; 
+				  background:url(img/pagebg.jpg) center top repeat \0; 
+				  *background:url(img/pagebg.jpg) center top repeat;
+				  background-size:cover; 
+}
+.container		{ position:relative; }
+.pagewrap		{ margin-top:40px; margin-bottom:40px; min-height:600px; padding:10px; background:#fff;border-radius:8px; position:relative; z-index:100;}
+
+
+
+
+
+/* ========== Header ========== */
+.header			{ position:fixed; left:0; top:0; width:100%; height:60px; margin:0; padding:0; background:#111 url(img/header_bg.jpg) repeat-x; box-shadow:0 2px 4px rgba(0,0,0,0.4); z-index:100;}
+.header .logo	{ display:block; margin:0; padding:0; position:absolute; left:0; top:0; width:100px; height:60px; background:url(img/logo.png) 20px center no-repeat; text-indent:-99999px;}
+.header .signin { display:block; position:absolute; right:0; top:0; width:80px; height:60px; text-align:center; line-height:60px; border-left:1px solid #444; background:#000;}
+
+
+
+
+/* ========== Footer ========== */
+.footer			{ padding:0; color:#aaa; text-align:center; background:#f1f1f1; }
+.footer p		{ line-height:18px; font-size:12px;}
+.footer a		{ color:#aaa; padding-right:10px; padding-left:10px; text-decoration:underline;}
+.footer a:hover	{ color:#fff;}
+.index_social 	{ width:100%; height:70px; margin-bottom:40px; background:#fff; box-shadow:0 2px 2px rgba(0,0,0,0.2); }
+
+
+
+
+
+/* ========== Banner ========== */
+.banner_box 	{ width:100%; height:496px; background:url(img/index_banner.jpg) center top repeat-x;}
+.banner			{ width:1024px;}
+.slide_01		{ width:823px; height:496px; background:url(img/slide_01.png) left center no-repeat;}
+
+
+
+
+
+/* ========== PageList ========== */
+.PageList		{ position:absolute; left:-142px; top:80px; width:142px; height:auto;}
+
+.pagelist_btn	{ display:block; padding:14px 0; margin-bottom:1px; background-color: #d2d2d2; color:#333; text-decoration:none; text-indent:20px; border-radius:4px 0 0 4px;
+background: #dedcdd; /* 为较旧的或者不支持的浏览器设置备用属性 */
+background: -moz-linear-gradient(top, #dddddd, #cccccc);
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#dddddd), to(#cccccc));
+box-shadow:inset -2px 0 1px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.2);
+}
+.pagelist_btn:hover, .pagelist_btn:focus 	{ color:#333;
+background: #ffffff; /* 为较旧的或者不支持的浏览器设置备用属性 */
+background: -moz-linear-gradient(top, #ffffff, #ffffff);
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#ffffff));
+ }
+.pagelist_btn:active, .pagelist_btn.active 	{ color:#fff; font-weight:bold !important;
+background: #8cbc32; /* 为较旧的或者不支持的浏览器设置备用属性 */
+background: -moz-linear-gradient(top, #b0d961, #8cbc32);
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#b0d961), to(#8cbc32));
+ }
+
+	  
+.pagelist_00,
+.pagelist_01,
+.pagelist_02,
+.pagelist_03,
+.pagelist_04,
+.pagelist_05,
+.pagelist_06,
+.pagelist_07,
+.pagelist_08{ cursor:pointer;}
+
+.addpage_btn	{ margin-top:100px; width:120px; padding:0 20px; height:50px; font-size:30px; text-align:center; background:rgba(0,0,0,0.5);}
+
+
+
+
+
+/* ========== Page Layout ========== */
+.PageLayout		{ position:absolute; right:-151px; top:80px; width:151px;}
+ul.layout_list	{ display:block; position:absolute; left:-82px; width:90px; margin:0;  padding:20px 0; background:#000; opacity:0.4; list-style:none; border-radius:0 0 8px 0; }
+
+ul.layout_list li	{ margin:0 auto; width:65px; height:55px; margin-bottom:12px; border:5px solid rgba(0,0,0,0); cursor:pointer; opacity:0.6; }
+ul.layout_list li:hover{ opacity:1;}
+
+
+.ico_layout_00,
+.ico_layout_01,
+.ico_layout_02,
+.ico_layout_03,
+.ico_layout_04,
+.ico_layout_05,
+.ico_layout_06{ background:url(img/layout_templete.png) no-repeat;}
+
+.ico_layout_close	{ position:absolute; left:8px; display:block; width:61px; height:57px;  background:rgba(0,0,0,0.4) url(img/ico_select_layout.png) center center no-repeat; cursor:pointer; border-radius:0 8px 8px 0;}
+.ico_layout_open	{ position:absolute; left:90px; display:block; width:61px; height:57px;  background:rgba(0,0,0,0.75) url(img/ico_select_layout.png) center center no-repeat; cursor:pointer; border-radius:0 8px 8px 0;}
+
+
+
+
+
+/* ========== Null Block ========== */
+.null_header		{ border:2px dashed #cbcdca;height:106px; background:url(img/null_header.png) center center no-repeat;}
+.null_banner		{ border:2px dashed #cbcdca; height:386px; background:url(img/null_banner.png) center center no-repeat;}
+.null_footer		{ border:2px dashed #cbcdca; height:80px; background:url(img/null_block.png) center center no-repeat;}
+.null_block			{ border:2px dashed #cbcdca; height:460px; background:url(img/null_block.png) center center no-repeat;}
+
+.null_banner,
+.null_block			{ -webkit-transition: all 0.25s ease-in-out; }
+
+
+
+
+
+/* ========== Show Grid ========== */
+.show-grid 													{ margin-bottom:10px;}
+.show-grid [class*="span"] 									{  background-color:#fff; text-align: center;  min-height: 40px; line-height: 40px; border-radius:4px;}		
+.show-grid [class*="span"]:hover 							{ background: #fff;}
+.show-grid .show-grid 										{ margin-top: 0; margin-bottom: 0;}
+.show-grid .show-grid [class*="span"]						{ margin-top: 5px;}
+.show-grid [class*="span"] [class*="span"] 					{ background-color: #bbb;}
+.show-grid [class*="span"] [class*="span"] [class*="span"] 	{ background-color: #999;}
+
+
+
+
+
+/* ========== Null Block ========== */
+.block_header		{ border:2px dashed #cbcdca; height:106px; background:url(img/null_header.png) center center no-repeat;}
+.block_footer		{ border:2px dashed #cbcdca; height:80px; background:url(img/null_block.png) center center no-repeat;}
+
+.block_content		{ position:relative; border:2px dashed #cbcdca; background:url(img/null_block.png) center center no-repeat;
+						-webkit-transition: all 0.25s ease-in-out;
+						 -moz-transition: all 0.25s ease-in-out;
+	 					  -ms-transition: all 0.25s ease-in-out;
+						   -o-transition: all 0.25s ease-in-out;
+							  transition: all 0.25s ease-in-out;
+}
+.block_content:hover{ background:url(img/space.png) center center no-repeat;}
+
+.block_header:hover,
+.block_footer:hover,
+.block_content:hover	{ border:2px solid #fff; border:1px solid #999\9; box-shadow:inset 0 0 200px rgba(0,0,0,0.1), 0 0 2px rgba(0,0,0,0.6);}
+
+
+
+
+
+/* ========== Create Block Tip: 通用 ========== */
+/* Click Ico : Tip */
+.ico_box				{ position:absolute; left:50%; top:50%; margin:-70px 0 0 -70px; width:139px; height:139px; }
+
+.ico_autoblock,
+.ico_autoeditor,
+.ico_staticblock,
+.ico_adblock			{ width:54px; height:54px; margin:5px; vertical-align:top; display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; background:url(img/icon_createblock.png) no-repeat; cursor:pointer; border-radius:8px;
+						-ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   						filter: alpha(opacity=0);
+   						opacity:0;
+								  }
+
+.ico_autoblock			{ background-position:0 0;			}
+.ico_autoeditor 		{ background-position:-65px 0;		}
+.ico_staticblock		{ background-position:0 -65px;		}
+.ico_adblock			{ background-position:-65px -65px;	}
+
+.ico_autoblock:hover,
+.ico_autoeditor:hover,
+.ico_staticblock:hover,
+.ico_adblock:hover		{ box-shadow:inset 0 0 30px rgba(0,0,0,0.5);}
+
+.ico_autoblock.ico_active,
+.ico_autoeditor.ico_active,
+.ico_staticblock.ico_active,
+.ico_adblock.ico_active	{ box-shadow:inset 0 0 30px rgba(0,0,0,0.5);}
+
+.block_content:hover .ico_autoblock,
+.block_content:hover .ico_autoeditor,
+.block_content:hover .ico_staticblock,
+.block_content:hover .ico_adblock{ width:54px; height:54px;
+								-ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+   								filter: alpha(opacity=100);
+   								opacity:1;
+							 }
+
+/* ========== TipBox: Content ========== */
+.tip_box		{ position:absolute; width:500px; color:#bbb; border-radius:8px; background:#454545; box-shadow:0 0 4px rgba(0,0,0,0.5); z-index:999999; display:none;}
+.tip_box:after	{ content:''; position:absolute; left:50%; bottom:-10px; margin-left:-12px; width:23px; height:10px; background:url(img/tip_arrow.png) no-repeat;}
+.tip_box h1		{ font-size:18px; height:36px; line-height:34px; text-align:center; color:#fff; background:#ea6465; margin:0; padding:0; border-radius:8px 8px 0 0;}
+.tip_box dl		{ clear:both;}
+.tip_box dt		{ width:128px; float:left;}
+.tip_box dd		{ width:360px; float:left;}

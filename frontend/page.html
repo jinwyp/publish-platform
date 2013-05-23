@@ -4,15 +4,52 @@
     <meta charset="utf-8">
     <title>VCP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/flat-ui.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="lib/flatui/bootstrap.css" rel="stylesheet">
+    <link href="lib/flatui/flat-ui.css" rel="stylesheet">
+    <link href="app/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="images/favicon.ico">
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
     <![endif]-->
   </head>
 <body style="background:#f1f1f1">
+
+<!-- tip_auto -->
+<div class="tip_box tip_auto">
+		<h1>Auto pick block attribute</h1>
+        
+        <div class="tabbable tabs-below">
+        
+          <div class="tab-content">
+            <div class="tab-pane active" id="A">
+              	<dl>
+    			<dt>Category</dt><dd><input type="text" value=""></dd>
+    			</dl>
+            </div>
+            <div class="tab-pane" id="B">
+              <p>Howdy, I'm in Section B.</p>
+            </div>
+            <div class="tab-pane" id="C">
+              <p>What up girl, this is Section C.</p>
+            </div>
+          </div>
+          
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#A" data-toggle="tab">Section 1</a></li>
+            <li><a href="#B" data-toggle="tab">Section 2</a></li>
+            <li><a href="#C" data-toggle="tab">Section 3</a></li>
+          </ul>
+        </div>
+        
+    	
+</div>
+<!-- tip_editor -->
+<div class="tip_box tip_editor">Editor</div>
+<!-- tip_static -->
+<div class="tip_box tip_static">Static</div>
+<!-- tip_ad -->
+<div class="tip_box tip_ad">AD</div>
+
 
 <!-- Header -->
 <header class="header"><h1 class="logo">VCP</h1><a href="page.html" class="signin">Sign In</a></header>
@@ -39,16 +76,11 @@
                 <div class="row show-grid">
                 
                     <div class="span9">
+                    
                     	<!-- Block -->
-                    	<div class="block_content">
-                        	<!-- Tip -->
-                        	<div class="tip_auto no_display">Auto</div>
-                            <div class="tip_editor no_display">Editor</div>
-                            <div class="tip_static no_display">Static</div>
-                            <div class="tip_ad no_display">AD</div>
-                            <!-- Tip//End -->
+                    	<div class="block_content" style="height:300px;">
                         	<!-- ICO -->
-                        	<div class="ico_block">
+                        	<div class="ico_box">
                             	<div class="ico_autoblock"><!-- Auto --></div>
                                 <div class="ico_autoeditor"><!-- Editor's --></div>
                                 <div class="ico_staticblock"><!-- Static --></div>
@@ -57,13 +89,29 @@
                             <!-- ICO//End -->
                         </div>
                         <!-- Block//End -->
+                        
+                        <div style="height:10px;"></div>
+                        
+                        <!-- Block -->
+                        <div class="block_content" style="height:300px;">
+                        	<!-- ICO -->
+                        	<div class="ico_box">
+                            	<div class="ico_autoblock"><!-- Auto --></div>
+                                <div class="ico_autoeditor"><!-- Editor's --></div>
+                                <div class="ico_staticblock"><!-- Static --></div>
+                                <div class="ico_adblock"><!-- AD --></div>
+                            </div>
+                            <!-- ICO//End -->
+                        </div>
+                        <!-- Block//End -->
+                        
                     </div>
                     
                     <div class="span3">
                     	<!-- Block -->
-                    	<div class="block_content">
+                    	<div class="block_content" style="height:614px;">
                         	<!-- ICO -->
-                        	<div class="ico_block">
+                        	<div class="ico_box">
                             	<div class="ico_autoblock"><!-- Auto --></div>
                                 <div class="ico_autoeditor"><!-- Editor's --></div>
                                 <div class="ico_staticblock"><!-- Static --></div>
@@ -125,23 +173,23 @@
 </div>
 </div>  
 
-      
+
+                            
     <!-- Load JS -->
-    <script src="js/jquery-1.8.2.min.js"></script>
-    <script src="js/jquery-ui-1.10.0.custom.min.js"></script>
-    <script src="js/jquery.dropkick-1.0.0.js"></script>
-    <script src="js/custom_checkbox_and_radio.js"></script>
-    <script src="js/custom_radio.js"></script>
-    <script src="js/jquery.tagsinput.js"></script>
-    <script src="js/bootstrap-tooltip.js"></script>
-    <script src="js/jquery.placeholder.js"></script>
-    <script src="http://vjs.zencdn.net/c/video.js"></script>
-    <script src="js/application.js"></script>
+    <script src="lib/jquery/jquery-1.8.2.min.js"></script>
+    <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
+    <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
+    <script src="lib/flatui/custom_radio.js"></script>
+    <script src="lib/flatui/jquery.tagsinput.js"></script>
+    <script src="lib/flatui/bootstrap-tooltip.js"></script>
+    <script src="lib/flatui/jquery.placeholder.js"></script>
+    <script src="lib/flatui/application.js"></script>
     <!--[if lt IE 8]>
       <script src="js/icon-font-ie7.js"></script>
       <script src="js/icon-font-ie7-24.js"></script>
     <![endif]-->
-    <script src="js/custom.js"></script>
+    <script src="app/js/custom.js"></script>
         
 </body>
 </html>
