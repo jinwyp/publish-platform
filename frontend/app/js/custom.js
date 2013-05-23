@@ -108,8 +108,8 @@
 	  
 	  
 	  //点击TipBox里的每一个Layout
-	  $(".tipbox_laytou li a").click(function(){
-		  $(this).addClass("tipbox_selected").siblings("li a").removeClass("tipbox_selected");
+	  $(".tipbox_laytou a").click(function(){
+		  $(this).addClass("tipbox_selected").siblings("a").removeClass("tipbox_selected");
 	  });
 	  
 				

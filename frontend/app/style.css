@@ -61,19 +61,11 @@ background: #8cbc32; /* 为较旧的或者不支持的浏览器设置备用属�
 background: -moz-linear-gradient(top, #b0d961, #8cbc32);
 background: -webkit-gradient(linear, 0 0, 0 100%, from(#b0d961), to(#8cbc32));
  }
+ 
+.PageListBox	{ margin-bottom:14px;}
 
-	  
-.pagelist_00,
-.pagelist_01,
-.pagelist_02,
-.pagelist_03,
-.pagelist_04,
-.pagelist_05,
-.pagelist_06,
-.pagelist_07,
-.pagelist_08{ cursor:pointer;}
-
-.addpage_btn	{ margin-top:100px; width:120px; padding:0 20px; height:50px; font-size:30px; text-align:center; background:rgba(0,0,0,0.5);}
+.addpage_btn	{ color:#999; padding:0 56px; font-size:36px; text-align:center; background:rgba(0,0,0,0.5); background:#454545\9; text-decoration:none; border-radius:4px;}
+.addpage_btn:hover{ color:#fff; background:rgba(0,0,0,1); background:#000\9; box-shadow:0 0 3px rgba(255,255,255,0.4);}
 
 
 
@@ -222,10 +214,9 @@ box-shadow:0 -1px 3px #000;
 .tip_box .nav-tabs > .active > a:hover { color: #fff; cursor: default; background: #343434; border:0; box-shadow:0 0 0 #000; }
 
 /* TipBox: Layout */
-ul.tipbox_laytou{ margin:0; padding:0; list-style:none; clear:both; *zoom:1;}
-ul.tipbox_laytou li{ float:left; margin-right:10px; position:relative; }
-ul.tipbox_laytou li a{ display:block; position:absolute; left:0; top:0; width:60px; height:38px; overflow:hidden;}
-ul.tipbox_laytou li a.tipbox_selected{ background:rgba(0,0,0,0.4);}
+.tipbox_laytou{ margin:0; padding:0; list-style:none; clear:both; *zoom:1;}
+.tipbox_laytou a{ display:block; float:left; margin-right:10px; position:relative; width:60px; height:38px; overflow:hidden;}
+.tipbox_laytou a.tipbox_selected{ background:url(img/ico_layout_select.png);}
 
 .icon_layout_1,
 .icon_layout_2,
