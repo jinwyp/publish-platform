@@ -35,9 +35,9 @@
 	  
 	  
 	  //点击每个 ListPage
-	  $(".PageListBox a").click(function(){
-		  $(this).addClass("active").siblings("a").removeClass("active");
-	  });
+//	  $(".PageListBox a").click(function(){
+//		  $(this).addClass("active").siblings("a").removeClass("active");
+//	  });
 	  $(".listpage_00").click(function(){ $('#ajaxload').load('page.html .pagewrap'); });
 	  
 	  for(i=1;i<9;i++) {

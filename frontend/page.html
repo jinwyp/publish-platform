@@ -159,22 +159,7 @@
         <!-- SideBar:Page List -->
 		<div class="PageList" ng-controller="PagesController">
         		<div class="PageListBox">
-<<<<<<< HEAD
-                  <a href="##" class="pagelist_btn active listpage_00"><span class="">Home</span></a>
-                  <a href="##" class="pagelist_btn listpage_01"><span class="">About</span></a>
-                  <a href="##" class="pagelist_btn listpage_02"><span class="">Service</span></a>
-                  <a href="##" class="pagelist_btn listpage_03"><span class="">Protfolio</span></a>
-                  <a href="##" class="pagelist_btn listpage_04"><span class="">Contact</span></a>
-                  <a href="##" class="pagelist_btn listpage_05"><span class="">List Page 1</span></a>
-                  <a href="##" class="pagelist_btn listpage_06"><span class="">List Page 2</span></a>
-                  <a href="##" class="pagelist_btn listpage_07"><span class="">List Page 3</span></a>
-                  <a href="##" class="pagelist_btn listpage_08"><span class="">Article Page</span></a>
-=======
-                  <a href="##" class="pagelist_btn active listpage_00"><span class="pagelist_00">Home</span></a>
-
-                    <a href="##" class="pagelist_btn listpage_01" ng-repeat="page in pages" ><span class="">{{page.pagename}}</span></a>
-
->>>>>>> 20130522-1
+                    <a href="##" class="pagelist_btn listpage_01 " ng-repeat="page in pages" ng-class="{active: $index==selectedPageIndex}"><span class="">{{page.pagename}}</span></a>
                 </div>
                 <a href="#" class="addpage_btn">+</a>
         </div>
