@@ -1,9 +1,5 @@
 ;jQuery(function($){
 	
-	  // Ajax Load: Header22
-	  $('.header').load('header_login.html');
-	  // Ajax Load: Footer
-	  $('.footer').load('footer.html');
 	   
 	   
 	  //展开 Select Layout

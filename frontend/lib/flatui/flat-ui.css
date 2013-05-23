@@ -5,32 +5,32 @@
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
-  src: local('Lato Regular'), local('Lato-Regular'), url("../fonts/Lato_400.woff") format('woff');
+  src: local('Lato Regular'), local('Lato-Regular'), url("../../fonts/Lato_400.woff") format('woff');
 }
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 700;
-  src: local('Lato Bold'), local('Lato-Bold'), url("../fonts/Lato_700.woff") format('woff');
+  src: local('Lato Bold'), local('Lato-Bold'), url("../../fonts/Lato_700.woff") format('woff');
 }
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 900;
-  src: local('Lato Black'), local('Lato-Black'), url("../fonts/Lato_900.woff") format('woff');
+  src: local('Lato Black'), local('Lato-Black'), url("../../fonts/Lato_900.woff") format('woff');
 }
 @font-face {
   font-family: 'Lato';
   font-style: italic;
   font-weight: 400;
-  src: local('Lato Italic'), local('Lato-Italic'), url("../fonts/Lato_400_i.woff") format('woff');
+  src: local('Lato Italic'), local('Lato-Italic'), url("../../fonts/Lato_400_i.woff") format('woff');
 }
 
 /* Custom Font */
 @font-face {
   font-family: "Flat-UI-Icons-16";
-  src: url("../fonts/Flat-UI-Icons-16.eot");
-  src: url("../fonts/Flat-UI-Icons-16.eot?#iefix") format("embedded-opentype"), url("../fonts/Flat-UI-Icons-16.woff") format("woff"), url("../fonts/Flat-UI-Icons-16.ttf") format("truetype"), url("../fonts/Flat-UI-Icons-16.svg#Flat-UI-Icons-16") format("svg");
+  src: url("../../fonts/Flat-UI-Icons-16.eot");
+  src: url("../../fonts/Flat-UI-Icons-16.eot?#iefix") format("embedded-opentype"), url("../../fonts/Flat-UI-Icons-16.woff") format("woff"), url("../../fonts/Flat-UI-Icons-16.ttf") format("truetype"), url("../../fonts/Flat-UI-Icons-16.svg#Flat-UI-Icons-16") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -116,8 +116,8 @@
 
 @font-face {
   font-family: "Flat-UI-Icons-24";
-  src: url("../fonts/Flat-UI-Icons-24.eot");
-  src: url("../fonts/Flat-UI-Icons-24.eot?#iefix") format("embedded-opentype"), url("../fonts/Flat-UI-Icons-24.woff") format("woff"), url("../fonts/Flat-UI-Icons-24.ttf") format("truetype"), url("../fonts/Flat-UI-Icons-24.svg#Flat-UI-Icons-24") format("svg");
+  src: url("../../fonts/Flat-UI-Icons-24.eot");
+  src: url("../../fonts/Flat-UI-Icons-24.eot?#iefix") format("embedded-opentype"), url("../../fonts/Flat-UI-Icons-24.woff") format("woff"), url("../../fonts/Flat-UI-Icons-24.ttf") format("truetype"), url("../../fonts/Flat-UI-Icons-24.svg#Flat-UI-Icons-24") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -338,7 +338,7 @@ h6 {
   letter-spacing: -2px;
   line-height: 100px; }
   .demo-logo .logo {
-    background: url("../images/demo/logo-mask.png") center 0 no-repeat;
+    background: url("img/demo/logo-mask.png") center 0 no-repeat;
     background-size: 256px 186px;
     height: 186px;
     margin: 0 auto 26px;
@@ -467,7 +467,7 @@ h6 {
   color: #1abc9c; }
 
 .demo-browser {
-  background: #2c3e50 url("../images/demo/browser.png") 0 0 no-repeat;
+  background: #2c3e50 url("img/demo/browser.png") 0 0 no-repeat;
   background-size: 659px 42px;
   border-radius: 0 0 6px 6px;
   color: white;
@@ -489,7 +489,7 @@ h6 {
     text-transform: none; }
 
 .demo-browser-author {
-  background: url("../images/demo/browser-author.jpg") center center no-repeat;
+  background: url("img/demo/browser-author.jpg") center center no-repeat;
   border: 3px solid white;
   display: block;
   height: 84px;
@@ -531,10 +531,10 @@ h6 {
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3 / 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2) {
   .logo {
-    background-image: url("../images/demo/logo-mask-2x.png"); }
+    background-image: url("img/demo/logo-mask-2x.png"); }
 
   .demo-browser {
-    background-image: url("../images/demo/browser-2x.png"); } }
+    background-image: url("img/demo/browser-2x.png"); } }
 .navbar {
   font-size: 18px; }
   .navbar .brand {
@@ -692,7 +692,7 @@ h6 {
       border-left-color: transparent; }
 
 .select-icon {
-  background: #1abc9c url("../images/select/toggle.png") no-repeat right center;
+  background: #1abc9c url("img/select/toggle.png") no-repeat right center;
   border-left: 2px solid rgba(52, 73, 94, 0.15);
   border-radius: 0 6px 6px 0;
   height: 100%;
@@ -1143,7 +1143,7 @@ textarea,
   .checkbox .icon-to-fade,
   .radio .icon,
   .radio .icon-to-fade {
-    background: url("../images/checkbox.png") -90px 0 no-repeat;
+    background: url("img/images/checkbox.png") -90px 0 no-repeat;
     display: block;
     height: 20px;
     left: 0;
