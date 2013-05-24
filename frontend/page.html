@@ -77,7 +77,7 @@
 
 <!-- Container -->
 <div class="vcpbox page">
-<div class="container">
+<div class="container" ng-controller="PagesController">
 
 
 		<!-- Page -->
@@ -94,53 +94,9 @@
                 
                 <!-- Page: Block -->
                 <div class="row show-grid">
-                
-                    <div class="span9">
-                    
-                    	<!-- Block -->
-                    	<div class="block_content" style="height:300px;">
-                        	<!-- ICO -->
-                        	<div class="ico_box">
-                            	<div class="ico_autoblock"><!-- Auto --></div>
-                                <div class="ico_autoeditor"><!-- Editor's --></div>
-                                <div class="ico_staticblock"><!-- Static --></div>
-                                <div class="ico_adblock"><!-- AD --></div>
-                            </div>
-                            <!-- ICO//End -->
-                        </div>
-                        <!-- Block//End -->
-                        
-                        <div style="height:10px;"></div>
-                        
-                        <!-- Block -->
-                        <div class="block_content" style="height:300px;">
-                        	<!-- ICO -->
-                        	<div class="ico_box">
-                            	<div class="ico_autoblock"><!-- Auto --></div>
-                                <div class="ico_autoeditor"><!-- Editor's --></div>
-                                <div class="ico_staticblock"><!-- Static --></div>
-                                <div class="ico_adblock"><!-- AD --></div>
-                            </div>
-                            <!-- ICO//End -->
-                        </div>
-                        <!-- Block//End -->
-                        
-                    </div>
-                    
-                    <div class="span3">
-                    	<!-- Block -->
-                    	<div class="block_content" style="height:614px;">
-                        	<!-- ICO -->
-                        	<div class="ico_box">
-                            	<div class="ico_autoblock"><!-- Auto --></div>
-                                <div class="ico_autoeditor"><!-- Editor's --></div>
-                                <div class="ico_staticblock"><!-- Static --></div>
-                                <div class="ico_adblock"><!-- AD --></div>
-                            </div>
-                            <!-- ICO//End -->
-                        </div>
-                        <!-- Block//End -->
-                    </div>
+                    <div class="" ng-repeat="layoutcontainer in pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass"></div>
+
+
                     
                 </div>
                 <!-- Page: Block//End -->
@@ -157,9 +113,9 @@
         
         
         <!-- SideBar:Page List -->
-		<div class="PageList" ng-controller="PagesController">
+		<div class="PageList" >
         		<div class="PageListBox">
-                    <a href="##" class="pagelist_btn listpage_01 " ng-repeat="page in pages" ng-class="{active: $index==selectedPageIndex}"><span class="">{{page.pagename}}</span></a>
+                    <a href="#/{{page.pageurl}}" class="pagelist_btn listpage_01 " ng-repeat="page in pages" ng-class="getClass('page.pageurl')"><span class="">{{page.pagename}}</span></a>
                 </div>
                 <a href="#" class="addpage_btn">+</a>
         </div>
@@ -188,7 +144,7 @@
 
                             
     <!-- Load JS -->
-    <script src="lib/angular/1.1.5/angular.min.js"></script>
+    <script src="lib/angular/1.1.5/angular.js"></script>
     <script src="app/js/page/pagecontrollers.js"></script>
 
     <script src="lib/jquery/jquery-1.8.2.min.js"></script>

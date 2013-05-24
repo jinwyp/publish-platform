@@ -13,14 +13,13 @@
 		   	$('.layout_list').animate({left:'0px', opacity:'0.75'},{duration:300, queue:true});
 		 }
 	  });
-	  
-	  
+
 	  
 		
 	  //点击每一个Layout
-	  $(".PageListBox a").click(function(){
-		  $(this).addClass("active").siblings("a").removeClass("active");
-	  });
+//	  $(".PageListBox a").click(function(){
+//		  $(this).addClass("active").siblings("a").removeClass("active");
+//	  });
 	  $(".ico_layout_00").click(function(){ $('#ajaxload').load('page.html .pagewrap'); });
 	  $(".ico_layout_01").click(function(){ $('.pagewrap').load('page/layout_01.html'); });
 	  $(".ico_layout_02").click(function(){ $('.pagewrap').load('page/layout_02.html'); });
