@@ -77,6 +77,7 @@ ul.layout_list	{ display:block; position:absolute; left:-82px; width:90px; margi
 
 ul.layout_list li	{ margin:0 auto; width:65px; height:55px; margin-bottom:12px; border:5px solid rgba(0,0,0,0); cursor:pointer; opacity:0.6; }
 ul.layout_list li:hover{ opacity:1;}
+ul.layout_list .active{ opacity:1;}
 
 
 .ico_layout_00,

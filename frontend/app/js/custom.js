@@ -16,25 +16,23 @@
 	  
 	  
 	  
+	  //点击每个 Page Layout
+	  $(".layout_list li").click(function(){
+		  $(this).addClass("active").siblings("li").removeClass("active");
+	  });
+	  
+	  
 		
-	  //点击每一个Layout
+	  //点击每一个Page
 	  $(".PageListBox a").click(function(){
 		  $(this).addClass("active").siblings("a").removeClass("active");
 	  });
-	  $(".ico_layout_00").click(function(){ $('#ajaxload').load('page.html .pagewrap'); });
-	  $(".ico_layout_01").click(function(){ $('.pagewrap').load('page/layout_01.html'); });
-	  $(".ico_layout_02").click(function(){ $('.pagewrap').load('page/layout_02.html'); });
-	  $(".ico_layout_03").click(function(){ $('.pagewrap').load('page/layout_03.html'); });
-	  $(".ico_layout_04").click(function(){ $('.pagewrap').load('page/layout_04.html'); });
-	  $(".ico_layout_05").click(function(){ $('.pagewrap').load('page/layout_05.html'); });
-	  $(".ico_layout_06").click(function(){ $('.pagewrap').load('page/layout_06.html'); });
 	  
 	  
 	  
 	  
 	  
-	  
-	  //点击每个 ListPage
+	  //点击每个 Page List
 //	  $(".PageListBox a").click(function(){
 //		  $(this).addClass("active").siblings("a").removeClass("active");
 //	  });
