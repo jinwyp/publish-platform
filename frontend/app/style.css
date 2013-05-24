@@ -149,7 +149,23 @@ ul.layout_list .active	{ opacity:1;}
 .theme_panel .theme_04	{ background:url(img/header_theme_04.jpg) no-repeat;}
 
 /* Nav Link Panel */
-.navlink_panel{ position:relative; margin:0 auto; bottom:-60px; width:932px; height:200px; padding:14px; border-radius:0 0 8px 8px; background:#454545; box-shadow:0 2px 3px rgba(0,0,0,0.3); display:none;}
+.navlink_panel{ position:relative; margin:0 auto; bottom:-60px; width:932px; height:220px; padding:14px; border-radius:0 0 8px 8px; background:#454545; box-shadow:0 2px 3px rgba(0,0,0,0.3); display:none;}
+ul.nav_tructure		{ margin:0; padding:0; list-style:none;}
+ul.nav_tructure a	{ display:block; width:100px; height:32px; color:#000; text-decoration:none; line-height:30px; text-indent:10px; border-radius:4px; background:url(img/navlink_btnbg.png) repeat-x;}
+ul.nav_tructure a.pagelink			{ background-position:0 0;}
+ul.nav_tructure a.pagelink:hover	{ background-position:0 -32px;}
+ul.nav_tructure a.urllink			{ background-position:0 -64px;}
+ul.nav_tructure a.urllink:hover		{ background-position:0 -96px;}
+/* 横向加 */
+ul.nav_tructure a.main_addlink		{ background:#404040; border:1px dashed #777777; color:#999; text-align:center; text-indent:0px; font-size:28px;}
+ul.nav_tructure a.main_addlink:hover{ background:#535353; border:1px dashed #999; color:#fff;}
+/* 纵向加 */
+ul.nav_tructure a.sub_addlink		{ background:#404040; border:1px dashed #777777; color:#999; text-align:center; text-indent:0px; font-size:18px;}
+ul.nav_tructure a.sub_addlink:hover	{ background:#535353; border:1px dashed #999; color:#fff;}
+
+ul.nav_tructure > li{ float:left; margin:0 14px 14px 0;}
+ul.nav_tructure > li > ul { margin:8px 0 0 0; padding:0; list-style:none;}
+ul.nav_tructure > li > ul > li { margin:0 0 8px 0;}
 
 
 

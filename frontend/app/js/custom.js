@@ -57,9 +57,9 @@
 	  $(".icon_setup").bind("click",function(){
 		var navlinkpanel=$(".navlink_panel");
 		if (navlinkpanel.is(":hidden")){
-		  $(".navlink_panel").slideDown();
+		  $(".navlink_panel").slideDown(300);
 	  	}else{
-		  $(".navlink_panel").slideUp();
+		  $(".navlink_panel").slideUp(300);
 		}
 	  }); 
 	  
