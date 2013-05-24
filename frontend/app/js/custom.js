@@ -5,24 +5,57 @@
 	  
 	  //所有Block经过时显示Attribute Panel Icon
 	  $(".block_header").hover(function(){
+		  $(this).append($(".attribute_panel"));
 		  $(".attribute_panel").show();
-	  }, function() {
-		  $(".attribute_panel").hide();
-	  });
-	  
-	  
-	  
-	  //Header Block
-	  $('.block_header').hover(function(){
+		  $(".block_header").css( {"z-index":"999"});
 		  $(".header_panel").show();
 		  $(".header_view").addClass("hover_view");
-		  }, function() {
-		  $(".header_panel").hide();
-		  $(".header_view").removeClass("hover_view");
+		  $(".icon_editor").hide();
+	  }, function() {
+		 $(".header_panel").hide();
+		 $(".attribute_panel").hide();
+		 $(".icon_editor").hide();
+		 $(".block_header").css( {"z-index":"1"});
+		 $(".header_view").removeClass("hover_view");
 	  });
+	  
+	  $(".block_content").hover(function(){
+		  $(this).append($(".attribute_panel"));
+		  $(".attribute_panel").show();
+		  $(".icon_editor").show();
+		  $(".block_content").css( {"z-index":"999"});
+	  }, function() {
+		 $(".attribute_panel").hide();
+		 $(".block_content").css( {"z-index":"1"});
+	  });
+	  
+	   $(".block_footer").hover(function(){
+		  $(this).append($(".attribute_panel"));
+		  $(".attribute_panel").show();
+		  $(".icon_editor").show();
+		  $(".block_footer").css( {"z-index":"999"});
+	  }, function() {
+		 $(".attribute_panel").hide();
+		 $(".block_footer").css( {"z-index":"1"});
+	  });
+	  
+	  
+	  
+	  //点击Nav 的每个Theme
 	  $(".theme_panel a").click(function(){
 		  $(this).addClass("select").siblings("a").removeClass("select");
 	  });
+	  
+	  
+	  
+	  //Attribut ICO 点击加载样式
+	  $(".attribute_panel a").click(function(){
+		  $(this).addClass("active").siblings("a").removeClass("active");
+	  });
+	  
+	  
+	
+	  
 	  
 	  
 	   
