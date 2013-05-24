@@ -41,10 +41,24 @@
 	  
 	  
 	  
+	  
 	  //点击Nav 的每个Theme
 	  $(".theme_panel a").click(function(){
 		  $(this).addClass("select").siblings("a").removeClass("select");
 	  });
+	  
+	  
+	  
+	  
+	  //点击Nav Block的设置图标
+	  $(".icon_setup").bind("click",function(){
+		var navlinkpanel=$(".navlink_panel");
+		if (navlinkpanel.is(":hidden")){
+		  $(".navlink_panel").slideDown();
+	  	}else{
+		  $(".navlink_panel").slideUp();
+		}
+	  }); 
 	  
 	  
 	  
@@ -80,7 +94,7 @@
 	  
 	  
 		
-	  //点击每一个Page
+	  //点击每个 Page
 	  $(".PageListBox a").click(function(){
 		  $(this).addClass("active").siblings("a").removeClass("active");
 	  });
