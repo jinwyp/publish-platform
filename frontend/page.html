@@ -180,7 +180,7 @@
 
 <!-- Container -->
 <div class="vcpbox page">
-<div class="container">
+<div class="container" ng-controller="PagesController">
 
 
 		<!-- Page -->
@@ -255,8 +255,32 @@
                 <!-- Page: Navigation//End -->
                 
                 
+
                 <!-- Page: Row -->
                 <div class="row">
+
+                    <div class="" ng-repeat="layoutcontainer in pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
+
+                        <!-- Block -->
+                        <div class="block_content" style="height:300px;"  ng-repeat="block in layoutcontainer.blocks">
+                            <img src="app/img/temp.jpg" style=" display:block; margin:auto; line-height:300px;">
+                            <!-- ICO -->
+                            <div class="ico_box">
+                                <div class="ico_autoblock"><!-- Auto --></div>
+                                <div class="ico_autoeditor"><!-- Editor's --></div>
+                                <div class="ico_staticblock"><!-- Static --></div>
+                                <div class="ico_adblock"><!-- AD --></div>
+                            </div>
+                            <!-- ICO//End -->
+                            <div style="height:20px;"></div>
+                        </div>
+                        <!-- Block//End -->
+
+                    </div>
+                </div>
+
+                <div class="row">
+
                     <div class="span9">
                     	<!-- Block -->
                     	<div class="block_content" style="height:300px;">
@@ -302,6 +326,7 @@
                         </div>
                         <!-- Block//End -->
                     </div>
+
                     
                 </div>
                 <!-- Page: Row//End -->
@@ -320,11 +345,13 @@
         
         
         <!-- SideBar:Page List -->
-		<div class="PageList" ng-controller="PagesController">
+		<div class="PageList" >
         		<div class="PageListBox">
-                    <a href="##" class="pagelist_btn listpage_01 " ng-repeat="page in pages" ng-class="{active: $index==selectedPageIndex}">
-                    	<span class="">{{page.pagename}}</span>
-                        </a>
+
+                    <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01 " ng-repeat="page in pages" ng-class="{active: $index==siteconfig.selectedPageIndex}" ng-click="clickpage($index)">
+                        <span class="">{{page.pagename}}</span>
+                    </a>
+
                 </div>
                 <a href="#" class="addpage_btn">+</a>
         </div>
@@ -350,7 +377,7 @@
 
                             
     <!-- Load JS -->
-    <script src="lib/angular/1.1.5/angular.min.js"></script>
+    <script src="lib/angular/1.1.5/angular.js"></script>
     <script src="app/js/page/pagecontrollers.js"></script>
 
     <script src="lib/jquery/jquery-1.8.2.min.js"></script>

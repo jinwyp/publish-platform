@@ -1,3 +1,4 @@
+
 ;jQuery(function($){
 	
 	  
@@ -97,13 +98,7 @@
 	  
 	  
 		
-	  //点击每个 Page
-	  $(".PageListBox a").click(function(){
-		  $(this).addClass("active").siblings("a").removeClass("active");
-	  });
-	  
-	  
-	  
+
 	  
 	  
 	  //点击每个 Page List
@@ -184,5 +179,5 @@
 		  $(this).addClass("selected").siblings("a").removeClass("selected");
 	  });
 
-	
+
 });
