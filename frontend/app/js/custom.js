@@ -95,13 +95,7 @@
 	  
 	  
 		
-	  //点击每个 Page
-	  $(".PageListBox a").click(function(){
-		  $(this).addClass("active").siblings("a").removeClass("active");
-	  });
-	  
-	  
-	  
+
 	  
 	  
 	  //点击每个 Page List
