@@ -179,12 +179,17 @@ ul.layout_list li:hover{ opacity:1;}
 							 }
 
 /* ========== TipBox: Content ========== */
-.tip_box		{  margin:0; padding:0; width:500px; color:#bbb; border-radius:4px; background:#343434; box-shadow:0 0 4px rgba(0,0,0,0.5); z-index:999999; display:none;}
+.tip_box		{  margin:0; padding:0; width:500px; color:#bbb; border-radius:4px; background:#343434; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:999999; display:none;}
 .tip_box:after	{ content:''; position:absolute; left:50%; bottom:-10px; margin-left:-12px; width:23px; height:10px; background:url(img/tip_arrow.png) no-repeat;}
-.tip_box h1		{ font-size:18px; height:36px; line-height:34px; text-align:center; color:#fff; background:#ea6465; margin:0; padding:0; border-radius:4px 4px 0 0;}
+.tip_box h1		{ font-size:18px; height:36px; line-height:34px; text-align:center; color:#fff; margin:0; padding:0; border-radius:4px 4px 0 0;}
 .tip_box dl		{ margin-bottom:10px;}
 .tip_box dt		{ width:120px; float:left; text-align:right; vertical-align:top;}
 .tip_box dd		{ width:360px; float:left; text-align:left; }
+
+.tip_auto h1,
+.tip_editor h1	{ background:#ea6465; }
+.tip_static h1,
+.tip_ad	h1		{ background:#5a99a8; }
 
 /* Bootstrap */
 .tip_box .tab-content			{ padding:10px 0;}
@@ -211,14 +216,14 @@ box-shadow:0 -1px 3px #000;
      -moz-border-radius: 4px 4px 0 0;
           border-radius: 4px 4px 0 0;
 }
-.tip_box .nav-tabs > li > a:hover { border:0;}
+.tip_box .nav-tabs > li > a:hover 		{ border:0;}
 .tip_box .nav-tabs > .active > a,
-.tip_box .nav-tabs > .active > a:hover { color: #fff; cursor: default; background: #343434; border:0; box-shadow:0 0 0 #000; }
+.tip_box .nav-tabs > .active > a:hover 	{ color: #fff; cursor: default; background: #343434; border:0; box-shadow:0 0 0 #000; }
 
 /* TipBox: Layout */
-.tipbox_laytou{ margin:0; padding:0; list-style:none; clear:both; *zoom:1;}
-.tipbox_laytou a{ display:block; float:left; margin-right:10px; position:relative; width:60px; height:38px; overflow:hidden;}
-.tipbox_laytou a.tipbox_selected{ background:url(img/ico_layout_select.png);}
+.tipbox_laytou					{ margin:0; padding:0; list-style:none; clear:both; *zoom:1;}
+.tipbox_laytou a				{ display:block; float:left; margin-right:10px; position:relative; width:60px; height:38px; overflow:hidden;}
+.tipbox_laytou .selected		{ background:url(img/ico_layout_select.png);}
 
 .icon_layout_1,
 .icon_layout_2,
@@ -254,6 +259,7 @@ box-shadow:0 -1px 3px #000;
   color: #000;
   font-family: "Lato", sans-serif;
   font-size: 14px;
+  font-weight:bold;
   padding: 4px;
   text-indent: 1px;
   -webkit-border-radius: 4px;
@@ -363,16 +369,10 @@ box-shadow:0 -1px 3px #000;
     -moz-transition: 0.14s linear;
     -o-transition: 0.14s linear;
     transition: 0.14s linear;
-    -webkit-backface-visibility: hidden; }
-.tipbox_filter .tagsinput .tag:hover {
-	  color:#000;
-      background-color: #fff;
-      padding-left: 12px;
-      padding-right: 20px; }
-.tipbox_filter .tagsinput .tag:hover .tagsinput-remove-link {
-        color: black;
-        opacity: 1;
-        display: block\9; }
+    -webkit-backface-visibility: hidden; 
+	}
+.tipbox_filter .tagsinput .tag:hover { color:#000; background-color: #fff; padding-left: 12px; padding-right: 20px; }
+.tipbox_filter .tagsinput .tag:hover .tagsinput-remove-link { color: black; opacity: 1; display: block\9; }
 .tipbox_filter .tagsinput input {
     background:#999;
     border: none;
@@ -386,6 +386,8 @@ box-shadow:0 -1px 3px #000;
     margin-bottom: 5px;
 	border-radius:0 4px 4px 0;
     width: 120px;
+	height:20px;
+	vertical-align:baseline;
 	-webkit-transition: all 0.3s ease-in-out;
 	 -moz-transition: all 0.3s ease-in-out;
 	  -ms-transition: all 0.3s ease-in-out;
@@ -410,16 +412,10 @@ box-shadow:0 -1px 3px #000;
   width: 100%;
   z-index: 2;
   display: none\9; }
-.tipbox_filter .tagsinput-remove-link:before {
-    color: #000; }
-
-.tipbox_filter .tagsinput-add-container {
-  vertical-align: middle;
-  display: inline-block;
-  zoom: 1;
-  *display: inline; }
-
+.tipbox_filter .tagsinput-remove-link:before 	{ color: #000; }
+.tipbox_filter .tagsinput-add-container 		{ vertical-align: middle; display: inline-block; zoom: 1; *display: inline; }
 .tipbox_filter .tagsinput-add {
+  height:20px;
   background-color: #999;
   border-radius:4px 0 0 4px;
   color: white;
@@ -434,14 +430,65 @@ box-shadow:0 -1px 3px #000;
   -o-transition: 0.25s;
   transition: 0.25s;
   -webkit-backface-visibility: hidden; }
-.tipbox_filter .tagsinput-add:hover {
-    background-color: #999; }
+.tipbox_filter .tagsinput-add:hover { background-color: #999; }
+.tipbox_filter .tags_clear 			{ clear: both; width: 100%; height: 0px; }
+.tipbox_filter .not_valid 			{ background: #fbd8db !important; color: #90111a !important; }
 
-.tipbox_filter .tags_clear {
-  clear: both;
-  width: 100%;
-  height: 0px; }
+/* TipBox: Sort */
+.tipbox_sort{}
+.tipbox_sort .checkbox,
+.tipbox_sort .radio { margin-bottom:0; margin-left:10px; padding-left:30px; position: relative; display:inline-block; *display:inline; color:#ccc; font-weight:bold;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s;
+  -webkit-backface-visibility: hidden; }
+.tipbox_sort .checkbox:hover,
+.tipbox_sort .radio:hover 							{ color: #fff; }
+.tipbox_sort .checkbox input,
+.tipbox_sort .radio input 							{ outline: none !important; opacity: 0; filter: alpha(opacity=0); zoom: 1; }
+.tipbox_sort .checkbox.checked .icon,
+.tipbox_sort .radio.checked .icon 					{ background-position: -60px -30px;  opacity: 1; display: block\9; }
+.tipbox_sort .checkbox.checked .icon-to-fade,
+.tipbox_sort .radio.checked .icon-to-fade 			{ opacity: 0; display: none\9; }
+.tipbox_sort .checkbox.disabled,
+.tipbox_sort .radio.disabled 						{ color: #d7dddd; cursor: default; }
+.tipbox_sort .checkbox.disabled .icon,
+.tipbox_sort .radio.disabled .icon 					{ opacity: 0; display: none\9; }
+.tipbox_sort .checkbox.disabled .icon-to-fade,
+.tipbox_sort.radio.disabled .icon-to-fade 			{ background-position: -30px -60px; opacity: 1; display: block\9; }
+.tipbox_sort .checkbox.disabled.checked .icon,
+.tipbox_sort .radio.disabled.checked .icon 			{ background-position: 0 -90px; opacity: 1; display: block\9; }
+.tipbox_sort .checkbox.disabled.checked .icon-to-fade,
+.tipbox_sort .radio.disabled.checked .icon-to-fade 	{ opacity: 0;  display: none\9; }
+.tipbox_sort .checkbox .icon,
+.tipbox_sort .checkbox .icon-to-fade,
+.tipbox_sort .radio .icon,
+.tipbox_sort .radio .icon-to-fade {
+    background: url("../lib/flatui/img/checkbox.png") -90px 0 no-repeat;
+    display: block;
+    height: 20px;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    top: -1px;
+    width: 20px;
+    -webkit-transition: opacity 0.1s linear;
+    -moz-transition: opacity 0.1s linear;
+    -o-transition: opacity 0.1s linear;
+    transition: opacity 0.1s linear;
+    -webkit-backface-visibility: hidden; }
+.tipbox_sort .checkbox .icon,
+.tipbox_sort .radio .icon 			{ opacity: 0; top: 0; z-index: 2; display: none\9; }
+.tipbox_sort .radio .icon,
+.tipbox_sort .radio .icon-to-fade 	{ background-image: url("../lib/flatui/img/radio.png"); }
 
-.tipbox_filter .not_valid {
-  background: #fbd8db !important;
-  color: #90111a !important; }
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3 / 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2) {
+.tipbox_sort .checkbox .icon {
+    background-image: url("../lib/flatui/img/checkbox-2x.png");
+    background-size: 110px 110px; }
+
+.tipbox_sort .radio .icon {
+    background-image: url("../lib/flatui/img/radio-2x.png");
+    background-size: 110px 110px; }
+	 }
