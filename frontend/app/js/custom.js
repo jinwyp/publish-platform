@@ -11,6 +11,7 @@
 		  $(".header_panel").show();
 		  $(".header_view").addClass("hover_view");
 		  $(".icon_editor").hide();
+		  $(".icon_move").hide();
 	  }, function() {
 		 $(".header_panel").hide();
 		 $(".attribute_panel").hide();
@@ -23,6 +24,7 @@
 		  $(this).append($(".attribute_panel"));
 		  $(".attribute_panel").show();
 		  $(".icon_editor").show();
+		  $(".icon_move").show();
 		  $(".block_content").css( {"z-index":"999"});
 	  }, function() {
 		 $(".attribute_panel").hide();
@@ -33,6 +35,7 @@
 		  $(this).append($(".attribute_panel"));
 		  $(".attribute_panel").show();
 		  $(".icon_editor").show();
+		  $(".icon_move").show();
 		  $(".block_footer").css( {"z-index":"999"});
 	  }, function() {
 		 $(".attribute_panel").hide();
