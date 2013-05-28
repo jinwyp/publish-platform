@@ -170,6 +170,12 @@
     <a href="##" class="icon_delete">delete</a>
 </div>
 
+<!-- ======================================= Page Attribute Panel ======================================= -->
+<div class="page_attri_panel">
+	<a href="#" class="panel_close">X</a>
+    <h2>Page Attribute</h2>
+</div>
+
 
 
 
@@ -262,8 +268,10 @@
                                                   <option value="Crocodile">Crocodile</option>
                                                 </select>
                                             </label>
-                                            <input type="button" value="Save" class="btn btn-success">
-                                            <input type="button" value="Cancel" class="btn btn-primary">
+                                            <div class="newlink_panel_btn">
+                                            	<input type="button" value="Save" class="btn btn-success">
+                                            	<input type="button" value="Cancel" class="btn btn-primary">
+                                            </div>
                                             </div>
                                         </li>
                                     </ul>
@@ -296,7 +304,6 @@
                                 <div class="ico_adblock"><!-- AD --></div>
                             </div>
                             <!-- ICO//End -->
-                            <div style="height:20px;"></div>
                         </div>
                         <!-- Block//End -->
 
@@ -320,7 +327,6 @@
                         </div>
                         <!-- Block//End -->
                         
-                        <div style="height:20px;"></div>
                         
                         <!-- Block -->
                         <div class="block_content" style="height:300px;">
@@ -370,21 +376,24 @@
         
         <!-- SideBar:Page List -->
 		<div class="pagelist" ng-controller="Pagelist" >
-        		<div class="pagelistbox">
+        		<ul class="pagelistbox">
                 	<!-- ArticlePage -->
-					<a href="#{{page.pageurl}}" class="pagelist_btn articlepage_btn" ng-repeat="page in pages | filter:pagefilterarticle | orderBy:'pageorder'" ng-class="{active: $index==siteconfig.selectedPageIndex}" ng-click="clickpage($index)">
-                        <i class="drag"></i><span class="">{{page.pagename}}</span><i class="ico_edit"></i>
-                    </a>
+					<li><a href="#{{page.pageurl}}" class="pagelist_btn articlepage_btn" ng-repeat="page in pages | filter:pagefilterarticle | orderBy:'pageorder'" ng-class="{active: $index==siteconfig.selectedPageIndex}" ng-click="clickpage($index)">
+                            <i class="drag"></i>{{page.pagename}}<i class="ico_edit"></i>
+                    </a></li>
                     <!-- PageList -->
-                    <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01" ng-repeat="page in pages | filter:pagefilterlist | orderBy:'pageorder'" ng-class="{active: $index==siteconfig.selectedPageIndex}" ng-click="clickpage($index)">
-                        <i class="drag"></i><span class="">{{page.pagename}}</span><i class="ico_edit"></i>
-                    </a>
+                    <li><a href="#{{page.pageurl}}" class="pagelist_btn listpage_01" ng-repeat="page in pages | filter:pagefilterlist | orderBy:'pageorder'" ng-class="{active: $index==siteconfig.selectedPageIndex}" ng-click="clickpage($index)">
+                        <i class="drag"></i>{{page.pagename}}<i class="ico_edit"></i>
+                    </a></li>
                     <!-- Add new page -->
-					<a href="#" class="pagelist_btn newpage">
+
+                    <li  ng-class="cssdisplay"><a href="#" class="pagelist_btn newpage">
                         <i class="drag">1</i><input type="text" class="input_addnew" ng-model="newpage.pagename" placeholder="NewPage">
-                    </a>
-                </div>
-                <a href="#" class="addpage_btn">+</a>
+                    </a></li>
+
+                </ul>
+
+                <a href="#" class="addpage_btn" ng-click="clickaddpage()">+</a>
         </div>
         <!-- SideBar:Page List//End -->
         
@@ -394,7 +403,10 @@
         <!-- Page Layout -->
         <div class="pagelayout" ng-controller="Layoutlist">
             <ul class="layout_list">
-                <li class="" ng-repeat="layout in layoutlist1 | orderBy:'layoutorder' " ng-class="{ active: $index==siteconfig.selectedLayoutIndex } " ng-class="{layout.layoutcss:true, active: $index==siteconfig.selectedLayoutIndex } "ng-click="clicklayout($index)"  ></li>
+
+                <li class="" ng-repeat="layout in layoutlist1 | orderBy:'layoutorder' " ng-class="{ active: $index==siteconfig.selectedLayoutIndex } " ng-click="clicklayout($index)"  >
+                    <img src="{{layout.layoutimage}}">
+                </li>
 
             </ul>
             <span href="##" class="ico_layout_close"></span>
