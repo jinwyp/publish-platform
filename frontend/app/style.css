@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+/* Global */
+.displaynone{ display:none;}
+
 /* ========== VCP Wrap ============= */
 .vcpbox			{ width:100%; margin:60px 0 0 0; padding:0; }
 .vcpbox.page	{ background:url(img/pagebg.jpg) center top no-repeat; 
@@ -37,8 +40,9 @@
 
 
 /* ========== PageList ========== */
-.pagelist		{ position:absolute; left:-142px; top:110px; width:142px; height:auto;}
-.pagelistbox	{ margin-bottom:14px;}
+.pagelist		{ position:absolute; left:-164px; top:110px; width:164px; height:auto;}
+.pagelistbox	{ margin-bottom:0 0 14px 0; padding:0; list-style:none;}
+.pagelistbox li	{ margin:0; padding:0;}
 
 /* Page List */
 .pagelist_btn	{ display:block; position:relative; padding:14px 0; margin-bottom:1px; color:#333; font-weight:bold; text-decoration:none; text-indent:0; border-radius:4px 0 0 4px;
@@ -68,7 +72,7 @@ background: -webkit-gradient(linear, 0 0, 0 100%, from(#b0d961), to(#8cbc32));
 /* Article Page */
 .pagelistbox .articlepage_btn	{ margin-bottom:20px;}
 
-/* Add New Page */
+/* New Page */
 .pagelistbox .newpage			{ background:#454545; color:#fff;}
 .pagelistbox .input_addnew		{ width:90px; border:0; margin:0; color:#34495e; font-family:"Lato", sans-serif; font-size:14px; padding:2px 4px; text-indent:0px;
   -webkit-border-radius:4px;
@@ -84,8 +88,21 @@ background: -webkit-gradient(linear, 0 0, 0 100%, from(#b0d961), to(#8cbc32));
 /* PageList Dragable */
 .pagelist_btn .drag{ display:block; float:left; width:20px; height:20px; margin:0 4px 0 8px; background:url(img/icon_attribute.png) 0px -350px no-repeat; text-indent:-9999px; cursor:pointer;}
 
-.addpage_btn	{ color:#999; padding:0 56px; font-size:36px; text-align:center; background:rgba(0,0,0,0.5); background:#454545\9; text-decoration:none; border-radius:4px;}
+/* AddNew button */
+.addpage_btn	{ float:right; margin-right:10px; color:#999; padding:0 50px; font-size:36px; text-align:center; background:rgba(0,0,0,0.5); background:#454545\9; text-decoration:none; border-radius:4px;}
 .addpage_btn:hover{ color:#fff; background:rgba(0,0,0,1); background:#000\9; box-shadow:0 0 3px rgba(255,255,255,0.4);}
+
+
+
+
+
+
+
+
+/* ========== Page Attribute Panel ========== */
+.page_attri_panel{ position:absolute; right:-460px; top:0; width:420px; padding:10px 20px; height:350px; background:#454545; z-index:99999; border-radius:8px;}
+.page_attri_panel .panel_close{ display:block; position:absolute; right:0; top:0; width:44px; height:36px; color:#fff; font-size:16px; font-weight:bold; line-height:36px; text-align:center; text-decoration:none; background:#333; border-radius:0px 8px 0px 8px;}
+.page_attri_panel h2{ color:#fff;}
 
 
 

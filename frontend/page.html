@@ -170,6 +170,12 @@
     <a href="##" class="icon_delete">delete</a>
 </div>
 
+<!-- ======================================= Page Attribute Panel ======================================= -->
+<div class="page_attri_panel">
+	<a href="#" class="panel_close">X</a>
+    <h2>Page Attribute</h2>
+</div>
+
 
 
 
@@ -370,16 +376,17 @@
         
         <!-- SideBar:Page List -->
 		<div class="pagelist" >
-        		<div class="pagelistbox">
+        		<ul class="pagelistbox">
                 	<!-- ArticlePage -->
-					<a href="#" class="pagelist_btn articlepage_btn"><i class="drag"></i>Article<i class="ico_edit"></i></a>
+					<li><a href="#" class="pagelist_btn articlepage_btn"><i class="drag"></i>Article<i class="ico_edit"></i></a></li>
                     <!-- PageList -->
-                    <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01" ng-repeat="page in pages" ng-class="{active: $index==siteconfig.selectedPageIndex}" ng-click="clickpage($index)">
+                    <li><a href="#{{page.pageurl}}" class="pagelist_btn listpage_01" ng-repeat="page in pages" ng-class="{active: $index==siteconfig.selectedPageIndex}" ng-click="clickpage($index)">
                         <i class="drag"></i><span class="">{{page.pagename}}</span><i class="ico_edit"></i>
                     </a>
+                    </li>
                     <!-- Add new page -->
-					<a href="#" class="pagelist_btn newpage"><i class="drag">1</i><input type="text" class="input_addnew" value="NewPage" placeholder=""></a>
-                </div>
+					<li class="displaynone"><a href="#" class="pagelist_btn newpage"><i class="drag">1</i><input type="text" class="input_addnew" value="NewPage" placeholder=""></a></li>
+                </ul>
                 <a href="#" class="addpage_btn">+</a>
         </div>
         <!-- SideBar:Page List//End -->
@@ -390,9 +397,9 @@
         <!-- Page Layout -->
         <div class="pagelayout">
             <ul class="layout_list">
-                <li class="ico_layout_00 active"></li>
-                <li class="ico_layout_01"></li>
-                <li class="ico_layout_02"></li>
+                <li class="ico_layout_00 active"><img src="app/img/layout_templete.png"></li>
+                <li class="ico_layout_01"><img src="app/img/layout_templete_01.png"></li>
+                <li class="ico_layout_02"><img src="app/img/layout_templete_02.png"></li>
             </ul>
             <span href="##" class="ico_layout_close"></span>
         </div>

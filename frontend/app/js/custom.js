@@ -66,7 +66,7 @@
 	  
 	  
 	  
-	  //Attribut ICO 点击加载样式
+	  //Block Attribut ICO 点击加载样式
 	  $(".attribute_panel a").click(function(){
 		  $(this).addClass("active").siblings("a").removeClass("active");
 	  });
@@ -75,8 +75,6 @@
 	
 	  
 	  
-	  
-	   
 	  //展开 Select Layout
 	  $(".ico_layout_close").bind("click",function(){
 		 var element=$(this);
@@ -88,6 +86,22 @@
 		   	$('.layout_list').animate({left:'0px', opacity:'0.75'},{duration:300, queue:true});
 		 }
 	  });
+	  
+	  
+	  
+	  
+	   //编辑 Page Attribute
+	  $(".articlepage_btn .ico_edit").click(function(e) {
+		  e.preventDefault();
+		  $parent = $(this).parent();
+		  $parent.append($(".page_attri_panel"));
+		  $(".page_attri_panel").show();
+  
+	  });
+	  $(".page_attri_panel .panel_close").click(function(e) {
+	  		$(".page_attri_panel").hide();
+	  });
+	  
 	  
 	  
 	  
