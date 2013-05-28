@@ -210,33 +210,33 @@
                                 <!-- Nav Link -->
                                 <div class="navlink_panel">
                                 	<ul class="nav_tructure clearfix">
-                                    	<li><a href="#" class="pagelink">Home</a>
+                                    	<li><a href="#" class="pagelink">Home<i class="ico_edit"></i></a>
                                         	<ul>
-                                            <li><a href="#" class="urllink">Home 1</a></li>
-                                            <li><a href="#" class="pagelink">Home 2</a></li>
+                                            <li><a href="#" class="urllink">Home 1<i class="ico_edit"></i></a></li>
+                                            <li><a href="#" class="pagelink">Home 2<i class="ico_edit"></i></a></li>
                                             <li><a href="#" class="sub_addlink">+</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#" class="pagelink">About</a>
+                                        <li><a href="#" class="pagelink">About<i class="ico_edit"></i></a>
                                         	<ul>
-                                            <li><a href="#" class="pagelink">About 1</a></li>
+                                            <li><a href="#" class="pagelink">About 1<i class="ico_edit"></i></a></li>
                                             <li><a href="#" class="sub_addlink">+</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#" class="pagelink">Service</a>
+                                        <li><a href="#" class="pagelink">Service<i class="ico_edit"></i></a>
                                         	<ul>
-                                            <li><a href="#" class="urllink">Service 1</a></li>
-                                            <li><a href="#" class="urllink">Service 2</a></li>
-                                            <li><a href="#" class="pagelink">Service 3</a></li>
+                                            <li><a href="#" class="urllink">Service 1<i class="ico_edit"></i></a></li>
+                                            <li><a href="#" class="urllink">Service 2<i class="ico_edit"></i></a></li>
+                                            <li><a href="#" class="pagelink">Service 3<i class="ico_edit"></i></a></li>
                                             <li><a href="#" class="sub_addlink">+</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#" class="pagelink">Protfolio</a>
+                                        <li><a href="#" class="pagelink">Protfolio<i class="ico_edit"></i></a>
                                         	<ul>
                                             <li><a href="#" class="sub_addlink">+</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#" class="urllink">Contact</a>
+                                        <li><a href="#" class="urllink">Contact<i class="ico_edit"></i></a>
                                         	<ul>
                                             <li><a href="#" class="sub_addlink">+</a></li>
                                             </ul>
@@ -348,10 +348,10 @@
 		<div class="pagelist" >
         		<div class="pagelistbox">
                 	<!-- ArticlePage -->
-					<a href="#" class="pagelist_btn articlepage_btn"><i class="drag">1</i>Article</a>
+					<a href="#" class="pagelist_btn articlepage_btn"><i class="drag"></i>Article<i class="ico_edit"></i></a>
                     <!-- PageList -->
                     <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01" ng-repeat="page in pages" ng-class="{active: $index==siteconfig.selectedPageIndex}" ng-click="clickpage($index)">
-                        <i class="drag">1</i><span class="">{{page.pagename}}</span>
+                        <i class="drag"></i><span class="">{{page.pagename}}</span><i class="ico_edit"></i>
                     </a>
                     <!-- Add new page -->
 					<a href="#" class="pagelist_btn newpage"><i class="drag">1</i><input type="text" class="input_addnew" value="NewPage" placeholder=""></a>

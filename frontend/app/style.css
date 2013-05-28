@@ -21,6 +21,9 @@
 
 
 
+
+
+
 /* ========== Footer ========== */
 .footer			{ padding:0; color:#aaa; text-align:center; background:#f1f1f1; }
 .footer p		{ line-height:18px; font-size:12px;}
@@ -32,26 +35,36 @@
 
 
 
+
+
 /* ========== PageList ========== */
 .pagelist		{ position:absolute; left:-142px; top:110px; width:142px; height:auto;}
 .pagelistbox	{ margin-bottom:14px;}
+
 /* Page List */
-.pagelist_btn	{ display:block; padding:14px 0; margin-bottom:1px; color:#333; text-decoration:none; text-indent:0; border-radius:4px 0 0 4px;
+.pagelist_btn	{ display:block; position:relative; padding:14px 0; margin-bottom:1px; color:#333; font-weight:bold; text-decoration:none; text-indent:0; border-radius:4px 0 0 4px;
 background: #dedcdd; /* 为较旧的或者不支持的浏览器设置备用属性 */
 background: -moz-linear-gradient(top, #dddddd, #cccccc);
 background: -webkit-gradient(linear, 0 0, 0 100%, from(#dddddd), to(#cccccc));
 box-shadow:inset -2px 0 1px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.2);
 }
-.pagelist_btn:hover, .pagelist_btn:focus 	{ color:#333;
+.pagelist_btn:hover, 
+.pagelist_btn:focus 	{ color:#333;
 background: #ffffff; /* 为较旧的或者不支持的浏览器设置备用属性 */
 background: -moz-linear-gradient(top, #ffffff, #ffffff);
 background: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#ffffff));
  }
-.pagelist_btn:active, .pagelist_btn.active 	{ color:#fff; font-weight:bold !important;
+.pagelist_btn:active, 
+.pagelist_btn.active 	{ color:#fff; font-weight:bold !important;
 background: #8cbc32; /* 为较旧的或者不支持的浏览器设置备用属性 */
 background: -moz-linear-gradient(top, #b0d961, #8cbc32);
 background: -webkit-gradient(linear, 0 0, 0 100%, from(#b0d961), to(#8cbc32));
  }
+ 
+.pagelist_btn .ico_edit			{ position:absolute; top:10px; right:4px; display:none; text-indent:-9999px; background:url(img/icon_attribute.png) 0 -250px no-repeat;}
+.pagelist_btn:hover .ico_edit	{ display:block; width:20px; height:20px;}
+.pagelist_btn:hover .ico_edit:hover{ background-position:0 -300px;}
+ 
 /* Article Page */
 .pagelistbox .articlepage_btn	{ margin-bottom:20px;}
 
@@ -69,10 +82,14 @@ background: -webkit-gradient(linear, 0 0, 0 100%, from(#b0d961), to(#8cbc32));
 .pagelistbox .input_addnew:focus{}
 
 /* PageList Dragable */
-.pagelist_btn .drag{ display:block; float:left; width:20px; height:20px; margin:0 4px 0 8px; background:url(img/icon_attribute.png) 0px -300px no-repeat; text-indent:-9999px;}
+.pagelist_btn .drag{ display:block; float:left; width:20px; height:20px; margin:0 4px 0 8px; background:url(img/icon_attribute.png) 0px -350px no-repeat; text-indent:-9999px; cursor:pointer;}
 
 .addpage_btn	{ color:#999; padding:0 56px; font-size:36px; text-align:center; background:rgba(0,0,0,0.5); background:#454545\9; text-decoration:none; border-radius:4px;}
 .addpage_btn:hover{ color:#fff; background:rgba(0,0,0,1); background:#000\9; box-shadow:0 0 3px rgba(255,255,255,0.4);}
+
+
+
+
 
 
 
@@ -170,7 +187,14 @@ ul.layout_list .active	{ opacity:1;}
 /* Nav Link Panel */
 .navlink_panel{ position:relative; margin:0 auto; bottom:-60px; width:932px; height:220px; padding:14px; border-radius:0 0 8px 8px; background:#454545; box-shadow:0 2px 3px rgba(0,0,0,0.3); display:none;}
 ul.nav_tructure		{ margin:0; padding:0; list-style:none;}
-ul.nav_tructure a	{ display:block; width:100px; height:32px; color:#000; text-decoration:none; line-height:30px; text-indent:10px; border-radius:4px; background:url(img/navlink_btnbg.png) repeat-x;}
+ul.nav_tructure a	{ display:block; position:relative; width:100px; height:32px; font-size:12px; color:#000; text-decoration:none; line-height:30px; text-indent:10px; border-radius:4px; background:url(img/navlink_btnbg.png) repeat-x;}
+
+/* Edit Nav */
+ul.nav_tructure a .ico_edit			{ display:none; position:absolute; top:6px; right:4px; background:url(img/icon_attribute.png) 0px -250px no-repeat;}
+ul.nav_tructure a:hover .ico_edit	{ display:block; width:20px; height:20px;}
+ul.nav_tructure a:hover .ico_edit:hover{ background-position:0 -300px;}
+
+/* PageLink & UrlLink */
 ul.nav_tructure a.pagelink			{ background-position:0 0;}
 ul.nav_tructure a.pagelink:hover	{ background-position:0 -32px;}
 ul.nav_tructure a.urllink			{ background-position:0 -64px;}
