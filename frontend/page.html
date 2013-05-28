@@ -248,11 +248,11 @@
                                             </div>
                                             <div class="newlink_panel_form">
                                             <label class="radio clearfix">
-                                            	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                                            	<input type="radio" name="optionsRadios" id="optionsRadios11" value="option1">
                                                 <input type="text" class="input_url" value="111" placeholder="URL">
                                             </label>
                                             <label class="radio clearfix">
-                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" checked="">
+                                                <input type="radio" name="optionsRadios" id="optionsRadios12" value="option2" checked="">
                                                 <select value="X-Men"  tabindex="1" name="herolist">
                                                   <option value="0">Choose hero</option>
                                                   <option value="1">Spider Man</option>
@@ -380,7 +380,9 @@
                         <i class="drag"></i><span class="">{{page.pagename}}</span><i class="ico_edit"></i>
                     </a>
                     <!-- Add new page -->
-					<a href="#" class="pagelist_btn newpage"><i class="drag">1</i><input type="text" class="input_addnew" value="NewPage" placeholder=""></a>
+					<a href="#" class="pagelist_btn newpage">
+                        <i class="drag">1</i><input type="text" class="input_addnew" ng-model="newpage.pagename" placeholder="NewPage">
+                    </a>
                 </div>
                 <a href="#" class="addpage_btn">+</a>
         </div>
@@ -390,11 +392,10 @@
         
         
         <!-- Page Layout -->
-        <div class="pagelayout">
+        <div class="pagelayout" ng-controller="Layoutlist">
             <ul class="layout_list">
-                <li class="ico_layout_00 active"></li>
-                <li class="ico_layout_01"></li>
-                <li class="ico_layout_02"></li>
+                <li class="" ng-repeat="layout in layoutlist1 | orderBy:'layoutorder' " ng-class="{ active: $index==siteconfig.selectedLayoutIndex } " ng-class="{layout.layoutcss:true, active: $index==siteconfig.selectedLayoutIndex } "ng-click="clicklayout($index)"  ></li>
+
             </ul>
             <span href="##" class="ico_layout_close"></span>
         </div>

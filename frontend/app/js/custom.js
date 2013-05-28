@@ -92,12 +92,11 @@
 	  
 	  
 	  //点击每个 Page Layout
-	  $(".layout_list li").click(function(){
-		  $(this).addClass("active").siblings("li").removeClass("active");
-	  });
+//	  $(".layout_list li").click(function(){
+//		  $(this).addClass("active").siblings("li").removeClass("active");
+//	  });
 	  
-	  
-		
+
 
 	  
 	  

@@ -33,18 +33,14 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams) {
         { siteid:1, pagename:'article', pageid:103,  pagetype:1, pagetitle:"article", pageurl:"article", pageorder:0, pagelayoutid:10, pagelayoutdata:[] }
     ];
 
-    var layoutlist = [
-        {layoutid: 10, layoutname: '两列左右1',layouttype : 1, layoutimage:''},
-        {layoutid: 10, layoutname: '两列左右1',layouttype : 1 , layoutimage:''},
-        {layoutid: 10, layoutname: '两列左右1',layouttype : 0 , layoutimage:''}
-    ];
+
 
     $scope.pagefilterarticle = {  pagetype:1};
     $scope.pagefilterlist = {  pagetype:2};
 
     $scope.pages = pagesdata;
     $scope.pagelayoutdata = pagesdata[0].pagelayoutdata;
-    console.log($scope.pagelayoutdata);
+//    console.log($scope.pagelayoutdata);
 
 //    console.log($location.path) ;
 
@@ -54,6 +50,30 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams) {
         $scope.siteconfig = {selectedPageIndex :indexid};
     }
 
+    $scope.clickaddpage = function(indexid) {
+        $scope.pages.push = {siteid:1, pagename:$scope.newpage.pagename, pageid:103,  pagetype:1, pagetitle:$scope.newpage.pagename};
+    }
+
+}
+
+
+page.c.Layoutlist = function($scope, $location, $http, $routeParams) {
+    var layoutlist = [
+        {layoutid: 10, layoutname: '两列1', layouttype : 1, layoutorder:1, layoutcss:'ico_layout_00', layoutimage:''},
+        {layoutid: 10, layoutname: '两列2', layouttype : 1, layoutorder:2, layoutcss:'ico_layout_01', layoutimage:''},
+        {layoutid: 10, layoutname: '三列1', layouttype : 0, layoutorder:3, layoutcss:'ico_layout_02', layoutimage:''}
+    ];
+
+    $scope.layoutlist1 = layoutlist;
+    $scope.csstrue = true;
+
+    $scope.siteconfig = {selectedLayoutIndex : 0};    // left menu default selected page
+
+    $scope.clicklayout = function(indexid) {
+        $scope.siteconfig = {selectedLayoutIndex :indexid};
+
+
+    }
 
 }
 
