@@ -33,10 +33,10 @@
 
 
 /* ========== PageList ========== */
-.PageList		{ position:absolute; left:-142px; top:110px; width:142px; height:auto;}
-.PageListBox	{ margin-bottom:14px;}
-
-.pagelist_btn	{ display:block; padding:14px 0; margin-bottom:1px; background-color: #d2d2d2; color:#333; text-decoration:none; text-indent:20px; border-radius:4px 0 0 4px;
+.pagelist		{ position:absolute; left:-142px; top:110px; width:142px; height:auto;}
+.pagelistbox	{ margin-bottom:14px;}
+/* Page List */
+.pagelist_btn	{ display:block; padding:14px 0; margin-bottom:1px; color:#333; text-decoration:none; text-indent:0; border-radius:4px 0 0 4px;
 background: #dedcdd; /* 为较旧的或者不支持的浏览器设置备用属性 */
 background: -moz-linear-gradient(top, #dddddd, #cccccc);
 background: -webkit-gradient(linear, 0 0, 0 100%, from(#dddddd), to(#cccccc));
@@ -52,6 +52,24 @@ background: #8cbc32; /* 为较旧的或者不支持的浏览器设置备用属�
 background: -moz-linear-gradient(top, #b0d961, #8cbc32);
 background: -webkit-gradient(linear, 0 0, 0 100%, from(#b0d961), to(#8cbc32));
  }
+/* Article Page */
+.pagelistbox .articlepage_btn	{ margin-bottom:20px;}
+
+/* Add New Page */
+.pagelistbox .newpage			{ background:#454545; color:#fff;}
+.pagelistbox .input_addnew		{ width:90px; border:0; margin:0; color:#34495e; font-family:"Lato", sans-serif; font-size:14px; padding:2px 4px; text-indent:0px;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  border-radius:4px;
+  -webkit-box-shadow:none;
+  -moz-box-shadow:none;
+  box-shadow:none;
+  }
+.pagelistbox .input_addnew.placeholder{ color:#acb6c0; }
+.pagelistbox .input_addnew:focus{}
+
+/* PageList Dragable */
+.pagelist_btn .drag{ display:block; float:left; width:20px; height:20px; margin:0 4px 0 8px; background:url(img/icon_attribute.png) 0px -300px no-repeat; text-indent:-9999px;}
 
 .addpage_btn	{ color:#999; padding:0 56px; font-size:36px; text-align:center; background:rgba(0,0,0,0.5); background:#454545\9; text-decoration:none; border-radius:4px;}
 .addpage_btn:hover{ color:#fff; background:rgba(0,0,0,1); background:#000\9; box-shadow:0 0 3px rgba(255,255,255,0.4);}
@@ -61,7 +79,7 @@ background: -webkit-gradient(linear, 0 0, 0 100%, from(#b0d961), to(#8cbc32));
 
 
 /* ========== Page Layout ========== */
-.PageLayout		{ position:absolute; right:-151px; top:110px; width:151px;}
+.pagelayout		{ position:absolute; right:-151px; top:110px; width:151px;}
 
 ul.layout_list	{ display:block; position:absolute; left:-82px; width:90px; margin:0;  padding:20px 0; background:#000; opacity:0.4; list-style:none; border-radius:0 0 8px 0; }
 ul.layout_list li		{ margin:0 auto; width:65px; height:55px; margin-bottom:12px; border:5px solid rgba(0,0,0,0); cursor:pointer; opacity:0.6; }
@@ -71,6 +89,7 @@ ul.layout_list .active	{ opacity:1;}
 
 .ico_layout_00 	{ background:url(img/layout_templete.png) no-repeat;}
 .ico_layout_01	{ background:url(img/layout_templete_01.png) no-repeat;}
+.ico_layout_02	{ background:url(img/layout_templete_02.png) no-repeat;}
 
 
 .ico_layout_close	{ position:absolute; left:8px; display:block; width:61px; height:57px;  background:rgba(0,0,0,0.4) url(img/ico_select_layout.png) center center no-repeat; cursor:pointer; border-radius:0 8px 8px 0;}

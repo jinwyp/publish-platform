@@ -345,13 +345,16 @@
         
         
         <!-- SideBar:Page List -->
-		<div class="PageList" >
-        		<div class="PageListBox">
-
-                    <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01 " ng-repeat="page in pages" ng-class="{active: $index==siteconfig.selectedPageIndex}" ng-click="clickpage($index)">
-                        <span class="">{{page.pagename}}</span>
+		<div class="pagelist" >
+        		<div class="pagelistbox">
+                	<!-- ArticlePage -->
+					<a href="#" class="pagelist_btn articlepage_btn"><i class="drag">1</i>Article</a>
+                    <!-- PageList -->
+                    <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01" ng-repeat="page in pages" ng-class="{active: $index==siteconfig.selectedPageIndex}" ng-click="clickpage($index)">
+                        <i class="drag">1</i><span class="">{{page.pagename}}</span>
                     </a>
-
+                    <!-- Add new page -->
+					<a href="#" class="pagelist_btn newpage"><i class="drag">1</i><input type="text" class="input_addnew" value="NewPage" placeholder=""></a>
                 </div>
                 <a href="#" class="addpage_btn">+</a>
         </div>
@@ -361,10 +364,11 @@
         
         
         <!-- Page Layout -->
-        <div class="PageLayout">
+        <div class="pagelayout">
             <ul class="layout_list">
                 <li class="ico_layout_00 active"></li>
                 <li class="ico_layout_01"></li>
+                <li class="ico_layout_02"></li>
             </ul>
             <span href="##" class="ico_layout_close"></span>
         </div>
