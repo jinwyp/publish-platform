@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="pagemodule">
   <head>
     <meta charset="utf-8">
     <title>VCP</title>
@@ -180,7 +180,7 @@
 
 <!-- Container -->
 <div class="vcpbox page">
-<div class="container" ng-controller="PagesController">
+<div class="container" >
 
 
 		<!-- Page -->
@@ -345,12 +345,14 @@
         
         
         <!-- SideBar:Page List -->
-		<div class="pagelist" >
+		<div class="pagelist" ng-controller="Pagelist" >
         		<div class="pagelistbox">
                 	<!-- ArticlePage -->
-					<a href="#" class="pagelist_btn articlepage_btn"><i class="drag"></i>Article<i class="ico_edit"></i></a>
+					<a href="#{{page.pageurl}}" class="pagelist_btn articlepage_btn" ng-repeat="page in pages | filter:pagefilterarticle | orderBy:'pageorder'" ng-class="{active: $index==siteconfig.selectedPageIndex}" ng-click="clickpage($index)">
+                        <i class="drag"></i><span class="">{{page.pagename}}</span><i class="ico_edit"></i>
+                    </a>
                     <!-- PageList -->
-                    <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01" ng-repeat="page in pages" ng-class="{active: $index==siteconfig.selectedPageIndex}" ng-click="clickpage($index)">
+                    <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01" ng-repeat="page in pages | filter:pagefilterlist | orderBy:'pageorder'" ng-class="{active: $index==siteconfig.selectedPageIndex}" ng-click="clickpage($index)">
                         <i class="drag"></i><span class="">{{page.pagename}}</span><i class="ico_edit"></i>
                     </a>
                     <!-- Add new page -->
@@ -382,6 +384,7 @@
                             
     <!-- Load JS -->
     <script src="lib/angular/1.1.5/angular.js"></script>
+    <script src="app/js/app.js"></script>
     <script src="app/js/page/pagecontrollers.js"></script>
 
     <script src="lib/jquery/jquery-1.8.2.min.js"></script>
