@@ -190,7 +190,7 @@
 
 
 		<!-- Page -->
-        <div class="pagewrap">
+        <div class="pagewrap" ng-controller="Pagelist">
         
         		
                 <!-- Page: Navigation -->
@@ -291,7 +291,7 @@
                 <!-- Page: Row -->
                 <div class="row">
 
-                    <div class="" ng-repeat="layoutcontainer in singlepage" ng-class="layoutcontainer.layoutcontainerclass">
+                    <div class="" ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
 
                         <!-- Block -->
                         <div class="block_content" style="height:300px;"  ng-repeat="block in layoutcontainer.blocks">
@@ -310,56 +310,9 @@
                     </div>
                 </div>
 
-                <div class="row">
+            <!-- Page: Row//End -->
 
-                    <div class="span9">
-                    	<!-- Block -->
-                    	<div class="block_content" style="height:300px;">
-                        	<img src="app/img/temp.jpg" style=" display:block; margin:auto; line-height:300px;">
-                        	<!-- ICO -->
-                        	<div class="ico_box">
-                            	<div class="ico_autoblock"><!-- Auto --></div>
-                                <div class="ico_autoeditor"><!-- Editor's --></div>
-                                <div class="ico_staticblock"><!-- Static --></div>
-                                <div class="ico_adblock"><!-- AD --></div>
-                            </div>
-                            <!-- ICO//End -->
-                        </div>
-                        <!-- Block//End -->
-                        
-                        
-                        <!-- Block -->
-                        <div class="block_content" style="height:300px;">
-                        	<!-- ICO -->
-                        	<div class="ico_box">
-                            	<div class="ico_autoblock"><!-- Auto --></div>
-                                <div class="ico_autoeditor"><!-- Editor's --></div>
-                                <div class="ico_staticblock"><!-- Static --></div>
-                                <div class="ico_adblock"><!-- AD --></div>
-                            </div>
-                            <!-- ICO//End -->
-                        </div>
-                        <!-- Block//End -->
-                    </div>
-                    
-                    <div class="span3">
-                    	<!-- Block -->
-                    	<div class="block_content" style="height:624px;">
-                        	<!-- ICO -->
-                        	<div class="ico_box">
-                            	<div class="ico_autoblock"><!-- Auto --></div>
-                                <div class="ico_autoeditor"><!-- Editor's --></div>
-                                <div class="ico_staticblock"><!-- Static --></div>
-                                <div class="ico_adblock"><!-- AD --></div>
-                            </div>
-                            <!-- ICO//End -->
-                        </div>
-                        <!-- Block//End -->
-                    </div>
 
-                    
-                </div>
-                <!-- Page: Row//End -->
                 
                 
                 <!-- Page: Footer -->
@@ -401,10 +354,10 @@
         
         
         <!-- Page Layout -->
-        <div class="pagelayout" ng-controller="Layoutlist">
+        <div class="pagelayout" ng-controller="Pagelist">
             <ul class="layout_list">
 
-                <li class="" ng-repeat="layout in layoutlist1 | orderBy:'layoutorder' " ng-class="{ active: $index==siteconfig.selectedLayoutIndex } " ng-click="clicklayout($index)"  >
+                <li class="" ng-repeat="layout in layouts | orderBy:'layoutorder' " ng-class="{ active: $index==defaultselectedlayoutindex } " ng-click="clicklayout($index)"  >
                     <img src="{{layout.layoutimage}}">
                 </li>
 

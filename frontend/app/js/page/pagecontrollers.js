@@ -20,7 +20,7 @@ pageapp.directive('anyKeypress', function(){
 
 pageapp.directive('enterKeypress', function(){
     return function(scope, element, attrs) {
-        element.bind("keydown keypress", function(event) {
+        element.bind("keypress", function(event) {
             if(event.which === 13) {
                 scope.$apply(function(){
                     scope.$eval(attrs.enterKeypress);
@@ -49,10 +49,10 @@ pageapp.factory('modelSite', function(){
             { siteid:1, pagename:'Homepage', pageid:101, pagetype:2, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
                 pagelayoutdata:[
                     {layoutcontainerclass:"span9", layoutcontainerid:"layoutcontainer1" , blocks:[
-                        {blockid:100, blocktype:1, blockname:"name1" } ,
-                        {blockid:101, blocktype:1, blockname:"name2" } ,
-                        {blockid:102, blocktype:1, blockname:"name3" }
-                    ]
+                            {blockid:100, blocktype:1, blockname:"name1" } ,
+                            {blockid:101, blocktype:1, blockname:"name2" } ,
+                            {blockid:102, blocktype:1, blockname:"name3" }
+                        ]
                     },
                     {layoutcontainerclass:"span3", layoutcontainerid:"layoutcontainer2", blocks:[] }
                 ]
@@ -110,24 +110,32 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     $scope.pages = [];
     $scope.singlepage = {};
 
+    $scope.layouts = [];
+
     initialize();
 
     function initialize(){
         $scope.site = modelSite.getSite();
         $scope.pages = modelSite.getPageList();
         $scope.singlepage =  modelSite.getSinglePage(0);
+    console.log($scope.singlepage);
+
+        $scope.layouts = modelSite.getLayoutList();
 
         $scope.pagefilterarticle = $scope.site.pagefilterArticleType;
         $scope.pagefilterlist = $scope.site.pagefilterListType;
         $scope.defaultselectedpageindex = $scope.site.defaulstSelectedPageIndex;    // left menu default selected page
+        $scope.defaultselectedlayoutindex = $scope.site.defaulstSelectedLayoutIndex;    // right menu default selected page
 
         $scope.cssdisplay = false;    //添加page的输入框默认不显示
     }
 
 
-//    console.log($scope.pagelayoutdata);
+
 //    console.log($location.path) ;
 
+
+    //left side bar
 
     $scope.clickpage = function(indexid) {
         $scope.defaultselectedpageindex = indexid;
@@ -141,25 +149,31 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
     $scope.addpage = function() {
         $scope.cssdisplay = false;       //添加page的输入框显示
-        $scope.pages.push ({siteid:1, pagename:$scope.newpage.pagename, pageid:103,  pagetype:2, pagetitle:$scope.newpage.pagename});
+        var newpage = {
+            siteid:1,
+            pagename:$scope.newpage.pagename,
+            pageid:103,
+            pagetype:2,
+            pagetitle:$scope.newpage.pagename
+        }
+
+        modelSite.addSinglePage(newpage);
+
         console.log($scope.pages);
+    }
+
+
+
+    //right side bar
+    $scope.clicklayout = function(indexid) {
+        $scope.defaultselectedlayoutindex = indexid;
     }
 
 }
 
 
 
-page.c.Layoutlist = function($scope, $location, $http, $routeParams) {
 
-//    $scope.layoutlist1 = layoutlist;
-//
-//    $scope.siteconfig = {selectedLayoutIndex : 0};    // left menu default selected page
-//
-//    $scope.clicklayout = function(indexid) {
-//        $scope.siteconfig = {selectedLayoutIndex :indexid};
-//    }
-
-}
 
 //PhoneListCtrl.$inject = ['$scope', '$http'];
 //function PhoneDetailCtrl($scope, $routeParams, $http) {
