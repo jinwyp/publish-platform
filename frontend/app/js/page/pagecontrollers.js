@@ -154,7 +154,8 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             pagename:$scope.newpage.pagename,
             pageid:103,
             pagetype:2,
-            pagetitle:$scope.newpage.pagename
+            pagetitle:$scope.newpage.pagetitle,
+			pageurl:$scope.newpage.pageurl,
         }
 
         modelSite.addSinglePage(newpage);
