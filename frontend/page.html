@@ -291,7 +291,7 @@
                 <!-- Page: Row -->
                 <div class="row">
 
-                    <div class="" ng-repeat="layoutcontainer in pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
+                    <div class="" ng-repeat="layoutcontainer in singlepage" ng-class="layoutcontainer.layoutcontainerclass">
 
                         <!-- Block -->
                         <div class="block_content" style="height:300px;"  ng-repeat="block in layoutcontainer.blocks">
@@ -378,22 +378,22 @@
 		<div class="pagelist" ng-controller="Pagelist" >
         		<ul class="pagelistbox">
                 	<!-- ArticlePage -->
-					<li><a href="#{{page.pageurl}}" class="pagelist_btn articlepage_btn" ng-repeat="page in pages | filter:pagefilterarticle | orderBy:'pageorder'" ng-class="{active: $index==siteconfig.selectedPageIndex}" ng-click="clickpage($index)">
-                            <i class="drag"></i>{{page.pagename}}<i class="ico_edit"></i>
-                    </a></li>
+					<!--<li><a href="#{{page.pageurl}}" class="pagelist_btn articlepage_btn" ng-repeat="page in pages | filter:pagefilterarticle | orderBy:'pageorder'" ng-class="{active: $index==defaultselectedpageindex}" ng-click="clickpage($index)">-->
+                            <!--<i class="drag"></i>{{page.pagename}}<i class="ico_edit"></i>-->
+                    <!--</a></li>-->
                     <!-- PageList -->
-                    <li><a href="#{{page.pageurl}}" class="pagelist_btn listpage_01" ng-repeat="page in pages | filter:pagefilterlist | orderBy:'pageorder'" ng-class="{active: $index==siteconfig.selectedPageIndex}" ng-click="clickpage($index)">
+                    <li><a href="#{{page.pageurl}}" class="pagelist_btn listpage_01" ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'" ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:1==page.pagetype}" ng-click="clickpage($index)">
                         <i class="drag"></i>{{page.pagename}}<i class="ico_edit"></i>
                     </a></li>
                     <!-- Add new page -->
 
-                    <li  ng-class="cssdisplay"><a href="#" class="pagelist_btn newpage">
-                        <i class="drag">1</i><input type="text" class="input_addnew" ng-model="newpage.pagename" placeholder="NewPage">
+                    <li ng-show="cssdisplay"> <a href="#" class="pagelist_btn newpage">
+                        <i class="drag">1</i><input type="text" class="input_addnew" ng-model="newpage.pagename"  placeholder="NewPage" ui-keypress="{enter: addpage()}"/>
                     </a></li>
 
                 </ul>
 
-                <a href="#" class="addpage_btn" ng-click="clickaddpage()">+</a>
+                <a href="#" class="addpage_btn" ng-hide="cssdisplay" ng-click="showaddpageinput()">+</a>
         </div>
         <!-- SideBar:Page List//End -->
         
@@ -421,6 +421,7 @@
                             
     <!-- Load JS -->
     <script src="lib/angular/1.1.5/angular.js"></script>
+    <script src="lib/angularui/angular-ui.js"></script>
     <script src="app/js/app.js"></script>
     <script src="app/js/page/pagecontrollers.js"></script>
 
