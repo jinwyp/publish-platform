@@ -1,6 +1,6 @@
 'use strict';
 
-var pageapp = angular.module('pagemodule', ['ui']);
+var pageapp = angular.module('pagemodule', []);
 
 /*
 pageapp.directive('anyKeypress', function(){
@@ -17,21 +17,19 @@ pageapp.directive('anyKeypress', function(){
 });
 */
 
-/*
 
 pageapp.directive('enterKeypress', function(){
     return function(scope, element, attrs) {
         element.bind("keydown keypress", function(event) {
             if(event.which === 13) {
                 scope.$apply(function(){
-                    scope.$eval(attrs.onEnter);
+                    scope.$eval(attrs.enterKeypress);
                 });
                 event.preventDefault();
             }
         });
     };
 });
-*/
 
 
 var page = {
