@@ -167,15 +167,10 @@ ul.layout_list .active	{ opacity:1;}
 
 
 
-<<<<<<< HEAD
-/* ========== Attribute Panel icon: Setup + Move + Delete ========== */
-=======
-
 
 /* =========================================================================================== */
 /*                                 Block：Setup + Move + Delete                                */
 /* =========================================================================================== */
->>>>>>> 2013.5.30-for-PC
 .attribute_panel{ position:absolute; right:-1px; top:-34px; }
 .attribute_panel a{ display:block; float:left; width:42px; height:34px; margin-left:1px; border-radius:4px 4px 0 0; background:#f00; text-indent:-9999px; background:#888 url(img/icon_attribute.png) no-repeat;}
 .attribute_panel .icon_setup { background-position:50% 7px;}
