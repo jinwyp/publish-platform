@@ -46,7 +46,7 @@ pageapp.factory('modelSite', function(){
         sitename:'NewSite',
 
         pagelist : [
-            { siteid:1, pagename:'Homepage', pageid:101, pagetype:1, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
+            { siteid:1, pagename:'Homepage', pageid:101, pagetype:10, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
                 pagelayoutdata:[
                     {layoutcontainerclass:"span9", layoutcontainerid:"layoutcontainer1" , blocks:[
                             {blockid:100, blocktype:1, blockname:"name1" } ,
@@ -57,11 +57,11 @@ pageapp.factory('modelSite', function(){
                     {layoutcontainerclass:"span3", layoutcontainerid:"layoutcontainer2", blocks:[] }
                 ]
             },
-            { siteid:1, pagename:'Channel2', pageid:102,  pagetype:2, pagetitle:"Ch2", pageurl:"ch2", pageorder:6,  pagelayoutid:10, pagelayoutdata:[] },
-            { siteid:1, pagename:'Channel3', pageid:103,  pagetype:2, pagetitle:"Ch3", pageurl:"ch3", pageorder:10, pagelayoutid:10, pagelayoutdata:[] },
+            { siteid:1, pagename:'Channel2', pageid:102,  pagetype:20, pagetitle:"Ch2", pageurl:"ch2", pageorder:6,  pagelayoutid:10, pagelayoutdata:[] },
+            { siteid:1, pagename:'Channel3', pageid:103,  pagetype:20, pagetitle:"Ch3", pageurl:"ch3", pageorder:10, pagelayoutid:10, pagelayoutdata:[] },
 
 
-            { siteid:1, pagename:'Article', pageid:103, pagetype:1, pagetitle:"article", pageurl:"article", pageorder:0, pagelayoutid:10, pagelayoutdata:[] }
+            { siteid:1, pagename:'Article', pageid:103, pagetype:11, pagetitle:"article", pageurl:"article", pageorder:0, pagelayoutid:10, pagelayoutdata:[] }
         ],
 
         defaultsettings:{
@@ -115,7 +115,8 @@ pageapp.factory('modelSite', function(){
     };
 
     factory.delSinglePage= function(indexid, pagedata){
-        if(pagedata.pagetype > 1){
+        if(pagedata.pagetype >= 20){
+            //首页和内容页面都是无法删除的
             var pageindex = sitedata.pagelist.indexOf(pagedata);
             sitedata.pagelist.splice(pageindex, 1);
         }
