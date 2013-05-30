@@ -90,8 +90,10 @@
 	  
 	  
 	  
+	  
+	  
 	   //编辑 Page Attribute
-	  $(".articlepage_btn .ico_edit").click(function(e) {
+	  $(".ico_edit").click(function(e) {
 		  e.preventDefault();
 		  $parent = $(this).parent();
 		  $parent.append($(".page_attri_panel"));
