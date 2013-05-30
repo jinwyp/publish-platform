@@ -64,7 +64,7 @@ pageapp.factory('modelSite', function(){
             { siteid:1, pagename:'Article', pageid:103, pagetype:1, pagetitle:"article", pageurl:"article", pageorder:0, pagelayoutid:10, pagelayoutdata:[] }
         ],
 
-        defaulstSelectedPageIndex:0,
+        defaulstSelectedPageIndex:1,
         defaulstSelectedLayoutIndex:0,
         pagefilterArticleType:{pagetype:1},
         pagefilterListType:{pagetype:2}
@@ -84,8 +84,8 @@ pageapp.factory('modelSite', function(){
         {layoutid: 10, layoutname: '三列1', layouttype : 0, layoutorder:3, layoutcss:'ico_layout_02', layoutimage:'app/img/layout_templete_02.png', layoutdata:[
             {layoutcontainerclass:"span4", layoutcontainerid:1005 },
             {layoutcontainerclass:"span4", layoutcontainerid:1006 },
-            {layoutcontainerclass:"span4", layoutcontainerid:1007 },
-        ]},
+            {layoutcontainerclass:"span4", layoutcontainerid:1007 }
+        ]}
     ];
 
     var factory = {};
@@ -129,7 +129,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.site = modelSite.getSite();
         $scope.pages = modelSite.getPageList();
         $scope.singlepage =  modelSite.getSinglePage(0);
-    console.log($scope.singlepage);
 
         $scope.layouts = modelSite.getLayoutList();
 
@@ -140,6 +139,9 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
         $scope.cssdisplay = false;    //添加page的输入框默认不显示
         $scope.csspageattribute = false;               //page属性输入面板的输入框默认不显示
+
+        $scope.filterlayouttype = {layouttype:0};
+        console.log( $scope.layouts.filterlayouttype);
     }
 
 
@@ -149,8 +151,13 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
     //left side bar
 
-    $scope.clickpage = function(indexid) {
+    $scope.clickpage = function(indexid, page) {
         $scope.defaultselectedpageindex = indexid;
+        if(page.pagetype === 1) {
+            $scope.filterlayouttype = {layouttype:1 };
+        }else{
+            $scope.filterlayouttype = {layouttype:0 };
+        }
     }
 
     $scope.newpage ={};
@@ -161,6 +168,10 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
     $scope.showeditpageattribute = function() {
         $scope.csspageattribute = true;       //添加page的输入框显示
+    }
+
+    $scope.closeeditpageattribute = function() {
+        $scope.csspageattribute = false;       //添加page的输入框显示
     }
 
     $scope.addpage = function() {
@@ -184,8 +195,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     //right side bar
     $scope.clicklayout = function(indexid) {
         $scope.defaultselectedlayoutindex = indexid;
-
-
 
     }
 
