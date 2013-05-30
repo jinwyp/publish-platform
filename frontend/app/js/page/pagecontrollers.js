@@ -64,10 +64,15 @@ pageapp.factory('modelSite', function(){
             { siteid:1, pagename:'Article', pageid:103, pagetype:1, pagetitle:"article", pageurl:"article", pageorder:0, pagelayoutid:10, pagelayoutdata:[] }
         ],
 
-        defaulstSelectedPageIndex:1,
-        defaulstSelectedLayoutIndex:0,
-        pagefilterArticleType:{pagetype:1},
-        pagefilterListType:{pagetype:2}
+        defaultsettings:{
+            defaulstSelectedPageIndex:1,
+            defaulstSelectedLayoutIndex:0,
+            pagefilterArticleType:{pagetype:1},
+            pagefilterListType:{pagetype:2},
+            layoutfilterListType:{layouttype:0}
+        }
+
+
 
     };
 
@@ -132,16 +137,17 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
         $scope.layouts = modelSite.getLayoutList();
 
-        $scope.pagefilterarticle = $scope.site.pagefilterArticleType;
-        $scope.pagefilterlist = $scope.site.pagefilterListType;
-        $scope.defaultselectedpageindex = $scope.site.defaulstSelectedPageIndex;    // left menu default selected page
-        $scope.defaultselectedlayoutindex = $scope.site.defaulstSelectedLayoutIndex;    // right menu default selected page
+        $scope.pagefilterarticle = $scope.site.defaultsettings.pagefilterArticleType;
+        $scope.pagefilterlist = $scope.site.defaultsettings.pagefilterListType;
+        $scope.layoutfilterlisttype = $scope.site.defaultsettings.layoutfilterListType;
+
+        $scope.defaultselectedpageindex = $scope.site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
+        $scope.defaultselectedlayoutindex = $scope.site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
 
         $scope.cssdisplay = false;    //添加page的输入框默认不显示
         $scope.csspageattribute = false;               //page属性输入面板的输入框默认不显示
 
-        $scope.filterlayouttype = {layouttype:0};
-        console.log( $scope.layouts.filterlayouttype);
+
     }
 
 
@@ -154,9 +160,9 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     $scope.clickpage = function(indexid, page) {
         $scope.defaultselectedpageindex = indexid;
         if(page.pagetype === 1) {
-            $scope.filterlayouttype = {layouttype:1 };
+            $scope.layoutfilterlisttype = {layouttype:1 };
         }else{
-            $scope.filterlayouttype = {layouttype:0 };
+            $scope.layoutfilterlisttype = {layouttype:0 };
         }
     }
 

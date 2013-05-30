@@ -404,7 +404,7 @@
         <div class="pagelayout" >
             <ul class="layout_list">
 
-                <li class="" ng-repeat="layout in layouts | filter:filterlayouttype " ng-class="{ active: $index==defaultselectedlayoutindex } " ng-click="clicklayout($index)"  >
+                <li class="" ng-repeat="layout in layouts | filter:layoutfilterlisttype " ng-class="{ active: $index==defaultselectedlayoutindex } " ng-click="clicklayout($index)"  >
                     <img src="{{layout.layoutimage}}">
                 </li>
 
