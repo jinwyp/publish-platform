@@ -172,25 +172,7 @@
     <a href="##" class="icon_delete">delete</a>
 </div>
 
-<!-- ======================================= Page Attribute Panel ======================================= -->
-<div class="page_attri_panel" ng-controller="Pagelist" ng-show="csspageattribute">
-	<a href="#" class="panel_close">X</a>
-    <h2>Page Attribute</h2>
-    <div class="page_attri_cont">
-    	<form>
-            <input type="text" value="Article Page" class="" placeholder="" ng-model="newpage.pagename">
-            <i class="clearfix">This name for this page that is presented in your navigation bar.</i>
-            <input type="text" value="Blog Cool" class="" placeholder="" ng-model="newpage.pagetitle">
-            <i class="clearfix">The title that appears in the top of the browser window for this page.</i>
-            <input type="text" value="http://www.touzi101.com/" class="" placeholder="" ng-model="newpage.pageurl">
-            <i class="clearfix">This name for this page that is presented in your navigation bar.</i>
-            <div class="btn_box">
-                <a href="#" class="btn attri_del">Del</a>
-                <a href="#" class="btn attri_save" ng-click="addpage()">Save</a>
-            </div>
-        </form>
-    </div>
-</div>
+
 
 
 
@@ -209,11 +191,11 @@
 
 <!-- Container -->
 <div class="vcpbox page">
-<div class="container" >
+<div class="container" ng-controller="Pagelist" >
 
 
 		<!-- Page -->
-        <div class="pagewrap" ng-controller="Pagelist">
+        <div class="pagewrap" >
         
         		
                 <!-- Page: Navigation -->
@@ -394,7 +376,7 @@
         
         
         <!-- SideBar:Page List -->
-		<div class="pagelist" ng-controller="Pagelist" >
+		<div class="pagelist" >
         		<ul class="pagelistbox">
                 	<!-- ArticlePage -->
 					<!--<li><a href="#{{page.pageurl}}" class="pagelist_btn articlepage_btn" ng-repeat="page in pages | filter:pagefilterarticle | orderBy:'pageorder'" ng-class="{active: $index==defaultselectedpageindex}" ng-click="clickpage($index)">-->
@@ -404,9 +386,29 @@
 
                     <li ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'">
                         <i class="ico_edit" ng-click="showeditpageattribute()"></i>
-                        <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:1==page.pagetype}" ng-click="clickpage($index)">
+                        <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:1==page.pagetype}" ng-click="clickpage($index, page)">
                             <i class="drag"></i>{{page.pagename}}
                         </a>
+
+                        <!-- ======================================= Page Attribute Panel ======================================= -->
+                        <div class="page_attri_panel" ng-show="csspageattribute">
+                            <a href="#" class="panel_close" ng-click="closeeditpageattribute()">X</a>
+                            <h2>Page Attribute</h2>
+                            <div class="page_attri_cont">
+                                <form>
+                                    <input type="text" class="" placeholder="Page Name" ng-model="page.pagename">
+                                    <i class="clearfix">This name for this page that is presented in your navigation bar.</i>
+                                    <input type="text"  class="" placeholder="Page Title" ng-model="page.pagetitle">
+                                    <i class="clearfix">The title that appears in the top of the browser window for this page.</i>
+                                    <input type="text" class="" placeholder="Page Url" ng-model="page.pageurl">
+                                    <i class="clearfix">This name for this page that is presented in your navigation bar.</i>
+                                    <div class="btn_box">
+                                        <a href="#" class="btn attri_del">Del</a>
+                                        <a href="#" class="btn attri_save" ng-click="addpage()">Save</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </li>
 
                     <!-- Add new page -->
@@ -425,10 +427,10 @@
         
         
         <!-- Page Layout -->
-        <div class="pagelayout" ng-controller="Pagelist">
+        <div class="pagelayout" >
             <ul class="layout_list">
 
-                <li class="" ng-repeat="layout in layouts | orderBy:'layoutorder' " ng-class="{ active: $index==defaultselectedlayoutindex } " ng-click="clicklayout($index)"  >
+                <li class="" ng-repeat="layout in layouts | filter:filterlayouttype " ng-class="{ active: $index==defaultselectedlayoutindex } " ng-click="clicklayout($index)"  >
                     <img src="{{layout.layoutimage}}">
                 </li>
 
