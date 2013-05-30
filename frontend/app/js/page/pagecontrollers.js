@@ -46,7 +46,7 @@ pageapp.factory('modelSite', function(){
         sitename:'NewSite',
 
         pagelist : [
-            { siteid:1, pagename:'Homepage', pageid:101, pagetype:2, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
+            { siteid:1, pagename:'Homepage', pageid:101, pagetype:1, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
                 pagelayoutdata:[
                     {layoutcontainerclass:"span9", layoutcontainerid:"layoutcontainer1" , blocks:[
                             {blockid:100, blocktype:1, blockname:"name1" } ,
@@ -110,6 +110,31 @@ pageapp.factory('modelSite', function(){
         return  sitedata.pagelist.push(pagedata);
     };
 
+    factory.updateSinglePage= function(pagedata){
+        return
+    };
+
+    factory.delSinglePage= function(indexid, pagedata){
+        if(pagedata.pagetype > 1){
+            var pageindex = sitedata.pagelist.indexOf(pagedata);
+            sitedata.pagelist.splice(pageindex, 1);
+        }
+
+
+
+//        for(var i = sitedata.pagelist.length; i--;){
+//            if (sitedata.pagelist[i] === pagedata) {
+//                sitedata.pagelist.splice(i, 1);
+//                console.log(i);
+//            }
+//        }
+
+
+        return
+
+    };
+
+
     factory.getLayoutList = function() {
         return  layoutdata;
     }
@@ -127,7 +152,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     $scope.singlepage = {};
 
     $scope.layouts = [];
-
+    $scope.newpage ={};
     initialize();
 
     function initialize(){
@@ -142,7 +167,10 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.layoutfilterlisttype = $scope.site.defaultsettings.layoutfilterListType;
 
         $scope.defaultselectedpageindex = $scope.site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
+        $scope.selectedpageattributeindex = -1;
+
         $scope.defaultselectedlayoutindex = $scope.site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
+
 
         $scope.cssdisplay = false;    //添加page的输入框默认不显示
         $scope.csspageattribute = false;               //page属性输入面板的输入框默认不显示
@@ -164,20 +192,14 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         }else{
             $scope.layoutfilterlisttype = {layouttype:0 };
         }
+
+        $scope.cssdisplay = false;       //添加page的输入框不显示
     }
 
-    $scope.newpage ={};
+
 
     $scope.showaddpageinput = function() {
         $scope.cssdisplay = true;       //添加page的输入框显示
-    }
-
-    $scope.showeditpageattribute = function() {
-        $scope.csspageattribute = true;       //添加page的输入框显示
-    }
-
-    $scope.closeeditpageattribute = function() {
-        $scope.csspageattribute = false;       //添加page的输入框显示
     }
 
     $scope.addpage = function() {
@@ -188,15 +210,29 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             pageid:103,
             pagetype:2,
             pagetitle:$scope.newpage.pagetitle,
-			pageurl:$scope.newpage.pageurl
+            pageurl:$scope.newpage.pageurl
         }
 
         modelSite.addSinglePage(newpage);
-
-        console.log($scope.pages);
     }
 
 
+    $scope.showeditpageattribute = function(indexid) {
+        $scope.selectedpageattributeindex = indexid;    //点击显示当前的page 属性面板
+    }
+
+    $scope.closeeditpageattribute = function(indexid) {
+        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
+    }
+
+    $scope.editsavepage = function(page) {
+        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
+        modelSite.updateSinglePage(page);
+    }
+    $scope.delpage = function(indexid, page) {
+        $scope.selectedpageattributeindex = -1;   //关闭当前的page 属性面板
+        modelSite.delSinglePage(indexid, page);
+    }
 
     //right side bar
     $scope.clicklayout = function(indexid) {
