@@ -12,7 +12,7 @@
       <script src="lib/other/html5shiv.js"></script>
     <![endif]-->
     <!-- 默认 Site Theme -->
-    <link href="theme/default/default.css" rel="stylesheet">
+    <link href="theme/default/site-theme.css" rel="stylesheet">
   </head>
 <body style="background:#f1f1f1">
 
@@ -201,13 +201,12 @@
                 <!-- Page: Navigation -->
                 <div class="row">
                     <div class="span12">
-                    	<!-- Header Block -->
+                    
+                    	<!-- Header Block 1 -->
                     	<div class="block_header">
-                        
-                        	<!-- 即时预览区 -->
+                        	<!-- 空header -->
                         	<div class="header_view"></div>
-                            <!-- 即时预览区 //End -->
-                            
+                            <!-- 空header //End -->
                             <!-- NavBlock 设置面板区 -->
                         	<div class="header_panel">
                             	<!-- 选择Theme -->
@@ -284,9 +283,32 @@
                                 <!-- Nav Link //End -->
                             </div>
                             <!-- NavBlock 设置面板区 //End -->
-                            
                         </div>
                         <!-- Header Block //End -->
+                        
+                        <!-- Header Block 2 -->
+                    	<div class="block_header">
+                            <!-- 有header -->
+                        	<div class="site-theme b-header">
+                            	<h1 class="b-h-logo">LOGO</h1>
+                                <ul class="b-h-nav">
+                                	<li><a href="#" class="current">Home</a></li>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Service</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="#">Map</a></li>
+                                </ul>
+                                <div class="b-h-info">
+                                	<a href="#">Melvon</a>
+                                    <a href="#">Link</a>
+                                    <a href="#">Link</a>
+                                    <a href="#">Link</a>
+                                </div>
+                            </div>
+                            <!-- 有header //End -->
+                        </div>
+                        <!-- Header Block //End -->
+                        
                     </div>
                 </div>
                 <!-- Page: Navigation//End -->
@@ -298,9 +320,12 @@
 
                     <div class="" ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
 
-                        <!-- Block -->
+                        <!-- Block Box -->
                         <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks">
-                            <div class="site-theme-default block-layout-1">
+
+                        	<!-- Content -->
+                            <div class="site-theme b-block block-layout-1">
+
                                 <h2>TITLE NAME</h2>
                                 <ul>
                                 	<li><h3><a href="#">Will Improving Thermal Coal Markets Boost Arch Coal?</a></h3>
@@ -320,6 +345,7 @@
                                     </li>
                                 </ul>
                             </div>
+                            <!-- Content //End -->
                             <!-- ICO -->
                             <div class="ico_box">
                                 <div class="ico_autoblock"><!-- Auto --></div>
@@ -327,13 +353,13 @@
                                 <div class="ico_staticblock"><!-- Static --></div>
                                 <div class="ico_adblock"><!-- AD --></div>
                             </div>
-                            <!-- ICO//End -->
+                            <!-- ICO //End -->
                         </div>
-                        <!-- Block//End -->
+                        <!-- Block Box //End -->
 
                     </div>
                 </div>
-            	<!-- Page: Row//End -->
+            	<!-- Page: Row //End -->
 
 
                 
