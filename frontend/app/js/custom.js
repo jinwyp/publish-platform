@@ -93,7 +93,7 @@
 
 
 
-
+/*
 	   //编辑 Page Attribute
 	  $(".ico_edit").click(function(e) {
 		  e.preventDefault();
@@ -106,7 +106,7 @@
 	  $(".page_attri_panel .panel_close").click(function(e) {
 	  		$(".page_attri_panel").hide();
 	  });
-	  
+	  */
 	  
 	  
 	  
