@@ -104,8 +104,9 @@ pageapp.factory('modelSite', function(){
         return  sitedata.pagelist;
     };
 
-    factory.getSinglePage = function (pageid) {
-        return  sitedata.pagelist[0];
+    factory.getSinglePage = function (selectedpage) {
+        var pageindex = sitedata.pagelist.indexOf(selectedpage);
+        return  sitedata.pagelist[pageindex];
     };
 
     factory.addSinglePage = function (pagedata) {
@@ -136,9 +137,10 @@ pageapp.factory('modelSite', function(){
         return  layoutdata;
     }
 
-    factory.saveSinglePageLayout = function( selectedpageindex, layout) {
-        console.log(selectedpageindex, sitedata.pagelist[selectedpageindex].pagename);
-//        sitedata.pagelist[selectedpageindex].pagelayoutdata = layout.layoutdata ;
+    factory.saveSinglePageLayout = function( selectedpage, layout) {
+        var pageindex = sitedata.pagelist.indexOf(selectedpage);
+        console.log(pageindex, sitedata.pagelist[pageindex].pagename);
+        sitedata.pagelist[pageindex].pagelayoutdata = layout.layoutdata ;
         return  ;
     }
 
@@ -161,7 +163,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     function initialize(){
         $scope.site = modelSite.getSite();
         $scope.pages = modelSite.getPageList();
-        $scope.singlepage =  modelSite.getSinglePage(0);
+        $scope.singlepage =  $scope.pages[0];
 
         $scope.layouts = modelSite.getLayoutList();
 
@@ -191,7 +193,9 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
     $scope.clickpage = function(indexid, page) {
         $scope.defaultselectedpageindex = indexid;
+        console.log($scope.singlepage);
         $scope.singlepage = page;
+
         if(page.pagetype === $scope.articletype) {
             $scope.layoutfilterlisttype = {layouttype:1 };
         }else{
