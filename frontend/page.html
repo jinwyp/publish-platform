@@ -385,26 +385,28 @@
                     <!-- PageList -->
 
                     <li ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'">
-                        <i class="ico_edit" ng-click="showeditpageattribute()"></i>
+                        <i class="ico_edit" ng-click="showeditpageattribute($index)"></i>
                         <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:1==page.pagetype}" ng-click="clickpage($index, page)">
                             <i class="drag"></i>{{page.pagename}}
                         </a>
 
                         <!-- ======================================= Page Attribute Panel ======================================= -->
-                        <div class="page_attri_panel" ng-show="csspageattribute">
-                            <a href="#" class="panel_close" ng-click="closeeditpageattribute()">X</a>
+                        <div class="page_attri_panel" ng-show="$index == selectedpageattributeindex">
+                            <a href="" class="panel_close" ng-click="closeeditpageattribute($index)">X</a>
                             <h2>Page Attribute</h2>
                             <div class="page_attri_cont">
                                 <form>
                                     <input type="text" class="" placeholder="Page Name" ng-model="page.pagename">
                                     <i class="clearfix">This name for this page that is presented in your navigation bar.</i>
+
                                     <input type="text"  class="" placeholder="Page Title" ng-model="page.pagetitle">
                                     <i class="clearfix">The title that appears in the top of the browser window for this page.</i>
+
                                     <input type="text" class="" placeholder="Page Url" ng-model="page.pageurl">
                                     <i class="clearfix">This name for this page that is presented in your navigation bar.</i>
                                     <div class="btn_box">
-                                        <a href="#" class="btn attri_del">Del</a>
-                                        <a href="#" class="btn attri_save" ng-click="addpage()">Save</a>
+                                        <a href="#" class="btn attri_del" ng-click="delpage($index, page)">Del</a>
+                                        <a href="#" class="btn attri_save" ng-click="editsavepage(page)">Save</a>
                                     </div>
                                 </form>
                             </div>
@@ -430,7 +432,7 @@
         <div class="pagelayout" >
             <ul class="layout_list">
 
-                <li class="" ng-repeat="layout in layouts | filter:filterlayouttype " ng-class="{ active: $index==defaultselectedlayoutindex } " ng-click="clicklayout($index)"  >
+                <li class="" ng-repeat="layout in layouts | filter:layoutfilterlisttype " ng-class="{ active: $index==defaultselectedlayoutindex } " ng-click="clicklayout($index)"  >
                     <img src="{{layout.layoutimage}}">
                 </li>
 
