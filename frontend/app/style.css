@@ -90,7 +90,7 @@ background: -webkit-gradient(linear, 0 0, 0 100%, from(#b0d961), to(#8cbc32));
 .pagelistbox .input_addnew:focus{}
 
 /* PageList Dragable */
-.pagelist_btn .drag{ display:block; float:left; width:20px; height:20px; margin:0 4px 0 8px; background:url(img/icon_attribute.png) 0px -350px no-repeat; text-indent:-9999px; cursor:pointer;}
+.pagelist_btn .drag{ display:block; float:left; width:20px; height:20px; margin:0 4px 0 8px; background:url(img/icon_attribute.png) 0px -350px no-repeat; text-indent:-9999px; cursor:move;}
 
 /* AddNew button */
 .addpage_btn	  { float:right; margin-right:10px; color:#999; padding:0 50px; font-size:36px; text-align:center; background:rgba(0,0,0,0.5); background:#454545\9; text-decoration:none; border-radius:4px;}
