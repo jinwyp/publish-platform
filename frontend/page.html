@@ -173,7 +173,7 @@
 </div>
 
 <!-- ======================================= Page Attribute Panel ======================================= -->
-<div class="page_attri_panel">
+<div class="page_attri_panel" ng-controller="Pagelist" ng-show="csspageattribute">
 	<a href="#" class="panel_close">X</a>
     <h2>Page Attribute</h2>
     <div class="page_attri_cont">
@@ -329,7 +329,6 @@
 
 
                 
-                
                 <!-- Page: Footer -->
                 <div class="row">
                     <div class="span12"><div class="block_footer"><!-- Page Footer --></div></div>
@@ -350,9 +349,13 @@
                             <!--<i class="drag"></i>{{page.pagename}}<i class="ico_edit"></i>-->
                     <!--</a></li>-->
                     <!-- PageList -->
-                    <li><a href="#{{page.pageurl}}" class="pagelist_btn listpage_01" ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'" ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:1==page.pagetype}" ng-click="clickpage($index)">
-                        <i class="drag"></i>{{page.pagename}}<i class="ico_edit"></i>
-                    </a></li>
+                    <li ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'">
+                        <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:1==page.pagetype}" ng-click="clickpage($index)">
+                            <i class="drag"></i>{{page.pagename}}
+                            <i class="ico_edit"  ng-click="showeditpageattribute()"></i>
+                        </a>
+
+                    </li>
                     <!-- Add new page -->
 
                     <li ng-show="cssdisplay"> <a href="#" class="pagelist_btn newpage">

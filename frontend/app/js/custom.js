@@ -89,18 +89,19 @@
 	  
 	  
 	  
-	  
+/*
 	   //编辑 Page Attribute
 	  $(".articlepage_btn .ico_edit").click(function(e) {
 		  e.preventDefault();
 		  $parent = $(this).parent();
 		  $parent.append($(".page_attri_panel"));
 		  $(".page_attri_panel").show();
-  
+
 	  });
+
 	  $(".page_attri_panel .panel_close").click(function(e) {
 	  		$(".page_attri_panel").hide();
-	  });
+	  });*/
 	  
 	  
 	  
