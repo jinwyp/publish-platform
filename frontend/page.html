@@ -405,7 +405,7 @@
                                     <input type="text" class="" placeholder="Page Url" ng-model="page.pageurl">
                                     <i class="clearfix">This name for this page that is presented in your navigation bar.</i>
                                     <div class="btn_box">
-                                        <a href="#" class="btn attri_del" ng-click="delpage($index, page)">Del</a>
+                                        <a href="#" class="btn attri_del" ng-click="delpage(page)">Del</a>
                                         <a href="#" class="btn attri_save" ng-click="editsavepage(page)">Save</a>
                                     </div>
                                 </form>
@@ -432,7 +432,7 @@
         <div class="pagelayout" >
             <ul class="layout_list">
 
-                <li class="" ng-repeat="layout in layouts | filter:layoutfilterlisttype " ng-class="{ active: $index==defaultselectedlayoutindex } " ng-click="clicklayout($index)"  >
+                <li class="" ng-repeat="layout in layouts | filter:layoutfilterlisttype " ng-class="{ active: $index==defaultselectedlayoutindex } " ng-click="clicklayout($index, layout)"  >
                     <img src="{{layout.layoutimage}}">
                 </li>
 

@@ -67,6 +67,8 @@ pageapp.factory('modelSite', function(){
         defaultsettings:{
             defaulstSelectedPageIndex:1,
             defaulstSelectedLayoutIndex:0,
+            articleTypeId:11,
+
             pagefilterArticleType:{pagetype:1},
             pagefilterListType:{pagetype:2},
             layoutfilterListType:{layouttype:0}
@@ -114,23 +116,17 @@ pageapp.factory('modelSite', function(){
         return
     };
 
-    factory.delSinglePage= function(indexid, pagedata){
+    factory.delSinglePage= function( pagedata){
         if(pagedata.pagetype >= 20){
             //首页和内容页面都是无法删除的
             var pageindex = sitedata.pagelist.indexOf(pagedata);
             sitedata.pagelist.splice(pageindex, 1);
         }
-
-
-
 //        for(var i = sitedata.pagelist.length; i--;){
 //            if (sitedata.pagelist[i] === pagedata) {
 //                sitedata.pagelist.splice(i, 1);
-//                console.log(i);
 //            }
 //        }
-
-
         return
 
     };
@@ -138,6 +134,12 @@ pageapp.factory('modelSite', function(){
 
     factory.getLayoutList = function() {
         return  layoutdata;
+    }
+
+    factory.saveSinglePageLayout = function( selectedpageindex, layout) {
+        console.log(selectedpageindex, sitedata.pagelist[selectedpageindex].pagename);
+//        sitedata.pagelist[selectedpageindex].pagelayoutdata = layout.layoutdata ;
+        return  ;
     }
 
     return factory;
@@ -163,6 +165,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
         $scope.layouts = modelSite.getLayoutList();
 
+        $scope.articletype = $scope.site.defaultsettings.articleTypeId;    // left menu default selected page
         $scope.pagefilterarticle = $scope.site.defaultsettings.pagefilterArticleType;
         $scope.pagefilterlist = $scope.site.defaultsettings.pagefilterListType;
         $scope.layoutfilterlisttype = $scope.site.defaultsettings.layoutfilterListType;
@@ -188,7 +191,8 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
     $scope.clickpage = function(indexid, page) {
         $scope.defaultselectedpageindex = indexid;
-        if(page.pagetype === 1) {
+        $scope.singlepage = page;
+        if(page.pagetype === $scope.articletype) {
             $scope.layoutfilterlisttype = {layouttype:1 };
         }else{
             $scope.layoutfilterlisttype = {layouttype:0 };
@@ -230,14 +234,17 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
         modelSite.updateSinglePage(page);
     }
-    $scope.delpage = function(indexid, page) {
-        $scope.selectedpageattributeindex = -1;   //关闭当前的page 属性面板
-        modelSite.delSinglePage(indexid, page);
+    $scope.delpage = function( page) {
+        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
+        modelSite.delSinglePage(page);
     }
 
+
+
     //right side bar
-    $scope.clicklayout = function(indexid) {
+    $scope.clicklayout = function(indexid, layout) {
         $scope.defaultselectedlayoutindex = indexid;
+        modelSite.saveSinglePageLayout($scope.singlepage, layout);
 
     }
 
