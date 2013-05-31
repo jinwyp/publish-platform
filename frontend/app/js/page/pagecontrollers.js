@@ -201,10 +201,13 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
         $scope.defaultselectedlayoutindex = $scope.site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
 
+        $scope.cssdisplay = false;    //添加page的输入框默认不显示
+
+        $scope.showform = false;
     }
-    $scope.cssdisplay = false;    //添加page的输入框默认不显示
-    $scope.showform=false;
-    $scope.csspageattribute = false;               //page属性输入面板的输入框默认不显示
+
+
+
 
 
 
