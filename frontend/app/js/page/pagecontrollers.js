@@ -85,8 +85,8 @@ pageapp.factory('modelSite', function(){
             ]},
 
         {layoutid: 10, layoutname: '两列2', layouttype : 1, layoutorder:2, layoutcss:'ico_layout_01', layoutimage:'app/img/layout_templete_01.png', layoutdata:[
-            {layoutcontainerclass:"span9", layoutcontainerid:1002 },
-            {layoutcontainerclass:"span3", layoutcontainerid:1003 }
+            {layoutcontainerclass:"span3", layoutcontainerid:1002 },
+            {layoutcontainerclass:"span9", layoutcontainerid:1003 }
         ]},
         {layoutid: 10, layoutname: '三列1', layouttype : 0, layoutorder:3, layoutcss:'ico_layout_02', layoutimage:'app/img/layout_templete_02.png', layoutdata:[
             {layoutcontainerclass:"span4", layoutcontainerid:1005 },
