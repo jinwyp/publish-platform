@@ -46,7 +46,7 @@ pageapp.factory('modelSite', function(){
         sitename:'NewSite',
 
         pagelist : [
-            { siteid:1, pagename:'Homepage', pageid:101, pagetype:2, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
+            { siteid:1, pagename:'Homepage', pageid:101, pagetype:10, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
                 pagelayoutdata:[
                     {layoutcontainerclass:"span9", layoutcontainerid:"layoutcontainer1" , blocks:[
                             {blockid:100, blocktype:1, blockname:"name1" } ,
@@ -57,17 +57,32 @@ pageapp.factory('modelSite', function(){
                     {layoutcontainerclass:"span3", layoutcontainerid:"layoutcontainer2", blocks:[] }
                 ]
             },
-            { siteid:1, pagename:'Channel2', pageid:102,  pagetype:2, pagetitle:"Ch2", pageurl:"ch2", pageorder:6,  pagelayoutid:10, pagelayoutdata:[] },
-            { siteid:1, pagename:'Channel3', pageid:103,  pagetype:2, pagetitle:"Ch3", pageurl:"ch3", pageorder:10, pagelayoutid:10, pagelayoutdata:[] },
+            { siteid:1, pagename:'Channel2', pageid:102,  pagetype:20, pagetitle:"Ch2", pageurl:"ch2", pageorder:6,  pagelayoutid:10, pagelayoutdata:[] },
+            { siteid:1, pagename:'Channel3', pageid:103,  pagetype:20, pagetitle:"Ch3", pageurl:"ch3", pageorder:10, pagelayoutid:10, pagelayoutdata:[] },
 
 
-            { siteid:1, pagename:'Article', pageid:103, pagetype:1, pagetitle:"article", pageurl:"article", pageorder:0, pagelayoutid:10, pagelayoutdata:[] }
+            { siteid:1, pagename:'Article', pageid:103, pagetype:11, pagetitle:"article", pageurl:"article", pageorder:0, pagelayoutid:10, pagelayoutdata:[] }
         ],
 
+<<<<<<< HEAD
         defaulstSelectedPageIndex:1,
         defaulstSelectedLayoutIndex:0,
         pagefilterArticleType:{pagetype:1},
         pagefilterListType:{pagetype:2}
+=======
+        defaultsettings:{
+            defaulstSelectedPageIndex:1,
+            defaulstSelectedLayoutIndex:0,
+            articleTypeId:11,
+
+            pagefilterArticleType:{pagetype:1},
+            pagefilterListType:{pagetype:2},
+            layoutfilterListType:{layouttype:0}
+        }
+
+
+
+>>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
     };
 
     var layoutdata = [
@@ -103,17 +118,39 @@ pageapp.factory('modelSite', function(){
         return  sitedata.pagelist;
     };
 
-    factory.getSinglePage = function (pageid) {
-        return  sitedata.pagelist[0];
+    factory.getSinglePage = function (selectedpage) {
+        var pageindex = sitedata.pagelist.indexOf(selectedpage);
+        return  sitedata.pagelist[pageindex];
     };
 
     factory.addSinglePage = function (pagedata) {
         return  sitedata.pagelist.push(pagedata);
     };
 
+    factory.updateSinglePage= function(pagedata){
+        return
+    };
+
+    factory.delSinglePage= function( pagedata){
+        if(pagedata.pagetype >= 20){
+            //首页和内容页面都是无法删除的
+            var pageindex = sitedata.pagelist.indexOf(pagedata);
+            sitedata.pagelist.splice(pageindex, 1);
+        }
+//        for(var i = sitedata.pagelist.length; i--;){
+//            if (sitedata.pagelist[i] === pagedata) {
+//                sitedata.pagelist.splice(i, 1);
+//            }
+//        }
+        return
+
+    };
+
+
     factory.getLayoutList = function() {
         return  layoutdata;
     }
+<<<<<<< HEAD
     factory.getheader=function(){
         return headerdata;
     }
@@ -123,6 +160,16 @@ pageapp.factory('modelSite', function(){
     factory.addChildPage = function (id,pagedata) {
         return  headerdata[id].childdata.push(pagedata);
     };
+=======
+
+    factory.saveSinglePageLayout = function( selectedpage, layout) {
+        var pageindex = sitedata.pagelist.indexOf(selectedpage);
+        console.log(pageindex, sitedata.pagelist[pageindex].pagename);
+        sitedata.pagelist[pageindex].pagelayoutdata = layout.layoutdata ;
+        return  ;
+    }
+
+>>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
     return factory;
 });
 
@@ -136,27 +183,41 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     $scope.singlepage = {};
 
     $scope.layouts = [];
+<<<<<<< HEAD
     $scope.headers=[];
+=======
+    $scope.newpage ={};
+>>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
     initialize();
 
     function initialize(){
         $scope.site = modelSite.getSite();
         $scope.pages = modelSite.getPageList();
-        $scope.singlepage =  modelSite.getSinglePage(0);
+        $scope.singlepage =  $scope.pages[0];
 
         $scope.layouts = modelSite.getLayoutList();
         $scope.headers=modelSite.getheader();
 
-        $scope.pagefilterarticle = $scope.site.pagefilterArticleType;
-        $scope.pagefilterlist = $scope.site.pagefilterListType;
-        $scope.defaultselectedpageindex = $scope.site.defaulstSelectedPageIndex;    // left menu default selected page
-        $scope.defaultselectedlayoutindex = $scope.site.defaulstSelectedLayoutIndex;    // right menu default selected page
+        $scope.articletype = $scope.site.defaultsettings.articleTypeId;    // left menu default selected page
+        $scope.pagefilterarticle = $scope.site.defaultsettings.pagefilterArticleType;
+        $scope.pagefilterlist = $scope.site.defaultsettings.pagefilterListType;
+        $scope.layoutfilterlisttype = $scope.site.defaultsettings.layoutfilterListType;
+
+        $scope.defaultselectedpageindex = $scope.site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
+        $scope.selectedpageattributeindex = -1;
+
+        $scope.defaultselectedlayoutindex = $scope.site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
+
 
         $scope.cssdisplay = false;    //添加page的输入框默认不显示
         $scope.showform=false;
         $scope.csspageattribute = false;               //page属性输入面板的输入框默认不显示
 
+<<<<<<< HEAD
         $scope.filterlayouttype = {layouttype:0};
+=======
+
+>>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
     }
     var flag=false;
     var parentid="";
@@ -198,12 +259,18 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     //left side bar
     $scope.clickpage = function(indexid, page) {
         $scope.defaultselectedpageindex = indexid;
-        if(page.pagetype === 1) {
-            $scope.filterlayouttype = {layouttype:1 };
+        console.log($scope.singlepage);
+        $scope.singlepage = page;
+
+        if(page.pagetype === $scope.articletype) {
+            $scope.layoutfilterlisttype = {layouttype:1 };
         }else{
-            $scope.filterlayouttype = {layouttype:0 };
+            $scope.layoutfilterlisttype = {layouttype:0 };
         }
+
+        $scope.cssdisplay = false;       //添加page的输入框不显示
     }
+<<<<<<< HEAD
     $scope.newpage ={};
     $scope.showaddpageinput = function() {
         $scope.cssdisplay = true;       //添加page的输入框显示
@@ -214,6 +281,15 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     $scope.closeeditpageattribute = function() {
         $scope.csspageattribute = false;       //添加page的输入框显示
     }
+=======
+
+
+
+    $scope.showaddpageinput = function() {
+        $scope.cssdisplay = true;       //添加page的输入框显示
+    }
+
+>>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
     $scope.addpage = function() {
         $scope.cssdisplay = false;       //添加page的输入框显示
         var newpage = {
@@ -222,16 +298,33 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             pageid:103,
             pagetype:2,
             pagetitle:$scope.newpage.pagetitle,
-			pageurl:$scope.newpage.pageurl
+            pageurl:$scope.newpage.pageurl
         }
 
         modelSite.addSinglePage(newpage);
+    }
 
-        console.log($scope.pages);
+
+    $scope.showeditpageattribute = function(indexid) {
+        $scope.selectedpageattributeindex = indexid;    //点击显示当前的page 属性面板
+    }
+
+    $scope.closeeditpageattribute = function(indexid) {
+        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
+    }
+
+    $scope.editsavepage = function(page) {
+        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
+        modelSite.updateSinglePage(page);
+    }
+    $scope.delpage = function( page) {
+        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
+        modelSite.delSinglePage(page);
     }
     //right side bar
-    $scope.clicklayout = function(indexid) {
+    $scope.clicklayout = function(indexid, layout) {
         $scope.defaultselectedlayoutindex = indexid;
+        modelSite.saveSinglePageLayout($scope.singlepage, layout);
 
     }
 

@@ -12,7 +12,7 @@
       <script src="lib/other/html5shiv.js"></script>
     <![endif]-->
     <!-- 默认 Site Theme -->
-    <link href="theme/default/default.css" rel="stylesheet">
+    <link href="theme/default/site-theme.css" rel="stylesheet">
   </head>
 <body style="background:#f1f1f1">
 
@@ -182,9 +182,9 @@
 <header class="header">
 	<h1 class="logo">VCP</h1><a href="page.html" class="signin">Sign In</a>
     <ul class="menu clearfix">
-    	<li><a href="#">Site</a></li>
-        <li><a href="#" class="current">Page</a></li>
-        <li><a href="#">Article</a></li>
+    	<li><a href="site.html">Site</a></li>
+        <li><a href="page.html" class="current">Page</a></li>
+        <li><a href="article.html">Article</a></li>
     </ul>
 </header>
         
@@ -201,12 +201,36 @@
                 <!-- Page: Navigation -->
                 <div class="row">
                     <div class="span12">
-                    	<!-- Header Block -->
-                    	<div class="block_header">
+                    	
+                        <!-- Header Block 1 -->
+                    	<div class="block_header header_full">
+                            <!-- 有header -->
+                        	<div class="site-theme b-header">
+                            	<h1 class="b-h-logo">LOGO</h1>
+                                <ul class="b-h-nav">
+                                	<li><a href="#" class="current">Home</a></li>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Service</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="#">Map</a></li>
+                                </ul>
+                                <div class="b-h-info">
+                                	<a href="#">Melvon</a>
+                                    <a href="#">Link</a>
+                                    <a href="#">Link</a>
+                                    <a href="#">Link</a>
+                                </div>
+                            </div>
+                            <!-- 有header //End -->
+                        </div>
+                        <!-- Header Block 1 //End -->
                         
-                        	<!-- 即时预览区 -->
+                        
+                    	<!-- Header Block 2 -->
+                    	<div class="block_header header_empty">
+                        	<!-- 空header -->
                         	<div class="header_view"></div>
-                            <!-- 即时预览区 //End -->
+                            <!-- 空header //End -->
                             
                             <!-- NavBlock 设置面板区 -->
                         	<div class="header_panel">
@@ -264,7 +288,10 @@
                             <!-- NavBlock 设置面板区 //End -->
                             
                         </div>
-                        <!-- Header Block //End -->
+                        <!-- Header Block 2 //End -->
+                        
+                        
+                        
                     </div>
                 </div>
                 <!-- Page: Navigation//End -->
@@ -276,28 +303,22 @@
 
                     <div class="" ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
 
-                        <!-- Block -->
+                        <!-- Block Box -->
                         <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks">
-                            <div class="site-theme-default block-layout-1">
+
+                        	<!-- Content -->
+                            <div class="site-theme b-block block-layout-1">
+
                                 <h2>TITLE NAME</h2>
                                 <ul>
-                                	<li><h3><a href="#">Will Improving Thermal Coal Markets Boost Arch Coal?</a></h3>
-                                    	<p>Arch Coal has been through the wringer, but are better days on the horizon.</p>
-                                    </li>
-                                    <li><h3><a href="#">Don’t Miss The Upcoming Bull Market In Uranium</a></h3>
-                                    	<p>While nuclear energy and uranium has remained in the doghouse for several years now, that could be changing. As the U.S.-Russian “Megatons to ...</p>
-                                    </li>
-                                    <li><h3><a href="#">Familiar Challenges, Familiar Opportunities At Chico's</a></h3>
-                                    	<p>Chico's is seeing the same weak business conditions as other retailers, but there could be value in these shares</p>
-                                    </li>
-                                    <li><h3><a href="#">Teaching Financial Literacy To Tweens: Introduction</a></h3>
-                                    	<p>The final guide in the Financial Literacy series focuses on helping teens prepare for adulthood and all the financial challenges involved.</p>
-                                    </li>
-                                    <li><h3><a href="#">Women: Invest In Your Financial Literacy</a></h3>
-                                    	<p>Learning about money may seem intimidating, but it's not as hard as it looks.</p>
-                                    </li>
+                                	<li><span>2012.5.31</span><h3><a href="#">Will Improving Thermal Coal Markets Boost Arch Coal Will Improving Thermal Coal Markets Boost Arch Coal?</a></h3></li>
+                                    <li><span>2012.5.30</span><h3><a href="#">Don’t Miss The Upcoming Bull Market In Uranium</a></h3></li>
+                                    <li><span>2012.5.29</span><h3><a href="#">Familiar Challenges, Familiar Opportunities At Chico's</a></h3></li>
+                                    <li><span>2012.5.28</span><h3><a href="#">Teaching Financial Literacy To Tweens: Introduction</a></h3></li>
+                                    <li><span>2012.5.27</span><h3><a href="#">Women: Invest In Your Financial Literacy</a></h3></li>
                                 </ul>
                             </div>
+                            <!-- Content //End -->
                             <!-- ICO -->
                             <div class="ico_box">
                                 <div class="ico_autoblock"><!-- Auto --></div>
@@ -305,21 +326,82 @@
                                 <div class="ico_staticblock"><!-- Static --></div>
                                 <div class="ico_adblock"><!-- AD --></div>
                             </div>
-                            <!-- ICO//End -->
+                            <!-- ICO //End -->
                         </div>
-                        <!-- Block//End -->
+                        <!-- Block Box //End -->
 
                     </div>
                 </div>
-            	<!-- Page: Row//End -->
+            	<!-- Page: Row //End -->
 
-
+				
+                
+                <!-- Page: row -->
+                <div class="row">
+                    <div class="span9">
+                    	<!-- Block Box -->
+                    	<div class="block_content block-empty">
+                        	<div class="editor_inset"><input type="text" value="" class="" placeholder="插入推荐位..."></div>
+                    		<!-- ICO -->
+                            <div class="ico_box">
+                                <div class="ico_autoblock"><!-- Auto --></div>
+                                <div class="ico_autoeditor"><!-- Editor's --></div>
+                                <div class="ico_staticblock"><!-- Static --></div>
+                                <div class="ico_adblock"><!-- AD --></div>
+                            </div>
+                            <!-- ICO //End -->
+                    	</div>
+                        <!-- Block Box //End -->
+                    </div>
+                </div>
+                <!-- Page: Row //End -->
+                
+                
+                
                 
                 <!-- Page: Footer -->
                 <div class="row">
-                    <div class="span12"><div class="block_footer block-empty"><!-- Page Footer --></div></div>
+                    <div class="span12">
+                        <!-- Footer Block 1 -->
+                    	<div class="block_footer footer_full">
+                        
+                        	<!-- 有 Footer -->
+                        	<div class="site-theme b-footer">
+                            	<p><a href="#">Privacy Policy</a>&nbsp;|
+                                <a href="#">Terms & Conditions</a>&nbsp;|
+                                <a href="#">Press Kit</a>&nbsp;|
+                                <a href="#">Trademark Issues</a>&nbsp;|
+                                <a href="#">Contact Us</a>
+                                </p>
+                                <p>Copyright © 2012 ValueClick Brands, Inc. All Rights Reserved.</p>
+                            </div>
+                            <!-- 有 Footer //End -->
+                            
+                    	</div>
+                        <!-- Footer Block 1 //End -->
+                    </div>
                 </div>
-                <!-- Page: Footer//End -->
+                <!-- Page: Footer 1 //End -->
+                
+                
+                
+                
+                
+                <!-- Page: Footer -->
+                <div class="row">
+                    <div class="span12">
+                        <!-- Footer Block 2 -->
+                    	<div class="block_footer footer_empty">
+                        
+                        	<!-- 空 Footer -->
+                        	<div class="footer_view"><!-- 空 --></div>
+                            <!-- 空 Foote //Endr -->
+                            
+                    	</div>
+                        <!-- Footer Block 2 //End -->
+                    </div>
+                </div>
+                <!-- Page: Footer //End -->
                 
         </div>
         <!-- Page //End -->
@@ -337,26 +419,28 @@
                     <!-- PageList -->
 
                     <li ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'">
-                        <i class="ico_edit" ng-click="showeditpageattribute()"></i>
-                        <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:1==page.pagetype}" ng-click="clickpage($index, page)">
+                        <i class="ico_edit" ng-click="showeditpageattribute($index)"></i>
+                        <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:11==page.pagetype}" ng-click="clickpage($index, page)">
                             <i class="drag"></i>{{page.pagename}}
                         </a>
 
                         <!-- ======================================= Page Attribute Panel ======================================= -->
-                        <div class="page_attri_panel" ng-show="csspageattribute">
-                            <a href="#" class="panel_close" ng-click="closeeditpageattribute()">X</a>
+                        <div class="page_attri_panel" ng-show="$index == selectedpageattributeindex">
+                            <a href="" class="panel_close" ng-click="closeeditpageattribute($index)">X</a>
                             <h2>Page Attribute</h2>
                             <div class="page_attri_cont">
                                 <form>
                                     <input type="text" class="" placeholder="Page Name" ng-model="page.pagename">
                                     <i class="clearfix">This name for this page that is presented in your navigation bar.</i>
+
                                     <input type="text"  class="" placeholder="Page Title" ng-model="page.pagetitle">
                                     <i class="clearfix">The title that appears in the top of the browser window for this page.</i>
+
                                     <input type="text" class="" placeholder="Page Url" ng-model="page.pageurl">
                                     <i class="clearfix">This name for this page that is presented in your navigation bar.</i>
                                     <div class="btn_box">
-                                        <a href="#" class="btn attri_del">Del</a>
-                                        <a href="#" class="btn attri_save" ng-click="addpage()">Save</a>
+                                        <a href="#" class="btn attri_del" ng-click="delpage(page)">Del</a>
+                                        <a href="#" class="btn attri_save" ng-click="editsavepage(page)">Save</a>
                                     </div>
                                 </form>
                             </div>
@@ -382,7 +466,7 @@
         <div class="pagelayout" >
             <ul class="layout_list">
 
-                <li class="" ng-repeat="layout in layouts | filter:filterlayouttype " ng-class="{ active: $index==defaultselectedlayoutindex } " ng-click="clicklayout($index)"  >
+                <li class="" ng-repeat="layout in layouts | filter:layoutfilterlisttype " ng-class="{ active: $index==defaultselectedlayoutindex } " ng-click="clicklayout($index, layout)"  >
                     <img src="{{layout.layoutimage}}">
                 </li>
 
