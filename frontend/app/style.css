@@ -5,7 +5,7 @@
 /* =========================================================================================== */
 .vcpbox			{ width:100%; margin:60px 0 0 0; padding:0; }
 .vcpbox.page	{ background:url(img/pagebg.jpg) center top repeat; 
-				  background:url(img/pagebg.jpg) center top repeat \0; 
+				  background:url(img/pagebg.jpg) center top repeat\0; 
 				  *background:url(img/pagebg.jpg) center top repeat;
 				  /* background-size:cover; */}
 .container		{ position:relative; }
@@ -738,3 +738,24 @@ only screen and (min--moz-device-pixel-ratio: 1.5),
 .block-layout-3{}
 .block-layout-4{}
 .block-layout-5{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================================================== */
+/*                                   A r t i c l e                                             */
+/* =========================================================================================== */
+.article{ padding:14px; min-width:1024px; display: flex; flex-flow: row wrap;}
+.write_h1{ display:block; margin:0; height:66px; line-height:64px; padding-left:20px; font-family:Georgia, "Times New Roman", Times, serif; font-weight:normal; color:#111; border:1px solid #d4d0cd; border-radius:4px; background:#fff; box-shadow:0 0 2px rgba(0,0,0,0.1); overflow:hidden; white-space:nowrap; -o-text-overflow:ellipsis; text-overflow:ellipsis;/*IE专有*/}
+.write_block{ border:1px solid #d4d0cd; border-radius:4px; background:#fff; box-shadow:0 0 2px rgba(0,0,0,0.1); display: flex; flex-flow: column; }
+.write_block_l{}
