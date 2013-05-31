@@ -100,6 +100,8 @@ pageapp.factory('modelSite', function(){
         {headerid:2,headername:'Page1',headertype:1,headerurl:'',childdata:[]},
         {headerid:3,headername:'Page2',headertype:2,headerurl:'',childdata:[]}
     ];
+
+
     var factory = {};
     factory.getSite = function () {
         return  sitedata;
@@ -134,19 +136,25 @@ pageapp.factory('modelSite', function(){
 //            }
 //        }
         return
-
     };
 
 
 
 
-
-
-
+    //layout 修改
     factory.getLayoutList = function() {
         return  layoutdata;
     }
 
+    factory.saveSinglePageLayout = function( selectedpage, layout) {
+        var pageindex = sitedata.pagelist.indexOf(selectedpage);
+        console.log(pageindex, sitedata.pagelist[pageindex].pagename);
+        sitedata.pagelist[pageindex].pagelayoutdata = layout.layoutdata ;
+        return  ;
+    }
+
+
+    //header 修改
     factory.getheader=function(){
         return headerdata;
     }
@@ -156,22 +164,6 @@ pageapp.factory('modelSite', function(){
     factory.addChildPage = function (id,pagedata) {
         return  headerdata[id].childdata.push(pagedata);
     };
-
-
-    factory.saveSinglePageLayout = function( selectedpage, layout) {
-        var pageindex = sitedata.pagelist.indexOf(selectedpage);
-        console.log(pageindex, sitedata.pagelist[pageindex].pagename);
-        sitedata.pagelist[pageindex].pagelayoutdata = layout.layoutdata ;
-        return  ;
-    }
-
-
-    factory.saveSinglePageLayout = function( selectedpage, layout) {
-        var pageindex = sitedata.pagelist.indexOf(selectedpage);
-        console.log(pageindex, sitedata.pagelist[pageindex].pagename);
-        sitedata.pagelist[pageindex].pagelayoutdata = layout.layoutdata ;
-        return  ;
-    }
 
 
     return factory;
@@ -185,22 +177,21 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     $scope.site = {};
     $scope.pages = [];
     $scope.singlepage = {};
-
+    $scope.newpage ={};
     $scope.layouts = [];
     $scope.headers=[];
-    $scope.newpage ={};
 
     initialize();
 
     function initialize(){
         $scope.site = modelSite.getSite();
         $scope.pages = modelSite.getPageList();
-        $scope.singlepage =  $scope.pages[0];
+        $scope.singlepage =  $scope.pages[0];   //默认读取首页
 
         $scope.layouts = modelSite.getLayoutList();
-        $scope.headers=modelSite.getheader();
+        $scope.headers = modelSite.getheader();
 
-        $scope.articletype = $scope.site.defaultsettings.articleTypeId;    // left menu default selected page
+        $scope.pagearticletype = $scope.site.defaultsettings.articleTypeId;    // left menu default selected page
         $scope.pagefilterarticle = $scope.site.defaultsettings.pagefilterArticleType;
         $scope.pagefilterlist = $scope.site.defaultsettings.pagefilterListType;
         $scope.layoutfilterlisttype = $scope.site.defaultsettings.layoutfilterListType;
@@ -209,13 +200,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.selectedpageattributeindex = -1;
 
         $scope.defaultselectedlayoutindex = $scope.site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
-
-        $scope.defaultselectedpageindex = $scope.site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
-        $scope.selectedpageattributeindex = -1;
-
-
-        $scope.defaultselectedlayoutindex = $scope.site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
-
 
     }
     $scope.cssdisplay = false;    //添加page的输入框默认不显示
@@ -266,7 +250,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.defaultselectedpageindex = indexid;
         $scope.singlepage = page;
 
-        if(page.pagetype === $scope.articletype) {
+        if(page.pagetype === $scope.pagearticletype) {
             $scope.layoutfilterlisttype = {layouttype:1 };
         }else{
             $scope.layoutfilterlisttype = {layouttype:0 };
