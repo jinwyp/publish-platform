@@ -3,12 +3,12 @@
 
 
 /* Global */
-.site-theme					{ padding:10px; background:#fff;}
+.site-theme					{ padding:10px;}
 
 
 
 /* Header */
-.site-theme.b-header{ position:relative; margin:0; padding:0; height:100px; border:1px solid #eee; }
+.site-theme.b-header{ position:relative; margin:0; padding:0; height:100px; border:1px solid #eee;}
 
 .site-theme.b-header .b-h-logo	{ display:block; float:left; margin-left:20px; color:#888}
 .site-theme.b-header .b-h-info	{ position:absolute; right:20px; top:20px; color:#888;}
@@ -25,12 +25,20 @@
 
 
 
+/* Footer */
+.site-theme.b-footer	{ position:relative; margin:0; padding:20px 0 0 0; height:60px; border-top:2px solid #bbb; background:#f6f6f6;}
+.site-theme.b-footer p	{ color:#888; text-align:center; font-size:12px;}
+.site-theme.b-footer p a{ color:#666; padding:0 6px;}
+
+
+
+
 /* Block */
 .site-theme.b-block h2		{ font-size:18px; margin:0; margin-bottom:10px; border-bottom:15px solid #555656; color:#333;}
-.site-theme.b-block h3		{ font-size:16px; line-height:24px; font-weight:normal;}
 .site-theme.b-block ul		{ list-style:none; margin:0;}
-.site-theme.b-block ul li	{ border-bottom:1px dotted #ccc;}
-.site-theme.b-block ul li	{ font-size:14px; color:#666;}
+.site-theme.b-block ul li	{ font-size:14px; color:#666; border-bottom:1px dotted #ccc; }
+.site-theme.b-block ul li h3{ font-size:16px; line-height:24px; font-weight:normal; max-width:80%; overflow:hidden; white-space:nowrap; -o-text-overflow:ellipsis; text-overflow:ellipsis;}
+.site-theme.b-block ul li span{ color:#999; font-size:12px; float:right; line-height:30px;}
 .site-theme.b-block ul li a	{ color:#3e7c34; text-decoration:none;}
 .site-theme.b-block ul li a:hover{ text-decoration:underline;}
 

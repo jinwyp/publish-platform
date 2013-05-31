@@ -34,13 +34,15 @@
 
 	   $(".block_footer").hover(function(){
 		  $(this).append($(".attribute_panel"));
+		  $(".footer_view").addClass("hover_view");
 		  $(".attribute_panel").show();
-		  $(".icon_editor").show();
-		  $(".icon_move").show();
+		  $(".icon_editor").hide();
+		  $(".icon_move").hide();
 		  $(".block_footer").css( {"z-index":"999"});
 	  }, function() {
-		 $(".attribute_panel").hide();
-		 $(".block_footer").css( {"z-index":"1"});
+		  $(".footer_view").removeClass("hover_view");
+		  $(".attribute_panel").hide();
+		  $(".block_footer").css( {"z-index":"1"});
 	  });
 
 
