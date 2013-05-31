@@ -133,6 +133,11 @@ pageapp.factory('modelSite', function(){
     };
 
 
+
+
+
+
+
     factory.getLayoutList = function() {
         return  layoutdata;
     }
@@ -193,7 +198,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
     $scope.clickpage = function(indexid, page) {
         $scope.defaultselectedpageindex = indexid;
-        console.log($scope.singlepage);
         $scope.singlepage = page;
 
         if(page.pagetype === $scope.articletype) {
@@ -217,7 +221,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             siteid:1,
             pagename:$scope.newpage.pagename,
             pageid:103,
-            pagetype:2,
+            pagetype:20,
             pagetitle:$scope.newpage.pagetitle,
             pageurl:$scope.newpage.pageurl
         }
@@ -241,6 +245,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     $scope.delpage = function( page) {
         $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
         modelSite.delSinglePage(page);
+
     }
 
 
