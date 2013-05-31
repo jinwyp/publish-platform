@@ -148,20 +148,20 @@ pageapp.factory('modelSite', function(){
 
     factory.saveSinglePageLayout = function( selectedpage, layout) {
         var pageindex = sitedata.pagelist.indexOf(selectedpage);
-        console.log(pageindex, sitedata.pagelist[pageindex].pagename);
+//        console.log(pageindex, sitedata.pagelist[pageindex].pagename);
         sitedata.pagelist[pageindex].pagelayoutdata = layout.layoutdata ;
         return  ;
     }
 
 
     //header 修改
-    factory.getheader=function(){
+    factory.getHeader=function(){
         return headerdata;
     }
-    factory.addheaderPage = function (pagedata) {
+    factory.addHeaderPage = function (pagedata) {
         return  headerdata.push(pagedata);
     };
-    factory.addChildPage = function (id,pagedata) {
+    factory.addHeaderChildPage = function (id,pagedata) {
         return  headerdata[id].childdata.push(pagedata);
     };
 
@@ -189,7 +189,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.singlepage =  $scope.pages[0];   //默认读取首页
 
         $scope.layouts = modelSite.getLayoutList();
-        $scope.headers = modelSite.getheader();
+        $scope.headers = modelSite.getHeader();
 
         $scope.pagearticletype = $scope.site.defaultsettings.articleTypeId;    // left menu default selected page
         $scope.pagefilterarticle = $scope.site.defaultsettings.pagefilterArticleType;
@@ -197,7 +197,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.layoutfilterlisttype = $scope.site.defaultsettings.layoutfilterListType;
 
         $scope.defaultselectedpageindex = $scope.site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
-        $scope.selectedpageattributeindex = -1;
+        $scope.selectedpageattributeindex = -1;    //默认隐藏所有page的属性面板
 
         $scope.defaultselectedlayoutindex = $scope.site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
 
@@ -208,9 +208,80 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
 
 
+    //left side bar
+    $scope.clickpage = function(indexid, page) {
+        $scope.defaultselectedpageindex = indexid;
+        $scope.singlepage = page;
+
+        if(page.pagetype === $scope.pagearticletype) {
+            $scope.layoutfilterlisttype = {layouttype:1 };
+        }else{
+            $scope.layoutfilterlisttype = {layouttype:0 };
+        }
+
+        $scope.cssdisplay = false;       //添加page的输入框不显示
+    }
+
+    $scope.showaddpageinput = function() {
+        $scope.cssdisplay = true;       //添加page的输入框显示
+    }
+    $scope.showeditpageattribute = function() {
+        $scope.csspageattribute = true;       //添加page的输入框显示
+    }
+    $scope.closeeditpageattribute = function() {
+        $scope.csspageattribute = false;       //添加page的输入框显示
+    }
+
+
+    //left side bar add page
+
+    $scope.showaddpageinput = function() {
+        $scope.cssdisplay = true;       //添加page的输入框显示
+    }
+
+    $scope.addpage = function() {
+        $scope.cssdisplay = false;       //添加page的输入框显示
+        var newpage = {
+            siteid:1,
+            pagename:$scope.newpage.pagename,
+            pageid:103,
+            pagetype:20,
+            pagetitle:$scope.newpage.pagetitle,
+            pageurl:$scope.newpage.pageurl
+        }
+
+        modelSite.addSinglePage(newpage);
+
+    }
 
 
 
+    //left side bar add page attribute
+    $scope.showeditpageattribute = function(indexid) {
+        $scope.selectedpageattributeindex = indexid;    //点击显示当前的page 属性面板
+    }
+
+    $scope.closeeditpageattribute = function(indexid) {
+        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
+    }
+
+    $scope.editsavepage = function(page) {
+        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
+        modelSite.updateSinglePage(page);
+    }
+    $scope.delpage = function( page) {
+        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
+        modelSite.delSinglePage(page);
+
+    }
+
+    //right side bar
+    $scope.clicklayout = function(indexid, layout) {
+        $scope.defaultselectedlayoutindex = indexid;
+        modelSite.saveSinglePageLayout($scope.singlepage, layout);
+    }
+
+    //header
     var flag=false;
     var parentid="";
     $scope.showheaderform=function(param1,param){
@@ -239,87 +310,13 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             $scope.newdata.headerurl=$("#localurl")[0].value;
         }
         $scope.showform=false;
-        if(flag){
-             var newdata={headerid:4,headername:$scope.newdata.headername,headertype:$scope.newdata.headertype,headerurl:$scope.newdata.headerurl};
-             modelSite.addheaderPage(newdata);
+        if(flag){                               s
+            var newdata={headerid:4,headername:$scope.newdata.headername,headertype:$scope.newdata.headertype,headerurl:$scope.newdata.headerurl};
+            modelSite.addHeaderPage(newdata);
         }else{
-              var newdata={childid:3,childname:$scope.newdata.headername,childtype:$scope.newdata.headertype,childurl:$scope.newdata.headerurl};
-              modelSite.addChildPage(parentid,newdata);
+            var newdata={childid:3,childname:$scope.newdata.headername,childtype:$scope.newdata.headertype,childurl:$scope.newdata.headerurl};
+            modelSite.addHeaderChildPage(parentid,newdata);
         }
-    }
-
-    //left side bar
-    $scope.clickpage = function(indexid, page) {
-        $scope.defaultselectedpageindex = indexid;
-        $scope.singlepage = page;
-
-        if(page.pagetype === $scope.pagearticletype) {
-            $scope.layoutfilterlisttype = {layouttype:1 };
-        }else{
-            $scope.layoutfilterlisttype = {layouttype:0 };
-        }
-
-        $scope.cssdisplay = false;       //添加page的输入框不显示
-    }
-
-    $scope.showaddpageinput = function() {
-        $scope.cssdisplay = true;       //添加page的输入框显示
-    }
-    $scope.showeditpageattribute = function() {
-        $scope.csspageattribute = true;       //添加page的输入框显示
-    }
-    $scope.closeeditpageattribute = function() {
-        $scope.csspageattribute = false;       //添加page的输入框显示
-    }
-
-
-
-
-    $scope.showaddpageinput = function() {
-        $scope.cssdisplay = true;       //添加page的输入框显示
-    }
-
-    $scope.addpage = function() {
-        $scope.cssdisplay = false;       //添加page的输入框显示
-        var newpage = {
-            siteid:1,
-            pagename:$scope.newpage.pagename,
-            pageid:103,
-            pagetype:20,
-            pagetitle:$scope.newpage.pagetitle,
-            pageurl:$scope.newpage.pageurl
-        }
-
-        modelSite.addSinglePage(newpage);
-
-    }
-
-
-
-
-
-    $scope.showeditpageattribute = function(indexid) {
-        $scope.selectedpageattributeindex = indexid;    //点击显示当前的page 属性面板
-    }
-
-    $scope.closeeditpageattribute = function(indexid) {
-        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
-    }
-
-    $scope.editsavepage = function(page) {
-        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
-        modelSite.updateSinglePage(page);
-    }
-    $scope.delpage = function( page) {
-        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
-        modelSite.delSinglePage(page);
-
-    }
-    //right side bar
-    $scope.clicklayout = function(indexid, layout) {
-        $scope.defaultselectedlayoutindex = indexid;
-        modelSite.saveSinglePageLayout($scope.singlepage, layout);
-
     }
 
 }
