@@ -68,7 +68,6 @@ pageapp.factory('modelSite', function(){
         defaulstSelectedLayoutIndex:0,
         pagefilterArticleType:{pagetype:1},
         pagefilterListType:{pagetype:2}
-
     };
 
     var layoutdata = [
@@ -87,7 +86,14 @@ pageapp.factory('modelSite', function(){
             {layoutcontainerclass:"span4", layoutcontainerid:1007 }
         ]}
     ];
-
+    var headerdata=[
+        {headerid:1,headername:'Home',headertype:1,headerurl:'',childdata:[
+            {childid:1,childname:'Child1',childtype:1,childurl:'111.htm'},
+            {childid:2,childname:'Child2',childtype:2,chidlurl:''}
+        ]},
+        {headerid:2,headername:'Page1',headertype:1,headerurl:'',childdata:[]},
+        {headerid:3,headername:'Page2',headertype:2,headerurl:'',childdata:[]}
+    ];
     var factory = {};
     factory.getSite = function () {
         return  sitedata;
@@ -108,7 +114,15 @@ pageapp.factory('modelSite', function(){
     factory.getLayoutList = function() {
         return  layoutdata;
     }
-
+    factory.getheader=function(){
+        return headerdata;
+    }
+    factory.addheaderPage = function (pagedata) {
+        return  headerdata.push(pagedata);
+    };
+    factory.addChildPage = function (id,pagedata) {
+        return  headerdata[id].childdata.push(pagedata);
+    };
     return factory;
 });
 
@@ -122,7 +136,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     $scope.singlepage = {};
 
     $scope.layouts = [];
-
+    $scope.headers=[];
     initialize();
 
     function initialize(){
@@ -131,6 +145,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.singlepage =  modelSite.getSinglePage(0);
 
         $scope.layouts = modelSite.getLayoutList();
+        $scope.headers=modelSite.getheader();
 
         $scope.pagefilterarticle = $scope.site.pagefilterArticleType;
         $scope.pagefilterlist = $scope.site.pagefilterListType;
@@ -138,19 +153,49 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.defaultselectedlayoutindex = $scope.site.defaulstSelectedLayoutIndex;    // right menu default selected page
 
         $scope.cssdisplay = false;    //添加page的输入框默认不显示
+        $scope.showform=false;
         $scope.csspageattribute = false;               //page属性输入面板的输入框默认不显示
 
         $scope.filterlayouttype = {layouttype:0};
-        console.log( $scope.layouts.filterlayouttype);
+    }
+    var flag=false;
+    var parentid="";
+    $scope.showheaderform=function(param1,param){
+        $scope.showform=true;
+        flag=param;
+        parentid=param1;
+        $("#titlename")[0].value="";
+        $("#otherurl")[0].value="";
+    }
+    $scope.hideheaderform=function(){
+        $scope.showform=false;
+    }
+    $scope.newdata ={};
+    $scope.saveData=function(){
+        if($scope.newdata.headername == undefined){
+            return;
+        }
+        if($("#optionsRadios11")[0].checked){
+            $scope.newdata.headertype=1;
+            if($("#otherurl")[0].value==""){
+                return;
+            }
+            $scope.newdata.headerurl=$("#otherurl")[0].value;
+        }else{
+            $scope.newdata.headertype=2;
+            $scope.newdata.headerurl=$("#localurl")[0].value;
+        }
+        $scope.showform=false;
+        if(flag){
+             var newdata={headerid:4,headername:$scope.newdata.headername,headertype:$scope.newdata.headertype,headerurl:$scope.newdata.headerurl};
+             modelSite.addheaderPage(newdata);
+        }else{
+              var newdata={childid:3,childname:$scope.newdata.headername,childtype:$scope.newdata.headertype,childurl:$scope.newdata.headerurl};
+              modelSite.addChildPage(parentid,newdata);
+        }
     }
 
-
-
-//    console.log($location.path) ;
-
-
     //left side bar
-
     $scope.clickpage = function(indexid, page) {
         $scope.defaultselectedpageindex = indexid;
         if(page.pagetype === 1) {
@@ -159,21 +204,16 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             $scope.filterlayouttype = {layouttype:0 };
         }
     }
-
     $scope.newpage ={};
-
     $scope.showaddpageinput = function() {
         $scope.cssdisplay = true;       //添加page的输入框显示
     }
-
     $scope.showeditpageattribute = function() {
         $scope.csspageattribute = true;       //添加page的输入框显示
     }
-
     $scope.closeeditpageattribute = function() {
         $scope.csspageattribute = false;       //添加page的输入框显示
     }
-
     $scope.addpage = function() {
         $scope.cssdisplay = false;       //添加page的输入框显示
         var newpage = {
@@ -189,9 +229,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
         console.log($scope.pages);
     }
-
-
-
     //right side bar
     $scope.clicklayout = function(indexid) {
         $scope.defaultselectedlayoutindex = indexid;
