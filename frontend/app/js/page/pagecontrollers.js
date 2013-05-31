@@ -64,15 +64,7 @@ pageapp.factory('modelSite', function(){
             { siteid:1, pagename:'Article', pageid:103, pagetype:11, pagetitle:"article", pageurl:"article", pageorder:0, pagelayoutid:10, pagelayoutdata:[] }
         ],
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        defaulstSelectedPageIndex:1,
-        defaulstSelectedLayoutIndex:0,
-        pagefilterArticleType:{pagetype:1},
-        pagefilterListType:{pagetype:2}
-=======
-=======
->>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
+
         defaultsettings:{
             defaulstSelectedPageIndex:1,
             defaulstSelectedLayoutIndex:0,
@@ -82,14 +74,6 @@ pageapp.factory('modelSite', function(){
             pagefilterListType:{pagetype:2},
             layoutfilterListType:{layouttype:0}
         }
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
-
-
->>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
     };
 
     var layoutdata = [
@@ -157,7 +141,7 @@ pageapp.factory('modelSite', function(){
     factory.getLayoutList = function() {
         return  layoutdata;
     }
-<<<<<<< HEAD
+
     factory.getheader=function(){
         return headerdata;
     }
@@ -167,7 +151,7 @@ pageapp.factory('modelSite', function(){
     factory.addChildPage = function (id,pagedata) {
         return  headerdata[id].childdata.push(pagedata);
     };
-=======
+
 
     factory.saveSinglePageLayout = function( selectedpage, layout) {
         var pageindex = sitedata.pagelist.indexOf(selectedpage);
@@ -176,9 +160,7 @@ pageapp.factory('modelSite', function(){
         return  ;
     }
 
-<<<<<<< HEAD
->>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
-=======
+
     factory.saveSinglePageLayout = function( selectedpage, layout) {
         var pageindex = sitedata.pagelist.indexOf(selectedpage);
         console.log(pageindex, sitedata.pagelist[pageindex].pagename);
@@ -186,7 +168,7 @@ pageapp.factory('modelSite', function(){
         return  ;
     }
 
->>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
+
     return factory;
 });
 
@@ -200,15 +182,9 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     $scope.singlepage = {};
 
     $scope.layouts = [];
-<<<<<<< HEAD
-<<<<<<< HEAD
     $scope.headers=[];
-=======
     $scope.newpage ={};
->>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
-=======
-    $scope.newpage ={};
->>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
+
     initialize();
 
     function initialize(){
@@ -223,37 +199,26 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.pagefilterarticle = $scope.site.defaultsettings.pagefilterArticleType;
         $scope.pagefilterlist = $scope.site.defaultsettings.pagefilterListType;
         $scope.layoutfilterlisttype = $scope.site.defaultsettings.layoutfilterListType;
-<<<<<<< HEAD
-=======
 
         $scope.defaultselectedpageindex = $scope.site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
         $scope.selectedpageattributeindex = -1;
 
         $scope.defaultselectedlayoutindex = $scope.site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
 
->>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
-
         $scope.defaultselectedpageindex = $scope.site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
         $scope.selectedpageattributeindex = -1;
 
-<<<<<<< HEAD
+
         $scope.defaultselectedlayoutindex = $scope.site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
-=======
+
 
     }
->>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
+    $scope.cssdisplay = false;    //添加page的输入框默认不显示
+    $scope.showform=false;
+    $scope.csspageattribute = false;               //page属性输入面板的输入框默认不显示
 
 
-        $scope.cssdisplay = false;    //添加page的输入框默认不显示
-        $scope.showform=false;
-        $scope.csspageattribute = false;               //page属性输入面板的输入框默认不显示
 
-<<<<<<< HEAD
-        $scope.filterlayouttype = {layouttype:0};
-=======
-
->>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
-    }
     var flag=false;
     var parentid="";
     $scope.showheaderform=function(param1,param){
@@ -302,12 +267,10 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         }else{
             $scope.layoutfilterlisttype = {layouttype:0 };
         }
-<<<<<<< HEAD
 
         $scope.cssdisplay = false;       //添加page的输入框不显示
     }
-<<<<<<< HEAD
-    $scope.newpage ={};
+
     $scope.showaddpageinput = function() {
         $scope.cssdisplay = true;       //添加page的输入框显示
     }
@@ -317,19 +280,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     $scope.closeeditpageattribute = function() {
         $scope.csspageattribute = false;       //添加page的输入框显示
     }
-=======
 
-
-
-    $scope.showaddpageinput = function() {
-        $scope.cssdisplay = true;       //添加page的输入框显示
-    }
-
->>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
-=======
-
-        $scope.cssdisplay = false;       //添加page的输入框不显示
-    }
 
 
 
@@ -337,7 +288,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssdisplay = true;       //添加page的输入框显示
     }
 
->>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
     $scope.addpage = function() {
         $scope.cssdisplay = false;       //添加page的输入框显示
         var newpage = {
@@ -350,28 +300,11 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         }
 
         modelSite.addSinglePage(newpage);
-<<<<<<< HEAD
-=======
+
     }
 
 
-    $scope.showeditpageattribute = function(indexid) {
-        $scope.selectedpageattributeindex = indexid;    //点击显示当前的page 属性面板
-    }
 
-    $scope.closeeditpageattribute = function(indexid) {
-        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
-    }
-
-    $scope.editsavepage = function(page) {
-        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
-        modelSite.updateSinglePage(page);
-    }
-    $scope.delpage = function( page) {
-        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
-        modelSite.delSinglePage(page);
->>>>>>> 9573ccadd6f046b7ed34884be87f9b9428175d7a
-    }
 
 
     $scope.showeditpageattribute = function(indexid) {
