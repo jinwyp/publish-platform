@@ -106,30 +106,30 @@
 	  $(".page_attri_panel .panel_close").click(function(e) {
 	  		$(".page_attri_panel").hide();
 	  });
-	  */
+
 
 
 
 	  //点击每个 Page Layout
-//	  $(".layout_list li").click(function(){
-//		  $(this).addClass("active").siblings("li").removeClass("active");
-//	  });
+	  $(".layout_list li").click(function(){
+		  $(this).addClass("active").siblings("li").removeClass("active");
+	  });
 
 
 
 
 
 	  //点击每个 Page List
-//	  $(".PageListBox a").click(function(){
-//		  $(this).addClass("active").siblings("a").removeClass("active");
-//	  });
+	  $(".PageListBox a").click(function(){
+		  $(this).addClass("active").siblings("a").removeClass("active");
+	  });
 	  $(".listpage_00").click(function(){ $('#ajaxload').load('page.html .pagewrap'); });
 
 	  for(i=1;i<9;i++) {
 	  	eval('$(".listpage_0'+i+'").click(function(){ $(".pagewrap").load("page/listpage_0'+i+'.html"); })');
 	  }
 
-
+ */
 
 
 
