@@ -159,17 +159,29 @@ ul.layout_list .active	{ opacity:1;}
 /* =========================================================================================== */
 .displaynone		{ display:none !important;}
 
-.block-empty		{ border:2px dashed #cbcdca !important; background:url(img/null_block.png) center center no-repeat !important;}
-.block-empty:hover	{ border:2px dashed transparent !important;  background:none !important;}
+/* Header */
+.block_header					{ position:relative; margin-bottom:10px; z-index:1; min-height:60px;  }
+.block_header.header_empty		{ }
+.block_header.header_full		{ border:1px solid transparent; }
+.block_header.header_full:hover	{ border:1px solid #fff; box-shadow:inset 0 0 50px rgba(0,0,0,0.1), 0 0 3px rgba(0,0,0,0.6); }
 
-.block-full			{ border-width:1px !important; border-style:solid; border-color:transparent; background:none !important;}
-.block-full:hover	{ border-width:1px !important; border-style:solid; border-color:transparent;}
+/* Footer */
+.block_footer					{ position:relative; margin-bottom:10px; z-index:1; min-height:60px;  }
+.block_footer.footer_empty		{ }
+.block_footer.footer_full		{ border:1px solid transparent; }
+.block_footer.footer_full:hover	{ border:1px solid #fff; box-shadow:inset 0 0 50px rgba(0,0,0,0.1), 0 0 3px rgba(0,0,0,0.6); }
 
-.block_header		{ position:relative; margin-bottom:10px; z-index:1; }
-.block_footer		{ position:relative; margin-bottom:10px; z-index:1; min-height:60px; }
+/* Block */
 .block_content		{ position:relative; margin-bottom:10px; z-index:1; min-height:140px; }
 
-.block_content:hover{ border:2px solid #fff; border:1px solid #999\9; box-shadow:inset 0 0 200px rgba(0,0,0,0.1), 0 0 3px rgba(0,0,0,0.6);}
+.block-empty		{ border:2px dashed #cbcdca !important;      background:url(img/null_block.png) center center no-repeat !important;}
+.block-empty:hover	{ border:2px dashed transparent !important;  background:none !important;}
+
+.block-full			{ border:1px solid transparent !important; background:none !important;}
+.block-full:hover	{ border:1px solid transparent !important;}
+
+.block-empty:hover,
+.block-full:hover	{  border:1px solid #999\9; box-shadow:inset 0 0 100px rgba(0,0,0,0.1), 0 0 3px rgba(0,0,0,0.6); }
 
 
 
