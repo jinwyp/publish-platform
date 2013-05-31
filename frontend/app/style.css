@@ -181,7 +181,7 @@ ul.layout_list .active	{ opacity:1;}
 /* =========================================================================================== */
 /*                                 Block：Setup + Move + Delete                                */
 /* =========================================================================================== */
-.attribute_panel{ position:absolute; right:-1px; top:-35px; }
+.attribute_panel{ position:absolute; right:-1px; top:-35px; display:none; }
 
 .block_header .attribute_panel{ top:-44px;}
 .block-empty  .attribute_panel{ top:-36px;}
