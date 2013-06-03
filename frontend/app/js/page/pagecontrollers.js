@@ -276,7 +276,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     $scope.delpage = function( page) {
         $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
         modelSite.delSinglePage(page);
-
     }
 
     //right side bar
@@ -309,6 +308,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     }
     $scope.newdata ={};
     $scope.saveData=function(){
+        console.log($scope.newdata);
         if($scope.newdata.headername == undefined){
             return;
         }
@@ -323,11 +323,21 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             $scope.newdata.headerurl=$("#localurl")[0].value;
         }
         $scope.showform=false;
-        if(flag){                               s
-            var newdata={headerid:4,headername:$scope.newdata.headername,headertype:$scope.newdata.headertype,headerurl:$scope.newdata.headerurl};
+        if(flag){
+            var newdata={
+                headerid:4,
+                headername:$scope.newdata.headername,
+                headertype:$scope.newdata.headertype,
+                headerurl:$scope.newdata.headerurl
+            };
             modelSite.addHeaderPage(newdata);
         }else{
-            var newdata={childid:3,childname:$scope.newdata.headername,childtype:$scope.newdata.headertype,childurl:$scope.newdata.headerurl};
+            var newdata={
+                childid:3,
+                childname:$scope.newdata.headername,
+                childtype:$scope.newdata.headertype,
+                childurl:$scope.newdata.headerurl
+            };
             modelSite.addHeaderChildPage(parentid,newdata);
         }
     }
@@ -337,15 +347,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
 
 
-
-//PhoneListCtrl.$inject = ['$scope', '$http'];
-//function PhoneDetailCtrl($scope, $routeParams, $http) {
-//    $http.get('phones/' + $routeParams.phoneId + '.json').success(function(data) {
-//        $scope.phone = data;
-//    });
-//}
-
-//PhoneDetailCtrl.$inject = ['$scope', '$routeParams'];
 
 
 
