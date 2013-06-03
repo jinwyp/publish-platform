@@ -1,6 +1,6 @@
 
 ;jQuery(function($){
-
+      var headthemeisvisable=false;
 
 
 
@@ -10,15 +10,21 @@
 		  $(".attribute_panel").show();
 		  $(".block_header").css( {"z-index":"999"});
 		  $(".header_panel").show();
-		  $(".header_view").addClass("hover_view");
+          if($(".header_view").has("hover_view")){
+              $(".header_view").addClass("hover_view");
+          }
 		  $(".icon_editor").hide();
 		  $(".icon_move").hide();
 	  }, function() {
-		 $(".header_panel").hide();
-		 $(".attribute_panel").hide();
-		 $(".icon_editor").hide();
-		 $(".block_header").css( {"z-index":"1"});
-		 $(".header_view").removeClass("hover_view");
+          if(!headthemeisvisable){
+              $(".header_panel").hide();
+              $(".attribute_panel").hide();
+              $(".icon_editor").hide();
+              $(".block_header").css({"z-index":"1"});
+              if($(".header_view").has("hover_view")){
+                  $(".header_view").removeClass("hover_view");
+              }
+          }
 	  });
 
 	  $(".block_content").hover(function(){
@@ -50,6 +56,7 @@
 
 	  //点击Nav 的每个Theme
 	  $(".theme_panel a").click(function(){
+          headthemeisvisable=true;
 		  $(this).addClass("select").siblings("a").removeClass("select");
 	  });
 
@@ -57,13 +64,13 @@
 
 
 	  //点击Nav Block的设置图标
-	  $(".icon_setup").bind("click",function(){
-		var navlinkpanel=$(".navlink_panel");
-		if (navlinkpanel.is(":hidden")){
-		  $(".navlink_panel").slideDown(300);
-	  	}else{
-		  $(".navlink_panel").slideUp(300);
-		}
+     $(".icon_setup").bind("click",function(){
+         var navlinkpanel=$(".navlink_panel");
+         if(navlinkpanel.is(":hidden")) {
+             $(".navlink_panel").slideDown(300);
+         }else{
+             $(".navlink_panel").slideUp(300);
+         }
 	  });
 
 

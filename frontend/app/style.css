@@ -254,7 +254,7 @@ ul.nav_structure > li > ul > li { margin:0 0 8px 0;}
 .theme_panel .theme_04	{ background:url(img/header_theme_04.jpg) no-repeat;}
 
 /* Nav Link Panel */
-.navlink_panel{ position:relative; margin:0 auto; bottom:-60px; width:932px; height:220px; padding:14px; border-radius:0 0 8px 8px; background:#454545; box-shadow:0 2px 3px rgba(0,0,0,0.3); display:none;}
+.navlink_panel{position:relative; margin:0 auto; bottom:-60px; width:932px; height:220px; padding:14px; border-radius:0 0 8px 8px; background:#454545; box-shadow:0 2px 3px rgba(0,0,0,0.3); display:none;}
 ul.nav_structure		{ margin:0; padding:0; list-style:none;}
 ul.nav_structure a.pagelink,
 ul.nav_structure a.urllink			{ display:block; position:relative; width:100px; height:32px; font-size:12px; color:#000; text-decoration:none; line-height:30px; text-indent:10px; border-radius:4px; background:url(img/navlink_btnbg.png) repeat-x;}
