@@ -205,7 +205,8 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
         $scope.defaultselectedlayoutindex = $scope.site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
 
-        $scope.cssdisplay = false;    //添加page的输入框默认不显示
+        $scope.cssshowpageaddinput = false;    //添加page的输入框默认不显示
+        $scope.cssblockbutton = false;    //添加page的输入框默认不显示
 
         $scope.showform = false;
     }
@@ -223,11 +224,11 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             $scope.layoutfilterlisttype = {layouttype:0 };
         }
 
-        $scope.cssdisplay = false;       //添加page的输入框不显示
+        $scope.cssshowpageaddinput = false;       //添加page的输入框不显示
     }
 
     $scope.showaddpageinput = function() {
-        $scope.cssdisplay = true;       //添加page的输入框显示
+        $scope.cssshowpageaddinput = true;       //添加page的输入框显示
     }
     $scope.showeditpageattribute = function() {
         $scope.csspageattribute = true;       //添加page的输入框显示
@@ -238,13 +239,12 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
 
     //left side bar add page
-
     $scope.showaddpageinput = function() {
-        $scope.cssdisplay = true;       //添加page的输入框显示
+        $scope.cssshowpageaddinput = true;       //添加page的输入框显示
     }
 
     $scope.addpage = function() {
-        $scope.cssdisplay = false;       //添加page的输入框显示
+        $scope.cssshowpageaddinput = false;       //添加page的输入框显示
         var newpage = {
             siteid:1,
             pagename:$scope.newpage.pagename,
@@ -253,7 +253,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             pagetitle:$scope.newpage.pagetitle,
             pageurl:$scope.newpage.pageurl
         }
-
         modelSite.addSinglePage(newpage);
 
     }
@@ -284,11 +283,29 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         modelSite.saveSinglePageLayout($scope.singlepage, layout);
     }
 
+
+
+
+
     //add blocks
      $scope.showblockautomenu = function( indexid) {
-        $scope.selectedpageblockindex = indexid;    
+        $scope.cssblockbutton = true;
 
-    }   
+    }
+
+    $scope.hoverblockbutton = function( indexid) {
+
+    $(".block_content").hover(function(){
+        $(this).append($(".attribute_panel"));
+        $(".attribute_panel").show();
+        $(".block_content").css( {"z-index":"999"});
+    }, function() {
+        $(".attribute_panel").hide();
+        $(".block_content").css( {"z-index":"1"});
+    });
+
+    }
+
 
 
 
