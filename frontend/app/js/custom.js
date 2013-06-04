@@ -146,6 +146,7 @@
 
 
 
+/*
 
 	  //点击 AutoBlock Icon
 	  $(".ico_autoblock").click(function(e) {
@@ -201,6 +202,7 @@
   		  $(".tip_auto, .tip_editor, .tip_static").fadeOut(200);
 		  $(".ico_autoblock, .ico_autoeditor, .ico_staticblock").removeClass("ico_active");
 	  });
+*/
 
 
 
