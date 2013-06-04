@@ -27,6 +27,7 @@
           }
 	  });
 
+
 	  $(".block_content").hover(function(){
 		  $(this).append($(".attribute_panel"));
 		  $(".attribute_panel").show();
@@ -37,6 +38,7 @@
 		 $(".attribute_panel").hide();
 		 $(".block_content").css( {"z-index":"1"});
 	  });
+
 
 	   $(".block_footer").hover(function(){
 		  $(this).append($(".attribute_panel"));

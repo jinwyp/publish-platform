@@ -1604,7 +1604,7 @@ textarea,
   width: 50%; }
 
 .tooltip {
-  font-size: 13px; }
+  font-size: 12px; }
   .tooltip.in {
     opacity: 1;
     filter: alpha(opacity=100);
