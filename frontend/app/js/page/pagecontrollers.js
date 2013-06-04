@@ -206,7 +206,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.defaultselectedlayoutindex = $scope.site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
 
         $scope.cssshowpageaddinput = false;    //添加page的输入框默认不显示
-        $scope.cssblockbutton = false;    //添加page的输入框默认不显示
+        $scope.cssblockbutton = -1;    //添加block的menu的四个按钮mouseover时才显示
 
         $scope.showform = false;
     }
@@ -288,25 +288,30 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
 
     //add blocks
-     $scope.showblockautomenu = function( indexid) {
-        $scope.cssblockbutton = true;
+    $scope.showblockmenubutton = function( indexid) {
+        $scope.cssblockbutton = indexid;      //显示当前block的menu按钮
+        console.log($scope.cssblockbutton);
+
+    }
+    $scope.hideblockmenubutton = function( indexid) {
+        $scope.cssblockbutton = -1;           //显示当前block的menu按钮
+        console.log($scope.cssblockbutton);
 
     }
 
     $scope.hoverblockbutton = function( indexid) {
 
+
+    }
+
     $(".block_content").hover(function(){
-        $(this).append($(".attribute_panel"));
+//        $(this).append($(".attribute_panel"));
         $(".attribute_panel").show();
         $(".block_content").css( {"z-index":"999"});
     }, function() {
         $(".attribute_panel").hide();
         $(".block_content").css( {"z-index":"1"});
     });
-
-    }
-
-
 
 
 

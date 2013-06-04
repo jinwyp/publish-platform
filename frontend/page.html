@@ -300,13 +300,11 @@
 
                                 <h2>TITLE NAME</h2>
                                 <ul>
-
                                 	<li><span>2012.5.31</span><h3><a href="#">Will Improving Thermal Coal Markets Boost Arch Coal Will Improving Thermal Coal Markets Boost Arch Coal?</a></h3></li>
                                     <li><span>2012.5.30</span><h3><a href="#">Don’t Miss The Upcoming Bull Market In Uranium</a></h3></li>
                                     <li><span>2012.5.29</span><h3><a href="#">Familiar Challenges, Familiar Opportunities At Chico's</a></h3></li>
                                     <li><span>2012.5.28</span><h3><a href="#">Teaching Financial Literacy To Tweens: Introduction</a></h3></li>
                                     <li><span>2012.5.27</span><h3><a href="#">Women: Invest In Your Financial Literacy</a></h3></li>
-
                                 </ul>
                             </div>
                             <!-- Content //End -->
@@ -315,9 +313,9 @@
                         <!-- Block Box //End -->
 
                         <!-- Add Block Box -->
-                        <div class="block_content block-empty"  ng-mouseover="showblockbutton">
+                        <div class="block_content block-empty"  ng-mouseenter="showblockmenubutton($index)" ng-mouseleave="hideblockmenubutton($index)">
                             <!-- ICO -->
-                            <div class="ico_box">
+                            <div class="ico_box" >
                                 <div class="ico_autoblock" ng-click="showblockautomenu()"><!-- Auto --></div>
                                 <div class="ico_autoeditor" ng-click="showblockeditorpickmenu()"><!-- Editor's --></div>
                                 <div class="ico_staticblock"><!-- Static --></div>
@@ -326,7 +324,7 @@
                             <!-- ICO //End -->
 
                             <!-- ======================================= Block Attribute Panel ======================================= -->
-                            <div class="attribute_panel clearfix" ng-show="cssblockbutton">
+                            <div class="attribute_panel clearfix" ng-show="$index==cssblockbutton">
                                 <a href="##" class="icon_editor">editors</a>
                                 <a href="##" class="icon_setup">setup</a>
                                 <a href="##" class="icon_move">move</a>
