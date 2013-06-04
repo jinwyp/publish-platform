@@ -46,7 +46,7 @@
 /*                                          Page List                                          */
 /* =========================================================================================== */
 .pagelist		{ position:absolute; left:-164px; top:110px; width:164px; height:auto;}
-.pagelistbox	{ margin-bottom:0 0 14px 0; padding:0; list-style:none;}
+.pagelistbox	{ margin-bottom:14px; padding:0; list-style:none;}
 .pagelistbox li	{ margin:0; padding:0; position:relative;}
 
 /* Hover: PageList display edit icon. */
@@ -178,6 +178,8 @@ ul.layout_list .active	{ opacity:1;}
 
 /* Block */
 .block_content		{ position:relative; margin-bottom:10px; z-index:1; min-height:140px; }
+.block_content_zindextop{z-index:999;}
+.block_content_zindexbottom{z-index:1;}
 
 .block-empty		{ border:2px dashed #cbcdca !important;      background:url(img/null_block.png) center center no-repeat !important;}
 .block-empty:hover	{ border:2px dashed transparent !important;  background:none !important;}

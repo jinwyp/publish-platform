@@ -304,14 +304,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
     }
 
-    $(".block_content").hover(function(){
-//        $(this).append($(".attribute_panel"));
-        $(".attribute_panel").show();
-        $(".block_content").css( {"z-index":"999"});
-    }, function() {
-        $(".attribute_panel").hide();
-        $(".block_content").css( {"z-index":"1"});
-    });
 
 
 
