@@ -83,12 +83,24 @@
     <!-- Content //End -->
     
     
-    <div class="article-footer">
-    	<div class="vernode">Version node</div>
-        <div class="article_btn">
+    <div class="article-footer clearfix">
+    
+    	<div class="article_btn">
         	<a href="article_list.html" class="btn-savedraft" rel="tooltip" data-placement="top" title="SAVE DRAFT">SAVE DRAFT</a>
             <a href="article_list.html" class="btn-publish" rel="tooltip" data-placement="top" title="PUBLISH">PUBLISH</a>
         </div>
+        
+    	<div class="vernode">
+        	<a href="##" class="node" rel="tooltip" title="Jerome - 2013.06.04">1</a>
+            <a href="##" class="node" rel="tooltip" title="Jerome - 2013.06.04">2</a>
+            <a href="##" class="node" rel="tooltip" title="Jerome - 2013.06.04">3</a>
+            <a href="##" class="node" rel="tooltip" title="Jerome - 2013.06.04">4</a>
+            <a href="##" class="node" rel="tooltip" title="Jerome - 2013.06.04">5</a>
+            <a href="##" class="node" rel="tooltip" title="Jerome - 2013.06.04">25</a>
+        	<div class="line"></div>
+        </div>
+        
+        
     </div>
 
 </div>  
@@ -114,7 +126,7 @@
     <script type="text/jscript">
 		$(function() {
 			// tooltip
-			$('.write_title, .article-title, .article_btn').tooltip({
+			$('.write_title, .article-title, .article_btn, .vernode').tooltip({
 			  selector: "a[rel=tooltip]"
 			})
 	
