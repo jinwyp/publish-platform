@@ -132,12 +132,7 @@ pageapp.factory('modelSite', function(){
             var pageindex = sitedata.pagelist.indexOf(pagedata);
             sitedata.pagelist.splice(pageindex, 1);
         }
-//        for(var i = sitedata.pagelist.length; i--;){
-//            if (sitedata.pagelist[i] === pagedata) {
-//                sitedata.pagelist.splice(i, 1);
-//            }
-//        }
-        return
+        return;
     };
 
 
@@ -208,7 +203,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssshowpageaddinput = false;    //添加page的输入框默认不显示
         $scope.cssblockbutton = -1;    //添加block的menu的四个按钮mouseover时才显示
 
-        $scope.showform = false;
+        $scope.csstitleform = false;
     }
 
 
@@ -308,54 +303,72 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
 
     //header
-    var flag=false;
-    var parentid="";
+    var headerflag=false;
+    var headerparentid="";
+    $scope.headerlocalrdo=true;
+    $scope.headerlocalurl=$scope.pages[1];
+    $scope.selectheaderid=-1;
+    if($scope.header.length>=8){
+        $scope.cssshowheaderadd=false;
+    }else{
+        $scope.cssshowheaderadd=true;
+    }
+    $scope.cssshowchildadd=true;
     $scope.showheaderform=function(param1,param){
-        $scope.showform=true;
-        flag=param;
-        parentid=param1;
-        $("#titlename")[0].value="";
-        $("#otherurl")[0].value="";
+        $scope.csstitleform=true;
+        headerflag=param;
+        headerparentid=param1;
+        $scope.newheaderdata.headername="";
+        $scope.newheaderdata.otherurl="";
     }
     $scope.hideheaderform=function(){
-        $scope.showform=false;
+        $scope.csstitleform=false;
     }
-    $scope.newdata ={};
-    $scope.saveData=function(){
-        console.log($scope.newdata);
-        if($scope.newdata.headername == undefined){
+    $scope.newheaderdata ={};
+    $scope.saveheaderinfo=function(){
+        if($scope.newheaderdata.headername == undefined){
             return;
         }
-        if($("#optionsRadios11")[0].checked){
-            $scope.newdata.headertype=1;
-            if($("#otherurl")[0].value==""){
+        if($scope.headerlocalrdo){
+            $scope.newheaderdata.headertype=1;
+            if($scope.newheaderdata.otherurl==""){
                 return;
             }
-            $scope.newdata.headerurl=$("#otherurl")[0].value;
+            $scope.newheaderdata.headerurl=$scope.newheaderdata.otherurl;
         }else{
-            $scope.newdata.headertype=2;
-            $scope.newdata.headerurl=$("#localurl")[0].value;
+            $scope.newheaderdata.headertype=2;
+            $scope.newheaderdata.headerurl=$scope.newheaderdata.localurl;
         }
-        $scope.showform=false;
-        if(flag){
-            var newdata={
+        $scope.csstitleform=false;
+        if(headerflag){
+            var newheaderdata={
                 headerid:4,
-                headername:$scope.newdata.headername,
-                headertype:$scope.newdata.headertype,
-                headerurl:$scope.newdata.headerurl
+                headername:$scope.newheaderdata.headername,
+                headertype:$scope.newheaderdata.headertype,
+                headerurl:$scope.newheaderdata.headerurl,
+                childdata:[]
             };
-            modelSite.addHeaderPage(newdata);
+            modelSite.addHeaderPage(newheaderdata);
+            if($scope.header.length==8){
+                $scope.cssshowheaderadd=false;
+            }
         }else{
-            var newdata={
+            var newheaderdata={
                 childid:3,
-                childname:$scope.newdata.headername,
-                childtype:$scope.newdata.headertype,
-                childurl:$scope.newdata.headerurl
+                childname:$scope.newheaderdata.headername,
+                childtype:$scope.newheaderdata.headertype,
+                childurl:$scope.newheaderdata.headerurl
             };
-            modelSite.addHeaderChildPage(parentid,newdata);
+            modelSite.addHeaderChildPage(headerparentid,newheaderdata);
+            $scope.selectheaderid= $scope.header[headerparentid].childdata.length>=5?headerparentid:-1;
         }
     }
-
+    $scope.clkheaderurl=function(){
+        $scope.headerlocalrdo=true;
+    }
+    $scope.clkheaderlocal=function(){
+        $scope.headerlocalrdo=false;
+    }
 }
 
 

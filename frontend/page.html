@@ -242,29 +242,32 @@
                                             <a href="#" class="pagelink">{{head.headername}}<i class="ico_edit"></i></a>
                                             <ul>
                                                 <li ng-repeat="child in head.childdata"><a href="#" class="urllink">{{child.childname}}<i class="ico_edit"></i></a></li>
-                                                <li><a href="#" class="sub_addlink"  ng-click="showheaderform($index,false)">+</a></li>
+
+                                                <li>
+                                                    <a ng-hide="$index==selectheaderid" href="#" class="sub_addlink"  ng-click="showheaderform($index,false)">+</a>
+                                                </li>
                                             </ul>
                                         </li>
-                                        <li><a href="#" class="sub_addlink" ng-click="showheaderform('',true)">+</a></li>
-                                        <li class="newlink_panel" ng-show="showform">
+                                        <li><a ng-show="cssshowheaderadd" href="#" class="sub_addlink" ng-click="showheaderform('',true)">+</a></li>
+                                        <li class="newlink_panel" ng-show="csstitleform">
                                            <form action="" method="get">
                                                 <div class="newlink_panel_name">
-                                                    <input type="text" id="titlename" class="input_newlink" required="required" ng-model="newdata.headername" placeholder="Nav link name">
+                                                    <input type="text" class="input_newlink" required="required" ng-model="newheaderdata.headername" placeholder="Nav link name">
                                                 </div>
                                                 <div class="newlink_panel_form">
                                                     <label class="radio clearfix">
-                                                        <input type="radio" name="optionsRadios" checked id="optionsRadios11" value="option1">
-                                                        <input type="text" id="otherurl" required="required" class="input_url" placeholder="URL">
+                                                        <input type="radio" name="optionsRadios" ng-checked="headerlocalrdo" ng-click="clkheaderurl();" id="optionsRadios11" value="option1">
+                                                        <input type="url" id="otherurl" ng-model="newheaderdata.otherurl" required="required" class="input_url" placeholder="URL">
                                                     </label>
                                                     <label class="radio clearfix">
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios12" value="option2">
 
-                                                        <select ng-model="color" ng-options="c.pagename for c in pages"  tabindex="1" id="localurl">
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios12" ng-click="clkheaderlocal();">
+                                                        <select ng-model="headerlocalurl" ng-options="page.pagename for page in pages">
 
                                                         </select>
                                                     </label>
                                                     <div class="newlink_panel_btn">
-                                                        <input type="submit" value="Save" class="btn btn-success" ng-click="saveData()">
+                                                        <input type="submit" value="Save" class="btn btn-success" ng-click="saveheaderinfo()">
                                                         <input type="button" value="Cancel" class="btn btn-primary"  ng-click="hideheaderform()">
                                                     </div>
                                                 </div>
@@ -274,6 +277,7 @@
                                 </div>
                                 <!-- Nav Link //End -->
                             </div>
+
                             <!-- NavBlock 设置面板区 //End -->
                             
                         </div>
@@ -323,6 +327,7 @@
                             </div>
                             <!-- ICO //End -->
 
+
                             <!-- ======================================= Block Attribute Panel ======================================= -->
                             <div class="attribute_panel clearfix" ng-show="$index==cssblockbutton" ng-class="{block_content_zindextop:$index==cssblockbutton}">
                                 <a href="##" class="icon_editor">editors</a>
@@ -330,7 +335,6 @@
                                 <a href="##" class="icon_move">move</a>
                                 <a href="##" class="icon_delete">delete</a>
                             </div>
-
 
 
                         </div>
