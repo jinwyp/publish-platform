@@ -46,7 +46,7 @@
 /*                                          Page List                                          */
 /* =========================================================================================== */
 .pagelist		{ position:absolute; left:-164px; top:110px; width:164px; height:auto;}
-.pagelistbox	{ margin-bottom:0 0 14px 0; padding:0; list-style:none;}
+.pagelistbox	{ margin-bottom:14px; padding:0; list-style:none;}
 .pagelistbox li	{ margin:0; padding:0; position:relative;}
 
 /* Hover: PageList display edit icon. */
@@ -163,6 +163,8 @@ ul.layout_list .active	{ opacity:1;}
 .z-index-1			{ z-index:1;}
 .z-index-999		{ z-index:999;}
 .z-index-999999		{ z-index:999999;}
+.zindextop{z-index:999;}
+.zindexbottom{z-index:1;}
 
 /* Header */
 .block_header					{ position:relative; margin-bottom:10px; z-index:1; min-height:60px;  }
@@ -178,6 +180,7 @@ ul.layout_list .active	{ opacity:1;}
 
 /* Block */
 .block_content		{ position:relative; margin-bottom:10px; z-index:1; min-height:140px; }
+
 
 .block-empty		{ border:2px dashed #cbcdca !important;      background:url(img/null_block.png) center center no-repeat !important;}
 .block-empty:hover	{ border:2px dashed transparent !important;  background:none !important;}
@@ -198,7 +201,7 @@ ul.layout_list .active	{ opacity:1;}
 /* =========================================================================================== */
 /*                                 Block：Setup + Move + Delete                                */
 /* =========================================================================================== */
-.attribute_panel{ position:absolute; right:-1px; top:-35px; display:none; }
+.attribute_panel{ position:absolute; right:-1px; top:-35px; }
 
 .block_header .attribute_panel{ top:-44px;}
 .block-empty  .attribute_panel{ top:-36px;}
@@ -429,7 +432,7 @@ transition:0.25s;
 /* =========================================================================================== */
 /*                                      TipBox: 弹出创建内容                                     */
 /* =========================================================================================== */
-.tip_box		{ margin:0; padding:0; width:500px; color:#bbb; border-radius:8px; background:#343434; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:999999; display:none;}
+.tip_box		{ margin:0; padding:0; width:500px; color:#bbb; border-radius:8px; background:#343434; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:999999; }
 .tip_box:after	{ content:''; position:absolute; left:50%; bottom:-10px; margin-left:-12px; width:23px; height:10px; background:url(img/tip_arrow.png) no-repeat;}
 .tip_box h1		{ font-size:18px; height:36px; line-height:34px; text-align:center; color:#fff; margin:0; padding:0; border-radius:8px 8px 0 0;}
 .tip_box dl		{ margin-bottom:10px;}
@@ -439,7 +442,7 @@ transition:0.25s;
 .tip_auto h1,
 .tip_editor h1	{ background:#ea6465; }
 .tip_static h1,
-.tip_ad	h1		{ background:#5a99a8; }
+.tip_ads	h1		{ background:#5a99a8; }
 
 /* Bootstrap */
 .tip_box .tab-content						{ padding:10px 0;}

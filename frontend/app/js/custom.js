@@ -22,6 +22,7 @@
 	  });
 
 
+/*
 	  $(".block_content").hover(function(){
 		  $(this).append($(".attribute_panel"));
 		  $(".attribute_panel").show();
@@ -32,6 +33,7 @@
 		 $(".attribute_panel").hide();
 		 $(".block_content").css( {"z-index":"1"});
 	  });
+*/
 
 
 	   $(".block_footer").hover(function(){
@@ -137,6 +139,7 @@
 
 
 
+/*
 
 	  //点击 AutoBlock Icon
 	  $(".ico_autoblock").click(function(e) {
@@ -192,6 +195,7 @@
   		  $(".tip_auto, .tip_editor, .tip_static").fadeOut(200);
 		  $(".ico_autoblock, .ico_autoeditor, .ico_staticblock").removeClass("ico_active");
 	  });
+*/
 
 
 

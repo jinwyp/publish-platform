@@ -48,13 +48,13 @@ pageapp.factory('modelSite', function(){
         pagelist : [
             { siteid:1, pagename:'Homepage', pageid:101, pagetype:10, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
                 pagelayoutdata:[
-                    {layoutcontainerclass:"span9", layoutcontainerid:"layoutcontainer1" , blocks:[
-                            {blockid:100, blocktype:1, blockname:"name1" } ,
+                    {layoutcontainerclass:"span9", layoutcontainerid:1000 , blocks:[
+                            {blockid:100, blocktype:1, blockname:"name1",blocklayout:10, blockquantity:6, blocktag:[], blockcategory:[], blocksortby:'date' } ,
                             {blockid:101, blocktype:1, blockname:"name2" } ,
                             {blockid:102, blocktype:1, blockname:"name3" }
                         ]
                     },
-                    {layoutcontainerclass:"span3", layoutcontainerid:"layoutcontainer2", blocks:[] }
+                    {layoutcontainerclass:"span3", layoutcontainerid:1000, blocks:[] }
                 ]
             },
             { siteid:1, pagename:'Channel2', pageid:102,  pagetype:20, pagetitle:"Ch2", pageurl:"ch2", pageorder:6,  pagelayoutid:10, pagelayoutdata:[] },
@@ -87,18 +87,18 @@ pageapp.factory('modelSite', function(){
 
     var layoutdata = [
         {layoutid: 10, layoutname: '两列1', layouttype : 1, layoutorder:1, layoutcss:'ico_layout_00', layoutimage:'app/img/layout_templete.png', layoutdata:[
-            {layoutcontainerclass:"span9", layoutcontainerid:1000 },
-            {layoutcontainerclass:"span3", layoutcontainerid:1001 }
+            {layoutcontainerclass:"span9", layoutcontainerid:1000, blocks:[]},
+            {layoutcontainerclass:"span3", layoutcontainerid:1001, blocks:[]}
             ]},
 
         {layoutid: 10, layoutname: '两列2', layouttype : 1, layoutorder:2, layoutcss:'ico_layout_01', layoutimage:'app/img/layout_templete_01.png', layoutdata:[
-            {layoutcontainerclass:"span3", layoutcontainerid:1002 },
-            {layoutcontainerclass:"span9", layoutcontainerid:1003 }
+            {layoutcontainerclass:"span3", layoutcontainerid:1002, blocks:[]},
+            {layoutcontainerclass:"span9", layoutcontainerid:1003, blocks:[]}
         ]},
         {layoutid: 10, layoutname: '三列1', layouttype : 0, layoutorder:3, layoutcss:'ico_layout_02', layoutimage:'app/img/layout_templete_02.png', layoutdata:[
-            {layoutcontainerclass:"span4", layoutcontainerid:1005 },
-            {layoutcontainerclass:"span4", layoutcontainerid:1006 },
-            {layoutcontainerclass:"span4", layoutcontainerid:1007 }
+            {layoutcontainerclass:"span4", layoutcontainerid:1005, blocks:[]},
+            {layoutcontainerclass:"span4", layoutcontainerid:1006, blocks:[]},
+            {layoutcontainerclass:"span4", layoutcontainerid:1007, blocks:[]}
         ]}
     ];
 
@@ -140,6 +140,16 @@ pageapp.factory('modelSite', function(){
         return
     };
 
+    factory.addSingleBlockToPage = function (newblock, pagelayout, pagedata) {
+
+        var pageindex = sitedata.pagelist.indexOf(pagedata);
+        var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
+
+        pagelayout.blocks.push(newblock);
+
+        sitedata.pagelist[pageindex].pagelayoutdata[layoutindex] = pagelayout;
+        return  ;
+    };
 
 
 
@@ -206,7 +216,13 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.defaultselectedlayoutindex = $scope.site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
 
         $scope.cssshowpageaddinput = false;    //添加page的输入框默认不显示
-        $scope.cssblockbutton = false;    //添加page的输入框默认不显示
+        $scope.cssblockbutton = -1;    //添加block的menu的四个按钮mouseover时才显示
+
+        $scope.cssblockiconactive = false;      //点击当前block按钮的选中的样式
+        $scope.cssblocktipindexauto = -1;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexeditor = -1;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexstatic = -1;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
 
         $scope.showform = false;
     }
@@ -288,23 +304,92 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
 
     //add blocks
-     $scope.showblockautomenu = function( indexid) {
-        $scope.cssblockbutton = true;
+
+
+
+    $scope.showblockmenubutton = function( indexid) {
+        $scope.cssblockbutton = indexid;      //显示当前block的menu按钮
+    }
+    $scope.hideblockmenubutton = function( indexid) {
+        $scope.cssblockbutton = -1;           //显示当前block的menu按钮
 
     }
 
-    $scope.hoverblockbutton = function( indexid) {
 
-    $(".block_content").hover(function(){
-        $(this).append($(".attribute_panel"));
-        $(".attribute_panel").show();
-        $(".block_content").css( {"z-index":"999"});
-    }, function() {
-        $(".attribute_panel").hide();
-        $(".block_content").css( {"z-index":"1"});
-    });
+    $scope.showblockautomenu = function( indexid, blocktype, event1) {
+
+        $scope.cssblockiconactive = blocktype;      //点击当前block按钮的选中的样式
+
+        $scope.cssblocktipindexauto = -1;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexeditor = -1;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexstatic = -1;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
+
+        switch(blocktype)
+        {
+            case 'auto':
+                $scope.cssblocktipindexauto = indexid;      //点击当前block按钮显示对应block类型菜单
+                break;
+            case  'editor':
+                $scope.cssblocktipindexeditor = indexid;      //点击当前block按钮显示对应block类型菜单
+                break;
+            case  'static':
+                $scope.cssblocktipindexstatic = indexid;      //点击当前block按钮显示对应block类型菜单
+                break;
+            case  'ads':
+                $scope.cssblocktipindexads = indexid;      //点击当前block按钮显示对应block类型菜单
+                break;
+            default:
+
+        }
+
+        var blockcontent = $(event1.target).parent().parent();
+        var blocktypemenu = blockcontent.find(".tip_"+blocktype);     //获取样式名称拼接
+
+        var left =  ( parseInt(blockcontent.width() ) - parseInt( blocktypemenu.width() ) )/2;
+        blocktypemenu.css({"left":left+"px","top":-(blocktypemenu.height()),"position":"absolute"});
 
     }
+
+    $scope.clickblocklayouttab = function( event1) {
+        //重新计算高度,因为block tab 页面切换了  此处有问题,因为使用了bootstrap的tab切换
+        var blockcontent1 = $(event1.target).parent().parent().parent().parent().parent();
+        var blocktypemenu1 = blockcontent1.find(".tip_auto");     //获取样式名称拼接
+        console.log(blockcontent1.width(), blocktypemenu1.width(), blocktypemenu1.height());
+        console.log(blocktypemenu1);
+        blocktypemenu1.css({"top":-(blocktypemenu1.height()),"position":"absolute"});
+    }
+
+
+    $scope.addblocktopage = function(layoutcontainer ) {
+        var newblock = {
+            blockid:200,
+            blocktype:1,
+            blockname:"name1",
+            blocklayout:10,
+            blockquantity:6,
+            blocktag:[],
+            blockcategory:[],
+            blocksortby:'date'
+        }
+
+        modelSite.addSingleBlockToPage(newblock, layoutcontainer, $scope.singlepage );
+
+        $scope.cssblocktipindexauto = -1;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexeditor = -1;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexstatic = -1;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
+
+
+    }
+
+
+
+
+
+
+
+
 
 
 
