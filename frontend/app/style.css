@@ -842,12 +842,18 @@ only screen and (min--moz-device-pixel-ratio: 1.5),
 .article-list > li:before,
 .article-list > li:after	{ display:table; line-height:0; content:"";}
 .article-list > li:after 	{ clear: both;}
+
+/* li hover */
 .article-list > li:hover	{ background:#f4f4f4;}
+.article-list > li:hover .list-date h1 a	{ color:#000 !important;}
+.article-list > li:hover .list-date p		{ color:#000 !important;}
+.article-list > li:hover .list-count dd,
+.article-list > li:hover .list-count span	{ color:#000 !important;}
 
 /* li active */
 .article-list > li.active		{ position:relative; background:#f4f4f4;}
 .article-list > li.active:before{ display:block; position:absolute; left:0; top:0; width:3px; height:100%; background:#666; overflow:hidden;}
-.article-list > li.active .list-date h1 a,
+.article-list > li.active .list-date h1 a	{ color:#31a300 !important;}
 .article-list > li.active .list-date p		{ color:#000 !important;}
 .article-list > li.active .list-count dd,
 .article-list > li.active .list-count span	{ color:#000 !important;}
