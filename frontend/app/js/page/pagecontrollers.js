@@ -65,12 +65,12 @@ pageapp.factory('modelSite', function(){
         ],
 
         headerdata:[
-            {headerid:1,headername:'Home',headertype:1,headerurl:'',childdata:[
-                {childid:1,childname:'Child1',childtype:1,childurl:'111.htm'},
-                {childid:2,childname:'Child2',childtype:2,chidlurl:''}
+            {headerid:1,headername:'Home',headertype:'localurl',headerurl:'',childdata:[
+                {childid:1,childname:'Child1',childtype:'otherurl',childurl:'111.htm'},
+                {childid:2,childname:'Child2',childtype:'localurl',chidlurl:''}
             ]},
-            {headerid:2,headername:'Page1',headertype:1,headerurl:'',childdata:[]},
-            {headerid:3,headername:'Page2',headertype:2,headerurl:'',childdata:[]}
+            {headerid:2,headername:'Page1',headertype:'localurl',headerurl:'',childdata:[]},
+            {headerid:3,headername:'Page2',headertype:'otherurl',headerurl:'',childdata:[]}
         ],
 
 
@@ -381,6 +381,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
 
 
+
     }
 
 
@@ -395,54 +396,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
 
 
-    //header
-    var flag=false;
-    var parentid="";
-    $scope.showheaderform=function(param1,param){
-        $scope.showform=true;
-        flag=param;
-        parentid=param1;
-        $("#titlename")[0].value="";
-        $("#otherurl")[0].value="";
-    }
-    $scope.hideheaderform=function(){
-        $scope.showform=false;
-    }
-    $scope.newdata ={};
-    $scope.saveData=function(){
-        console.log($scope.newdata);
-        if($scope.newdata.headername == undefined){
-            return;
-        }
-        if($("#optionsRadios11")[0].checked){
-            $scope.newdata.headertype=1;
-            if($("#otherurl")[0].value==""){
-                return;
-            }
-            $scope.newdata.headerurl=$("#otherurl")[0].value;
-        }else{
-            $scope.newdata.headertype=2;
-            $scope.newdata.headerurl=$("#localurl")[0].value;
-        }
-        $scope.showform=false;
-        if(flag){
-            var newdata={
-                headerid:4,
-                headername:$scope.newdata.headername,
-                headertype:$scope.newdata.headertype,
-                headerurl:$scope.newdata.headerurl
-            };
-            modelSite.addHeaderPage(newdata);
-        }else{
-            var newdata={
-                childid:3,
-                childname:$scope.newdata.headername,
-                childtype:$scope.newdata.headertype,
-                childurl:$scope.newdata.headerurl
-            };
-            modelSite.addHeaderChildPage(parentid,newdata);
-        }
-    }
 
 }
 
