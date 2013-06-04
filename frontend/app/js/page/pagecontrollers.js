@@ -132,7 +132,12 @@ pageapp.factory('modelSite', function(){
             var pageindex = sitedata.pagelist.indexOf(pagedata);
             sitedata.pagelist.splice(pageindex, 1);
         }
-        return;
+//        for(var i = sitedata.pagelist.length; i--;){
+//            if (sitedata.pagelist[i] === pagedata) {
+//                sitedata.pagelist.splice(i, 1);
+//            }
+//        }
+        return
     };
 
 
@@ -203,7 +208,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssshowpageaddinput = false;    //添加page的输入框默认不显示
         $scope.cssblockbutton = false;    //添加page的输入框默认不显示
 
-        $scope.csstitleform = false;
+        $scope.showform = false;
     }
 
 
@@ -306,72 +311,54 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
 
     //header
-    var headerflag=false;
-    var headerparentid="";
-    $scope.headerlocalrdo=true;
-    $scope.headerlocalurl=$scope.pages[1];
-    $scope.selectheaderid=-1;
-    if($scope.header.length>=8){
-        $scope.cssshowheaderadd=false;
-    }else{
-        $scope.cssshowheaderadd=true;
-    }
-    $scope.cssshowchildadd=true;
+    var flag=false;
+    var parentid="";
     $scope.showheaderform=function(param1,param){
-        $scope.csstitleform=true;
-        headerflag=param;
-        headerparentid=param1;
-        $scope.newheaderdata.headername="";
-        $scope.newheaderdata.otherurl="";
+        $scope.showform=true;
+        flag=param;
+        parentid=param1;
+        $("#titlename")[0].value="";
+        $("#otherurl")[0].value="";
     }
     $scope.hideheaderform=function(){
-        $scope.csstitleform=false;
+        $scope.showform=false;
     }
-    $scope.newheaderdata ={};
-    $scope.saveheaderinfo=function(){
-        if($scope.newheaderdata.headername == undefined){
+    $scope.newdata ={};
+    $scope.saveData=function(){
+        console.log($scope.newdata);
+        if($scope.newdata.headername == undefined){
             return;
         }
-        if($scope.headerlocalrdo){
-            $scope.newheaderdata.headertype=1;
-            if($scope.newheaderdata.otherurl==""){
+        if($("#optionsRadios11")[0].checked){
+            $scope.newdata.headertype=1;
+            if($("#otherurl")[0].value==""){
                 return;
             }
-            $scope.newheaderdata.headerurl=$scope.newheaderdata.otherurl;
+            $scope.newdata.headerurl=$("#otherurl")[0].value;
         }else{
-            $scope.newheaderdata.headertype=2;
-            $scope.newheaderdata.headerurl=$scope.newheaderdata.localurl;
+            $scope.newdata.headertype=2;
+            $scope.newdata.headerurl=$("#localurl")[0].value;
         }
-        $scope.csstitleform=false;
-        if(headerflag){
-            var newheaderdata={
+        $scope.showform=false;
+        if(flag){
+            var newdata={
                 headerid:4,
-                headername:$scope.newheaderdata.headername,
-                headertype:$scope.newheaderdata.headertype,
-                headerurl:$scope.newheaderdata.headerurl,
-                childdata:[]
+                headername:$scope.newdata.headername,
+                headertype:$scope.newdata.headertype,
+                headerurl:$scope.newdata.headerurl
             };
-            modelSite.addHeaderPage(newheaderdata);
-            if($scope.header.length==8){
-                $scope.cssshowheaderadd=false;
-            }
+            modelSite.addHeaderPage(newdata);
         }else{
-            var newheaderdata={
+            var newdata={
                 childid:3,
-                childname:$scope.newheaderdata.headername,
-                childtype:$scope.newheaderdata.headertype,
-                childurl:$scope.newheaderdata.headerurl
+                childname:$scope.newdata.headername,
+                childtype:$scope.newdata.headertype,
+                childurl:$scope.newdata.headerurl
             };
-            modelSite.addHeaderChildPage(headerparentid,newheaderdata);
-            $scope.selectheaderid= $scope.header[headerparentid].childdata.length>=5?headerparentid:-1;
+            modelSite.addHeaderChildPage(parentid,newdata);
         }
     }
-    $scope.clkheaderurl=function(){
-        $scope.headerlocalrdo=true;
-    }
-    $scope.clkheaderlocal=function(){
-        $scope.headerlocalrdo=false;
-    }
+
 }
 
 
