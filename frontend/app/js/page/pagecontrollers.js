@@ -387,6 +387,79 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
 
 
+    //header
+    var headerflag=false;
+    var headerparentid="";
+    $scope.headerlocalrdo=true;
+    //$scope.headerlocalurl=$scope.pages[1];
+    $scope.showheaderform=function(param1,param){
+        $scope.csstitleform=true;
+        headerflag=param;
+        headerparentid=param1;
+        $scope.newheaderdata.headername="";
+        $scope.newheaderdata.otherurl="";
+    }
+    $scope.hideheaderform=function(){
+        $scope.csstitleform=false;
+    }
+    $scope.newheaderdata ={};
+    $scope.saveheaderinfo=function(){
+        if($scope.newheaderdata.headername == ""){
+            return;
+        }
+        debugger;
+        if($scope.newheaderdata.headertype=="localurl"){
+            $scope.newheaderdata.headertype='localurl';
+            if($scope.newheaderdata.otherurl==""){
+                return;
+            }
+            $scope.newheaderdata.headerurl=$scope.newheaderdata.otherurl;
+        }else{
+            $scope.newheaderdata.headertype='otherurl';
+            $scope.newheaderdata.headerurl=$scope.headerlocalurl;
+        }
+        console.log($scope.headerlocalurl);
+        $scope.csstitleform=false;
+        if(headerflag){
+            var newheaderdata={
+                headerid:$scope.header[$scope.header.length-1].headerid+1,
+                headername:$scope.newheaderdata.headername,
+                headertype:$scope.newheaderdata.headertype,
+                headerurl:$scope.newheaderdata.headerurl,
+                childdata:[]
+            };
+            modelSite.addHeaderPage(newheaderdata);
+        }else{
+            /*  var newheaderdata={
+             childid:$scope.header[headerparentid].childdata[$scope.header[headerparentid].childdata.length-1].childid+1,
+             // childname:$scope.newheaderdata.headername,
+             childtype:$scope.newheaderdata.headertype,
+             childurl:$scope.newheaderdata.headerurl
+             };
+             modelSite.addHeaderChildPage(headerparentid,newheaderdata);*/
+        }
+    }
+    $scope.items = [
+        { id: 1, name: 'foo' },
+        { id: 2, name: 'bar' },
+        { id: 3, name: 'blah' }];
+    $scope.openheaderinfo=function(id){
+        $scope.csstitleform=true;
+        for(var i=0;i<$scope.header.length;i++){
+            if($scope.header[i].headerid == id){
+                $scope.newheaderdata.headername=$scope.header[i].headername;
+                $scope.newheaderdata.headertype=$scope.header[i].headertype;
+                // $scope.headerlocalurl=$scope.header[i].headerurl;
+            }
+        }
+    }
+    $scope.clkheaderurl=function(){
+        $scope.headerlocalrdo=true;
+    }
+    $scope.clkheaderlocal=function(){
+        $scope.headerlocalrdo=false;
+    }
+
 
 
 
