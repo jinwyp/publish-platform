@@ -239,35 +239,42 @@
                                 <div class="navlink_panel">
                                 	<ul class="nav_structure clearfix">
                                         <li ng-repeat="head in header">
-                                            <a href="#" class="pagelink">{{head.headername}}<i class="ico_edit"></i></a>
+                                            <a href="#" class="pagelink">{{head.headername}}<i class="ico_edit" ng-click="openheaderinfo(head.headerid)"></i></a>
                                             <ul>
                                                 <li ng-repeat="child in head.childdata"><a href="#" class="urllink">{{child.childname}}<i class="ico_edit"></i></a></li>
-
                                                 <li>
-                                                    <a ng-hide="$index==selectheaderid" href="#" class="sub_addlink"  ng-click="showheaderform($index,false)">+</a>
+                                                    <a ng-hide="head.childdata.length > 4" href="#" class="sub_addlink"  ng-click="showheaderform($index,false)">+</a>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a ng-show="cssshowheaderadd" href="#" class="sub_addlink" ng-click="showheaderform('',true)">+</a></li>
+                                        <li><a ng-hide="header.length > 7" href="#" class="sub_addlink" ng-click="showheaderform('',true)">+</a></li>
                                         <li class="newlink_panel" ng-show="csstitleform">
                                            <form action="" method="get">
                                                 <div class="newlink_panel_name">
                                                     <input type="text" class="input_newlink" required="required" ng-model="newheaderdata.headername" placeholder="Nav link name">
                                                 </div>
                                                 <div class="newlink_panel_form">
-                                                    <label class="radio clearfix">
-                                                        <input type="radio" name="optionsRadios" ng-checked="headerlocalrdo" ng-click="clkheaderurl();" id="optionsRadios11" value="option1">
+                                                    <!--<label class="radio clearfix">
+                                                        <input type="radio" name="optionsRadios" ng-model="newheaderdata.headertype" value="1">
                                                         <input type="url" id="otherurl" ng-model="newheaderdata.otherurl" required="required" class="input_url" placeholder="URL">
                                                     </label>
                                                     <label class="radio clearfix">
-
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios12" ng-click="clkheaderlocal();">
+                                                        <input type="radio" name="optionsRadios" ng-model="newheaderdata.headertype" value="2">
                                                         <select ng-model="headerlocalurl" ng-options="page.pagename for page in pages">
-
                                                         </select>
-                                                    </label>
+                                                    </label> -->
+                                                    <input type="radio" ng-model="newheaderdata.headertype" value="localurl">
+                                                    <input type="url" id="otherurl" ng-model="newheaderdata.otherurl" required="required" class="input_url" placeholder="URL"><br/><br/>
+
+                                                    <input type="radio" ng-model="newheaderdata.headertype" value="otherurl">
+                                                    <!--<select ng-model="selectedItem" ng-options="page as page.pagename for page in pages">
+                                                    </select>-->
+                                                    <select id="s1" ng-model="selectedItem" ng-options="item as item.name for item in items"></select>
+                                                    <h3>The selected item:</h3>
+                                                    <pre>{{selectedItem | json}}</pre>
                                                     <div class="newlink_panel_btn">
                                                         <input type="submit" value="Save" class="btn btn-success" ng-click="saveheaderinfo()">
+                                                       <!-- <input type="button" value="Delete" class="btn btn-primary">-->
                                                         <input type="button" value="Cancel" class="btn btn-primary"  ng-click="hideheaderform()">
                                                     </div>
                                                 </div>

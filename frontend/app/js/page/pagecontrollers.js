@@ -65,12 +65,12 @@ pageapp.factory('modelSite', function(){
         ],
 
         headerdata:[
-            {headerid:1,headername:'Home',headertype:1,headerurl:'',childdata:[
-                {childid:1,childname:'Child1',childtype:1,childurl:'111.htm'},
-                {childid:2,childname:'Child2',childtype:2,chidlurl:''}
+            {headerid:1,headername:'Home',headertype:'localurl',headerurl:'',childdata:[
+                {childid:1,childname:'Child1',childtype:'otherurl',childurl:'111.htm'},
+                {childid:2,childname:'Child2',childtype:'localurl',chidlurl:''}
             ]},
-            {headerid:2,headername:'Page1',headertype:1,headerurl:'',childdata:[]},
-            {headerid:3,headername:'Page2',headertype:2,headerurl:'',childdata:[]}
+            {headerid:2,headername:'Page1',headertype:'localurl',headerurl:'',childdata:[]},
+            {headerid:3,headername:'Page2',headertype:'otherurl',headerurl:'',childdata:[]}
         ],
 
 
@@ -309,14 +309,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     var headerflag=false;
     var headerparentid="";
     $scope.headerlocalrdo=true;
-    $scope.headerlocalurl=$scope.pages[1];
-    $scope.selectheaderid=-1;
-    if($scope.header.length>=8){
-        $scope.cssshowheaderadd=false;
-    }else{
-        $scope.cssshowheaderadd=true;
-    }
-    $scope.cssshowchildadd=true;
+    //$scope.headerlocalurl=$scope.pages[1];
     $scope.showheaderform=function(param1,param){
         $scope.csstitleform=true;
         headerflag=param;
@@ -329,41 +322,53 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     }
     $scope.newheaderdata ={};
     $scope.saveheaderinfo=function(){
-        if($scope.newheaderdata.headername == undefined){
+        if($scope.newheaderdata.headername == ""){
             return;
         }
-        if($scope.headerlocalrdo){
-            $scope.newheaderdata.headertype=1;
+        debugger;
+        if($scope.newheaderdata.headertype=="localurl"){
+            $scope.newheaderdata.headertype='localurl';
             if($scope.newheaderdata.otherurl==""){
                 return;
             }
             $scope.newheaderdata.headerurl=$scope.newheaderdata.otherurl;
         }else{
-            $scope.newheaderdata.headertype=2;
-            $scope.newheaderdata.headerurl=$scope.newheaderdata.localurl;
+            $scope.newheaderdata.headertype='otherurl';
+            $scope.newheaderdata.headerurl=$scope.headerlocalurl;
         }
+        console.log($scope.headerlocalurl);
         $scope.csstitleform=false;
         if(headerflag){
             var newheaderdata={
-                headerid:4,
+                headerid:$scope.header[$scope.header.length-1].headerid+1,
                 headername:$scope.newheaderdata.headername,
                 headertype:$scope.newheaderdata.headertype,
                 headerurl:$scope.newheaderdata.headerurl,
                 childdata:[]
             };
             modelSite.addHeaderPage(newheaderdata);
-            if($scope.header.length==8){
-                $scope.cssshowheaderadd=false;
-            }
         }else{
-            var newheaderdata={
-                childid:3,
-                childname:$scope.newheaderdata.headername,
+          /*  var newheaderdata={
+                childid:$scope.header[headerparentid].childdata[$scope.header[headerparentid].childdata.length-1].childid+1,
+               // childname:$scope.newheaderdata.headername,
                 childtype:$scope.newheaderdata.headertype,
                 childurl:$scope.newheaderdata.headerurl
             };
-            modelSite.addHeaderChildPage(headerparentid,newheaderdata);
-            $scope.selectheaderid= $scope.header[headerparentid].childdata.length>=5?headerparentid:-1;
+            modelSite.addHeaderChildPage(headerparentid,newheaderdata);*/
+        }
+    }
+    $scope.items = [
+        { id: 1, name: 'foo' },
+        { id: 2, name: 'bar' },
+        { id: 3, name: 'blah' }];
+    $scope.openheaderinfo=function(id){
+        $scope.csstitleform=true;
+        for(var i=0;i<$scope.header.length;i++){
+              if($scope.header[i].headerid == id){
+                  $scope.newheaderdata.headername=$scope.header[i].headername;
+                  $scope.newheaderdata.headertype=$scope.header[i].headertype;
+                 // $scope.headerlocalurl=$scope.header[i].headerurl;
+              }
         }
     }
     $scope.clkheaderurl=function(){
