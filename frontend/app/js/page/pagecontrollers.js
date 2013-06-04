@@ -1,6 +1,6 @@
 'use strict';
 
-var pageapp = angular.module('pagemodule', ['LocalStorageModule']);
+var pageapp = angular.module('pagemodule', []);
 
 /*
 pageapp.directive('anyKeypress', function(){
