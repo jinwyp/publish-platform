@@ -3,7 +3,7 @@
 
 
 
-
+       var selectheadertheme=true;
 	  //所有Block经过时显示Attribute Panel Icon
 	  $(".block_header").hover(function(){
 		  $(this).append($(".attribute_panel"));
@@ -14,11 +14,13 @@
 		  $(".icon_editor").hide();
 		  $(".icon_move").hide();
 	  }, function() {
-		 $(".header_panel").hide();
-		 $(".attribute_panel").hide();
-		 $(".icon_editor").hide();
-		 $(".block_header").css( {"z-index":"1"});
-		 $(".header_view").removeClass("hover_view");
+          if(selectheadertheme){
+              $(".header_panel").hide();
+              $(".attribute_panel").hide();
+              $(".icon_editor").hide();
+              $(".block_header").css( {"z-index":"1"});
+              $(".header_view").removeClass("hover_view");
+          }
 	  });
 
 
@@ -54,6 +56,7 @@
 
 	  //点击Nav 的每个Theme
 	  $(".theme_panel a").click(function(){
+          selectheadertheme=false;
 		  $(this).addClass("select").siblings("a").removeClass("select");
 	  });
 

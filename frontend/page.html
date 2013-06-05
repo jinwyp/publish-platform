@@ -80,10 +80,10 @@
                         	<div class="header_panel">
                             	<!-- 选择Theme -->
                             	<div class="theme_panel">
-                                <a href="#" class="theme_01"></a>
-                                <a href="#" class="theme_02"></a>
-                                <a href="#" class="theme_03"></a>
-                                <a href="#" class="theme_04 last"></a>
+                                    <a href="#" class="theme_01"></a>
+                                    <a href="#" class="theme_02"></a>
+                                    <a href="#" class="theme_03"></a>
+                                    <a href="#" class="theme_04 last"></a>
                                 </div>
                                 <!-- 选择Theme //End -->
                                 <!-- Nav Link -->
@@ -92,7 +92,7 @@
                                         <li ng-repeat="head in header">
                                             <a href="#" class="pagelink">{{head.headername}}<i class="ico_edit" ng-click="openheaderinfo(head.headerid)"></i></a>
                                             <ul>
-                                                <li ng-repeat="child in head.childdata"><a href="#" class="urllink">{{child.childname}}<i class="ico_edit"></i></a></li>
+                                                <li ng-repeat="child in head.childdata"><a href="#" class="urllink">{{child.childname}}<i class="ico_edit" ng-click="openchildinfo(head.headerid,child.childid)"></i></a></li>
                                                 <li>
                                                     <a ng-hide="head.childdata.length > 4" href="#" class="sub_addlink"  ng-click="showheaderform($index,false)">+</a>
                                                 </li>
@@ -102,10 +102,9 @@
                                         <li class="newlink_panel" ng-show="csstitleform">
                                            <form action="" method="get">
                                                 <div class="newlink_panel_name">
-                                                    <input type="text" id="titlename" class="input_newlink" required ng-model="newdata.headername" placeholder="Nav link name">
+                                                    <input type="text" id="titlename" class="input_newlink" required ng-model="newheaderdata.headername" placeholder="Nav link name">
                                                 </div>
                                                 <div class="newlink_panel_form">
-
                                                     <!--<label class="radio clearfix">
                                                         <input type="radio" name="optionsRadios" ng-model="newheaderdata.headertype" value="1">
                                                         <input type="url" id="otherurl" ng-model="newheaderdata.otherurl" required="required" class="input_url" placeholder="URL">
@@ -113,23 +112,17 @@
                                                     <label class="radio clearfix">
                                                         <input type="radio" name="optionsRadios" ng-model="newheaderdata.headertype" value="2">
                                                         <select ng-model="headerlocalurl" ng-options="page.pagename for page in pages">
-
                                                         </select>
                                                     </label> -->
-                                                    <input type="radio" ng-model="newheaderdata.headertype" value="localurl">
+                                                    <input type="radio" ng-model="newheaderdata.headertype" value="other">
                                                     <input type="url" id="otherurl" ng-model="newheaderdata.otherurl" required="required" class="input_url" placeholder="URL"><br/><br/>
 
-                                                    <input type="radio" ng-model="newheaderdata.headertype" value="otherurl">
-                                                    <!--<select ng-model="selectedItem" ng-options="page as page.pagename for page in pages">
-                                                    </select>-->
-                                                    <select id="s1" ng-model="selectedItem" ng-options="item as item.name for item in items"></select>
-                                                    <h3>The selected item:</h3>
-                                                    <pre>{{selectedItem | json}}</pre>
+                                                    <input type="radio" ng-model="newheaderdata.headertype" value="local">
+                                                    <select ng-model="headerlocalurl" ng-options="page.pagename for page in pages">
+                                                    </select>
                                                     <div class="newlink_panel_btn">
-
                                                         <input type="submit" value="Save" class="btn btn-success" ng-click="saveheaderinfo()">
                                                        <!-- <input type="button" value="Delete" class="btn btn-primary">-->
-
                                                         <input type="button" value="Cancel" class="btn btn-primary"  ng-click="hideheaderform()">
                                                     </div>
                                                 </div>
