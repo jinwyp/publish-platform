@@ -5147,7 +5147,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .tooltip.top {
-  margin-top: -5px;
+  margin-top: -7px;
 }
 
 .tooltip.right {
@@ -5170,6 +5170,7 @@ input[type="submit"].btn.btn-mini {
   text-align: center;
   text-decoration: none;
   background-color: #000000;
+  box-shadow:0 0 20px rgba(0,0,0,0.5);
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;

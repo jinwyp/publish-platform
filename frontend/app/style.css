@@ -816,14 +816,22 @@ only screen and (min--moz-device-pixel-ratio: 1.5),
 .ico-article-setup:hover,
 .ico-article-addnew:hover{ -ms-filter:"progid: DXImageTransform.Microsoft.Alpha(Opacity=100)"; filter:alpha(opacity=100); opacity:1; }
 
+
 /* Version node */
-.vernode			{  position:relative; left:40px; top:20px; }
-.vernode .line		{ position:absolute; left:0; top:6px; width:200px; height:3px; background:#fff; overflow:hidden; z-index:0;}
-.vernode a.node		{ position:relative; display:block; float:left; margin:0 14px 0 0; padding:2px 4px;font-size:12px; color:#fff; text-align:center; line-height:12px; text-decoration:none; border-radius:100px; background:#f00; overflow:hidden; z-index:1;}
+.vernode			{ position:relative; left:50px; top:14px; }
+.vernode .line		{ display:-moz-inline-stack; display:inline-block; vertical-align:top; zoom:1; *display:inline; background:url(img/timeline.png) left 7px repeat-x;}
+.vernode a.node		{ position:relative; display:block; float:left; margin-right:14px; padding:2px 4px; font-size:12px; font-weight:bold; color:#fff; text-align:center; line-height:12px; text-decoration:none; border-radius:100px; border:2px solid #00b8e2; background:#0095d5; overflow:hidden; z-index:1; }
+.vernode a.node.last{ margin-right:0;}
+.vernode a.node.current{ background:#2a9400; border-color:#38b801;}
+.vernode .tooltip-inner{ max-width:100px; padding:10px 12px; color:#ffffff; text-align:center; text-decoration:none; background-color:#000000;
+  -webkit-border-radius:4px;
+     -moz-border-radius:4px;
+          border-radius:4px;}
+.vernode .tooltip-arrow { position:absolute; width:0; height:0; border-color:transparent; border-style:solid;}
 
 
 /* Article Button */
-.article_btn				{ float:right; position:relative; margin:10px 10px 0 0;}
+.article_btn				{ float:right; position:relative; margin:10px 10px 0 0; z-index:2;}
 .article_btn [class^="btn-"],
 .article_btn [class*="btn-"]{ margin-left:10px;}
 
@@ -849,12 +857,14 @@ only screen and (min--moz-device-pixel-ratio: 1.5),
 .article-list > li:after	{ display:table; line-height:0; content:"";}
 .article-list > li:after 	{ clear: both;}
 
+
 /* li hover */
 .article-list > li:hover	{ background:#f4f4f4;}
 .article-list > li:hover .list-date h1 a	{ color:#000 !important;}
 .article-list > li:hover .list-date p		{ color:#000 !important;}
 .article-list > li:hover .list-count dd,
 .article-list > li:hover .list-count span	{ color:#000 !important;}
+
 
 /* li active */
 .article-list > li.active		{ position:relative; background:#f4f4f4;}
@@ -864,7 +874,8 @@ only screen and (min--moz-device-pixel-ratio: 1.5),
 .article-list > li.active .list-count dd,
 .article-list > li.active .list-count span	{ color:#000 !important;}
 
-/* Titlename */
+
+/* List Titlename */
 .list-date					{ float:left; width:460px; padding-right:20px; max-width:500px;}
 .list-date > h1 			{ margin:0; padding:0; line-height:24px; font-size:18px; font-weight:bold; }
 .list-date > h1 a			{ color:#666; text-decoration:none; }
@@ -877,7 +888,7 @@ only screen and (min--moz-device-pixel-ratio: 1.5),
 .list-date > dl dd p		{ color:#888; line-height:18px; margin:0; padding:0; font-size:12px;}
 .list-date > dl dd p.titlename{ font-weight:bold;}
 
-/* Counter */
+/* List Counter */
 .list-count					{ float:right; width:150px; max-width:150px;}
 .list-count > dl			{ margin:0; padding:0; *zoom:1;}
 .list-count > dl:before,
