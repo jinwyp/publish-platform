@@ -65,12 +65,12 @@ pageapp.factory('modelSite', function(){
         ],
 
         headerdata:[
-            {headerid:1,headername:'Home',headertype:'localurl',headerurl:'',childdata:[
-                {childid:1,childname:'Child1',childtype:'otherurl',childurl:'111.htm'},
-                {childid:2,childname:'Child2',childtype:'localurl',chidlurl:''}
+            {headerid:1,headername:'Home',headertype:'local',headerurl:'Homepage',childdata:[
+                {childid:1,childname:'Child1',childtype:'other',childurl:'http://www.sina.com'},
+                {childid:2,childname:'Child2',childtype:'local',childurl:'Channel2'}
             ]},
-            {headerid:2,headername:'Page1',headertype:'localurl',headerurl:'',childdata:[]},
-            {headerid:3,headername:'Page2',headertype:'otherurl',headerurl:'',childdata:[]}
+            {headerid:2,headername:'Page1',headertype:'local',headerurl:'Channel2',childdata:[]},
+            {headerid:3,headername:'Page2',headertype:'other',headerurl:'http://www.google.com',childdata:[]}
         ],
 
 
@@ -270,9 +270,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             pageurl:$scope.newpage.pageurl
         }
         modelSite.addSinglePage(newpage);
-
     }
-
 
 
     //left side bar add page attribute
@@ -299,14 +297,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         modelSite.saveSinglePageLayout($scope.singlepage, layout);
     }
 
-
-
-
-
     //add blocks
-
-
-
     $scope.showblockmenubutton = function( indexid) {
         $scope.cssblockbutton = indexid;      //显示当前block的menu按钮
     }
@@ -314,17 +305,12 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssblockbutton = -1;           //显示当前block的menu按钮
 
     }
-
-
     $scope.showblockautomenu = function( indexid, blocktype, event1) {
-
         $scope.cssblockiconactive = blocktype;      //点击当前block按钮的选中的样式
-
         $scope.cssblocktipindexauto = -1;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexeditor = -1;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexstatic = -1;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
-
         switch(blocktype)
         {
             case 'auto':
@@ -340,17 +326,12 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
                 $scope.cssblocktipindexads = indexid;      //点击当前block按钮显示对应block类型菜单
                 break;
             default:
-
         }
-
         var blockcontent = $(event1.target).parent().parent();
         var blocktypemenu = blockcontent.find(".tip_"+blocktype);     //获取样式名称拼接
-
         var left =  ( parseInt(blockcontent.width() ) - parseInt( blocktypemenu.width() ) )/2;
         blocktypemenu.css({"left":left+"px","top":-(blocktypemenu.height()),"position":"absolute"});
-
     }
-
     $scope.clickblocklayouttab = function( event1) {
         //重新计算高度,因为block tab 页面切换了  此处有问题,因为使用了bootstrap的tab切换
         var blockcontent1 = $(event1.target).parent().parent().parent().parent().parent();
@@ -359,8 +340,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         console.log(blocktypemenu1);
         blocktypemenu1.css({"top":-(blocktypemenu1.height()),"position":"absolute"});
     }
-
-
     $scope.addblocktopage = function(layoutcontainer ) {
         var newblock = {
             blockid:200,
@@ -372,26 +351,19 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             blockcategory:[],
             blocksortby:'date'
         }
-
         modelSite.addSingleBlockToPage(newblock, layoutcontainer, $scope.singlepage );
-
         $scope.cssblocktipindexauto = -1;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexeditor = -1;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexstatic = -1;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
-
-
-
     }
-
-
 
 
     //header
     var headerflag=false;
     var headerparentid="";
-    $scope.headerlocalrdo=true;
-    //$scope.headerlocalurl=$scope.pages[1];
+    $scope.headerlocalurl=$scope.pages[0];
+    //insert header data form
     $scope.showheaderform=function(param1,param){
         $scope.csstitleform=true;
         headerflag=param;
@@ -399,26 +371,27 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.newheaderdata.headername="";
         $scope.newheaderdata.otherurl="";
     }
+    //close header form
     $scope.hideheaderform=function(){
         $scope.csstitleform=false;
     }
     $scope.newheaderdata ={};
+    $scope.newheaderdata.headertype='other';
+    //save data
     $scope.saveheaderinfo=function(){
         if($scope.newheaderdata.headername == ""){
             return;
         }
-        debugger;
-        if($scope.newheaderdata.headertype=="localurl"){
-            $scope.newheaderdata.headertype='localurl';
+        if($scope.newheaderdata.headertype=="other"){
+            $scope.newheaderdata.headertype='other';
             if($scope.newheaderdata.otherurl==""){
                 return;
             }
             $scope.newheaderdata.headerurl=$scope.newheaderdata.otherurl;
         }else{
-            $scope.newheaderdata.headertype='otherurl';
-            $scope.newheaderdata.headerurl=$scope.headerlocalurl;
+            $scope.newheaderdata.headertype='local';
+            $scope.newheaderdata.headerurl=$(".dk_label")[0].textContent;
         }
-        console.log($scope.headerlocalurl);
         $scope.csstitleform=false;
         if(headerflag){
             var newheaderdata={
@@ -430,52 +403,53 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             };
             modelSite.addHeaderPage(newheaderdata);
         }else{
-            /*  var newheaderdata={
-             childid:$scope.header[headerparentid].childdata[$scope.header[headerparentid].childdata.length-1].childid+1,
-             // childname:$scope.newheaderdata.headername,
-             childtype:$scope.newheaderdata.headertype,
-             childurl:$scope.newheaderdata.headerurl
-             };
-             modelSite.addHeaderChildPage(headerparentid,newheaderdata);*/
+            debugger;
+            var str1=$scope.header[headerparentid].childdata[$scope.header[headerparentid].childdata.length-1].childid+1;
+         /*    var newheaderdata={
+                 childid:$scope.header[headerparentid].childdata[$scope.header[headerparentid].childdata.length-1].childid+1,
+                 childname:$scope.newheaderdata.headername,
+                 childtype:$scope.newheaderdata.headertype,
+                 childurl:$scope.newheaderdata.headerurl
+             };*/
+             modelSite.addHeaderChildPage(headerparentid,newheaderdata);
         }
     }
-    $scope.items = [
-        { id: 1, name: 'foo' },
-        { id: 2, name: 'bar' },
-        { id: 3, name: 'blah' }];
+    //打开一级菜单
     $scope.openheaderinfo=function(id){
         $scope.csstitleform=true;
         for(var i=0;i<$scope.header.length;i++){
             if($scope.header[i].headerid == id){
                 $scope.newheaderdata.headername=$scope.header[i].headername;
                 $scope.newheaderdata.headertype=$scope.header[i].headertype;
-                // $scope.headerlocalurl=$scope.header[i].headerurl;
+                if($scope.newheaderdata.headertype=="other"){
+                    $scope.newheaderdata.otherurl=$scope.header[i].headerurl;
+                }else{
+                    $scope.newheaderdata.otherurl="";
+                    $(".dk_label")[0].textContent=$scope.header[i].headerurl; //赋值select value
+                }
+                return;
             }
         }
     }
-    $scope.clkheaderurl=function(){
-        $scope.headerlocalrdo=true;
+    //open child menu
+    $scope.openchildinfo=function(parientid,id){
+        $scope.csstitleform=true;
+        for(var i=0;i<$scope.header.length;i++){
+            if($scope.header[i].headerid == parientid){
+                  for(var j=0;j<$scope.header[i].childdata.length;j++){
+                     if($scope.header[i].childdata[j].childid==id){
+                         $scope.newheaderdata.headername=$scope.header[i].childdata[j].childname;
+                         $scope.newheaderdata.headertype=$scope.header[i].childdata[j].childtype;
+                         if($scope.newheaderdata.headertype=="other"){
+                             $scope.newheaderdata.otherurl=$scope.header[i].childdata[j].childurl;
+                         }else{
+                             $scope.newheaderdata.otherurl="";
+                             $(".dk_label")[0].textContent=$scope.header[i].childdata[j].childurl;
+                         }
+                         return;
+                     }
+                  }
+            }
+        }
     }
-    $scope.clkheaderlocal=function(){
-        $scope.headerlocalrdo=false;
-    }
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
