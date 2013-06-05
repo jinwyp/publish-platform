@@ -40,7 +40,7 @@
 .site-theme.b-block ul li	{ position:relative; padding:0 10px; margin:0; font-size:14px; color:#666; border-bottom:1px solid #fff; border-top:0; clear:both;}
 .site-theme.b-block ul li:hover{ background:#fff;}
 .site-theme.b-block ul li h3{ font-size:16px; margin:0; padding:0; line-height:30px; font-weight:normal; max-width:80%; overflow:hidden; white-space:nowrap; -o-text-overflow:ellipsis; text-overflow:ellipsis;}
-.site-theme.b-block ul li span{ display:block; position:absolute; right:0; top:0; color:#999; font-size:12px; }
+.site-theme.b-block ul li span{ display:block; position:absolute; right:4px; top:6px; color:#999; font-size:12px; }
 .site-theme.b-block ul li a	{ font-size:13px; color:#333; text-decoration:none;}
 .site-theme.b-block ul li a:hover{ color:#1a95d0;}
 

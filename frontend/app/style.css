@@ -55,7 +55,7 @@
 .pagelistbox li:hover .ico_edit:hover{ background-position:0 -500px;}
 
 /* Page List */
-.pagelist_btn	{ display:block; position:relative; padding:14px 0; margin-bottom:1px; color:#333; font-weight:bold; text-decoration:none; text-indent:0; border-radius:4px 0 0 4px;
+.pagelist_btn	{ display:block; position:relative; padding:14px 0 14px 28px; margin-bottom:1px; color:#333; font-weight:bold; text-decoration:none; text-indent:0; border-radius:4px 0 0 4px;
 background: #dedcdd; /* 为较旧的或者不支持的浏览器设置备用属性 */
 background: -moz-linear-gradient(top, #dddddd, #cccccc);
 background: -webkit-gradient(linear, 0 0, 0 100%, from(#dddddd), to(#cccccc));
@@ -91,7 +91,7 @@ background: -webkit-gradient(linear, 0 0, 0 100%, from(#b0d961), to(#8cbc32));
 .pagelistbox .input_addnew:focus{}
 
 /* PageList Dragable */
-.pagelist_btn .drag{ display:block; float:left; width:20px; height:20px; margin:0 4px 0 8px; background:url(img/icon_attribute.png) 0px -550px no-repeat; text-indent:-9999px; cursor:move;}
+.pagelist_btn .drag{ display:block; position:absolute; left:6px; top:15px; width:20px; height:20px; background:url(img/icon_attribute.png) 0px -550px no-repeat; text-indent:-9999px; cursor:move;}
 
 /* AddNew button */
 .addpage_btn	  { float:right; margin-right:10px; color:#999; padding:0 50px; font-size:36px; text-align:center; background:rgba(0,0,0,0.5); background:#454545\9; text-decoration:none; border-radius:4px;}
@@ -188,8 +188,8 @@ ul.layout_list .active	{ opacity:1;}
 .block-full			{ border:1px solid transparent !important; background:none !important;}
 .block-full:hover	{ border:1px solid transparent !important;}
 
-.block-empty:hover,
-.block-full:hover	{  border:1px solid #999\9; box-shadow:inset 0 0 100px rgba(0,0,0,0.1), 0 0 3px rgba(0,0,0,0.6); }
+.block-empty:hover	{  border:1px solid #999\9; box-shadow:inset 0 0 100px rgba(0,0,0,0.1), 0 0 3px rgba(0,0,0,0.6); }
+.block-full:hover	{  border:1px solid #999\9; background:#fff; box-shadow:0 0 3px rgba(0,0,0,0.6); }
 
 
 
