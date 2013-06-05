@@ -10,7 +10,7 @@
 /* Header */
 .site-theme.b-header{ position:relative; margin:0; padding:0; height:100px; border:1px solid #eee;}
 
-.site-theme.b-header .b-h-logo	{ display:block; float:left; margin-left:20px; color:#249fd8;}
+.site-theme.b-header .b-h-logo	{ position:relative; display:block; float:left; margin-left:20px; color:#249fd8;}
 .site-theme.b-header .b-h-info	{ position:absolute; right:20px; top:20px; color:#888;}
 .site-theme.b-header .b-h-info a{ font-size:12px; color:#888; text-decoration:none; margin-left:10px;}
 .site-theme.b-header .b-h-info a:hover{ color:#249fd8;  text-decoration:underline;}
@@ -34,13 +34,14 @@
 
 
 /* Block */
-.site-theme.b-block h2		{ position:relative; font-size:18px; margin:0; margin-bottom:10px; background:#249fd8; line-height:30px; text-indent:4px; color:#fff; border-radius:3px;}
-.site-theme.b-block h2:before{ display:block; position:absolute; left:0; top:0; width:3px; height:100%; background:#000; overflow:hidden; }
-.site-theme.b-block ul		{ list-style:none; margin:0;}
-.site-theme.b-block ul li	{ font-size:14px; color:#666; border-bottom:1px dashed #ddd; }
+.site-theme.b-block h2		{ position:relative; font-size:18px; margin:0; background:#249fd8; line-height:36px; text-indent:10px; color:#fff; border-radius:3px;}
+.site-theme.b-block h2:before{ content:'more'; position:absolute; right:0; top:0; padding:0 8px; text-indent:0; height:100%; font-weight:normal; font-size:12px; text-align:right; overflow:hidden; background:#4cb1df; border-radius:0 4px 4px 0; text-decoration:underline; cursor:pointer;}
+.site-theme.b-block ul		{ list-style:none; margin:0; background:#f2f1f6; }
+.site-theme.b-block ul li	{ padding:0 10px; margin:0; font-size:14px; color:#666; border-bottom:1px solid #fff; border-top:0;  }
+.site-theme.b-block ul li:hover{ background:#fff;}
 .site-theme.b-block ul li h3{ font-size:16px; line-height:24px; font-weight:normal; max-width:80%; overflow:hidden; white-space:nowrap; -o-text-overflow:ellipsis; text-overflow:ellipsis;}
 .site-theme.b-block ul li span{ color:#999; font-size:12px; float:right; line-height:30px;}
-.site-theme.b-block ul li a	{ color:#666; text-decoration:none;}
-.site-theme.b-block ul li a:hover{ color:#1a95d0; text-decoration:underline;}
+.site-theme.b-block ul li a	{ font-size:13px; color:#333; text-decoration:none;}
+.site-theme.b-block ul li a:hover{ color:#1a95d0;}
 
 
