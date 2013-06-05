@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pagemodule">
+  <head>
+    <meta charset="utf-8">
+    <title>VCP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="lib/flatui/bootstrap.css" rel="stylesheet">
+    <link href="lib/flatui/flat-ui.css" rel="stylesheet">
+    <link href="app/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="app/img/favicon.ico">
+    <!--[if lt IE 9]>
+      <script src="lib/other/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 默认 Site Theme -->
+    <link href="theme/default/site-theme.css" rel="stylesheet">
+  </head>
+<body style="background:#f1f1f1">
+
+
+
+
+
+
+
+<!-- Header -->
+<header class="header">
+	<h1 class="logo">VCP</h1><a href="page.html" class="signin">Sign In</a>
+    <ul class="menu clearfix">
+    	<li><a href="site.html">Site</a></li>
+        <li><a href="page.html" class="current">Page</a></li>
+        <li><a href="article.html">Article</a></li>
+    </ul>
+</header>
+        
+
+<!-- Container -->
+<div class="vcpbox page">
+<div class="container" ng-controller="Pagelist" >
+
+
+		<!-- Page -->
+        <div class="pagewrap" >
+        
+        		
+                <!-- Page: Navigation -->
+                <div class="row">
+                    <div class="span12">
+                    	
+                        <!-- Header Block 1 -->
+                    	<div class="block_header header_full">
+                            <!-- 有header -->
+                        	<div class="site-theme b-header">
+                            	<h1 class="b-h-logo">LOGO</h1>
+                                <ul class="b-h-nav">
+                                	<li><a href="#" class="current">Home</a></li>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Service</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="#">Map</a></li>
+                                </ul>
+                                <div class="b-h-info">
+                                	<a href="#">Melvon</a>
+                                    <a href="#">Link</a>
+                                    <a href="#">Link</a>
+                                    <a href="#">Link</a>
+                                </div>
+                            </div>
+                            <!-- 有header //End -->
+                        </div>
+                        <!-- Header Block 1 //End -->
+
+
+                    	<!-- Header Block 2 -->
+                    	<div class="block_header header_empty">
+                        	<!-- 空header -->
+                        	<div class="header_view"></div>
+                            <!-- 空header //End -->
+                            
+                            <!-- NavBlock 设置面板区 -->
+                        	<div class="header_panel">
+                            	<!-- 选择Theme -->
+                            	<div class="theme_panel">
+                                <a href="#" class="theme_01"></a>
+                                <a href="#" class="theme_02"></a>
+                                <a href="#" class="theme_03"></a>
+                                <a href="#" class="theme_04 last"></a>
+                                </div>
+                                <!-- 选择Theme //End -->
+                                <!-- Nav Link -->
+                                <div class="navlink_panel">
+                                	<ul class="nav_structure clearfix">
+                                        <li ng-repeat="head in header">
+                                            <a href="#" class="pagelink">{{head.headername}}<i class="ico_edit" ng-click="openheaderinfo(head.headerid)"></i></a>
+                                            <ul>
+                                                <li ng-repeat="child in head.childdata"><a href="#" class="urllink">{{child.childname}}<i class="ico_edit"></i></a></li>
+                                                <li>
+                                                    <a ng-hide="head.childdata.length > 4" href="#" class="sub_addlink"  ng-click="showheaderform($index,false)">+</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a ng-hide="header.length > 7" href="#" class="sub_addlink" ng-click="showheaderform('',true)">+</a></li>
+                                        <li class="newlink_panel" ng-show="csstitleform">
+                                           <form action="" method="get">
+                                                <div class="newlink_panel_name">
+                                                    <input type="text" id="titlename" class="input_newlink" required ng-model="newdata.headername" placeholder="Nav link name">
+                                                </div>
+                                                <div class="newlink_panel_form">
+
+                                                    <!--<label class="radio clearfix">
+                                                        <input type="radio" name="optionsRadios" ng-model="newheaderdata.headertype" value="1">
+                                                        <input type="url" id="otherurl" ng-model="newheaderdata.otherurl" required="required" class="input_url" placeholder="URL">
+                                                    </label>
+                                                    <label class="radio clearfix">
+                                                        <input type="radio" name="optionsRadios" ng-model="newheaderdata.headertype" value="2">
+                                                        <select ng-model="headerlocalurl" ng-options="page.pagename for page in pages">
+
+                                                        </select>
+                                                    </label> -->
+                                                    <input type="radio" ng-model="newheaderdata.headertype" value="localurl">
+                                                    <input type="url" id="otherurl" ng-model="newheaderdata.otherurl" required="required" class="input_url" placeholder="URL"><br/><br/>
+
+                                                    <input type="radio" ng-model="newheaderdata.headertype" value="otherurl">
+                                                    <!--<select ng-model="selectedItem" ng-options="page as page.pagename for page in pages">
+                                                    </select>-->
+                                                    <select id="s1" ng-model="selectedItem" ng-options="item as item.name for item in items"></select>
+                                                    <h3>The selected item:</h3>
+                                                    <pre>{{selectedItem | json}}</pre>
+                                                    <div class="newlink_panel_btn">
+
+                                                        <input type="submit" value="Save" class="btn btn-success" ng-click="saveheaderinfo()">
+                                                       <!-- <input type="button" value="Delete" class="btn btn-primary">-->
+
+                                                        <input type="button" value="Cancel" class="btn btn-primary"  ng-click="hideheaderform()">
+                                                    </div>
+                                                </div>
+                                             </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Nav Link //End -->
+                            </div>
+                            <!-- NavBlock 设置面板区 //End -->
+                            
+                        </div>
+                        <!-- Header Block 2 //End -->
+                        
+                        
+                        
+                    </div>
+                </div>
+                <!-- Page: Navigation//End -->
+                
+                
+
+                <!-- Page: Row -->
+                <div class="row">
+
+                    <div class="" ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
+
+                        <!-- Block Box -->
+                        <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks">
+
+                        	<!-- Content -->
+                            <div class="site-theme b-block block-layout-1">
+
+                                <h2>TITLE NAME</h2>
+                                <ul>
+                                	<li><span>2012.5.31</span><h3><a href="#">Will Improving Thermal Coal Markets Boost Arch Coal Will Improving Thermal Coal Markets Boost Arch Coal?</a></h3></li>
+                                    <li><span>2012.5.30</span><h3><a href="#">Don’t Miss The Upcoming Bull Market In Uranium</a></h3></li>
+                                    <li><span>2012.5.29</span><h3><a href="#">Familiar Challenges, Familiar Opportunities At Chico's</a></h3></li>
+                                    <li><span>2012.5.28</span><h3><a href="#">Teaching Financial Literacy To Tweens: Introduction</a></h3></li>
+                                    <li><span>2012.5.27</span><h3><a href="#">Women: Invest In Your Financial Literacy</a></h3></li>
+                                </ul>
+                            </div>
+                            <!-- Content //End -->
+
+                        </div>
+                        <!-- Block Box //End -->
+
+                        <!-- Add Block Box -->
+                        <div class="block_content block-empty"  ng-mouseenter="showblockmenubutton($index)" ng-mouseleave="hideblockmenubutton($index)">
+                            <!-- ICO -->
+                            <div class="ico_box" >
+                                <div class="ico_autoblock" ng-click="showblockautomenu($index, 'auto', $event)" ng-class="{ico_active:'auto'==cssblockiconactive}"><!-- Auto --></div>
+                                <div class="ico_autoeditor" ng-click="showblockautomenu($index, 'editor', $event)" ng-class="{ico_active:'editor'==cssblockiconactive}"><!-- Editor's --></div>
+                                <div class="ico_staticblock" ng-click="showblockautomenu($index, 'static', $event)" ng-class="{ico_active:'static'==cssblockiconactive}"><!-- Static --></div>
+                                <div class="ico_adblock"  ng-click="showblockautomenu($index, 'ads', $event)" ng-class="{ico_active:'ads'==cssblockiconactive}"><!-- AD --></div>
+                            </div>
+                            <!-- ICO //End -->
+
+                            <!-- ======================================= Block Attribute Panel ======================================= -->
+                            <div class="attribute_panel clearfix" ng-show="$index==cssblockbutton" ng-class="{zindextop:$index==cssblockbutton}">
+                                <a href="##" class="icon_editor">editors</a>
+                                <a href="##" class="icon_setup">setup</a>
+                                <a href="##" class="icon_move">move</a>
+                                <a href="##" class="icon_delete">delete</a>
+                            </div>
+
+
+                            <!-- =======================================  tip_auto ======================================= -->
+                            <div class="tip_box tip_auto" ng-show="$index==cssblocktipindexauto" >
+                                <h1>Auto pick block attribute</h1>
+                                <div class="tabbable tabs-below">
+                                    <div class="tab-content">
+                                        <!-- Tab1: Layout -->
+                                        <div class="tab-pane active" id="tab-layout">
+                                            <dl class="clearfix">
+                                                <dt>Layout :</dt>
+                                                <dd>
+                                                    <div class="tipbox_laytou">
+                                                        <a href="#" class="icon_layout_1 selected" ng-click="addblocktopage(layoutcontainer)"></a>
+                                                        <a href="#" class="icon_layout_2" ng-click="addblocktopage(layoutcontainer)"></a>
+                                                    </div>
+                                                </dd>
+                                            </dl>
+                                            <dl class="clearfix">
+                                                <dt>Quantity :</dt>
+                                                <dd>
+                                                    <div id="slider" class="ui-slider">
+                                                        <div class="ui-slider-segment"></div>
+                                                        <div class="ui-slider-segment"></div>
+                                                        <div class="ui-slider-segment"></div>
+                                                    </div>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                        <!-- Tab1: Layout //End -->
+                                        <!-- Tab2: Filter -->
+                                        <div class="tab-pane" id="tab-filter">
+                                            <dl class="clearfix">
+                                                <dt>Catagory :</dt>
+                                                <dd>
+                                                    <div class="tipbox_filter">
+                                                        <input type="text" data-provide="typeahead" data-items="10" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                                                    </div>
+                                                </dd>
+                                            </dl>
+                                            <dl class="clearfix">
+                                                <dt>Tag :</dt>
+                                                <dd>
+                                                    <div class="tipbox_filter">
+                                                        <input name="tagsinput" id="tagsinput" class="tagsinput" value="Tag1,Tag2,Tag3" />
+                                                    </div>
+                                                </dd>
+                                            </dl>
+                                            <dl class="clearfix">
+                                                <dt>Author :</dt>
+                                                <dd>
+                                                    <div class="tipbox_filter">
+                                                        <input type="text" data-provide="typeahead" data-items="10" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                                                    </div>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                        <!-- Tab2: Filter //End -->
+                                        <!-- Tab3: Sort -->
+                                        <div class="tab-pane" id="tab-Sort">
+                                            <dl class="clearfix">
+                                                <dt>Sort by date :</dt>
+                                                <dd>
+                                                    <div class="tipbox_sort">
+                                                        <label class="radio">
+                                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Descend
+                                                        </label>
+                                                        <label class="radio">
+                                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option1">Ascending
+                                                        </label>
+                                                    </div>
+                                                </dd>
+                                            </dl>
+                                            <dl class="clearfix">
+                                                <dt>Sort by Category :</dt>
+                                                <dd>
+                                                    <div class="tipbox_sort">
+                                                        <label class="radio">
+                                                            <input type="radio" name="optionsRadios2" id="optionsRadios3" value="option2" checked="">Descend
+                                                        </label>
+                                                        <label class="radio">
+                                                            <input type="radio" name="optionsRadios2" id="optionsRadios4" value="option2">Ascending
+                                                        </label>
+                                                    </div>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                        <!-- Tab3: Sort //End -->
+                                    </div>
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#tab-layout" data-toggle="tab" ng-click="clickblocklayouttab($event)">Layout</a></li>
+                                        <li><a href="#tab-filter" data-toggle="tab" ng-click="clickblocklayouttab($event)">Filter</a></li>
+                                        <li><a href="#tab-Sort" data-toggle="tab" ng-click="clickblocklayouttab($event)">Sort</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- ======================================= tip_editor ======================================= -->
+                            <div class="tip_box tip_editor"  ng-show="$index==cssblocktipindexeditor">
+                                <h1>Editor's pick block attribute</h1>
+                                <div class="tab-content">
+                                    <dl class="clearfix">
+                                        <dt>Block name :</dt>
+                                        <dd>
+                                            <div class="tipbox_filter">
+                                                <input type="text" data-provide="typeahead" data-items="10" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                                            </div>
+                                        </dd>
+                                    </dl>
+                                    <dl class="clearfix">
+                                        <dt>Layout :</dt>
+                                        <dd>
+                                            <div class="tipbox_laytou">
+                                                <a href="#" class="icon_layout_1 selected"></a>
+                                                <a href="#" class="icon_layout_2"></a>
+                                                <a href="#" class="icon_layout_3"></a>
+                                                <a href="#" class="icon_layout_4"></a>
+                                                <a href="#" class="icon_layout_5"></a>
+                                            </div>
+                                        </dd>
+                                    </dl>
+                                    <dl class="clearfix">
+                                        <dt>Quantity :</dt>
+                                        <dd>
+                                            <div id="slider2" class="ui-slider">
+                                                <div class="ui-slider-segment"></div>
+                                                <div class="ui-slider-segment"></div>
+                                                <div class="ui-slider-segment"></div>
+                                            </div>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+
+                            <!-- ======================================= tip_static ======================================= -->
+                            <div class="tip_box tip_static" ng-show="$index==cssblocktipindexstatic">
+                                <h1>Static</h1>
+                                <p>Null</p>
+                            </div>
+
+                            <!-- ======================================= tip_ad ======================================= -->
+                            <div class="tip_box tip_ads" ng-show="$index==cssblocktipindexads">
+                                <h1>AD block attribute</h1>
+                                <p>Null</p>
+                            </div>
+
+
+
+                        </div>
+                        <!-- Add Block Box //End -->
+
+                    </div>
+                </div>
+            	<!-- Page: Row //End -->
+
+				
+                
+                <!-- Page: row -->
+                <div class="row">
+                    <div class="span9">
+                    	<!-- Block Box -->
+                    	<div class="block_content block-empty">
+                        	<div class="editor_inset"><input type="text" value="" class="" placeholder="插入推荐位..."></div>
+                    		<!-- ICO -->
+                            <div class="ico_box">
+                                <div class="ico_autoblock"><!-- Auto --></div>
+                                <div class="ico_autoeditor"><!-- Editor's --></div>
+                                <div class="ico_staticblock"><!-- Static --></div>
+                                <div class="ico_adblock"><!-- AD --></div>
+                            </div>
+                            <!-- ICO //End -->
+                    	</div>
+                        <!-- Block Box //End -->
+                    </div>
+                </div>
+                <!-- Page: Row //End -->
+                
+                
+                
+                
+                <!-- Page: Footer -->
+                <div class="row">
+                    <div class="span12">
+                        <!-- Footer Block 1 -->
+                    	<div class="block_footer footer_full">
+                        
+                        	<!-- 有 Footer -->
+                        	<div class="site-theme b-footer">
+                            	<p><a href="#">Privacy Policy</a>&nbsp;|
+                                <a href="#">Terms & Conditions</a>&nbsp;|
+                                <a href="#">Press Kit</a>&nbsp;|
+                                <a href="#">Trademark Issues</a>&nbsp;|
+                                <a href="#">Contact Us</a>
+                                </p>
+                                <p>Copyright © 2012 ValueClick Brands, Inc. All Rights Reserved.</p>
+                            </div>
+                            <!-- 有 Footer //End -->
+                            
+                    	</div>
+                        <!-- Footer Block 1 //End -->
+                    </div>
+                </div>
+                <!-- Page: Footer 1 //End -->
+                
+                
+                
+                
+                
+                <!-- Page: Footer -->
+                <div class="row">
+                    <div class="span12">
+                        <!-- Footer Block 2 -->
+                    	<div class="block_footer footer_empty">
+                        
+                        	<!-- 空 Footer -->
+                        	<div class="footer_view"><!-- 空 --></div>
+                            <!-- 空 Foote //Endr -->
+                            
+                    	</div>
+                        <!-- Footer Block 2 //End -->
+                    </div>
+                </div>
+                <!-- Page: Footer //End -->
+                
+        </div>
+        <!-- Page //End -->
+        
+        
+        
+        
+        <!-- SideBar:Page List -->
+		<div class="pagelist" >
+        		<ul class="pagelistbox">
+                	<!-- ArticlePage -->
+					<!--<li><a href="#{{page.pageurl}}" class="pagelist_btn articlepage_btn" ng-repeat="page in pages | filter:pagefilterarticle | orderBy:'pageorder'" ng-class="{active: $index==defaultselectedpageindex}" ng-click="clickpage($index)">-->
+                            <!--<i class="drag"></i>{{page.pagename}}<i class="ico_edit"></i>-->
+                    <!--</a></li>-->
+                    <!-- PageList -->
+
+                    <li ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'" >
+                        <i class="ico_edit" ng-click="showeditpageattribute($index)"></i>
+                        <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:11==page.pagetype}" ng-click="clickpage($index, page)">
+                            <i class="drag"></i>{{page.pagename}}
+                        </a>
+
+                        <!-- ======================================= Page Attribute Panel ======================================= -->
+                        <div class="page_attri_panel" ng-show="$index == selectedpageattributeindex">
+                            <a href="" class="panel_close" ng-click="closeeditpageattribute($index)">X</a>
+                            <h2>Page Attribute</h2>
+                            <div class="page_attri_cont">
+                                <form>
+                                    <input type="text" class="" placeholder="Page Name" ng-model="page.pagename">
+                                    <i class="clearfix">This name for this page that is presented in your navigation bar.</i>
+
+                                    <input type="text"  class="" placeholder="Page Title" ng-model="page.pagetitle">
+                                    <i class="clearfix">The title that appears in the top of the browser window for this page.</i>
+
+                                    <input type="text" class="" placeholder="Page Url" ng-model="page.pageurl">
+                                    <i class="clearfix">This name for this page that is presented in your navigation bar.</i>
+                                    <div class="btn_box">
+                                        <a href="#" class="btn attri_del" ng-click="delpage(page)">Del</a>
+                                        <a href="#" class="btn attri_save" ng-click="editsavepage(page)">Save</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Add new page -->
+
+                    <li ng-show="cssshowpageaddinput"><a href="#" class="pagelist_btn newpage">
+                        <i class="drag">1</i><input type="text" class="input_addnew" ng-model="newpage.pagename"  placeholder="NewPage" enter-Keypress="{enter: addpage()}"/>
+                    </a></li>
+
+                </ul>
+
+                <a href="#" class="addpage_btn" ng-hide="cssshowpageaddinput" ng-click="showaddpageinput()">+</a>
+        </div>
+        <!-- SideBar:Page List//End -->
+        
+        
+        
+        
+        <!-- Page Layout -->
+        <div class="pagelayout" >
+            <ul class="layout_list">
+
+                <li class="" ng-repeat="layout in layouts | filter:layoutfilterlisttype " ng-class="{ active: $index==defaultselectedlayoutindex } " ng-click="clicklayout($index, layout)"  >
+                    <img src="{{layout.layoutimage}}">
+                </li>
+
+            </ul>
+            <span href="##" class="ico_layout_close"></span>
+        </div>
+        <!-- Page Layout//End -->
+        
+        
+</div>
+</div>  
+
+
+                            
+    <!-- Load JS -->
+    <script src="lib/angular/1.1.5/angular.js"></script>
+    <script src="app/js/app.js"></script>
+    <script src="app/js/page/pagecontrollers.js"></script>
+    <script src="lib/jquery/jquery-1.8.2.min.js"></script>
+    <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
+    <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
+    <script src="lib/flatui/custom_radio.js"></script>
+    <script src="lib/flatui/jquery.tagsinput.js"></script>
+    <script src="lib/flatui/bootstrap-tooltip.js"></script>
+    <script src="lib/flatui/jquery.placeholder.js"></script>
+    <script src="lib/flatui/application.js"></script>
+    <!--[if lt IE 8]>
+      <script src="lib/flatui/icon-font-ie7.js"></script>
+      <script src="lib/flatui/lte-ie7-24.js"></script>
+    <![endif]-->
+    <script src="app/js/custom.js"></script>
+        
+</body>
+</html>
