@@ -7,7 +7,7 @@
 
 
 
-/* Header */
+/* Page Header */
 .site-theme.b-header{ position:relative; margin:0; padding:0; height:100px; border:1px solid #eee;}
 
 .site-theme.b-header .b-h-logo	{ position:relative; display:block; float:left; margin-left:20px; color:#249fd8;}
@@ -25,7 +25,7 @@
 
 
 
-/* Footer */
+/* Page Footer */
 .site-theme.b-footer	{ position:relative; margin:0; padding:20px 0 0 0; height:60px; border-top:2px solid #bbb; background:#f6f6f6;}
 .site-theme.b-footer p	{ color:#888; text-align:center; font-size:12px;}
 .site-theme.b-footer p a{ color:#666; padding:0 6px;}
@@ -33,7 +33,7 @@
 
 
 
-/* Block */
+/* Page Block */
 .site-theme.b-block h2		{ position:relative; font-size:18px; margin:0; background:#249fd8; line-height:36px; text-indent:10px; color:#fff; border-radius:3px;}
 .site-theme.b-block h2:before{ content:'more'; position:absolute; right:0; top:0; padding:0 8px; text-indent:0; height:100%; font-weight:normal; font-size:12px; text-align:right; overflow:hidden; background:#4cb1df; border-radius:0 4px 4px 0; text-decoration:underline; cursor:pointer;}
 .site-theme.b-block ul		{ list-style:none; margin:0; background:#f2f1f6; }
@@ -43,5 +43,12 @@
 .site-theme.b-block ul li span{ display:block; position:absolute; right:4px; top:6px; color:#999; font-size:12px; }
 .site-theme.b-block ul li a	{ font-size:13px; color:#333; text-decoration:none;}
 .site-theme.b-block ul li a:hover{ color:#1a95d0;}
+
+
+
+
+
+/* Article H1 */
+
 
 
