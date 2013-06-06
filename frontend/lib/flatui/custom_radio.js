@@ -3,7 +3,7 @@ var toggleHandler = function(toggle) {
     var radio = $(toggle).find("input");
 
     var checkToggleState = function() {
-        if (radio.eq(0).is(":checked")) {
+        if(radio.eq(0).is(":checked")) {
             $(toggle).removeClass("toggle-off");
         } else {
             $(toggle).addClass("toggle-off");

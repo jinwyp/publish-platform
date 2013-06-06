@@ -65,12 +65,12 @@ pageapp.factory('modelSite', function(){
         ],
 
         headerdata:[
-            {headerid:1,headername:'Home',headertype:'local',headerurl:'Homepage',childdata:[
-                {childid:1,childname:'Child1',childtype:'other',childurl:'http://www.sina.com'},
-                {childid:2,childname:'Child2',childtype:'local',childurl:'Channel2'}
+            {headerid:1,menuname:'Home',menutype:'local',linkedurl:'',linkedpageid:101,linkedpagename:"Homepage", childdata:[
+                {childid:1,menuname:'Child1',menutype:'other', linkedurl:'http://www.sina.com',linkedpageid:0,linkedpagename:""},
+                {childid:2,menuname:'Child2',menutype:'local', linkedurl:'',linkedpageid:102,linkedpagename:"Homepage"}
             ]},
-            {headerid:2,headername:'Page1',headertype:'local',headerurl:'Channel2',childdata:[]},
-            {headerid:3,headername:'Page2',headertype:'other',headerurl:'http://www.google.com',childdata:[]}
+            {headerid:2,menuname:'Page1',menutype:'local',linkedurl:'',linkedpageid:101,linkedpagename:'Channel2',childdata:[]},
+            {headerid:3,menuname:'Page2',menutype:'other',linkedurl:'http://www.google.com',linkedpageid:0,linkedpagename:'',childdata:[]}
         ],
 
 
@@ -365,91 +365,153 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     $scope.headerlocalurl=$scope.pages[0];
     //insert header data form
     $scope.showheaderform=function(param1,param){
+     /*    if(param){
+             var html1='<li><a ng-hide="header.length > 7" href="#" class="sub_addlink" ng-click="showheaderform("",true)">+</a></li>';
+         }
+        var html2=$("#parentmenu").html();
+        alert(html2);*/
         $scope.csstitleform=true;
+        $scope.showerror=false;
         headerflag=param;
         headerparentid=param1;
-        $scope.newheaderdata.headername="";
-        $scope.newheaderdata.otherurl="";
-    }
+        $scope.newheaderdata.menutype='other';
+        $scope.newheaderdata.menuname="";
+        $scope.newheaderdata.linkedurl="";
+        $("#delete")[0].value='Cancel';
+        $("#urltype1").attr("checked",true);
+        $("#urltype2").attr("checked",false);
+        setupLabel();
+}
     //close header form
     $scope.hideheaderform=function(){
         $scope.csstitleform=false;
     }
     $scope.newheaderdata ={};
-    $scope.newheaderdata.headertype='other';
+    $scope.checkpargeid=function(){
+        for(var i=0;i<$scope.pages.length;i++){
+            if($scope.pages[i].pagename==$(".dk_label")[0].textContent){
+                return $scope.pages[i].pageid;
+            }
+        }
+    }
     //save data
     $scope.saveheaderinfo=function(){
-        if($scope.newheaderdata.headername == ""){
+        if($scope.newheaderdata.menuname == ""){
             return;
         }
-        if($scope.newheaderdata.headertype=="other"){
-            $scope.newheaderdata.headertype='other';
-            if($scope.newheaderdata.otherurl==""){
+        if($scope.newheaderdata.menutype=="other"){
+            $scope.newheaderdata.menutype='other';
+            if($scope.newheaderdata.linkedurl==""){
                 return;
             }
-            $scope.newheaderdata.headerurl=$scope.newheaderdata.otherurl;
+            $scope.newheaderdata.linkedurl=$scope.newheaderdata.linkedurl;
+            $scope.newheaderdata.linkedpagename='';
+            $scope.newheaderdata.linkedpageid=0;
         }else{
-            $scope.newheaderdata.headertype='local';
-            $scope.newheaderdata.headerurl=$(".dk_label")[0].textContent;
+            $scope.newheaderdata.menutype='local';
+            $scope.newheaderdata.linkedurl='';
+            $scope.newheaderdata.linkedpagename=$(".dk_label")[0].textContent;
+            $scope.newheaderdata.linkedpageid=$scope.checkpargeid();
         }
         $scope.csstitleform=false;
         if(headerflag){
+            if($scope.header.length==0){
+                var headeridindex=1;
+            }else{
+                var headeridindex=$scope.header[$scope.header.length-1].headerid+1;
+            }
             var newheaderdata={
-                headerid:$scope.header[$scope.header.length-1].headerid+1,
-                headername:$scope.newheaderdata.headername,
-                headertype:$scope.newheaderdata.headertype,
-                headerurl:$scope.newheaderdata.headerurl,
+                headerid:headeridindex,
+                menuname:$scope.newheaderdata.menuname,
+                menutype:$scope.newheaderdata.menutype,
+                linkedurl:$scope.newheaderdata.linkedurl,
+                linkedpageid:$scope.newheaderdata.linkedpageid,
+                linkedpagename:$scope.newheaderdata.linkedpagename,
                 childdata:[]
             };
             modelSite.addHeaderPage(newheaderdata);
         }else{
-            debugger;
-            var str1=$scope.header[headerparentid].childdata[$scope.header[headerparentid].childdata.length-1].childid+1;
-         /*    var newheaderdata={
-                 childid:$scope.header[headerparentid].childdata[$scope.header[headerparentid].childdata.length-1].childid+1,
-                 childname:$scope.newheaderdata.headername,
-                 childtype:$scope.newheaderdata.headertype,
-                 childurl:$scope.newheaderdata.headerurl
-             };*/
+            if($scope.header[headerparentid].childdata.length==0){
+                var childidindex=1;
+            }else{
+                var childidindex=$scope.header[headerparentid].childdata[$scope.header[headerparentid].childdata.length-1].childid+1;
+            }
+             var newheaderdata={
+                 childid:childidindex,
+                 menuname:$scope.newheaderdata.menuname,
+                 menutype:$scope.newheaderdata.menutype,
+                 linkedurl:$scope.newheaderdata.linkedurl,
+                 linkedpageid:$scope.newheaderdata.linkedpageid,
+                 linkedpagename:$scope.newheaderdata.linkedpagename
+             };
              modelSite.addHeaderChildPage(headerparentid,newheaderdata);
         }
     }
-    //打开一级菜单
-    $scope.openheaderinfo=function(id){
+    //edit parent menu
+    var parentmenuindex='';
+    var childmenudata='';
+    var childmenuindex='';
+    $scope.showerror=false;
+    $scope.openheaderinfo=function(parentindex,obj){
         $scope.csstitleform=true;
-        for(var i=0;i<$scope.header.length;i++){
-            if($scope.header[i].headerid == id){
-                $scope.newheaderdata.headername=$scope.header[i].headername;
-                $scope.newheaderdata.headertype=$scope.header[i].headertype;
-                if($scope.newheaderdata.headertype=="other"){
-                    $scope.newheaderdata.otherurl=$scope.header[i].headerurl;
-                }else{
-                    $scope.newheaderdata.otherurl="";
-                    $(".dk_label")[0].textContent=$scope.header[i].headerurl; //赋值select value
-                }
-                return;
-            }
+        $scope.showerror=false;
+        parentmenuindex=parentindex;
+        childmenuindex='';
+        childmenudata='';
+        $("#delete")[0].value='Delete';
+        $scope.newheaderdata.menuname=obj.menuname;
+        $scope.newheaderdata.menutype=obj.menutype;
+        if($scope.newheaderdata.menutype=="other"){
+            $("#urltype1").attr("checked",true);
+            $("#urltype2").attr("checked",false);
+            $scope.newheaderdata.linkedurl=obj.linkedurl;
+        }else{
+            $scope.newheaderdata.linkedurl="";
+            $("#urltype1").attr("checked",false);
+            $("#urltype2").attr("checked",true);
+            $(".dk_label")[0].textContent=obj.linkedpagename;
         }
+        setupLabel();
     }
-    //open child menu
-    $scope.openchildinfo=function(parientid,id){
+    //edit child menu
+    $scope.openchildinfo=function(childindex,obj,childdata){
         $scope.csstitleform=true;
-        for(var i=0;i<$scope.header.length;i++){
-            if($scope.header[i].headerid == parientid){
-                  for(var j=0;j<$scope.header[i].childdata.length;j++){
-                     if($scope.header[i].childdata[j].childid==id){
-                         $scope.newheaderdata.headername=$scope.header[i].childdata[j].childname;
-                         $scope.newheaderdata.headertype=$scope.header[i].childdata[j].childtype;
-                         if($scope.newheaderdata.headertype=="other"){
-                             $scope.newheaderdata.otherurl=$scope.header[i].childdata[j].childurl;
-                         }else{
-                             $scope.newheaderdata.otherurl="";
-                             $(".dk_label")[0].textContent=$scope.header[i].childdata[j].childurl;
-                         }
-                         return;
-                     }
-                  }
+        $scope.showerror=false;
+        childmenuindex=childindex;
+        childmenudata=childdata;
+        $("#delete")[0].value='Delete';
+        $scope.newheaderdata.menuname=obj.menuname;
+        $scope.newheaderdata.menutype=obj.menutype;
+        if($scope.newheaderdata.menutype=="other"){
+            $("#urltype1").attr("checked",true);
+            $("#urltype2").attr("checked",false);
+            $scope.newheaderdata.linkedurl=obj.linkedurl;
+        }else{
+            $scope.newheaderdata.linkedurl="";
+            $("#urltype1").attr("checked",false);
+            $("#urltype2").attr("checked",true);
+            $(".dk_label")[0].textContent=obj.linkedpagename;
+        }
+        setupLabel();
+    }
+    //delete menu
+    $scope.deleteparentmenu=function(){
+        if($("#delete")[0].value=='Delete'){
+            if(childmenuindex===''){
+                if($scope.header[parentmenuindex].childdata.length>0){
+                    $scope.showerror=true;
+                }else{
+                    $scope.header.splice(parentmenuindex,1);
+                    $scope.csstitleform=false;
+                }
+                childmenuindex='';
+                childmenudata='';
+            }else{
+                childmenudata.splice(childmenuindex,1);
+                $scope.csstitleform=false;
             }
+        }else{
+            $scope.csstitleform=false;
         }
     }
 }

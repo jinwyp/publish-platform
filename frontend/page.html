@@ -88,11 +88,11 @@
                                 <!-- 选择Theme //End -->
                                 <!-- Nav Link -->
                                 <div class="navlink_panel">
-                                	<ul class="nav_structure clearfix">
+                                	<ul id="parentmenu" class="nav_structure clearfix">
                                         <li ng-repeat="head in header">
-                                            <a href="#" class="pagelink">{{head.headername}}<i class="ico_edit" ng-click="openheaderinfo(head.headerid)"></i></a>
+                                            <a href="#" class="pagelink">{{head.menuname}}<i class="ico_edit" ng-click="openheaderinfo($index,head)"></i></a>
                                             <ul>
-                                                <li ng-repeat="child in head.childdata"><a href="#" class="urllink">{{child.childname}}<i class="ico_edit" ng-click="openchildinfo(head.headerid,child.childid)"></i></a></li>
+                                                <li ng-repeat="child in head.childdata"><a href="#" class="urllink">{{child.menuname}}<i class="ico_edit" ng-click="openchildinfo($index,child,head.childdata)"></i></a></li>
                                                 <li>
                                                     <a ng-hide="head.childdata.length > 4" href="#" class="sub_addlink"  ng-click="showheaderform($index,false)">+</a>
                                                 </li>
@@ -102,28 +102,22 @@
                                         <li class="newlink_panel" ng-show="csstitleform">
                                            <form action="" method="get">
                                                 <div class="newlink_panel_name">
-                                                    <input type="text" id="titlename" class="input_newlink" required ng-model="newheaderdata.headername" placeholder="Nav link name">
+                                                    <input type="text" class="input_newlink" required ng-model="newheaderdata.menuname" placeholder="Nav link name">
                                                 </div>
                                                 <div class="newlink_panel_form">
-                                                    <!--<label class="radio clearfix">
-                                                        <input type="radio" name="optionsRadios" ng-model="newheaderdata.headertype" value="1">
-                                                        <input type="url" id="otherurl" ng-model="newheaderdata.otherurl" required="required" class="input_url" placeholder="URL">
+                                                    <label class="radio clearfix">
+                                                        <input type="radio" id="urltype1" ng-model="newheaderdata.menutype" value="other">
+                                                        <input type="url" ng-model="newheaderdata.linkedurl" required="required" class="input_url" placeholder="URL">
                                                     </label>
                                                     <label class="radio clearfix">
-                                                        <input type="radio" name="optionsRadios" ng-model="newheaderdata.headertype" value="2">
+                                                        <input type="radio" id="urltype2" ng-model="newheaderdata.menutype" value="local">
                                                         <select ng-model="headerlocalurl" ng-options="page.pagename for page in pages">
                                                         </select>
-                                                    </label> -->
-                                                    <input type="radio" ng-model="newheaderdata.headertype" value="other">
-                                                    <input type="url" id="otherurl" ng-model="newheaderdata.otherurl" required class="input_url" placeholder="URL"><br/><br/>
-
-                                                    <input type="radio" ng-model="newheaderdata.headertype" value="local">
-                                                    <select ng-model="headerlocalurl" ng-options="page.pagename for page in pages">
-                                                    </select>
+                                                    </label>
                                                     <div class="newlink_panel_btn">
+                                                        <span id="error" ng-show="showerror" style="color:red;font-size:12px;">Please delete it's all child menu.</span><br>
                                                         <input type="submit" value="Save" class="btn btn-success" ng-click="saveheaderinfo()">
-                                                       <!-- <input type="button" value="Delete" class="btn btn-primary">-->
-                                                        <input type="button" value="Cancel" class="btn btn-primary"  ng-click="hideheaderform()">
+                                                        <input id="delete" type="button" value="Cancel" class="btn btn-primary" ng-click="deleteparentmenu()">
                                                     </div>
                                                 </div>
                                              </form>
@@ -498,7 +492,7 @@
     <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
     <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
     <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
-    <script src="lib/flatui/custom_radio.js"></script>
+  <!--  <script src="lib/flatui/custom_radio.js"></script>-->
     <script src="lib/flatui/jquery.tagsinput.js"></script>
     <script src="lib/flatui/bootstrap-tooltip.js"></script>
     <script src="lib/flatui/jquery.placeholder.js"></script>
