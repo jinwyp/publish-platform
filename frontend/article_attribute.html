@@ -51,9 +51,118 @@
                         <a href="article.html" class="ico-article-backedit" rel="tooltip" title="Back Write"></a>
                     </i>
                 </div>
-                <!-- 编辑器 -->
-                <div class="article-cont" style="height:800px; color:#999; font-size:72px; text-align:center; line-height:200px;">
-          			Tag, Category...
+                <!-- Article Arrtibute -->
+                <div class="article-cont">
+                	
+                     <!-- 测试用，不用管这段 ->
+                     <div class="tabbable tabs-below">
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="A">
+                          <p>I'm in Section A.</p>
+                        </div>
+                        <div class="tab-pane" id="B">
+                          <p>Howdy, I'm in Section B.</p>
+                        </div>
+                        <div class="tab-pane" id="C">
+                          <p>What up girl, this is Section C.</p>
+                        </div>
+                      </div>
+                      <ul class="nav nav-tabs">
+                        <li class="active"><a href="#A" data-toggle="tab">Section 1</a></li>
+                        <li><a href="#B" data-toggle="tab">Section 2</a></li>
+                        <li><a href="#C" data-toggle="tab">Section 3</a></li>
+                      </ul>
+                    </div>
+                    <!-- 测试用，不用管这段 //End -->
+                	
+                    <!-- Tags -->
+                	<div class="atricle_attribute_box">
+          			<h3>Tags</h3>
+                    <!-- 测试用，不用管这段 ->
+                    <input type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                    -->
+          			<input name="tagsinput" id="tagsinput" class="tagsinput" value="" />
+                    </div>
+                    <!-- Tags //End -->
+                    
+                    
+                    
+                    <!-- Category -->
+                    <div class="atricle_attribute_box">
+          			<h3>Category</h3>
+                    </div>
+                    <!-- Category End -->
+                    
+                    
+                    
+                    
+                    <!-- Social -->
+                    <div class="atricle_attribute_box">
+          				<h3>Social</h3>
+                        <div class="share mrl">
+                            <ul>
+                              <li>
+                                <label class="share-label" for="share-toggle2">Facebook</label>
+                                <div class="toggle">
+                                  <label class="toggle-radio" for="share-toggle2">ON</label>
+                                  <input type="radio" name="share-toggles" id="share-toggle2" value="toggle1">
+                                  <label class="toggle-radio" for="share-toggle1">OFF</label>
+                                  <input type="radio" name="share-toggles" id="share-toggle1" value="toggle2" checked="checked">
+                                </div>
+                              </li>
+                              <li>
+                                <label class="share-label" for="share-toggle4">Twitter</label>
+                                <div class="toggle">
+                                  <label class="toggle-radio" for="share-toggle4">ON</label>
+                                  <input type="radio" name="share-toggles2" id="share-toggle4" value="toggle1" checked="checked">
+                                  <label class="toggle-radio" for="share-toggle3">OFF</label>
+                                  <input type="radio" name="share-toggles2" id="share-toggle3" value="toggle2">
+                                </div>
+                              </li>
+                              <li>
+                                <label class="share-label" for="share-toggle6">新浪微博</label>
+                                <div class="toggle">
+                                  <label class="toggle-radio" for="share-toggle6">ON</label>
+                                  <input type="radio" name="share-toggles3" id="share-toggle6" value="toggle1">
+                                  <label class="toggle-radio" for="share-toggle5">OFF</label>
+                                  <input type="radio" name="share-toggles3" id="share-toggle5" value="toggle2" checked="checked">
+                                </div>
+                              </li>
+                              <li>
+                                <label class="share-label" for="share-toggle8">腾讯微博</label>
+                                <div class="toggle">
+                                  <label class="toggle-radio" for="share-toggle8">ON</label>
+                                  <input type="radio" name="share-toggles4" id="share-toggle8" value="toggle1">
+                                  <label class="toggle-radio" for="share-toggle7">OFF</label>
+                                  <input type="radio" name="share-toggles4" id="share-toggle7" value="toggle2" checked="checked">
+                                </div>
+                              </li>
+                              <li>
+                                <label class="share-label" for="share-toggle10">屌丝微博</label>
+                                <div class="toggle">
+                                  <label class="toggle-radio" for="share-toggle10">ON</label>
+                                  <input type="radio" name="share-toggles5" id="share-toggle10" value="toggle1" checked="checked">
+                                  <label class="toggle-radio" for="share-toggle9">OFF</label>
+                                  <input type="radio" name="share-toggles5" id="share-toggle9" value="toggle2">
+                                </div>
+                              </li>
+                              <li>
+                                <label class="share-label" for="share-toggle12">Clash of Clans</label>
+                                <div class="toggle">
+                                  <label class="toggle-radio" for="share-toggle12">好玩</label>
+                                  <input type="radio" name="share-toggles5" id="share-toggle12" value="toggle1" checked="checked">
+                                  <label class="toggle-radio" for="share-toggle11">不好玩</label>
+                                  <input type="radio" name="share-toggles5" id="share-toggle11" value="toggle2">
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                    </div>
+                    <!-- Social //End -->
+                    
+                    
+                    
+                    
                 </div>
                 <!-- 编辑器 //End-->
             </div>
@@ -116,6 +225,8 @@
     <script src="lib/flatui/jquery.tagsinput.js"></script>
     <script src="lib/flatui/bootstrap-tooltip.js"></script>
     <script src="lib/flatui/jquery.placeholder.js"></script>
+    <script src="lib/boostrap/bootstrap-tab.js"></script>
+    <script src="lib/boostrap/bootstrap-typeahead.js"></script>
     <script src="lib/flatui/application.js"></script>
     <!--[if lt IE 8]>
       <script src="lib/flatui/icon-font-ie7.js"></script>

@@ -287,6 +287,12 @@ h6 {
   .btn.btn-large {
     padding-bottom: 12px;
     padding-top: 13px; }
+  .btn.btn-vcp {
+    background-color: #666; }
+    .btn.btn-vcp:hover, .btn.btn-vcp:focus {
+      background-color: #2fe2bf; }
+    .btn.btn-vcp:active, .btn.btn-vcp.active {
+      background-color: #16a085; }
   .btn.btn-primary {
     background-color: #1abc9c; }
     .btn.btn-primary:hover, .btn.btn-primary:focus {
@@ -1180,7 +1186,7 @@ textarea,
     background-image: url("img/radio-2x.png");
     background-size: 110px 110px; } }
 .toggle {
-  background-color: #34495e;
+  background-color: #454545;
   border-radius: 60px;
   color: white;
   height: 29px;
@@ -1201,11 +1207,12 @@ textarea,
   .toggle:after {
     clear: both; }
   .toggle.toggle-off {
-    background-color: #cbd2d8; }
+    background-color: #bbb; 
+	}
     .toggle.toggle-off .toggle-radio {
       background-image: url("img/toggle/icon-off.png");
       background-position: 0 0;
-      color: white;
+      color: #eee;
       left: 0;
       margin-left: 0.5px;
       margin-right: -13px;
@@ -1214,7 +1221,7 @@ textarea,
         left: -120%; }
   .toggle .toggle-radio {
     background: url("img/toggle/icon-on.png") right top no-repeat;
-    color: #1abc9c;
+    color: #afd860;
     display: block;
     font-weight: 700;
     height: 21px;
@@ -1263,17 +1270,20 @@ textarea,
   .toggle .toggle-radio {
     background-image: url("img/toggle/icon-on-2x.png");
     background-size: 30px 29px; } }
+	
 .tagsinput {
-  background: white;
-  border: 2px solid #1abc9c;
-  border-radius: 6px;
+  /* border: 2px solid #1abc9c; */
+  border-radius: 4px;
   height: 100px;
   padding: 6px 1px 1px 6px;
   overflow-y: auto;
-  text-align: left; }
+  text-align: left; 
+  }
+.tagsinput .tagsinput_top{
+ }
   .tagsinput .tag {
     border-radius: 4px;
-    background: #1abc9c;
+    background: #8c8c8c;
     color: white;
     cursor: pointer;
     margin-right: 5px;
@@ -1289,27 +1299,32 @@ textarea,
     -moz-transition: 0.14s linear;
     -o-transition: 0.14s linear;
     transition: 0.14s linear;
-    -webkit-backface-visibility: hidden; }
+    -webkit-backface-visibility: hidden; 
+	}
     .tagsinput .tag:hover {
-      background-color: #16a085;
+      background-color: #454545;
       padding-left: 12px;
-      padding-right: 20px; }
+      padding-right: 20px; 
+	  }
       .tagsinput .tag:hover .tagsinput-remove-link {
         color: white;
         opacity: 1;
-        display: block\9; }
+        display: block\9; 
+		}
   .tagsinput input {
     background: transparent;
     border: none;
     color: #34495e;
-    font-family: "Lato", sans-serif;
-    font-size: 14px;
-    margin: 0px;
-    padding: 0 0 0 5px;
+    font-size: 16px;
+    margin: 0;
+    padding: 0 0 4px 4px;
     outline: 0;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    width: 12px; }
+    width: 20px;
+	border-radius:4px;
+	}
+	
+   .tagsinput input:active {
+    background: #bbb; }
 
 .tagsinput-remove-link {
   bottom: 0;
@@ -1317,15 +1332,15 @@ textarea,
   cursor: pointer;
   font-size: 12px;
   opacity: 0;
-  padding: 9px 7px 3px 0;
+  padding: 9px 4px 3px 4px;
   position: absolute;
   right: 0;
   text-align: right;
   text-decoration: none;
   top: 0;
-  width: 100%;
+  width:16px;
   z-index: 2;
-  display: none\9; }
+  display: none\9;}
   .tagsinput-remove-link:before {
     color: white; }
 
@@ -1333,14 +1348,16 @@ textarea,
   vertical-align: middle;
   display: inline-block;
   zoom: 1;
-  *display: inline; }
+  *display: inline;
+  border-radius:4px;
+  margin: 0 0 4px 0;}
 
 .tagsinput-add {
-  background-color: #bbc3cb;
+  background-color: #bbb;
   border-radius: 3px;
   color: white;
   cursor: pointer;
-  margin-bottom: 5px;
+  margin: 0;
   padding: 6px 9px;
   display: inline-block;
   zoom: 1;
@@ -1351,7 +1368,7 @@ textarea,
   transition: 0.25s;
   -webkit-backface-visibility: hidden; }
   .tagsinput-add:hover {
-    background-color: #1abc9c; }
+    background-color: #454545; }
 
 .tags_clear {
   clear: both;
@@ -1630,7 +1647,7 @@ textarea,
     padding: 15px; }
   .share li {
     padding-top: 11px;
-    *zoom: 1; }
+    *zoom: 1;}
     .share li:before, .share li:after {
       display: table;
       content: ""; }
