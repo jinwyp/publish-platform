@@ -1263,17 +1263,20 @@ textarea,
   .toggle .toggle-radio {
     background-image: url("img/toggle/icon-on-2x.png");
     background-size: 30px 29px; } }
+	
 .tagsinput {
-  background: white;
-  border: 2px solid #1abc9c;
+  /* border: 2px solid #1abc9c; */
   border-radius: 6px;
   height: 100px;
   padding: 6px 1px 1px 6px;
   overflow-y: auto;
-  text-align: left; }
+  text-align: left; 
+  }
+.tagsinput .tagsinput_top{
+ }
   .tagsinput .tag {
     border-radius: 4px;
-    background: #1abc9c;
+    background: #bbb;
     color: white;
     cursor: pointer;
     margin-right: 5px;
@@ -1289,20 +1292,22 @@ textarea,
     -moz-transition: 0.14s linear;
     -o-transition: 0.14s linear;
     transition: 0.14s linear;
-    -webkit-backface-visibility: hidden; }
+    -webkit-backface-visibility: hidden; 
+	}
     .tagsinput .tag:hover {
-      background-color: #16a085;
+      background-color: #454545;
       padding-left: 12px;
-      padding-right: 20px; }
+      padding-right: 20px; 
+	  }
       .tagsinput .tag:hover .tagsinput-remove-link {
         color: white;
         opacity: 1;
-        display: block\9; }
+        display: block\9; 
+		}
   .tagsinput input {
     background: transparent;
     border: none;
     color: #34495e;
-    font-family: "Lato", sans-serif;
     font-size: 14px;
     margin: 0px;
     padding: 0 0 0 5px;
@@ -1336,7 +1341,7 @@ textarea,
   *display: inline; }
 
 .tagsinput-add {
-  background-color: #bbc3cb;
+  background-color: #bbb;
   border-radius: 3px;
   color: white;
   cursor: pointer;
@@ -1351,7 +1356,7 @@ textarea,
   transition: 0.25s;
   -webkit-backface-visibility: hidden; }
   .tagsinput-add:hover {
-    background-color: #1abc9c; }
+    background-color: #454545; }
 
 .tags_clear {
   clear: both;

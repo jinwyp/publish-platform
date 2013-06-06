@@ -115,7 +115,7 @@
                                                         </select>
                                                     </label> -->
                                                     <input type="radio" ng-model="newheaderdata.headertype" value="other">
-                                                    <input type="url" id="otherurl" ng-model="newheaderdata.otherurl" required="required" class="input_url" placeholder="URL"><br/><br/>
+                                                    <input type="url" id="otherurl" ng-model="newheaderdata.otherurl" required class="input_url" placeholder="URL"><br/><br/>
 
                                                     <input type="radio" ng-model="newheaderdata.headertype" value="local">
                                                     <select ng-model="headerlocalurl" ng-options="page.pagename for page in pages">
@@ -502,6 +502,8 @@
     <script src="lib/flatui/jquery.tagsinput.js"></script>
     <script src="lib/flatui/bootstrap-tooltip.js"></script>
     <script src="lib/flatui/jquery.placeholder.js"></script>
+    <script src="lib/boostrap/bootstrap-tab.js"></script>
+    <script src="lib/boostrap/bootstrap-typeahead.js"></script>
     <script src="lib/flatui/application.js"></script>
     <!--[if lt IE 8]>
       <script src="lib/flatui/icon-font-ie7.js"></script>
