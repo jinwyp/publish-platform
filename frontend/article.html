@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="pagemodule">
+<html lang="en" ng-app="articlemodule">
   <head>
     <meta charset="utf-8">
     <title>VCP</title>
@@ -34,7 +34,7 @@
 <div class="vcpbox">
 	
     <!-- Content -->
-	<div class="article">
+	<div class="article" ng-view>
     
     	<div class="write_title">
         	<a href="article_list.html" class="showlist" rel="tooltip" title="Article List"></a>
@@ -132,6 +132,10 @@
 			$('.write_title, .article-title, .article_btn, .vernode').tooltip({
 			  selector: "a[rel=tooltip]"
 			})
+			
+			
+			
+		
 	
         });
 	</script>

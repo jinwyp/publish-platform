@@ -1,0 +1,32 @@
+
+
+      Search: 
+      <input ng-model="query">
+      Sort by:
+      <select ng-model="orderProp">
+        <option value="name">Alphabetical</option>
+        <option value="age">Newest</option>
+      </select>
+
+
+<ul class="article-list">
+    <li ng-repeat="phone in phones | filter:query | orderBy:orderProp" class="thumbnail">
+    	<div class="list-date">
+        	<h1><a href="#/phones/{{phone.id}}">{{phone.name}}</a></h1>
+        	<dl>
+                <dd><p class="titlename">Type</p><p>Walkthrough</p></dd>
+                <dd><p class="titlename">Created</p><p>04/02/2013</p></dd>
+                <dd><p class="titlename">Published</p><p>04/21/2013</p></dd>
+                <dd><p class="titlename">Author</p><p>Eric</p></dd>
+                <dd><p class="titlename">Editor</p><p>iFan</p></dd>
+            </dl>
+       	 </div>
+         <div class="list-count">
+            <dl>
+                <dd>Today</dd>
+                <dd><span>3,102</span></dd>
+            </dl>
+        </div>
+    </li>
+</ul>
+

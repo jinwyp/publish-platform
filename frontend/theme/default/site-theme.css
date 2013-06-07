@@ -8,7 +8,7 @@
 
 
 /* Page Header */
-.site-theme.b-header{ position:relative; margin:0; padding:0; height:100px; border:1px solid #eee;}
+.site-theme.b-header{ position:relative; margin:0; padding:0; height:100px; background:#fff;}
 
 .site-theme.b-header .b-h-logo	{ position:relative; display:block; float:left; margin-left:20px; color:#249fd8;}
 .site-theme.b-header .b-h-info	{ position:absolute; right:20px; top:20px; color:#888;}
