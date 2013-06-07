@@ -38,37 +38,7 @@
         
         
             <!-- Left -->
-            <div class="article-span9">
-                <div class="article-title">ARTICLE LIST
-                    <i class="article-title-ico">
-                        <a href="#" class="ico-article-search" rel="tooltip" title="Search Article"></a>
-                        <a href="article.html" class="ico-article-addnew" rel="tooltip" title="Add New Article"></a>
-                    </i>
-                </div>
-                
-                <!-- 列表 -->
-                <div class="article-cont" style="height:800px;" ng-view>
-          			
-                    
-                    <div class="pagination pagination-centered">
-                        <ul>
-                          <li class="previous"><a href="#">Previous</a></li>
-                          <li class="active"><a href="#">1</a></li>
-                          <li><a href="#">2</a></li>
-                          <li><a href="#">3</a></li>
-                          <li><a href="#">4</a></li>
-                          <li><a href="#">5</a></li>
-                          <li><a href="#">6</a></li>
-                          <li><a href="#">7</a></li>
-                          <li><a href="#">8</a></li>
-                          <li><a href="#">9</a></li>
-                          <li class="next"><a href="#">Next</a></li>
-                        </ul>
-                      </div>
-          
-                </div>
-                <!-- 列表 //End-->
-            </div>
+            <div class="article-span9" ng-view></div>
             <!-- Left //End -->
             
             
@@ -83,7 +53,7 @@
                     </i>
                 </div>
                 <!-- 编辑器 -->
-                <div class="article-cont" style="height:900px; color:#999; font-size:72px; text-align:center; line-height:200px;"" ng-view>
+                <div id="melvon" class="article-cont" style="height:800px; color:#999; font-size:72px; text-align:center; line-height:200px;">
                 预览区
                 </div>
                 <!-- 编辑器 //End-->

@@ -33,3 +33,10 @@ function PhoneDetailCtrl($scope, $routeParams, $http) {
 
 
 
+function melvon($scope,index){
+	$scope.melvon111 = index;
+	console.log($scope.melvon111, index);
+	
+	}
+
+

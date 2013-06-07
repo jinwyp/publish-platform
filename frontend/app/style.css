@@ -864,7 +864,7 @@ only screen and (min--moz-device-pixel-ratio: 1.5),
 
 /* Article List */
 .article-list				{ margin:0; padding:0; list-style:none;}
-.article-list > li			{ border-bottom:1px solid #e8e8e8; padding:20px; *zoom:1; cursor:pointer; }
+.article-list > li			{ border-top:0; border-bottom:1px solid #e8e8e8; padding:20px; *zoom:1; border-radius:0; box-shadow:none; }
 .article-list > li:before,
 .article-list > li:after	{ display:table; line-height:0; content:"";}
 .article-list > li:after 	{ clear: both;}
