@@ -1,23 +1,6 @@
 'use strict';
 
 var pageapp = angular.module('pagemodule', []);
-
-/*
-pageapp.directive('anyKeypress', function(){
-    return {
-        restrict: 'A',
-        link: function(scope, element, attr, ctrl) {
-            element.bind('keypress', function(){
-                scope.$apply(function(s) {
-                    s.$eval(attr.zKeypress);
-                });
-            });
-        }
-    };
-});
-*/
-
-
 pageapp.directive('enterKeypress', function(){
     return function(scope, element, attrs) {
         element.bind("keypress", function(event) {
@@ -132,12 +115,7 @@ pageapp.factory('modelSite', function(){
             var pageindex = sitedata.pagelist.indexOf(pagedata);
             sitedata.pagelist.splice(pageindex, 1);
         }
-//        for(var i = sitedata.pagelist.length; i--;){
-//            if (sitedata.pagelist[i] === pagedata) {
-//                sitedata.pagelist.splice(i, 1);
-//            }
-//        }
-        return
+        return;
     };
 
     factory.addSingleBlockToPage = function (newblock, pagelayout, pagedata) {
@@ -182,8 +160,6 @@ pageapp.factory('modelSite', function(){
 });
 
 
-
-
 /* Controllers */
 page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     $scope.site = {};
@@ -223,7 +199,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssblocktipindexeditor = -1;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexstatic = -1;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
-
         $scope.showform = false;
     }
 
@@ -316,13 +291,13 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             case 'auto':
                 $scope.cssblocktipindexauto = indexid;      //点击当前block按钮显示对应block类型菜单
                 break;
-            case  'editor':
+            case 'editor':
                 $scope.cssblocktipindexeditor = indexid;      //点击当前block按钮显示对应block类型菜单
                 break;
-            case  'static':
+            case 'static':
                 $scope.cssblocktipindexstatic = indexid;      //点击当前block按钮显示对应block类型菜单
                 break;
-            case  'ads':
+            case 'ads':
                 $scope.cssblocktipindexads = indexid;      //点击当前block按钮显示对应block类型菜单
                 break;
             default:
@@ -364,24 +339,47 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     var headerparentid="";
     $scope.headerlocalurl=$scope.pages[0];
     //insert header data form
-    $scope.showheaderform=function(param1,param){
-     /*    if(param){
-             var html1='<li><a ng-hide="header.length > 7" href="#" class="sub_addlink" ng-click="showheaderform("",true)">+</a></li>';
-         }
-        var html2=$("#parentmenu").html();
-        alert(html2);*/
+    $scope.showheaderform=function(param1,param, evt){
+
+        var blockcontent = $(evt.target).parent().parent();
+        blockcontent.append($(".newlink_panel"));
         $scope.csstitleform=true;
-        $scope.showerror=false;
-        headerflag=param;
-        headerparentid=param1;
-        $scope.newheaderdata.menutype='other';
-        $scope.newheaderdata.menuname="";
-        $scope.newheaderdata.linkedurl="";
-        $("#delete")[0].value='Cancel';
-        $("#urltype1").attr("checked",true);
-        $("#urltype2").attr("checked",false);
-        setupLabel();
-}
+        console.log(blockcontent);
+        /*var html='<li class="newlink_panel" ng-show="true">';
+        html+='<form action="" method="get">';
+        html+='<div class="newlink_panel_name">';
+        html+='<input type="text" class="input_newlink" required ng-model="newheaderdata.menuname" placeholder="Nav link name"></div>';
+        html+='<div class="newlink_panel_form">';
+        html+='<label class="radio clearfix">';
+        html+='<input type="radio" id="urltype1" ng-model="newheaderdata.menutype" value="other">';
+        html+='<input type="url" ng-model="newheaderdata.linkedurl" required="required" class="input_url" placeholder="URL">';
+        html+='</label>';
+        html+='<label class="radio clearfix">';
+        html+='<input type="radio" id="urltype2" ng-model="newheaderdata.menutype" value="local">';
+        html+='<select ng-model="headerlocalurl" ng-options="page.pagename for page in pages">';
+        html+='</select>';
+        html+='</label>';
+        html+='<div class="newlink_panel_btn">';
+        html+='<span id="error" ng-show="showerror" style="color:red;font-size:12px;">Please delete it is all child menu.</span><br>';
+        html+='<input type="submit" value="Save" class="btn btn-success" ng-click="saveheaderinfo()">&nbsp;';
+        html+='<input id="delete" type="button" value="Cancel" class="btn btn-primary" ng-click="deleteparentmenu()">';
+        html+='</div></div></form></li>';*/
+        $("#llili").replaceWith($(".newlink_panel")[0].innerHTML);
+        /*$("html").addClass("has-js");
+        $(".checkbox, .radio").prepend("<span class='icon'></span><span class='icon-to-fade'></span>");
+        setupLabel();*/
+        /* $scope.csstitleform=true;
+         $scope.showerror=false;
+         headerflag=param;
+         headerparentid=param1;
+         $scope.newheaderdata.menutype='other';
+         $scope.newheaderdata.menuname="";
+         $scope.newheaderdata.linkedurl="";
+         $("#delete")[0].value='Cancel';
+         $("#urltype1").attr("checked",true);
+         $("#urltype2").attr("checked",false);
+         setupLabel();*/
+    }
     //close header form
     $scope.hideheaderform=function(){
         $scope.csstitleform=false;
@@ -451,6 +449,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     var parentmenuindex='';
     var childmenudata='';
     var childmenuindex='';
+    var classidhtml='';
     $scope.showerror=false;
     $scope.openheaderinfo=function(parentindex,obj){
         $scope.csstitleform=true;
@@ -513,5 +512,8 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         }else{
             $scope.csstitleform=false;
         }
+    }
+    $scope.clickheader1=function(e){
+         alert(e);
     }
 }
