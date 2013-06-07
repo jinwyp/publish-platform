@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="pagemodule">
+<html lang="en" ng-app="articlemodule">
   <head>
     <meta charset="utf-8">
     <title>VCP</title>
@@ -34,7 +34,7 @@
 <div class="vcpbox">
 	
     <!-- Content -->
-	<div class="article">
+	<div class="article" ng-view>
     
     	<div class="write_title">
         	<a href="article_list.html" class="showlist" rel="tooltip" title="Article List"></a>
@@ -53,8 +53,8 @@
                     </i>
                 </div>
                 <!-- 编辑器 -->
-                <div class="article-cont" style="height:800px; color:#999; font-size:72px; text-align:center; line-height:200px;">
-          			<textarea class="ckeditor" cols="80" id="editor1" name="editor1" rows="10" style="height:100%;"></textarea>
+                <div class="article-cont">
+          			 <textarea class="ckeditor" cols="80" id="editor1" name="editor1" rows="10"></textarea>
                 </div>
                 <!-- 编辑器 //End-->
             </div>
@@ -132,6 +132,10 @@
 			$('.write_title, .article-title, .article_btn, .vernode').tooltip({
 			  selector: "a[rel=tooltip]"
 			})
+			
+			
+			
+		
 	
         });
 	</script>
