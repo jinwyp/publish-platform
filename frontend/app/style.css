@@ -61,6 +61,7 @@
 .container		{ position:relative; }
 .pagewrap		{ margin-top:100px; margin-bottom:40px; min-height:600px; padding:10px; background:#fff; border-radius:8px; position:relative; z-index:99;}
 
+
 /* =========================================================================================== */
 /*                                          VCP Header                                         */
 /* =========================================================================================== */
@@ -81,6 +82,26 @@
 .footer a		{ color:#aaa; padding-right:10px; padding-left:10px; text-decoration:underline;}
 .footer a:hover	{ color:#fff;}
 .index_social 	{ width:100%; height:70px; margin-bottom:40px; background:#fff; box-shadow:0 2px 2px rgba(0,0,0,0.2); }
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================================================== */
+/*                                          Index                                              */
+/* =========================================================================================== */
+.banner_box	{ width:100%; height:500px; background:url(img/index_banner.jpg) center top repeat;}
+.banner		{ width:1280px; margin:0 auto;}
+.slide_01	{ width:823px; height:500px; background:url(img/slide_01.png) no-repeat;}
+
+
 
 
 
@@ -846,6 +867,9 @@ only screen and (min--moz-device-pixel-ratio: 1.5),
 .article-cont		{ background:#fff; border-radius:4px;}
 .atricle_attribute_box{ padding:40px; border-bottom:1px dashed #ddd;}
 
+/* article-templete */
+.article-templete	{ padding:20px;}
+
 /* ICON */
 .ico-article-edit,
 .ico-article-backedit,
@@ -910,7 +934,7 @@ only screen and (min--moz-device-pixel-ratio: 1.5),
 
 /* Article List */
 .article-list				{ margin:0; padding:0; list-style:none;}
-.article-list > li			{ border-bottom:1px solid #e8e8e8; padding:20px; *zoom:1; cursor:pointer; }
+.article-list > li			{ border-bottom:1px solid #e8e8e8; padding:20px; *zoom:1; }
 .article-list > li:before,
 .article-list > li:after	{ display:table; line-height:0; content:"";}
 .article-list > li:after 	{ clear: both;}
@@ -926,7 +950,7 @@ only screen and (min--moz-device-pixel-ratio: 1.5),
 
 /* li active */
 .article-list > li.active		{ position:relative; background:#f4f4f4;}
-.article-list > li.active:before{ display:block; position:absolute; left:0; top:0; width:3px; height:100%; background:#666; overflow:hidden;}
+.article-list > li.active:before{ display:block; position:absolute; left:0; top:0; width:3px; height:100%; background:#31a300; overflow:hidden;}
 .article-list > li.active .list-date h1 a	{ color:#31a300 !important;}
 .article-list > li.active .list-date p		{ color:#000 !important;}
 .article-list > li.active .list-count dd,

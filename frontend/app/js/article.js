@@ -1,42 +1,32 @@
 'use strict';
 
 /* App Module */
-
-angular.module('phonecat', []).
+angular.module('articlemodule', []).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
-      when('/phones', {templateUrl: 'article_list_left.html',   controller: PhoneListCtrl}).
-      when('/phones/:phoneId', {templateUrl: 'article_list_right.html', controller: PhoneDetailCtrl}).
-      otherwise({redirectTo: '/phones'});
+      when('/articledetail', {templateUrl: 'article_list_left.html',   controller: ArticleListCtrl}).
+      when('/articledetail/:id', {templateUrl: 'article_list_right.html', controller: ArticleDetailCtrl}).
+      otherwise({redirectTo: '/articledetail'});
 }]);
 
 
 
 /* Controllers */
-
-function PhoneListCtrl($scope, $http) {
+function ArticleListCtrl($scope, $http) {
   $http.get('app/js/article.json').success(function(data) {
-    $scope.phones = data;
+    $scope.articledetail = data;
   });
 
   $scope.orderProp = 'age';
 }
 
-//PhoneListCtrl.$inject = ['$scope', '$http'];
 
-
-function PhoneDetailCtrl($scope, $routeParams, $http) {
-  $http.get('phones/' + $routeParams.phoneId + '.json').success(function(data) {
-    $scope.phone = data;
+function ArticleDetailCtrl($scope, $routeParams, $http) {
+  $http.get('app/js/' + $routeParams.articlelistId + '.json').success(function(data) {
+    $scope.articlelist = data;
   });
 }
 
 
-
-function melvon($scope,index){
-	$scope.melvon111 = index;
-	console.log($scope.melvon111, index);
-	
-	}
 
 

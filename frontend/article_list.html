@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="phonecat">
+<html lang="en" ng-app="articlemodule">
   <head>
     <meta charset="utf-8">
     <title>VCP</title>
@@ -38,7 +38,87 @@
         
         
             <!-- Left -->
-            <div class="article-span9" ng-view></div>
+            <div class="article-span9">
+            
+            	<div class="article-title">ARTICLE LIST
+                    <i class="article-title-ico">
+                        <a href="#" class="ico-article-search" rel="tooltip" title="Search Article"></a>
+                        <a href="article.html" class="ico-article-addnew" rel="tooltip" title="Add New Article"></a>
+                    </i>
+                </div>
+                
+                
+                <!-- 列表 -->
+                <div class="article-cont">
+                
+                    
+                    <ul class="article-list" ng-controller="ArticleListCtrl">
+                        
+                        <!-- 选中状态 -->
+                        <li class="active">
+                            <div class="list-date">
+                                <h1><a href="article.html">Field-class applications Information technology.</a></h1>
+                                <dl>
+                                    <dd><p class="titlename">Type</p><p>Walkthrough</p></dd>
+                                    <dd><p class="titlename">Created</p><p>04/02/2013</p></dd>
+                                    <dd><p class="titlename">Published</p><p>04/21/2013</p></dd>
+                                    <dd><p class="titlename">Author</p><p>Eric</p></dd>
+                                    <dd><p class="titlename">Editor</p><p>iFan</p></dd>
+                                </dl>
+                            </div>
+                            <div class="list-count">
+                                <dl>
+                                    <dd>2013/05/29</dd>
+                                    <dd><span>8,932</span></dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <!-- 选中状态 //End -->
+                                  
+                        <li ng-repeat="articlelist in articledetail | filter:query | orderBy:orderProp">
+                            <div class="list-date">
+                                <h1><a href="#/articledetail/{{articlelist.id}}">{{articlelist.name}}</a></h1>
+                                <dl>
+                                    <dd><p class="titlename">Type</p><p>{{articlelist.type}}</p></dd>
+                                    <dd><p class="titlename">Created</p><p>{{articlelist.created}}</p></dd>
+                                    <dd><p class="titlename">Published</p><p>{{articlelist.published}}</p></dd>
+                                    <dd><p class="titlename">Author</p><p>{{articlelist.author}}</p></dd>
+                                    <dd><p class="titlename">Editor</p><p>{{articlelist.editor}}</p></dd>
+                                </dl>
+                             </div>
+                             <div class="list-count">
+                                <dl>
+                                    <dd>{{articlelist.daytime}}</dd>
+                                    <dd><span>{{articlelist.browse}}</span></dd>
+                                </dl>
+                            </div>
+                        </li>
+                        
+                        
+                    </ul>
+                    
+                    <!-- 翻页 -->
+                    <div class="pagination pagination-centered">
+                      <ul>
+                        <li class="previous"><a href="#">Previous</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">6</a></li>
+                        <li><a href="#">7</a></li>
+                        <li><a href="#">8</a></li>
+                        <li><a href="#">9</a></li>
+                        <li class="next"><a href="#">Next</a></li>
+                      </ul>
+                    </div>
+                    <!-- 翻页 / End -->
+                    
+                </div>
+                <!-- 列表 //End-->
+            
+            </div>
             <!-- Left //End -->
             
             
@@ -53,7 +133,7 @@
                     </i>
                 </div>
                 <!-- 编辑器 -->
-                <div id="melvon" class="article-cont" style="height:800px; color:#999; font-size:72px; text-align:center; line-height:200px;">
+                <div id="melvon" class="article-cont" ng-view>
                 预览区
                 </div>
                 <!-- 编辑器 //End-->
