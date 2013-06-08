@@ -674,7 +674,7 @@ box-shadow:0 -1px 3px #000;
 
 .tipbox_filter .tagsinput-remove-link 			{ bottom:0; color:#000; cursor:pointer; font-size:12px; opacity:0; padding:6px 6px 6px 0; position:absolute; right:0; text-align:right; text-decoration:none; top:0; width:100%; z-index:2; display:none\9; }
 .tipbox_filter .tagsinput-remove-link:before 	{ color:#000; }
-.tipbox_filter .tagsinput-add-container 		{ vertical-align:middle; display:inline-block; zoom:1; *display:inline; }
+.tipbox_filter .tagsinput-add-container 		{ vertical-align:middle; display:inline-block; zoom:1; *display:inline; padding:0; margin:0; box-shadow:0; }
 .tipbox_filter .tagsinput-add {
   height:20px;
   background-color:#999;
