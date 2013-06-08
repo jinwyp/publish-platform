@@ -48,14 +48,7 @@ pageapp.factory('modelSite', function(){
             { siteid:1, pagename:'Article', pageid:103, pagetype:11, pagetitle:"article", pageurl:"article", pageorder:0, pagelayoutid:10, pagelayoutdata:[] }
         ],
 
-        headerdata:[
-            {headerid:1,menuname:'Home',menutype:'local',linkedurl:'', linkedpageid:101, linkedpagename:"Homepage",  childdata:[
-                {childid:1,menuname:'Child1',menutype:'other',linkedpageid:101,  linkedpagename:"", linkedurl:'http://www.sina.com'},
-                {childid:2,menuname:'Child2',menutype:'local',linkedpageid:102,  linkedpagename:"Homepage", linkedurl:''}
-            ]},
-            {headerid:2,menuname:'Page1',menutype:'local',linkedurl:'',linkedpageid:101,  linkedpagename:"Homepage",childdata:[]},
-            {headerid:3,menuname:'Page2',menutype:'other',linkedurl:'http://www.google.com',linkedpageid:101,  linkedpagename:"", childdata:[]}
-        ],
+        headerdata:[],
 
         headertheme:[
             {headerthemeid:1,name:'black',css:'theme_01', image:'app/img/header_theme_01.jpg'},
@@ -92,9 +85,10 @@ pageapp.factory('modelSite', function(){
             {layoutcontainerclass:"span4", layoutcontainerid:1007, blocks:[]}
         ]}
     ];
-
-
-
+    //read local header data
+    if(window.localStorage){
+        sitedata.headerdata=JSON.parse(localStorage.getItem("newData")) == null ? [] : JSON.parse(localStorage.getItem("newData"));
+    }
     var factory = {};
     factory.getSite = function () {
         return  sitedata;
@@ -163,9 +157,7 @@ pageapp.factory('modelSite', function(){
     factory.addHeaderMenu = function (menudata) {
         return  sitedata.headerdata.push(menudata);
     };
-    factory.addHeaderChildMenu = function (menudata,childmenudata) {
-        var menuindex = sitedata.headerdata.indexOf(menudata);
-
+    factory.addHeaderChildMenu = function (menuindex,childmenudata) {
         return  sitedata.headerdata[menuindex].childdata.push(childmenudata);
     };
 
@@ -363,22 +355,28 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
     }
 
-
     //header
     var headerflag=false;
-    var headerparentid="";
+    var headerparentid='';
+    var parentmenuindex='';
+    var childmenudata='';
+    var childmenuindex='';
+    var classidhtml='';
+    $scope.showli=-1;
+    $scope.showa=-1;
+    $scope.showchilda=-1;
+    $scope.showerror=false;
     $scope.headerlocalurl=$scope.pages[0];
-
 
     //show header menu and theme
     $scope.showheadermenusetting = function(){
         //$scope.cssheadermenuhavadata = false;      //Header是否有数据
-        $scope.cssheadersetting = false;          //Header设置面板是否显示
+       // $scope.cssheadersetting = false;          //Header设置面板是否显示
         $scope.cssheadermenubutton = true;      //Header右上角mouseover按钮     //所有Header Block经过时显示Attribute Panel Icon
     }
 
     $scope.hideheadermenusetting = function(){
-        $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮
+       // $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮
     }
 
     $scope.clickheadertheme = function(indexid, themedata){
@@ -392,52 +390,26 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssheadersetting = true;
     }
 
-
     //insert header data form
+    var insertdata=false;
     $scope.showheaderform=function(param1,param, evt){
-
         var blockcontent = $(evt.target).parent().parent();
         blockcontent.append($(".newlink_panel"));
         $scope.csstitleform=true;
-        console.log(blockcontent);
-        /*var html='<li class="newlink_panel" ng-show="true">';
-        html+='<form action="" method="get">';
-        html+='<div class="newlink_panel_name">';
-        html+='<input type="text" class="input_newlink" required ng-model="newheaderdata.menuname" placeholder="Nav link name"></div>';
-        html+='<div class="newlink_panel_form">';
-        html+='<label class="radio clearfix">';
-        html+='<input type="radio" id="urltype1" ng-model="newheaderdata.menutype" value="other">';
-        html+='<input type="url" ng-model="newheaderdata.linkedurl" required="required" class="input_url" placeholder="URL">';
-        html+='</label>';
-        html+='<label class="radio clearfix">';
-        html+='<input type="radio" id="urltype2" ng-model="newheaderdata.menutype" value="local">';
-        html+='<select ng-model="headerlocalurl" ng-options="page.pagename for page in pages">';
-        html+='</select>';
-        html+='</label>';
-        html+='<div class="newlink_panel_btn">';
-        html+='<span id="error" ng-show="showerror" style="color:red;font-size:12px;">Please delete it is all child menu.</span><br>';
-        html+='<input type="submit" value="Save" class="btn btn-success" ng-click="saveheaderinfo()">&nbsp;';
-        html+='<input id="delete" type="button" value="Cancel" class="btn btn-primary" ng-click="deleteparentmenu()">';
-        html+='</div></div></form></li>';*/
-        $("#llili").replaceWith($(".newlink_panel")[0].innerHTML);
-        /*$("html").addClass("has-js");
-        $(".checkbox, .radio").prepend("<span class='icon'></span><span class='icon-to-fade'></span>");
-        setupLabel();*/
-        /* $scope.csstitleform=true;
-         $scope.showerror=false;
-         headerflag=param;
-         headerparentid=param1;
-         $scope.newheaderdata.menutype='other';
-         $scope.newheaderdata.menuname="";
-         $scope.newheaderdata.linkedurl="";
-         $("#delete")[0].value='Cancel';
-         $("#urltype1").attr("checked",true);
-         $("#urltype2").attr("checked",false);
-         setupLabel();*/
-    }
-    //close header form
-    $scope.hideheaderform=function(){
-        $scope.csstitleform=false;
+        $scope.showli=$scope.csstitleform ? param1 : -1;
+        $scope.showa=-1;
+        $scope.showchilda=-1;
+        $scope.showerror=false;
+        headerflag=param;
+        headerparentid=param1;
+        $scope.newheaderdata.menutype='other';
+        $scope.newheaderdata.menuname="";
+        $scope.newheaderdata.linkedurl="";
+        $("#delete")[0].value='Cancel';
+        $("#urltype1").attr("checked",true);
+        $("#urltype2").attr("checked",false);
+        setupLabel();
+        insertdata=true;
     }
     $scope.newheaderdata ={};
     $scope.checkpargeid=function(){
@@ -467,52 +439,78 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             $scope.newheaderdata.linkedpageid=$scope.checkpargeid();
         }
         $scope.csstitleform=false;
+        $scope.showli=-1;
+        $scope.showa=-1;
+        $scope.showchilda=-1;
         if(headerflag){
-            if($scope.header.length==0){
-                var headeridindex=1;
+            if(insertdata){
+                if($scope.header.length==0){
+                    var headeridindex=1;
+                }else{
+                    var headeridindex=$scope.header[$scope.header.length-1].headerid+1;
+                }
+                var newheaderdata={
+                    headerid:headeridindex,
+                    menuname:$scope.newheaderdata.menuname,
+                    menutype:$scope.newheaderdata.menutype,
+                    linkedurl:$scope.newheaderdata.linkedurl,
+                    linkedpageid:$scope.newheaderdata.linkedpageid,
+                    linkedpagename:$scope.newheaderdata.linkedpagename,
+                    childdata:[]
+                };
+                modelSite.addHeaderMenu(newheaderdata);
             }else{
-                var headeridindex=$scope.header[$scope.header.length-1].headerid+1;
+                headclass.menuname=$scope.newheaderdata.menuname;
+                headclass.menutype=$scope.newheaderdata.menutype;
+                headclass.linkedurl=$scope.newheaderdata.linkedurl;
+                headclass.linkedpageid=$scope.newheaderdata.linkedpageid;
+                headclass.linkedpagename=$scope.newheaderdata.linkedpagename;
             }
-            var newheaderdata={
-                headerid:headeridindex,
-                menuname:$scope.newheaderdata.menuname,
-                menutype:$scope.newheaderdata.menutype,
-                linkedurl:$scope.newheaderdata.linkedurl,
-                linkedpageid:$scope.newheaderdata.linkedpageid,
-                linkedpagename:$scope.newheaderdata.linkedpagename,
-                childdata:[]
-            };
-            modelSite.addHeaderPage(newheaderdata);
         }else{
-            if($scope.header[headerparentid].childdata.length==0){
-                var childidindex=1;
+            if(insertdata){
+                if($scope.header[headerparentid].childdata.length==0){
+                    var childidindex=1;
+                }else{
+                    var childidindex=$scope.header[headerparentid].childdata[$scope.header[headerparentid].childdata.length-1].childid+1;
+                }
+                var newheaderdata={
+                    childid:childidindex,
+                    menuname:$scope.newheaderdata.menuname,
+                    menutype:$scope.newheaderdata.menutype,
+                    linkedurl:$scope.newheaderdata.linkedurl,
+                    linkedpageid:$scope.newheaderdata.linkedpageid,
+                    linkedpagename:$scope.newheaderdata.linkedpagename
+                };
+                modelSite.addHeaderChildMenu(headerparentid,newheaderdata);
             }else{
-                var childidindex=$scope.header[headerparentid].childdata[$scope.header[headerparentid].childdata.length-1].childid+1;
+                headchildclass.menuname=$scope.newheaderdata.menuname;
+                headchildclass.menutype=$scope.newheaderdata.menutype;
+                headchildclass.linkedurl=$scope.newheaderdata.linkedurl;
+                headchildclass.linkedpageid=$scope.newheaderdata.linkedpageid;
+                headchildclass.linkedpagename=$scope.newheaderdata.linkedpagename;
             }
-             var newheaderdata={
-                 childid:childidindex,
-                 menuname:$scope.newheaderdata.menuname,
-                 menutype:$scope.newheaderdata.menutype,
-                 linkedurl:$scope.newheaderdata.linkedurl,
-                 linkedpageid:$scope.newheaderdata.linkedpageid,
-                 linkedpagename:$scope.newheaderdata.linkedpagename
-             };
-             modelSite.addHeaderChildPage(headerparentid,newheaderdata);
+        }
+        if(window.localStorage){
+            localStorage.setItem("newData",JSON.stringify($scope.header));
         }
     }
+    var headclass='';
     //edit parent menu
-    var parentmenuindex='';
-    var childmenudata='';
-    var childmenuindex='';
-    var classidhtml='';
-    $scope.showerror=false;
-    $scope.openheaderinfo=function(parentindex,obj){
+    $scope.openheaderinfo=function(parentindex,obj,evt){
+        insertdata=false;
+        headerflag=true;
+        var blockcontent = $(evt.target).parent().parent();
+        blockcontent.prepend($(".newlink_panel"));
         $scope.csstitleform=true;
+        $scope.showa=$scope.csstitleform ? parentindex : -1;
+        $scope.showli=-1;
+        $scope.showchilda=-1;
         $scope.showerror=false;
         parentmenuindex=parentindex;
         childmenuindex='';
         childmenudata='';
         $("#delete")[0].value='Delete';
+        headclass=obj;
         $scope.newheaderdata.menuname=obj.menuname;
         $scope.newheaderdata.menutype=obj.menutype;
         if($scope.newheaderdata.menutype=="other"){
@@ -527,9 +525,18 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         }
         setupLabel();
     }
+    var headchildclass='';
     //edit child menu
-    $scope.openchildinfo=function(childindex,obj,childdata){
+    $scope.openchildinfo=function(childindex,obj,childdata,evt){
+        insertdata=false;
+        var blockcontent = $(evt.target).parent().parent();
+        blockcontent.append($(".newlink_panel"));
+        headerflag=false;
+        headchildclass=obj;
         $scope.csstitleform=true;
+        $scope.showchilda=$scope.csstitleform ? obj : -1;
+        $scope.showa=-1;
+        $scope.showli=-1;
         $scope.showerror=false;
         childmenuindex=childindex;
         childmenudata=childdata;
@@ -549,11 +556,12 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         setupLabel();
     }
     //delete menu
-    $scope.deleteparentmenu=function(){
+    $scope.deleteparentmenu=function(evt){
         if($("#delete")[0].value=='Delete'){
             if(childmenuindex===''){
                 if($scope.header[parentmenuindex].childdata.length>0){
                     $scope.showerror=true;
+                    return;
                 }else{
                     $scope.header.splice(parentmenuindex,1);
                     $scope.csstitleform=false;
@@ -567,8 +575,12 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         }else{
             $scope.csstitleform=false;
         }
-    }
-    $scope.clickheader1=function(e){
-         alert(e);
+        if(window.localStorage){
+            localStorage.setItem("newData",JSON.stringify($scope.header));
+        }
+        $("body").append($(".newlink_panel"));//delete before remove form position,it is must step
+        $scope.showli=-1;
+        $scope.showa=-1;
+        $scope.showchilda=-1;
     }
 }

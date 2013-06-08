@@ -89,15 +89,21 @@
                                 <div class="navlink_panel" ng-show="cssheadersetting" ng-animate="{show: 'fade-show', hide: ''}">
                                 	<ul class="nav_structure clearfix">
                                         <li ng-repeat="head in header" class="classid">
-                                            <a href="#" class="pagelink">{{head.menuname}}<i class="ico_edit" ng-click="openheaderinfo($index,head)"></i></a>
+                                            <a ng-hide='$index==showa' href="#" class="pagelink">
+                                                {{head.menuname}}<i class="ico_edit" ng-click="openheaderinfo($index,head,$event)"></i>
+                                            </a>
                                             <ul>
-                                                <li ng-repeat="child in head.childdata"><a href="#" class="urllink">{{child.menuname}}<i class="ico_edit" ng-click="openchildinfo($index,child,head.childdata)"></i></a></li>
-                                                <li>
+                                                <li ng-repeat="child in head.childdata">
+                                                    <a ng-hide='child==showchilda' href="#" class="urllink">
+                                                        {{child.menuname}}<i class="ico_edit" ng-click="openchildinfo($index,child,head.childdata,$event)"></i>
+                                                    </a>
+                                                </li>
+                                                <li ng-hide="$index==showli">
                                                     <a ng-hide="head.childdata.length > 4" href="#" class="sub_addlink"  ng-click="showheaderform($index,false,$event)">+</a>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a ng-hide="header.length > 7" href="#" class="sub_addlink" ng-click="showheaderform('',true)">+</a></li>
+                                        <li ng-hide="$index==showli"><a ng-hide="header.length > 6" href="#" class="sub_addlink" ng-click="showheaderform($index,true,$event)">+</a></li>
                                         <li class="newlink_panel" ng-show="csstitleform">
                                             <form action="" method="get">
                                                 <div class="newlink_panel_name">
@@ -116,7 +122,7 @@
                                                     <div class="newlink_panel_btn">
                                                         <span id="error" ng-show="showerror" style="color:red;font-size:12px;">Please delete it's all child menu.</span><br>
                                                         <input type="submit" value="Save" class="btn btn-success" ng-click="saveheaderinfo()">
-                                                        <input id="delete" type="button" value="Cancel" class="btn btn-primary" ng-click="deleteparentmenu()">
+                                                        <input id="delete" type="button" value="Cancel" class="btn btn-primary" ng-click="deleteparentmenu($event)">
                                                     </div>
                                                 </div>
                                             </form>
