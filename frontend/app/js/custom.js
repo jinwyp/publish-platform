@@ -81,10 +81,12 @@
 
 
 
+/*
 	  //Block Attribut ICO 点击加载样式
 	  $(".attribute_panel a").click(function(){
 		  $(this).addClass("active").siblings("a").removeClass("active");
 	  });
+*/
 
 
 
@@ -209,10 +211,12 @@
 
 
 
+/*
 	  //点击TipBox里的每一个Layout
 	  $(".tipbox_laytou a").click(function(){
 		  $(this).addClass("selected").siblings("a").removeClass("selected");
 	  });
+*/
 
 
 });
