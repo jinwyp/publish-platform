@@ -311,7 +311,7 @@ ul.nav_structure > li > ul > li { margin:0 0 8px 0;}
 .theme_panel .theme_04	{ background:url(img/header_theme_04.jpg) no-repeat;}
 
 /* Nav Link Panel */
-.navlink_panel{ position:relative; margin:0 auto; bottom:-60px; width:932px; height:220px; padding:14px; border-radius:0 0 8px 8px; background:#454545; box-shadow:0 2px 3px rgba(0,0,0,0.3); }
+.navlink_panel{ position:relative; margin:0 auto; bottom:-54px; width:932px; padding:14px 14px 0; border-radius:0 0 8px 8px; background:#454545; box-shadow:0 2px 3px rgba(0,0,0,0.3); }
 ul.nav_structure		{ margin:0; padding:0; list-style:none;}
 ul.nav_structure a.pagelink,
 ul.nav_structure a.urllink			{ display:block; position:relative; width:100px; height:32px; font-size:12px; color:#000; text-decoration:none; line-height:30px; text-indent:10px; border-radius:4px; background:url(img/navlink_btnbg.png) repeat-x;}
@@ -338,11 +338,12 @@ ul.nav_structure a:hover .ico_edit		{ display:block; width:20px; height:20px;}
 ul.nav_structure a:hover .ico_edit:hover{ background-position:0 -500px;}
 
 /* NewLink panel */
-.newlink_panel						{ width:190px; background:#e1e2e4; border-radius:4px; }
+.newlink_panel						{ width:190px; margin:0; padding:0; background:#e1e2e4; border-radius:4px; }
+.newlink_panel form					{ margin:0; padding:0;}
 
 /* Name & Radio & Input & Select */
 .newlink_panel_name	{ padding:8px;}
-.newlink_panel_form	{ padding:20px 8px; box-shadow:inset 0 1px 1px rgba(0,0,0,0.2); background:#d3d6da; border-radius:0 0 4px 4px;}
+.newlink_panel_form	{ padding:20px 8px; margin:0; box-shadow:inset 0 1px 1px rgba(0,0,0,0.2); background:#d3d6da; border-radius:0 0 4px 4px;}
 .newlink_panel_btn	{ padding-left:34px;}
 
 .newlink_panel_name .input_newlink		{ width:162px; border:2px solid #c2c5ca; margin:0; color:#34495e; font-family:"Lato", sans-serif; font-size:14px; padding:2px 4px; text-indent:0px; border-radius:4px; box-shadow:none; }
