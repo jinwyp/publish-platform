@@ -9,7 +9,6 @@
     -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
     transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
 }
-
 .fade-hide {
     opacity:1;
 }
@@ -22,6 +21,23 @@
 }
 .fade-show.fade-show-active {
     opacity:1;
+}
+
+
+.slidedown-hide, .slidedown-show {
+
+    -webkit-transition: 1s linear all; /* Safari/Chrome */
+    -moz-transition: 1s linear all; /* Firefox */
+    -o-transition: 1s linear all; /* Opera */
+    transition: 1s linear all; /* IE10+ and Future Browsers */
+}
+
+.slidedown-show {
+    height: 0;
+    overflow: hidden;
+}
+.slidedown-show.slidedown-show-active {
+    height: 100%;
 }
 
 
