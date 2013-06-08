@@ -1,6 +1,7 @@
 'use strict';
 
 var pageapp = angular.module('pagemodule', []);
+
 pageapp.directive('enterKeypress', function(){
     return function(scope, element, attrs) {
         element.bind("keypress", function(event) {
