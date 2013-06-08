@@ -844,6 +844,7 @@ only screen and (min--moz-device-pixel-ratio: 1.5),
 
 /* Container */
 .article-cont		{ background:#fff; border-radius:4px;}
+.atricle_attribute_box{ padding:40px; border-bottom:1px dashed #ddd;}
 
 /* ICON */
 .ico-article-edit,
