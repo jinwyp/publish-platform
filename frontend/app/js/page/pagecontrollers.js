@@ -49,12 +49,19 @@ pageapp.factory('modelSite', function(){
         ],
 
         headerdata:[
-            {headerid:1,menuname:'Home',menutype:'local',linkedurl:'',linkedpageid:101,linkedpagename:"Homepage", childdata:[
-                {childid:1,menuname:'Child1',menutype:'other', linkedurl:'http://www.sina.com',linkedpageid:0,linkedpagename:""},
-                {childid:2,menuname:'Child2',menutype:'local', linkedurl:'',linkedpageid:102,linkedpagename:"Homepage"}
+            {headerid:1,menuname:'Home',menutype:'local',linkedurl:'', linkedpageid:101, linkedpagename:"Homepage",  childdata:[
+                {childid:1,menuname:'Child1',menutype:'other',linkedpageid:101,  linkedpagename:"", linkedurl:'http://www.sina.com'},
+                {childid:2,menuname:'Child2',menutype:'local',linkedpageid:102,  linkedpagename:"Homepage", linkedurl:''}
             ]},
-            {headerid:2,menuname:'Page1',menutype:'local',linkedurl:'',linkedpageid:101,linkedpagename:'Channel2',childdata:[]},
-            {headerid:3,menuname:'Page2',menutype:'other',linkedurl:'http://www.google.com',linkedpageid:0,linkedpagename:'',childdata:[]}
+            {headerid:2,menuname:'Page1',menutype:'local',linkedurl:'',linkedpageid:101,  linkedpagename:"Homepage",childdata:[]},
+            {headerid:3,menuname:'Page2',menutype:'other',linkedurl:'http://www.google.com',linkedpageid:101,  linkedpagename:"", childdata:[]}
+        ],
+
+        headertheme:[
+            {headerthemeid:1,name:'black',css:'theme_01', image:'app/img/header_theme_01.jpg'},
+            {headerthemeid:2,name:'red',css:'theme_02', image:'app/img/header_theme_02.jpg'},
+            {headerthemeid:3,name:'blue',css:'theme_03', image:'app/img/header_theme_03.jpg' },
+            {headerthemeid:3,name:'blue',css:'theme_04', image:'app/img/header_theme_04.jpg'}
         ],
 
 
@@ -144,15 +151,28 @@ pageapp.factory('modelSite', function(){
         return  ;
     }
 
+    //header Theme
+    factory.getHeaderTheme=function(){
+        return sitedata.headertheme;
+    }
 
     //header 修改
     factory.getHeader=function(){
         return sitedata.headerdata;
     }
-    factory.addHeaderPage = function (pagedata) {
+    factory.addHeaderMenu = function (menudata) {
+        return  sitedata.headerdata.push(menudata);
+    };
+    factory.addHeaderChildMenu = function (menudata,childmenudata) {
+        var menuindex = sitedata.headerdata.indexOf(menudata);
+
+        return  sitedata.headerdata[menuindex].childdata.push(childmenudata);
+    };
+
+    factory.editHeaderMenu = function (pagedata) {
         return  sitedata.headerdata.push(pagedata);
     };
-    factory.addHeaderChildPage = function (id,pagedata) {
+    factory.editHeaderChildMenu = function (id,pagedata) {
         return  sitedata.headerdata[id].childdata.push(pagedata);
     };
 
@@ -163,12 +183,15 @@ pageapp.factory('modelSite', function(){
 
 /* Controllers */
 page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
+
     $scope.site = {};
     $scope.pages = [];
     $scope.singlepage = {};
     $scope.newpage ={};
     $scope.layouts = [];
     $scope.header=[];
+    $scope.newheaderdata ={};
+    $scope.headerthemes ={};
 
     initialize();
 
@@ -179,6 +202,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
         $scope.layouts = modelSite.getLayoutList();
         $scope.header = modelSite.getHeader();
+        $scope.headerthemes = modelSite.getHeaderTheme();
 
         $scope.pagearticletype = $scope.site.defaultsettings.articleTypeId;    // left menu default selected page
         $scope.pagefilterarticle = $scope.site.defaultsettings.pagefilterArticleType;
@@ -200,7 +224,12 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssblocktipindexeditor = -1;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexstatic = -1;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
-        $scope.showform = false;
+
+        $scope.cssheadermenuhavadata = false;      //Header是否有数据
+        $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮显示
+        $scope.cssheadersetting = false;      //Header设置nav下拉界面
+        $scope.cssheaderthemeindex = -1;      //Header默认主题Theme 选择哪一个
+        $scope.cssheadernavindex = 0;      //Header默认菜单的颜色为首页
     }
 
 
@@ -339,6 +368,31 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     var headerflag=false;
     var headerparentid="";
     $scope.headerlocalurl=$scope.pages[0];
+
+
+    //show header menu and theme
+    $scope.showheadermenusetting = function(){
+        //$scope.cssheadermenuhavadata = false;      //Header是否有数据
+        $scope.cssheadersetting = false;          //Header设置面板是否显示
+        $scope.cssheadermenubutton = true;      //Header右上角mouseover按钮     //所有Header Block经过时显示Attribute Panel Icon
+    }
+
+    $scope.hideheadermenusetting = function(){
+        $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮
+    }
+
+    $scope.clickheadertheme = function(indexid, themedata){
+        //点击Nav 的每个Theme
+        $scope.cssheaderthemeindex = indexid;      //Header选中的theme
+        $scope.cssheadermenuhavadata = true;      //Header是否有数据已有数据了y
+    }
+
+    $scope.slideshowheadersetting = function(){
+        //点击Nav Block的设置图标
+        $scope.cssheadersetting = true;
+    }
+
+
     //insert header data form
     $scope.showheaderform=function(param1,param, evt){
 

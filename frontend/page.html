@@ -45,49 +45,48 @@
                 <!-- Page: Navigation -->
                 <div class="row">
                     <div class="span12">
-                    	
-                        <!-- Header Block 1 -->
-                    	<div class="block_header header_full">
-                            <!-- 有header -->
-                        	<div class="site-theme b-header">
-                            	<h1 class="b-h-logo">LOGO</h1>
+
+                        <!-- Header Block 2 -->
+                        <div class="block_header " ng-class="{header_full: cssheadermenuhavadata, header_empty:!cssheadermenuhavadata, zindextop: cssheadermenubutton, zindexbottom: !cssheadermenubutton}" ng-mouseenter="showheadermenusetting()" ng-mouseleave="hideheadermenusetting()">
+                            <!-- 有header 数据 -->
+                            <div class="site-theme b-header" ng-show="cssheadermenuhavadata" ng-class="{zindextop:cssheadermenuhavadata}">
+                                <h1 class="b-h-logo">LOGO</h1>
                                 <ul class="b-h-nav">
-                                	<li><a href="#" class="current">Home</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Service</a></li>
-                                    <li><a href="#">Contact</a></li>
-                                    <li><a href="#">Map</a></li>
+                                    <li ng-repeat="head in header"><a href="#{{head.linkedurl}}" ng-class="{current: $index==cssheadernavindex}" >{{head.menuname}}</a></li>
+
                                 </ul>
                                 <div class="b-h-info">
-                                	<a href="#">Melvon</a>
-                                    <a href="#">Link</a>
-                                    <a href="#">Link</a>
+                                    <a href="#">Melvon</a>
                                     <a href="#">Link</a>
                                 </div>
                             </div>
                             <!-- 有header //End -->
-                        </div>
-                        <!-- Header Block 1 //End -->
 
-
-                    	<!-- Header Block 2 -->
-                    	<div class="block_header header_empty">
-                        	<!-- 空header -->
-                        	<div class="header_view"></div>
+                            <!-- 空header 无数据-->
+                            <div class="header_view" ng-hide="cssheadermenuhavadata" ng-class="{hover_view:cssheadermenubutton} ">
+                            </div>
                             <!-- 空header //End -->
-                            
-                            <!-- NavBlock 设置面板区 -->
-                        	<div class="header_panel">
-                            	<!-- 选择Theme -->
-                            	<div class="theme_panel">
-                                    <a href="#" class="theme_01"></a>
-                                    <a href="#" class="theme_02"></a>
-                                    <a href="#" class="theme_03"></a>
-                                    <a href="#" class="theme_04 last"></a>
+
+
+                            <!-- Menu 右上角button ========== Block Attribute Panel ======================================= -->
+                            <div class="attribute_panel clearfix" ng-show="cssheadermenubutton">
+                                <a href="#" class="icon_setup" ng-click="slideshowheadersetting()">setup</a>
+                                <a href="#" class="icon_delete">delete</a>
+                            </div>
+
+                            <!-- HeaderNavSettings 设置面板区 -->
+                            <div class="header_panel" ng-show="cssheadermenubutton">
+                                <!-- 选择Theme -->
+                                <div class="theme_panel">
+
+                                    <a href="#" ng-repeat="theme in headerthemes" ng-class="{select: $index==cssheaderthemeindex, 'last':$last}" ng-click="clickheadertheme($index, theme)">
+                                        <img src="{{theme.image}}">
+                                    </a>
                                 </div>
                                 <!-- 选择Theme //End -->
+
                                 <!-- Nav Link -->
-                                <div class="navlink_panel">
+                                <div class="navlink_panel" ng-show="cssheadersetting" ng-animate="{show: 'fade-show', hide: ''}">
                                 	<ul class="nav_structure clearfix">
                                         <li ng-repeat="head in header" class="classid">
                                             <a href="#" class="pagelink">{{head.menuname}}<i class="ico_edit" ng-click="openheaderinfo($index,head)"></i></a>
