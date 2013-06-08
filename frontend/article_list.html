@@ -132,11 +132,9 @@
                         <a href="article_attribute.html" class="ico-article-setup" rel="tooltip" title="Tag Category"></a>
                     </i>
                 </div>
-                <!-- 编辑器 -->
-                <div id="melvon" class="article-cont" ng-view>
-                预览区
-                </div>
-                <!-- 编辑器 //End-->
+                <!-- 预览区 -->
+                <div id="article-cont-preview" class="article-cont" ng-view></div>
+                <!-- 预览区 //End-->
             </div>
             <!-- Right //End -->
             
@@ -176,7 +174,9 @@
 			// tooltip
 			$('.article-title-ico').tooltip({
 			  selector: "a[rel=tooltip]"
-			})
+			});
+			
+			$("#article-cont-preview").load("article_templete.html");
 	
         });
 	</script>
