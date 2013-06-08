@@ -392,7 +392,7 @@
                     <!--</a></li>-->
                     <!-- PageList -->
 
-                    <li ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'" >
+                    <li ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'"  ng-animate="'repeat'">
                         <i class="ico_edit" ng-click="showeditpageattribute($index)"></i>
                         <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:11==page.pagetype}" ng-click="clickpage($index, page)">
                             <i class="drag"></i>{{page.pagename}}
