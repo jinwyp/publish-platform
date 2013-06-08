@@ -48,6 +48,7 @@
 
                         <!-- Header Block 2 -->
                         <div class="block_header " ng-class="{header_full: cssheadermenuhavadata, header_empty:!cssheadermenuhavadata, zindextop: cssheadermenubutton, zindexbottom: !cssheadermenubutton}" ng-mouseenter="showheadermenusetting()" ng-mouseleave="hideheadermenusetting()">
+                        
                             <!-- 有header 数据 -->
                             <div class="site-theme b-header" ng-show="cssheadermenuhavadata" ng-class="{zindextop:cssheadermenuhavadata}">
                                 <h1 class="b-h-logo">LOGO</h1>
@@ -63,8 +64,7 @@
                             <!-- 有header //End -->
 
                             <!-- 空header 无数据-->
-                            <div class="header_view" ng-hide="cssheadermenuhavadata" ng-class="{hover_view:cssheadermenubutton} ">
-                            </div>
+                            <div class="header_view" ng-hide="cssheadermenuhavadata" ng-class="{hover_view:cssheadermenubutton} "></div>
                             <!-- 空header //End -->
 
 
@@ -106,7 +106,7 @@
                                                 <div class="newlink_panel_form">
                                                     <label class="radio clearfix">
                                                         <input type="radio" id="urltype1" ng-model="newheaderdata.menutype" value="other">
-                                                        <input type="url" ng-model="newheaderdata.linkedurl" required="required" class="input_url" placeholder="URL">
+                                                        <input type="url" ng-model="newheaderdata.linkedurl" required class="input_url" placeholder="URL">
                                                     </label>
                                                     <label class="radio clearfix">
                                                         <input type="radio" id="urltype2" ng-model="newheaderdata.menutype" value="local">
