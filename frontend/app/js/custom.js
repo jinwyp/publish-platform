@@ -4,7 +4,8 @@
 
 
        var selectheadertheme=true;
-	  //所有Block经过时显示Attribute Panel Icon
+/*
+	  //所有Header Block经过时显示Attribute Panel Icon
 	  $(".block_header").hover(function(){
 		  $(this).append($(".attribute_panel"));
 		  $(".attribute_panel").show();
@@ -22,6 +23,7 @@
               $(".header_view").removeClass("hover_view");
           }
 	  });
+*/
 
 
 /*
@@ -54,15 +56,18 @@
 
 
 
+/*
 	  //点击Nav 的每个Theme
 	  $(".theme_panel a").click(function(){
           selectheadertheme=false;
 		  $(this).addClass("select").siblings("a").removeClass("select");
 	  });
+*/
 
 
 
 
+/*
 	  //点击Nav Block的设置图标
 	  $(".icon_setup").bind("click",function(){
 		var navlinkpanel=$(".navlink_panel");
@@ -72,6 +77,7 @@
 		  $(".navlink_panel").slideUp(300);
 		}
 	  });
+*/
 
 
 
