@@ -371,12 +371,12 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     //show header menu and theme
     $scope.showheadermenusetting = function(){
         //$scope.cssheadermenuhavadata = false;      //Header是否有数据
-       // $scope.cssheadersetting = false;          //Header设置面板是否显示
+//       $scope.cssheadersetting = false;          //Header设置面板是否显示
         $scope.cssheadermenubutton = true;      //Header右上角mouseover按钮     //所有Header Block经过时显示Attribute Panel Icon
     }
 
     $scope.hideheadermenusetting = function(){
-       // $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮
+       $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮
     }
 
     $scope.clickheadertheme = function(indexid, themedata){
