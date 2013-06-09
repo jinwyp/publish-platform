@@ -528,9 +528,9 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
                     headchildclass.linkedpagename=$scope.newheaderdata.linkedpagename;
                 }
             }
-            if(window.localStorage){
+        /*    if(window.localStorage){
                 localStorage.setItem("newData",JSON.stringify($scope.header));
-            }
+            }*/
         }else{
             if(insertdata){
                 if($scope.footer.length==0){
