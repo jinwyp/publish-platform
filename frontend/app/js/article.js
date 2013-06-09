@@ -1,7 +1,7 @@
 'use strict';
 
 /* App Module */
-angular.module('articlemodule', []).
+angular.module('articlemodule', ['ui.bootstrap']).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
       when('/articledetail', {templateUrl: 'article_list_left.html',   controller: ArticleListCtrl}).
@@ -29,4 +29,7 @@ function ArticleDetailCtrl($scope, $routeParams, $http) {
 
 
 
+function CollapseDemoCtrl($scope) {
+  $scope.isCollapsed = true;
+}
 
