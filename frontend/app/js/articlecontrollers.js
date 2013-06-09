@@ -45,25 +45,26 @@ var article = {
 articleapp.controller(article.c);
 
 
-articleapp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+articleapp.config(['$routeProvider', function($routeProvider) {
+
     $routeProvider.
-        when('/',                     {templateUrl: 'article_list_tpl.html',   controller: article.c.articleListCtr}).
-        when('/aritlcedetail/:id', {templateUrl: 'article.html',              controller: article.c.articleDetailCtrl}).
+        when('/',                    {templateUrl: 'article_list_tpl.html',  controller: articleapp.controller.articleListCtrl }).
+        when('/detail/:articleId',        {templateUrl: 'article_tpl.html',        controller: articleapp.controller.articleDetailCtrl }).
         otherwise({redirectTo: '/'});
 }]);
 
 
 
 /* Controllers */
-article.c.articleListCtrl = function ($scope, modelArticle) {
+articleapp.controller.articleListCtrl = function ($scope, modelArticle) {
     $scope.articlesdata = modelArticle.getArticleList();
     $scope.orderProp = 'age';
 }
 
 
-article.c.articleDetailCtrl = function ($scope, $routeParams, modelArticle,) {
-
+articleapp.controller.articleDetailCtrl = function ($scope, $routeParams, modelArticle) {
+    var articleId = $scope.articleId = $routeParams.articleId;
+    $scope.article = modelArticle.getArticle(articleId);
 }
 
 
