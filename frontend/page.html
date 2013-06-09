@@ -54,7 +54,6 @@
                                 <h1 class="b-h-logo">LOGO</h1>
                                 <ul class="b-h-nav">
                                     <li ng-repeat="head in header"><a href="#{{head.linkedurl}}" ng-class="{current: $index==cssheadernavindex}" >{{head.menuname}}</a></li>
-
                                 </ul>
                                 <div class="b-h-info">
                                     <a href="#">Melvon</a>
@@ -76,14 +75,14 @@
 
                             <!-- HeaderNavSettings 设置面板区 -->
                             <div class="header_panel" ng-show="cssheadermenubutton">
-                            
-                                <!-- 选择Theme -->
+
+                                <!-- ??Theme -->
                                 <div class="theme_panel">
                                     <a href="#" ng-repeat="theme in headerthemes" ng-class="{select: $index==cssheaderthemeindex, 'last':$last}" ng-click="clickheadertheme($index, theme)">
                                         <img src="{{theme.image}}">
                                     </a>
                                 </div>
-                                <!-- 选择Theme //End -->
+                                <!-- ??Theme //End -->
 
                                 <!-- Nav Link -->
                                 <div class="navlink_panel" ng-show="cssheadersetting" ng-animate="{show: 'fade-show', hide: ''}" >
@@ -99,11 +98,11 @@
                                                     </a>
                                                 </li>
                                                 <li ng-hide="$index==showli">
-                                                    <a ng-hide="head.childdata.length > 4" href="#" class="sub_addlink"  ng-click="showheaderform($index,false,$event)">+</a>
+                                                    <a ng-hide="head.childdata.length > 4" href="#" class="sub_addlink"  ng-click="showheaderform($index,false,$event,true)">+</a>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li ng-hide="$index==showli"><a ng-hide="header.length > 6" href="#" class="sub_addlink" ng-click="showheaderform($index,true,$event)">+</a></li>
+                                        <li ng-hide="$index==showli"><a ng-hide="header.length > 6" href="#" class="sub_addlink" ng-click="showheaderform($index,true,$event,true)">+</a></li>
                                         <li class="newlink_panel" ng-show="csstitleform">
                                             <form action="" method="get">
                                                 <div class="newlink_panel_name">
@@ -350,14 +349,12 @@
                 <!-- Page: Footer -->
                 <div class="row">
                     <div class="span12">
-                    
-                    
                         <!-- Footer Block 1 -->
-                    	<div class="block_footer footer_full footer_empty">
-                        
+                    	<div class="block_footer" ng-class="{footer_full:cssfootermenuhavadata,footer_empty:!cssfootermenuhavadata,zindextop:cssfootermenubutton,zindexbottom:!cssfootermenubutton}" ng-mouseenter="showfootmenusetting()" ng-mouseleave="hideheadermenusetting()">
+                           <!-- footer_full footer_empty-->
                         
                         	<!-- 有 Footer -->
-                        	<div class="site-theme b-footer">
+                        	<div class="site-theme b-footer" ng-show="cssfootermenuhavadata" ng-class="{zindextop:cssfootermenuhavadata}">
                             	<p><a href="#">Privacy Policy</a>&nbsp;|
                                 <a href="#">Terms & Conditions</a>&nbsp;|
                                 <a href="#">Press Kit</a>&nbsp;|
@@ -370,87 +367,46 @@
                             
                             
                             <!-- 空 Footer -->
-                        	<div class="footer_view"></div>
+                        	<div class="footer_view" ng-hide="cssfootermenuhavadata" ng-class="{hover_view:cssfootermenubutton} "></div>
                             <!-- 空 Foote //Endr -->
                             
                             <!-- Menu 右上角button ========== Block Attribute Panel ======================================= -->
-                            <div class="attribute_panel clearfix">
-                                <a href="#" class="icon_setup" ng-click="">setup</a>
+                            <div class="attribute_panel clearfix" ng-show="cssfootermenubutton">
+                                <a href="#" class="icon_setup" ng-click="slideshowfootersetting()">setup</a>
                                 <a href="#" class="icon_delete">delete</a>
                             </div>
                             
                             <!-- FooterNavSettings 设置面板区 -->
-                            <div class="footer_panel" ng-show="cssheadermenubutton">
+                            <div class="footer_panel" ng-show="cssfootermenubutton">
                                 <!-- 选择Theme -->
-                                <div class="f_theme_panel">
-                                    <a href="#" ng-repeat="" ng-class="" ng-click="">
+                                <div class="theme_panel">
+                                    <a href="#" ng-repeat="theme in footerthemes" ng-class="{select: $index==cssfooterthemeindex,last:$last}" ng-click="clickfootertheme($index, theme)">
                                         <img src="{{theme.image}}">
                                     </a>
                                 </div>
                                 <!-- 选择Theme //End -->
 
                                 <!-- Nav Link -->
-                                <div class="footerlink_panel" ng-show="" ng-animate="" >
-                                	<ul class="footer_structure clearfix">
-                                        <li ng-repeat="head in header" class="classid">
-                                            <a ng-hide='$index==showa' href="#" class="pagelink">
-                                                {{head.menuname}}<i class="ico_edit" ng-click="openheaderinfo($index,head,$event)"></i>
+                                <div class="footerlink_panel" ng-show="cssfootersetting" ng-animate="{show: 'fade-show', hide: ''}" >
+                                    <ul class="footer_structure clearfix">
+                                        <li ng-repeat="foot in footer" class="classid">
+                                            <a href="#" class="pagelink">
+                                                {{foot.footername}}<i class="ico_edit"></i>
                                             </a>
-                                            <ul>
-                                                <li ng-repeat="child in head.childdata">
-                                                    <a ng-hide='child==showchilda' href="#" class="urllink">
-                                                        {{child.menuname}}<i class="ico_edit" ng-click="openchildinfo($index,child,head.childdata,$event)"></i>
-                                                    </a>
-                                                </li>
-                                                <li ng-hide="$index==showli">
-                                                    <a ng-hide="head.childdata.length > 4" href="#" class="sub_addlink"  ng-click="showheaderform($index,false,$event)">+</a>
-                                                </li>
-                                            </ul>
                                         </li>
-                                        <li ng-hide="$index==showli"><a ng-hide="header.length > 6" href="#" class="sub_addlink" ng-click="showheaderform($index,true,$event)">+</a></li>
-                                        <li class="newlink_panel" ng-show="csstitleform">
-                                            <form action="" method="get">
-                                                <div class="newlink_panel_name">
-                                                    <input type="text" class="input_newlink" required ng-model="newheaderdata.menuname" placeholder="Nav link name">
-                                                </div>
-                                                <div class="newlink_panel_form">
-                                                    <label class="radio clearfix">
-                                                        <input type="radio" id="urltype1" ng-model="newheaderdata.menutype" value="other">
-                                                        <input type="url" ng-model="newheaderdata.linkedurl" required class="input_url" placeholder="URL">
-                                                    </label>
-                                                    <label class="radio clearfix">
-                                                        <input type="radio" id="urltype2" ng-model="newheaderdata.menutype" value="local">
-                                                        <select ng-model="headerlocalurl" ng-options="page.pagename for page in pages">
-                                                        </select>
-                                                    </label>
-                                                    <div class="newlink_panel_btn">
-                                                        <span id="error" ng-show="showerror" style="color:red;font-size:12px;">Please delete it's all child menu.</span><br>
-                                                        <input type="submit" value="Save" class="btn btn-success" ng-click="saveheaderinfo()">
-                                                        <input id="delete" type="button" value="Cancel" class="btn btn-primary" ng-click="deleteparentmenu($event)">
-                                                    </div>
-                                                </div>
-                                            </form>
+                                        <li ng-hide="$index==footerli">
+                                            <a ng-hide="footer.length > 6" href="#" class="sub_addlink" ng-click="showheaderform($index,'',$event,false)">+</a>
                                         </li>
                                     </ul>
                                 </div>
                                 <!-- Nav Link //End -->
                             </div>
                             <!-- FooterNavSettings 设置面板区 //End -->
-                            
-                            
                     	</div>
                         <!-- Footer Block 1 //End -->
-                        
-                        
-                        
-                        
                     </div>
                 </div>
                 <!-- Page: Footer 1 //End -->
-                
- 
-                
-                
         </div>
         <!-- Page //End -->
         <!-- SideBar:Page List -->
