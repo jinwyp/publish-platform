@@ -95,6 +95,9 @@
     top:-30px;
 }
 
+
+
+
 /* =========================================================================================== */
 /*                                          VCP Wrap                                           */
 /* =========================================================================================== */
@@ -177,7 +180,7 @@ background: -webkit-gradient(linear, 0 0, 0 100%, from(#dddddd), to(#cccccc));
 box-shadow:inset -2px 0 1px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.2);
 }
 .pagelist_btn:hover, 
-.pagelist_btn:focus 	{ color:#333;
+.pagelist_btn:focus 	{ color:#333; text-decoration:none;
 background: #ffffff; /* 为较旧的或者不支持的浏览器设置备用属性 */
 background: -moz-linear-gradient(top, #ffffff, #ffffff);
 background: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#ffffff));
@@ -219,19 +222,20 @@ background: -webkit-gradient(linear, 0 0, 0 100%, from(#b0d961), to(#8cbc32));
 .page_attri_panel .panel_close:active{ color:#fff; box-shadow:inset 0 0 12px rgba(0,0,0,0.5);}
 .page_attri_panel h2				{ color:#fff; font-weight:normal;}
 .page_attri_cont i 					{ font-style:normal; font-weight:normal; line-height:14px !important; font-size:12px; color:#9a9a9a;}
-.page_attri_cont input				{ margin:20px 0 0 0; padding:6px; font-size:18px; width:340px; border-radius:6px; font-weight:normal; border-color:#454545; background:#ccc;}
-.page_attri_cont input:hover		{ background:#fff;}
+.page_attri_cont input				{ margin:20px 0 0 0; padding:6px; font-size:18px; width:340px; border-radius:6px; font-weight:normal; border:2px solid #454545; background:#ccc; box-shadow:0;}
 .page_attri_cont input:focus		{ border-color:#94c23b; background:#fff;}
 .page_attri_cont input:-moz-placeholder { color:#666;}
 .page_attri_cont input::-webkit-input-placeholder { color:#666;}
 .page_attri_cont .btn_box			{ margin:20px 8px 0 0;}
-.page_attri_cont .btn				{ display:block; padding:0; margin:0 0 0 10px; float:right; width:40px; height:36px; text-indent:-9999px; background:url(img/icon_attribute.png) no-repeat;  }
+.page_attri_cont .btn				{ box-shadow:none; border:0; display:block; padding:0; margin:0 0 0 10px; float:right; width:40px; height:36px; text-indent:-9999px; background:url(img/icon_attribute.png) no-repeat;  }
 .page_attri_cont .btn.attri_save	{ background-position:center -592px; background-color:#f27e11;}
 .page_attri_cont .btn.attri_del		{ background-position:center -192px; background-color:#6e6e6e;}
 .page_attri_cont .btn.attri_save:hover{ background-color:#ff9f44;}
 .page_attri_cont .btn.attri_del:hover{ background-color:#8d8d8d;}
 .page_attri_cont .btn.attri_save:hover,
 .page_attri_cont .btn.attri_del:hover{ box-shadow:0 0 5px rgba(0,0,0,0.75);}
+.page_attri_cont .btn.attri_save:active,
+.page_attri_cont .btn.attri_del:active{ box-shadow:inset 0 0 7px rgba(0,0,0,0.5);}
 
 
 
@@ -298,13 +302,10 @@ ul.layout_list .active	{ opacity:1;}
 
 
 .block-empty		{ border:2px dashed #cbcdca !important;      background:url(img/null_block.png) center center no-repeat !important;}
-.block-empty:hover	{ border:2px dashed transparent !important;  background:none !important;}
+.block-empty:hover	{ border:2px dashed transparent !important; border:1px solid #999\9;  background:none !important; border-radius:4px; box-shadow:inset 0 0 100px rgba(0,0,0,0.1), 0 0 3px rgba(0,0,0,0.6);}
 
 .block-full			{ border:1px solid transparent !important; background:none !important;}
-.block-full:hover	{ border:1px solid transparent !important;}
-
-.block-empty:hover	{  border:1px solid #999\9; box-shadow:inset 0 0 100px rgba(0,0,0,0.1), 0 0 3px rgba(0,0,0,0.6); }
-.block-full:hover	{  border:1px solid #999\9; background:#fff; box-shadow:0 0 3px rgba(0,0,0,0.6); }
+.block-full:hover	{ border:1px solid transparent !important; border:1px solid #999\9; background:#fff; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.6);}
 
 
 
@@ -993,13 +994,15 @@ only screen and (min--moz-device-pixel-ratio: 1.5),
 
 
 /* Version node */
-.vernode			{ position:relative; left:50px; top:14px; }
-.vernode .line		{ display:-moz-inline-stack; display:inline-block; vertical-align:top; zoom:1; *display:inline; background:url(img/timeline.png) left 7px repeat-x;}
-.vernode a.node		{ position:relative; display:block; float:left; margin-right:14px; padding:2px 4px; font-size:12px; font-weight:bold; color:#fff; text-align:center; line-height:12px; text-decoration:none; border-radius:100px; border:2px solid #00b8e2; background:#0095d5; overflow:hidden; z-index:1; }
+.vernode			{ position:relative;left:50px; top:14px; }
+.vernode .line		{ margin:0; padding:0; display:-moz-inline-stack; display:inline-block; vertical-align:top; zoom:1; *display:inline; background:url(img/timeline.png) left 7px repeat-x;}
+.vernode a.node		{ position:relative; display:block; float:left; margin:0 10px 0 0; padding:2px 4px; font-size:12px; font-weight:bold; color:#fff; text-align:center; line-height:12px; text-decoration:none; border-radius:100px; border:2px solid #00b8e2; background:#0095d5; overflow:hidden; z-index:1; }
+.vernode a.node:hover{ background:#005a80; -webkit-transform:scale(1.6); -moz-transform:scale(1.6); -ms-transform:scale(1.6);}
+.vernode a.node.current,
+.vernode a.node.current:hover{ color:#fff; background:#2a9400; border-color:#38b801;}
 .vernode a.node.last{ margin-right:0;}
-.vernode a.node.current{ background:#2a9400; border-color:#38b801;}
 .vernode .tooltip.top  { margin-top: -15px; }
-.vernode .tooltip-inner{ max-width:100px; padding:10px 12px; color:#ffffff; text-align:center; text-decoration:none; background-color:#000000;
+.vernode .tooltip-inner{ max-width:100px; padding:10px 4px; color:#fff; text-align:center; text-decoration:none; background-color:#000;
   -webkit-border-radius:4px;
      -moz-border-radius:4px;
           border-radius:4px;}
@@ -1022,6 +1025,8 @@ only screen and (min--moz-device-pixel-ratio: 1.5),
 .btn-publish			{ background-position:0px -68px;}
 .btn-savedraft:hover	{ background-position:0px -34px; color:#fff;}
 .btn-publish:hover		{ background-position:0px -102px; color:#fff;}
+.btn-savedraft:hover,
+.btn-publish:hover		{ text-decoration:none;}
 
 .btn-savedraft:active,
 .btn-publish:active		{ box-shadow:inset 0 0 14px rgba(0,0,0,0.5);}
@@ -1074,7 +1079,7 @@ only screen and (min--moz-device-pixel-ratio: 1.5),
 .list-count > dl dd			{ text-align:right; color:#bbb; }
 .list-count > dl dd span	{ display:block; margin-top:20px; font-size:36px; color:#bbb; font-family:Helvetica, Arial, sans-serif; font-weight:bold;}
 .list-count .btn			{ margin:20px 0 0 0; padding:0 12px; height:30px; line-height:30px; font-size:12px; color:#fff; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.4); outline:none; 
-background:url(img/article_btn_bg.png) 0 -136px repeat-x; 
+background:url(../app/img/article_btn_bg.png) 0 -136px repeat-x; 
 -webkit-transition: 0s;
    -moz-transition: 0s;
      -o-transition: 0s;
