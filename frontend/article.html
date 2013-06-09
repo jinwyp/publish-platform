@@ -16,7 +16,7 @@
     <script src="ckeditor/ckeditor.js"></script>
   </head>
 <body style="background:#e9e8e4;">
-
+  
 
 
 <!-- Header -->
@@ -48,7 +48,7 @@
             <div class="article-span9">
                 <div class="article-title">MARKDOWN
                     <i class="article-title-ico">
-                        <a href="#" class="ico-article-del" rel="tooltip" title="Delete Article"></a>
+                        <a href="#myModal" class="ico-article-del" rel="tooltip" title="Delete Article" data-toggle="modal"></a>
                         <a href="article_attribute.html" class="ico-article-setup" rel="tooltip" title="Tags Category"></a>
                     </i>
                 </div>
@@ -105,6 +105,27 @@
 </div>  
 
 
+
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3 id="myModalLabel">Delete</h3>
+  </div>
+  
+  <div class="modal-body">
+    <h4>Are you sure?</h4>
+  </div>
+  
+  <div class="modal-footer">
+    <button class="btn btn-danger" data-dismiss="modal">算了，忍一忍，不删除</button>
+    <button class="btn btn-primary">没错，老子就是要删除</button>
+  </div>
+  
+</div>
+
+
                             
     <!-- Load JS -->
 	<script src="lib/jquery/jquery-1.8.2.min.js"></script>
@@ -117,6 +138,8 @@
     <script src="lib/flatui/jquery.placeholder.js"></script>
     <script src="lib/boostrap/bootstrap-tab.js"></script>
     <script src="lib/boostrap/bootstrap-typeahead.js"></script>
+    <script src="lib/boostrap/bootstrap-modal.js"></script>
+    <script src="lib/boostrap/bootstrap-transition.js"></script>
     <script src="lib/flatui/application.js"></script>
     <!--[if lt IE 8]>
       <script src="lib/flatui/icon-font-ie7.js"></script>
