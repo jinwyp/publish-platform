@@ -1088,3 +1088,59 @@ background:url(../app/img/article_btn_bg.png) 0 -136px repeat-x;
 .list-count .btn:hover		{ color:#fff; background-position:0px -166px; border-bottom:1px solid #b96112; }
 .list-count .btn:active		{ box-shadow:inset 0 0 10px rgba(0,0,0,0.4);}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.collapse {
+position: relative;
+height: 0;
+overflow: hidden;
+-webkit-transition: height 0.35s ease;
+-moz-transition: height 0.35s ease;
+-o-transition: height 0.35s ease;
+transition: height 0.35s ease;
+}
+
+.well-large {
+padding: 24px;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+}
+.well {
+min-height: 20px;
+padding: 19px;
+margin-bottom: 20px;
+background-color: #f5f5f5;
+border: 1px solid #e3e3e3;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
