@@ -50,6 +50,11 @@ pageapp.factory('modelSite', function(){
 
         headerdata:[],
 
+        footerdata:[
+            {footerid:1,footername:'foot1',footertype:'local',linkedurl:'',linkedpageid:101,linkedpagename:'Homepage'},
+            {footerid:2,footername:'foot2',footertype:'other',linkedurl:'http://www.1.com',linkedpageid:0,linkedpagename:''}
+        ],
+
         headertheme:[
             {headerthemeid:1,name:'black',css:'theme_01', image:'app/img/header_theme_01.jpg'},
             {headerthemeid:2,name:'red',css:'theme_02', image:'app/img/header_theme_02.jpg'},
@@ -66,7 +71,13 @@ pageapp.factory('modelSite', function(){
             pagefilterArticleType:{pagetype:1},
             pagefilterListType:{pagetype:2},
             layoutfilterListType:{layouttype:0}
-        }
+        },
+        footertheme:[
+            {footerthemeid:1,name:'black',css:'theme_01', image:'app/img/header_theme_01.jpg'},
+            {footerthemeid:2,name:'red',css:'theme_02', image:'app/img/header_theme_02.jpg'},
+            {footerthemeid:3,name:'blue',css:'theme_03', image:'app/img/header_theme_03.jpg' },
+            {footerthemeid:4,name:'green',css:'theme_04', image:'app/img/header_theme_04.jpg'}
+        ]
     };
 
     var layoutdata = [
@@ -108,7 +119,7 @@ pageapp.factory('modelSite', function(){
     };
 
     factory.updateSinglePage= function(pagedata){
-        return
+        return;
     };
 
     factory.delSinglePage= function( pagedata){
@@ -168,7 +179,15 @@ pageapp.factory('modelSite', function(){
         return  sitedata.headerdata[id].childdata.push(pagedata);
     };
 
-
+    factory.getfoottheme=function(){
+        return sitedata.footertheme;
+    };
+    factory.getfooter=function(){
+        return sitedata.footerdata;
+    };
+    factory.addfooterMenu = function (menudata) {
+        return  sitedata.footerdata.push(menudata);
+    };
     return factory;
 });
 
@@ -184,6 +203,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     $scope.header=[];
     $scope.newheaderdata ={};
     $scope.headerthemes ={};
+    $scope.footerthemes={};
 
     initialize();
 
@@ -222,6 +242,13 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssheadersetting = false;      //Header设置nav下拉界面
         $scope.cssheaderthemeindex = -1;      //Header默认主题Theme 选择哪一个
         $scope.cssheadernavindex = 0;      //Header默认菜单的颜色为首页
+
+        $scope.cssfootermenuhavadata = false;
+        $scope.cssfootermenubutton=false;
+        $scope.cssfootersetting=false;
+        $scope.cssfooterthemeindex=-1;
+        $scope.footerthemes=modelSite.getfoottheme();
+        $scope.footer=modelSite.getfooter();
     }
 
 
@@ -392,16 +419,25 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
     //insert header data form
     var insertdata=false;
-    $scope.showheaderform=function(param1,param, evt){
+    var ishead=false;
+    $scope.footerli=-1;
+    $scope.showheaderform=function(param1,param,evt,isheader){
         var blockcontent = $(evt.target).parent().parent();
         blockcontent.append($(".newlink_panel"));
         $scope.csstitleform=true;
-        $scope.showli=$scope.csstitleform ? param1 : -1;
+        ishead=isheader;
         $scope.showa=-1;
         $scope.showchilda=-1;
-        $scope.showerror=false;
-        headerflag=param;
-        headerparentid=param1;
+        if(isheader){
+            $scope.footerli=-1;
+            $scope.showli=$scope.csstitleform ? param1 : -1;
+            $scope.showerror=false;
+            headerflag=param;
+            headerparentid=param1;
+        }else{
+            $scope.showli=-1;
+            $scope.footerli=$scope.csstitleform ? param1 : -1;
+        }
         $scope.newheaderdata.menutype='other';
         $scope.newheaderdata.menuname="";
         $scope.newheaderdata.linkedurl="";
@@ -442,56 +478,78 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.showli=-1;
         $scope.showa=-1;
         $scope.showchilda=-1;
-        if(headerflag){
-            if(insertdata){
-                if($scope.header.length==0){
-                    var headeridindex=1;
+        $scope.footerli=-1;
+        if(ishead){
+            if(headerflag){
+                if(insertdata){
+                    if($scope.header.length==0){
+                        var headeridindex=1;
+                    }else{
+                        var headeridindex=$scope.header[$scope.header.length-1].headerid+1;
+                    }
+                    var newheaderdata={
+                        headerid:headeridindex,
+                        menuname:$scope.newheaderdata.menuname,
+                        menutype:$scope.newheaderdata.menutype,
+                        linkedurl:$scope.newheaderdata.linkedurl,
+                        linkedpageid:$scope.newheaderdata.linkedpageid,
+                        linkedpagename:$scope.newheaderdata.linkedpagename,
+                        childdata:[]
+                    };
+                    modelSite.addHeaderMenu(newheaderdata);
                 }else{
-                    var headeridindex=$scope.header[$scope.header.length-1].headerid+1;
+                    headclass.menuname=$scope.newheaderdata.menuname;
+                    headclass.menutype=$scope.newheaderdata.menutype;
+                    headclass.linkedurl=$scope.newheaderdata.linkedurl;
+                    headclass.linkedpageid=$scope.newheaderdata.linkedpageid;
+                    headclass.linkedpagename=$scope.newheaderdata.linkedpagename;
                 }
-                var newheaderdata={
-                    headerid:headeridindex,
-                    menuname:$scope.newheaderdata.menuname,
-                    menutype:$scope.newheaderdata.menutype,
-                    linkedurl:$scope.newheaderdata.linkedurl,
-                    linkedpageid:$scope.newheaderdata.linkedpageid,
-                    linkedpagename:$scope.newheaderdata.linkedpagename,
-                    childdata:[]
-                };
-                modelSite.addHeaderMenu(newheaderdata);
             }else{
-                headclass.menuname=$scope.newheaderdata.menuname;
-                headclass.menutype=$scope.newheaderdata.menutype;
-                headclass.linkedurl=$scope.newheaderdata.linkedurl;
-                headclass.linkedpageid=$scope.newheaderdata.linkedpageid;
-                headclass.linkedpagename=$scope.newheaderdata.linkedpagename;
+                if(insertdata){
+                    if($scope.header[headerparentid].childdata.length==0){
+                        var childidindex=1;
+                    }else{
+                        var childidindex=$scope.header[headerparentid].childdata[$scope.header[headerparentid].childdata.length-1].childid+1;
+                    }
+                    var newheaderdata={
+                        childid:childidindex,
+                        menuname:$scope.newheaderdata.menuname,
+                        menutype:$scope.newheaderdata.menutype,
+                        linkedurl:$scope.newheaderdata.linkedurl,
+                        linkedpageid:$scope.newheaderdata.linkedpageid,
+                        linkedpagename:$scope.newheaderdata.linkedpagename
+                    };
+                    modelSite.addHeaderChildMenu(headerparentid,newheaderdata);
+                }else{
+                    headchildclass.menuname=$scope.newheaderdata.menuname;
+                    headchildclass.menutype=$scope.newheaderdata.menutype;
+                    headchildclass.linkedurl=$scope.newheaderdata.linkedurl;
+                    headchildclass.linkedpageid=$scope.newheaderdata.linkedpageid;
+                    headchildclass.linkedpagename=$scope.newheaderdata.linkedpagename;
+                }
+            }
+            if(window.localStorage){
+                localStorage.setItem("newData",JSON.stringify($scope.header));
             }
         }else{
             if(insertdata){
-                if($scope.header[headerparentid].childdata.length==0){
-                    var childidindex=1;
+                if($scope.footer.length==0){
+                    var footeridindex=1;
                 }else{
-                    var childidindex=$scope.header[headerparentid].childdata[$scope.header[headerparentid].childdata.length-1].childid+1;
+                    var footeridindex=$scope.footer[$scope.footer.length-1].footerid+1;
                 }
-                var newheaderdata={
-                    childid:childidindex,
-                    menuname:$scope.newheaderdata.menuname,
-                    menutype:$scope.newheaderdata.menutype,
+                var newfooterdata={
+                    footerid:footeridindex,
+                    footername:$scope.newheaderdata.menuname,
+                    footertype:$scope.newheaderdata.menutype,
                     linkedurl:$scope.newheaderdata.linkedurl,
                     linkedpageid:$scope.newheaderdata.linkedpageid,
                     linkedpagename:$scope.newheaderdata.linkedpagename
                 };
-                modelSite.addHeaderChildMenu(headerparentid,newheaderdata);
+                modelSite.addfooterMenu(newfooterdata);
             }else{
-                headchildclass.menuname=$scope.newheaderdata.menuname;
-                headchildclass.menutype=$scope.newheaderdata.menutype;
-                headchildclass.linkedurl=$scope.newheaderdata.linkedurl;
-                headchildclass.linkedpageid=$scope.newheaderdata.linkedpageid;
-                headchildclass.linkedpagename=$scope.newheaderdata.linkedpagename;
+
             }
-        }
-        if(window.localStorage){
-            localStorage.setItem("newData",JSON.stringify($scope.header));
         }
     }
     var headclass='';
@@ -582,5 +640,19 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.showli=-1;
         $scope.showa=-1;
         $scope.showchilda=-1;
+        $scope.footerli=-1;
+    }
+    $scope.showfootmenusetting=function(){
+        $scope.cssfootermenubutton=true;
+    }
+    $scope.hideheadermenusetting=function(){
+       // $scope.cssfootermenubutton=false;
+    }
+    $scope.clickfootertheme = function(indexid, themedata){
+        $scope.cssfooterthemeindex = indexid;
+        $scope.cssfootermenuhavadata = true;
+    }
+    $scope.slideshowfootersetting = function(){
+        $scope.cssfootersetting = true;
     }
 }

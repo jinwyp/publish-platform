@@ -39,6 +39,7 @@
 	  });
 */
 
+/*
 
 	   $(".block_footer").hover(function(){
 		  $(this).append($(".attribute_panel"));
@@ -52,6 +53,7 @@
 		  $(".attribute_panel").hide();
 		  $(".block_footer").css( {"z-index":"1"});
 	  });
+*/
 
 
 
