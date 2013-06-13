@@ -27,7 +27,7 @@
 
                 <ul class="article-list">
 
-                    <li class="active" ng-repeat="article in articlesdata | filter:query | orderBy:orderProp">
+                    <li ng-repeat="article in articlesdata | filter:query | orderBy:orderProp">
                         <div class="list-date">
                             <h1><a href="" ng-click="clickArticle(article)">{{article.title}}</a></h1>
                             <dl>
