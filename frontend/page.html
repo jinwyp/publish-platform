@@ -102,7 +102,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li ng-hide="$index==showli"><a ng-hide="header.length > 6" href="#" class="sub_addlink" ng-click="showheaderform($index,true,$event,true)">+</a></li>
+                                        <li ng-hide="$index==showli"><a ng-hide="header.length > 4" href="#" class="sub_addlink" ng-click="showheaderform($index,true,$event,true)">+</a></li>
                                         <li class="newlink_panel" ng-show="csstitleform">
                                             <form action="" method="get">
                                                 <div class="newlink_panel_name">
@@ -262,9 +262,9 @@
                                         <!-- Tab3: Sort //End -->
                                     </div>
                                     <ul class="nav nav-tabs">
-                                        <li class="active"><a href="#tab-layout" data-toggle="tab" ng-click="clickblocklayouttab($event)">Layout</a></li>
-                                        <li><a href="#tab-filter" data-toggle="tab" ng-click="clickblocklayouttab($event)">Filter</a></li>
-                                        <li><a href="#tab-Sort" data-toggle="tab" ng-click="clickblocklayouttab($event)">Sort</a></li>
+                                        <li id="layout" class="active"><a href="#tab-layout" data-toggle="tab" ng-click="clickblocklayouttab($event,'tab-layout','layout')">Layout</a></li>
+                                        <li id="filter"><a href="#tab-filter" data-toggle="tab" ng-click="clickblocklayouttab($event,'tab-filter','filter')">Filter</a></li>
+                                        <li id="sort"><a href="#tab-Sort" data-toggle="tab" ng-click="clickblocklayouttab($event,'tab-Sort','sort')">Sort</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -355,17 +355,16 @@
                         
                         	<!-- 有 Footer -->
                         	<div class="site-theme b-footer" ng-show="cssfootermenuhavadata" ng-class="{zindextop:cssfootermenuhavadata}">
-                            	<p><a href="#">Privacy Policy</a>&nbsp;|
-                                <a href="#">Terms & Conditions</a>&nbsp;|
+                            	<p>
+                                    <span ng-repeat="footer in footer"><a href="#">{{footer.footername}}</a><span ng-hide="$index==footermaxindex">&nbsp;|</span></span>
+                               <!-- <a href="#">Terms & Conditions</a>&nbsp;|
                                 <a href="#">Press Kit</a>&nbsp;|
                                 <a href="#">Trademark Issues</a>&nbsp;|
-                                <a href="#">Contact Us</a>
+                                <a href="#">Contact Us</a>-->
                                 </p>
-                                <p>Copyright © 2012 ValueClick Brands, Inc. All Rights Reserved.</p>
+                                <p>Copyright © 2013 ValueClick Brands, Inc. All Rights Reserved.</p>
                             </div>
                             <!-- 有 Footer //End -->
-                            
-                            
                             <!-- 空 Footer -->
                         	<div class="footer_view" ng-hide="cssfootermenuhavadata" ng-class="{hover_view:cssfootermenubutton} "></div>
                             <!-- 空 Foote //Endr -->
@@ -390,12 +389,12 @@
                                 <div class="footerlink_panel" ng-show="cssfootersetting" ng-animate="{show: 'fade-show', hide: ''}" >
                                     <ul class="footer_structure clearfix">
                                         <li ng-repeat="foot in footer" class="classid">
-                                            <a href="#" class="pagelink">
-                                                {{foot.footername}}<i class="ico_edit"></i>
+                                            <a ng-hide='foot==footerlia' href="#" class="pagelink">
+                                                {{foot.footername}}<i class="ico_edit" ng-click="openfooterinfo($event,foot,$index);"></i>
                                             </a>
                                         </li>
                                         <li ng-hide="$index==footerli">
-                                            <a ng-hide="footer.length > 6" href="#" class="sub_addlink" ng-click="showheaderform($index,'',$event,false)">+</a>
+                                            <a ng-hide="footer.length > 4" href="#" class="sub_addlink" ng-click="showheaderform($index,'',$event,false)">+</a>
                                         </li>
                                     </ul>
                                 </div>
