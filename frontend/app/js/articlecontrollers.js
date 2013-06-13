@@ -147,14 +147,15 @@ articleapp.config(['$routeProvider', function($routeProvider) {
 
 
 /* Controllers */
-articleapp.controller.articleList = function ($scope, modelArticle) {
+articleapp.controller.articleList = function ($scope,  modelArticle) {
     $scope.articlesdata = modelArticle.getArticleList();
     $scope.orderProp = 'created';
     $scope.articledata = $scope.articlesdata[0];
     $scope.isCollapsed = true;
 
-    $scope.clickArticle = function(article) {
+    $scope.clickArticle = function(article, index) {
         $scope.articledata = article;
+		$scope.cssarticleindex = index;
     }
 
     $scope.delArticle = function(articleid) {
