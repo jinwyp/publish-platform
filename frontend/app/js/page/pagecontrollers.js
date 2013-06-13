@@ -51,8 +51,8 @@ pageapp.factory('modelSite', function(){
         headerdata:[],
 
         footerdata:[
-            {footerid:1,footername:'foot1',footertype:'local',linkedurl:'',linkedpageid:101,linkedpagename:'Homepage'},
-            {footerid:2,footername:'foot2',footertype:'other',linkedurl:'http://www.1.com',linkedpageid:0,linkedpagename:''}
+            /*{footerid:1,footername:'foot1',footertype:'local',linkedurl:'',linkedpageid:101,linkedpagename:'Homepage'},
+            {footerid:2,footername:'foot2',footertype:'other',linkedurl:'http://www.1.com',linkedpageid:0,linkedpagename:''}*/
         ],
 
         headertheme:[
@@ -97,9 +97,9 @@ pageapp.factory('modelSite', function(){
         ]}
     ];
     //read local header data
-    if(window.localStorage){
+/*    if(window.localStorage){
         sitedata.headerdata=JSON.parse(localStorage.getItem("newData")) == null ? [] : JSON.parse(localStorage.getItem("newData"));
-    }
+    }*/
     var factory = {};
     factory.getSite = function () {
         return  sitedata;
@@ -249,6 +249,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssfooterthemeindex=-1;
         $scope.footerthemes=modelSite.getfoottheme();
         $scope.footer=modelSite.getfooter();
+        $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
     }
 
 
@@ -356,13 +357,15 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         var left =  ( parseInt(blockcontent.width() ) - parseInt( blocktypemenu.width() ) )/2;
         blocktypemenu.css({"left":left+"px","top":-(blocktypemenu.height()),"position":"absolute"});
     }
-    $scope.clickblocklayouttab = function( event1) {
-        //重新计算高度,因为block tab 页面切换了  此处有问题,因为使用了bootstrap的tab切换
-        var blockcontent1 = $(event1.target).parent().parent().parent().parent().parent();
-        var blocktypemenu1 = blockcontent1.find(".tip_auto");     //获取样式名称拼接
-        console.log(blockcontent1.width(), blocktypemenu1.width(), blocktypemenu1.height());
-        console.log(blocktypemenu1);
-        blocktypemenu1.css({"top":-(blocktypemenu1.height()),"position":"absolute"});
+    $scope.clickblocklayouttab = function(event1,id,cssid) {
+        if($("#"+cssid).attr("class")=="active"){
+            return;
+        }else{
+            var blockcontent1 = $(event1.target).parent().parent().parent().parent().parent();
+            var blocktypemenu1 = blockcontent1.find(".tip_auto");     //获取样式名称拼接
+            var heightdiff=102+$("#"+id).height();
+            blocktypemenu1.css({"top":-(heightdiff),"position":"absolute"});
+        }
     }
     $scope.addblocktopage = function(layoutcontainer ) {
         var newblock = {
@@ -426,16 +429,13 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         blockcontent.append($(".newlink_panel"));
         $scope.csstitleform=true;
         ishead=isheader;
-        $scope.showa=-1;
-        $scope.showchilda=-1;
+        $scope.footercommonfunction();
         if(isheader){
-            $scope.footerli=-1;
             $scope.showli=$scope.csstitleform ? param1 : -1;
             $scope.showerror=false;
             headerflag=param;
             headerparentid=param1;
         }else{
-            $scope.showli=-1;
             $scope.footerli=$scope.csstitleform ? param1 : -1;
         }
         $scope.newheaderdata.menutype='other';
@@ -475,10 +475,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             $scope.newheaderdata.linkedpageid=$scope.checkpargeid();
         }
         $scope.csstitleform=false;
-        $scope.showli=-1;
-        $scope.showa=-1;
-        $scope.showchilda=-1;
-        $scope.footerli=-1;
+        $scope.footercommonfunction();
         if(ishead){
             if(headerflag){
                 if(insertdata){
@@ -548,8 +545,13 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
                 };
                 modelSite.addfooterMenu(newfooterdata);
             }else{
-
+                footerclass.footername=$scope.newheaderdata.menuname;
+                footerclass.footertype=$scope.newheaderdata.menutype;
+                footerclass.linkedurl=$scope.newheaderdata.linkedurl;
+                footerclass.linkedpageid=$scope.newheaderdata.linkedpageid;
+                footerclass.linkedpagename=$scope.newheaderdata.linkedpagename;
             }
+            $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
         }
     }
     var headclass='';
@@ -560,29 +562,36 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         var blockcontent = $(evt.target).parent().parent();
         blockcontent.prepend($(".newlink_panel"));
         $scope.csstitleform=true;
+        $scope.footercommonfunction();
         $scope.showa=$scope.csstitleform ? parentindex : -1;
-        $scope.showli=-1;
-        $scope.showchilda=-1;
         $scope.showerror=false;
         parentmenuindex=parentindex;
         childmenuindex='';
         childmenudata='';
-        $("#delete")[0].value='Delete';
         headclass=obj;
         $scope.newheaderdata.menuname=obj.menuname;
         $scope.newheaderdata.menutype=obj.menutype;
-        if($scope.newheaderdata.menutype=="other"){
-            $("#urltype1").attr("checked",true);
-            $("#urltype2").attr("checked",false);
-            $scope.newheaderdata.linkedurl=obj.linkedurl;
-        }else{
-            $scope.newheaderdata.linkedurl="";
-            $("#urltype1").attr("checked",false);
-            $("#urltype2").attr("checked",true);
-            $(".dk_label")[0].textContent=obj.linkedpagename;
-        }
-        setupLabel();
+        $scope.assignmentform(obj);
     }
+    $scope.footerlia=-1;
+    var footerclass='';
+    var footerindex='';
+    //edit footer menu
+    $scope.openfooterinfo=function(evt,obj,index){
+        insertdata=false;
+        var blockcontent = $(evt.target).parent().parent();
+        blockcontent.prepend($(".newlink_panel"));
+        $scope.csstitleform=true;
+        ishead=false;
+        footerindex=index;
+        footerclass=obj;
+        $scope.footercommonfunction();
+        $scope.footerlia=$scope.csstitleform ? obj : -1;
+        $scope.newheaderdata.menuname=obj.footername;
+        $scope.newheaderdata.menutype=obj.footertype;
+        $scope.assignmentform(obj);
+    }
+
     var headchildclass='';
     //edit child menu
     $scope.openchildinfo=function(childindex,obj,childdata,evt){
@@ -592,55 +601,51 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         headerflag=false;
         headchildclass=obj;
         $scope.csstitleform=true;
+        $scope.footercommonfunction();
         $scope.showchilda=$scope.csstitleform ? obj : -1;
-        $scope.showa=-1;
-        $scope.showli=-1;
         $scope.showerror=false;
         childmenuindex=childindex;
         childmenudata=childdata;
         $("#delete")[0].value='Delete';
         $scope.newheaderdata.menuname=obj.menuname;
         $scope.newheaderdata.menutype=obj.menutype;
-        if($scope.newheaderdata.menutype=="other"){
-            $("#urltype1").attr("checked",true);
-            $("#urltype2").attr("checked",false);
-            $scope.newheaderdata.linkedurl=obj.linkedurl;
-        }else{
-            $scope.newheaderdata.linkedurl="";
-            $("#urltype1").attr("checked",false);
-            $("#urltype2").attr("checked",true);
-            $(".dk_label")[0].textContent=obj.linkedpagename;
-        }
-        setupLabel();
+        $scope.assignmentform(obj);
     }
     //delete menu
     $scope.deleteparentmenu=function(evt){
-        if($("#delete")[0].value=='Delete'){
-            if(childmenuindex===''){
-                if($scope.header[parentmenuindex].childdata.length>0){
-                    $scope.showerror=true;
-                    return;
+        if(ishead){
+            if($("#delete")[0].value=='Delete'){
+                if(childmenuindex===''){
+                    if($scope.header[parentmenuindex].childdata.length>0){
+                        $scope.showerror=true;
+                        return;
+                    }else{
+                        $scope.header.splice(parentmenuindex,1);
+                        $scope.csstitleform=false;
+                    }
+                    childmenuindex='';
+                    childmenudata='';
                 }else{
-                    $scope.header.splice(parentmenuindex,1);
+                    childmenudata.splice(childmenuindex,1);
                     $scope.csstitleform=false;
                 }
-                childmenuindex='';
-                childmenudata='';
             }else{
-                childmenudata.splice(childmenuindex,1);
                 $scope.csstitleform=false;
             }
+         /*   if(window.localStorage){
+                localStorage.setItem("newData",JSON.stringify($scope.header));
+            }*/
         }else{
-            $scope.csstitleform=false;
+            if($("#delete")[0].value=='Delete'){
+                $scope.footer.splice(footerindex,1);
+                $scope.csstitleform=false;
+            }else{
+                $scope.csstitleform=false;
+            }
         }
-        if(window.localStorage){
-            localStorage.setItem("newData",JSON.stringify($scope.header));
-        }
+        $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
         $("body").append($(".newlink_panel"));//delete before remove form position,it is must step
-        $scope.showli=-1;
-        $scope.showa=-1;
-        $scope.showchilda=-1;
-        $scope.footerli=-1;
+        $scope.footercommonfunction();
     }
     $scope.showfootmenusetting=function(){
         $scope.cssfootermenubutton=true;
@@ -654,5 +659,26 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     }
     $scope.slideshowfootersetting = function(){
         $scope.cssfootersetting = true;
+    }
+    $scope.footercommonfunction=function(){
+        $scope.showli=-1;
+        $scope.showa=-1;
+        $scope.showchilda=-1;
+        $scope.footerli=-1;
+        $scope.footerlia=-1;
+    }
+    $scope.assignmentform=function(obj){
+        $("#delete")[0].value='Delete';
+        if($scope.newheaderdata.menutype=="other"){
+            $("#urltype1").attr("checked",true);
+            $("#urltype2").attr("checked",false);
+            $scope.newheaderdata.linkedurl=obj.linkedurl;
+        }else{
+            $scope.newheaderdata.linkedurl="";
+            $("#urltype1").attr("checked",false);
+            $("#urltype2").attr("checked",true);
+            $(".dk_label")[0].textContent=obj.linkedpagename;
+        }
+        setupLabel();
     }
 }
