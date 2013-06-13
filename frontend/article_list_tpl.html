@@ -1,0 +1,134 @@
+<!-- Content -->
+<div class="article" >
+
+    <div class="article-row">
+
+
+        <!-- Left -->
+        <div class="article-span9">
+
+            <div class="article-title" ng-controller="CollapseDemoCtrl">ARTICLE LIST
+                <i class="article-title-ico">
+                    <a href="#" class="ico-article-search" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed"></a>
+                    <a href="article.html" class="ico-article-addnew" rel="tooltip" title="Add New Article"></a>
+                </i>
+                <div collapse="isCollapsed">
+                    <div class="well well-large">
+                        过滤条件：
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 列表 -->
+            <div class="article-cont">
+
+
+                <ul class="article-list">
+
+
+                    <li class="active" ng-repeat="article in articlesdata | filter:query | orderBy:orderProp">
+                        <div class="list-date">
+                            <h1><a href="#/detail/{{article.id}}">{{article.title}}</a></h1>
+                            <dl>
+                                <!--<dd><p class="titlename">Type</p><p>{{article.type}}</p></dd>-->
+                                <dd><p class="titlename">Created</p><p>{{article.created}}</p></dd>
+                                <dd><p class="titlename">Published</p><p>{{article.published}}</p></dd>
+                                <dd><p class="titlename">Author</p><p>{{article.author}}</p></dd>
+                                <dd><p class="titlename">Editor</p><p>{{article.editor}}</p></dd>
+                            </dl>
+                        </div>
+                        <div class="list-count">
+                            <dl>
+                                <dd>{{articlelist.daytime}}</dd>
+                                <dd><span>{{articlelist.browse}}</span></dd>
+                            </dl>
+                        </div>
+                    </li>
+
+
+                </ul>
+
+                <!-- 翻页 -->
+                <div class="pagination pagination-centered">
+                    <ul>
+                        <li class="previous"><a href="#">Previous</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">6</a></li>
+                        <li><a href="#">7</a></li>
+                        <li><a href="#">8</a></li>
+                        <li><a href="#">9</a></li>
+                        <li class="next"><a href="#">Next</a></li>
+                    </ul>
+                </div>
+                <!-- 翻页 / End -->
+
+            </div>
+            <!-- 列表 //End-->
+
+        </div>
+        <!-- Left //End -->
+
+
+
+        <!-- Right -->
+        <div class="article-span9">
+            <div class="article-title">REVIEW by <b>JEROM</b>
+                <i class="article-title-ico">
+                    <a href="#myModal" class="ico-article-del" rel="tooltip" title="Delete Article" data-toggle="modal"></a>
+                    <a href="article.html" class="ico-article-edit" rel="tooltip" title="Edit Article"></a>
+                    <a href="article_attribute.html" class="ico-article-setup" rel="tooltip" title="Tag Category"></a>
+                </i>
+            </div>
+            <!-- 预览区 -->
+            <div id="article-cont-preview" class="article-cont" >
+                <div class="article-templete">
+
+                    <h1>Title name</h1>
+
+                    <div class="tagbox">
+                        May 05 2013  |? Tag ?
+                        <a href="#">Certified Financial Planner</a>,
+                        <a href="#">CFA</a>,
+                        <a href="#">Chartered Financial Analyst</a>,
+                        <a href="#">Hedge Funds</a>,
+                        <a href="#">Earnings Recap</a>,
+                        <a href="#">Sector - Healthcare and Social Assistance</a>,
+                        <a href="#">Value Investing</a>
+                    </div>
+
+                    <p>Abbreviation of the mobile application Mobile Application is: MA. Generalized mobile applications contain personal and enterprise applications. The narrowly mobile application refers to enterprise-class business applications. </p>
+
+                    <div class="templete-img"><img src="theme/default/temp.jpg" alt=""></div>
+
+                    <h3>Message type applications</h3>
+
+                    <p>Primarily as a management information received vector. This type of application generally do not exist independently, mostly use of ERP, CRM, SCM, and other enterprise systems integration. </p>
+
+                    <h3>Be A Financial Planner From Home</h3>
+
+                    <p>Field-class applications Information technology solutions mainly for fixed workplace scenarios. Such as: sales, business supervision, service</p>
+
+                    <h3>Certifications For Estate Planning</h3>
+
+                    <p>Estate planning is a set of legal, financial and accounting advisory services typically aimed at individual investors, investment family offices, business owners and high net-worth individuals. </p>
+
+                </div>
+
+
+
+            </div>
+
+            <!-- 预览区 //End-->
+        </div>
+        <!-- Right //End -->
+
+
+    </div>
+
+</div>
+<!-- Content //End -->
