@@ -323,12 +323,15 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     }
 
     //add blocks
+    var leavecss=true;
     $scope.showblockmenubutton = function( indexid) {
         $scope.cssblockbutton = indexid;      //显示当前block的menu按钮
     }
-    $scope.hideblockmenubutton = function( indexid) {
-        $scope.cssblockbutton = -1;           //显示当前block的menu按钮
-
+    $scope.hideblockmenubutton = function(indexid) {
+        if(leavecss){
+           $scope.cssblockbutton = -1;           //显示当前block的menu按钮
+           $scope.showico_box=false;
+        }
     }
     $scope.showblockautomenu = function( indexid, blocktype, event1) {
         $scope.cssblockiconactive = blocktype;      //点击当前block按钮的选中的样式
@@ -336,6 +339,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssblocktipindexeditor = -1;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexstatic = -1;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
+        leavecss=false;
         switch(blocktype)
         {
             case 'auto':
@@ -680,5 +684,10 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             $(".dk_label")[0].textContent=obj.linkedpagename;
         }
         setupLabel();
+    }
+    //鼠标放在空白的block上
+    $scope.showico_box=false;
+    $scope.mouseovercontent=function(){
+          $scope.showico_box=true;
     }
 }
