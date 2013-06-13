@@ -13,8 +13,51 @@
     <![endif]-->
     <!-- 默认 Site Theme -->
     <link href="theme/default/site-theme.css" rel="stylesheet">
+    <style type="text/css">
+		html{ height: 100%; }
+		.sitecloud{
+			background:url(app/img/cloud10.png) 0 bottom repeat-x  #ccc;
+  			-webkit-animation: animate-cloud 30s linear infinite;
+  			-moz-animation: animate-cloud 30s linear infinite;
+  			-ms-animation: animate-cloud 30s linear infinite;
+  			-o-animation: animate-cloud 30s linear infinite;
+  			animation: animate-cloud 30s linear infinite;
+		}
+		@-webkit-keyframes animate-cloud {
+		  from {
+			background-position: 1358px 100%;
+		  }
+		  to {
+			background-position: 0 100%;
+		  }
+		}
+		@-moz-keyframes animate-cloud {
+		  from {
+			background-position: 600px 100%;
+		  }
+		  to {
+			background-position: 0 100%;
+		  }
+		}
+		@-ms-keyframes animate-cloud {
+		  from {
+			background-position: 600px 100%;
+		  }
+		  to {
+			background-position: 0 100%;
+		  }
+		}
+		@-o-keyframes animate-cloud {
+		  from {
+			background-position: 600px 100%;
+		  }
+		  to {
+			background-position: 0 100%;
+		  }
+		}
+	</style>
   </head>
-<body style="background:#f1f1f1">
+<body class="sitecloud">
 
 
 
@@ -32,7 +75,7 @@
 <!-- Container -->
 <div class="vcpbox">
 
-	<h1 style="width:100%; text-align:center; line-height:600px; font-size:300px;">Site</h1>
+	<h1 style="width:100%; text-align:center; line-height:600px; font-size:300px; color:#fff;">Site</h1>
 
 </div>  
 
