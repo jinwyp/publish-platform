@@ -1,7 +1,7 @@
 'use strict';
 
 /* App Module */
-var articleapp =angular.module('articlemodule', []);
+var articleapp =angular.module('articlemodule', ['ui.bootstrap']);
 
 articleapp.factory('modelArticle', function(){
 
