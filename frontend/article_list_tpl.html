@@ -7,16 +7,17 @@
         <!-- Left -->
         <div class="article-span9">
 
-            <div class="article-title" >ARTICLE LIST
+            <div class="article-title">ARTICLE LIST
                 <i class="article-title-ico">
                     <a href="#" class="ico-article-search" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed"></a>
                     <a href="article.html" class="ico-article-addnew" rel="tooltip" title="Add New Article"></a>
                 </i>
                 <div collapse="isCollapsed">
                     <div class="well well-large">
-                        过滤条件：
+                    过滤条件：
                     </div>
                 </div>
+
             </div>
 
 
@@ -26,10 +27,9 @@
 
                 <ul class="article-list">
 
-
                     <li class="active" ng-repeat="article in articlesdata | filter:query | orderBy:orderProp">
                         <div class="list-date">
-                            <h1><a href="#/detail/{{article.id}}">{{article.title}}</a></h1>
+                            <h1><a href="" ng-click="clickArticle(article)">{{article.title}}</a></h1>
                             <dl>
                                 <!--<dd><p class="titlename">Type</p><p>{{article.type}}</p></dd>-->
                                 <dd><p class="titlename">Created</p><p>{{article.created}}</p></dd>
@@ -40,12 +40,11 @@
                         </div>
                         <div class="list-count">
                             <dl>
-                                <dd>{{articlelist.daytime}}</dd>
-                                <dd><span>{{articlelist.browse}}</span></dd>
+                                <dd>{{article.created}}</dd>
+                                <dd><span>{{article.clickcount}}</span></dd>
                             </dl>
                         </div>
                     </li>
-
 
                 </ul>
 
@@ -77,10 +76,10 @@
 
         <!-- Right -->
         <div class="article-span9">
-            <div class="article-title">REVIEW by <b>JEROM</b>
+            <div class="article-title">REVIEW by <b>{{articledata.editor}}</b>
                 <i class="article-title-ico">
                     <a href="#myModal" class="ico-article-del" rel="tooltip" title="Delete Article" data-toggle="modal"></a>
-                    <a href="article.html" class="ico-article-edit" rel="tooltip" title="Edit Article"></a>
+                    <a href="#/detail/{{articledata.id}}" class="ico-article-edit" rel="tooltip" title="Edit Article"></a>
                     <a href="article_attribute.html" class="ico-article-setup" rel="tooltip" title="Tag Category"></a>
                 </i>
             </div>
@@ -88,17 +87,11 @@
             <div id="article-cont-preview" class="article-cont" >
                 <div class="article-templete">
 
-                    <h1>Title name</h1>
+                    <h1>{{articledata.title}}</h1>
 
                     <div class="tagbox">
-                        May 05 2013  |? Tag ?
-                        <a href="#">Certified Financial Planner</a>,
-                        <a href="#">CFA</a>,
-                        <a href="#">Chartered Financial Analyst</a>,
-                        <a href="#">Hedge Funds</a>,
-                        <a href="#">Earnings Recap</a>,
-                        <a href="#">Sector - Healthcare and Social Assistance</a>,
-                        <a href="#">Value Investing</a>
+                        May 05 2013  |  Tag »
+                        <a href="#/tag/{{tag.tagid}}" ng-repeat="tag in articledata.tags">{{tag.tagname}}</a>
                     </div>
 
                     <p>Abbreviation of the mobile application Mobile Application is: MA. Generalized mobile applications contain personal and enterprise applications. The narrowly mobile application refers to enterprise-class business applications. </p>
