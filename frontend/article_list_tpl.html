@@ -27,20 +27,20 @@
 
                 <ul class="article-list">
 
-                    <li ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata | filter:query | orderBy:orderProp" ng-click="clickArticle(article, $index)">
+                    <li ng-class="{active:$index == cssarticleindex}"  ng-repeat="article in articlesdata | filter:query | orderBy:!orderProp" ng-click="clickArticle(article, $index)" >
                         <div class="list-date">
                             <h1><a href="" >{{article.title}}</a></h1>
                             <dl>
                                 <!--<dd><p class="titlename">Type</p><p>{{article.type}}</p></dd>-->
                                 <dd><p class="titlename">Created</p><p>{{article.created | date:'MM/dd/yyyy' }}</p></dd>
-                                <dd><p class="titlename">Published</p><p>{{article.published}}</p></dd>
+                                <dd><p class="titlename">Published</p><p>{{article.published | date:'MM/dd/yyyy'}}</p></dd>
                                 <dd><p class="titlename">Author</p><p>{{article.author}}</p></dd>
                                 <dd><p class="titlename">Editor</p><p>{{article.editor}}</p></dd>
                             </dl>
                         </div>
                         <div class="list-count">
                             <dl>
-                                <dd>{{article.created}}</dd>
+                                <dd>{{article.updated | date:'MM/dd/yyyy'}}</dd>
                                 <dd><span>{{article.clickcount}}</span></dd>
                             </dl>
                         </div>
@@ -78,7 +78,7 @@
         <div class="article-span9">
             <div class="article-title">REVIEW by <b>{{articledata.editor}}</b>
                 <i class="article-title-ico">
-                    <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="delArticle(articledata.id)"></a>
+                    <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="delArticle(articledata.id, $index)"></a>
                     <a href="#/detail/{{articledata.id}}" class="ico-article-edit" rel="tooltip" title="Edit Article"></a>
                     <!--<a href="" class="ico-article-setup" rel="tooltip" title="Tag Category"></a>-->
                 </i>
