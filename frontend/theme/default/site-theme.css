@@ -53,7 +53,8 @@
 /* Article - Templete */
 .article-templete h1		{ font-family: Georgia,"Times New Roman",Times,serif; font-weight:normal;}
 .article-templete .tagbox	{ margin-bottom:20px; padding:20px; font-size:12px; color:#333; line-height:20px; border-top:3px solid #958273; border-bottom:1px solid #cabcb1; background:#f8f8f8;}
-.article-templete .tagbox a { color:#058a00;}
+.article-templete .tagbox a { color:#058a00; margin:0 4px; text-decoration:none;}
+.article-templete .tagbox a:hover{ text-decoration:underline;}
 .article-templete p			{ line-height:20px; margin-bottom:20px; text-indent:1em;}
 .article-templete .templete-img{ margin-bottom:20px; max-width:660px; overflow:hidden;}
 
