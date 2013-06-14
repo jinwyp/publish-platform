@@ -31,7 +31,7 @@ articleapp.factory('modelArticle', function(){
         if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
             articlelist = [
                 {  "id": 1000, "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
-                    "created": "04/01/2013", "published": "04/21/2013",  "author": "Eric",  "editor": "iFan", "clickcount":1023, "category": "Today", "categoryid":1000,
+                    "created": "1338364250000", "published": "04/21/2013",  "author": "Eric",  "editor": "iFan", "clickcount":1023, "category": "Today", "categoryid":1000,
                     "tags": [
                         { "tagid":10000, "tagname":"computer" },
                         { "tagid":10001, "tagname":"videocard" }
@@ -39,7 +39,7 @@ articleapp.factory('modelArticle', function(){
                 },
 
                 {  "id": 1001, "title": "昨日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
-                    "created": "04/02/2013", "published": "04/21/2013",  "author": "Eric",  "editor": "iFan", "clickcount":13, "category": "Today", "categoryid":1000,
+                    "created": "1338364250000", "published": "04/21/2013",  "author": "Eric",  "editor": "iFan", "clickcount":13, "category": "Today", "categoryid":1000,
                     "tags": [
                         { "tagid":10003, "tagname":"财经" },
                         { "tagid":10004, "tagname":"黄金" },

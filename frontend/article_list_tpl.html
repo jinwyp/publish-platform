@@ -27,12 +27,12 @@
 
                 <ul class="article-list">
 
-                    <li ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata | filter:query | orderBy:orderProp">
+                    <li ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata | filter:query | orderBy:orderProp" ng-click="clickArticle(article, $index)">
                         <div class="list-date">
-                            <h1><a href="" ng-click="clickArticle(article, $index)">{{article.title}}</a></h1>
+                            <h1><a href="" >{{article.title}}</a></h1>
                             <dl>
                                 <!--<dd><p class="titlename">Type</p><p>{{article.type}}</p></dd>-->
-                                <dd><p class="titlename">Created</p><p>{{article.created}}</p></dd>
+                                <dd><p class="titlename">Created</p><p>{{article.created | date:'MM/dd/yyyy' }}</p></dd>
                                 <dd><p class="titlename">Published</p><p>{{article.published}}</p></dd>
                                 <dd><p class="titlename">Author</p><p>{{article.author}}</p></dd>
                                 <dd><p class="titlename">Editor</p><p>{{article.editor}}</p></dd>
