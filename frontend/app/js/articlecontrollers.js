@@ -211,16 +211,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
         $scope.articleadata = {
             "id": 1004, "title": "星期二新闻汇总 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
             "created": "1370016000000", "updated": "1370361600000", "published": "1370016000000",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
-            "tags": [
-                { "tagid":10005, "tagname":"期货" },
-                { "tagid":10006, "tagname":"白银" },
-                { "tagid":10005, "tagname":"期货" },
-                { "tagid":10006, "tagname":"白银" },
-                { "tagid":10005, "tagname":"期货" },
-                { "tagid":10006, "tagname":"白银" },
-                { "tagid":10005, "tagname":"期货" },
-                { "tagid":10006, "tagname":"白银" }
-            ]
+            "tags": []
         }
 
         modelArticle.createNewArticle(articledata);
