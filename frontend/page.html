@@ -141,7 +141,7 @@
                 <div class="row">
                     <div class="" ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
                         <!-- Block Box -->
-                        <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks">
+                        <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks" ng-class="{hoverfill:$index==cssfillblock,hoverfill1:$index==fillblockindex}"  ng-mouseenter="showfillblock($index)" ng-mouseleave="hidefillblock($index)">
                         	<!-- Content -->
                             <div class="site-theme b-block block-layout-1">
                                 <h2>TITLE NAME</h2>
@@ -153,27 +153,27 @@
                                     <li><span>2012.5.27</span><h3><a href="#">Women: Invest In Your Financial Literacy</a></h3></li>
                                 </ul>
                             </div>
-                           <!-- Content //End -->
+                            <!-- ======================================= Block Attribute Panel ======================================= -->
+                            <div class="attribute_panel" ng-class="{fillattrblock:$index==cssfillblock,fillattrnone:$index!=cssfillblock}">
+                                <a href="##" class="icon_editor" ng-click="showfilleditform($index);">editors</a>
+                                <a href="##" class="icon_setup" ng-click="showfilleditform($index);">setup</a>
+                                <a href="##" class="icon_move" ng-click="showfilleditform($index);">move</a>
+                                <a href="##" class="icon_delete" ng-click="showfilleditform($index);">delete</a>
+                            </div>
+                            <!-- Block Box //End -->
                         </div>
-                        <!-- Block Box //End -->
 
                         <!-- Add Block Box -->
-                        <div class="block_content " ng-class="block-empty" ng-mouseover="mouseovercontent();"  ng-mouseenter="showblockmenubutton($index)" ng-mouseleave="hideblockmenubutton($index)">
+                        <div id="blockcontent" class="block_content blockempty" ng-class="{hoverempty:$index==blockindex,hoverempty1:$index==cssblockbutton}"  ng-mouseenter="showblockmenubutton($index)" ng-mouseleave="hideblockmenubutton($index)">
                             <!-- ICO -->
-                            <div class="ico_box" ng-show="showico_box">
+                            <div class="ico_box" ng-class="{icoboxblock:$index==blockindex,icoboxblock1:$index==cssblockbutton}">
                                 <div class="ico_autoblock" ng-click="showblockautomenu($index, 'auto', $event)" ng-class="{ico_active:'auto'==cssblockiconactive}"><!-- Auto --></div>
                                 <div class="ico_autoeditor" ng-click="showblockautomenu($index, 'editor', $event)" ng-class="{ico_active:'editor'==cssblockiconactive}"><!-- Editor's --></div>
                                 <div class="ico_staticblock" ng-click="showblockautomenu($index, 'static', $event)" ng-class="{ico_active:'static'==cssblockiconactive}"><!-- Static --></div>
                                 <div class="ico_adblock"  ng-click="showblockautomenu($index, 'ads', $event)" ng-class="{ico_active:'ads'==cssblockiconactive}"><!-- AD --></div>
                             </div>
                             <!-- ICO //End -->
-                            <!-- ======================================= Block Attribute Panel ======================================= -->
-                      <!--      <div class="attribute_panel clearfix" ng-show="$index==cssblockbutton" ng-class="{zindextop:$index==cssblockbutton}">
-                                <a href="##" class="icon_editor">editors</a>
-                                <a href="##" class="icon_setup">setup</a>
-                                <a href="##" class="icon_move">move</a>
-                                <a href="##" class="icon_delete">delete</a>
-                            </div>-->
+
                             <!-- =======================================  tip_auto ======================================= -->
                             <div class="tip_box tip_auto" ng-show="$index==cssblocktipindexauto" >
                                 <h1>Auto pick block attribute</h1>
@@ -357,10 +357,6 @@
                         	<div class="site-theme b-footer" ng-show="cssfootermenuhavadata" ng-class="{zindextop:cssfootermenuhavadata}">
                             	<p>
                                     <span ng-repeat="footer in footer"><a href="#">{{footer.footername}}</a><span ng-hide="$index==footermaxindex">&nbsp;|</span></span>
-                               <!-- <a href="#">Terms & Conditions</a>&nbsp;|
-                                <a href="#">Press Kit</a>&nbsp;|
-                                <a href="#">Trademark Issues</a>&nbsp;|
-                                <a href="#">Contact Us</a>-->
                                 </p>
                                 <p>Copyright © 2013 ValueClick Brands, Inc. All Rights Reserved.</p>
                             </div>
