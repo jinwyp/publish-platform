@@ -31,7 +31,7 @@ articleapp.factory('modelArticle', function(){
         if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
             articlelist = [
                 {  "id": 1000, "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
-                    "created": "04/01/2013", "published": "04/21/2013",  "author": "Eric",  "editor": "iFan", "clickcount":1023, "category": "Today", "categoryid":1000,
+                    "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023, "category": "Today", "categoryid":1000,
                     "tags": [
                         { "tagid":10000, "tagname":"computer" },
                         { "tagid":10001, "tagname":"videocard" }
@@ -39,7 +39,7 @@ articleapp.factory('modelArticle', function(){
                 },
 
                 {  "id": 1001, "title": "昨日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
-                    "created": "04/02/2013", "published": "04/21/2013",  "author": "Eric",  "editor": "iFan", "clickcount":13, "category": "Today", "categoryid":1000,
+                    "created": "1370361600000", "updated": "1370361600000", "published": "1370361600000",  "author": "Eric",  "editor": "iFan", "clickcount":13, "category": "Today", "categoryid":1000,
                     "tags": [
                         { "tagid":10003, "tagname":"财经" },
                         { "tagid":10004, "tagname":"黄金" },
@@ -57,7 +57,7 @@ articleapp.factory('modelArticle', function(){
                 },
 
                 {  "id": 1002, "title": "前日新闻汇总 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
-                    "created": "03/03/2013", "published": "04/21/2013",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
+                    "created": "1370188800000", "updated": "1370361600000", "published": "1370188800000",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
                     "tags": [
                         { "tagid":10005, "tagname":"期货" },
                         { "tagid":10006, "tagname":"白银" },
@@ -69,8 +69,8 @@ articleapp.factory('modelArticle', function(){
                         { "tagid":10006, "tagname":"白银" }
                     ]
                 },
-                {  "id": 1002, "title": "星期一新闻汇总 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
-                    "created": "03/04/2013", "published": "04/21/2013",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
+                {  "id": 1003, "title": "星期一新闻汇总 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                    "created": "1370102400000", "updated": "1370361600000", "published": "1370102400000",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
                     "tags": [
                         { "tagid":10005, "tagname":"期货" },
                         { "tagid":10006, "tagname":"白银" },
@@ -82,8 +82,8 @@ articleapp.factory('modelArticle', function(){
                         { "tagid":10006, "tagname":"白银" }
                     ]
                 },
-                {  "id": 1002, "title": "星期二新闻汇总 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
-                    "created": "03/05/2013", "published": "04/21/2013",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
+                {  "id": 1004, "title": "星期二新闻汇总 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                    "created": "1370016000000", "updated": "1370361600000", "published": "1370016000000",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
                     "tags": [
                         { "tagid":10005, "tagname":"期货" },
                         { "tagid":10006, "tagname":"白银" },
@@ -115,6 +115,16 @@ articleapp.factory('modelArticle', function(){
         }
     };
 
+    factory.saveArticle = function (articledata) {
+        for(var i = articlelist.length; i--;){
+            if (articlelist[i].id == articledata.id) {
+                articlelist[i] = articledata;
+                localStorage.setItem("articlesData",JSON.stringify(articlelist));
+                return ;
+            }
+        }
+    };
+
     factory.delArticleById = function (articleid) {
         for(var i = articlelist.length; i--;){
             if (articlelist[i].id == articleid) {
@@ -123,6 +133,12 @@ articleapp.factory('modelArticle', function(){
                 return ;
             }
         }
+    };
+
+    factory.createNewArticle = function (articledata) {
+        articlelist.push(articledata);
+        localStorage.setItem("articlesData",JSON.stringify(articlelist));
+        return ;
     };
 
     return factory;
@@ -158,10 +174,9 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
 		$scope.cssarticleindex = index;
     }
 
-    $scope.delArticle = function(articleid) {
+    $scope.delArticle = function(articleid, index) {
         modelArticle.delArticleById(articleid);
         $scope.articledata = $scope.articlesdata[0];
-        console.log(articledata.id);
     }
 }
 
@@ -178,19 +193,39 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
     $scope.delArticle = function(articleid) {
         modelArticle.delArticleById(articleid);
-        alert('Deleted');
+        alert('Article Deleted');
         $scope.articledata = modelArticle.getArticleList()[0];
-
     }
 
 /*    $scope.showTagsPanel = function(articleid) {
         $scope.cssTagsPanel = !$scope.cssTagsPanel;
     }*/
-}
 
-articleapp.controller.articleSave = function ($scope, $routeParams, modelArticle) {
-    var articleId = $routeParams.articleId;
-    $scope.articledata = modelArticle.getArticleById(articleId);
+    $scope.saveArticle = function(articledata) {
+        modelArticle.saveArticle(articledata);
+        alert('Article Saved');
+    }
+
+    $scope.createNewArticle = function(articledata) {
+
+        $scope.articleadata = {
+            "id": 1004, "title": "星期二新闻汇总 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+            "created": "1370016000000", "updated": "1370361600000", "published": "1370016000000",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
+            "tags": [
+                { "tagid":10005, "tagname":"期货" },
+                { "tagid":10006, "tagname":"白银" },
+                { "tagid":10005, "tagname":"期货" },
+                { "tagid":10006, "tagname":"白银" },
+                { "tagid":10005, "tagname":"期货" },
+                { "tagid":10006, "tagname":"白银" },
+                { "tagid":10005, "tagname":"期货" },
+                { "tagid":10006, "tagname":"白银" }
+            ]
+        }
+
+        modelArticle.createNewArticle(articledata);
+        alert('New Article Created');
+    }
 }
 
 
