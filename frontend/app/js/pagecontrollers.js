@@ -33,10 +33,10 @@ pageapp.factory('modelSite', function(){
             { siteid:1, pagename:'Homepage', pageid:101, pagetype:10, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
                 pagelayoutdata:[
                     {layoutcontainerclass:"span9", layoutcontainerid:1000 , blocks:[
-                            {blockid:100, blocktype:1, blockname:"name1",blocklayout:10, blockquantity:6, blocktag:[], blockcategory:[], blocksortby:'date' } ,
-                            {blockid:101, blocktype:1, blockname:"name2" } ,
-                            {blockid:102, blocktype:1, blockname:"name3" }
-                        ]
+                        {blockid:100, blocktype:1, blockname:"name1",blocklayout:10, blockquantity:6, blocktag:[], blockcategory:[], blocksortby:'date' } ,
+                        {blockid:101, blocktype:1, blockname:"name2" } ,
+                        {blockid:102, blocktype:1, blockname:"name3" }
+                    ]
                     },
                     {layoutcontainerclass:"span3", layoutcontainerid:1000, blocks:[] }
                 ]
@@ -52,7 +52,7 @@ pageapp.factory('modelSite', function(){
 
         footerdata:[
             /*{footerid:1,footername:'foot1',footertype:'local',linkedurl:'',linkedpageid:101,linkedpagename:'Homepage'},
-            {footerid:2,footername:'foot2',footertype:'other',linkedurl:'http://www.1.com',linkedpageid:0,linkedpagename:''}*/
+             {footerid:2,footername:'foot2',footertype:'other',linkedurl:'http://www.1.com',linkedpageid:0,linkedpagename:''}*/
         ],
 
         headertheme:[
@@ -84,7 +84,7 @@ pageapp.factory('modelSite', function(){
         {layoutid: 10, layoutname: '两列1', layouttype : 1, layoutorder:1, layoutcss:'ico_layout_00', layoutimage:'app/img/layout_templete.png', layoutdata:[
             {layoutcontainerclass:"span9", layoutcontainerid:1000, blocks:[]},
             {layoutcontainerclass:"span3", layoutcontainerid:1001, blocks:[]}
-            ]},
+        ]},
 
         {layoutid: 10, layoutname: '两列2', layouttype : 1, layoutorder:2, layoutcss:'ico_layout_01', layoutimage:'app/img/layout_templete_01.png', layoutdata:[
             {layoutcontainerclass:"span3", layoutcontainerid:1002, blocks:[]},
@@ -97,9 +97,9 @@ pageapp.factory('modelSite', function(){
         ]}
     ];
     //read local header data
-/*    if(window.localStorage){
-        sitedata.headerdata=JSON.parse(localStorage.getItem("newData")) == null ? [] : JSON.parse(localStorage.getItem("newData"));
-    }*/
+    /*    if(window.localStorage){
+     sitedata.headerdata=JSON.parse(localStorage.getItem("newData")) == null ? [] : JSON.parse(localStorage.getItem("newData"));
+     }*/
     var factory = {};
     factory.getSite = function () {
         return  sitedata;
@@ -224,7 +224,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.defaultselectedpageindex = $scope.site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
         $scope.selectedpageattributeindex = -1;    //默认隐藏所有page的属性面板
 
-        $scope.selectedpageblockindex = -1;    
+        $scope.selectedpageblockindex = -1;
 
         $scope.defaultselectedlayoutindex = $scope.site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
 
@@ -328,11 +328,9 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssblockbutton = indexid;      //显示当前block的menu按钮
     }
     $scope.hideblockmenubutton = function(indexid) {
-        if(leavecss){
-           $scope.cssblockbutton = -1;           //显示当前block的menu按钮
-           $scope.showico_box=false;
-        }
+        $scope.cssblockbutton = -1;           //显示当前block的menu按钮
     }
+    $scope.blockindex=-1;
     $scope.showblockautomenu = function( indexid, blocktype, event1) {
         $scope.cssblockiconactive = blocktype;      //点击当前block按钮的选中的样式
         $scope.cssblocktipindexauto = -1;      //点击当前block按钮显示对应block类型菜单
@@ -340,6 +338,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssblocktipindexstatic = -1;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
         leavecss=false;
+        $scope.blockindex=indexid;
         switch(blocktype)
         {
             case 'auto':
@@ -389,6 +388,18 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
     }
 
+    $scope.cssfillblock=-1;
+    $scope.showfillblock= function(indexid) {
+        $scope.cssfillblock = indexid;
+    }
+    $scope.hidefillblock = function(indexid) {
+        $scope.cssfillblock = -1;
+    }
+    $scope.fillblockindex=-1;
+    $scope.showfilleditform=function(index){
+        $scope.fillblockindex=index;
+    }
+
     //header
     var headerflag=false;
     var headerparentid='';
@@ -410,7 +421,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     }
 
     $scope.hideheadermenusetting = function(){
-       $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮
+        $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮
     }
 
     $scope.clickheadertheme = function(indexid, themedata){
@@ -529,9 +540,9 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
                     headchildclass.linkedpagename=$scope.newheaderdata.linkedpagename;
                 }
             }
-        /*    if(window.localStorage){
-                localStorage.setItem("newData",JSON.stringify($scope.header));
-            }*/
+            /*    if(window.localStorage){
+             localStorage.setItem("newData",JSON.stringify($scope.header));
+             }*/
         }else{
             if(insertdata){
                 if($scope.footer.length==0){
@@ -636,9 +647,9 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             }else{
                 $scope.csstitleform=false;
             }
-         /*   if(window.localStorage){
-                localStorage.setItem("newData",JSON.stringify($scope.header));
-            }*/
+            /*   if(window.localStorage){
+             localStorage.setItem("newData",JSON.stringify($scope.header));
+             }*/
         }else{
             if($("#delete")[0].value=='Delete'){
                 $scope.footer.splice(footerindex,1);
@@ -653,9 +664,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     }
     $scope.showfootmenusetting=function(){
         $scope.cssfootermenubutton=true;
-    }
-    $scope.hideheadermenusetting=function(){
-       // $scope.cssfootermenubutton=false;
     }
     $scope.clickfootertheme = function(indexid, themedata){
         $scope.cssfooterthemeindex = indexid;
@@ -684,10 +692,5 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             $(".dk_label")[0].textContent=obj.linkedpagename;
         }
         setupLabel();
-    }
-    //鼠标放在空白的block上
-    $scope.showico_box=false;
-    $scope.mouseovercontent=function(){
-          $scope.showico_box=true;
     }
 }
