@@ -30,7 +30,7 @@ articleapp.factory('modelArticle', function(){
     if(window.localStorage){
         if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
             articlelist = [
-                {  "id": 1000, "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                {  "id": 1000, "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                     "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023, "category": "Today", "categoryid":1000,
                     "tags": [
                         { "tagid":10000, "tagname":"computer" },
@@ -38,61 +38,61 @@ articleapp.factory('modelArticle', function(){
                     ]
                 },
 
-                {  "id": 1001, "title": "昨日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                {  "id": 1001, "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                     "created": "1370361600000", "updated": "1370361600000", "published": "1370361600000",  "author": "Eric",  "editor": "iFan", "clickcount":13, "category": "Today", "categoryid":1000,
                     "tags": [
-                        { "tagid":10003, "tagname":"财经" },
-                        { "tagid":10004, "tagname":"黄金" },
-                        { "tagid":10003, "tagname":"财经" },
-                        { "tagid":10004, "tagname":"黄金" },
-                        { "tagid":10003, "tagname":"财经" },
-                        { "tagid":10004, "tagname":"黄金" },
-                        { "tagid":10003, "tagname":"财经" },
-                        { "tagid":10004, "tagname":"黄金" },
-                        { "tagid":10003, "tagname":"财经" },
-                        { "tagid":10004, "tagname":"黄金" },
-                        { "tagid":10003, "tagname":"财经" },
-                        { "tagid":10004, "tagname":"黄金" }
+                        { "tagid":10003, "tagname":"??" },
+                        { "tagid":10004, "tagname":"??" },
+                        { "tagid":10003, "tagname":"??" },
+                        { "tagid":10004, "tagname":"??" },
+                        { "tagid":10003, "tagname":"??" },
+                        { "tagid":10004, "tagname":"??" },
+                        { "tagid":10003, "tagname":"??" },
+                        { "tagid":10004, "tagname":"??" },
+                        { "tagid":10003, "tagname":"??" },
+                        { "tagid":10004, "tagname":"??" },
+                        { "tagid":10003, "tagname":"??" },
+                        { "tagid":10004, "tagname":"??" }
                     ]
                 },
 
-                {  "id": 1002, "title": "前日新闻汇总 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                {  "id": 1002, "title": "?????? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                     "created": "1370188800000", "updated": "1370361600000", "published": "1370188800000",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
                     "tags": [
-                        { "tagid":10005, "tagname":"期货" },
-                        { "tagid":10006, "tagname":"白银" },
-                        { "tagid":10005, "tagname":"期货" },
-                        { "tagid":10006, "tagname":"白银" },
-                        { "tagid":10005, "tagname":"期货" },
-                        { "tagid":10006, "tagname":"白银" },
-                        { "tagid":10005, "tagname":"期货" },
-                        { "tagid":10006, "tagname":"白银" }
+                        { "tagid":10005, "tagname":"??" },
+                        { "tagid":10006, "tagname":"??" },
+                        { "tagid":10005, "tagname":"??" },
+                        { "tagid":10006, "tagname":"??" },
+                        { "tagid":10005, "tagname":"??" },
+                        { "tagid":10006, "tagname":"??" },
+                        { "tagid":10005, "tagname":"??" },
+                        { "tagid":10006, "tagname":"??" }
                     ]
                 },
-                {  "id": 1003, "title": "星期一新闻汇总 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                {  "id": 1003, "title": "??????? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                     "created": "1370102400000", "updated": "1370361600000", "published": "1370102400000",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
                     "tags": [
-                        { "tagid":10005, "tagname":"期货" },
-                        { "tagid":10006, "tagname":"白银" },
-                        { "tagid":10005, "tagname":"期货" },
-                        { "tagid":10006, "tagname":"白银" },
-                        { "tagid":10005, "tagname":"期货" },
-                        { "tagid":10006, "tagname":"白银" },
-                        { "tagid":10005, "tagname":"期货" },
-                        { "tagid":10006, "tagname":"白银" }
+                        { "tagid":10005, "tagname":"??" },
+                        { "tagid":10006, "tagname":"??" },
+                        { "tagid":10005, "tagname":"??" },
+                        { "tagid":10006, "tagname":"??" },
+                        { "tagid":10005, "tagname":"??" },
+                        { "tagid":10006, "tagname":"??" },
+                        { "tagid":10005, "tagname":"??" },
+                        { "tagid":10006, "tagname":"??" }
                     ]
                 },
-                {  "id": 1004, "title": "星期二新闻汇总 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                {  "id": 1004, "title": "??????? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                     "created": "1370016000000", "updated": "1370361600000", "published": "1370016000000",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
                     "tags": [
-                        { "tagid":10005, "tagname":"期货" },
-                        { "tagid":10006, "tagname":"白银" },
-                        { "tagid":10005, "tagname":"期货" },
-                        { "tagid":10006, "tagname":"白银" },
-                        { "tagid":10005, "tagname":"期货" },
-                        { "tagid":10006, "tagname":"白银" },
-                        { "tagid":10005, "tagname":"期货" },
-                        { "tagid":10006, "tagname":"白银" }
+                        { "tagid":10005, "tagname":"??" },
+                        { "tagid":10006, "tagname":"??" },
+                        { "tagid":10005, "tagname":"??" },
+                        { "tagid":10006, "tagname":"??" },
+                        { "tagid":10005, "tagname":"??" },
+                        { "tagid":10006, "tagname":"??" },
+                        { "tagid":10005, "tagname":"??" },
+                        { "tagid":10006, "tagname":"??" }
                     ]
                 }
             ];
@@ -158,7 +158,6 @@ articleapp.config(['$routeProvider', function($routeProvider) {
         when('/',                      {templateUrl: 'article_list_tpl.html', controller: articleapp.controller.articleList }).
         when('/newarticle',          {templateUrl: 'article_new_tpl.html', controller: articleapp.controller.articleCreateNew }).
         when('/detail/:articleId',  {templateUrl: 'article_detail_tpl.html', controller: articleapp.controller.articleDetail }).
-
         otherwise({redirectTo: '/'});
 }]);
 
@@ -207,6 +206,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
 
 articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelArticle) {
+    //loadtagesinput.$.fn.tagsInput();
     var articleslistdata = modelArticle.getArticleList();
     var newid = articleslistdata[articleslistdata.length-1].id + 1;
     $scope.newarticleadata = {
