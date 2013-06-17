@@ -141,7 +141,7 @@
                 <div class="row">
                     <div class="" ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
                         <!-- Block Box -->
-                        <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks" ng-class="{hoverfill:$index==cssfillblock,hoverfill1:$index==fillblockindex}"  ng-mouseenter="showfillblock($index)" ng-mouseleave="hidefillblock($index)">
+                        <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks" ng-class="{hoverfill:isshowblockedit}"  ng-mouseenter="showfillblock()" ng-mouseleave="hidefillblock()">
                         	<!-- Content -->
                             <div class="site-theme b-block block-layout-1">
                                 <h2>TITLE NAME</h2>
@@ -154,19 +154,19 @@
                                 </ul>
                             </div>
                             <!-- ======================================= Block Attribute Panel ======================================= -->
-                            <div class="attribute_panel" ng-class="{fillattrblock:$index==cssfillblock,fillattrnone:$index!=cssfillblock}">
-                                <a href="##" class="icon_editor" ng-click="showfilleditform($index);">editors</a>
-                                <a href="##" class="icon_setup" ng-click="showfilleditform($index);">setup</a>
-                                <a href="##" class="icon_move" ng-click="showfilleditform($index);">move</a>
-                                <a href="##" class="icon_delete" ng-click="showfilleditform($index);">delete</a>
+                            <div class="attribute_panel" ng-show="isshowblockedit">
+                                <a href="##" class="icon_editor" ng-click="showfilleditform();">editors</a>
+                                <a href="##" class="icon_setup" ng-click="showfilleditform();">setup</a>
+                                <a href="##" class="icon_move" ng-click="showfilleditform();">move</a>
+                                <a href="##" class="icon_delete" ng-click="showfilleditform();">delete</a>
                             </div>
                             <!-- Block Box //End -->
                         </div>
 
                         <!-- Add Block Box -->
-                        <div id="blockcontent" class="block_content blockempty" ng-class="{hoverempty:$index==blockindex,hoverempty1:$index==cssblockbutton}"  ng-mouseenter="showblockmenubutton($index)" ng-mouseleave="hideblockmenubutton($index)">
+                        <div id="blockcontent" class="block_content blockempty" ng-class="{hoverempty:isshownewblockedit}"  ng-mouseenter="showblockmenubutton($index)" ng-mouseleave="hideblockmenubutton($index)">
                             <!-- ICO -->
-                            <div class="ico_box" ng-class="{icoboxblock:$index==blockindex,icoboxblock1:$index==cssblockbutton}">
+                            <div class="ico_box" ng-show="isshownewblockedit">
                                 <div class="ico_autoblock" ng-click="showblockautomenu($index, 'auto', $event)" ng-class="{ico_active:'auto'==cssblockiconactive}"><!-- Auto --></div>
                                 <div class="ico_autoeditor" ng-click="showblockautomenu($index, 'editor', $event)" ng-class="{ico_active:'editor'==cssblockiconactive}"><!-- Editor's --></div>
                                 <div class="ico_staticblock" ng-click="showblockautomenu($index, 'static', $event)" ng-class="{ico_active:'static'==cssblockiconactive}"><!-- Static --></div>
