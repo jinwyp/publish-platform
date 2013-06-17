@@ -118,7 +118,13 @@ h3 { page-break-after: avoid; }
 
 body { margin: 0; font: 14px/1.231 "Lato", Helvetica, Arial, sans-serif; line-height: 20px; color: #333333; background-color: #ffffff; }
 
-a { color: #0088cc; text-decoration: none; text-decoration: underline; -webkit-transition: 0.25s; -moz-transition: 0.25s; -o-transition: 0.25s; transition: 0.25s; -webkit-backface-visibility: hidden; }
+a { color: #0088cc; text-decoration: none; text-decoration: underline; 
+		 -webkit-transition:all ease-in-out 0.25s; 
+	 	    -moz-transition:all ease-in-out 0.25s; 
+			  -o-transition:all ease-in-out 0.25s; 
+				 transition:all ease-in-out 0.25s; 
+-webkit-backface-visibility: hidden;
+ }
 
 a:hover { color: #005580; text-decoration: underline; }
 
@@ -533,7 +539,7 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
-.uneditable-input:focus { border-color: rgba(82, 168, 236, 0.8); outline: 0; outline: thin dotted \9; /* IE6-9 */ -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; }
+.uneditable-input:focus { border-color: rgba(54, 177, 0, 0.8); outline: 0; outline: thin dotted \9; /* IE6-9 */ -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; }
 
 input[type="radio"],
 input[type="checkbox"] { margin: 4px 0 0; margin-top: 1px \9; *margin-top: 0;

@@ -31,31 +31,59 @@
 
 <!-- Container -->
 <div class="vcpbox">
-
 	<div class="site_box">
     
-    	<div class="site_stepbox" style="left: 10%; top:30%; width:300px; height:400px;">
-        	<div class="site_form">
+    
+    
+    	<div class="site_stepbox" style="left:10%; top:30%;">
+        	<form class="site_form">
             	<h4>Site Attribute</h4>
+                <table class="table">
+                	<tr><td class="titlename">Name</td><td><input type="text" value="" class="site_input" placeholder="Site name"></td></tr>
+                    <tr><td class="titlename">Domain</td><td><input type="text" value="" class="site_input" placeholder="Domain"></td></tr>
+                    <tr><td class="titlename">Meta</td><td><input type="text" value="" class="site_input" placeholder="Meta"></td></tr>
+                    <tr class="last"><td class="titlename">Type</td><td><input type="text" value="" class="site_input" placeholder="Type"></td></tr>
+                </table>
                 <div class="submitbox"><a href="#" class="submit">Save</a></div>
-            </div>
+            </form>
         </div>
-        <div class="site_stepbox" style="left:40%; top:30%; width:300px; height:400px;">
-        	<div class="site_form">
+        
+        <div class="site_stepbox" style="left:40%; top:30%;">
+        	<form class="site_form">
             	<h4>Select Theme</h4>
+                <div class="site_themebox">
+                	<ul class="site_theme_ul clearfix">
+                    <li><a href="#" class="icon_sitetheme_blank select">Blank</a></li>
+                    <li><a href="#" class="icon_sitetheme_01">theme1</a></li>
+                    <li><a href="#" class="icon_sitetheme_02">theme2</a></li>
+                    <li><a href="#" class="icon_sitetheme_03">theme3</a></li>
+                    <li><a href="#" class="icon_sitetheme_04">theme4</a></li>
+                    <li><a href="#" class="icon_sitetheme_05">theme5</a></li>
+                    <li><a href="#" class="icon_sitetheme_06">theme6</a></li>
+                    <li><a href="#" class="icon_sitetheme_07">theme7</a></li>
+                    <li><a href="#" class="icon_sitetheme_08">theme8</a></li>
+                    <li><a href="#" class="icon_sitetheme_09">theme9</a></li>
+                    <li><a href="#" class="icon_sitetheme_10">theme10</a></li>
+                    <li><a href="#" class="icon_sitetheme_11">theme11</a></li>
+                    </ul>
+                </div>
                 <div class="submitbox"><a href="#" class="submit">Save</a></div>
-            </div>
+            </form>
         </div>
-        <div class="site_stepbox" style="left:70%; top:30%; width:300px; height:400px;">
-        	<div class="site_form">
+        
+        <div class="site_stepbox" style="left:70%; top:30%;">
+        	<form class="site_form">
             	<h4>Logo</h4>
                 <div class="submitbox"><a href="#" class="submit">Save</a></div>
-            </div>
+            </form>
         </div>
         
 		<div class="site_bgpline"></div>
+        
+        
+        
+        
     </div>
-
 </div>  
 
 
@@ -75,6 +103,11 @@
       <script src="lib/flatui/lte-ie7-24.js"></script>
     <![endif]-->
     <script src="app/js/custom.js"></script>
-        
+    <script type="text/jscript">
+		$(function() {
+			
+
+        });
+	</script>
 </body>
 </html>
