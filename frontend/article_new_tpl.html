@@ -5,7 +5,8 @@
     
     	<div class="write_title">
         	<a href="article_list_index.html" class="showlist" rel="tooltip" title="Article List"></a>
-        	<h1 >{{newarticleadata.title}} </h1>
+        	<h1 >{{newarticleadata.title}}</h1>
+            <input type="text" class="title_input" value="" ng-model="newarticleadata.title">
         </div>
         
         <div class="article-row">
@@ -15,7 +16,7 @@
             <div class="article-span9" ng-hide="cssTagsPanel">
                 <div class="article-title">MARKDOWN
                     <i class="article-title-ico">
-                        <a href="" class="ico-article-del" rel="tooltip" title="Delete Article"  ng-click="delArticle(newarticleadata.id)"></a>
+
                         <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = !cssTagsPanel"></a>
                     </i>
                 </div>
@@ -32,7 +33,6 @@
                 <!-- Tags & Category -->
                 <div class="article-title">ARTICLE ATTRIBUTE
                     <i class="article-title-ico">
-                        <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="delArticle(newarticleadata.id)"></a>
                         <a href="" class="ico-article-backedit" rel="tooltip" title="Back Write" ng-click="cssTagsPanel = !cssTagsPanel"></a>
                     </i>
                 </div>
