@@ -76,10 +76,10 @@
 
         <!-- Right -->
         <div class="article-span9">
-            <div class="article-title">REVIEW by <b>{{articledata.editor}}</b>
+            <div class="article-title">REVIEW by <b>{{articlepreviewdata.editor}}</b>
                 <i class="article-title-ico">
-                    <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="delArticle(articledata.id, $index)"></a>
-                    <a href="#/detail/{{articledata.id}}" class="ico-article-edit" rel="tooltip" title="Edit Article"></a>
+                    <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="delArticle(articlepreviewdata.id, $index)"></a>
+                    <a href="#/detail/{{articlepreviewdata.id}}" class="ico-article-edit" rel="tooltip" title="Edit Article"></a>
                     <!--<a href="" class="ico-article-setup" rel="tooltip" title="Tag Category"></a>-->
                 </i>
             </div>
@@ -87,11 +87,11 @@
             <div id="article-cont-preview" class="article-cont" >
                 <div class="article-templete">
 
-                    <h1>{{articledata.title}}</h1>
+                    <h1>{{articlepreviewdata.title}}</h1>
 
                     <div class="tagbox">
                         May 05 2013  |  Tag »
-                        <a href="#/tag/{{tag.tagid}}" ng-repeat="tag in articledata.tags">{{tag.tagname}}</a>
+                        <a href="#/tag/{{tag.tagid}}" ng-repeat="tag in articlepreviewdata.tags">{{tag.tagname}}</a>
                     </div>
 
                     <p>Abbreviation of the mobile application Mobile Application is: MA. Generalized mobile applications contain personal and enterprise applications. The narrowly mobile application refers to enterprise-class business applications. </p>
@@ -101,14 +101,6 @@
                     <h3>Message type applications</h3>
 
                     <p>Primarily as a management information received vector. This type of application generally do not exist independently, mostly use of ERP, CRM, SCM, and other enterprise systems integration. </p>
-
-                    <h3>Be A Financial Planner From Home</h3>
-
-                    <p>Field-class applications Information technology solutions mainly for fixed workplace scenarios. Such as: sales, business supervision, service</p>
-
-                    <h3>Certifications For Estate Planning</h3>
-
-                    <p>Estate planning is a set of legal, financial and accounting advisory services typically aimed at individual investors, investment family offices, business owners and high net-worth individuals. </p>
 
                 </div>
 

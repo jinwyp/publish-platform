@@ -35,6 +35,32 @@ articleapp.factory('modelArticle', function(){
                     "tags": [
                         { "tagid":10000, "tagname":"computer" },
                         { "tagid":10001, "tagname":"videocard" }
+                    ],
+                    "revision" : [
+                        {
+                            "versionid" :  1 ,
+                            "versionnum" :  1 ,
+                            "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                            "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+                            "author": "Eric",  "editor": "iFan", "clickcount":1023,
+                            "category": "Today", "categoryid":1000,
+                            "tags": [
+                                { "tagid":10000, "tagname":"computer" },
+                                { "tagid":10001, "tagname":"videocard" }
+                            ]
+                        },
+                        {
+                            "versionid" :  2 ,
+                            "versionnum" :  2 ,
+                            "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                            "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+                            "author": "Eric",  "editor": "iFan", "clickcount":1023,
+                            "category": "Today", "categoryid":1000,
+                            "tags": [
+                                { "tagid":10000, "tagname":"computer" },
+                                { "tagid":10001, "tagname":"videocard" }
+                            ]
+                        }
                     ]
                 },
 
@@ -53,6 +79,32 @@ articleapp.factory('modelArticle', function(){
                         { "tagid":10004, "tagname":"黄金" },
                         { "tagid":10003, "tagname":"财经" },
                         { "tagid":10004, "tagname":"黄金" }
+                    ],
+                    "revision" : [
+                        {
+                            "versionid" :  1 ,
+                            "versionnum" :  1 ,
+                            "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                            "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+                            "author": "Eric",  "editor": "iFan", "clickcount":1023,
+                            "category": "Today", "categoryid":1000,
+                            "tags": [
+                                { "tagid":10000, "tagname":"computer" },
+                                { "tagid":10001, "tagname":"videocard" }
+                            ]
+                        },
+                        {
+                            "versionid" :  2 ,
+                            "versionnum" :  2 ,
+                            "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                            "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+                            "author": "Eric",  "editor": "iFan", "clickcount":1023,
+                            "category": "Today", "categoryid":1000,
+                            "tags": [
+                                { "tagid":10000, "tagname":"computer" },
+                                { "tagid":10001, "tagname":"videocard" }
+                            ]
+                        }
                     ]
                 },
 
@@ -67,6 +119,32 @@ articleapp.factory('modelArticle', function(){
                         { "tagid":10006, "tagname":"白银" },
                         { "tagid":10005, "tagname":"期货" },
                         { "tagid":10006, "tagname":"白银" }
+                    ],
+                    "revision" : [
+                        {
+                            "versionid" :  1 ,
+                            "versionnum" :  1 ,
+                            "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                            "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+                            "author": "Eric",  "editor": "iFan", "clickcount":1023,
+                            "category": "Today", "categoryid":1000,
+                            "tags": [
+                                { "tagid":10000, "tagname":"computer" },
+                                { "tagid":10001, "tagname":"videocard" }
+                            ]
+                        },
+                        {
+                            "versionid" :  2 ,
+                            "versionnum" :  2 ,
+                            "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                            "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+                            "author": "Eric",  "editor": "iFan", "clickcount":1023,
+                            "category": "Today", "categoryid":1000,
+                            "tags": [
+                                { "tagid":10000, "tagname":"computer" },
+                                { "tagid":10001, "tagname":"videocard" }
+                            ]
+                        }
                     ]
                 },
                 {  "id": 1003, "title": "星期一新闻汇总 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
@@ -80,6 +158,32 @@ articleapp.factory('modelArticle', function(){
                         { "tagid":10006, "tagname":"白银" },
                         { "tagid":10005, "tagname":"期货" },
                         { "tagid":10006, "tagname":"白银" }
+                    ],
+                    "revision" : [
+                        {
+                            "versionid" :  1 ,
+                            "versionnum" :  1 ,
+                            "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                            "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+                            "author": "Eric",  "editor": "iFan", "clickcount":1023,
+                            "category": "Today", "categoryid":1000,
+                            "tags": [
+                                { "tagid":10000, "tagname":"computer" },
+                                { "tagid":10001, "tagname":"videocard" }
+                            ]
+                        },
+                        {
+                            "versionid" :  2 ,
+                            "versionnum" :  2 ,
+                            "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                            "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+                            "author": "Eric",  "editor": "iFan", "clickcount":1023,
+                            "category": "Today", "categoryid":1000,
+                            "tags": [
+                                { "tagid":10000, "tagname":"computer" },
+                                { "tagid":10001, "tagname":"videocard" }
+                            ]
+                        }
                     ]
                 },
                 {  "id": 1004, "title": "星期二新闻汇总 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
@@ -93,7 +197,8 @@ articleapp.factory('modelArticle', function(){
                         { "tagid":10006, "tagname":"白银" },
                         { "tagid":10005, "tagname":"期货" },
                         { "tagid":10006, "tagname":"白银" }
-                    ]
+                    ],
+                    "revision" : []
                 }
             ];
         }else{
@@ -168,23 +273,22 @@ articleapp.config(['$routeProvider', function($routeProvider) {
 articleapp.controller.articleList = function ($scope,  modelArticle) {
     $scope.articlesdata = modelArticle.getArticleList();
     $scope.orderProp = 'created';
-    $scope.articledata = $scope.articlesdata[0];
+    $scope.articlepreviewdata = $scope.articlesdata[0];
     $scope.isCollapsed = true;
 
     $scope.clickArticle = function(article, index) {
-        $scope.articledata = article;
+        $scope.articlepreviewdata = article;
         $scope.cssarticleindex = index;
     }
 
     $scope.delArticle = function(articleid, index) {
         modelArticle.delArticleById(articleid);
-        $scope.articledata = $scope.articlesdata[0];
+        $scope.articlepreviewdata = $scope.articlesdata[0];
     }
 }
 
 
 articleapp.controller.articleDetail = function ($scope, $routeParams, modelArticle) {
-
     $scope.cssTagsPanel = false;
     var articleId = $routeParams.articleId;
     $scope.articledata = modelArticle.getArticleById(articleId);
@@ -200,6 +304,17 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
     }
 
     $scope.saveArticle = function(articledata) {
+        var newrevisionid = articledata.revision.length + 1;
+        var newrevision = {
+            "versionid" :  newrevisionid ,
+            "versionnum" :  newrevisionid ,
+            "title" : articledata.title, "contentbody": articledata.contentbody, "status": articledata.status,
+            "created": articledata.created, "updated": articledata.updated, "published": articledata.published,
+            "author": articledata.author,  "editor": articledata.editor,  "clickcount":articledata.clickcount,
+            "category": articledata.category, "categoryid": articledata.categoryid,
+            "tags": articledata.tags
+        };
+        articledata.revision.push(newrevision);
         modelArticle.saveArticle(articledata);
         alert('Article Saved');
     }
@@ -214,17 +329,31 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelAr
     $scope.newarticleadata = {
         "id": newid,
         "title": "pls input title", "contentbody": "", "status": "needreview",
-        "created": "1370016000000", "updated": "1370361600000", "published": "1370016000000",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
-        "tags": []
+        "created": "1370016000000", "updated": "1370361600000", "published": "1370016000000",
+        "author": "Eric",  "editor": "iFan",  "clickcount":1, "category": "Today", "categoryid":1000,
+        "tags": [],
+        "revision" : []
     }
 
     $scope.cssTagsPanel = false;
 
     $scope.createNewArticle = function(newarticleadata) {
-
+        var newrevisionid = $scope.newarticleadata.revision.length + 1;
+        var newrevision = {
+            "versionid" :  newrevisionid ,
+            "versionnum" :  newrevisionid ,
+            "title" : $scope.newarticleadata.title, "contentbody": $scope.newarticleadata.contentbody, "status": $scope.newarticleadata.status,
+            "created": $scope.newarticleadata.created, "updated": $scope.newarticleadata.updated, "published": $scope.newarticleadata.published,
+            "author": $scope.newarticleadata.author,  "editor": $scope.newarticleadata.editor,  "clickcount":$scope.newarticleadata.clickcount,
+            "category": $scope.newarticleadata.category, "categoryid": $scope.newarticleadata.categoryid,
+            "tags": $scope.newarticleadata.tags
+        };
+        $scope.newarticleadata.revision.push(newrevision);
         modelArticle.createNewArticle(newarticleadata);
         alert('New Article Created');
         console.log( $scope.newarticleadata);
     }
+
+
 }
 

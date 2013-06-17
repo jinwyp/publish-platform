@@ -7,6 +7,7 @@
     	<div class="write_title">
         	<a href="article_list_index.html" class="showlist" rel="tooltip" title="Article List"></a>
         	<h1 >{{articledata.title}} </h1>
+            <input type="text" class="title_input" value="" ng-model="articledata.title">
         </div>
         
         <div class="article-row">
@@ -183,12 +184,10 @@
         <!-- 版本节点 -->
         <div class="vernode">
         	<div class="line">
-        		<a href="##" class="node" rel="tooltip" title="Jerome 2013.01.04">1</a>
-            	<a href="##" class="node" rel="tooltip" title="Jerome 2013.02.04">2</a>
-            	<a href="##" class="node" rel="tooltip" title="Jerome 2013.03.04">3</a>
-            	<a href="##" class="node" rel="tooltip" title="Jerome 2013.04.04">4</a>
-            	<a href="##" class="node" rel="tooltip" title="Jerome 2013.05.04">29</a>
-            	<a href="##" class="node last current" rel="tooltip" title="Jerome 2013.06.04">325</a>
+                <a href="##" class="node" rel="tooltip" title="Jerome 2013.01.04">1</a>
+                <a href="##" class="node" rel="tooltip" title="Jerome 2013.02.04">2</a>
+                <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}"  ng-repeat="revision in articledata.revision"  title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy'}}">{{revision.versionnum}}</a>
+
         	</div>
         </div>
     </div>
