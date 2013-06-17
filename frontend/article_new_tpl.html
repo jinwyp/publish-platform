@@ -5,7 +5,8 @@
     
     	<div class="write_title">
         	<a href="article_list_index.html" class="showlist" rel="tooltip" title="Article List"></a>
-        	<h1 >{{newarticleadata.title}} </h1>
+        	<h1 >{{newarticleadata.title}}</h1>
+            <input type="text" class="title_input" value="" ng-model="newarticleadata.title">
         </div>
         
         <div class="article-row">
@@ -15,7 +16,7 @@
             <div class="article-span9" ng-hide="cssTagsPanel">
                 <div class="article-title">MARKDOWN
                     <i class="article-title-ico">
-                        <a href="" class="ico-article-del" rel="tooltip" title="Delete Article"  ng-click="delArticle(newarticleadata.id)"></a>
+
                         <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = !cssTagsPanel"></a>
                     </i>
                 </div>
@@ -32,7 +33,6 @@
                 <!-- Tags & Category -->
                 <div class="article-title">ARTICLE ATTRIBUTE
                     <i class="article-title-ico">
-                        <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="delArticle(newarticleadata.id)"></a>
                         <a href="" class="ico-article-backedit" rel="tooltip" title="Back Write" ng-click="cssTagsPanel = !cssTagsPanel"></a>
                     </i>
                 </div>
@@ -120,24 +120,6 @@
                                         <input type="radio" name="share-toggles4" id="share-toggle8" value="toggle1">
                                         <label class="toggle-radio" for="share-toggle7">OFF</label>
                                         <input type="radio" name="share-toggles4" id="share-toggle7" value="toggle2" checked="checked">
-                                    </div>
-                                </li>
-                                <li>
-                                    <label class="share-label" for="share-toggle10">屌丝微博</label>
-                                    <div class="toggle">
-                                        <label class="toggle-radio" for="share-toggle10">ON</label>
-                                        <input type="radio" name="share-toggles5" id="share-toggle10" value="toggle1" checked="checked">
-                                        <label class="toggle-radio" for="share-toggle9">OFF</label>
-                                        <input type="radio" name="share-toggles5" id="share-toggle9" value="toggle2">
-                                    </div>
-                                </li>
-                                <li>
-                                    <label class="share-label" for="share-toggle12">Clash of Clans</label>
-                                    <div class="toggle">
-                                        <label class="toggle-radio" for="share-toggle12">好玩</label>
-                                        <input type="radio" name="share-toggles5" id="share-toggle12" value="toggle1" checked="checked">
-                                        <label class="toggle-radio" for="share-toggle11">不好玩</label>
-                                        <input type="radio" name="share-toggles5" id="share-toggle11" value="toggle2">
                                     </div>
                                 </li>
                             </ul>

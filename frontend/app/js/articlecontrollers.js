@@ -156,7 +156,7 @@ articleapp.controller(article.c);
 articleapp.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/',                      {templateUrl: 'article_list_tpl.html', controller: articleapp.controller.articleList }).
-        when('/newarticle',          {templateUrl: 'article_new_tpl.html', controller: articleapp.controller.articleDetail }).
+        when('/newarticle',          {templateUrl: 'article_new_tpl.html', controller: articleapp.controller.articleCreateNew }).
         when('/detail/:articleId',  {templateUrl: 'article_detail_tpl.html', controller: articleapp.controller.articleDetail }).
 
         otherwise({redirectTo: '/'});
@@ -184,23 +184,10 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
 
 
 articleapp.controller.articleDetail = function ($scope, $routeParams, modelArticle) {
-    var articleslistdata = modelArticle.getArticleList();
-    var newid = articleslistdata[articleslistdata.length-1].id + 1;
-    $scope.newarticleadata = {
-        "id": newid,
-        "title": "星期XXXXX新闻汇总 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
-        "created": "1370016000000", "updated": "1370361600000", "published": "1370016000000",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
-        "tags": []
-    }
 
     $scope.cssTagsPanel = false;
-
     var articleId = $routeParams.articleId;
     $scope.articledata = modelArticle.getArticleById(articleId);
-
-/*    $scope.$on('$viewContentLoaded', function () {
-        console.log("$viewContentLoaded");
-    });*/
 
     $scope.delArticle = function(articleid) {
         modelArticle.delArticleById(articleid);
@@ -208,19 +195,33 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
         $scope.articledata = modelArticle.getArticleList()[0];
     }
 
-/*    $scope.showTagsPanel = function(articleid) {
+    $scope.showTagsPanel = function() {
         $scope.cssTagsPanel = !$scope.cssTagsPanel;
-    }*/
+    }
 
     $scope.saveArticle = function(articledata) {
         modelArticle.saveArticle(articledata);
         alert('Article Saved');
     }
+}
+
+
+articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelArticle) {
+    var articleslistdata = modelArticle.getArticleList();
+    var newid = articleslistdata[articleslistdata.length-1].id + 1;
+    $scope.newarticleadata = {
+        "id": newid,
+        "title": "pls input title", "contentbody": "", "status": "needreview",
+        "created": "1370016000000", "updated": "1370361600000", "published": "1370016000000",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
+        "tags": []
+    }
+
+    $scope.cssTagsPanel = false;
 
     $scope.createNewArticle = function(newarticleadata) {
         modelArticle.createNewArticle(newarticleadata);
         alert('New Article Created');
-        console.log(newarticleadata);
+        console.log( $scope.newarticleadata);
     }
 }
 
