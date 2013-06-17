@@ -195,21 +195,24 @@
 /* 表格 */
 .site_form table	{ border:0; margin:0; padding:0; background:#f3f4f6; border-collapse:0 !important;}
 .site_form table tr	{ border-bottom:2px solid #e3e4e8;}
-.site_form table td	{ border:0; margin:0; padding:20px 10px;}
+.site_form table td	{ border:0; margin:0; padding:20px 10px; vertical-align:middle;}
 .site_form table tr.last{ border-bottom:0;}
 .site_form table .titlename{ width:66px; padding:20px 0; color:#e2e3e7; text-align:center; background:#8c8d91;}
 /* 输入框 */
 .site_form input.site_input{ margin:0 auto; display:block; padding:6px; width:90%; height:auto; vertical-align:baseline;}
+/* Logo and Web Icon */
+.site_logo_btn{ display:block; position:relative; margin:0 auto; padding:0; width:100px; height:100px; color:#c0c0c0; text-align:center; border-radius:8px; border:3px solid #e3e4e8; background:#fff url(img/null_block.png) center center no-repeat;}
+.site_logo_btn:hover{ border-color:#aaa; color:#c0c0c0;}
+.site_logo_btn span{ display:block; width:100%; margin:0; padding:0; position:absolute; left:0; bottom:4px; line-height:14px; text-align:center;}
 
 /* === 选择Theme === */
 .site_themebox{ padding:30px 14px; background:#f3f4f6;}
 ul.site_theme_ul{ margin:0; padding:0; list-style:none;}
 ul.site_theme_ul li{ float:left; margin:7px; border-radius:8px;}
-ul.site_theme_ul a{ display:block; width:52px; height:52px; text-indent:-9999px; border-radius:8px; background-color:transparent; }
+ul.site_theme_ul a{ display:block; border:3px solid transparent; width:46px; height:46px; text-indent:-9999px; border-radius:8px; background-color:transparent; }
 
-ul.site_theme_ul .select{ position:relative; box-shadow:inset 0 0 0 3px #34ae01, 0 0 12px rgba(0,0,0,0.4);}
-ul.site_theme_ul .select:after{ display:block; position:absolute; left:0; top:0; width:50px; height:50px; background:#f00; content:''}
-
+ul.site_theme_ul .select{ border:3px solid #34ae01; position:relative; box-shadow:0 0 5px rgba(0,0,0,0.3);}
+ul.site_theme_ul .select:after{ display:block; position:absolute; right:-1px; bottom:-1px; width:24px; height:24px; background:url(img/sitetheme_select.png) no-repeat; content:''}
 
 .icon_sitetheme_blank,
 .icon_sitetheme_01,
@@ -235,7 +238,7 @@ ul.site_theme_ul .select:after{ display:block; position:absolute; left:0; top:0;
 .icon_sitetheme_08:hover,
 .icon_sitetheme_09:hover,
 .icon_sitetheme_10:hover,
-.icon_sitetheme_11:hover{ box-shadow:inset 0 0 0 3px #4b4c50, 0 0 12px rgba(0,0,0,0.4);}
+.icon_sitetheme_11:hover{ border:3px solid #fff; box-shadow:0 0 4px rgba(0,0,0,0.5);}
 
 .icon_sitetheme_blank	{ background-position:0 0;}
 .icon_sitetheme_01		{ background-position:0 -59px;}
