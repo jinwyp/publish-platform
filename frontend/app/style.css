@@ -205,6 +205,13 @@
 .site_logo_btn:hover{ border-color:#aaa; color:#c0c0c0;}
 .site_logo_btn span{ display:block; width:100%; margin:0; padding:0; position:absolute; left:0; bottom:4px; line-height:14px; text-align:center;}
 
+
+/* === 选择Theme === */
+.site_box_title{ position:absolute; left:0; top:-75px;}
+.site_box_title .title_num{ display:block; float:left; margin:0 10px 0 0; padding:0; width:35px; height:35px; color:#a2cf4e; border:1px solid #a2cf4e; text-align:center; font-size:20px; font-weight:bold; line-height:36px; font-family:Arial, Helvetica, sans-serif; border-radius:100px; background:#fff;  }
+.site_box_title .title_name{ display:block;  float:left; margin:0; padding:0; color:#82ab35; font-weight:normal; line-height:36px; font-family:Arial, Helvetica, sans-serif; }
+
+
 /* === 选择Theme === */
 .site_themebox{ padding:30px 14px; background:#f3f4f6;}
 ul.site_theme_ul{ margin:0; padding:0; list-style:none;}
