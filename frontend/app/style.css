@@ -182,11 +182,28 @@
 /* =========================================================================================== */
 .site_box		{ position:absolute; bottom:0px; width:100%; min-width:1024px; height:100%; box-shadow:inset 0 0 800px 100px #d7d7d7; }
 .site_bgpline	{ position:absolute; left:0; top:50%; width:100%; height:4px; overflow:hidden; background:#ddd0c8; z-index:0;}
-.site_stepbox	{ position:absolute; z-index:1; width:300px;}
+.site_stepbox	{ position:absolute; z-index:1; width:300px; padding-top:20px; border:3px solid #65666a; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.4); background:#65666a;}
+
+.large_step_1,
+.large_step_2,
+.large_step_3	{ top:30% !important;}
+.large_step_1	{ left:10% !important;}
+.large_step_2	{ left:40% !important;}
+.large_step_3	{ left:70% !important;}
+
+.mini_step_1,
+.mini_step_2,
+.mini_step_3	{ top:53% !important; width:200px !important; }
+.mini_step_1	{ left:10% !important;}
+.mini_step_2	{ left:40% !important;}
+.mini_step_3	{ left:70% !important;}
+.mini_step_1 .site_form,
+.mini_step_2 .site_form,
+.mini_step_3 .site_form{ height:100px !important; overflow:hidden !important;}
 
 /* === Form === */
-.site_form		{ display:block; padding:21px 3px 3px 3px; background:#65666a; border-radius:6px; background:#65666a; border-radius:8px;  box-shadow:0 10px 30px rgba(0,0,0,0.4); }
-.site_form h4	{ display:block; margin:0; padding:0; color:#fff; font-weight:bold; line-height:40px; text-indent:20px; height:40px; border-radius:6px 6px 0 0; background:#393a3e;}
+.site_form		{ display:block; padding:0; background:#f3f4f6; margin:0; border-radius:7px;}
+.site_form h4	{ display:block; margin:0; padding:0; color:#fff; font-weight:bold; line-height:40px; text-indent:20px; height:40px; border-radius:6px 6px 0 0; background:#393a3e;   }
 /* 提交按钮 */
 .site_form .submitbox{ padding:10px; border-radius:0 0 6px 6px; background:#4b4c50; text-align:center;}
 .site_form .submit{ display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; margin:0 auto; padding:3px 10px 4px; border-radius:4px; background:#a1d04c; color:#fff; text-decoration:none;}
@@ -206,8 +223,8 @@
 .site_logo_btn span{ display:block; width:100%; margin:0; padding:0; position:absolute; left:0; bottom:4px; line-height:14px; text-align:center;}
 
 
-/* === 选择Theme === */
-.site_box_title{ position:absolute; left:0; top:-75px;}
+/* === 步骤标题 === */
+.site_box_title{ position:absolute; left:0; top:-100px;}
 .site_box_title .title_num{ display:block; float:left; margin:0 10px 0 0; padding:0; width:35px; height:35px; color:#a2cf4e; border:1px solid #a2cf4e; text-align:center; font-size:20px; font-weight:bold; line-height:36px; font-family:Arial, Helvetica, sans-serif; border-radius:100px; background:#fff;  }
 .site_box_title .title_name{ display:block;  float:left; margin:0; padding:0; color:#82ab35; font-weight:normal; line-height:36px; font-family:Arial, Helvetica, sans-serif; }
 
