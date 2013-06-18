@@ -153,18 +153,21 @@
 				
 				   //SAVE
 				  $("#save_step1").click(function(){
-					  $(".large_step_1").addClass("mini_step_1");
-					  $(".mini_step_2").removeClass("mini_step_2").addClass("large_step_2");
+					 	$(".large_step_1").addClass("mini_step_1").delay(500).queue(function () {
+							$(".mini_step_2").removeClass("mini_step_2").addClass("large_step_2");
+						});
 				  });
 				  
 				  $("#save_step2").click(function(){
-					  $(".large_step_2").addClass("mini_step_2");
-					  $(".mini_step_3").removeClass("mini_step_3").addClass("large_step_3");
+					  $(".large_step_2").addClass("mini_step_2").delay(500).queue(function () {
+							$(".mini_step_3").removeClass("mini_step_3").addClass("large_step_3");
+						});
 				  });
 				  
 				  $("#save_step3").click(function(){
-					  $(".large_step_3").addClass("mini_step_3");
-					  $(".mini_step_1").removeClass("mini_step_1").addClass("large_step_1");
+					  $(".large_step_3").addClass("mini_step_3").delay(500).queue(function () {
+							$(".mini_step_1").removeClass("mini_step_1").addClass("large_step_1");
+						});
 				  });
 				  
 				  
