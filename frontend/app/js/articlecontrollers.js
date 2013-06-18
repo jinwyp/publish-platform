@@ -304,6 +304,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
     }
 
     $scope.saveArticle = function(articledata) {
+        //增加版本保存功能
         var newrevisionid = articledata.revision.length + 1;
         var newrevision = {
             "versionid" :  newrevisionid ,
@@ -315,6 +316,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
             "tags": articledata.tags
         };
         articledata.revision.push(newrevision);
+
         modelArticle.saveArticle(articledata);
         alert('Article Saved');
     }
