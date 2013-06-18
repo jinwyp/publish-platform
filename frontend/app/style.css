@@ -1270,7 +1270,7 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 	.fancyInput *:focus ~ .caret,
 	.fancyInput *:focus ~ div .caret{ opacity:.8; box-shadow:0 0 2px #000; -webkit-animation:0.4s 40ms caret infinite; -moz-animation:0.4s 40ms caret infinite; animation:0.4s 40ms caret infinite; }
 	.fancyInput .caret:only-child{  }
-	.fancyInput .caret{ margin:0; padding:0; font-weight:normal; opacity:0; display:inline-block; width:2px; height:20px; border:0; background:#000; margin-left:0; border-radius:2px; -moz-user-select:none; overflow:hidden; }
+	.fancyInput .caret{ margin:0; padding:0; font-weight:normal; opacity:0; display:inline-block; width:2px; height:24px; border:0; background:#000; border-radius:2px; -moz-user-select:none; overflow:hidden; }
 	.fancyInput span:not(.deleted) ~ .caret{ position:absolute; margin:0; } /* only Caret which is  */
 
 		/* lettes */
