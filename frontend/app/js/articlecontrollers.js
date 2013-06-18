@@ -242,7 +242,7 @@ articleapp.factory('modelArticle', function(){
 
     factory.createNewArticle = function (articledata) {
         articlelist.push(articledata);
-        localStorage.setItem("articlesData",JSON.stringify(articlelist));
+       // localStorage.setItem("articlesData",JSON.stringify(articlelist));
         return ;
     };
 
@@ -363,7 +363,7 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelAr
                 newrevision.tags[i].tagname=inserttag[i];
             }
             $scope.newarticleadata.revision.push(newrevision);
-            modelArticle.createNewArticle(newarticleadata);
+            modelArticle.createNewArticle(newrevision);
         }
       /*  var newrevisionid = $scope.newarticleadata.revision.length + 1;
         var newrevision = {
