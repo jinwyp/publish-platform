@@ -15,9 +15,24 @@
             <div class="article-span9" ng-hide="cssTagsPanel">
                 <div class="article-title">MARKDOWN
                     <i class="article-title-ico">
-                        <a href="#myModal1" class="ico-article-del" rel="tooltip" title="Delete Article" data-toggle="modal" ></a>
+                        <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="openModal()" ></a>
                         <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = !cssTagsPanel"></a>
                     </i>
+                    <div modal="cssmodalshow" options="cssmodalslide" >
+                        <div class="modal-header">
+                            <button type="button" class="close" ng-click="closeModal()">&times;</button>
+                            <h3 >Delete Article </h3>
+                        </div>
+
+                        <div class="modal-body">
+                            <h4>Are you sure delete this article "{{articledata.title}}" ?</h4>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn" ng-click="closeModal()">Cancel</button>
+                            <button class="btn btn-danger"  ng-click="delArticle(articledata.id)">Delete</button>
+                        </div>
+                    </div>
                 </div>
                 <!-- 编辑器 -->
                 <div class="article-cont" >
@@ -122,24 +137,7 @@
                                         <input type="radio" name="share-toggles4" id="share-toggle7" value="toggle2" checked="checked">
                                     </div>
                                 </li>
-                                <li>
-                                    <label class="share-label" for="share-toggle10">屌丝微博</label>
-                                    <div class="toggle">
-                                        <label class="toggle-radio" for="share-toggle10">ON</label>
-                                        <input type="radio" name="share-toggles5" id="share-toggle10" value="toggle1" checked="checked">
-                                        <label class="toggle-radio" for="share-toggle9">OFF</label>
-                                        <input type="radio" name="share-toggles5" id="share-toggle9" value="toggle2">
-                                    </div>
-                                </li>
-                                <li>
-                                    <label class="share-label" for="share-toggle12">Clash of Clans</label>
-                                    <div class="toggle">
-                                        <label class="toggle-radio" for="share-toggle12">好玩</label>
-                                        <input type="radio" name="share-toggles5" id="share-toggle12" value="toggle1" checked="checked">
-                                        <label class="toggle-radio" for="share-toggle11">不好玩</label>
-                                        <input type="radio" name="share-toggles5" id="share-toggle11" value="toggle2">
-                                    </div>
-                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -175,7 +173,8 @@
     <div class="article-footer">
         <!-- 发布按钮 -->
         <div class="article_btn">
-        	<a href="" class="btn-savedraft" rel="tooltip" data-placement="top" title="SAVE DRAFT" ng-click="saveArticle(articledata,false)">SAVE DRAFT</a>
+        	<a href="" class="btn-savedraft" rel="tooltip" data-placement="top" title="SAVE DRAFT" ng-click="saveArticle()">SAVE DRAFT</a>
+
             <a href="article_list.html" class="btn-publish" rel="tooltip" data-placement="top" title="PUBLISH">PUBLISH</a>
         </div>
         

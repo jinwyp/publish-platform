@@ -8,7 +8,6 @@ articleapp.directive('ckEditor', function() {
         require: '?ngModel',
         link: function(scope, elm, attr, ngModel) {
             var ck = CKEDITOR.replace(elm[0]);
-
             if (!ngModel) return;
 
             ck.on('pasteState', function() {
@@ -27,8 +26,8 @@ articleapp.directive('ckEditor', function() {
 articleapp.factory('modelArticle', function(){
 
     var articlelist ;
-   // if(window.localStorage){
-     //   if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
+   if(window.localStorage){
+        if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
             articlelist = [
                 {  "id": 1000, "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                     "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023, "category": "Today", "categoryid":1000,
@@ -201,10 +200,10 @@ articleapp.factory('modelArticle', function(){
                     "revision" : []
                 }
             ];
-      //  }else{
-     //       articlelist = JSON.parse(localStorage.getItem("articlesData"));
-     //   }
-   // }
+        }else{
+            articlelist = JSON.parse(localStorage.getItem("articlesData"));
+        }
+   }
 
     var factory = {};
 
@@ -281,7 +280,19 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
         $scope.cssarticleindex = index;
     }
 
-    $scope.delArticle = function(articleid, index) {
+    $scope.openModal = function () {
+        $scope.cssmodalshow = true;
+    };
+    $scope.closeModal = function () {
+        $scope.cssmodalshow = false;    //关闭弹出提示框 Modal
+    };
+    $scope.cssmodalslide = {
+        backdropFade: true,
+        dialogFade:true
+    };
+
+    $scope.delArticle = function(articleid) {
+        $scope.cssmodalshow = false;      //关闭弹出提示框 Modal
         modelArticle.delArticleById(articleid);
         $scope.articlepreviewdata = $scope.articlesdata[0];
     }
@@ -293,30 +304,44 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
     var articleId = $routeParams.articleId;
     $scope.articledata = modelArticle.getArticleById(articleId);
 
+    $scope.showTagsPanel = function() {
+        $scope.cssTagsPanel = !$scope.cssTagsPanel;
+    }
+
+    $scope.openModal = function () {
+        $scope.cssmodalshow = true;
+    };
+    $scope.closeModal = function () {
+        $scope.cssmodalshow = false;   //关闭弹出提示框 Modal
+    };
+    $scope.cssmodalslide = {
+        backdropFade: true,
+        dialogFade:true
+    };
+
     $scope.delArticle = function(articleid) {
+        $scope.cssmodalshow = false;  //关闭弹出提示框 Modal
         modelArticle.delArticleById(articleid);
         //alert('Article Deleted');
         $scope.articledata = modelArticle.getArticleList()[0];
     }
 
-    $scope.showTagsPanel = function() {
-        $scope.cssTagsPanel = !$scope.cssTagsPanel;
-    }
-
-    $scope.saveArticle = function(articledata) {
+    $scope.saveArticle = function() {
         //增加版本保存功能
-        var newrevisionid = articledata.revision.length + 1;
+        var newrevisionid = $scope.articledata.revision.length + 1;
         var newrevision = {
             "versionid" :  newrevisionid ,
             "versionnum" :  newrevisionid ,
-            "title" : articledata.title, "contentbody": articledata.contentbody, "status": articledata.status,
-            "created": articledata.created, "updated": articledata.updated, "published": articledata.published,
-            "author": articledata.author,  "editor": articledata.editor,  "clickcount":articledata.clickcount,
-            "category": articledata.category, "categoryid": articledata.categoryid,
-            "tags": articledata.tags
+            "title" : $scope.articledata.title, "contentbody": $scope.articledata.contentbody, "status": $scope.articledata.status,
+            "created": $scope.articledata.created, "updated": $scope.articledata.updated, "published": $scope.articledata.published,
+            "author": $scope.articledata.author,  "editor": $scope.articledata.editor,  "clickcount":$scope.articledata.clickcount,
+            "category": $scope.articledata.category, "categoryid": $scope.articledata.categoryid,
+            "tags": $scope.articledata.tags
         };
-        articledata.revision.push(newrevision);
-        modelArticle.saveArticle(articledata);
+
+        $scope.articledata.revision.push(newrevision);
+        modelArticle.saveArticle($scope.articledata);
+        alert('Article Saved');
     }
 }
 
@@ -345,7 +370,8 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelAr
 
     $scope.cssTagsPanel = false;
 
-    $scope.createNewArticle = function(newarticleadata,isinsert) {
+
+    $scope.createNewArticle = function(isinsert) {
         if(isinsert){
             var newrevisionid = $scope.newarticleadata.revision.length + 1;
             var newrevision = {
@@ -365,7 +391,7 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelAr
             $scope.newarticleadata.revision.push(newrevision);
             modelArticle.createNewArticle(newrevision);
         }
-      /*  var newrevisionid = $scope.newarticleadata.revision.length + 1;
+
         var newrevision = {
             "versionid" :  newrevisionid ,
             "versionnum" :  newrevisionid ,
@@ -376,7 +402,9 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelAr
             "tags":$scope.newarticleadata.tags
         };
         $scope.newarticleadata.revision.push(newrevision);
-        modelArticle.createNewArticle(newarticleadata);*/
+        modelArticle.createNewArticle($scope.newarticleadata);
+        alert('New Article Created');
+        console.log( $scope.newarticleadata);
     }
 }
 
