@@ -278,7 +278,7 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
     $scope.clickArticle = function(article, index) {
         $scope.articlepreviewdata = article;
         $scope.cssarticleindex = index;
-    }
+    };
 
     $scope.openModal = function () {
         $scope.cssmodalshow = true;
@@ -295,18 +295,27 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
         $scope.cssmodalshow = false;      //关闭弹出提示框 Modal
         modelArticle.delArticleById(articleid);
         $scope.articlepreviewdata = $scope.articlesdata[0];
-    }
-}
+    };
+};
 
 
 articleapp.controller.articleDetail = function ($scope, $routeParams, modelArticle) {
     $scope.cssTagsPanel = false;
     var articleId = $routeParams.articleId;
+    $scope.articledata = [];
     $scope.articledata = modelArticle.getArticleById(articleId);
+
+
+    for(var i=0;i<$scope.articledata.tags.length;i++){
+        $('#tagsinput').addTag($scope.articledata.tags[i].tagname);
+    }
+    $("#tagsinput").tagsInput();  //初始化 加载tag标签
+
 
     $scope.showTagsPanel = function() {
         $scope.cssTagsPanel = !$scope.cssTagsPanel;
     }
+
 
     $scope.openModal = function () {
         $scope.cssmodalshow = true;
@@ -324,7 +333,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
         modelArticle.delArticleById(articleid);
         //alert('Article Deleted');
         $scope.articledata = modelArticle.getArticleList()[0];
-    }
+    };
 
     $scope.saveArticle = function() {
         //增加版本保存功能
@@ -346,17 +355,16 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 }
 
 
-var inserttag=[],insertindex=[],inserttagindex=10000;
+
+
+
 /*"tags": [
     { "tagid":10000, "tagname":"computer" },
     { "tagid":10001, "tagname":"videocard" }
 ]*/
 articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelArticle) {
-    //重新加载tag标签
-    $("#tagsinput").tagsInput();
-    inserttag.length=0;
-    insertindex.length=0;
-    inserttagindex=10000;
+
+
     var articleslistdata = modelArticle.getArticleList();
     var newid = articleslistdata[articleslistdata.length-1].id + 1;
     $scope.newarticleadata = {
@@ -368,30 +376,23 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelAr
         "revision" : []
     }
 
+    $("#tagsinput").tagsInput();  //初始化 加载tag标签
     $scope.cssTagsPanel = false;
 
-
-    $scope.createNewArticle = function(isinsert) {
-        if(isinsert){
-            var newrevisionid = $scope.newarticleadata.revision.length + 1;
-            var newrevision = {
-                "versionid" :  newrevisionid ,
-                "versionnum" :  newrevisionid ,
-                "title" : $scope.newarticleadata.title, "contentbody": $scope.newarticleadata.contentbody, "status": $scope.newarticleadata.status,
-                "created": $scope.newarticleadata.created, "updated": $scope.newarticleadata.updated, "published": $scope.newarticleadata.published,
-                "author": $scope.newarticleadata.author,  "editor": $scope.newarticleadata.editor,  "clickcount":$scope.newarticleadata.clickcount,
-                "category": $scope.newarticleadata.category, "categoryid": $scope.newarticleadata.categoryid,
-                "tags":[]
-            };
-            for(var i=0;i<inserttag.length;i++){
-                newrevision.tags[i]={};
-                newrevision.tags[i].tagid=insertindex[i];
-                newrevision.tags[i].tagname=inserttag[i];
+    var tagmaxid = 10000;
+    $scope.createNewArticle = function() {
+        var taglist = $("#tagsinput").exportTags();
+        $scope.newarticleadata.tags=[];
+        for(var i=0;i<taglist.length;i++){
+            tagmaxid++ ;
+            var newtag = {
+                "tagid":tagmaxid,
+                "tagname": taglist[i]
             }
-            $scope.newarticleadata.revision.push(newrevision);
-            modelArticle.createNewArticle(newrevision);
+            $scope.newarticleadata.tags.push(newtag);
         }
 
+        var newrevisionid = $scope.newarticleadata.revision.length + 1;
         var newrevision = {
             "versionid" :  newrevisionid ,
             "versionnum" :  newrevisionid ,
@@ -402,8 +403,8 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelAr
             "tags":$scope.newarticleadata.tags
         };
         $scope.newarticleadata.revision.push(newrevision);
+
         modelArticle.createNewArticle($scope.newarticleadata);
-        alert('New Article Created');
         console.log( $scope.newarticleadata);
     }
 }

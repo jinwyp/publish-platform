@@ -103,9 +103,7 @@ $(document).ready(function(){
                     ).insertBefore('#' + id + '_addTag');
 
                     tagslist.push(value);
-                    inserttag=tagslist;
-                    inserttagindex+=1;
-                    insertindex.push(inserttagindex);
+
                     $('#'+id+'_tag').val('');
                     if (options.focus) {
                         $('#'+id+'_tag').focus();
@@ -162,6 +160,12 @@ $(document).ready(function(){
             var id = $(this).attr('id');
             var tagslist = $(this).val().split(delimiter[id]);
             return (jQuery.inArray(val, tagslist) >= 0); //true when tag exists, false when not
+        };
+
+        $.fn.exportTags = function() {
+            var id = $(this).attr('id');
+            var tagslist = $(this).val().split(delimiter[id]);
+            return tagslist ;
         };
 
         // clear all existing tags and import new ones from a string
