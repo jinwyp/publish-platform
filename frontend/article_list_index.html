@@ -37,8 +37,7 @@
 
 
 
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
+<div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h3 id="myModalLabel">Delete</h3>
@@ -49,10 +48,29 @@
   </div>
 
   <div class="modal-footer">
-    <button class="btn btn-danger" data-dismiss="modal">>算了，忍一忍，不删除</button>
-    <button class="btn btn-primary">没错，老子就是要删除</button>
+    <button class="btn" data-dismiss="modal">Cancel</button>
+    <button class="btn btn-danger" data-dismiss="modal" ng-click="delArticle(articledata.id)">Delete</button>
+  </div>
+</div>
+
+
+
+
+
+<div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3 id="myModalLabel">Delete</h3>
   </div>
 
+  <div class="modal-body">
+    <h4>Are you sure?</h4>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal">Cancel</button>
+    <button class="btn btn-danger" data-dismiss="modal" ng-click="delArticle(articlepreviewdata.id, $index)">Delete</button>
+  </div>
 </div>
 
 
@@ -80,14 +98,23 @@
     <![endif]-->
     <script src="app/js/custom.js"></script>
 
-    <script type="text/jscript">
+   <script type="text/jscript">
 		$(function() {
 			// tooltip
-			$('.vernode').tooltip({
+			$('.vcpbox').tooltip({
 			  selector: "a[rel=tooltip]"
 			});
-
-
+			
+			
+			$('#myModal1').on('hidden', function () {
+  			// do something…
+			alert("1111");
+			});
+			
+			$('#myModal2').on('hidden', function () {
+  			// do something…
+			alert("222");
+			})
 
         });
 	</script>

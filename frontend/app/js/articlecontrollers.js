@@ -295,7 +295,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
     $scope.delArticle = function(articleid) {
         modelArticle.delArticleById(articleid);
-        alert('Article Deleted');
+        //alert('Article Deleted');
         $scope.articledata = modelArticle.getArticleList()[0];
     }
 
