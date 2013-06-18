@@ -43,10 +43,23 @@
         	<form class="site_form">
             	<h4>Site Attribute</h4>
                 <table class="table">
-                	<tr><td class="titlename">Name</td><td><input type="text" value="" class="site_input" placeholder="Site name"></td></tr>
-                    <tr><td class="titlename">Domain</td><td><input type="text" value="" class="site_input" placeholder="Domain"></td></tr>
-                    <tr><td class="titlename">Meta</td><td><input type="text" value="" class="site_input" placeholder="Meta"></td></tr>
-                    <tr class="last"><td class="titlename">Type</td><td><input type="text" value="" class="site_input" placeholder="Type"></td></tr>
+                	<tr>
+                    	<td class="titlename">Name</td>
+                        <td><section class='input'><div><input type="text" value=""></div></section></td>
+                        <!-- <td><input type="text" value="" class="site_input" placeholder="Name"></td></tr> -->
+                    </tr>
+                    <tr>
+                    	<td class="titlename">Domain</td>
+                        <td><section class='input'><div><input type="text" value=""></div></section></td>
+                        <!-- <td><input type="text" value="" class="site_input" placeholder="Domain"></td></tr> -->
+                    <tr>
+                    	<td class="titlename">Meta</td>
+                        <td><section class='input'><div><input type="text" value=""></div></section></td>
+                        <!-- <td><input type="text" value="" class="site_input" placeholder="Meta"></td></tr> -->
+                    <tr class="last">
+                    	<td class="titlename">Type</td>
+                        <td><section class='input'><div><input type="text" value=""></div></section></td>
+                        <!-- <td><input type="text" value="" class="site_input" placeholder="Type"></td></tr> -->
                 </table>
                 <div class="submitbox"><a href="site_mini.html" class="submit">Save</a></div>
             </form>
@@ -127,11 +140,10 @@
       <script src="lib/flatui/icon-font-ie7.js"></script>
       <script src="lib/flatui/lte-ie7-24.js"></script>
     <![endif]-->
+    <script src='app/js/fancyInput.js'></script>
     <script src="app/js/custom.js"></script>
     <script type="text/jscript">
-		$(function() {
-			//...
-        });
+			$('section :input').val('').fancyInput()[0].focus();
 	</script>
 </body>
 </html>
