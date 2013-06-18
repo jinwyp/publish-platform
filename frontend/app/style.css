@@ -182,33 +182,63 @@
 /* =========================================================================================== */
 .site_box		{ position:absolute; bottom:0px; width:100%; min-width:1024px; height:100%; box-shadow:inset 0 0 800px 100px #d7d7d7; }
 .site_bgpline	{ position:absolute; left:0; top:50%; width:100%; height:4px; overflow:hidden; background:#ddd0c8; z-index:0;}
-.site_stepbox	{ position:absolute; z-index:1; width:300px; padding-top:20px; border:3px solid #65666a; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.4); background:#65666a;}
+.site_stepbox	{ position:absolute; z-index:1; width:300px; padding-top:20px; border:3px solid #65666a; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.4); background:#65666a; 
+}
 
 .large_step_1,
 .large_step_2,
-.large_step_3	{ top:30% !important;}
-.large_step_1	{ left:10% !important;}
-.large_step_2	{ left:40% !important;}
-.large_step_3	{ left:70% !important;}
+.large_step_3	{ top:30%; 
+-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;  }
 
 .mini_step_1,
 .mini_step_2,
-.mini_step_3	{ top:53% !important; width:200px !important; }
-.mini_step_1	{ left:10% !important;}
-.mini_step_2	{ left:40% !important;}
-.mini_step_3	{ left:70% !important;}
+.mini_step_3	{ top:50%; width:200px; 
+-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;  }
+	
+.large_step_1, .mini_step_1	{ left:10%;}
+.large_step_2, .mini_step_2	{ left:40%;}
+.large_step_3, .mini_step_3	{ left:70%;}
+
+.large_step_1 .site_form .edit_step,
+.large_step_2 .site_form .edit_step,
+.large_step_3 .site_form .edit_step{ display:none;}
+
 .mini_step_1 .site_form,
 .mini_step_2 .site_form,
-.mini_step_3 .site_form{ height:100px !important; overflow:hidden !important;}
+.mini_step_3 .site_form{ height:100px; overflow:hidden;}
+
+.mini_step_1 .site_form .edit_step,
+.mini_step_2 .site_form .edit_step,
+.mini_step_3 .site_form .edit_step{ display:block;}
+
 
 /* === Form === */
-.site_form		{ display:block; padding:0; background:#f3f4f6; margin:0; border-radius:7px;}
-.site_form h4	{ display:block; margin:0; padding:0; color:#fff; font-weight:bold; line-height:40px; text-indent:20px; height:40px; border-radius:6px 6px 0 0; background:#393a3e;   }
+.site_form		{ display:block; padding:0; background:#f3f4f6; margin:0; border-radius:7px; overflow:hidden; }
+.site_form h4	{ position:relative; display:block; margin:0; padding:0; color:#fff; font-weight:bold; line-height:40px; text-indent:20px; height:40px; border-radius:6px 6px 0 0; background:#393a3e;   }
+
 /* 提交按钮 */
-.site_form .submitbox{ padding:10px; border-radius:0 0 6px 6px; background:#4b4c50; text-align:center;}
-.site_form .submit{ display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; margin:0 auto; padding:3px 10px 4px; border-radius:4px; background:#a1d04c; color:#fff; text-decoration:none;}
-.site_form .submit:hover{ background:#83a93d;}
-.site_form .submit:active{ box-shadow:inset 0 0 7px rgba(0,0,0,0.5);}
+.site_form .submitbox			{ padding:10px; border-radius:0 0 6px 6px; background:#4b4c50; text-align:center;}
+.site_form .submit				{ display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; margin:0 auto; padding:3px 10px 4px; border-radius:4px; color:#fff; text-decoration:none; background:url(img/article_btn_bg.png) repeat-x; box-shadow:0 1px 3px #000; 
+-webkit-transition: 0s;
+    -moz-transition: 0s;
+    -o-transition: 0s;
+    transition: 0s;
+	}
+.site_form .submit:hover		{ background-position:0px -34px; color:#fff;}
+.site_form .submit:active		{ box-shadow:inset 0 0 10px rgba(0,0,0,0.4);}
+/* 编辑按钮 */
+.site_form .edit_step			{ position:absolute; top:8px; right:8px; margin:0; padding:4px 8px; text-align:center; border-radius:4px; background:#a1d04c; font-size:12px; line-height:18px; color:#fff; text-decoration:none; float:right; text-indent:0px;}
+.site_form .edit_step:hover		{ background:#83a93d;}
+.site_form .edit_step:active	{ box-shadow:inset 0 0 7px rgba(0,0,0,0.5);}
+
 /* 表格 */
 .site_form table	{ border:0; margin:0; padding:0; background:#f3f4f6; border-collapse:0 !important;}
 .site_form table tr	{ border-bottom:2px solid #e3e4e8;}
@@ -1257,12 +1287,12 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .fancyInput :-moz-placeholder{ color:rgba(255,255,255,0.2); } /* deprecated. but works for now. should use double '::'*/
 .fancyInput :-webkit-placeholder{ color:rgba(255,255,255,0.2); }
 
-.fancyInput{ width:180px; max-width:180px; min-width:180px; margin:0 auto; white-space:nowrap; position:relative; display:block; height:20px; padding:6px; font-family:Arial, Helvetica, sans-serif; font-size:20px; line-height:20px; color: #555555; vertical-align:middle; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; background-color:#ffffff; border:1px solid #cccccc; -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075); -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075); box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075); overflow:hidden;}
+.fancyInput{ width:180px; max-width:180px; min-width:180px; margin:0 auto; white-space:nowrap; position:relative; display:block; height:20px; padding:6px; font-family:Arial, Helvetica, sans-serif; font-size:18px; line-height:20px; color: #555555; vertical-align:middle; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; background-color:#ffffff; border:1px solid #cccccc; -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075); -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075); box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075); overflow:hidden;}
 .fancyInput:focus{ border:1px solid #000;}
 .fancyInput.textarea{ white-space:normal; overflow:auto; line-height:normal; font-size:40px; max-width:50%; min-height:160px; max-height:40%;}
 
 	.fancyInput input, textarea{ color:transparent; position:absolute; z-index:2; width:90%; border:0; outline:0; top:0px; left:0; background:none; padding:inherit; padding-bottom:0;  -moz-box-sizing:border-box; -webkit-box-sizing:border-box; }
-	.fancyInput input{ padding:6px; height:32px; line-height:32px; font-size:20px; top:0px; left:0px; font-family:Arial, Helvetica, sans-serif; }
+	.fancyInput input{ padding:6px; height:32px; line-height:32px; font-size:18px; top:0px; left:0px; font-family:Arial, Helvetica, sans-serif; }
 	.fancyInput textarea{ word-break:break-all; overflow:hidden; height:100%; }
 	.fancyInput > div{ display:inline-block; }
 	.fancyInput.textarea > div{ width:99.9%%; }
