@@ -188,20 +188,20 @@
 .large_step_1,
 .large_step_2,
 .large_step_3	{ top:30%; 
--webkit-transition: all 0.4s ease-in-out;
-	-moz-transition: all 0.4s ease-in-out;
-	-ms-transition: all 0.4s ease-in-out;
-	-o-transition: all 0.4s ease-in-out;
-	transition: all 0.4s ease-in-out;  }
+-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;  }
 
 .mini_step_1,
 .mini_step_2,
-.mini_step_3	{ top:50%; width:200px; 
--webkit-transition: all 0.4s ease-in-out;
-	-moz-transition: all 0.4s ease-in-out;
-	-ms-transition: all 0.4s ease-in-out;
-	-o-transition: all 0.4s ease-in-out;
-	transition: all 0.4s ease-in-out;  }
+.mini_step_3	{ top:54%; width:200px; 
+-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;  }
 	
 .large_step_1, .mini_step_1	{ left:10%;}
 .large_step_2, .mini_step_2	{ left:40%;}
@@ -1298,9 +1298,9 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 	.fancyInput.textarea > div{ width:99.9%%; }
 
 	.fancyInput *:focus ~ .caret,
-	.fancyInput *:focus ~ div .caret{ opacity:.8; box-shadow:0 0 2px #000; -webkit-animation:0.4s 40ms caret infinite; -moz-animation:0.4s 40ms caret infinite; animation:0.4s 40ms caret infinite; }
+	.fancyInput *:focus ~ div .caret{ opacity:.8; box-shadow:0 0 2px rgba(0,0,0,0.5); -webkit-animation:0.4s 40ms caret infinite; -moz-animation:0.4s 40ms caret infinite; animation:0.4s 40ms caret infinite; }
 	.fancyInput .caret:only-child{  }
-	.fancyInput .caret{ margin:0; padding:0; font-weight:normal; opacity:0; display:inline-block; width:2px; height:24px; border:0; background:#000; border-radius:2px; -moz-user-select:none; overflow:hidden; }
+	.fancyInput .caret{ margin:0; padding:0; font-weight:normal; opacity:0; display:inline-block; width:2px; height:24px; border:0; background:#000;  -moz-user-select:none; overflow:hidden; }
 	.fancyInput span:not(.deleted) ~ .caret{ position:absolute; margin:0; } /* only Caret which is  */
 
 		/* lettes */
