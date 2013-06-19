@@ -26,8 +26,8 @@ articleapp.directive('ckEditor', function() {
 articleapp.factory('modelArticle', function(){
 
     var articlelist ;
-   if(window.localStorage){
-        if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
+//   if(window.localStorage){
+//        if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
             articlelist = [
                 {  "id": 1000, "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                     "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023, "category": "Today", "categoryid":1000,
@@ -200,10 +200,10 @@ articleapp.factory('modelArticle', function(){
                     "revision" : []
                 }
             ];
-        }else{
-            articlelist = JSON.parse(localStorage.getItem("articlesData"));
-        }
-   }
+//        }else{
+//            articlelist = JSON.parse(localStorage.getItem("articlesData"));
+//        }
+//   }
 
     var factory = {};
 
@@ -223,7 +223,7 @@ articleapp.factory('modelArticle', function(){
         for(var i = articlelist.length; i--;){
             if (articlelist[i].id == articledata.id) {
                 articlelist[i] = articledata;
-                localStorage.setItem("articlesData",JSON.stringify(articlelist));
+//                localStorage.setItem("articlesData",JSON.stringify(articlelist));
                 return ;
             }
         }
@@ -233,7 +233,7 @@ articleapp.factory('modelArticle', function(){
         for(var i = articlelist.length; i--;){
             if (articlelist[i].id == articleid) {
                 articlelist.splice(i, 1);
-                localStorage.setItem("articlesData",JSON.stringify(articlelist));
+//                localStorage.setItem("articlesData",JSON.stringify(articlelist));
                 return ;
             }
         }
@@ -350,7 +350,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
         $scope.articledata.revision.push(newrevision);
         modelArticle.saveArticle($scope.articledata);
-        alert('Article Saved');
+
     }
 }
 
@@ -358,12 +358,8 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
 
 
-/*"tags": [
-    { "tagid":10000, "tagname":"computer" },
-    { "tagid":10001, "tagname":"videocard" }
-]*/
-articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelArticle) {
 
+articleapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle) {
 
     var articleslistdata = modelArticle.getArticleList();
     var newid = articleslistdata[articleslistdata.length-1].id + 1;
@@ -375,23 +371,25 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelAr
         "tags": [],
         "revision" : []
     }
+    $(".tagsinput").tagsInput();  //初始化 加载tag标签
 
-    $("#tagsinput").tagsInput();  //初始化 加载tag标签
     $scope.cssTagsPanel = false;
 
     var tagmaxid = 10000;
     $scope.createNewArticle = function() {
-        var taglist = $("#tagsinput").exportTags();
+
+        var tagslistdata = $(".tagsinput").exportTags();
         $scope.newarticleadata.tags=[];
-        for(var i=0;i<taglist.length;i++){
+        for(var i=0;i<tagslistdata.length;i++){
             tagmaxid++ ;
             var newtag = {
                 "tagid":tagmaxid,
-                "tagname": taglist[i]
+                "tagname": tagslistdata[i]
             }
             $scope.newarticleadata.tags.push(newtag);
         }
 
+        //增加文章每一次修改版本信息
         var newrevisionid = $scope.newarticleadata.revision.length + 1;
         var newrevision = {
             "versionid" :  newrevisionid ,
@@ -404,8 +402,12 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelAr
         };
         $scope.newarticleadata.revision.push(newrevision);
 
+        //保存文章
         modelArticle.createNewArticle($scope.newarticleadata);
-        console.log( $scope.newarticleadata);
+        console.log($scope.newarticleadata);
+        $location.path('/');
+
+
     }
 }
 

@@ -163,9 +163,10 @@ $(document).ready(function(){
         };
 
         $.fn.exportTags = function() {
+            console.log($(this));
             var id = $(this).attr('id');
-            var tagslist = $(this).val().split(delimiter[id]);
-            return tagslist ;
+            var tagslistdata = $(this).val().split(delimiter[id]);
+            return tagslistdata ;
         };
 
         // clear all existing tags and import new ones from a string
