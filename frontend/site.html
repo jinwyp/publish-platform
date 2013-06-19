@@ -13,8 +13,10 @@
     <![endif]-->
     <!-- 默认 Site Theme -->
     <link href="theme/default/site-theme.css" rel="stylesheet">
+    
+
   </head>
-<body style="background:#f1f1f1">
+<body class="sitecloud">
 
 
 
@@ -31,28 +33,167 @@
 
 <!-- Container -->
 <div class="vcpbox">
-
-	<h1 style="width:100%; text-align:center; line-height:600px; font-size:300px;">Site</h1>
-
+	<div class="site_box">
+    
+    	
+    	<!-- 第 1 步 -->
+    	<div class="site_stepbox large_step_1">
+        	<div class="site_box_title clearfix">
+            	<div class="title_num">1</div>
+                <h3 class="title_name">Site Attribute</h3>
+            </div>
+        	<form class="site_form">
+            	<h4>Site Attribute<a href="##" class="edit_step" id="edit_step1">Edit</a></h4>
+                <table class="table">
+                	<tr>
+                    	<td class="titlename">Name</td>
+                        <td><div class="fancyinput_vcp"><input type="text" value=""></div></td>
+                        <!-- <td><input type="text" value="" class="site_input" placeholder="Name"></td></tr> -->
+                    </tr>
+                    <tr>
+                    	<td class="titlename">Domain</td>
+                        <td><div class="fancyinput_vcp"><input type="text" value=""></div></td>
+                        <!-- <td><input type="text" value="" class="site_input" placeholder="Domain"></td></tr> -->
+                    <tr>
+                    	<td class="titlename">Meta</td>
+                        <td><div class="fancyinput_vcp"><input type="text" value=""></div></td>
+                        <!-- <td><input type="text" value="" class="site_input" placeholder="Meta"></td></tr> -->
+                    <tr class="last">
+                    	<td class="titlename">Type</td>
+                        <td><div class="fancyinput_vcp"><input type="text" value=""></div></td>
+                        <!-- <td><input type="text" value="" class="site_input" placeholder="Type"></td></tr> -->
+                </table>
+                <div class="submitbox"><a href="##" class="submit" id="save_step1">Save</a></div>
+            </form>
+            
+        </div>
+        
+        
+        
+        <!-- 第 2 步 -->
+        <div class="site_stepbox mini_step_2">
+        	<div class="site_box_title clearfix">
+            	<div class="title_num">2</div>
+                <h3 class="title_name">Select Theme</h3>
+            </div>
+        	<form class="site_form">
+            	<h4>Select Theme<a href="##" class="edit_step" id="edit_step2">Edit</a></h4>
+                <div class="site_themebox">
+                	<ul class="site_theme_ul clearfix">
+                    <li><a href="#" class="icon_sitetheme_blank">Blank</a></li>
+                    <li><a href="#" class="icon_sitetheme_01">theme1</a></li>
+                    <li><a href="#" class="icon_sitetheme_02">theme2</a></li>
+                    <li><a href="#" class="icon_sitetheme_03">theme3</a></li>
+                    <li><a href="#" class="icon_sitetheme_04">theme4</a></li>
+                    <li><a href="#" class="icon_sitetheme_05 select">theme5</a></li>
+                    <li><a href="#" class="icon_sitetheme_06">theme6</a></li>
+                    <li><a href="#" class="icon_sitetheme_07">theme7</a></li>
+                    <li><a href="#" class="icon_sitetheme_08">theme8</a></li>
+                    <li><a href="#" class="icon_sitetheme_09">theme9</a></li>
+                    <li><a href="#" class="icon_sitetheme_10">theme10</a></li>
+                    <li><a href="#" class="icon_sitetheme_11">theme11</a></li>
+                    </ul>
+                </div>
+                <div class="submitbox"><a href="##" class="submit" id="save_step2">Save</a></div>
+            </form>
+        </div>
+        
+        
+        
+        <!-- 第 3 步 -->
+        <div class="site_stepbox mini_step_3">
+        	<div class="site_box_title clearfix">
+            	<div class="title_num">3</div>
+                <h3 class="title_name">Logo</h3>
+            </div>
+        	<form class="site_form">
+            	<h4>Logo<a href="##" class="edit_step" id="edit_step3">Edit</a></h4>
+                <table class="table">
+                	<tr><td class="titlename">Logo</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
+                    <tr class="last"><td class="titlename">Web Icon</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
+                </table>
+                <div class="submitbox"><a href="##" class="submit" id="save_step3">Save</a></div>
+            </form>
+        </div>
+        
+        
+        
+        <!-- 背景横线 -->
+		<div class="site_bgpline"></div>
+        
+        
+        
+        
+    </div>
 </div>  
 
-
-                            
-    <!-- Load JS -->
-	<script src="lib/jquery/jquery-1.8.2.min.js"></script>
-    <script src="lib/boostrap/bootstrap.min.js"></script>
-    <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
-    <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
-    <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
-    <script src="lib/flatui/custom_radio.js"></script>
-    <script src="lib/flatui/jquery.tagsinput.js"></script>
-    <script src="lib/flatui/jquery.placeholder.js"></script>
-    <script src="lib/flatui/application.js"></script>
-    <!--[if lt IE 8]>
-      <script src="lib/flatui/icon-font-ie7.js"></script>
-      <script src="lib/flatui/lte-ie7-24.js"></script>
-    <![endif]-->
-    <script src="app/js/custom.js"></script>
-        
-</body>
+			<!-- Load JS -->
+            <script src="lib/jquery/jquery-1.8.2.min.js"></script>  
+			<script src="lib/boostrap/bootstrap.min.js"></script>
+            <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
+            <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
+            <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
+            <script src="lib/flatui/custom_radio.js"></script>
+            <script src="lib/flatui/jquery.tagsinput.js"></script>
+            <script src="lib/flatui/jquery.placeholder.js"></script>
+            <script src="lib/flatui/application.js"></script>
+            <script src="app/js/fancyInput.js"></script>
+            <!--[if lt IE 8]>
+              <script src="lib/flatui/icon-font-ie7.js"></script>
+              <script src="lib/flatui/lte-ie7-24.js"></script>
+            <![endif]-->
+            <script src="app/js/custom.js"></script>      
+       			
+	
+    		<script type="text/jscript">
+			$('.fancyinput_vcp :input').val('').fancyInput()[0].focus();
+			
+			$(function() {
+				
+				
+				   //SAVE
+				  $("#save_step1").click(function(){
+					 	$(".large_step_1").addClass("mini_step_1").delay(500).queue(function () {
+							$(".mini_step_2").removeClass("mini_step_2").addClass("large_step_2");
+						});
+				  });
+				  
+				  $("#save_step2").click(function(){
+					  $(".large_step_2").addClass("mini_step_2").delay(500).queue(function () {
+							$(".mini_step_3").removeClass("mini_step_3").addClass("large_step_3");
+						});
+				  });
+				  
+				  $("#save_step3").click(function(){
+					  $(".large_step_3").addClass("mini_step_3").delay(500).queue(function () {
+							$(".mini_step_1").removeClass("mini_step_1").addClass("large_step_1");
+						});
+				  });
+				  
+				  
+				  
+				  
+				  //EDIT
+				  $("#edit_step1").click(function(){
+					  $(".mini_step_1").removeClass("mini_step_1").addClass("large_step_1");
+					  $(".large_step_2").addClass("mini_step_2");
+					  $(".large_step_3").addClass("mini_step_3");
+				  });
+				  
+				  $("#edit_step2").click(function(){
+					  $(".large_step_1").addClass("mini_step_1");
+					  $(".mini_step_2").removeClass("mini_step_2").addClass("large_step_2");
+					  $(".large_step_3").addClass("mini_step_3");
+				  });
+				  
+				  $("#edit_step3").click(function(){
+					  $(".large_step_1").addClass("mini_step_1");
+					  $(".large_step_2").addClass("mini_step_2");
+					  $(".mini_step_3").removeClass("mini_step_3").addClass("large_step_3");
+				  });
+				
+				  
+        	});
+	</script>      
+ </body>
 </html>

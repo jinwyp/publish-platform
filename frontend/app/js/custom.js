@@ -3,8 +3,9 @@
 
 
 
-
-	  //所有Block经过时显示Attribute Panel Icon
+       var selectheadertheme=true;
+/*
+	  //所有Header Block经过时显示Attribute Panel Icon
 	  $(".block_header").hover(function(){
 		  $(this).append($(".attribute_panel"));
 		  $(".attribute_panel").show();
@@ -14,12 +15,15 @@
 		  $(".icon_editor").hide();
 		  $(".icon_move").hide();
 	  }, function() {
-		 $(".header_panel").hide();
-		 $(".attribute_panel").hide();
-		 $(".icon_editor").hide();
-		 $(".block_header").css( {"z-index":"1"});
-		 $(".header_view").removeClass("hover_view");
+          if(selectheadertheme){
+              $(".header_panel").hide();
+              $(".attribute_panel").hide();
+              $(".icon_editor").hide();
+              $(".block_header").css( {"z-index":"1"});
+              $(".header_view").removeClass("hover_view");
+          }
 	  });
+*/
 
 
 /*
@@ -35,6 +39,7 @@
 	  });
 */
 
+/*
 
 	   $(".block_footer").hover(function(){
 		  $(this).append($(".attribute_panel"));
@@ -48,18 +53,23 @@
 		  $(".attribute_panel").hide();
 		  $(".block_footer").css( {"z-index":"1"});
 	  });
+*/
 
 
 
 
+/*
 	  //点击Nav 的每个Theme
 	  $(".theme_panel a").click(function(){
+          selectheadertheme=false;
 		  $(this).addClass("select").siblings("a").removeClass("select");
 	  });
+*/
 
 
 
 
+/*
 	  //点击Nav Block的设置图标
 	  $(".icon_setup").bind("click",function(){
 		var navlinkpanel=$(".navlink_panel");
@@ -69,13 +79,16 @@
 		  $(".navlink_panel").slideUp(300);
 		}
 	  });
+*/
 
 
 
+/*
 	  //Block Attribut ICO 点击加载样式
 	  $(".attribute_panel a").click(function(){
 		  $(this).addClass("active").siblings("a").removeClass("active");
 	  });
+*/
 
 
 
@@ -200,10 +213,12 @@
 
 
 
+/*
 	  //点击TipBox里的每一个Layout
 	  $(".tipbox_laytou a").click(function(){
 		  $(this).addClass("selected").siblings("a").removeClass("selected");
 	  });
+*/
 
 
 });
