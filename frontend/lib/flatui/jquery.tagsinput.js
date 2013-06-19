@@ -170,6 +170,11 @@ $(document).ready(function(){
             $('#'+id+'_tagsinput .tag').remove();
             $.fn.tagsInput.importTags(this,str);
         }
+
+    $.fn.exportTags = function(str) {
+        var id = $(this).attr('id');
+        var tagslist = $(this).val().split(delimiter[id]);
+    }
         $.fn.tagsInput = function(options) {
             var settings = jQuery.extend({
                 interactive:true,
