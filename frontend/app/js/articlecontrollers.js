@@ -24,12 +24,11 @@ articleapp.directive('ckEditor', function() {
 });
 
 articleapp.factory('modelArticle', function(){
-
-    var articlelist ;
-  // if(window.localStorage){
-   //     if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
+   var articlelist;
+   if(window.localStorage){
+        if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
             articlelist = [
-                {  "id": 1000, "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                {  "id": 1000, "title": "今日新闻 multiple partial views in angularjs111.", "contentbody": "<b>111111</b>", "status": "needreview",
                     "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023, "category": "Today", "categoryid":1000,
                     "tags": [
                         { "tagid":10000, "tagname":"computer" },
@@ -200,10 +199,10 @@ articleapp.factory('modelArticle', function(){
                     "revision" : []
                 }
             ];
-   //     }else{
-     //       articlelist = JSON.parse(localStorage.getItem("articlesData"));
-       // }
-  // }
+        }else{
+            articlelist = JSON.parse(localStorage.getItem("articlesData"));
+        }
+   }
 
     var factory = {};
 
@@ -241,8 +240,8 @@ articleapp.factory('modelArticle', function(){
 
     factory.createNewArticle = function (articledata) {
         articlelist.push(articledata);
-       // localStorage.setItem("articlesData",JSON.stringify(articlelist));
-        return ;
+        localStorage.setItem("articlesData",JSON.stringify(articlelist));
+        return;
     };
 
     return factory;
@@ -295,6 +294,10 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
         $scope.cssmodalshow = false;      //关闭弹出提示框 Modal
         modelArticle.delArticleById(articleid);
         $scope.articlepreviewdata = $scope.articlesdata[0];
+    }
+
+    $scope.loadhtml=function(val){
+       $("#pcontent").html(val);
     }
 }
 
