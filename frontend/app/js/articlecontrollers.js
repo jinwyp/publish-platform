@@ -26,8 +26,8 @@ articleapp.directive('ckEditor', function() {
 articleapp.factory('modelArticle', function(){
 
     var articlelist ;
-   if(window.localStorage){
-        if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
+  // if(window.localStorage){
+   //     if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
             articlelist = [
                 {  "id": 1000, "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                     "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023, "category": "Today", "categoryid":1000,
@@ -200,10 +200,10 @@ articleapp.factory('modelArticle', function(){
                     "revision" : []
                 }
             ];
-        }else{
-            articlelist = JSON.parse(localStorage.getItem("articlesData"));
-        }
-   }
+   //     }else{
+     //       articlelist = JSON.parse(localStorage.getItem("articlesData"));
+       // }
+  // }
 
     var factory = {};
 
@@ -303,7 +303,12 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
     $scope.cssTagsPanel = false;
     var articleId = $routeParams.articleId;
     $scope.articledata = modelArticle.getArticleById(articleId);
-
+    var tagstr='';
+    for(var i=0;i<$scope.articledata.tags.length;i++){
+        tagstr+=$scope.articledata.tags[i].tagname+',';
+    }
+    $('.tagsinput').importTags(tagstr);
+    $(".tagsinput").tagsInput();
     $scope.showTagsPanel = function() {
         $scope.cssTagsPanel = !$scope.cssTagsPanel;
     }
@@ -328,6 +333,14 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
     $scope.saveArticle = function() {
         //增加版本保存功能
+        inserttagindex=10000;
+        inserttag=$(".tagsinput").exportTags();
+        for(var i=0;i<inserttag.length;i++){
+            $scope.articledata.tags[i]={};
+            $scope.articledata.tags[i].tagid=inserttagindex++;
+            $scope.articledata.tags[i].tagname=inserttag[i];
+        }
+
         var newrevisionid = $scope.articledata.revision.length + 1;
         var newrevision = {
             "versionid" :  newrevisionid ,
@@ -346,17 +359,10 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 }
 
 
-var inserttag=[],insertindex=[],inserttagindex=10000;
-/*"tags": [
-    { "tagid":10000, "tagname":"computer" },
-    { "tagid":10001, "tagname":"videocard" }
-]*/
+var inserttag=[],inserttagindex=10000;
 articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelArticle) {
     //重新加载tag标签
-    $("#tagsinput").tagsInput();
-    inserttag.length=0;
-    insertindex.length=0;
-    inserttagindex=10000;
+    $(".tagsinput").tagsInput();
     var articleslistdata = modelArticle.getArticleList();
     var newid = articleslistdata[articleslistdata.length-1].id + 1;
     $scope.newarticleadata = {
@@ -371,27 +377,15 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelAr
     $scope.cssTagsPanel = false;
 
 
-    $scope.createNewArticle = function(isinsert) {
-        if(isinsert){
-            var newrevisionid = $scope.newarticleadata.revision.length + 1;
-            var newrevision = {
-                "versionid" :  newrevisionid ,
-                "versionnum" :  newrevisionid ,
-                "title" : $scope.newarticleadata.title, "contentbody": $scope.newarticleadata.contentbody, "status": $scope.newarticleadata.status,
-                "created": $scope.newarticleadata.created, "updated": $scope.newarticleadata.updated, "published": $scope.newarticleadata.published,
-                "author": $scope.newarticleadata.author,  "editor": $scope.newarticleadata.editor,  "clickcount":$scope.newarticleadata.clickcount,
-                "category": $scope.newarticleadata.category, "categoryid": $scope.newarticleadata.categoryid,
-                "tags":[]
-            };
-            for(var i=0;i<inserttag.length;i++){
-                newrevision.tags[i]={};
-                newrevision.tags[i].tagid=insertindex[i];
-                newrevision.tags[i].tagname=inserttag[i];
-            }
-            $scope.newarticleadata.revision.push(newrevision);
-            modelArticle.createNewArticle(newrevision);
+    $scope.createNewArticle = function() {
+        inserttagindex=10000;
+        inserttag=$(".tagsinput").exportTags();
+        for(var i=0;i<inserttag.length;i++){
+            $scope.newarticleadata.tags[i]={};
+            $scope.newarticleadata.tags[i].tagid=inserttagindex++;
+            $scope.newarticleadata.tags[i].tagname=inserttag[i];
         }
-
+        var newrevisionid = $scope.newarticleadata.revision.length + 1;
         var newrevision = {
             "versionid" :  newrevisionid ,
             "versionnum" :  newrevisionid ,
@@ -402,7 +396,7 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelAr
             "tags":$scope.newarticleadata.tags
         };
         $scope.newarticleadata.revision.push(newrevision);
-        modelArticle.createNewArticle($scope.newarticleadata);
+        modelArticle.createNewArticle(newrevision);
         alert('New Article Created');
         console.log( $scope.newarticleadata);
     }

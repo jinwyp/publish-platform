@@ -12,9 +12,9 @@
 
  ben@xoxco.com
  ben@xoxco.com
+ */
 
-*/
-$(document).ready(function(){
+(function($) {
         var delimiter = new Array();
         var tags_callbacks = new Array();
         $.fn.doAutosize = function(o){
@@ -103,9 +103,6 @@ $(document).ready(function(){
                     ).insertBefore('#' + id + '_addTag');
 
                     tagslist.push(value);
-                    inserttag=tagslist;
-                    inserttagindex+=1;
-                    insertindex.push(inserttagindex);
                     $('#'+id+'_tag').val('');
                     if (options.focus) {
                         $('#'+id+'_tag').focus();
@@ -171,10 +168,11 @@ $(document).ready(function(){
             $.fn.tagsInput.importTags(this,str);
         }
 
-    $.fn.exportTags = function(str) {
-        var id = $(this).attr('id');
-        var tagslist = $(this).val().split(delimiter[id]);
-    }
+        $.fn.exportTags = function() {
+            var id = $(this).attr('id');
+            var tagval = $(this).val().split(delimiter[id]);
+            return tagval;
+        }
         $.fn.tagsInput = function(options) {
             var settings = jQuery.extend({
                 interactive:true,
@@ -351,4 +349,4 @@ $(document).ready(function(){
                 f.call(obj, obj, tags[i]);
             }
         };
-});
+})(jQuery);
