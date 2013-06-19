@@ -26,8 +26,8 @@ articleapp.directive('ckEditor', function() {
 articleapp.factory('modelArticle', function(){
 
     var articlelist ;
-//   if(window.localStorage){
-//        if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
+    if(window.localStorage){
+        if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
             articlelist = [
                 {  "id": 1000, "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                     "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023, "category": "Today", "categoryid":1000,
@@ -200,10 +200,10 @@ articleapp.factory('modelArticle', function(){
                     "revision" : []
                 }
             ];
-//        }else{
-//            articlelist = JSON.parse(localStorage.getItem("articlesData"));
-//        }
-//   }
+        }else{
+            articlelist = JSON.parse(localStorage.getItem("articlesData"));
+        }
+   }
 
     var factory = {};
 
@@ -223,7 +223,7 @@ articleapp.factory('modelArticle', function(){
         for(var i = articlelist.length; i--;){
             if (articlelist[i].id == articledata.id) {
                 articlelist[i] = articledata;
-//                localStorage.setItem("articlesData",JSON.stringify(articlelist));
+                localStorage.setItem("articlesData",JSON.stringify(articlelist));
                 return ;
             }
         }
@@ -233,7 +233,7 @@ articleapp.factory('modelArticle', function(){
         for(var i = articlelist.length; i--;){
             if (articlelist[i].id == articleid) {
                 articlelist.splice(i, 1);
-//                localStorage.setItem("articlesData",JSON.stringify(articlelist));
+                localStorage.setItem("articlesData",JSON.stringify(articlelist));
                 return ;
             }
         }
@@ -241,7 +241,7 @@ articleapp.factory('modelArticle', function(){
 
     factory.createNewArticle = function (articledata) {
         articlelist.push(articledata);
-       // localStorage.setItem("articlesData",JSON.stringify(articlelist));
+       localStorage.setItem("articlesData",JSON.stringify(articlelist));
         return ;
     };
 
@@ -307,9 +307,9 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
 
     for(var i=0;i<$scope.articledata.tags.length;i++){
-        $('#tagsinput').addTag($scope.articledata.tags[i].tagname);
+        $('.tagsinput').addTag($scope.articledata.tags[i].tagname);
     }
-    $("#tagsinput").tagsInput();  //初始化 加载tag标签
+    $(".tagsinput").tagsInput();  //初始化 加载tag标签
 
 
     $scope.showTagsPanel = function() {
