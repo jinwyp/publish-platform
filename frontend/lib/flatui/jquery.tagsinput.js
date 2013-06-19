@@ -103,6 +103,7 @@
                     ).insertBefore('#' + id + '_addTag');
 
                     tagslist.push(value);
+
                     $('#'+id+'_tag').val('');
                     if (options.focus) {
                         $('#'+id+'_tag').focus();
@@ -161,6 +162,7 @@
             return (jQuery.inArray(val, tagslist) >= 0); //true when tag exists, false when not
         };
 
+
         // clear all existing tags and import new ones from a string
         $.fn.importTags = function(str) {
             id = $(this).attr('id');
@@ -170,8 +172,8 @@
 
         $.fn.exportTags = function() {
             var id = $(this).attr('id');
-            var tagval = $(this).val().split(delimiter[id]);
-            return tagval;
+            var tagslistdata = $(this).val().split(delimiter[id]);
+            return tagslistdata;
         }
         $.fn.tagsInput = function(options) {
             var settings = jQuery.extend({

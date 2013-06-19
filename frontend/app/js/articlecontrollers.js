@@ -24,8 +24,9 @@ articleapp.directive('ckEditor', function() {
 });
 
 articleapp.factory('modelArticle', function(){
-   var articlelist;
-   if(window.localStorage){
+
+    var articlelist ;
+    if(window.localStorage){
         if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
             articlelist = [
                 {  "id": 1000, "title": "今日新闻 multiple partial views in angularjs111.", "contentbody": "<b>111111</b>", "status": "needreview",
@@ -241,7 +242,7 @@ articleapp.factory('modelArticle', function(){
     factory.createNewArticle = function (articledata) {
         articlelist.push(articledata);
         localStorage.setItem("articlesData",JSON.stringify(articlelist));
-        return;
+        return ;
     };
 
     return factory;
@@ -270,6 +271,7 @@ articleapp.config(['$routeProvider', function($routeProvider) {
 /* Controllers */
 articleapp.controller.articleList = function ($scope,  modelArticle) {
     $scope.articlesdata = modelArticle.getArticleList();
+    console.dir($scope.articlesdata);
     $scope.orderProp = 'created';
     $scope.articlepreviewdata = $scope.articlesdata[0];
     $scope.isCollapsed = true;
@@ -277,7 +279,7 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
     $scope.clickArticle = function(article, index) {
         $scope.articlepreviewdata = article;
         $scope.cssarticleindex = index;
-    }
+    };
 
     $scope.openModal = function () {
         $scope.cssmodalshow = true;
@@ -302,19 +304,26 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
 }
 
 
+
+
 articleapp.controller.articleDetail = function ($scope, $routeParams, modelArticle) {
     $scope.cssTagsPanel = false;
     var articleId = $routeParams.articleId;
+    $scope.articledata = [];
     $scope.articledata = modelArticle.getArticleById(articleId);
-    var tagstr='';
+
+    var tagstr = null;
     for(var i=0;i<$scope.articledata.tags.length;i++){
-        tagstr+=$scope.articledata.tags[i].tagname+',';
+        tagstr += $scope.articledata.tags[i].tagname+',';
     }
     $('.tagsinput').importTags(tagstr);
-    $(".tagsinput").tagsInput();
+    $(".tagsinput").tagsInput();    //初始化 加载tag标签
+
+
     $scope.showTagsPanel = function() {
         $scope.cssTagsPanel = !$scope.cssTagsPanel;
     }
+
 
     $scope.openModal = function () {
         $scope.cssmodalshow = true;
@@ -332,7 +341,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
         modelArticle.delArticleById(articleid);
         //alert('Article Deleted');
         $scope.articledata = modelArticle.getArticleList()[0];
-    }
+    };
 
     $scope.saveArticle = function() {
         //增加版本保存功能
@@ -357,15 +366,17 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
         $scope.articledata.revision.push(newrevision);
         modelArticle.saveArticle($scope.articledata);
-        alert('Article Saved');
+
     }
 }
 
 
+
 var inserttag=[],inserttagindex=10000;
-articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelArticle) {
-    //重新加载tag标签
-    $(".tagsinput").tagsInput();
+articleapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle) {
+
+    $(".tagsinput").tagsInput();   //初始化 加载tag标签
+
     var articleslistdata = modelArticle.getArticleList();
     var newid = articleslistdata[articleslistdata.length-1].id + 1;
     $scope.newarticleadata = {
@@ -377,17 +388,25 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelAr
         "revision" : []
     }
 
+
     $scope.cssTagsPanel = false;
 
-
+    var tagmaxid = 10000;
     $scope.createNewArticle = function() {
-        inserttagindex=10000;
-        inserttag=$(".tagsinput").exportTags();
-        for(var i=0;i<inserttag.length;i++){
-            $scope.newarticleadata.tags[i]={};
-            $scope.newarticleadata.tags[i].tagid=inserttagindex++;
-            $scope.newarticleadata.tags[i].tagname=inserttag[i];
+
+        var tagslistdata = $(".tagsinput").exportTags();
+        $scope.newarticleadata.tags=[];
+        for(var i=0;i<tagslistdata.length;i++){
+            tagmaxid++ ;
+            var newtag = {
+                "tagid":tagmaxid,
+                "tagname": tagslistdata[i]
+            }
+            $scope.newarticleadata.tags.push(newtag);
         }
+
+        //增加文章每一次修改版本信息
+
         var newrevisionid = $scope.newarticleadata.revision.length + 1;
         var newrevision = {
             "versionid" :  newrevisionid ,
@@ -399,9 +418,12 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, modelAr
             "tags":$scope.newarticleadata.tags
         };
         $scope.newarticleadata.revision.push(newrevision);
-        modelArticle.createNewArticle(newrevision);
-        alert('New Article Created');
-        console.log( $scope.newarticleadata);
+
+        //保存文章
+        modelArticle.createNewArticle($scope.newarticleadata);
+        console.log($scope.newarticleadata);
+        $location.path('/');
+
     }
 }
 
