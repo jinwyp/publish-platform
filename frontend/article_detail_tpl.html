@@ -17,7 +17,7 @@
                     <i class="article-title-ico">520 Words</i>
                 </div>
                 <!-- 预览区 -->
-                <div id="article-cont-preview" class="article-cont"></div>
+                <div id="article-cont-preview" class="article-cont"ng-bind-html-unsafe="showeditpreview(articledata.contentbody)"></div>
                 <!-- 预览区 //End-->
             </div>
             <!-- Left //End -->
@@ -107,7 +107,7 @@
 
                     <!-- Social -->
                     <div class="atricle_attribute_box">
-                        <h3>Social</h3>
+                        <h3>Social Up</h3>
                         <div class="share mrl">
                             <ul>
                                 <li>
@@ -175,7 +175,7 @@
         <!-- 版本节点 -->
         <div class="vernode">
         	<div class="line">
-                <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}"  ng-repeat="revision in articledata.revision"  title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy'}}">{{revision.versionnum}}</a>
+                <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}"  ng-repeat="revision in articledata.revision"  title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy HH:mm:ss'}}">{{revision.versionnum}}</a>
 
         	</div>
         </div>

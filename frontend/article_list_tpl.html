@@ -38,11 +38,9 @@
                         May 05 2013  |  Tag »
                         <a href="#/tag/{{tag.tagid}}" ng-repeat="tag in articlepreviewdata.tags">{{tag.tagname}}</a>
                     </div>
-                    <p id="pcontent" ng-bind="loadhtml(articlepreviewdata.contentbody);">
-                        ffffffffffffffffff<!--{{articlepreviewdata.contentbody}}-->
+                    <p id="pcontent" ng-bind-html-unsafe="loadhtml(articlepreviewdata.contentbody)">
+
                     </p>
-                    <!--<p ng-BindHtmlUnsafe="articlepreviewdata.contentbody:true">Abbreviation of the mobile application Mobile Application is: MA. Generalized mobile applications contain personal and enterprise applications. The narrowly mobile application refers to enterprise-class business applications. </p>
--->
                 </div>
             </div>
 
@@ -78,15 +76,15 @@
                             <h1><a href="" >{{article.title}}</a></h1>
                             <dl>
                                 <!--<dd><p class="titlename">Type</p><p>{{article.type}}</p></dd>-->
-                                <dd><p class="titlename">Created</p><p>{{article.created | date:'MM/dd/yyyy' }}</p></dd>
-                                <dd><p class="titlename">Published</p><p>{{article.published | date:'MM/dd/yyyy'}}</p></dd>
+                                <dd><p class="titlename">Created</p><p>{{article.created | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
+                                <dd><p class="titlename">Published</p><p>{{article.published | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
+                                <dd><p class="titlename">Updated</p><p>{{article.updated | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
                                 <dd><p class="titlename">Author</p><p>{{article.author}}</p></dd>
                                 <dd><p class="titlename">Editor</p><p>{{article.editor}}</p></dd>
                             </dl>
                         </div>
                         <div class="list-count">
                             <dl>
-                                <dd>{{article.updated | date:'MM/dd/yyyy'}}</dd>
                                 <dd><span>{{article.clickcount}}</span></dd>
                             </dl>
                         </div>
@@ -96,7 +94,8 @@
 
                 <!-- 翻页 -->
                 <div class="pagination pagination-centered">
-                    <ul>
+                    <pagination num-pages="noOfPages" current-page="currentPage"></pagination>
+                   <!-- <ul>
                         <li class="previous"><a href="#">Previous</a></li>
                         <li class="active"><a href="#">1</a></li>
                         <li><a href="#">2</a></li>
@@ -108,7 +107,7 @@
                         <li><a href="#">8</a></li>
                         <li><a href="#">9</a></li>
                         <li class="next"><a href="#">Next</a></li>
-                    </ul>
+                    </ul>-->
                 </div>
                 <!-- 翻页 / End -->
 

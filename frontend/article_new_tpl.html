@@ -17,7 +17,7 @@
                     <i class="article-title-ico">520 Words</i>
                 </div>
                 <!-- 预览区 -->
-                <div id="article-cont-preview" class="article-cont"></div>
+                <div id="article-cont-preview" class="article-cont" ng-bind-html-unsafe="showinserthtml(newarticleadata.contentbody);"></div>
                 <!-- 预览区 //End-->
             </div>
             <!-- Left //End -->
@@ -69,7 +69,7 @@
 
                     <!-- Social -->
                     <div class="atricle_attribute_box">
-                        <h3>Social</h3>
+                        <h3>Social Up</h3>
                         <div class="share mrl">
                             <ul>
                                 <li>

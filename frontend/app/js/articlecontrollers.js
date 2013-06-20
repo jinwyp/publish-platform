@@ -142,7 +142,7 @@ articleapp.factory('modelArticle', function(){
     };
 
     factory.getArticleById = function (articleid) {
-        for(var i = articlelist.length; i--;){
+        for(var i=articlelist.length; i--;){
             if (articlelist[i].id == articleid) {
                 return articlelist[i];
             }
@@ -229,8 +229,30 @@ articleapp.config(['$routeProvider', function($routeProvider) {
 
 /* Controllers */
 articleapp.controller.articleList = function ($scope,  modelArticle) {
-    $scope.articlesdata = modelArticle.getArticleList();
-//    console.dir($scope.articlesdata);
+    $scope.articlestotaldata = modelArticle.getArticleList();
+    //页面总数
+    $scope.noOfPages =Math.round($scope.articlestotaldata.length/2);
+
+    //当前页数
+    $scope.currentPage = 1;
+
+    $scope.articlesdata = [];
+
+    //获取选中数据
+    $scope.loadcurrentpagedata = function(){
+        $scope.articlesdata.length = 0;
+        var j = 0;
+        for(var i = (($scope.currentPage-1)*2);i < $scope.articlestotaldata.length;i ++){
+            $scope.articlesdata[j] = $scope.articlestotaldata[i];
+            j++;
+            if($scope.articlesdata.length > 1){
+                return;
+            }
+        }
+    }
+    $scope.loadcurrentpagedata();
+    console.dir($scope.articlesdata);
+
     $scope.orderProp = 'created';
     $scope.articlepreviewdata = $scope.articlesdata[0];
     $scope.isCollapsed = true;
@@ -257,9 +279,22 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
         $scope.articlepreviewdata = $scope.articlesdata[0];
     }
 
-    $scope.loadhtml=function(val){
-       $("#pcontent").html(val);
-    }
+    //显示List详细内容
+    $scope.loadhtml = function(val) {
+        return val;
+   }
+
+    //点击页面
+    $scope.setPage = function (pageNo) {
+        $scope.currentPage = pageNo;
+    };
+
+    //检测currentPage值
+    $scope.$watch('currentPage', function(newPage){
+        $scope.watchPage = newPage;
+        $scope.loadcurrentpagedata();
+    });
+
 }
 
 
@@ -337,13 +372,15 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
         modelArticle.saveArticle($scope.articledata);
 
     }
+
+
+    //显示Edit预览内容
+    $scope.showeditpreview = function(val){
+        return val;
+    }
 }
 
-
-
-
 articleapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle) {
-
     $(".tagsinput").tagsInput({
         'autocomplete': modelArticle.getTagList()
     });   //初始化 加载tag标签
@@ -361,7 +398,6 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
     $scope.cssTagsPanel = false;
 
     $scope.createNewArticle = function() {
-
         var temptagslistname = $(".tagsinput").exportTags();
         $scope.newarticleadata.tags=[];
         for(var i=0;i<temptagslistname.length;i++){
@@ -395,6 +431,11 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
         modelArticle.createNewArticle($scope.newarticleadata);
         $location.path('/');
 
+    }
+
+    //显示Insert预览内容
+    $scope.showinserthtml = function(val){
+        return val;
     }
 }
 
