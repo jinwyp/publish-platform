@@ -25,11 +25,13 @@ articleapp.directive('ckEditor', function() {
 
 articleapp.factory('modelArticle', function(){
 
-    var articlelist ;
+    var articlelist=[],taglist=[];
     if(window.localStorage){
         if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
-            articlelist = [
-                {  "id": 1000, "title": "今日新闻 multiple partial views in angularjs111.", "contentbody": "<b>111111</b>", "status": "needreview",
+            articlelist=[];
+            taglist=[];
+           /* articlelist = [
+                {  "id": 1000, "title": "???? multiple partial views in angularjs111.", "contentbody": "<b>111111</b>", "status": "needreview",
                     "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023, "category": "Today", "categoryid":1000,
                     "tags": [
                         { "tagid":10000, "tagname":"computer" },
@@ -39,7 +41,7 @@ articleapp.factory('modelArticle', function(){
                         {
                             "versionid" :  1 ,
                             "versionnum" :  1 ,
-                            "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                            "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                             "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
                             "author": "Eric",  "editor": "iFan", "clickcount":1023,
                             "category": "Today", "categoryid":1000,
@@ -48,7 +50,7 @@ articleapp.factory('modelArticle', function(){
                         {
                             "versionid" :  2 ,
                             "versionnum" :  2 ,
-                            "title": "今日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                            "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                             "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
                             "author": "Eric",  "editor": "iFan", "clickcount":1023,
                             "category": "Today", "categoryid":1000,
@@ -60,14 +62,14 @@ articleapp.factory('modelArticle', function(){
                     ]
                 },
 
-                {  "id": 1001, "title": "昨日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                {  "id": 1001, "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                     "created": "1370361600000", "updated": "1370361600000", "published": "1370361600000",  "author": "Eric",  "editor": "iFan", "clickcount":13, "category": "Today", "categoryid":1000,
                     "tags": [],
                     "revision" : [
                         {
                             "versionid" :  1 ,
                             "versionnum" :  1 ,
-                            "title": "昨日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                            "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                             "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
                             "author": "Eric",  "editor": "iFan", "clickcount":1023,
                             "category": "Today", "categoryid":1000,
@@ -79,7 +81,7 @@ articleapp.factory('modelArticle', function(){
                         {
                             "versionid" :  2 ,
                             "versionnum" :  2 ,
-                            "title": "昨日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                            "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                             "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
                             "author": "Eric",  "editor": "iFan", "clickcount":1023,
                             "category": "Today", "categoryid":1000,
@@ -91,14 +93,14 @@ articleapp.factory('modelArticle', function(){
                     ]
                 },
 
-                {  "id": 1002, "title": "前日新闻汇总 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                {  "id": 1002, "title": "?????? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                     "created": "1370188800000", "updated": "1370361600000", "published": "1370188800000",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
                     "tags": [],
                     "revision" : [
                         {
                             "versionid" :  1 ,
                             "versionnum" :  1 ,
-                            "title": "前日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                            "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                             "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
                             "author": "Eric",  "editor": "iFan", "clickcount":1023,
                             "category": "Today", "categoryid":1000,
@@ -110,7 +112,7 @@ articleapp.factory('modelArticle', function(){
                         {
                             "versionid" :  2 ,
                             "versionnum" :  2 ,
-                            "title": "前日新闻 multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+                            "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
                             "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
                             "author": "Eric",  "editor": "iFan", "clickcount":1023,
                             "category": "Today", "categoryid":1000,
@@ -127,7 +129,7 @@ articleapp.factory('modelArticle', function(){
                 { "tagid":10001, "tagname":"computer" },
                 { "tagid":10002, "tagname":"videocard" }
             ];
-
+*/
 
         }else{
             articlelist = JSON.parse(localStorage.getItem("articlesData"));
@@ -142,7 +144,7 @@ articleapp.factory('modelArticle', function(){
     };
 
     factory.getArticleById = function (articleid) {
-        for(var i=articlelist.length; i--;){
+        for(var i = 0;i < articlelist.length; i++){
             if (articlelist[i].id == articleid) {
                 return articlelist[i];
             }
@@ -150,7 +152,12 @@ articleapp.factory('modelArticle', function(){
     };
 
     factory.getMaxArticleID = function () {
-        var articlemaxid = articlelist[articlelist.length-1].id + 1000;
+        var articlemaxid;
+        if(articlelist.length==0){
+            articlemaxid=1001;
+        }else{
+            articlemaxid = articlelist[articlelist.length-1].id + 1;
+        }
         return articlemaxid;
     };
 
@@ -169,7 +176,7 @@ articleapp.factory('modelArticle', function(){
             if (articlelist[i].id == articleid) {
                 articlelist.splice(i, 1);
                 localStorage.setItem("articlesData",JSON.stringify(articlelist));
-                return ;
+                return;
             }
         }
     };
@@ -182,11 +189,17 @@ articleapp.factory('modelArticle', function(){
 
 
     factory.getTagList = function () {
-        return taglist;;
+        return taglist;
     };
 
     factory.getMaxTagID = function () {
-        var tagmaxid = taglist[taglist.length-1].tagid + 1;
+        factory.getTagList();
+        var tagmaxid;
+        if(taglist.length==0){
+            tagmaxid=10001;
+        }else{
+            tagmaxid = taglist[taglist.length-1].tagid + 1;
+        }
         return tagmaxid;
     };
 
@@ -231,16 +244,20 @@ articleapp.config(['$routeProvider', function($routeProvider) {
 articleapp.controller.articleList = function ($scope,  modelArticle) {
     $scope.articlestotaldata = modelArticle.getArticleList();
     //页面总数
-    $scope.noOfPages =Math.round($scope.articlestotaldata.length/2);
+    $scope.noOfPages = Math.round($scope.articlestotaldata.length/2);
 
     //当前页数
     $scope.currentPage = 1;
 
     $scope.articlesdata = [];
-
     //获取选中数据
     $scope.loadcurrentpagedata = function(){
         $scope.articlesdata.length = 0;
+        if($scope.noOfPages != 0){
+            if($scope.currentPage > $scope.noOfPages){
+                $scope.currentPage = $scope.noOfPages;
+            }
+        }
         var j = 0;
         for(var i = (($scope.currentPage-1)*2);i < $scope.articlestotaldata.length;i ++){
             $scope.articlesdata[j] = $scope.articlestotaldata[i];
@@ -250,8 +267,8 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
             }
         }
     }
+
     $scope.loadcurrentpagedata();
-    console.dir($scope.articlesdata);
 
     $scope.orderProp = 'created';
     $scope.articlepreviewdata = $scope.articlesdata[0];
@@ -276,13 +293,17 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
     $scope.delArticle = function(articleid) {
         $scope.cssmodalshow = false;      //关闭弹出提示框 Modal
         modelArticle.delArticleById(articleid);
+        $scope.articlestotaldata = modelArticle.getArticleList();
+        $scope.noOfPages = Math.round($scope.articlestotaldata.length/2);
+
+        $scope.loadcurrentpagedata();
         $scope.articlepreviewdata = $scope.articlesdata[0];
     }
 
     //显示List详细内容
     $scope.loadhtml = function(val) {
         return val;
-   }
+    }
 
     //点击页面
     $scope.setPage = function (pageNo) {
@@ -303,7 +324,6 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
 articleapp.controller.articleDetail = function ($scope, $routeParams, modelArticle) {
     $scope.cssTagsPanel = false;
     var articleId = $routeParams.articleId;
-    $scope.articledata = [];
     $scope.articledata = modelArticle.getArticleById(articleId);
 
     var tagstr = '';
@@ -339,6 +359,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
     $scope.saveArticle = function() {
         //保存tags功能
+        debugger;
         var temptagslistname = $(".tagsinput").exportTags();
         $scope.articledata.tags = [];
         for(var i=0;i<temptagslistname.length;i++){
@@ -378,10 +399,25 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
     $scope.showeditpreview = function(val){
         return val;
     }
+
+    $scope.displayversioninfo=function(data){
+        $scope.articledata.title=data.title;
+        $scope.articledata.contentbody=data.contentbody;
+        $('.tagsinput').html('');
+
+        $scope.articledata.tags.length=0;
+        $scope.articledata.tags=data.tags;
+        var tagstr = '';
+        for(var i=0;i<$scope.articledata.tags.length;i++){
+            tagstr += $scope.articledata.tags[i].tagname+',';
+        }
+        $('.tagsinput').importTags(tagstr);
+        $(".tagsinput").tagsInput();
+    }
 }
 
 articleapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle) {
-    $(".tagsinput").tagsInput({
+   $(".tagsinput").tagsInput({
         'autocomplete': modelArticle.getTagList()
     });   //初始化 加载tag标签
 
@@ -402,7 +438,7 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
         $scope.newarticleadata.tags=[];
         for(var i=0;i<temptagslistname.length;i++){
             //在tag 数据库查询是否是已经存在的tag
-            if(  modelArticle.checkTagExist(temptagslistname[i]) ){
+            if(modelArticle.checkTagExist(temptagslistname[i])){
                 var newtag = modelArticle.checkTagExist(temptagslistname[i]);
             }else{
                 var newtag = {
