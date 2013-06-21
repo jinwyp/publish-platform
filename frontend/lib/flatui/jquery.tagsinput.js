@@ -176,27 +176,27 @@
 
     $.fn.exportTags = function() {
         var id = $(this).attr('id');
-        var tagslistdata = $(this).val().split(delimiter[id]);
+        var tagslistdata = $(this).val()=="" ? [] : $(this).val().split(delimiter[id]);
         return tagslistdata;
     }
 		
 	$.fn.tagsInput = function(options) { 
-    var settings = jQuery.extend({
-      interactive:true,
-      defaultText:'',
-      minChars:0,
-      width:'',
-      height:'',
-      autocomplete: {selectFirst: false },
-      'hide':true,
-      'delimiter':',',
-      'unique':true,
-      removeWithBackspace:true,
-      placeholderColor:'#666666',
-      autosize: true,
-      comfortZone: 20,
-      inputPadding: 6*2
-    },options);
+        var settings = jQuery.extend({
+          interactive:true,
+          defaultText:'',
+          minChars:0,
+          width:'',
+          height:'',
+          autocomplete: {selectFirst: false },
+          'hide':true,
+          'delimiter':',',
+          'unique':true,
+          removeWithBackspace:true,
+          placeholderColor:'#666666',
+          autosize: true,
+          comfortZone: 20,
+          inputPadding: 6*2
+        },options);
 
 		this.each(function() { 
 			if (settings.hide) { 
@@ -214,9 +214,7 @@
 				input_wrapper: '#'+id+'_addTag',
 				fake_input: '#'+id+'_tag'
 			},settings);
-	
 			delimiter[id] = data.delimiter;
-			
 			if (settings.onAddTag || settings.onRemoveTag || settings.onChange) {
 				tags_callbacks[id] = new Array();
 				tags_callbacks[id]['onAddTag'] = settings.onAddTag;

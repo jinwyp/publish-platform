@@ -17,7 +17,7 @@
                     <i class="article-title-ico">520 Words</i>
                 </div>
                 <!-- 预览区 -->
-                <div id="article-cont-preview" class="article-cont"ng-bind-html-unsafe="showeditpreview(articledata.contentbody)"></div>
+                <div id="article-cont-preview" class="article-cont" ng-bind-html-unsafe="showeditpreview(articledata.contentbody)"></div>
                 <!-- 预览区 //End-->
             </div>
             <!-- Left //End -->
@@ -166,17 +166,14 @@
     <div class="article-footer">
         <!-- 发布按钮 -->
         <div class="article_btn">
-
         	<a href="" class="btn-savedraft" rel="tooltip" data-placement="top" title="SAVE DRAFT" ng-click="saveArticle()">SAVE DRAFT</a>
             <a href="article_list.html" class="btn-publish" rel="tooltip" data-placement="top" title="PUBLISH">PUBLISH</a>
-
         </div>
         
         <!-- 版本节点 -->
         <div class="vernode">
         	<div class="line">
-                <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}"  ng-repeat="revision in articledata.revision"  title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy HH:mm:ss'}}">{{revision.versionnum}}</a>
-
+                <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}" ng-click="displayversioninfo(revision);"  ng-repeat="revision in articledata.revision"  title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy HH:mm:ss'}}">{{revision.versionnum}}</a>
         	</div>
         </div>
     </div>

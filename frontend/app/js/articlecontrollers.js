@@ -405,14 +405,14 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
         $scope.articledata.contentbody=data.contentbody;
         $('.tagsinput').html('');
 
-        $scope.articledata.tags.length=0;
+/*        $scope.articledata.tags.length=0;
         $scope.articledata.tags=data.tags;
         var tagstr = '';
         for(var i=0;i<$scope.articledata.tags.length;i++){
             tagstr += $scope.articledata.tags[i].tagname+',';
         }
         $('.tagsinput').importTags(tagstr);
-        $(".tagsinput").tagsInput();
+        $(".tagsinput").tagsInput();*/
     }
 }
 
