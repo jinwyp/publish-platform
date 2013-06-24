@@ -1,12 +1,10 @@
-
-
     <!-- Content -->
 	<div class="article" >
     
     	<div class="write_title">
         	<a href="article_list_index.html" class="showlist" rel="tooltip" title="Article List"></a>
-        	<h1 >{{newarticleadata.title}}</h1>
-            <input type="text" class="title_input" value="" ng-model="newarticleadata.title">
+        	<!--<h1 >{{newarticleadata.title}}</h1>-->
+            <input type="text" class="title_input" required placeholder="Please input title" ng-model="newarticleadata.title">
         </div>
         
         <div class="article-row">
@@ -124,11 +122,9 @@
     </div>
     <!-- Content //End -->
     
-    
     <div class="article-footer">
         <!-- 发布按钮 -->
         <div class="article_btn">
-
         	<a href="" class="btn-savedraft" rel="tooltip" data-placement="top" title="SAVE DRAFT" ng-click="createNewArticle()">SAVE DRAFT</a>
             <a href="" class="btn-publish" rel="tooltip" data-placement="top" title="PUBLISH" ng-click="createNewArticle()">PUBLISH</a>
 

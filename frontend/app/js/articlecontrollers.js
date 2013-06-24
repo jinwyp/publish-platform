@@ -209,7 +209,7 @@ articleapp.factory('modelArticle', function(){
             return false;
         }else{
             console.log(tagresult);
-            return tagresult ;
+            return tagresult;
         }
     };
 
@@ -359,7 +359,6 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
     $scope.saveArticle = function() {
         //保存tags功能
-        debugger;
         var temptagslistname = $(".tagsinput").exportTags();
         $scope.articledata.tags = [];
         for(var i=0;i<temptagslistname.length;i++){
@@ -375,6 +374,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
             }
             $scope.articledata.tags.push(newtag);
         }
+        $scope.articledata.updated=modelArticle.getDateNow();
 
 
         //增加版本保存功能
@@ -383,7 +383,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
             "versionid" :  newrevisionid ,
             "versionnum" :  newrevisionid ,
             "title" : $scope.articledata.title, "contentbody": $scope.articledata.contentbody, "status": $scope.articledata.status,
-            "created": $scope.articledata.created, "updated": $scope.articledata.updated, "published": $scope.articledata.published,
+            "created": $scope.articledata.created, "updated":modelArticle.getDateNow(), "published": $scope.articledata.published,
             "author": $scope.articledata.author,  "editor": $scope.articledata.editor,  "clickcount":$scope.articledata.clickcount,
             "category": $scope.articledata.category, "categoryid": $scope.articledata.categoryid,
             "tags": $scope.articledata.tags
@@ -393,7 +393,10 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
         modelArticle.saveArticle($scope.articledata);
 
     }
-
+    $scope.publisharticle=function(){
+        $scope.articledata.published=modelArticle.getDateNow();
+        modelArticle.saveArticle($scope.articledata);
+    }
 
     //显示Edit预览内容
     $scope.showeditpreview = function(val){
@@ -401,18 +404,15 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
     }
 
     $scope.displayversioninfo=function(data){
+       // var data=$scope.articledata.revision[index];
         $scope.articledata.title=data.title;
         $scope.articledata.contentbody=data.contentbody;
-        $('.tagsinput').html('');
-
-/*        $scope.articledata.tags.length=0;
         $scope.articledata.tags=data.tags;
         var tagstr = '';
         for(var i=0;i<$scope.articledata.tags.length;i++){
             tagstr += $scope.articledata.tags[i].tagname+',';
         }
         $('.tagsinput').importTags(tagstr);
-        $(".tagsinput").tagsInput();*/
     }
 }
 
@@ -423,7 +423,7 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
 
     $scope.newarticleadata = {
         "id": modelArticle.getMaxArticleID(),
-        "title": "input title", "contentbody": "", "status": "needreview",
+        "title": "", "contentbody": "", "status": "needreview",
         "created": modelArticle.getDateNow(), "updated": modelArticle.getDateNow(), "published": modelArticle.getDateNow(),
         "author": "Eric",  "editor": "iFan",  "clickcount":0,
         "category": "Today", "categoryid":1000,

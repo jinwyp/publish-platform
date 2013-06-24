@@ -4,8 +4,8 @@
     
     	<div class="write_title">
         	<a href="article_list_index.html" class="showlist" rel="tooltip" title="Article List"></a>
-        	<h1 >{{articledata.title}} </h1>
-            <input type="text" class="title_input" value="" ng-model="articledata.title">
+        	<!--<h1 >{{articledata.title}} </h1>-->
+            <input type="text" class="title_input" required placeholder="Please input title" ng-model="articledata.title">
         </div>
         
         <div class="article-row">
@@ -166,8 +166,8 @@
     <div class="article-footer">
         <!-- 发布按钮 -->
         <div class="article_btn">
-        	<a href="" class="btn-savedraft" rel="tooltip" data-placement="top" title="SAVE DRAFT" ng-click="saveArticle()">SAVE DRAFT</a>
-            <a href="article_list.html" class="btn-publish" rel="tooltip" data-placement="top" title="PUBLISH">PUBLISH</a>
+        	<a href="#" class="btn-savedraft" rel="tooltip" data-placement="top" title="SAVE DRAFT" ng-click="saveArticle()">SAVE DRAFT</a>
+            <a href="#" class="btn-publish" rel="tooltip" data-placement="top" title="PUBLISH" ng-click="publisharticle()">PUBLISH</a>
         </div>
         
         <!-- 版本节点 -->
