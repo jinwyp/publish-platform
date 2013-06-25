@@ -225,7 +225,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
         $scope.cssshowpageaddinput = false;    //添加page的输入框默认不显示
 
-        $scope.cssblockiconactive = false;      //点击当前block按钮的选中的样式
         $scope.cssblocktipindexauto = false;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexeditor = false;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexstatic = false;      //点击当前block按钮显示对应block类型菜单
@@ -349,25 +348,24 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     }
 
     $scope.showblockautomenu = function( indexid, blocktype, event1) {
-        $scope.cssblockiconactive = true;      //点击当前block按钮的选中的样式
-        $scope.cssblocktipindexauto = -1;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexeditor = -1;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexstatic = -1;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
+        this.cssblocktipindexauto = false;      //点击当前block按钮显示对应block类型菜单
+        this.cssblocktipindexeditor = false;      //点击当前block按钮显示对应block类型菜单
+        this.cssblocktipindexstatic = false;      //点击当前block按钮显示对应block类型菜单
+        this.cssblocktipindexads = false;      //点击当前block按钮显示对应block类型菜单
 
         switch(blocktype)
         {
             case 'auto':
-                $scope.cssblocktipindexauto = indexid;      //点击当前block按钮显示对应block类型菜单
+                this.cssblocktipindexauto = true;      //点击当前block按钮显示对应block类型菜单
                 break;
             case 'editor':
-                $scope.cssblocktipindexeditor = indexid;      //点击当前block按钮显示对应block类型菜单
+                this.cssblocktipindexeditor = true;      //点击当前block按钮显示对应block类型菜单
                 break;
             case 'static':
-                $scope.cssblocktipindexstatic = indexid;      //点击当前block按钮显示对应block类型菜单
+                this.cssblocktipindexstatic = true;      //点击当前block按钮显示对应block类型菜单
                 break;
             case 'ads':
-                $scope.cssblocktipindexads = indexid;      //点击当前block按钮显示对应block类型菜单
+                this.cssblocktipindexads = true;      //点击当前block按钮显示对应block类型菜单
                 break;
             default:
         }
