@@ -56,6 +56,10 @@
                 <i class="article-title-ico">
                     <a href="#" class="ico-article-search" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed"></a>
                     <a href="#/newarticle/" class="ico-article-addnew" rel="tooltip" title="Add New Article"></a>
+                    <label><input type="radio" id=“create” name="time" ng-click="orderbytype('create')">Create</label>
+                    <label><input type="radio" id="updated" name="time" ng-click="orderbytype('updated')">Updated</label>
+                    <label><input type="radio" id="published" name="time" ng-click="orderbytype('published')">Published</label>
+                    <label><input type="radio" id="clickcount" name="time" ng-click="orderbytype('clickcount')">Click</label>
                 </i>
                 <div collapse="isCollapsed">
                     <div class="well well-large">
@@ -66,12 +70,11 @@
             </div>
 
 
-            <!-- 列表 -->
+            <!-- sssss列表 -->
             <div class="article-cont">
 
                 <ul class="article-list">
-
-                    <li ng-class="{active:$index == cssarticleindex}"  ng-repeat="article in articlesdata track by $index | filter:query | orderBy:!orderProp" ng-click="clickArticle(article, $index)" >
+                    <li ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata | filter:query"  ng-click="clickArticle(article, $index)" >
                         <div class="list-date">
                             <h1><a href="" >{{article.title}}</a></h1>
                             <dl>
