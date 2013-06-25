@@ -1,17 +1,17 @@
+<form name="newFeed">
     <!-- Content -->
-	<div class="article" >
-    
-    	<div class="write_title">
-        	<a href="article_list_index.html" class="showlist" rel="tooltip" title="Article List"></a>
-        	<!--<h1 >{{newarticleadata.title}}</h1>-->
-            <input type="text" class="title_input" required placeholder="Please input title" ng-model="newarticleadata.title">
+    <div class="article" >
+
+        <div class="write_title">
+            <a href="article_list_index.html" class="showlist" rel="tooltip" title="Article List"></a>
+            <!--<h1 >{{newarticleadata.title}}</h1>-->
+            <input class="title_input" placeholder="Title name" ng-model="newarticleadata.title" type="text" required>
         </div>
-        
         <div class="article-row">
-            
+
             <!-- Left -->
             <div class="article-span9">
-            	<div class="article-title">PREVIEW
+                <div class="article-title">PREVIEW
                     <i class="article-title-ico">520 Words</i>
                 </div>
                 <!-- 预览区 -->
@@ -19,16 +19,10 @@
                 <!-- 预览区 //End-->
             </div>
             <!-- Left //End -->
-
-
-
-
-
             <!-- Right  -->
             <div class="article-span9" ng-hide="cssTagsPanel">
                 <div class="article-title">CKeditor
                     <i class="article-title-ico">
-
                         <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = !cssTagsPanel"></a>
                     </i>
                 </div>
@@ -39,7 +33,6 @@
                 <!-- 编辑器 //End-->
             </div>
             <!-- Right //End -->
-
             <!-- Right Hide Panel -->
             <div class="article-span9" ng-show="cssTagsPanel">
                 <!-- Tags & Category -->
@@ -116,24 +109,19 @@
 
             </div>
             <!-- Right Hide Panel //End -->
-            
+            </div>
         </div>
-            
-    </div>
-    <!-- Content //End -->
-    
-    <div class="article-footer">
-        <!-- 发布按钮 -->
-        <div class="article_btn">
-        	<a href="" class="btn-savedraft" rel="tooltip" data-placement="top" title="SAVE DRAFT" ng-click="createNewArticle()">SAVE DRAFT</a>
-            <a href="" class="btn-publish" rel="tooltip" data-placement="top" title="PUBLISH" ng-click="createNewArticle()">PUBLISH</a>
-
-        </div>
-        
-        <!-- 版本节点 -->
-        <div class="vernode">
-            <div class="line">
-                <a href="" class="node" ng-class="{last:$last, current:$last}" rel="tooltip" ng-repeat="revision in newarticleadata.revision"   title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy'}}">{{revision.versionnum}}</a>
+        <div class="article-footer">
+            <div class="article_btn">
+                <input type="submit" value="SAVE DRAFT" class="btn btn-success" ng-click="createNewArticle(newFeed)">
+                <a href="" class="btn-publish" rel="tooltip" data-placement="top" title="PUBLISH" ng-click="createNewArticle()">PUBLISH</a>
+            </div>
+            <!-- 版本节点 -->
+            <div class="vernode">
+                <div class="line">
+                    <a href="" class="node" ng-class="{last:$last, current:$last}" rel="tooltip" ng-repeat="revision in newarticleadata.revision"   title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy'}}">{{revision.versionnum}}</a>
+                </div>
             </div>
         </div>
     </div>
+</form>

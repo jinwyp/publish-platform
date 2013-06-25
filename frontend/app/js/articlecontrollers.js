@@ -242,13 +242,50 @@ articleapp.config(['$routeProvider', function($routeProvider) {
 
 /* Controllers */
 articleapp.controller.articleList = function ($scope,  modelArticle) {
+    //获取全部数据
     $scope.articlestotaldata = modelArticle.getArticleList();
+
+    //排序所有数据
+    $scope.loadinit = function(flag){
+        for(var i = 0; i < $scope.articlestotaldata.length; i++){
+               for(var j = 0;j < $scope.articlestotaldata.length; j++){
+                   if(flag == 'create'){
+                       if($scope.articlestotaldata[i].created > $scope.articlestotaldata[j].created){
+                           var param1 = $scope.articlestotaldata[i];
+                           $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
+                           $scope.articlestotaldata[j] = param1;
+                       }
+                   }else if(flag == 'published'){
+                       if($scope.articlestotaldata[i].published > $scope.articlestotaldata[j].published){
+                           var param1 = $scope.articlestotaldata[i];
+                           $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
+                           $scope.articlestotaldata[j] = param1;
+                       }
+                   }else if(flag == 'updated'){
+                       if($scope.articlestotaldata[i].updated > $scope.articlestotaldata[j].updated){
+                           var param1 = $scope.articlestotaldata[i];
+                           $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
+                           $scope.articlestotaldata[j] = param1;
+                       }
+                   }else if(flag == 'clickcount'){
+                       if($scope.articlestotaldata[i].clickcount > $scope.articlestotaldata[j].clickcount){
+                           var param1 = $scope.articlestotaldata[i];
+                           $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
+                           $scope.articlestotaldata[j] = param1;
+                       }
+                   }
+               }
+        }
+    }
+
+    $scope.loadinit('updated');
+    $("#updated")[0].checked=true;
     //页面总数
-    $scope.noOfPages = Math.round($scope.articlestotaldata.length/2);
+    var count=10;
+    $scope.noOfPages =parseInt($scope.articlestotaldata.length/count)+1;
 
     //当前页数
     $scope.currentPage = 1;
-
     $scope.articlesdata = [];
     //获取选中数据
     $scope.loadcurrentpagedata = function(){
@@ -259,10 +296,10 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
             }
         }
         var j = 0;
-        for(var i = (($scope.currentPage-1)*2);i < $scope.articlestotaldata.length;i ++){
+        for(var i = (($scope.currentPage-1)*count);i < $scope.articlestotaldata.length;i ++){
             $scope.articlesdata[j] = $scope.articlestotaldata[i];
             j++;
-            if($scope.articlesdata.length > 1){
+            if($scope.articlesdata.length > (count-1)){
                 return;
             }
         }
@@ -270,7 +307,6 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
 
     $scope.loadcurrentpagedata();
 
-    $scope.orderProp = 'created';
     $scope.articlepreviewdata = $scope.articlesdata[0];
     $scope.isCollapsed = true;
 
@@ -316,6 +352,14 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
         $scope.loadcurrentpagedata();
     });
 
+    //按类型排序
+    $scope.orderbytype=function(flag){
+        $scope.loadinit(flag);
+        $scope.loadcurrentpagedata();
+        $scope.articlepreviewdata = $scope.articlesdata[0];
+
+        $("#"+flag)[0].checked=true;
+    }
 }
 
 
@@ -357,41 +401,43 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
         $scope.articledata = modelArticle.getArticleList()[0];
     };
 
-    $scope.saveArticle = function() {
-        //保存tags功能
-        var temptagslistname = $(".tagsinput").exportTags();
-        $scope.articledata.tags = [];
-        for(var i=0;i<temptagslistname.length;i++){
-            //在tag 数据库查询是否是已经存在的tag
-            if(  modelArticle.checkTagExist(temptagslistname[i]) ){
-                var newtag = modelArticle.checkTagExist(temptagslistname[i]);
-            }else{
-                var newtag = {
-                    "tagid" : modelArticle.getMaxTagID(),
-                    "tagname" : temptagslistname[i]
+    $scope.saveArticle = function(feed) {
+        debugger;
+        if (feed.$valid) {
+            //保存tags功能
+            var temptagslistname = $(".tagsinput").exportTags();
+            $scope.articledata.tags = [];
+            for(var i=0;i<temptagslistname.length;i++){
+                //在tag 数据库查询是否是已经存在的tag
+                if(  modelArticle.checkTagExist(temptagslistname[i]) ){
+                    var newtag = modelArticle.checkTagExist(temptagslistname[i]);
+                }else{
+                    var newtag = {
+                        "tagid" : modelArticle.getMaxTagID(),
+                        "tagname" : temptagslistname[i]
+                    }
+                    modelArticle.createNewTag(newtag);
                 }
-                modelArticle.createNewTag(newtag);
+                $scope.articledata.tags.push(newtag);
             }
-            $scope.articledata.tags.push(newtag);
+            $scope.articledata.updated=modelArticle.getDateNow();
+
+
+            //增加版本保存功能
+            var newrevisionid = $scope.articledata.revision.length + 1;
+            var newrevision = {
+                "versionid" :  newrevisionid ,
+                "versionnum" :  newrevisionid ,
+                "title" : $scope.articledata.title, "contentbody": $scope.articledata.contentbody, "status": $scope.articledata.status,
+                "created": $scope.articledata.created, "updated":modelArticle.getDateNow(), "published": $scope.articledata.published,
+                "author": $scope.articledata.author,  "editor": $scope.articledata.editor,  "clickcount":$scope.articledata.clickcount,
+                "category": $scope.articledata.category, "categoryid": $scope.articledata.categoryid,
+                "tags": $scope.articledata.tags
+            };
+
+            $scope.articledata.revision.push(newrevision);
+            modelArticle.saveArticle($scope.articledata);
         }
-        $scope.articledata.updated=modelArticle.getDateNow();
-
-
-        //增加版本保存功能
-        var newrevisionid = $scope.articledata.revision.length + 1;
-        var newrevision = {
-            "versionid" :  newrevisionid ,
-            "versionnum" :  newrevisionid ,
-            "title" : $scope.articledata.title, "contentbody": $scope.articledata.contentbody, "status": $scope.articledata.status,
-            "created": $scope.articledata.created, "updated":modelArticle.getDateNow(), "published": $scope.articledata.published,
-            "author": $scope.articledata.author,  "editor": $scope.articledata.editor,  "clickcount":$scope.articledata.clickcount,
-            "category": $scope.articledata.category, "categoryid": $scope.articledata.categoryid,
-            "tags": $scope.articledata.tags
-        };
-
-        $scope.articledata.revision.push(newrevision);
-        modelArticle.saveArticle($scope.articledata);
-
     }
     $scope.publisharticle=function(){
         $scope.articledata.published=modelArticle.getDateNow();
@@ -433,39 +479,41 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
 
     $scope.cssTagsPanel = false;
 
-    $scope.createNewArticle = function() {
-        var temptagslistname = $(".tagsinput").exportTags();
-        $scope.newarticleadata.tags=[];
-        for(var i=0;i<temptagslistname.length;i++){
-            //在tag 数据库查询是否是已经存在的tag
-            if(modelArticle.checkTagExist(temptagslistname[i])){
-                var newtag = modelArticle.checkTagExist(temptagslistname[i]);
-            }else{
-                var newtag = {
-                    "tagid" : modelArticle.getMaxTagID(),
-                    "tagname" : temptagslistname[i]
+    $scope.createNewArticle = function(feed) {
+        if (feed.$valid) {
+            var temptagslistname = $(".tagsinput").exportTags();
+            $scope.newarticleadata.tags=[];
+            for(var i=0;i<temptagslistname.length;i++){
+                //在tag 数据库查询是否是已经存在的tag
+                if(modelArticle.checkTagExist(temptagslistname[i])){
+                    var newtag = modelArticle.checkTagExist(temptagslistname[i]);
+                }else{
+                    var newtag = {
+                        "tagid" : modelArticle.getMaxTagID(),
+                        "tagname" : temptagslistname[i]
+                    }
+                    modelArticle.createNewTag(newtag);
                 }
-                modelArticle.createNewTag(newtag);
+                $scope.newarticleadata.tags.push(newtag);
             }
-            $scope.newarticleadata.tags.push(newtag);
+
+            //增加文章每一次修改版本信息
+            var newrevisionid = $scope.newarticleadata.revision.length + 1;
+            var newrevision = {
+                "versionid" :  newrevisionid ,
+                "versionnum" :  newrevisionid ,
+                "title" : $scope.newarticleadata.title, "contentbody": $scope.newarticleadata.contentbody, "status": $scope.newarticleadata.status,
+                "created": $scope.newarticleadata.created, "updated": $scope.newarticleadata.updated, "published": $scope.newarticleadata.published,
+                "author": $scope.newarticleadata.author,  "editor": $scope.newarticleadata.editor,  "clickcount":$scope.newarticleadata.clickcount,
+                "category": $scope.newarticleadata.category, "categoryid": $scope.newarticleadata.categoryid,
+                "tags":$scope.newarticleadata.tags
+            };
+            $scope.newarticleadata.revision.push(newrevision);
+
+            //保存文章
+            modelArticle.createNewArticle($scope.newarticleadata);
+            $location.path('/');
         }
-
-        //增加文章每一次修改版本信息
-        var newrevisionid = $scope.newarticleadata.revision.length + 1;
-        var newrevision = {
-            "versionid" :  newrevisionid ,
-            "versionnum" :  newrevisionid ,
-            "title" : $scope.newarticleadata.title, "contentbody": $scope.newarticleadata.contentbody, "status": $scope.newarticleadata.status,
-            "created": $scope.newarticleadata.created, "updated": $scope.newarticleadata.updated, "published": $scope.newarticleadata.published,
-            "author": $scope.newarticleadata.author,  "editor": $scope.newarticleadata.editor,  "clickcount":$scope.newarticleadata.clickcount,
-            "category": $scope.newarticleadata.category, "categoryid": $scope.newarticleadata.categoryid,
-            "tags":$scope.newarticleadata.tags
-        };
-        $scope.newarticleadata.revision.push(newrevision);
-
-        //保存文章
-        modelArticle.createNewArticle($scope.newarticleadata);
-        $location.path('/');
 
     }
 
@@ -473,5 +521,14 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
     $scope.showinserthtml = function(val){
         return val;
     }
+
+    $scope.addFeed = function(feed) {
+        if (feed.$valid) {
+            // Copy this feed instance and reset the URL in the form
+            $scope.feeds.push(feed);
+            $scope.newFeed.url = {};
+        }
+    };
+
 }
 
