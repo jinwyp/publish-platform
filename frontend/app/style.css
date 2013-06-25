@@ -473,6 +473,10 @@ ul.layout_list .active	{ opacity:1;}
 /*                                 Block：Setup + Move + Delete                                */
 /* =========================================================================================== */
 .attribute_panel{ position:absolute; right:-1px; top:-35px;}
+/* 插入推荐位 */
+.editor_inset{ position:absolute; width:704px; right:-8px; top:30px; height:32px; padding:4px;}
+.editor_inset input{ border-color:#888; border-radius:4px; margin:0; padding:4px; width:98%; background:#fff; border-width:2px;}
+.editor_inset input:focus{ border-color:#94c23b; background:#fff;}
 
 .block_header .attribute_panel{ top:-44px;}
 .block_footer .attribute_panel{ top:-44px;}
@@ -491,10 +495,7 @@ ul.layout_list .active	{ opacity:1;}
 
 .attribute_panel .active{ background-color:#454545;}
 
-/* 插入推荐位 */
-.editor_inset{ height:32px; padding:4px;}
-.editor_inset input{ border-color:#888; border-radius:4px; margin:0; padding:4px; width:98%; background:#fff; border-width:2px;}
-.editor_inset input:focus{ border-color:#94c23b; background:#fff;}
+
 
 
 
