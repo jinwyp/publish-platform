@@ -156,7 +156,7 @@ articleapp.factory('modelArticle', function(){
         if(articlelist.length==0){
             articlemaxid=1001;
         }else{
-            articlemaxid = articlelist[articlelist.length-1].id + 1;
+            articlemaxid = articlelist[0].id + 1;
         }
         return articlemaxid;
     };
@@ -367,8 +367,10 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
 
 articleapp.controller.articleDetail = function ($scope, $routeParams, modelArticle) {
     $scope.cssTagsPanel = false;
+    $("select").dropkick();
     var articleId = $routeParams.articleId;
     $scope.articledata = modelArticle.getArticleById(articleId);
+    $(".dk_label")[0].textContent=$scope.articledata.category;
 
     var tagstr = '';
     for(var i=0;i<$scope.articledata.tags.length;i++){
@@ -402,7 +404,6 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
     };
 
     $scope.saveArticle = function(feed) {
-        debugger;
         if (feed.$valid) {
             //保存tags功能
             var temptagslistname = $(".tagsinput").exportTags();
@@ -421,7 +422,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
                 $scope.articledata.tags.push(newtag);
             }
             $scope.articledata.updated=modelArticle.getDateNow();
-
+            $scope.articledata.category=$(".dk_label")[0].textContent;
 
             //增加版本保存功能
             var newrevisionid = $scope.articledata.revision.length + 1;
@@ -467,6 +468,7 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
         'autocomplete': modelArticle.getTagList()
     });   //初始化 加载tag标签
 
+    $("select").dropkick();
     $scope.newarticleadata = {
         "id": modelArticle.getMaxArticleID(),
         "title": "", "contentbody": "", "status": "needreview",
@@ -496,7 +498,7 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
                 }
                 $scope.newarticleadata.tags.push(newtag);
             }
-
+            $scope.newarticleadata.category=$(".dk_label")[0].textContent;
             //增加文章每一次修改版本信息
             var newrevisionid = $scope.newarticleadata.revision.length + 1;
             var newrevision = {
@@ -508,13 +510,13 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
                 "category": $scope.newarticleadata.category, "categoryid": $scope.newarticleadata.categoryid,
                 "tags":$scope.newarticleadata.tags
             };
+
             $scope.newarticleadata.revision.push(newrevision);
 
             //保存文章
             modelArticle.createNewArticle($scope.newarticleadata);
             $location.path('/');
         }
-
     }
 
     //显示Insert预览内容

@@ -76,10 +76,10 @@
                 </i>
                 <div collapse="isCollapsed">
                     <div class="well">
-                       <label class="radio searchradio"><input type="radio" id="create" name="time" ng-click="orderbytype('create')">Create</label>
-                       <label class="radio searchradio"><input type="radio" id="updated" name="time" ng-click="orderbytype('updated')">Updated</label>
-                       <label class="radio searchradio"><input type="radio" id="published" name="time" ng-click="orderbytype('published')">Published</label>
-                       <label class="radio searchradio"><input type="radio" id="clickcount" name="time" ng-click="orderbytype('clickcount')">Click</label>
+                       <label class="radio searchradio" ng-click="orderbytype('create')"><input type="radio" id="create" name="time">Create</label>
+                       <label class="radio searchradio" ng-click="orderbytype('updated')"><input type="radio" id="updated" name="time">Updated</label>
+                       <label class="radio searchradio" ng-click="orderbytype('published')"><input type="radio" id="published" name="time">Published</label>
+                       <label class="radio searchradio" ng-click="orderbytype('clickcount')"><input type="radio" id="clickcount" name="time">Click</label>
                     </div>
                 </div>
 
@@ -90,7 +90,7 @@
             <div class="article-cont">
 
                 <ul class="article-list">
-                    <li ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata | filter:query"  ng-click="clickArticle(article, $index)" >
+                    <li ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata track by $index | filter:query"  ng-click="clickArticle(article, $index)" >
                         <div class="list-date">
                             <h1><a href="" >{{article.title}}</a></h1>
                             <dl>
