@@ -33,17 +33,12 @@ pageapp.factory('modelSite', function(){
             { siteid:1, pagename:'Homepage', pageid:101, pagetype:10, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
                 pagelayoutdata:[
                     {layoutcontainerclass:"span9", layoutcontainerid:1000 , blocks:[
-                        {blockid:100, blocktype:1, blockname:"name1",blocklayout:10, blockquantity:6, blocktag:[], blockcategory:[], blocksortby:'date' } ,
-                        {blockid:101, blocktype:1, blockname:"name2" } ,
-                        {blockid:102, blocktype:1, blockname:"name3" }
-                    ]
+                            {blockid:100, blocktype:1, blockname:"name1",blocklayout:10, blockquantity:6, blocktag:[], blockcategory:[], blocksortby:'date' }
+                        ]
                     },
                     {layoutcontainerclass:"span3", layoutcontainerid:1000, blocks:[] }
                 ]
             },
-            { siteid:1, pagename:'Channel2', pageid:102,  pagetype:20, pagetitle:"Ch2", pageurl:"ch2", pageorder:6,  pagelayoutid:10, pagelayoutdata:[] },
-            { siteid:1, pagename:'Channel3', pageid:103,  pagetype:20, pagetitle:"Ch3", pageurl:"ch3", pageorder:10, pagelayoutid:10, pagelayoutdata:[] },
-
 
             { siteid:1, pagename:'Article', pageid:103, pagetype:11, pagetitle:"article", pageurl:"article", pageorder:0, pagelayoutid:10, pagelayoutdata:[] }
         ],
@@ -231,10 +226,12 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssshowpageaddinput = false;    //添加page的输入框默认不显示
 
         $scope.cssblockiconactive = false;      //点击当前block按钮的选中的样式
-        $scope.cssblocktipindexauto = -1;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexeditor = -1;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexstatic = -1;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexauto = false;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexeditor = false;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexstatic = false;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexads = false;      //点击当前block按钮显示对应block类型菜单
+
+
 
         $scope.cssheadermenuhavadata = false;      //Header是否有数据
         $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮显示
@@ -321,28 +318,43 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         modelSite.saveSinglePageLayout($scope.singlepage, layout);
     }
 
+
+
+
+    // show Block MouseOver Menu Button
+    $scope.cssblockeditmenubutton = false;
+    $scope.showeditblockmenubutton= function() {
+        this.cssblockeditmenubutton = true;
+    }
+    $scope.hideeditblockmenubutton = function() {
+        this.cssblockeditmenubutton = false;
+    }
+
+    $scope.showblocksetting=function(){
+        this.cssblockeditmenubutton = false;
+    }
+    $scope.moveblock=function(){
+        this.cssblockeditmenubutton = false;
+    }
+    $scope.delblock=function(){
+        this.cssblockeditmenubutton = false;
+    }
+
     //add blocks
-    $scope.showblockmenubutton = function() {
-        this.isshownewblockedit=true;
+    $scope.showaddblockmenubutton = function() {
+        this.cssblockaddmenubutton = true;
     }
-    $scope.hideblockmenubutton = function() {
-        if(selectnewindex==this){
-            this.isshownewblockedit=true;
-        }else{
-            this.isshownewblockedit=false;
-        }
+    $scope.hideaddblockmenubutton = function() {
+        this.cssblockaddmenubutton = false;
     }
-    var selectnewindex=-1;
-    $scope.isshownewblockedit=false;
+
     $scope.showblockautomenu = function( indexid, blocktype, event1) {
-        $scope.cssblockiconactive = blocktype;      //点击当前block按钮的选中的样式
+        $scope.cssblockiconactive = true;      //点击当前block按钮的选中的样式
         $scope.cssblocktipindexauto = -1;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexeditor = -1;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexstatic = -1;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
-        selectnewindex.isshownewblockedit=false;
-        selectnewindex=this;
-        this.isshownewblockedit=true;
+
         switch(blocktype)
         {
             case 'auto':
@@ -392,23 +404,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
     }
 
-    $scope.isshowblockedit=false;
-    $scope.showfillblock= function() {
-        this.isshowblockedit=true;
-    }
-    $scope.hidefillblock = function() {
-        if(selectindex==this){
-            this.isshowblockedit=true;
-        }else{
-            this.isshowblockedit=false;
-        }
-    }
-    var selectindex=-1;
-    $scope.showfilleditform=function(){
-        this.isshowblockedit=true;
-        selectindex.isshowblockedit=false;
-        selectindex=this;
-    }
+
 
     //header
     var headerflag=false;

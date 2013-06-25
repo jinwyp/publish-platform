@@ -143,42 +143,40 @@
                 <!-- Page: Row -->
                 <div class="row">
                     <div class="" ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
+
                         <!-- Block Box -->
-                        <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks" ng-class="{hoverfill:isshowblockedit}"  ng-mouseenter="showfillblock()" ng-mouseleave="hidefillblock()">
+                        <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks" ng-class="{hoverfill:cssblockeditmenubutton}"  ng-mouseenter="showeditblockmenubutton()" ng-mouseleave="hideeditblockmenubutton()">
                         	<!-- Content -->
                             <div class="site-theme b-block block-layout-1">
                                 <h2>TITLE NAME</h2>
                                 <ul>
-                                	<li><span>2012.5.31</span><h3><a href="#">Will Improving Thermal Coal Markets Boost Arch Coal Will Improving Thermal Coal Markets Boost Arch Coal?</a></h3></li>
-                                    <li><span>2012.5.30</span><h3><a href="#">Don’t Miss The Upcoming Bull Market In Uranium</a></h3></li>
-                                    <li><span>2012.5.29</span><h3><a href="#">Familiar Challenges, Familiar Opportunities At Chico's</a></h3></li>
-                                    <li><span>2012.5.28</span><h3><a href="#">Teaching Financial Literacy To Tweens: Introduction</a></h3></li>
+                                	<li><span>2012.5.28</span><h3><a href="#">Teaching Financial Literacy To Tweens: Introduction</a></h3></li>
                                     <li><span>2012.5.27</span><h3><a href="#">Women: Invest In Your Financial Literacy</a></h3></li>
                                 </ul>
                             </div>
                             <!-- ======================================= Block Attribute Panel ======================================= -->
-                            <div class="attribute_panel" ng-show="isshowblockedit">
-                                <a href="##" class="icon_editor" ng-click="showfilleditform();">editors</a>
-                                <a href="##" class="icon_setup" ng-click="showfilleditform();">setup</a>
-                                <a href="##" class="icon_move" ng-click="showfilleditform();">move</a>
-                                <a href="##" class="icon_delete" ng-click="showfilleditform();">delete</a>
+                            <div class="attribute_panel" ng-show="cssblockeditmenubutton">
+                                <a href="" class="icon_editor" ng-click="showarticleinput();">editors</a>
+                                <a href="" class="icon_setup" ng-click="showblocksetting();">setup</a>
+                                <a href="" class="icon_move" ng-click="moveblock();">move</a>
+                                <a href="" class="icon_delete" ng-click="delblock();">delete</a>
                             </div>
                             <!-- Block Box //End -->
                         </div>
 
                         <!-- Add Block Box -->
-                        <div id="blockcontent" class="block_content blockempty" ng-class="{hoverempty:isshownewblockedit}"  ng-mouseenter="showblockmenubutton($index)" ng-mouseleave="hideblockmenubutton($index)">
+                        <div id="blockcontent" class="block_content blockempty" ng-class="{hoverempty:cssblockaddmenubutton}"  ng-mouseenter="showaddblockmenubutton()" ng-mouseleave="hideaddblockmenubutton()">
                             <!-- ICO -->
-                            <div class="ico_box" ng-show="isshownewblockedit">
-                                <div class="ico_autoblock" ng-click="showblockautomenu($index, 'auto', $event)" ng-class="{ico_active:'auto'==cssblockiconactive}"><!-- Auto --></div>
-                                <div class="ico_autoeditor" ng-click="showblockautomenu($index, 'editor', $event)" ng-class="{ico_active:'editor'==cssblockiconactive}"><!-- Editor's --></div>
-                                <div class="ico_staticblock" ng-click="showblockautomenu($index, 'static', $event)" ng-class="{ico_active:'static'==cssblockiconactive}"><!-- Static --></div>
-                                <div class="ico_adblock"  ng-click="showblockautomenu($index, 'ads', $event)" ng-class="{ico_active:'ads'==cssblockiconactive}"><!-- AD --></div>
+                            <div class="ico_box" ng-show="cssblockaddmenubutton">
+                                <div class="ico_autoblock" ng-click="showblockautomenu($index, 'auto', $event)" ng-class="{ico_active:cssblockiconactive}"><!-- Auto --></div>
+                                <div class="ico_autoeditor" ng-click="showblockautomenu($index, 'editor', $event)" ng-class="{ico_active:cssblockiconactive}"><!-- Editor's --></div>
+                                <div class="ico_staticblock" ng-click="showblockautomenu($index, 'static', $event)" ng-class="{ico_active:cssblockiconactive}"><!-- Static --></div>
+                                <div class="ico_adblock"  ng-click="showblockautomenu($index, 'ads', $event)" ng-class="{ico_active:cssblockiconactive}"><!-- AD --></div>
                             </div>
                             <!-- ICO //End -->
 
                             <!-- =======================================  tip_auto ======================================= -->
-                            <div class="tip_box tip_auto" ng-show="$index==cssblocktipindexauto" >
+                            <div class="tip_box tip_auto" ng-show="cssblocktipindexauto" >
                                 <h1>Auto pick block attribute</h1>
                                 <div class="tabbable tabs-below">
                                     <div class="tab-content">
@@ -273,7 +271,7 @@
                             </div>
 
                             <!-- ======================================= tip_editor ======================================= -->
-                            <div class="tip_box tip_editor"  ng-show="$index==cssblocktipindexeditor">
+                            <div class="tip_box tip_editor"  ng-show="cssblocktipindexeditor">
                                 <h1>Editor's pick block attribute</h1>
                                 <div class="tab-content">
                                     <dl class="clearfix">
@@ -310,13 +308,13 @@
                             </div>
 
                             <!-- ======================================= tip_static ======================================= -->
-                            <div class="tip_box tip_static" ng-show="$index==cssblocktipindexstatic">
+                            <div class="tip_box tip_static" ng-show="cssblocktipindexstatic">
                                 <h1>Static</h1>
                                 <p>Null</p>
                             </div>
 
                             <!-- ======================================= tip_ad ======================================= -->
-                            <div class="tip_box tip_ads" ng-show="$index==cssblocktipindexads">
+                            <div class="tip_box tip_ads" ng-show="cssblocktipindexads">
                                 <h1>AD block attribute</h1>
                                 <p>Null</p>
                             </div>
@@ -463,7 +461,7 @@
                     <img src="{{layout.layoutimage}}">
                 </li>
             </ul>
-            <span href="##" class="ico_layout_close"></span>
+            <span href="##" class="ico_layout_close ico_layout_open"></span>
         </div>
         <!-- Page Layout//End -->
 </div>
