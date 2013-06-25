@@ -54,16 +54,32 @@
 
             <div class="article-title">ARTICLE LIST
                 <i class="article-title-ico">
-                    <a href="#" class="ico-article-search" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed"></a>
-                    <a href="#/newarticle/" class="ico-article-addnew" rel="tooltip" title="Add New Article"></a>
-                    <label><input type="radio" id=“create” name="time" ng-click="orderbytype('create')">Create</label>
-                    <label><input type="radio" id="updated" name="time" ng-click="orderbytype('updated')">Updated</label>
-                    <label><input type="radio" id="published" name="time" ng-click="orderbytype('published')">Published</label>
-                    <label><input type="radio" id="clickcount" name="time" ng-click="orderbytype('clickcount')">Click</label>
+                
+                	
+                        <!-- 
+                        <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                        -->
+                        
+                        <!-- <ul class="dropdown-menu">
+                          <li><label><input type="radio" id=“create” name="time" ng-click="orderbytype('create')">Create</label></li>
+                          <li><label><input type="radio" id="updated" name="time" ng-click="orderbytype('updated')">Updated</label></li>
+                          <li><label><input type="radio" id="published" name="time" ng-click="orderbytype('published')">Published</label></li>
+                          <li><label><input type="radio" id="clickcount" name="time" ng-click="orderbytype('clickcount')">Click</label></li>
+                        </ul>
+                        -->
+                        
+                		<!-- <a href="#" class="ico-article-search" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed"></a>-->
+                        
+                        <a href="#" class="ico-article-search dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>
+                    	<a href="#/newarticle/" class="ico-article-addnew" rel="tooltip" title="Add New Article"></a>
+                    
                 </i>
                 <div collapse="isCollapsed">
-                    <div class="well well-large">
-                        过滤条件：
+                    <div class="well">
+                       <label class="radio searchradio"><input type="radio" id="create" name="time" ng-click="orderbytype('create')">Create</label>
+                       <label class="radio searchradio"><input type="radio" id="updated" name="time" ng-click="orderbytype('updated')">Updated</label>
+                       <label class="radio searchradio"><input type="radio" id="published" name="time" ng-click="orderbytype('published')">Published</label>
+                       <label class="radio searchradio"><input type="radio" id="clickcount" name="time" ng-click="orderbytype('clickcount')">Click</label>
                     </div>
                 </div>
 

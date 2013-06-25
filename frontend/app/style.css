@@ -1125,6 +1125,7 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .article-title-ico 	{ display:block; float:right; font-style:normal;}
 .article-title-ico [class^="ico-article"],
 .article-title-ico [class*="ico-article"]{ margin-left:20px;}
+.radio.searchradio	{ float:left;}
 
 /* Container */
 .article-cont		{ background:#fff; border-radius:4px;}
