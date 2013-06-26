@@ -1240,7 +1240,7 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .list-date > dl dd p.titlename{ font-weight:bold;}
 
 /* List Counter */
-.list-count					{ float:right; width:150px; max-width:150px;}
+.list-count					{ float:right; width:180px; max-width:180px;}
 .list-count > dl			{ margin:0; padding:0; *zoom:1;}
 .list-count > dl:before,
 .list-count > dl:after		{ display:table; line-height:0; content:"";}
@@ -1249,8 +1249,8 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .list-count > dl dd span	{ display:block; margin-top:20px; font-size:36px; color:#bbb; font-family:Helvetica, Arial, sans-serif; font-weight:bold;}
 .list-count .btn			{ margin:20px 0 0 0; text-decoration:none; outline:none;}
 .list-count .dropdown-menu	{ }
-.list-count .dropdown-menu li{ float:left; width:47%; text-align:center;}
-.list-count .dropdown-menu .btn{ margin:0 0 0 0;}
+.list-count .dropdown-menu li{ padding:4px 8px; }
+.list-count .dropdown-menu .btn{ margin:0;}
 /*
 .list-count .btn			{ margin:20px 0 0 0; border-top:0; padding:0 12px; height:28px; line-height:26px; font-size:12px; color:#fff; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.3); outline:none; text-shadow:0 -1px 0 rgba(0,0,0,0.3); text-decoration:none; font-weight:bold;
     background:url(../app/img/article_btn_bg.png) 0 -136px repeat-x;
