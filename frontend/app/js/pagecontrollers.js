@@ -459,12 +459,11 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
 
         var blockcontent = $(event1.target).parent().parent();     //获取id 为 blockcontent DIV .
-        blockcontent.append($(".tip_"+ blocktype));
+        blockcontent.append($(".tip_box"));
         var blocktypemenu = $(".tip_"+ blocktype)     //获取样式名称拼接 .
-
         var left =  ( parseInt(blockcontent.width() ) - parseInt( blocktypemenu.width() ) )/2;
         blocktypemenu.css({"left":left+"px", "top":-(blocktypemenu.height()), "position":"absolute"});
-        console.log(blockcontent.height(), blocktypemenu.height());
+//        console.log(blockcontent.height(), blocktypemenu.height());
     };
 
     $scope.clickblocklayouttab = function(event1, divid) {
@@ -475,7 +474,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
                 heightdiff = 197;
                 break;
             case 'tab-filter':
-                heightdiff = 277 ;
+                heightdiff = 210;
                 break;
             case 'tab-Sort':
                 heightdiff = 145;
@@ -484,7 +483,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         }
         var blockcontent2 = $(event1.target).parent().parent().parent().parent().parent();    //获取id 为 blockcontent DIV .
         var blocktypemenu2 = $(".tip_auto");     //获取样式名称拼接
-//        var heightdiff = 125 + $("#"+ divid ).height();
+//        var heightdiff = 81 + $("#"+ divid ).height();
         blocktypemenu2.css({"top":-(heightdiff), "position":"absolute"});
         console.log(blockcontent2.height(), blocktypemenu2.height(), heightdiff);
 
