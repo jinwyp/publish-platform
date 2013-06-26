@@ -391,17 +391,16 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
         $scope.articledata.revision.push(newrevision);
         modelArticle.saveArticle($scope.articledata);
-
-    }
+    };
     $scope.publisharticle=function(){
         $scope.articledata.published=modelArticle.getDateNow();
         modelArticle.saveArticle($scope.articledata);
-    }
+    };
 
     //显示Edit预览内容
     $scope.showeditpreview = function(val){
         return val;
-    }
+    };
 
     $scope.displayversioninfo=function(data){
        // var data=$scope.articledata.revision[index];
@@ -414,7 +413,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
         }
         $('.tagsinput').importTags(tagstr);
     }
-}
+};
 
 articleapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle) {
    $(".tagsinput").tagsInput({
