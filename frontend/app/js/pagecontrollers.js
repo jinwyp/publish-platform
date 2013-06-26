@@ -25,25 +25,49 @@ pageapp.controller(page.c);
 
 pageapp.factory('modelSite', function(){
 
+    var articlelist=[],taglist=[];
+    if(window.localStorage){
+        if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
+            articlelist=[];
+            taglist=[];
+        }else{
+            articlelist = JSON.parse(localStorage.getItem("articlesData"));
+            taglist = JSON.parse(localStorage.getItem("tagsData"));
+        }
+    }
+
     var sitedata = {
-        siteid:1,
-        sitename:'NewSite',
+        siteid : 1,
+        sitename : 'NewSite',
 
         pagelist : [
             { siteid:1, pagename:'Homepage', pageid:101, pagetype:10, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
                 pagelayoutdata:[
                     {layoutcontainerclass:"span9", layoutcontainerid:1000 , blocks:[
-                        {blockid:100, blocktype:1, blockname:"name1",blocklayout:10, blockquantity:6, blocktag:[], blockcategory:[], blocksortby:'date' } ,
-                        {blockid:101, blocktype:1, blockname:"name2" } ,
-                        {blockid:102, blocktype:1, blockname:"name3" }
-                    ]
+                        {blockid:100, blocktype:1, blockname:"Today hot",blocklayout:10, blockquantity:6, blocktag:[], blockcategory:[], blocksortby:'date' , blockarticles:[
+                            {"id": 1000, "title": "multiple partial views in angularjs111.",  "status": "needreview",
+                                "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023,
+                                "category": "Today", "categoryid":1000,
+                                "tags": [
+                                    { "tagid":10000, "tagname":"computer" },
+                                    { "tagid":10001, "tagname":"videocard" }
+                                ]
+                            },
+                            {"id": 1002, "title": "222222222.",  "status": "needreview",
+                                "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023,
+                                "category": "Today", "categoryid":1000,
+                                "tags": [
+                                    { "tagid":10000, "tagname":"computer" },
+                                    { "tagid":10001, "tagname":"videocard" }
+                                ]
+                            }
+                            ]
+                        }
+                        ]
                     },
                     {layoutcontainerclass:"span3", layoutcontainerid:1000, blocks:[] }
                 ]
             },
-            { siteid:1, pagename:'Channel2', pageid:102,  pagetype:20, pagetitle:"Ch2", pageurl:"ch2", pageorder:6,  pagelayoutid:10, pagelayoutdata:[] },
-            { siteid:1, pagename:'Channel3', pageid:103,  pagetype:20, pagetitle:"Ch3", pageurl:"ch3", pageorder:10, pagelayoutid:10, pagelayoutdata:[] },
-
 
             { siteid:1, pagename:'Article', pageid:103, pagetype:11, pagetitle:"article", pageurl:"article", pageorder:0, pagelayoutid:10, pagelayoutdata:[] }
         ],
@@ -128,7 +152,6 @@ pageapp.factory('modelSite', function(){
             var pageindex = sitedata.pagelist.indexOf(pagedata);
             sitedata.pagelist.splice(pageindex, 1);
         }
-        return;
     };
 
     factory.addSingleBlockToPage = function (newblock, pagelayout, pagedata) {
@@ -139,7 +162,6 @@ pageapp.factory('modelSite', function(){
         pagelayout.blocks.push(newblock);
 
         sitedata.pagelist[pageindex].pagelayoutdata[layoutindex] = pagelayout;
-        return  ;
     };
 
 
@@ -188,6 +210,53 @@ pageapp.factory('modelSite', function(){
     factory.addfooterMenu = function (menudata) {
         return  sitedata.footerdata.push(menudata);
     };
+
+
+    //Tags
+    factory.getMaxTagID = function () {
+
+        var tagmaxid;
+        if(taglist.length==0){
+            tagmaxid=10001;
+        }else{
+            tagmaxid = taglist[taglist.length-1].tagid + 1;
+        }
+        return tagmaxid;
+    };
+
+    factory.checkTagExist = function (tagname) {
+        var tagresult = _.findWhere(taglist, {tagname: tagname});
+        if (tagresult === undefined) {
+            return false;
+        }else{
+//            console.log(tagresult);
+            return tagresult;
+        }
+    };
+
+    factory.createNewTag = function (tagdata) {
+        taglist.push(tagdata);
+        localStorage.setItem("tagsData",JSON.stringify(taglist));
+        return tagdata;
+    };
+
+    factory.getArticlesByTags = function (taglistdata) {
+        var articlesresult = [];
+
+        articlesresult = _.filter(articlelist, function(element1){
+            var article1;
+            var singlearticletags = _.filter(element1.tags, function(element2){
+                    var tagresult = _.where(taglistdata, element2);
+                    return tagresult.length;
+                });
+            console.log(element1, singlearticletags);
+            return  singlearticletags.length;
+
+        });
+        console.log(articlesresult);
+
+        return articlesresult;
+    };
     return factory;
 });
 
@@ -204,6 +273,17 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     $scope.newheaderdata ={};
     $scope.headerthemes ={};
     $scope.footerthemes={};
+    $scope.newblock = {
+        blockid : 100,
+        blocktype : 1,
+        blocktitle : "title1",
+        blockname : "name1",
+        blocklayout : 10,
+        blockquantity : 6,
+        blocktag : [],
+        blockcategory : [],
+        blocksortby : 'bydate'
+    };
 
     initialize();
 
@@ -230,11 +310,12 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
         $scope.cssshowpageaddinput = false;    //添加page的输入框默认不显示
 
-        $scope.cssblockiconactive = false;      //点击当前block按钮的选中的样式
-        $scope.cssblocktipindexauto = -1;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexeditor = -1;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexstatic = -1;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexauto = false;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexeditor = false;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexstatic = false;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipindexads = false;      //点击当前block按钮显示对应block类型菜单
+
+
 
         $scope.cssheadermenuhavadata = false;      //Header是否有数据
         $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮显示
@@ -265,23 +346,23 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         }
 
         $scope.cssshowpageaddinput = false;       //添加page的输入框不显示
-    }
+    };
 
     $scope.showaddpageinput = function() {
         $scope.cssshowpageaddinput = true;       //添加page的输入框显示
-    }
+    };
     $scope.showeditpageattribute = function() {
         $scope.csspageattribute = true;       //添加page的输入框显示
-    }
+    };
     $scope.closeeditpageattribute = function() {
         $scope.csspageattribute = false;       //添加page的输入框显示
-    }
+    };
 
 
     //left side bar add page
     $scope.showaddpageinput = function() {
         $scope.cssshowpageaddinput = true;       //添加page的输入框显示
-    }
+    };
 
     $scope.addpage = function() {
         $scope.cssshowpageaddinput = false;       //添加page的输入框显示
@@ -292,123 +373,156 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             pagetype:20,
             pagetitle:$scope.newpage.pagetitle,
             pageurl:$scope.newpage.pageurl
-        }
+        };
         modelSite.addSinglePage(newpage);
-    }
+    };
 
 
     //left side bar add page attribute
     $scope.showeditpageattribute = function(indexid) {
         $scope.selectedpageattributeindex = indexid;    //点击显示当前的page 属性面板
-    }
+    };
 
     $scope.closeeditpageattribute = function(indexid) {
         $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
-    }
+    };
 
     $scope.editsavepage = function(page) {
         $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
         modelSite.updateSinglePage(page);
-    }
+    };
     $scope.delpage = function( page) {
         $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
         modelSite.delSinglePage(page);
-    }
+    };
 
     //right side bar
     $scope.clicklayout = function(indexid, layout) {
         $scope.defaultselectedlayoutindex = indexid;
         modelSite.saveSinglePageLayout($scope.singlepage, layout);
-    }
+    };
+
+
+
+
+    // show Block MouseOver Menu Button
+    $scope.cssblockeditmenubutton = false;
+    $scope.showeditblockmenubutton= function() {
+        this.cssblockeditmenubutton = true;
+    };
+    $scope.hideeditblockmenubutton = function() {
+        this.cssblockeditmenubutton = false;
+    };
+
+    $scope.showblocksetting=function(){
+        this.cssblockeditmenubutton = false;
+    };
+    $scope.moveblock=function(){
+        this.cssblockeditmenubutton = false;
+    };
+    $scope.delblock=function(){
+        this.cssblockeditmenubutton = false;
+    };
 
     //add blocks
-    $scope.showblockmenubutton = function() {
-        this.isshownewblockedit=true;
-    }
-    $scope.hideblockmenubutton = function() {
-        if(selectnewindex==this){
-            this.isshownewblockedit=true;
-        }else{
-            this.isshownewblockedit=false;
-        }
-    }
-    var selectnewindex=-1;
-    $scope.isshownewblockedit=false;
-    $scope.showblockautomenu = function( indexid, blocktype, event1) {
-        $scope.cssblockiconactive = blocktype;      //点击当前block按钮的选中的样式
-        $scope.cssblocktipindexauto = -1;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexeditor = -1;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexstatic = -1;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
-        selectnewindex.isshownewblockedit=false;
-        selectnewindex=this;
-        this.isshownewblockedit=true;
+    $scope.showaddblockmenubutton = function() {
+        this.cssblockaddmenubutton = true;
+    };
+    $scope.hideaddblockmenubutton = function() {
+        this.cssblockaddmenubutton = false;
+    };
+
+    $scope.showblocksettingmenu = function( indexid, blocktype, event1) {
+        this.cssblocktipindexauto = false;      //点击当前block按钮显示对应block类型菜单
+        this.cssblocktipindexeditor = false;      //点击当前block按钮显示对应block类型菜单
+        this.cssblocktipindexstatic = false;      //点击当前block按钮显示对应block类型菜单
+        this.cssblocktipindexads = false;      //点击当前block按钮显示对应block类型菜单
+
         switch(blocktype)
         {
             case 'auto':
-                $scope.cssblocktipindexauto = indexid;      //点击当前block按钮显示对应block类型菜单
+                this.cssblocktipindexauto = true;      //点击当前block按钮显示对应block类型菜单
                 break;
             case 'editor':
-                $scope.cssblocktipindexeditor = indexid;      //点击当前block按钮显示对应block类型菜单
+                this.cssblocktipindexeditor = true;      //点击当前block按钮显示对应block类型菜单
                 break;
             case 'static':
-                $scope.cssblocktipindexstatic = indexid;      //点击当前block按钮显示对应block类型菜单
+                this.cssblocktipindexstatic = true;      //点击当前block按钮显示对应block类型菜单
                 break;
             case 'ads':
-                $scope.cssblocktipindexads = indexid;      //点击当前block按钮显示对应block类型菜单
+                this.cssblocktipindexads = true;      //点击当前block按钮显示对应block类型菜单
                 break;
             default:
         }
         var blockcontent = $(event1.target).parent().parent();
-        var blocktypemenu = blockcontent.find(".tip_"+blocktype);     //获取样式名称拼接
+        console.log();
+        var blocktypemenu = blockcontent.find(".tip_"+ blocktype );     //获取样式名称拼接
         var left =  ( parseInt(blockcontent.width() ) - parseInt( blocktypemenu.width() ) )/2;
         blocktypemenu.css({"left":left+"px","top":-(blocktypemenu.height()),"position":"absolute"});
-    }
+    };
+
     $scope.clickblocklayouttab = function(event1,id,cssid) {
+
         if($("#"+cssid).attr("class")=="active"){
             return;
         }else{
             var blockcontent1 = $(event1.target).parent().parent().parent().parent().parent();
             var blocktypemenu1 = blockcontent1.find(".tip_auto");     //获取样式名称拼接
-            var heightdiff=102+$("#"+id).height();
+            var heightdiff = 102 + $("#"+id).height();
             blocktypemenu1.css({"top":-(heightdiff),"position":"absolute"});
         }
-    }
-    $scope.addblocktopage = function(layoutcontainer ) {
-        var newblock = {
-            blockid:200,
-            blocktype:1,
-            blockname:"name1",
-            blocklayout:10,
-            blockquantity:6,
-            blocktag:[],
-            blockcategory:[],
-            blocksortby:'date'
-        }
-        modelSite.addSingleBlockToPage(newblock, layoutcontainer, $scope.singlepage );
-        $scope.cssblocktipindexauto = -1;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexeditor = -1;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexstatic = -1;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexads = -1;      //点击当前block按钮显示对应block类型菜单
-    }
+    };
 
-    $scope.isshowblockedit=false;
-    $scope.showfillblock= function() {
-        this.isshowblockedit=true;
-    }
-    $scope.hidefillblock = function() {
-        if(selectindex==this){
-            this.isshowblockedit=true;
-        }else{
-            this.isshowblockedit=false;
+    // add a block to page
+    $scope.addblocktopage = function(blocktype, layoutcontainer ) {
+        var newblock = {
+            blockid : 200,
+            blocktype : 1,
+            blockname : "name1",
+            blocklayout : 10,
+            blockquantity : 6,
+            blocktag : [],
+            blockcategory : [],
+            blocksortby : 'date',
+            blockarticles : []
+        };
+
+        //检查Tags
+        var temptagslistname = $(".tagsinput").exportTags();
+
+
+        for(var i=0;i<temptagslistname.length;i++){
+            //在tag 数据库查询是否是已经存在的tag
+            var newtag;
+            if(  modelSite.checkTagExist(temptagslistname[i]) ){
+                newtag = modelSite.checkTagExist(temptagslistname[i]);
+            }else{
+                newtag = {
+                    "tagid" : modelSite.getMaxTagID(),
+                    "tagname" : temptagslistname[i]
+                }
+                modelSite.createNewTag(newtag);
+            }
+            newblock.blocktag.push(newtag);
         }
-    }
-    var selectindex=-1;
-    $scope.showfilleditform=function(){
-        this.isshowblockedit=true;
-        selectindex.isshowblockedit=false;
-        selectindex=this;
-    }
+
+        //通过Tags 获取文章
+        newblock.blockarticles = modelSite.getArticlesByTags(newblock.blocktag);
+        console.log(temptagslistname);
+
+        modelSite.addSingleBlockToPage(newblock, layoutcontainer, $scope.singlepage );
+        this.cssblocktipindexauto = false;      //点击当前block按钮显示对应block类型菜单
+        this.cssblocktipindexeditor = false;      //点击当前block按钮显示对应block类型菜单
+        this.cssblocktipindexstatic = false;      //点击当前block按钮显示对应block类型菜单
+        this.cssblocktipindexads = false;      //点击当前block按钮显示对应block类型菜单
+    };
+
+
+
+
+
+
+
 
     //header
     var headerflag=false;
