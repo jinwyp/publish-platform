@@ -65,7 +65,7 @@ pageapp.factory('modelSite', function(){
                         }
                         ]
                     },
-                    {layoutcontainerclass:"span3", layoutcontainerid:1000, blocks:[] }
+                    {layoutcontainerclass:"span3", layoutcontainerid:1001, blocks:[] }
                 ]
             },
 
@@ -432,7 +432,9 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         this.cssblockaddmenubutton = true;
     };
     $scope.hideaddblockmenubutton = function() {
-        this.cssblockaddmenubutton = false;
+//        this.cssblockaddmenubutton = false;
+//        this.cssblocktipadd = false;
+        this.cssblocktipadd = 'auto';
     };
 
     $scope.showblocksettingmenu = function( indexid, blocktype, event1) {
@@ -454,23 +456,35 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
                 break;
             default:
         }
-        var blockcontent = $(event1.target).parent().parent();
-        console.log();
-        var blocktypemenu = blockcontent.find(".tip_"+ blocktype );     //获取样式名称拼接
+        var blockcontent = $(event1.target).parent().parent();     //获取id 为 blockcontent DIV .
+        var blocktypemenu = blockcontent.find(".tip_"+ blocktype );     //获取样式名称拼接 .
+
         var left =  ( parseInt(blockcontent.width() ) - parseInt( blocktypemenu.width() ) )/2;
-        blocktypemenu.css({"left":left+"px","top":-(blocktypemenu.height()),"position":"absolute"});
+        blocktypemenu.css({"left":left+"px", "top":-(blocktypemenu.height()), "position":"absolute"});
+        console.log(blockcontent.height(), blocktypemenu.height());
     };
 
-    $scope.clickblocklayouttab = function(event1,id,cssid) {
-
-        if($("#"+cssid).attr("class")=="active"){
-            return;
-        }else{
-            var blockcontent1 = $(event1.target).parent().parent().parent().parent().parent();
-            var blocktypemenu1 = blockcontent1.find(".tip_auto");     //获取样式名称拼接
-            var heightdiff = 102 + $("#"+id).height();
-            blocktypemenu1.css({"top":-(heightdiff),"position":"absolute"});
+    $scope.clickblocklayouttab = function(event1, divid) {
+        var heightdiff;
+        switch(divid)
+        {
+            case 'tab-layout':
+                heightdiff = 197;
+                break;
+            case 'tab-filter':
+                heightdiff = 210;
+                break;
+            case 'tab-Sort':
+                heightdiff = 145;
+                break;
+            default:
         }
+        var blockcontent2 = $(event1.target).parent().parent().parent().parent().parent();    //获取id 为 blockcontent DIV .
+        var blocktypemenu2 = blockcontent2.find(".tip_auto");     //获取样式名称拼接
+//        var heightdiff = 125 + $("#"+ divid ).height();
+        blocktypemenu2.css({"top":-(heightdiff), "position":"absolute"});
+        console.log(blockcontent2.height(), blocktypemenu2.height(), heightdiff);
+
     };
 
     // add a block to page

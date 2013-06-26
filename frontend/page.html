@@ -187,7 +187,7 @@
                                 <div class="tabbable tabs-below">
                                     <div class="tab-content">
                                         <!-- Tab1: Layout -->
-                                        <div class="tab-pane active" id="tab-layout">
+                                        <div class="tab-pane active" id="tab-layout-{{ newblock.blockid}}-{{layoutcontainer.layoutcontainerid }}">
                                             <dl class="clearfix">
                                                 <dt>Layout :</dt>
                                                 <dd>
@@ -210,7 +210,7 @@
                                         </div>
                                         <!-- Tab1: Layout //End -->
                                         <!-- Tab2: Filter -->
-                                        <div class="tab-pane" id="tab-filter">
+                                        <div class="tab-pane" id="tab-filter-{{ newblock.blockid}}-{{layoutcontainer.layoutcontainerid }}">
                                             <dl class="clearfix">
                                                 <dt>Catagory :</dt>
                                                 <dd>
@@ -223,7 +223,7 @@
                                                 <dt>Tag :</dt>
                                                 <dd>
                                                     <div class="tipbox_filter">
-                                                        <input name="tagsinput" id="tagsinput" class="tagsinput" value="" />
+                                                        <input name="tagsinput"  class="tagsinput" value="" />
                                                     </div>
                                                 </dd>
                                             </dl>
@@ -238,7 +238,7 @@
                                         </div>
                                         <!-- Tab2: Filter //End -->
                                         <!-- Tab3: Sort -->
-                                        <div class="tab-pane" id="tab-Sort">
+                                        <div class="tab-pane" id="tab-Sort-{{ newblock.blockid}}-{{layoutcontainer.layoutcontainerid }}">
                                             <dl class="clearfix">
                                                 <dt>Sort by :</dt>
                                                 <dd>
@@ -256,9 +256,9 @@
                                         <!-- Tab3: Sort //End -->
                                     </div>
                                     <ul class="nav nav-tabs">
-                                        <li id="layout" class="active"><a href="#tab-layout" data-toggle="tab" ng-click="clickblocklayouttab($event,'tab-layout','layout')">Layout</a></li>
-                                        <li id="filter"><a href="#tab-filter" data-toggle="tab" ng-click="clickblocklayouttab($event,'tab-filter','filter')">Filter</a></li>
-                                        <li id="sort"><a href="#tab-Sort" data-toggle="tab" ng-click="clickblocklayouttab($event,'tab-Sort','sort')">Sort</a></li>
+                                        <li id="layout" class="active"><a href="#tab-layout-{{ newblock.blockid}}-{{layoutcontainer.layoutcontainerid }}" data-toggle="tab" ng-click="clickblocklayouttab($event,'tab-layout')">Layout</a></li>
+                                        <li id="filter"><a href="#tab-filter-{{ newblock.blockid}}-{{layoutcontainer.layoutcontainerid }}" data-toggle="tab" ng-click="clickblocklayouttab($event,'tab-filter')">Filter</a></li>
+                                        <li id="sort"><a href="#tab-Sort-{{ newblock.blockid}}-{{layoutcontainer.layoutcontainerid }}" data-toggle="tab" ng-click="clickblocklayouttab($event,'tab-Sort')">Sort</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -436,11 +436,26 @@
             <span href="##" class="ico_layout_close ico_layout_open"></span>
         </div>
         <!-- Page Layout//End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 </div>
     <!-- Load JS -->
     <script src="lib/underscore/underscore-min.js"></script>
     <script src="lib/angular/1.1.5/angular.js"></script>
+    <script src="lib/angularui/angular-ui.min.js"></script>
     <script src="app/js/app.js"></script>
     <script src="app/js/pagecontrollers.js"></script>
     <script src="lib/jquery/jquery-1.8.2.min.js"></script>
