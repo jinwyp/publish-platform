@@ -249,11 +249,10 @@ pageapp.factory('modelSite', function(){
                     var tagresult = _.where(taglistdata, element2);
                     return tagresult.length;
                 });
-            console.log(element1, singlearticletags);
+//            console.log(element1, singlearticletags);
             return  singlearticletags.length;
 
         });
-        console.log(articlesresult);
 
         return articlesresult;
     };
