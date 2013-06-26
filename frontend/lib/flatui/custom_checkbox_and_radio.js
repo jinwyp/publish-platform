@@ -25,6 +25,7 @@ function setupLabel() {
         });
     };
 
+    debugger;
     // Radios
     if ($(radioInput).length) {
         $(radio).each(function(){
