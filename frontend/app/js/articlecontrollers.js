@@ -277,9 +277,14 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
                }
         }
     }
-
+    //debugger;
     $scope.loadinit('updated');
-    $("#updated")[0].checked=true;
+    $(".checkbox, .radio").prepend("<span class='icon'></span><span class='icon-to-fade'></span>");
+    $("#updated").attr("checked",true);
+    $("#create").attr("checked",false);
+    $("#published").attr("checked",false);
+    $("#clickcount").attr("checked",false);
+    setupLabel();
     //页面总数
     var count=10;
     $scope.noOfPages =parseInt($scope.articlestotaldata.length/count)+1;
@@ -488,6 +493,7 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
             for(var i=0;i<temptagslistname.length;i++){
                 //在tag 数据库查询是否是已经存在的tag
                 if(modelArticle.checkTagExist(temptagslistname[i])){
+
                     var newtag = modelArticle.checkTagExist(temptagslistname[i]);
                 }else{
                     var newtag = {
