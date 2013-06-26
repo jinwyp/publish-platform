@@ -10,7 +10,7 @@
                 <i class="article-title-ico">
                     <a href="" class="ico-article-del" rel="tooltip" title="Delete Article"  ng-click="openModal()"></a>
                     <a href="#/detail/{{articlepreviewdata.id}}" class="ico-article-edit" rel="tooltip" title="Edit Article"></a>
-                    <!--<a href="" class="ico-article-setup" rel="tooltip" title="Tag Category"></a>-->
+                    <!-- <a href="" class="ico-article-setup" rel="tooltip" title="Tag Category"></a> -->
                 </i>
                 <div modal="cssmodalshow" options="cssmodalslide" >
                     <div class="modal-header">
@@ -90,6 +90,37 @@
             <div class="article-cont">
 
                 <ul class="article-list">
+                
+                
+                	<!-- 静态演示用，可随时删除 -->
+                	<li>
+                        <div class="list-date">
+                            <h1><a href="###">SuSa</a></h1>
+                            <dl>
+                                <dd><p class="titlename">Created</p><p>2013.6.25</p></dd>
+                                <dd><p class="titlename">Published</p><p>2013.6.25</p></dd>
+                                <dd><p class="titlename">Updated</p><p>2013.6.25</p></dd>
+                                <dd><p class="titlename">Author</p><p>Susa</p></dd>
+                                <dd><p class="titlename">Editor</p><p>Melvon</p></dd>
+                            </dl>
+                        </div>
+                        <div class="list-count">
+                            <dl>
+                                <dd><span>999,999</span></dd>
+                                <dd><input type="submit" class="btn btn-primary" data-toggle="dropdown" value="Need Review">
+                                		<ul class="dropdown-menu clearfix">
+                                          <li><input type="submit" value="Draft" class="btn btn-info"></li>
+                                          <li><input type="submit" value="Publish" class="btn btn-success"></li>
+                                        </ul>
+                                </dd>
+                                <dd><input type="submit" class="btn" data-toggle="dropdown" value="Reviewed" disabled></dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <!-- 静态演示用，可随时删除 //End-->
+                    
+                    
+                    
                     <li ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata track by $index | filter:query"  ng-click="clickArticle(article, $index)" >
                         <div class="list-date">
                             <h1><a href="" >{{article.title}}</a></h1>
