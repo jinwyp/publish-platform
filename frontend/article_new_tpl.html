@@ -1,22 +1,28 @@
-
-
+<form name="newFeed">
     <!-- Content -->
-	<div class="article" >
-    
-    	<div class="write_title">
-        	<a href="article_list_index.html" class="showlist" rel="tooltip" title="Article List"></a>
-        	<h1 >{{newarticleadata.title}}</h1>
-            <input type="text" class="title_input" value="" ng-model="newarticleadata.title">
-        </div>
-        
-        <div class="article-row">
-        
-        
-            <!-- Left -->
-            <div class="article-span9" ng-hide="cssTagsPanel">
-                <div class="article-title">MARKDOWN
-                    <i class="article-title-ico">
+    <div class="article" >
 
+        <div class="write_title">
+            <a href="article_list_index.html" class="showlist" rel="tooltip" title="Article List"></a>
+            <!--<h1 >{{newarticleadata.title}}</h1>-->
+            <input class="title_input" placeholder="Title name" ng-model="newarticleadata.title" type="text" required>
+        </div>
+        <div class="article-row">
+
+            <!-- Left -->
+            <div class="article-span9">
+                <div class="article-title">PREVIEW
+                    <i class="article-title-ico">520 Words</i>
+                </div>
+                <!-- 预览区 -->
+                <div id="article-cont-preview" class="article-cont" ng-bind-html-unsafe="showinserthtml(newarticleadata.contentbody);"></div>
+                <!-- 预览区 //End-->
+            </div>
+            <!-- Left //End -->
+            <!-- Right  -->
+            <div class="article-span9" ng-hide="cssTagsPanel">
+                <div class="article-title">CKeditor
+                    <i class="article-title-ico">
                         <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = !cssTagsPanel"></a>
                     </i>
                 </div>
@@ -26,9 +32,8 @@
                 </div>
                 <!-- 编辑器 //End-->
             </div>
-            <!-- Left //End -->
-
-            <!-- Left -->
+            <!-- Right //End -->
+            <!-- Right Hide Panel -->
             <div class="article-span9" ng-show="cssTagsPanel">
                 <!-- Tags & Category -->
                 <div class="article-title">ARTICLE ATTRIBUTE
@@ -36,54 +41,34 @@
                         <a href="" class="ico-article-backedit" rel="tooltip" title="Back Write" ng-click="cssTagsPanel = !cssTagsPanel"></a>
                     </i>
                 </div>
+
                 <!-- Article Arrtibute -->
                 <div class="article-cont">
-
-                    <!-- 测试用，不用管这段 ->
-                    <div class="tabbable tabs-below">
-                     <div class="tab-content">
-                       <div class="tab-pane active" id="A">
-                         <p>I'm in Section A.</p>
-                       </div>
-                       <div class="tab-pane" id="B">
-                         <p>Howdy, I'm in Section B.</p>
-                       </div>
-                       <div class="tab-pane" id="C">
-                         <p>What up girl, this is Section C.</p>
-                       </div>
-                     </div>
-                     <ul class="nav nav-tabs">
-                       <li class="active"><a href="#A" data-toggle="tab">Section 1</a></li>
-                       <li><a href="#B" data-toggle="tab">Section 2</a></li>
-                       <li><a href="#C" data-toggle="tab">Section 3</a></li>
-                     </ul>
-                   </div>
-                   <!-- 测试用，不用管这段 //End -->
 
                     <!-- Tags -->
                     <div class="atricle_attribute_box">
                         <h3>Tags</h3>
-                        <!-- 测试用，不用管这段 ->
-                        <input type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-                        -->
                         <input name="tagsinput" id="tagsinput" class="tagsinput" value="" />
                     </div>
                     <!-- Tags //End -->
 
-
-
                     <!-- Category -->
                     <div class="atricle_attribute_box">
                         <h3>Category</h3>
+                        <select ng-model="newarticleadata.category" class="select-block span3">
+                            <option value="0">Choose hero</option>
+                            <option value="1">Spider Man</option>
+                            <option value="2">Wolverine</option>
+                            <option value="3">Captain America</option>
+                            <option value="X-Men" selected="selected">X-Men</option>
+                            <option value="Crocodile">Crocodile</option>
+                        </select>
                     </div>
                     <!-- Category End -->
 
-
-
-
                     <!-- Social -->
                     <div class="atricle_attribute_box">
-                        <h3>Social</h3>
+                        <h3>Social Up</h3>
                         <div class="share mrl">
                             <ul>
                                 <li>
@@ -129,44 +114,22 @@
 
                 </div>
                 <!-- Tags & Category //End-->
+
             </div>
-            <!-- Left //End -->
-            
-            
-            
-            <!-- Right -->
-            <div class="article-span9">
-            	<div class="article-title">PREVIEW
-                    <i class="article-title-ico">520 WRODS</i>
+            <!-- Right Hide Panel //End -->
+            </div>
+        </div>
+        <div class="article-footer">
+            <div class="article_btn">
+                <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="createNewArticle(newFeed)">
+                <a href="" class="btn-publish" rel="tooltip" data-placement="top" title="PUBLISH" ng-click="createNewArticle()">PUBLISH</a>
+            </div>
+            <!-- 版本节点 -->
+            <div class="vernode">
+                <div class="line">
+                    <a href="" class="node" ng-class="{last:$last, current:$last}" rel="tooltip" ng-repeat="revision in newarticleadata.revision"   title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy'}}">{{revision.versionnum}}</a>
                 </div>
-                <!-- 预览区 -->
-                <div id="article-cont-preview" class="article-cont"></div>
-                <!-- 预览区 //End-->
-            </div>
-            <!-- Right //End -->
-            
-            
-            
-        </div>
-        
-            
-    </div>
-    <!-- Content //End -->
-    
-    
-    <div class="article-footer">
-        <!-- 发布按钮 -->
-        <div class="article_btn">
-
-        	<a href="" class="btn-savedraft" rel="tooltip" data-placement="top" title="SAVE DRAFT" ng-click="createNewArticle()">SAVE DRAFT</a>
-            <a href="" class="btn-publish" rel="tooltip" data-placement="top" title="PUBLISH" ng-click="createNewArticle()">PUBLISH</a>
-
-        </div>
-        
-        <!-- 版本节点 -->
-        <div class="vernode">
-            <div class="line">
-                <a href="" class="node" ng-class="{last:$last, current:$last}" rel="tooltip" ng-repeat="revision in newarticleadata.revision"   title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy'}}">{{revision.versionnum}}</a>
             </div>
         </div>
     </div>
+</form>

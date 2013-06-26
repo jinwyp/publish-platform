@@ -14,6 +14,7 @@
     <!-- 默认 Site Theme -->
     <link href="theme/default/site-theme.css" rel="stylesheet">
       <script src="ckeditor/ckeditor.js"></script>
+      <script src="ckeditor/plugins/forms/plugin.js"></script>
   </head>
 <body style="background:#e9e8e4;">
 
@@ -23,9 +24,12 @@
 <header class="header">
 	<h1 class="logo">VCP</h1><a href="page.html" class="signin">Sign In</a>
     <ul class="menu clearfix">
+    	<li><a href="#">User</a></li>
     	<li><a href="site.html">Site</a></li>
         <li><a href="page.html">Page</a></li>
         <li><a href="article_list_index.html" class="current">Article</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="store.html">Store</a></li>
     </ul>
 </header>
 
@@ -37,7 +41,10 @@
 
 
 
-
+<!--<label class="radio searchradio" ng-click="orderbytype('create')"><input type="radio" id="create" name="time">Create</label>
+<label class="radio searchradio" ng-click="orderbytype('updated')"><input type="radio" id="updated" name="time">Updated</label>
+<label class="radio searchradio" ng-click="orderbytype('published')"><input type="radio" id="published" name="time">Published</label>
+<label class="radio searchradio" ng-click="orderbytype('clickcount')"><input type="radio" id="clickcount" name="time">Click</label>-->
 
 
 
@@ -52,13 +59,13 @@
     <script src="lib/boostrap/ui-bootstrap-tpls-0.3.0.js"></script>
 	<script src="app/js/articlecontrollers.js"></script>
     <script src="lib/moment/moment.min.js"></script>
+    <script src="lib/underscore/underscore-min.js"></script>
 	<!-- Load JS -->
 	<script src="lib/jquery/jquery-1.8.2.min.js"></script>
     <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
     <!-- FlatUI Plug -->
     <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
     <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
-    <script src="lib/flatui/custom_radio.js"></script>
     <script src="lib/flatui/jquery.tagsinput.js"></script>
     <script src="lib/flatui/jquery.placeholder.js"></script>
     <script src="lib/flatui/application.js"></script>
