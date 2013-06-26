@@ -208,7 +208,6 @@ articleapp.factory('modelArticle', function(){
         if (tagresult === undefined) {
             return false;
         }else{
-            console.log(tagresult);
             return tagresult;
         }
     };
@@ -277,7 +276,7 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
                }
         }
     }
-    //debugger;
+
     $scope.loadinit('updated');
     $(".checkbox, .radio").prepend("<span class='icon'></span><span class='icon-to-fade'></span>");
     $("#updated").attr("checked",true);

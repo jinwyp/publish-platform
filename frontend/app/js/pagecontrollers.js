@@ -249,11 +249,10 @@ pageapp.factory('modelSite', function(){
                     var tagresult = _.where(taglistdata, element2);
                     return tagresult.length;
                 });
-            console.log(element1, singlearticletags);
+//            console.log(element1, singlearticletags);
             return  singlearticletags.length;
 
         });
-        console.log(articlesresult);
 
         return articlesresult;
     };
@@ -277,7 +276,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         blockid : 100,
         blocktype : 1,
         blocktitle : "title1",
-        blockname : "name1",
+        blockname : "",
         blocklayout : 10,
         blockquantity : 6,
         blocktag : [],
@@ -310,11 +309,11 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
         $scope.cssshowpageaddinput = false;    //添加page的输入框默认不显示
 
-        $scope.cssblocktipindexauto = false;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexeditor = false;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexstatic = false;      //点击当前block按钮显示对应block类型菜单
-        $scope.cssblocktipindexads = false;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipadd = false;      //点击当前添加block按钮显示对应block类型菜单
+        $scope.cssblocktipedit = false;      //点击当前编辑block按钮显示对应block类型菜单
 
+        $scope.cssblockeditmenuinputbox = false;   //点击当前编辑block的 要输入推荐文章的输入框
+        $scope.cssblockeditmenubutton = false;     //点击当前编辑block的 设置的按钮
 
 
         $scope.cssheadermenuhavadata = false;      //Header是否有数据
@@ -406,21 +405,25 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
 
 
     // show Block MouseOver Menu Button
-    $scope.cssblockeditmenubutton = false;
+
     $scope.showeditblockmenubutton= function() {
         this.cssblockeditmenubutton = true;
     };
     $scope.hideeditblockmenubutton = function() {
         this.cssblockeditmenubutton = false;
+        this.cssblockeditmenuinputbox = false;
     };
 
-    $scope.showblocksetting=function(){
+    $scope.showarticleinput = function(){
+        this.cssblockeditmenuinputbox = true;
+    };
+    $scope.showblocksetting = function(){
         this.cssblockeditmenubutton = false;
     };
-    $scope.moveblock=function(){
+    $scope.moveblock = function(){
         this.cssblockeditmenubutton = false;
     };
-    $scope.delblock=function(){
+    $scope.delblock = function(){
         this.cssblockeditmenubutton = false;
     };
 
@@ -433,24 +436,21 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     };
 
     $scope.showblocksettingmenu = function( indexid, blocktype, event1) {
-        this.cssblocktipindexauto = false;      //点击当前block按钮显示对应block类型菜单
-        this.cssblocktipindexeditor = false;      //点击当前block按钮显示对应block类型菜单
-        this.cssblocktipindexstatic = false;      //点击当前block按钮显示对应block类型菜单
-        this.cssblocktipindexads = false;      //点击当前block按钮显示对应block类型菜单
+        this.cssblocktipadd = false;      //点击当前block按钮显示对应block类型菜单
 
         switch(blocktype)
         {
             case 'auto':
-                this.cssblocktipindexauto = true;      //点击当前block按钮显示对应block类型菜单
+                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 break;
             case 'editor':
-                this.cssblocktipindexeditor = true;      //点击当前block按钮显示对应block类型菜单
+                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 break;
             case 'static':
-                this.cssblocktipindexstatic = true;      //点击当前block按钮显示对应block类型菜单
+                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 break;
             case 'ads':
-                this.cssblocktipindexads = true;      //点击当前block按钮显示对应block类型菜单
+                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 break;
             default:
         }
@@ -478,7 +478,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
         var newblock = {
             blockid : 200,
             blocktype : 1,
-            blockname : "name1",
+            blockname : "",
             blocklayout : 10,
             blockquantity : 6,
             blocktag : [],
@@ -487,34 +487,50 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             blockarticles : []
         };
 
-        //检查Tags
-        var temptagslistname = $(".tagsinput").exportTags();
+        switch(blocktype)
+        {
+            case 'auto':
+                newblock.blocktype = 1;
+                //检查Tags
+                var temptagslistname = $(".tagsinput").exportTags();
 
-
-        for(var i=0;i<temptagslistname.length;i++){
-            //在tag 数据库查询是否是已经存在的tag
-            var newtag;
-            if(  modelSite.checkTagExist(temptagslistname[i]) ){
-                newtag = modelSite.checkTagExist(temptagslistname[i]);
-            }else{
-                newtag = {
-                    "tagid" : modelSite.getMaxTagID(),
-                    "tagname" : temptagslistname[i]
+                for(var i=0;i<temptagslistname.length;i++){
+                    //在tag 数据库查询是否是已经存在的tag
+                    var newtag;
+                    if(  modelSite.checkTagExist(temptagslistname[i]) ){
+                        newtag = modelSite.checkTagExist(temptagslistname[i]);
+                    }else{
+                        newtag = {
+                            "tagid" : modelSite.getMaxTagID(),
+                            "tagname" : temptagslistname[i]
+                        }
+                        modelSite.createNewTag(newtag);
+                    }
+                    newblock.blocktag.push(newtag);
                 }
-                modelSite.createNewTag(newtag);
-            }
-            newblock.blocktag.push(newtag);
+
+                //通过Tags 获取文章
+                newblock.blockarticles = modelSite.getArticlesByTags(newblock.blocktag);
+
+                break;
+            case 'editor':
+
+                newblock.blocktype = 2;
+                newblock.blockname = this.newblock.blockname;
+                break;
+            case 'static':
+                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                break;
+            case 'ads':
+                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                break;
+            default:
         }
 
-        //通过Tags 获取文章
-        newblock.blockarticles = modelSite.getArticlesByTags(newblock.blocktag);
-        console.log(temptagslistname);
+
 
         modelSite.addSingleBlockToPage(newblock, layoutcontainer, $scope.singlepage );
-        this.cssblocktipindexauto = false;      //点击当前block按钮显示对应block类型菜单
-        this.cssblocktipindexeditor = false;      //点击当前block按钮显示对应block类型菜单
-        this.cssblocktipindexstatic = false;      //点击当前block按钮显示对应block类型菜单
-        this.cssblocktipindexads = false;      //点击当前block按钮显示对应block类型菜单
+        this.cssblocktipadd = false;          //点击当前block按钮显示对应block类型菜单
     };
 
 
@@ -788,6 +804,9 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     }
     $scope.showfootmenusetting=function(){
         $scope.cssfootermenubutton=true;
+    }
+    $scope.hidefootmenusetting=function(){
+        $scope.cssfootermenubutton = false;
     }
     $scope.clickfootertheme = function(indexid, themedata){
         $scope.cssfooterthemeindex = indexid;
