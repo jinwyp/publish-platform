@@ -156,16 +156,15 @@
                                 </ul>
                             </div>
                             <!-- ======================================= Block Attribute Panel ======================================= -->
-                            <div class="editor_inset" ng-show="cssblockeditmenuinputbox" >
-                                <input type="text" value="" class="" placeholder="pls input article title">
-                            </div>
 
-                            <div class="attribute_panel editors" ng-show="isshowblockedit">
+                            <div class="attribute_panel " ng-show="cssblockeditmenubutton" ng-class="{editors: block.blocktype==2}">
                                 <a href="##" class="icon_delete" ng-click="showfilleditform();">delete</a>
                                 <a href="##" class="icon_move" ng-click="showfilleditform();">move</a>
                                 <a href="##" class="icon_setup" ng-click="showfilleditform();">setup</a>
                                 <!-- <a href="##" class="icon_editor" ng-click="showfilleditform();">editors</a>-->
-                                <div class="editor_inset"><input type="text" value="" class="" placeholder="插入推荐位..."></div>
+                                <div class="editor_inset" ng-show="block.blocktype==2" >
+                                    <input type="text" value="" class="" placeholder="pls input article title">
+                                </div>
                             </div>
                             <!-- Block Box //End -->
                         </div>
@@ -317,18 +316,7 @@
                 </div>
             	<!-- Page: Row //End -->
                 
-                <!-- Page: row -->
-                <div class="row">
-                    <div class="span9">
-                    	
-                        <div class="editor_inset">
-                            <input type="text" value="" class="" placeholder="插入推荐位...">
-                        </div>
 
-                    </div>
-                </div>
-                <!-- Page: Row //End -->
-                
                 
                 
                 <!-- Page: Footer -->
