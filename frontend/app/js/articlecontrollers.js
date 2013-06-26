@@ -362,8 +362,12 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
         $scope.loadinit(flag);
         $scope.loadcurrentpagedata();
         $scope.articlepreviewdata = $scope.articlesdata[0];
-
-        $("#"+flag)[0].checked=true;
+        $("#updated").attr("checked",false);
+        $("#create").attr("checked",false);
+        $("#published").attr("checked",false);
+        $("#clickcount").attr("checked",false);
+        $("#"+flag).attr("checked",true);
+        setupLabel();
     }
 }
 
