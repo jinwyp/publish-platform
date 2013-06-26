@@ -438,26 +438,29 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
     };
 
     $scope.showblocksettingmenu = function( indexid, blocktype, event1) {
-        this.cssblocktipadd = false;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipadd = false;      //点击当前block按钮显示对应block类型菜单
 
         switch(blocktype)
         {
             case 'auto':
-                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                $scope.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 break;
             case 'editor':
-                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                $scope.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 break;
             case 'static':
-                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                $scope.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 break;
             case 'ads':
-                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                $scope.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 break;
             default:
         }
+
+
         var blockcontent = $(event1.target).parent().parent();     //获取id 为 blockcontent DIV .
-        var blocktypemenu = blockcontent.find(".tip_"+ blocktype );     //获取样式名称拼接 .
+        blockcontent.append($(".tip_"+ blocktype));
+        var blocktypemenu = $(".tip_"+ blocktype)     //获取样式名称拼接 .
 
         var left =  ( parseInt(blockcontent.width() ) - parseInt( blocktypemenu.width() ) )/2;
         blocktypemenu.css({"left":left+"px", "top":-(blocktypemenu.height()), "position":"absolute"});
@@ -472,7 +475,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
                 heightdiff = 197;
                 break;
             case 'tab-filter':
-                heightdiff = 210;
+                heightdiff = 277 ;
                 break;
             case 'tab-Sort':
                 heightdiff = 145;
@@ -480,7 +483,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, modelSite) {
             default:
         }
         var blockcontent2 = $(event1.target).parent().parent().parent().parent().parent();    //获取id 为 blockcontent DIV .
-        var blocktypemenu2 = blockcontent2.find(".tip_auto");     //获取样式名称拼接
+        var blocktypemenu2 = $(".tip_auto");     //获取样式名称拼接
 //        var heightdiff = 125 + $("#"+ divid ).height();
         blocktypemenu2.css({"top":-(heightdiff), "position":"absolute"});
         console.log(blockcontent2.height(), blocktypemenu2.height(), heightdiff);
