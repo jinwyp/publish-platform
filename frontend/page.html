@@ -53,8 +53,7 @@
                     <dt>Layout :</dt>
                     <dd>
                         <div class="tipbox_laytou">
-                            <a href="#" class="icon_layout_1 selected" ng-click="addblocktopage('auto', layoutcontainer)"></a>
-                            <a href="#" class="icon_layout_2" ng-click="addblocktopage('auto', layoutcontainer)"></a>
+                            <a href="#" class="icon_layout_1"  ng-repeat="blocklayout in blocklayouts" ng-class="{selected:$index == cssblocklayoutselected}" ng-click="addblocktopage('auto', currentlayoutcontainer, $index)"></a>
                         </div>
                     </dd>
                 </dl>
@@ -142,7 +141,7 @@
             <dt>Layout :</dt>
             <dd>
                 <div class="tipbox_laytou">
-                    <a href="#" class="icon_layout_1 selected" ng-click="addblocktopage('editor', layoutcontainer)"></a>
+                    <a href="#" class="icon_layout_1 selected" ng-click="addblocktopage('editor', currentlayoutcontainer)"></a>
                     <a href="#" class="icon_layout_2"></a>
                 </div>
             </dd>
@@ -306,10 +305,10 @@
 
                             <!-- ICO -->
                             <div class="ico_box" ng-show="cssblockaddmenubutton">
-                                <div class="ico_autoblock" ng-click="showblocksettingmenu($index, 'auto', $event)" ng-class="{ico_active:'auto'==cssblocktipadd}"><!-- Auto --></div>
-                                <div class="ico_autoeditor" ng-click="showblocksettingmenu($index, 'editor', $event)" ng-class="{ico_active:'editor'==cssblocktipadd}"><!-- Editor's --></div>
-                                <div class="ico_staticblock" ng-click="showblocksettingmenu($index, 'static', $event)" ng-class="{ico_active:'static'==cssblocktipadd}"><!-- Static --></div>
-                                <div class="ico_adblock"  ng-click="showblocksettingmenu($index, 'ads', $event)" ng-class="{ico_active:'ads'==cssblocktipadd}"><!-- AD --></div>
+                                <div class="ico_autoblock" ng-click="showblocksettingmenu( 'auto', $event, layoutcontainer)" ng-class="{ico_active:'auto'==cssblocktipadd}"><!-- Auto --></div>
+                                <div class="ico_autoeditor" ng-click="showblocksettingmenu( 'editor', $event, layoutcontainer)" ng-class="{ico_active:'editor'==cssblocktipadd}"><!-- Editor's --></div>
+                                <div class="ico_staticblock" ng-click="showblocksettingmenu( 'static', $event, layoutcontainer)" ng-class="{ico_active:'static'==cssblocktipadd}"><!-- Static --></div>
+                                <div class="ico_adblock"  ng-click="showblocksettingmenu( 'ads', $event, layoutcontainer)" ng-class="{ico_active:'ads'==cssblocktipadd}"><!-- AD --></div>
                             </div>
                             <!-- ICO //End -->
 
