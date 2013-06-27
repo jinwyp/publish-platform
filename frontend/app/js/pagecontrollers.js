@@ -477,13 +477,13 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
         switch(divid)
         {
             case 'tab-layout':
-                heightdiff = 197;
+                heightdiff = 283;
                 break;
             case 'tab-filter':
                 heightdiff = 210;
                 break;
             case 'tab-Sort':
-                heightdiff = 145;
+                heightdiff = 101;
                 break;
             default:
         }
