@@ -248,13 +248,7 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
     $scope.loadinit = function(flag){
         for(var i = 0; i < $scope.articlestotaldata.length; i++){
                for(var j = 0;j < $scope.articlestotaldata.length; j++){
-                   if(flag == 'create'){
-                       if($scope.articlestotaldata[i].created > $scope.articlestotaldata[j].created){
-                           var param1 = $scope.articlestotaldata[i];
-                           $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
-                           $scope.articlestotaldata[j] = param1;
-                       }
-                   }else if(flag == 'published'){
+                   if(flag == 'published'){
                        if($scope.articlestotaldata[i].published > $scope.articlestotaldata[j].published){
                            var param1 = $scope.articlestotaldata[i];
                            $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
@@ -280,7 +274,6 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
     $scope.loadinit('updated');
     $(".checkbox, .radio").prepend("<span class='icon'></span><span class='icon-to-fade'></span>");
     $("#updated").attr("checked",true);
-    $("#create").attr("checked",false);
     $("#published").attr("checked",false);
     $("#clickcount").attr("checked",false);
     setupLabel();
@@ -334,8 +327,7 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
         $scope.cssmodalshow = false;      //关闭弹出提示框 Modal
         modelArticle.delArticleById(articleid);
         $scope.articlestotaldata = modelArticle.getArticleList();
-        $scope.noOfPages = Math.round($scope.articlestotaldata.length/2);
-
+        $scope.noOfPages =parseInt($scope.articlestotaldata.length/count)+1;
         $scope.loadcurrentpagedata();
         $scope.articlepreviewdata = $scope.articlesdata[0];
     }
@@ -362,12 +354,47 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
         $scope.loadcurrentpagedata();
         $scope.articlepreviewdata = $scope.articlesdata[0];
         $("#updated").attr("checked",false);
-        $("#create").attr("checked",false);
         $("#published").attr("checked",false);
         $("#clickcount").attr("checked",false);
         $("#"+flag).attr("checked",true);
         setupLabel();
     }
+
+    //点击draft按钮事件
+    $scope.clickstatus=function(param,data){
+        this.article.status=param;
+        modelArticle.saveArticle(data);
+    }
+
+
+    var visualSearch = VS.init({
+        container  : $('#visual_search'),
+        query      : '',
+        placeholder : "Search for your documents...",
+        callbacks  : {
+            valueMatches : function(category, searchTerm, callback) {
+                switch (category) {
+                    case 'account':
+                        callback([
+                            { value: '5-samuel', label: 'Samuel' },
+                            { value: '6-scott',  label: 'Scott' }
+                        ]);
+                        break;
+                    case 'city':
+                        callback(['111'])
+                        break;
+                }
+            },
+            facetMatches : function(callback) {
+                callback([
+                    'account',
+                    { label: 'city',    category: 'location' },
+                ], {
+                    preserveOrder: true
+                });
+            }
+        }
+    });
 }
 
 
@@ -432,7 +459,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
             $scope.articledata.updated=modelArticle.getDateNow();
             $scope.articledata.category=$(".dk_label")[0].textContent;
-
+            $scope.articledata.status='draft';
             //增加版本保存功能
             var newrevisionid = $scope.articledata.revision.length + 1;
             var newrevision = {
@@ -454,6 +481,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
     $scope.publisharticle=function(){
         $scope.articledata.published=modelArticle.getDateNow();
+        $scope.articledata.status='publish';
         modelArticle.saveArticle($scope.articledata);
     };
 
@@ -493,7 +521,7 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
 
     $scope.cssTagsPanel = false;
 
-    $scope.createNewArticle = function(feed) {
+    $scope.createNewArticle = function(feed,savestatus) {
         if (feed.$valid) {
             var temptagslistname = $(".tagsinput").exportTags();
             $scope.newarticleadata.tags=[];
@@ -512,6 +540,7 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
                 $scope.newarticleadata.tags.push(newtag);
             }
             $scope.newarticleadata.category=$(".dk_label")[0].textContent;
+            $scope.newarticleadata.status=savestatus;
             //增加文章每一次修改版本信息
             var newrevisionid = $scope.newarticleadata.revision.length + 1;
             var newrevision = {
@@ -536,14 +565,6 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
     $scope.showinserthtml = function(val){
         return val;
     }
-
-    $scope.addFeed = function(feed) {
-        if (feed.$valid) {
-            // Copy this feed instance and reset the URL in the form
-            $scope.feeds.push(feed);
-            $scope.newFeed.url = {};
-        }
-    };
 
 }
 
