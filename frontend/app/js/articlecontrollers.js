@@ -370,29 +370,26 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
     var visualSearch = VS.init({
         container  : $('#visual_search'),
         query      : '',
-        placeholder : "Search for your documents...",
+        placeholder : "Search ...",
         callbacks  : {
-            valueMatches : function(category, searchTerm, callback) {
-                switch (category) {
-                    case 'account':
-                        callback([
-                            { value: '5-samuel', label: 'Samuel' },
-                            { value: '6-scott',  label: 'Scott' }
-                        ]);
-                        break;
-                    case 'city':
-                        callback(['111'])
-                        break;
-                }
-            },
-            facetMatches : function(callback) {
-                callback([
-                    'account',
-                    { label: 'city',    category: 'location' },
-                ], {
-                    preserveOrder: true
+             valueMatches : function(category, searchTerm, callback) {
+                 switch (category) {
+                     case 'title':
+                     callback([
+                         { value: '1', label: '111' },
+                         { value: '2',  label: '222' }
+                     ]);
+                     break;
+                 }
+             },
+             facetMatches : function(callback) {
+                 callback([
+                 'title'
+                 //{ label: 'city',    category: 'location' }
+                 ], {
+                 preserveOrder: true
                 });
-            }
+             }
         }
     });
 }
