@@ -54,7 +54,8 @@
 
             <div class="article-title">ARTICLE LIST
                 <i class="article-title-ico" style="width:40%;">
-                        <input id="tags" />
+                        <pre>Model: {{selected| json}}</pre>
+                        <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue">
                         <a href="#" class="ico-article-search dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>
                     	<a href="#/newarticle/" class="ico-article-addnew" rel="tooltip" title="Add New Article"></a>
                     
