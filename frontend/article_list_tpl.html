@@ -54,17 +54,22 @@
 
             <div class="article-title">ARTICLE LIST
                 <i class="article-title-ico" style="width:40%;">
-                        <div id="visual_search"></div>
+                        <input id="tags" />
                         <a href="#" class="ico-article-search dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>
                     	<a href="#/newarticle/" class="ico-article-addnew" rel="tooltip" title="Add New Article"></a>
                     
                 </i>
                 <div collapse="isCollapsed">
                     <div class="well">
-                      <!-- <label class="radio searchradio" ng-click="orderbytype('create')"><input type="radio" id="create" name="time">Create</label>-->
-                       <label class="radio searchradio" ng-click="orderbytype('updated')"><input type="radio" id="updated" name="time">Updated</label>
+                        <input type="button" value="Update Asc" ng-click="orderbytype('updated','asc')">
+                        <input type="button" value="Update Desc" ng-click="orderbytype('updated','desc')">
+                        <input type="button" value="Published Asc" ng-click="orderbytype('published','asc')">
+                        <input type="button" value="Published Desc" ng-click="orderbytype('published','desc')">
+                        <input type="button" value="Click Asc" ng-click="orderbytype('clickcount','asc')">
+                        <input type="button" value="Click Desc" ng-click="orderbytype('clickcount','desc')">
+                      <!-- <label class="radio searchradio" ng-click="orderbytype('updated')"><input type="radio" id="updated" name="time">Updated</label>
                        <label class="radio searchradio" ng-click="orderbytype('published')"><input type="radio" id="published" name="time">Published</label>
-                       <label class="radio searchradio" ng-click="orderbytype('clickcount')"><input type="radio" id="clickcount" name="time">Click</label>
+                       <label class="radio searchradio" ng-click="orderbytype('clickcount')"><input type="radio" id="clickcount" name="time">Click</label>-->
                     </div>
                 </div>
 

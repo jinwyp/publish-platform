@@ -23,6 +23,7 @@ articleapp.directive('ckEditor', function() {
     };
 });
 
+
 articleapp.factory('modelArticle', function(){
 
     var articlelist=[],taglist=[];
@@ -226,8 +227,6 @@ articleapp.factory('modelArticle', function(){
     return factory;
 });
 
-
-
 articleapp.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/',                      {templateUrl: 'article_list_tpl.html', controller: articleapp.controller.articleList }).
@@ -240,43 +239,65 @@ articleapp.config(['$routeProvider', function($routeProvider) {
 
 
 /* Controllers */
-articleapp.controller.articleList = function ($scope,  modelArticle) {
+articleapp.controller.articleList = function ($scope, modelArticle) {
     //获取全部数据
+    //debugger;
     $scope.articlestotaldata = modelArticle.getArticleList();
-
     //排序所有数据
-    $scope.loadinit = function(flag){
+    $scope.loadinit = function(flag,sort){
         for(var i = 0; i < $scope.articlestotaldata.length; i++){
                for(var j = 0;j < $scope.articlestotaldata.length; j++){
-                   if(flag == 'published'){
-                       if($scope.articlestotaldata[i].published > $scope.articlestotaldata[j].published){
-                           var param1 = $scope.articlestotaldata[i];
-                           $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
-                           $scope.articlestotaldata[j] = param1;
+                   if(sort == 'desc'){
+                       if(flag == 'published'){
+                           if($scope.articlestotaldata[i].published > $scope.articlestotaldata[j].published){
+                               var param1 = $scope.articlestotaldata[i];
+                               $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
+                               $scope.articlestotaldata[j] = param1;
+                           }
+                       }else if(flag == 'updated'){
+                           if($scope.articlestotaldata[i].updated > $scope.articlestotaldata[j].updated){
+                               var param1 = $scope.articlestotaldata[i];
+                               $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
+                               $scope.articlestotaldata[j] = param1;
+                           }
+                       }else if(flag == 'clickcount'){
+                           if($scope.articlestotaldata[i].clickcount > $scope.articlestotaldata[j].clickcount){
+                               var param1 = $scope.articlestotaldata[i];
+                               $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
+                               $scope.articlestotaldata[j] = param1;
+                           }
                        }
-                   }else if(flag == 'updated'){
-                       if($scope.articlestotaldata[i].updated > $scope.articlestotaldata[j].updated){
-                           var param1 = $scope.articlestotaldata[i];
-                           $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
-                           $scope.articlestotaldata[j] = param1;
-                       }
-                   }else if(flag == 'clickcount'){
-                       if($scope.articlestotaldata[i].clickcount > $scope.articlestotaldata[j].clickcount){
-                           var param1 = $scope.articlestotaldata[i];
-                           $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
-                           $scope.articlestotaldata[j] = param1;
+                   }else{
+                       if(flag == 'published'){
+                           if($scope.articlestotaldata[i].published < $scope.articlestotaldata[j].published){
+                               var param1 = $scope.articlestotaldata[i];
+                               $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
+                               $scope.articlestotaldata[j] = param1;
+                           }
+                       }else if(flag == 'updated'){
+                           if($scope.articlestotaldata[i].updated < $scope.articlestotaldata[j].updated){
+                               var param1 = $scope.articlestotaldata[i];
+                               $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
+                               $scope.articlestotaldata[j] = param1;
+                           }
+                       }else if(flag == 'clickcount'){
+                           if($scope.articlestotaldata[i].clickcount < $scope.articlestotaldata[j].clickcount){
+                               var param1 = $scope.articlestotaldata[i];
+                               $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
+                               $scope.articlestotaldata[j] = param1;
+                           }
                        }
                    }
                }
         }
     }
 
-    $scope.loadinit('updated');
-    $(".checkbox, .radio").prepend("<span class='icon'></span><span class='icon-to-fade'></span>");
+    $scope.loadinit('updated','desc');
+/*    $(".checkbox, .radio").prepend("<span class='icon'></span><span class='icon-to-fade'></span>");
     $("#updated").attr("checked",true);
     $("#published").attr("checked",false);
     $("#clickcount").attr("checked",false);
-    setupLabel();
+    setupLabel();*/
     //页面总数
     var count=10;
     $scope.noOfPages =parseInt($scope.articlestotaldata.length/count)+1;
@@ -349,15 +370,15 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
     });
 
     //按类型排序
-    $scope.orderbytype=function(flag){
-        $scope.loadinit(flag);
+    $scope.orderbytype=function(flag,sort){
+        $scope.loadinit(flag,sort);
         $scope.loadcurrentpagedata();
         $scope.articlepreviewdata = $scope.articlesdata[0];
-        $("#updated").attr("checked",false);
+/*        $("#updated").attr("checked",false);
         $("#published").attr("checked",false);
         $("#clickcount").attr("checked",false);
         $("#"+flag).attr("checked",true);
-        setupLabel();
+        setupLabel();*/
     }
 
     //点击draft按钮事件
@@ -367,30 +388,14 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
     }
 
 
-    var visualSearch = VS.init({
-        container  : $('#visual_search'),
-        query      : '',
-        placeholder : "Search ...",
-        callbacks  : {
-             valueMatches : function(category, searchTerm, callback) {
-                 switch (category) {
-                     case 'title':
-                     callback([
-                         { value: '1', label: '111' },
-                         { value: '2',  label: '222' }
-                     ]);
-                     break;
-                 }
-             },
-             facetMatches : function(callback) {
-                 callback([
-                 'title'
-                 //{ label: 'city',    category: 'location' }
-                 ], {
-                 preserveOrder: true
-                });
-             }
-        }
+    var availableTags=[];
+    availableTags.length=0;
+    for(var i=0;i<$scope.articlestotaldata.length;i++){
+        availableTags[i]=$scope.articlestotaldata[i].title;
+    }
+
+    $( "#tags" ).autocomplete({
+        source: availableTags
     });
 }
 
