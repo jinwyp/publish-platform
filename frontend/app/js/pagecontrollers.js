@@ -436,29 +436,34 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
 
     //show add New Blocks BOX
     $scope.showaddblockmenubutton = function() {
-        $scope.cssblockaddmenubutton = true;
+        this.cssblockaddmenubutton = true;
     };
     $scope.hideaddblockmenubutton = function() {
-//        this.cssblockaddmenubutton = false;
-        $scope.cssblocktipadd = 'auto';
+        this.cssblockaddmenubutton = false;
+        this.cssblocktipadd = false;
     };
 
     $scope.showblocksettingmenu = function(  blocktype, event1, layoutcontainer) {
-        $scope.cssblocktipadd = false;      //点击当前block按钮显示对应block类型菜单
+        this.cssblocktipadd = false;      //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipbox = false;
         $scope.currentlayoutcontainer = layoutcontainer;
         switch(blocktype)
         {
             case 'auto':
-                $scope.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                $scope.cssblocktipbox = blocktype;
                 break;
             case 'editor':
-                $scope.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                $scope.cssblocktipbox = blocktype;
                 break;
             case 'static':
-                $scope.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                $scope.cssblocktipbox = blocktype;
                 break;
             case 'ads':
-                $scope.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                $scope.cssblocktipbox = blocktype;
                 break;
             default:
         }
@@ -515,6 +520,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
         {
             case 'auto':
                 newblock.blocktype = 1;
+                newblock.blockname = $scope.newblock.blockname;
                 //检查Tags
                 var temptagslistname = $(".tagsinput").exportTags();
 
@@ -540,7 +546,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
             case 'editor':
 
                 newblock.blocktype = 2;
-                newblock.blockname = this.newblock.blockname;
+                newblock.blockname = $scope.newblock.blockname;
                 break;
             case 'static':
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单

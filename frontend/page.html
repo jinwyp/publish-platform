@@ -43,7 +43,7 @@
 
 
 <!-- =======================================  tip_auto ======================================= -->
-<div class="tip_box tip_auto" ng-show="'auto'==cssblocktipadd" >
+<div class="tip_box tip_auto" ng-show="'auto'==cssblocktipbox" >
     <h1>Auto pick block attribute</h1>
     <div class="tabbable tabs-below">
         <div class="tab-content">
@@ -62,7 +62,9 @@
                     <dt>Layout :</dt>
                     <dd>
                         <div class="tipbox_laytou">
-                            <a href="#" class="icon_layout_1"  ng-repeat="blocklayout in blocklayouts" ng-class="{selected:$index == cssblocklayoutselected}" ng-click="addblocktopage('auto', currentlayoutcontainer, $index)"></a>
+                            <a href="#"  ng-repeat="blocklayout in blocklayouts" ng-class="{selected:$index == cssblocklayoutselected}" ng-click="addblocktopage('auto', currentlayoutcontainer, $index)">
+                                <img src="{{ blocklayout.layoutimage }}" alt="">
+                            </a>
                         </div>
                     </dd>
                 </dl>
@@ -131,11 +133,16 @@
             <li id="filter"><a href="#tab-filter" data-toggle="tab" ng-click="clickblocklayouttab($event,'tab-filter')">Filter</a></li>
             <li id="sort"><a href="#tab-Sort" data-toggle="tab" ng-click="clickblocklayouttab($event,'tab-Sort')">Sort</a></li>
         </ul>
+
+        <li ng-hide="csspooruglilyshortboy" ng-repeat="boy in boys" ng-angulargirl="getTallerRichHandsomeBoy($index) " >
+            <a href="{{boy.location}}">Hey  {{boy.name}} , do you have time date with me?</a>
+        </li>
+
     </div>
 </div>
 
 <!-- ======================================= tip_editor ======================================= -->
-<div class="tip_box tip_editor"  ng-show="'editor'==cssblocktipadd">
+<div class="tip_box tip_editor"  ng-show="'editor'==cssblocktipbox">
     <h1>Editor's pick block attribute</h1>
     <div class="tab-content">
         <dl class="clearfix">
@@ -170,13 +177,13 @@
 </div>
 
 <!-- ======================================= tip_static ======================================= -->
-<div class="tip_box tip_static" ng-show="'static'==cssblocktipadd">
+<div class="tip_box tip_static" ng-show="'static'==cssblocktipbox">
     <h1>Static</h1>
     <p>Null</p>
 </div>
 
 <!-- ======================================= tip_ad ======================================= -->
-<div class="tip_box tip_ads" ng-show="'ads'==cssblocktipadd">
+<div class="tip_box tip_ads" ng-show="'ads'==cssblocktipbox">
     <h1>AD block attribute</h1>
     <p>Null</p>
 </div>
