@@ -274,7 +274,7 @@ pageapp.factory('modelSite', function(){
 page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, modelSite) {
 
     function initialize(){
-
+        $('#tagsinput').tagsInput();
         $scope.newblock = {
             blockid : 100,
             blocktype : 1,
