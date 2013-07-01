@@ -1,6 +1,6 @@
 'use strict';
 
-var pageapp = angular.module('pagemodule', []);
+var pageapp = angular.module('pagemodule', ['uiSlider']);
 
 pageapp.directive('enterKeypress', function(){
     return function(scope, element, attrs) {
@@ -371,15 +371,15 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
     };
 
     $scope.addpage = function() {
-        $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
+        $(".container").prepend($(".tip_box"));  //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
         $scope.cssshowpageaddinput = false;       //添加page的输入框显示
         var newpage = {
-            siteid:1,
-            pagename:$scope.newpage.pagename,
-            pageid:103,
-            pagetype:20,
-            pagetitle:$scope.newpage.pagetitle,
-            pageurl:$scope.newpage.pageurl
+            siteid : 1,
+            pagename : $scope.newpage.pagename,
+            pageid : 103,
+            pagetype : 20,
+            pagetitle : $scope.newpage.pagetitle,
+            pageurl : $scope.newpage.pageurl
         };
         modelSite.addSinglePage(newpage);
     };
