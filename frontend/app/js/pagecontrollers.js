@@ -266,6 +266,11 @@ pageapp.factory('modelSite', function(){
 
         return articlesresult;
     };
+
+    factory.getArticles = function () {
+
+        return articlelist;
+    };
     return factory;
 });
 
@@ -503,7 +508,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
 
     // add a block to page
     $scope.addblocktopage = function(blocktype, layoutcontainer, indexid ) {
-        console.log(this);
         $scope.cssblocklayoutselected = indexid;
 
         var newblock = {
@@ -541,8 +545,15 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
                     newblock.blocktag.push(newtag);
                 }
 
+
+
                 //通过Tags 获取文章
                 newblock.blockarticles = modelSite.getArticlesByTags(newblock.blocktag);
+
+                if (temptagslistname.length == 0 ){
+                    newblock.blockarticles = modelSite.getArticles();
+                    console.log(newblock.blockarticles);
+                }
 
                 break;
             case 'editor':
@@ -558,7 +569,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
                 break;
             default:
         }
-
 
 
         modelSite.addSingleBlockToPage(newblock, layoutcontainer, $scope.singlepage );
