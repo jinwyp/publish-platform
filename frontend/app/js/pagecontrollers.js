@@ -171,7 +171,6 @@ pageapp.factory('modelSite', function(){
     };
 
 
-
     //layout 修改
     factory.getLayoutList = function() {
         return  layoutdata;
@@ -497,7 +496,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
         var blocktypemenu2 = $(".tip_auto");     //获取样式名称拼接
 //        var heightdiff = 81 + $("#"+ divid ).height();
         blocktypemenu2.css({"top":-(heightdiff), "position":"absolute"});
-        console.log(blockcontent2.height(), blocktypemenu2.height(), heightdiff);
+//        console.log(blockcontent2.height(), blocktypemenu2.height(), heightdiff);
     };
 
     // add a block to page
