@@ -54,8 +54,8 @@
 
             <div class="article-title">ARTICLE LIST
                 <i class="article-title-ico" style="width:40%;">
-                        <pre>Model: {{selected| json}}</pre>
-                        <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue">
+                       <!-- <pre>Model: {{selected| json}}</pre>-->
+                        <input type="text" ng-model="selected" ng-change="selectdata()" typeahead="state for state in states | filter:$viewValue">
                         <a href="#" class="ico-article-search dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>
                     	<a href="#/newarticle/" class="ico-article-addnew" rel="tooltip" title="Add New Article"></a>
                     
@@ -68,9 +68,6 @@
                         <input type="button" value="Published Desc" ng-click="orderbytype('published','desc')">
                         <input type="button" value="Click Asc" ng-click="orderbytype('clickcount','asc')">
                         <input type="button" value="Click Desc" ng-click="orderbytype('clickcount','desc')">
-                      <!-- <label class="radio searchradio" ng-click="orderbytype('updated')"><input type="radio" id="updated" name="time">Updated</label>
-                       <label class="radio searchradio" ng-click="orderbytype('published')"><input type="radio" id="published" name="time">Published</label>
-                       <label class="radio searchradio" ng-click="orderbytype('clickcount')"><input type="radio" id="clickcount" name="time">Click</label>-->
                     </div>
                 </div>
 
@@ -86,7 +83,6 @@
                         <div class="list-date">
                             <h1><a href="" >{{article.title}}</a></h1>
                             <dl>
-                                <!--<dd><p class="titlename">Type</p><p>{{article.type}}</p></dd>-->
                                 <dd><p class="titlename">Created</p><p>{{article.created | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
                                 <dd><p class="titlename">Published</p><p>{{article.published | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
                                 <dd><p class="titlename">Updated</p><p>{{article.updated | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>

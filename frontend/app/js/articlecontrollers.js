@@ -239,10 +239,11 @@ articleapp.config(['$routeProvider', function($routeProvider) {
 
 
 /* Controllers */
-articleapp.controller.articleList = function ($scope, modelArticle) {
+articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
     //获取全部数据
-    //debugger;
     $scope.articlestotaldata = modelArticle.getArticleList();
+    var copytotaldata = [];
+    copytotaldata = $scope.articlestotaldata;
     //排序所有数据
     $scope.loadinit = function(flag,sort){
         for(var i = 0; i < $scope.articlestotaldata.length; i++){
@@ -293,14 +294,13 @@ articleapp.controller.articleList = function ($scope, modelArticle) {
     }
 
     $scope.loadinit('updated','desc');
-/*    $(".checkbox, .radio").prepend("<span class='icon'></span><span class='icon-to-fade'></span>");
-    $("#updated").attr("checked",true);
-    $("#published").attr("checked",false);
-    $("#clickcount").attr("checked",false);
-    setupLabel();*/
     //页面总数
     var count=10;
-    $scope.noOfPages =parseInt($scope.articlestotaldata.length/count)+1;
+    var pagecount=$scope.articlestotaldata.length/count;
+    $scope.noOfPages =parseInt(pagecount)== pagecount ? pagecount : parseInt(pagecount)+1;
+    if($scope.noOfPages==0){
+        $scope.noOfPages=1;
+    }
 
     //当前页数
     $scope.currentPage = 1;
@@ -348,7 +348,12 @@ articleapp.controller.articleList = function ($scope, modelArticle) {
         $scope.cssmodalshow = false;      //关闭弹出提示框 Modal
         modelArticle.delArticleById(articleid);
         $scope.articlestotaldata = modelArticle.getArticleList();
-        $scope.noOfPages =parseInt($scope.articlestotaldata.length/count)+1;
+        copytotaldata = $scope.articlestotaldata;
+        var pagecount1=$scope.articlestotaldata.length/count;
+        $scope.noOfPages =parseInt(pagecount1)== pagecount1 ? pagecount1 : parseInt(pagecount1)+1;
+        if($scope.noOfPages==0){
+            $scope.noOfPages=1;
+        }
         $scope.loadcurrentpagedata();
         $scope.articlepreviewdata = $scope.articlesdata[0];
     }
@@ -374,11 +379,6 @@ articleapp.controller.articleList = function ($scope, modelArticle) {
         $scope.loadinit(flag,sort);
         $scope.loadcurrentpagedata();
         $scope.articlepreviewdata = $scope.articlesdata[0];
-/*        $("#updated").attr("checked",false);
-        $("#published").attr("checked",false);
-        $("#clickcount").attr("checked",false);
-        $("#"+flag).attr("checked",true);
-        setupLabel();*/
     }
 
     //点击draft按钮事件
@@ -387,15 +387,64 @@ articleapp.controller.articleList = function ($scope, modelArticle) {
         modelArticle.saveArticle(data);
     }
 
+    //搜索提示
     $scope.selected = undefined;
-    $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+    $scope.states = [];
+    $scope.states.length = 0;
+    var author1=[];
+    for(var i = 0;i < copytotaldata.length; i++){
+        $scope.states[i] = copytotaldata[i].title;
+        author1[i] = copytotaldata[i].author;
+    }
+    author1= _.union(author1);
+    $scope.states=_.union($scope.states);
+    for(var i = 0;i < author1.length; i++){
+        $scope.states.push(author1[i]);
+    }
 
+    $scope.selectdata=function(){
+        var titledata=[],data=[],articledata=[];
+        if($scope.selected==""){
+            $scope.articlestotaldata=copytotaldata;
+        }else{
+            for(var i = 0;i < copytotaldata.length; i++){
+                titledata[i] = copytotaldata[i].title;
+                articledata[i] = copytotaldata[i].author;
+            }
 
-    /*   var availableTags=[];
-       availableTags.length=0;
-       for(var i=0;i<$scope.articlestotaldata.length;i++){
-           availableTags[i]=$scope.articlestotaldata[i].title;
-       }*/
+            //获取匹配title
+            var resultdata = $filter('filter')(titledata, $scope.selected);
+
+            var resultarticle = $filter('filter')(articledata, $scope.selected);
+            //去除重复title
+            resultdata=_.union(resultdata);
+            resultarticle= _.union(resultarticle);
+            //根据title获取相应的数据
+            for(var j = 0;j < resultdata.length; j++){
+                for(var i = 0;i < copytotaldata.length; i++){
+                    if(copytotaldata[i].title == resultdata[j]){
+                        data.push(copytotaldata[i]);
+                    }
+                }
+            }
+            for(var j = 0;j < resultarticle.length; j++){
+                for(var i = 0;i < copytotaldata.length; i++){
+                    if(copytotaldata[i].author == resultarticle[j]){
+                        data.push(copytotaldata[i]);
+                    }
+                }
+            }
+            $scope.articlestotaldata = data;
+        }
+
+        var pagecount1=$scope.articlestotaldata.length/count;
+        $scope.noOfPages =parseInt(pagecount1)== pagecount1 ? pagecount1 : parseInt(pagecount1)+1;
+        if($scope.noOfPages==0){
+            $scope.noOfPages=1;
+        }
+        $scope.loadcurrentpagedata();
+        $scope.articlepreviewdata = $scope.articlesdata[0];
+    }
 }
 
 
