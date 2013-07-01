@@ -552,7 +552,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
 
                 if (temptagslistname.length == 0 ){
                     newblock.blockarticles = modelSite.getArticles();
-                    console.log(newblock.blockarticles);
                 }
 
                 break;
@@ -573,6 +572,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
 
         modelSite.addSingleBlockToPage(newblock, layoutcontainer, $scope.singlepage );
         this.cssblocktipadd = false;          //点击当前block按钮显示对应block类型菜单
+        $scope.cssblocktipbox = false;
     };
 
 
