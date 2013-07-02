@@ -485,16 +485,20 @@ ul.layout_list .active	{ opacity:1;}
 .block_footer .attribute_panel{ top:-44px;}
 .blockempty  .attribute_panel{ top:-36px;}
 
-.attribute_panel a{ display:block; float:right; width:42px; height:34px; margin-left:1px; border-radius:4px 4px 0 0; background:#f00; text-indent:-9999px; background:#888 url(img/icon_attribute.png) no-repeat; outline:none;}
-.attribute_panel .icon_setup { background-position:50% 7px;}
-.attribute_panel .icon_move  { background-position:50% -93px;}
-.attribute_panel .icon_delete{ background-position:50% -193px;}
-.attribute_panel .icon_editor{ background-position:50% -293px;}
+.attribute_panel a.icon_setup,
+.attribute_panel a.icon_move,
+.attribute_panel a.icon_delete,
+.attribute_panel a.icon_editor{ display:block; float:right; width:42px; height:34px; margin-left:1px; border-radius:4px 4px 0 0; background:#f00; text-indent:-9999px; background:#888 url(img/icon_attribute.png) no-repeat; outline:none;}
 
-.attribute_panel .icon_setup:hover,
-.attribute_panel .icon_move:hover,
-.attribute_panel .icon_delete:hover,
-.attribute_panel .icon_editor:hover{ background-color:#454545;}
+.attribute_panel a.icon_setup { background-position:50% 7px;}
+.attribute_panel a.icon_move  { background-position:50% -93px;}
+.attribute_panel a.icon_delete{ background-position:50% -193px;}
+.attribute_panel a.icon_editor{ background-position:50% -293px;}
+
+.attribute_panel a.icon_setup:hover,
+.attribute_panel a.icon_move:hover,
+.attribute_panel a.icon_delete:hover,
+.attribute_panel a.icon_editor:hover{ background-color:#454545;}
 
 .attribute_panel .active{ background-color:#454545;}
 
