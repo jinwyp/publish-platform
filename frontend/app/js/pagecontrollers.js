@@ -357,6 +357,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
 
     //left side bar
     $scope.clickpage = function(indexid, page) {
+        $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
         $scope.defaultselectedpageindex = indexid;
         $scope.singlepage = page;
 
@@ -387,6 +388,8 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
 
     $scope.addpage = function() {
         $(".container").prepend($(".tip_box"));  //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
+        $scope.cssblocktipbox = false;
+
         $scope.cssshowpageaddinput = false;       //添加page的输入框显示
         var newpage = {
             siteid : 1,
@@ -402,6 +405,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
 
     //left side bar add page attribute
     $scope.showeditpageattribute = function(indexid) {
+
         $scope.selectedpageattributeindex = indexid;    //点击显示当前的page 属性面板
     };
 
@@ -421,6 +425,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
     //right side bar
     $scope.clicklayout = function(indexid, layout) {
         $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
+        $scope.cssblocktipbox = false;
         $scope.defaultselectedlayoutindex = indexid;
         modelSite.saveSinglePageLayout($scope.singlepage, layout);
     };
