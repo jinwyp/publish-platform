@@ -666,10 +666,10 @@ ul.nav_structure a:hover .ico_edit:hover{ background-position:0 -500px;}
 .f_theme_panel .last		{ margin-right:0;}
 .f_theme_panel .select	{ position:relative; border:7px solid #38b801; }
 .f_theme_panel .select:before	{ display:block; position:absolute; left:-7px; top:-7px; width:142px; height:44px; content:''; background:rgba(56,184,1,0.4) url(img/navtheme_select.png) 104px 10px no-repeat; border-radius:4px;}
-.f_theme_panel .theme_01	{ background:url(img/header_theme_01.jpg) no-repeat;}
-.f_theme_panel .theme_02	{ background:url(img/header_theme_02.jpg) no-repeat;}
-.f_theme_panel .theme_03	{ background:url(img/header_theme_03.jpg) no-repeat;}
-.f_theme_panel .theme_04	{ background:url(img/header_theme_04.jpg) no-repeat;}
+.f_theme_panel .theme_01	{ background:url(img/footer_theme_01.jpg) no-repeat;}
+.f_theme_panel .theme_02	{ background:url(img/footer_theme_02.jpg) no-repeat;}
+.f_theme_panel .theme_03	{ background:url(img/footer_theme_03.jpg) no-repeat;}
+.f_theme_panel .theme_04	{ background:url(img/footer_theme_04.jpg) no-repeat;}
 
 /* Footer Link Panel */
 .footerlink_panel			{ position:relative; margin:0 auto; bottom:-34px; width:932px; padding:14px 14px 0; border-radius:0 0 8px 8px; background:#454545; box-shadow:0 2px 3px rgba(0,0,0,0.3); }
