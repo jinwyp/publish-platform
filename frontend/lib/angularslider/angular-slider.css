@@ -73,7 +73,7 @@ slider span.pointer.active:after {
 }
 slider span.bubble {
   cursor: default;
-  top: -22px;
+  top: -30px;
   padding: 1px 3px 1px 3px;
   font-size: 0.7em;
   font-family: sans-serif;
