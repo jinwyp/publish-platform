@@ -1130,13 +1130,15 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 
 /* Container Title */
 .article-title		{ padding:14px; margin:0; color:#999; background:#f8f8f8; border-radius:4px 4px 0 0; border-bottom:1px solid #e0e0e0;}
-.article-title-ico 	{ display:block; float:right; font-style:normal;}
+.article-title-ico 	{ display:block; min-width:280px; float:right; font-style:normal; text-align:right;}
 .article-title-ico [class^="ico-article"],
 .article-title-ico [class*="ico-article"]{ margin-left:20px;}
 .radio.searchradio	{ float:left; }
+.article-title .well{ margin:0; padding:10px;}
+.article-title .well input{ font-size:12px;}
 
 /* Article List Search */
-.aiticleList_search{ float:left; position:relative; top:-4px; width:148px; background:url(img/icon_attribute.png) no-repeat; background-position:134px -1096px;}
+.aiticleList_search{ display:block; float:right; position:relative; top:-4px; padding-right:30px !important; width:148px; background:url(img/icon_attribute.png) no-repeat; background-position:160px -1096px;}
 
 /* Container */
 .article-cont			{ background:#fff; border-radius:4px;}
@@ -1153,7 +1155,7 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .ico-article-search,
 .ico-article-setup,
 .ico-article-addnew,
-.ico-article-sequence { display:block; float:left; width:20px; height:20px; text-indent:-9999px; background:url(img/icon_attribute.png) no-repeat;
+.ico-article-sequence { display:block; float:right; width:20px; height:20px; text-indent:-9999px; background:url(img/icon_attribute.png) no-repeat;
     -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)"; filter:alpha(opacity=60); opacity:0.6;}
 
 .ico-article-edit	 { background-position:0px -500px;}
@@ -1177,7 +1179,7 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .ico-article-UP_default,
 .ico-article-UP_current,
 .ico-article-DOWN_default,
-.ico-article-DOWN_current	{ margin-bottom:8px; padding:4px 20px 4px 4px; border:1px solid #ccc; color:#888; border-radius:4px; background:#fff url(img/icon_attribute.png) no-repeat;}
+.ico-article-DOWN_current	{ margin-bottom:8px; padding:2px 20px 2px 8px; border:1px solid #ccc; color:#888; border-radius:4px; background:#fff url(img/icon_attribute.png) no-repeat;}
 .ico-article-UP_default		{ background-position:right -1248px;}
 .ico-article-UP_current		{ background-position:right -1298px;}
 .ico-article-DOWN_default	{ background-position:right -1148px;}
