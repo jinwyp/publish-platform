@@ -53,23 +53,24 @@
         <div class="article-span9">
 
             <div class="article-title">ARTICLE LIST
-                <i class="article-title-ico" style="width:40%;">
+                <i class="article-title-ico clearfix">
                        <!-- <pre>Model: {{selected| json}}</pre>-->
-                        <input type="text" ng-model="selected" ng-change="selectdata()" typeahead="state for state in states | filter:$viewValue">
-                        <a href="#" class="ico-article-search dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>
+                        <input class="aiticleList_search" type="text" ng-model="selected" ng-change="selectdata()" typeahead="state for state in states | filter:$viewValue">
+                        <a href="#" class="ico-article-sequence dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>
                     	<a href="#/newarticle/" class="ico-article-addnew" rel="tooltip" title="Add New Article"></a>
-                    
                 </i>
+               <hr>
                 <div collapse="isCollapsed">
                     <div class="well">
-                        <input type="button" value="Update Asc" ng-click="orderbytype('updated','asc')">
-                        <input type="button" value="Update Desc" ng-click="orderbytype('updated','desc')">
-                        <input type="button" value="Published Asc" ng-click="orderbytype('published','asc')">
-                        <input type="button" value="Published Desc" ng-click="orderbytype('published','desc')">
-                        <input type="button" value="Click Asc" ng-click="orderbytype('clickcount','asc')">
-                        <input type="button" value="Click Desc" ng-click="orderbytype('clickcount','desc')">
+                        <input class="ico-article-UP_default" type="button" value="Update Asc" ng-click="orderbytype('updated','asc')">
+                        <input class="ico-article-UP_default" type="button" value="Update Desc" ng-click="orderbytype('updated','desc')">
+                        <input class="ico-article-UP_current" type="button" value="Published Asc" ng-click="orderbytype('published','asc')">
+                        <input class="ico-article-DOWN_default" type="button" value="Published Desc" ng-click="orderbytype('published','desc')">
+                        <input class="ico-article-DOWN_default" type="button" value="Click Asc" ng-click="orderbytype('clickcount','asc')">
+                        <input class="ico-article-DOWN_current" type="button" value="Click Desc" ng-click="orderbytype('clickcount','desc')">
                     </div>
                 </div>
+               
 
             </div>
 
