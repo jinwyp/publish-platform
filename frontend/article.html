@@ -22,7 +22,7 @@
 <header class="header">
 	<h1 class="logo">VCP</h1><a href="page.html" class="signin">Sign In</a>
     <ul class="menu clearfix">
-    	<li><a href="#">User</a></li>
+    	<li><a href="user.html">User</a></li>
     	<li><a href="site.html">Site</a></li>
         <li><a href="page.html">Page</a></li>
         <li><a href="article.html" class="current">Article</a></li>
@@ -82,11 +82,13 @@
             <!-- Right -->
             <div class="article-span9">
             	<div class="article-title">PREVIEW
-                    <i class="article-title-ico">520 WRODS</i>
+                    <i class="article-title-ico" style="width:40%;">
+                    		 <div id="visual_search"></div>
+                    </i>
                 </div>
                 
                 <!-- 预览区 -->
-                <div id="article-cont-preview" class="article-cont"></div>
+                <div id="article-cont-preview" class="article-cont" style="height:600px;"></div>
                 <!-- 预览区 //End-->
             </div>
             <!-- Right //End -->
@@ -164,6 +166,29 @@
     <script src="lib/flatui/application.js"></script>
     <!-- Bootstrap Plug -->
     <script src="lib/boostrap/bootstrap.js"></script>
+    
+    <!-- VisualSearch -->
+      <script src="lib/visualsearch/jquery.ui.core.js" type="text/javascript" charset="utf-8"></script>
+	  <script src="lib/visualsearch/jquery.ui.widget.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/jquery.ui.position.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/jquery.ui.menu.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/jquery.ui.autocomplete.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/underscore-1.4.3.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/backbone-0.9.10.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/visualsearch.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/views/search_box.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/views/search_facet.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/views/search_input.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/models/search_facets.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/models/search_query.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/utils/backbone_extensions.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/utils/hotkeys.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/utils/jquery_extensions.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/utils/search_parser.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/utils/inflector.js" type="text/javascript" charset="utf-8"></script>
+      <script src="lib/visualsearch/templates/templates.js" type="text/javascript" charset="utf-8"></script>
+      
+      
     <!--[if lt IE 8]>
       <script src="lib/flatui/icon-font-ie7.js"></script>
       <script src="lib/flatui/lte-ie7-24.js"></script>
@@ -179,6 +204,39 @@
 
 
         });
+		
+		
+		
+		$(document).ready(function() {
+        var visualSearch = VS.init({
+          container  : $('#visual_search'),
+          query      : '',
+          placeholder : "Search for your documents...",
+          callbacks  : {
+            valueMatches : function(category, searchTerm, callback) {
+              switch (category) {
+              case 'account':
+                  callback([
+                    { value: '5-samuel', label: 'Samuel' },
+                    { value: '6-scott',  label: 'Scott' }
+                  ]);
+                  break;
+                case 'city':
+                  callback(['111'])
+                  break;
+              }
+            },
+            facetMatches : function(callback) {
+              callback([
+                'account',
+                { label: 'city',    category: 'location' },
+              ], {
+                  preserveOrder: true
+              });
+            }
+          }
+        });
+      });
 	</script>
 
 </body>

@@ -13,6 +13,8 @@
     <![endif]-->
     <!-- 默认 Site Theme -->
     <link href="theme/default/site-theme.css" rel="stylesheet">
+    <!-- <link href="lib/boostrap/bootstrap-combined.min.css" rel="stylesheet">-->
+
       <script src="ckeditor/ckeditor.js"></script>
       <script src="ckeditor/plugins/forms/plugin.js"></script>
   </head>
@@ -24,7 +26,7 @@
 <header class="header">
 	<h1 class="logo">VCP</h1><a href="page.html" class="signin">Sign In</a>
     <ul class="menu clearfix">
-    	<li><a href="#">User</a></li>
+    	<li><a href="user.html">User</a></li>
     	<li><a href="site.html">Site</a></li>
         <li><a href="page.html">Page</a></li>
         <li><a href="article_list_index.html" class="current">Article</a></li>
@@ -37,26 +39,8 @@
 <!-- Container -->
 <div class="vcpbox" ng-view>
 </div>
-
-
-
-
-<!--<label class="radio searchradio" ng-click="orderbytype('create')"><input type="radio" id="create" name="time">Create</label>
-<label class="radio searchradio" ng-click="orderbytype('updated')"><input type="radio" id="updated" name="time">Updated</label>
-<label class="radio searchradio" ng-click="orderbytype('published')"><input type="radio" id="published" name="time">Published</label>
-<label class="radio searchradio" ng-click="orderbytype('clickcount')"><input type="radio" id="clickcount" name="time">Click</label>-->
-
-
-
-
-
-
-
-
-
-
     <script src="lib/angular/1.1.5/angular.js"></script>
-    <script src="lib/boostrap/ui-bootstrap-tpls-0.3.0.js"></script>
+    <script src="lib/angularui/ui-bootstrap-tpls-0.4.0.min.js"></script>
 	<script src="app/js/articlecontrollers.js"></script>
     <script src="lib/moment/moment.min.js"></script>
     <script src="lib/underscore/underscore-min.js"></script>
@@ -84,6 +68,8 @@
 			  selector: "a[rel=tooltip]"
 			});
         });
+		
+		
 	</script>
 
 </body>

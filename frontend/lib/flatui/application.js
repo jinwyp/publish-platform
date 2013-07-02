@@ -15,7 +15,7 @@ $(document).ready(function() {
     $("[data-toggle=tooltip]").tooltip("show");
 
     // Init tags input
-    $("#tagsinput").tagsInput();
+    //$("#tagsinput").tagsInput();
 
     // Init jQuery UI slider
     $("#slider").slider({
@@ -23,7 +23,7 @@ $(document).ready(function() {
         max: 5,
         value: 2,
         orientation: "horizontal",
-        range: "min",
+        range: "min"
     });
 
     // JS input/textarea placeholder

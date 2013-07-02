@@ -56,11 +56,23 @@
                     <div class="atricle_attribute_box">
                         <h3>Category</h3>
                         <select ng-model="newarticleadata.category" class="select-block span3">
-                            <option value="0">Traveling</option>
-                            <option value="1">Daily necessities</option>
-                            <option value="2">Car</option>
-                            <option value="Clothes" selected="selected">Clothes</option>
-                            <option value="Crocodile">Mobile phone</option>
+                            <option>Cosmetics</option>
+                            <option>Insurance</option>
+                            <option>Healthcare</option>
+                            <option selected="selected">Health and leisure</option>
+                            <option>Commercial</option>
+                            <option>Online service</option>
+                            <option>Entertainment</option>
+                            <option>Season</option>
+                            <option>Family</option>
+                            <option>Education</option>
+                            <option>Traveling</option>
+                            <option>Car</option>
+                            <option>Law</option>
+                            <option>Toys and games</option>
+                            <option>Law</option>
+                            <option>Law</option>
+                            <option>Law</option>
                         </select>
                     </div>
                     <!-- Category End -->
@@ -120,8 +132,8 @@
         </div>
         <div class="article-footer">
             <div class="article_btn">
-                <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="createNewArticle(newFeed)">
-                <a href="" class="btn-publish" rel="tooltip" data-placement="top" title="PUBLISH" ng-click="createNewArticle()">PUBLISH</a>
+                <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="createNewArticle(newFeed,'draft')">
+                <input type="submit" value="PUBLISH" class="btn-publish" ng-click="createNewArticle(newFeed,'publish')">
             </div>
             <!-- 版本节点 -->
             <div class="vernode">

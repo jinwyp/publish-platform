@@ -23,6 +23,7 @@ articleapp.directive('ckEditor', function() {
     };
 });
 
+
 articleapp.factory('modelArticle', function(){
 
     var articlelist=[],taglist=[];
@@ -193,12 +194,16 @@ articleapp.factory('modelArticle', function(){
     };
 
     factory.getMaxTagID = function () {
-        factory.getTagList();
+        //factory.getTagList();
         var tagmaxid;
-        if(taglist.length==0){
+        try{
+            if(taglist.length==0){
+                tagmaxid=10001;
+            }else{
+                tagmaxid = taglist[taglist.length-1].tagid + 1;
+            }
+        }catch(e){
             tagmaxid=10001;
-        }else{
-            tagmaxid = taglist[taglist.length-1].tagid + 1;
         }
         return tagmaxid;
     };
@@ -213,7 +218,12 @@ articleapp.factory('modelArticle', function(){
     };
 
     factory.createNewTag = function (tagdata) {
-        taglist.push(tagdata);
+        try{
+            taglist.push(tagdata);
+        }catch(e){
+            taglist=[];
+            taglist.push(tagdata);
+        }
         localStorage.setItem("tagsData",JSON.stringify(taglist));
         return tagdata;
     };
@@ -225,8 +235,6 @@ articleapp.factory('modelArticle', function(){
 
     return factory;
 });
-
-
 
 articleapp.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
@@ -240,53 +248,68 @@ articleapp.config(['$routeProvider', function($routeProvider) {
 
 
 /* Controllers */
-articleapp.controller.articleList = function ($scope,  modelArticle) {
+articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
     //获取全部数据
     $scope.articlestotaldata = modelArticle.getArticleList();
-
+    var copytotaldata = [];
+    copytotaldata = $scope.articlestotaldata;
     //排序所有数据
-    $scope.loadinit = function(flag){
+    $scope.loadinit = function(flag,sort){
         for(var i = 0; i < $scope.articlestotaldata.length; i++){
                for(var j = 0;j < $scope.articlestotaldata.length; j++){
-                   if(flag == 'create'){
-                       if($scope.articlestotaldata[i].created > $scope.articlestotaldata[j].created){
-                           var param1 = $scope.articlestotaldata[i];
-                           $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
-                           $scope.articlestotaldata[j] = param1;
+                   if(sort == 'desc'){
+                       if(flag == 'published'){
+                           if($scope.articlestotaldata[i].published > $scope.articlestotaldata[j].published){
+                               var param1 = $scope.articlestotaldata[i];
+                               $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
+                               $scope.articlestotaldata[j] = param1;
+                           }
+                       }else if(flag == 'updated'){
+                           if($scope.articlestotaldata[i].updated > $scope.articlestotaldata[j].updated){
+                               var param1 = $scope.articlestotaldata[i];
+                               $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
+                               $scope.articlestotaldata[j] = param1;
+                           }
+                       }else if(flag == 'clickcount'){
+                           if($scope.articlestotaldata[i].clickcount > $scope.articlestotaldata[j].clickcount){
+                               var param1 = $scope.articlestotaldata[i];
+                               $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
+                               $scope.articlestotaldata[j] = param1;
+                           }
                        }
-                   }else if(flag == 'published'){
-                       if($scope.articlestotaldata[i].published > $scope.articlestotaldata[j].published){
-                           var param1 = $scope.articlestotaldata[i];
-                           $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
-                           $scope.articlestotaldata[j] = param1;
-                       }
-                   }else if(flag == 'updated'){
-                       if($scope.articlestotaldata[i].updated > $scope.articlestotaldata[j].updated){
-                           var param1 = $scope.articlestotaldata[i];
-                           $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
-                           $scope.articlestotaldata[j] = param1;
-                       }
-                   }else if(flag == 'clickcount'){
-                       if($scope.articlestotaldata[i].clickcount > $scope.articlestotaldata[j].clickcount){
-                           var param1 = $scope.articlestotaldata[i];
-                           $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
-                           $scope.articlestotaldata[j] = param1;
+                   }else{
+                       if(flag == 'published'){
+                           if($scope.articlestotaldata[i].published < $scope.articlestotaldata[j].published){
+                               var param1 = $scope.articlestotaldata[i];
+                               $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
+                               $scope.articlestotaldata[j] = param1;
+                           }
+                       }else if(flag == 'updated'){
+                           if($scope.articlestotaldata[i].updated < $scope.articlestotaldata[j].updated){
+                               var param1 = $scope.articlestotaldata[i];
+                               $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
+                               $scope.articlestotaldata[j] = param1;
+                           }
+                       }else if(flag == 'clickcount'){
+                           if($scope.articlestotaldata[i].clickcount < $scope.articlestotaldata[j].clickcount){
+                               var param1 = $scope.articlestotaldata[i];
+                               $scope.articlestotaldata[i] = $scope.articlestotaldata[j];
+                               $scope.articlestotaldata[j] = param1;
+                           }
                        }
                    }
                }
         }
     }
 
-    $scope.loadinit('updated');
-    $(".checkbox, .radio").prepend("<span class='icon'></span><span class='icon-to-fade'></span>");
-    $("#updated").attr("checked",true);
-    $("#create").attr("checked",false);
-    $("#published").attr("checked",false);
-    $("#clickcount").attr("checked",false);
-    setupLabel();
+    $scope.loadinit('updated','desc');
     //页面总数
     var count=10;
-    $scope.noOfPages =parseInt($scope.articlestotaldata.length/count)+1;
+    var pagecount=$scope.articlestotaldata.length/count;
+    $scope.noOfPages =parseInt(pagecount)== pagecount ? pagecount : parseInt(pagecount)+1;
+    if($scope.noOfPages==0){
+        $scope.noOfPages=1;
+    }
 
     //当前页数
     $scope.currentPage = 1;
@@ -334,8 +357,12 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
         $scope.cssmodalshow = false;      //关闭弹出提示框 Modal
         modelArticle.delArticleById(articleid);
         $scope.articlestotaldata = modelArticle.getArticleList();
-        $scope.noOfPages = Math.round($scope.articlestotaldata.length/2);
-
+        copytotaldata = $scope.articlestotaldata;
+        var pagecount1=$scope.articlestotaldata.length/count;
+        $scope.noOfPages =parseInt(pagecount1)== pagecount1 ? pagecount1 : parseInt(pagecount1)+1;
+        if($scope.noOfPages==0){
+            $scope.noOfPages=1;
+        }
         $scope.loadcurrentpagedata();
         $scope.articlepreviewdata = $scope.articlesdata[0];
     }
@@ -357,16 +384,75 @@ articleapp.controller.articleList = function ($scope,  modelArticle) {
     });
 
     //按类型排序
-    $scope.orderbytype=function(flag){
-        $scope.loadinit(flag);
+    $scope.orderbytype=function(flag,sort){
+        $scope.loadinit(flag,sort);
         $scope.loadcurrentpagedata();
         $scope.articlepreviewdata = $scope.articlesdata[0];
-        $("#updated").attr("checked",false);
-        $("#create").attr("checked",false);
-        $("#published").attr("checked",false);
-        $("#clickcount").attr("checked",false);
-        $("#"+flag).attr("checked",true);
-        setupLabel();
+    }
+
+    //点击draft按钮事件
+    $scope.clickstatus=function(param,data){
+        this.article.status=param;
+        modelArticle.saveArticle(data);
+    }
+
+    //搜索提示
+    $scope.selected = undefined;
+    $scope.states = [];
+    $scope.states.length = 0;
+    var author1=[];
+    for(var i = 0;i < copytotaldata.length; i++){
+        $scope.states[i] = copytotaldata[i].title;
+        author1[i] = copytotaldata[i].author;
+    }
+    author1= _.union(author1);
+    $scope.states=_.union($scope.states);
+    for(var i = 0;i < author1.length; i++){
+        $scope.states.push(author1[i]);
+    }
+
+    $scope.selectdata=function(){
+        var titledata=[],data=[],articledata=[];
+        if($scope.selected==""){
+            $scope.articlestotaldata=copytotaldata;
+        }else{
+            for(var i = 0;i < copytotaldata.length; i++){
+                titledata[i] = copytotaldata[i].title;
+                articledata[i] = copytotaldata[i].author;
+            }
+
+            //获取匹配title
+            var resultdata = $filter('filter')(titledata, $scope.selected);
+
+            var resultarticle = $filter('filter')(articledata, $scope.selected);
+            //去除重复title
+            resultdata=_.union(resultdata);
+            resultarticle= _.union(resultarticle);
+            //根据title获取相应的数据
+            for(var j = 0;j < resultdata.length; j++){
+                for(var i = 0;i < copytotaldata.length; i++){
+                    if(copytotaldata[i].title == resultdata[j]){
+                        data.push(copytotaldata[i]);
+                    }
+                }
+            }
+            for(var j = 0;j < resultarticle.length; j++){
+                for(var i = 0;i < copytotaldata.length; i++){
+                    if(copytotaldata[i].author == resultarticle[j]){
+                        data.push(copytotaldata[i]);
+                    }
+                }
+            }
+            $scope.articlestotaldata = data;
+        }
+
+        var pagecount1=$scope.articlestotaldata.length/count;
+        $scope.noOfPages =parseInt(pagecount1)== pagecount1 ? pagecount1 : parseInt(pagecount1)+1;
+        if($scope.noOfPages==0){
+            $scope.noOfPages=1;
+        }
+        $scope.loadcurrentpagedata();
+        $scope.articlepreviewdata = $scope.articlesdata[0];
     }
 }
 
@@ -432,7 +518,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
             $scope.articledata.updated=modelArticle.getDateNow();
             $scope.articledata.category=$(".dk_label")[0].textContent;
-
+            $scope.articledata.status='draft';
             //增加版本保存功能
             var newrevisionid = $scope.articledata.revision.length + 1;
             var newrevision = {
@@ -454,6 +540,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
     $scope.publisharticle=function(){
         $scope.articledata.published=modelArticle.getDateNow();
+        $scope.articledata.status='publish';
         modelArticle.saveArticle($scope.articledata);
     };
 
@@ -493,7 +580,7 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
 
     $scope.cssTagsPanel = false;
 
-    $scope.createNewArticle = function(feed) {
+    $scope.createNewArticle = function(feed,savestatus) {
         if (feed.$valid) {
             var temptagslistname = $(".tagsinput").exportTags();
             $scope.newarticleadata.tags=[];
@@ -512,6 +599,7 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
                 $scope.newarticleadata.tags.push(newtag);
             }
             $scope.newarticleadata.category=$(".dk_label")[0].textContent;
+            $scope.newarticleadata.status=savestatus;
             //增加文章每一次修改版本信息
             var newrevisionid = $scope.newarticleadata.revision.length + 1;
             var newrevision = {
@@ -536,14 +624,6 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
     $scope.showinserthtml = function(val){
         return val;
     }
-
-    $scope.addFeed = function(feed) {
-        if (feed.$valid) {
-            // Copy this feed instance and reset the URL in the form
-            $scope.feeds.push(feed);
-            $scope.newFeed.url = {};
-        }
-    };
 
 }
 

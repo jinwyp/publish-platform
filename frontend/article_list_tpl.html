@@ -53,35 +53,24 @@
         <div class="article-span9">
 
             <div class="article-title">ARTICLE LIST
-                <i class="article-title-ico">
-                
-                	
-                        <!-- 
-                        <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
-                        -->
-                        
-                        <!-- <ul class="dropdown-menu">
-                          <li><label><input type="radio" id=“create” name="time" ng-click="orderbytype('create')">Create</label></li>
-                          <li><label><input type="radio" id="updated" name="time" ng-click="orderbytype('updated')">Updated</label></li>
-                          <li><label><input type="radio" id="published" name="time" ng-click="orderbytype('published')">Published</label></li>
-                          <li><label><input type="radio" id="clickcount" name="time" ng-click="orderbytype('clickcount')">Click</label></li>
-                        </ul>
-                        -->
-                        
-                		<!-- <a href="#" class="ico-article-search" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed"></a>-->
-                        
-                        <a href="#" class="ico-article-search dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>
+                <i class="article-title-ico clearfix">
+                       <!-- <pre>Model: {{selected| json}}</pre>-->
+                        <input class="aiticleList_search" type="text" ng-model="selected" ng-change="selectdata()" typeahead="state for state in states | filter:$viewValue">
+                        <a href="#" class="ico-article-sequence dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>
                     	<a href="#/newarticle/" class="ico-article-addnew" rel="tooltip" title="Add New Article"></a>
-                    
                 </i>
+               <hr>
                 <div collapse="isCollapsed">
                     <div class="well">
-                       <label class="radio searchradio" ng-click="orderbytype('create')"><input type="radio" id="create" name="time">Create</label>
-                       <label class="radio searchradio" ng-click="orderbytype('updated')"><input type="radio" id="updated" name="time">Updated</label>
-                       <label class="radio searchradio" ng-click="orderbytype('published')"><input type="radio" id="published" name="time">Published</label>
-                       <label class="radio searchradio" ng-click="orderbytype('clickcount')"><input type="radio" id="clickcount" name="time">Click</label>
+                        <input class="ico-article-UP_default" type="button" value="Update Asc" ng-click="orderbytype('updated','asc')">
+                        <input class="ico-article-DOWN_default" type="button" value="Update Desc" ng-click="orderbytype('updated','desc')">
+                        <input class="ico-article-UP_default" type="button" value="Published Asc" ng-click="orderbytype('published','asc')">
+                        <input class="ico-article-DOWN_default" type="button" value="Published Desc" ng-click="orderbytype('published','desc')">
+                        <input class="ico-article-UP_default" type="button" value="Click Asc" ng-click="orderbytype('clickcount','asc')">
+                        <input class="ico-article-DOWN_default" type="button" value="Click Desc" ng-click="orderbytype('clickcount','desc')">
                     </div>
                 </div>
+               
 
             </div>
 
@@ -90,116 +79,11 @@
             <div class="article-cont">
 
                 <ul class="article-list">
-                	
-                    
-                    <!-- 静态演示用，可随时删除
-                	<li>
-                        <div class="list-date">
-                            <h1><a href="###">SuSa1</a></h1>
-                            <dl>
-                                <dd><p class="titlename">Created</p><p>2013.6.25</p></dd>
-                                <dd><p class="titlename">Published</p><p>2013.6.25</p></dd>
-                                <dd><p class="titlename">Updated</p><p>2013.6.25</p></dd>
-                                <dd><p class="titlename">Author</p><p>Susa</p></dd>
-                                <dd><p class="titlename">Editor</p><p>Melvon</p></dd>
-                            </dl>
-                        </div>
-                        <div class="list-count">
-                            <dl>
-                                <dd><span>999,999</span></dd>
-                                Draft状态
-                                <dd><div class="btn-group">
-                                    	<button class="btn" disabled>Draft</button>
-                                    	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
-                                    	<ul class="dropdown-menu pull-right clearfix">
-                                          <li><input type="submit" value="Review" class="btn btn-block btn-warning"></li>
-                                        </ul>
-                                	</div>
-                                </dd>
-                                 Rviewed状态
-                                <dd><div class="btn-group">
-                                    	<button class="btn" disabled>Reviewed</button>
-                                    	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
-                                    	<ul class="dropdown-menu pull-right clearfix">
-                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info"></li>
-                                          <li><input type="submit" value="Publish" class="btn btn-block btn-success"></li>
-                                        </ul>
-                                	</div>
-                                </dd>
-                                 Published状态
-                                <dd><div class="btn-group">
-                                    	<button class="btn" disabled>Published</button>
-                                    	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
-                                    	<ul class="dropdown-menu pull-right clearfix">
-                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info"></li>
-                                        </ul>
-                                	</div>
-                                </dd>
-                            </dl>
-                        </div>
-                    </li>
-                    静态演示用，可随时删除 //End-->
-                    
-                    
-                
-                	<!-- 静态演示用，可随时删除 
-                	<li>
-                        <div class="list-date">
-                            <h1><a href="###">SuSa3</a></h1>
-                            <dl>
-                                <dd><p class="titlename">Created</p><p>2013.6.25</p></dd>
-                                <dd><p class="titlename">Published</p><p>2013.6.25</p></dd>
-                                <dd><p class="titlename">Updated</p><p>2013.6.25</p></dd>
-                                <dd><p class="titlename">Author</p><p>Susa</p></dd>
-                                <dd><p class="titlename">Editor</p><p>Melvon</p></dd>
-                            </dl>
-                        </div>
-                        <div class="list-count">
-                            <dl>
-                                <dd><span>999,999</span></dd>
-                                Draft状态
-                                <dd><div class="btn-group">
-                                    	<button class="btn" disabled>Draft</button>
-                                    	<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Next Step</button>
-                                    	<ul class="dropdown-menu pull-right clearfix">
-                                          <li><input type="submit" value="Review" class="btn btn-block btn-warning"></li>
-                                        </ul>
-                                	</div>
-                                </dd>
-                                Rviewed状态
-                                <dd><div class="btn-group">
-                                    	<button class="btn" disabled>Reviewed</button>
-                                    	<button class="btn btn-success dropdown-toggle" data-toggle="dropdown">Next Step</button>
-                                    	<ul class="dropdown-menu pull-right clearfix">
-                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info"></li>
-                                          <li><input type="submit" value="Publish" class="btn btn-block btn-success"></li>
-                                        </ul>
-                                	</div>
-                                </dd>
-                                Published状态
-                                <dd><div class="btn-group">
-                                    	<button class="btn" disabled>Published</button>
-                                    	<button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Next Step</button>
-                                    	<ul class="dropdown-menu pull-right clearfix">
-                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info"></li>
-                                        </ul>
-                                	</div>
-                                </dd>
-                            </dl>
-                        </div>
-                    </li>
-                     静态演示用，可随时删除 //End-->
-                    
-                    
-                    
-                    
-                    
                     
                     <li ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata track by $index | filter:query"  ng-click="clickArticle(article, $index)" >
                         <div class="list-date">
                             <h1><a href="" >{{article.title}}</a></h1>
                             <dl>
-                                <!--<dd><p class="titlename">Type</p><p>{{article.type}}</p></dd>-->
                                 <dd><p class="titlename">Created</p><p>{{article.created | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
                                 <dd><p class="titlename">Published</p><p>{{article.published | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
                                 <dd><p class="titlename">Updated</p><p>{{article.updated | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
@@ -211,33 +95,37 @@
                             <dl>
                                 <dd><span>{{article.clickcount}}</span></dd>
                                 <!-- Draft状态 -->
-                                <dd><div class="btn-group">
+                                <dd ng-show="article.status=='draft'">
+                                    <div class="btn-group">
                                     	<button class="btn" disabled>Draft</button>
                                     	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
                                     	<ul class="dropdown-menu pull-right clearfix">
-                                          <li><input type="submit" value="Review" class="btn btn-block btn-warning"></li>
+                                          <li><input type="submit" value="Review" class="btn btn-block btn-warning" ng-click="clickstatus('reviewed',article)"></li>
                                         </ul>
                                 	</div>
                                 </dd>
-                                <!-- Rviewed状态 -->
-                                <dd><div class="btn-group">
+                               <!--  Rviewed状态-->
+                                <dd ng-show="article.status=='reviewed'">
+                                    <div class="btn-group">
                                     	<button class="btn" disabled>Reviewed</button>
                                     	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
                                     	<ul class="dropdown-menu pull-right clearfix">
-                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info"></li>
-                                          <li><input type="submit" value="Publish" class="btn btn-block btn-success"></li>
+                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickstatus('draft',article)"></li>
+                                          <li><input type="submit" value="Publish" class="btn btn-block btn-success" ng-click="clickstatus('publish',article)"></li>
                                         </ul>
                                 	</div>
                                 </dd>
-                                <!-- Published状态 -->
-                                <dd><div class="btn-group">
+                                <!-- Published状态-->
+                                <dd ng-show="article.status=='publish'">
+                                    <div class="btn-group">
                                     	<button class="btn" disabled>Published</button>
                                     	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
                                     	<ul class="dropdown-menu pull-right clearfix">
-                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info"></li>
+                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickstatus('draft',article)"></li>
                                         </ul>
                                 	</div>
                                 </dd>
+
                             </dl>
                         </div>
                     </li>
