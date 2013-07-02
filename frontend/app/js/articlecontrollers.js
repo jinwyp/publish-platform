@@ -194,12 +194,16 @@ articleapp.factory('modelArticle', function(){
     };
 
     factory.getMaxTagID = function () {
-        factory.getTagList();
+        //factory.getTagList();
         var tagmaxid;
-        if(taglist.length==0){
+        try{
+            if(taglist.length==0){
+                tagmaxid=10001;
+            }else{
+                tagmaxid = taglist[taglist.length-1].tagid + 1;
+            }
+        }catch(e){
             tagmaxid=10001;
-        }else{
-            tagmaxid = taglist[taglist.length-1].tagid + 1;
         }
         return tagmaxid;
     };
@@ -214,7 +218,12 @@ articleapp.factory('modelArticle', function(){
     };
 
     factory.createNewTag = function (tagdata) {
-        taglist.push(tagdata);
+        try{
+            taglist.push(tagdata);
+        }catch(e){
+            taglist=[];
+            taglist.push(tagdata);
+        }
         localStorage.setItem("tagsData",JSON.stringify(taglist));
         return tagdata;
     };
