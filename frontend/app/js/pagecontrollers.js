@@ -293,7 +293,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
             blockcategory : [],
             blocksortby : 'bydate'
         };
-
+        $scope.newarticle = undefined;
 
         $scope.site = modelSite.getSite();
         $scope.pages = modelSite.getPageList();
@@ -575,6 +575,11 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
         this.cssblocktipadd = false;          //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipbox = false;
     };
+
+    $scope.addaritcletoblock = function(){
+        console.log($scope.newarticle);
+
+    }
 
 
 
