@@ -307,7 +307,8 @@
                                 <a href="##" class="icon_setup" ng-click="showfilleditform();">setup</a>
                                 <!-- <a href="##" class="icon_editor" ng-click="showfilleditform();">editors</a>-->
                                 <div class="editor_inset" ng-show="block.blocktype==2" >
-                                    <input type="text" ng-model="editorpickaddnewarticle" placeholder="pls input article title" typeahead="article.title for article in localarticles | filter:$viewValue">
+                                    <input type="text" ng-model="newarticle" placeholder="pls input article title" typeahead="article as article.title for article in localarticles | filter:$viewValue" >
+
                                 </div>
                             </div>
                             <!-- Block Box //End -->
