@@ -97,10 +97,10 @@ pageapp.factory('modelSite', function(){
             layoutfilterListType:{layouttype:0}
         },
         footertheme:[
-            {footerthemeid:1,name:'black',css:'theme_01', image:'app/img/header_theme_01.jpg'},
-            {footerthemeid:2,name:'red',css:'theme_02', image:'app/img/header_theme_02.jpg'},
-            {footerthemeid:3,name:'blue',css:'theme_03', image:'app/img/header_theme_03.jpg' },
-            {footerthemeid:4,name:'green',css:'theme_04', image:'app/img/header_theme_04.jpg'}
+            {footerthemeid:1,name:'black',css:'theme_01', image:'app/img/footer_theme_01.jpg'},
+            {footerthemeid:2,name:'red',css:'theme_02', image:'app/img/footer_theme_02.jpg'},
+            {footerthemeid:3,name:'blue',css:'theme_03', image:'app/img/footer_theme_03.jpg' },
+            {footerthemeid:4,name:'green',css:'theme_04', image:'app/img/footer_theme_04.jpg'}
         ]
     };
 
@@ -168,6 +168,14 @@ pageapp.factory('modelSite', function(){
         pagelayout.blocks.push(newblock);
 
         sitedata.pagelist[pageindex].pagelayoutdata[layoutindex] = pagelayout;
+    };
+
+    factory.addArticleToBlock = function (newartcle, block, pagelayout, pagedata) {
+        var pageindex = sitedata.pagelist.indexOf(pagedata);
+        var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
+        var blockindex = sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks.indexOf(block) ;
+        sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks[blockindex].blockarticles.push(newartcle);
+
     };
 
 
@@ -576,9 +584,10 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
         $scope.cssblocktipbox = false;
     };
 
-    $scope.addaritcletoblock = function(){
-        console.log($scope.newarticle);
-
+    $scope.addaritcletoblock = function(block, layoutcontainer ){
+        var newaritcle = this.newarticle;
+        modelSite.addArticleToBlock(newaritcle, block, layoutcontainer, $scope.singlepage);
+        console.log(this.newarticle);
     }
 
 

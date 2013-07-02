@@ -294,7 +294,7 @@
                             <div class="site-theme b-block block-layout-1">
                                 <h2>{{ block.blockname}}</h2>
                                 <ul>
-                                	<li ng-repeat="article in block.blockarticles"><span>{{ article.created | date:'MM/dd/yyyy' }}</span>
+                                	<li ng-repeat="article in block.blockarticles track by $index"><span>{{ article.created | date:'MM/dd/yyyy' }}</span>
                                         <h3><a href="/articledetail/{{ article.id }}">{{ article.title }}</a></h3>
                                     </li>
                                 </ul>
@@ -307,8 +307,8 @@
                                 <a href="##" class="icon_setup" ng-click="showfilleditform();">setup</a>
                                 <!-- <a href="##" class="icon_editor" ng-click="showfilleditform();">editors</a>-->
                                 <div class="editor_inset" ng-show="block.blocktype==2" >
-                                    <input type="text" ng-model="newarticle" placeholder="pls input article title" typeahead="article as article.title for article in localarticles | filter:$viewValue" >
-
+                                    <input type="text" placeholder="pls input article title" typeahead="article as article.title for article in localarticles | filter:$viewValue"  ng-model="newarticle" enter-Keypress="{enter: addaritcletoblock(block, currentlayoutcontainer)}">
+                                    <!--<button class="btn-large" ng-click="addaritcletoblock(block)">add</button>-->
                                 </div>
                             </div>
                             <!-- Block Box //End -->
