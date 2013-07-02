@@ -307,7 +307,7 @@
                                 <a href="##" class="icon_setup" ng-click="showfilleditform();">setup</a>
                                 <!-- <a href="##" class="icon_editor" ng-click="showfilleditform();">editors</a>-->
                                 <div class="editor_inset" ng-show="block.blocktype==2" >
-                                    <input type="text" value="" class="" placeholder="pls input article title">
+                                    <input type="text" ng-model="editorpickaddnewarticle" placeholder="pls input article title" typeahead="article.title for article in localarticles | filter:$viewValue">
                                 </div>
                             </div>
                             <!-- Block Box //End -->
@@ -463,7 +463,7 @@
     <!-- Load JS -->
     <script src="lib/underscore/underscore-min.js"></script>
     <script src="lib/angular/1.1.5/angular.js"></script>
-    <script src="lib/angularui/angular-ui.min.js"></script>
+    <script src="lib/angularui/ui-bootstrap-tpls-0.4.0.min.js"></script>
     <script src="lib/angularslider/angular-slider.js"></script>
     <script src="app/js/app.js"></script>
     <script src="app/js/pagecontrollers.js"></script>

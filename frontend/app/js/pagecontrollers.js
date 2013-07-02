@@ -1,6 +1,6 @@
 'use strict';
 
-var pageapp = angular.module('pagemodule', ['uiSlider']);
+var pageapp = angular.module('pagemodule', ['uiSlider', 'ui.bootstrap']);
 
 pageapp.directive('enterKeypress', function(){
     return function(scope, element, attrs) {
@@ -299,6 +299,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
         $scope.pages = modelSite.getPageList();
         $scope.singlepage =  $scope.pages[0];   //默认读取首页
         $scope.newpage ={};
+        $scope.localarticles = modelSite.getArticles();
 
         $scope.layouts = modelSite.getLayoutList();
         $scope.blocklayouts = modelSite.getBlockLayout();
