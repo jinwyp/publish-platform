@@ -1106,7 +1106,7 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 
 .article{ padding:14px 14px 70px 14px; width:1416px; margin:0 auto;}
 
-.write_title			{ margin-bottom:10px; border:1px solid #d4d0cd; border-radius:4px; background:#fff; box-shadow:0 0 2px rgba(0,0,0,0.1);}
+.write_title			{ margin-bottom:10px; border:1px solid #d4d0cd; border-radius:4px; background:#fff; }
 .write_title h1,
 .write_title input.title_input{ display:block; margin:0; padding:14px 40px 14px 20px; line-height:34px; font-family:Georgia, "Times New Roman", Times, serif; font-weight:normal; color:#111;}
 .write_title input.title_input{ width:96%; padding-left:0; padding-right:0; text-indent:20px; box-shadow:0 0 0 rgba(0,0,0,0); border:0; border-radius:0px;  font-size:32px; height:auto; line-height:34px;}
@@ -1126,7 +1126,7 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .article-row:before,
 .article-row:after  { display:table; line-height:0; content:"";}
 .article-row:after  { clear:both;}
-.article-span9		{ width:700px; float:left; min-height:1px; margin-left:12px; border:1px solid #d4d0cd; border-radius:4px; background:#fff; box-shadow:0 0 2px rgba(0,0,0,0.1);}
+.article-span9		{ width:700px; float:left; min-height:1px; margin-left:12px; border:1px solid #d4d0cd; border-radius:4px; background:#fff; }
 
 /* Container Title */
 .article-title		{ padding:14px; margin:0; color:#999; background:#f8f8f8; border-radius:4px 4px 0 0; border-bottom:1px solid #e0e0e0;}
