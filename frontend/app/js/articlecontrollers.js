@@ -587,7 +587,6 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
             for(var i=0;i<temptagslistname.length;i++){
                 //在tag 数据库查询是否是已经存在的tag
                 if(modelArticle.checkTagExist(temptagslistname[i])){
-
                     var newtag = modelArticle.checkTagExist(temptagslistname[i]);
                 }else{
                     var newtag = {
@@ -624,6 +623,5 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
     $scope.showinserthtml = function(val){
         return val;
     }
-
 }
 
