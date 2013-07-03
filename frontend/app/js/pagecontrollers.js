@@ -44,7 +44,7 @@ pageapp.factory('modelSite', function(){
             { siteid:1, pagename:'Homepage', pageid:101, pagetype:10, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
                 pagelayoutdata:[
                     {layoutcontainerclass:"span9", layoutcontainerid:1000 , blocks:[
-                        {blockid:100, blocktype:1, blockname:"Today hot",blocklayout:10, blockquantity:6, blocktag:[], blockcategory:[], blocksortby:'date' , blockarticles:[
+                        {blockid:100, blocktype:'auto', blockname:"Today hot",blocklayout:10, blockquantity:6, blocktag:[], blockcategory:[], blocksortby:'date' , blockarticles:[
                             {"id": 1000, "title": "multiple partial views in angularjs111.",  "status": "needreview",
                                 "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023,
                                 "category": "Today", "categoryid":1000,
@@ -178,6 +178,14 @@ pageapp.factory('modelSite', function(){
 
     };
 
+    factory.delBlockFromPage = function (block, pagelayout, pagedata) {
+        var pageindex = sitedata.pagelist.indexOf(pagedata);
+        var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
+        var blockindex = sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks.indexOf(block) ;
+        sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks.splice(blockindex, 1);
+
+    }
+
 
     //layout 修改
     factory.getLayoutList = function() {
@@ -196,10 +204,14 @@ pageapp.factory('modelSite', function(){
         return blocklayout;
     };
 
+
+
     //header Theme
     factory.getHeaderTheme=function(){
         return sitedata.headertheme;
     }
+
+
 
     //header 修改
     factory.getHeader=function(){
@@ -228,6 +240,8 @@ pageapp.factory('modelSite', function(){
     factory.addfooterMenu = function (menudata) {
         return  sitedata.footerdata.push(menudata);
     };
+
+
 
 
     //Tags
@@ -292,7 +306,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
 
         $scope.newblock = {
             blockid : 100,
-            blocktype : 1,
+            blocktype : 'auto',
             blocktitle : "title1",
             blockname : "",
             blocklayout : 10,
@@ -455,7 +469,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
         this.cssblockeditmenubutton = false;
     };
 
-    //show add New Blocks BOX
+    //show add New Blocks Menu BOX
     $scope.showaddblockmenubutton = function() {
         this.cssblockaddmenubutton = true;
     };
@@ -464,7 +478,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
         this.cssblocktipadd = false;
     };
 
-    $scope.showblocksettingmenu = function(  blocktype, event1, layoutcontainer) {
+    $scope.showblocksettingmenu = function( blocktype, event1, layoutcontainer ) {
         this.cssblocktipadd = false;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipbox = false;
         $scope.currentlayoutcontainer = layoutcontainer;
@@ -526,7 +540,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
 
         var newblock = {
             blockid : 200,
-            blocktype : 1,
+            blocktype : 'auto',
             blockname : "",
             blocklayout : 10,
             blockquantity : 6,
@@ -539,7 +553,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
         switch(blocktype)
         {
             case 'auto':
-                newblock.blocktype = 1;
+                newblock.blocktype = 'auto';
                 newblock.blockname = $scope.newblock.blockname;
                 //检查Tags
                 var temptagslistname = $(".tagsinput").exportTags();
@@ -571,7 +585,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
                 break;
             case 'editor':
 
-                newblock.blocktype = 2;
+                newblock.blocktype = 'editor';
                 newblock.blockname = $scope.newblock.blockname;
                 break;
             case 'static':
@@ -595,7 +609,39 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
         console.log(this.newarticle);
     }
 
+    // del a block to page
+    $scope.delblock = function(block, layoutcontainer, indexid ) {
+        modelSite.delBlockFromPage(block, layoutcontainer, $scope.singlepage);
+    }
 
+    // update a block setting
+    $scope.updateshowblcoksetting = function(block, event1 ) {
+        $scope.newblock.blockname = block.blockname;
+        var blocktype =  block.blocktype;
+        switch(blocktype)
+        {
+            case 'auto':
+                $scope.cssblocktipbox = blocktype;
+                break;
+            case 'editor':
+                $scope.cssblocktipbox = blocktype;
+                break;
+            case 'static':
+                $scope.cssblocktipbox = blocktype;
+                break;
+            case 'ads':
+                $scope.cssblocktipbox = blocktype;
+                break;
+            default:
+        }
+
+        var blockcontent = $(event1.target).parent().parent();     //获取id 为 blockcontent DIV .
+        blockcontent.append($(".tip_box"));
+        console.log($(".tip_box"));
+        var blocktypemenu = $(".tip_"+ blocktype)     //获取样式名称拼接 .
+        var left =  ( parseInt(blockcontent.width() ) - parseInt( blocktypemenu.width() ) )/2;
+        blocktypemenu.css({"left":left+"px", "top":-(blocktypemenu.height()), "position":"absolute"});
+    }
 
 
 
