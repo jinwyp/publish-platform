@@ -4,35 +4,33 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-	// Define changes to default configuration here.
-	// For the complete reference:
-	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
+	// Define changes to default configuration here. For example:
+	// config.language = 'fr';
+	// config.uiColor = '#f00';
+    config.removeButtons = 'Source,Save,Preview,About,Maximize';
+    config.toolbarGroups = [
+        { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+        { name: 'forms' },
+        { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+        { name: 'links' },
+        { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+        { name: 'insert' },
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        { name: 'colors' },
+        { name: 'others' },
+        '/',
+        { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+        { name: 'tools' },
+        { name: 'styles' }
+    ];
+    config.extraPlugins='tableresize,autogrow,wysiwygarea';
+    config.removePlugins='resize';
+    config.fullPage=true;
+    config.allowedContent=false;
 
-	// The toolbar groups arrangement, optimized for two toolbar rows.
-	config.toolbarGroups = [
-		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
-		{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
-		{ name: 'links' },
-		{ name: 'insert' },
-		{ name: 'forms' },
-		{ name: 'tools' },
-		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
-		{ name: 'others' },
-		'/',
-		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align' ] },
-		{ name: 'styles' },
-		{ name: 'colors' },
-		{ name: 'about' }
-	];
 
-	// Remove some buttons, provided by the standard plugins, which we don't
-	// need to have in the Standard(s) toolbar.
-	config.removeButtons = 'Underline,Subscript,Superscript';
 
-	// Se the most common block elements.
-	config.format_tags = 'p;h1;h2;h3;pre';
-
-	// Make dialogs simpler.
-	config.removeDialogTabs = 'image:advanced;link:advanced';
+    //fullPage: true,
+      //  allowedContent: true,
+      //  extraPlugins: 'wysiwygarea'
 };
