@@ -1141,6 +1141,7 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .radio.searchradio	{ float:left; }
 .article-title .well{ margin:0; padding:10px;}
 .article-title .well input{ font-size:12px;}
+.article-title-ico .dropdown-menu li{ text-align:left;}
 
 /* Article List Search */
 .aiticleList_search{ display:block; float:right; position:relative; top:-4px; padding-right:30px !important; width:148px; background:url(img/icon_attribute.png) no-repeat; background-position:160px -1096px;}
