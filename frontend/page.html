@@ -118,16 +118,16 @@
                 </dl> -->
             </div>
             <!-- Tab2: Filter //End -->
-            <!-- Tab3: Sort -->
+            <!-- Tab3: Sort 
             <div class="tab-pane" id="tab-Sort">
 
             </div>
-            <!-- Tab3: Sort //End -->
+             Tab3: Sort //End -->
         </div>
         <ul class="nav nav-tabs">
             <li id="layout" class="active"><a href="#tab-layout" data-toggle="tab" ng-click="clickblocklayouttab($event,'tab-layout')">Layout</a></li>
             <li id="filter"><a href="#tab-filter" data-toggle="tab" ng-click="clickblocklayouttab($event,'tab-filter')">Filter</a></li>
-            <li id="sort"><a href="#tab-Sort" data-toggle="tab" ng-click="clickblocklayouttab($event,'tab-Sort')">Sort</a></li>
+            <!-- <li id="sort"><a href="#tab-Sort" data-toggle="tab" ng-click="clickblocklayouttab($event,'tab-Sort')">Sort</a></li> -->
         </ul>
 
         <li ng-hide="csspooruglilyshortboy" ng-repeat="boy in boys" ng-angulargirl="getTallerRichHandsomeBoy($index) " >
@@ -182,6 +182,19 @@
 <div class="tip_box tip_ads" ng-show="'ads'==cssblocktipbox">
     <h1>AD block attribute</h1>
     <p><img src="app/img/temp/ad.png"></p>
+</div>
+
+<!-- ======================================= tip_RSS ======================================= -->
+<div class="tip_box tip_RSS" ng-show="'RSS'==cssblocktipbox">
+    <h1>RSS block attribute</h1>
+    <div class="tab-content">
+        <dl class="clearfix">
+            <dt>API:</dt>
+            <dd><input type="text" data-provide="typeahead" data-items="10" ng-model="newblock.blockname">
+                <input type="submit" class="btn btn-success" value="Add" style=" height:30px; margin:0 0 10px 0;">
+            </dd>
+        </dl>
+    </div>
 </div>
 
 
@@ -301,12 +314,12 @@
                             </div>
                             <!-- ======================================= Block Attribute Panel ======================================= -->
 
-                            <div class="attribute_panel" ng-show="cssblockeditmenubutton" ng-class="{editors: block.blocktype==2}">
-                                <a href="##" class="icon_delete" ng-click="showfilleditform();">delete</a>
-                                <a href="##" class="icon_move" ng-click="showfilleditform();">move</a>
-                                <a href="##" class="icon_setup" ng-click="showfilleditform();">setup</a>
+                            <div class="attribute_panel" ng-show="cssblockeditmenubutton" ng-class="{editors: block.blocktype=='editor'}">
+                                <a href="##" class="icon_delete" ng-click="delblock(block, layoutcontainer);">delete</a>
+                               <!-- <a href="##" class="icon_move" ng-click="showfilleditform();">move</a>-->
+                                <a href="##" class="icon_setup" ng-click="updateshowblcoksetting(block, $event );">setup</a>
                                 <!-- <a href="##" class="icon_editor" ng-click="showfilleditform();">editors</a>-->
-                                <div class="editor_inset" ng-show="block.blocktype==2" >
+                                <div class="editor_inset" ng-show="block.blocktype=='editor'" >
                                     <input type="text" placeholder="pls input article title" typeahead="article as article.title for article in localarticles | filter:$viewValue"  ng-model="newarticle" enter-Keypress="{enter: addaritcletoblock(block, currentlayoutcontainer)}">
                                     <!--<button class="btn-large" ng-click="addaritcletoblock(block)">add</button>-->
                                 </div>
@@ -321,8 +334,10 @@
                             <div class="ico_box" ng-show="cssblockaddmenubutton">
                                 <div class="ico_autoblock" ng-click="showblocksettingmenu( 'auto', $event, layoutcontainer)" ng-class="{ico_active:'auto'==cssblocktipadd}"><!-- Auto --></div>
                                 <div class="ico_autoeditor" ng-click="showblocksettingmenu( 'editor', $event, layoutcontainer)" ng-class="{ico_active:'editor'==cssblocktipadd}"><!-- Editor's --></div>
+                                <br>
                                 <div class="ico_staticblock" ng-click="showblocksettingmenu( 'static', $event, layoutcontainer)" ng-class="{ico_active:'static'==cssblocktipadd}"><!-- Static --></div>
                                 <div class="ico_adblock"  ng-click="showblocksettingmenu( 'ads', $event, layoutcontainer)" ng-class="{ico_active:'ads'==cssblocktipadd}"><!-- AD --></div>
+                                <div class="ico_RSS"  ng-click="showblocksettingmenu( 'RSS', $event, layoutcontainer)" ng-class="{ico_active:'RSS'==cssblocktipadd}"><!-- AD --></div>
                             </div>
                             <!-- ICO //End -->
 
