@@ -1141,7 +1141,7 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .aiticleList_search{ display:block; float:right; position:relative; top:-4px; padding-right:30px !important; width:148px; background:url(img/icon_attribute.png) no-repeat; background-position:160px -1096px;}
 
 /* Container */
-.article-cont			{ background:#fff; border-radius:4px;}
+.article-cont			{ background:#fff; border-radius:4px; min-height:300px;}
 .atricle_attribute_box	{ padding:40px; border-bottom:1px dashed #ddd;}
 
 /* article-templete */
