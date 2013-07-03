@@ -486,6 +486,10 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 $scope.cssblocktipbox = blocktype;
                 break;
+			case 'RSS':
+                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                $scope.cssblocktipbox = blocktype;
+                break;
             default:
         }
 
