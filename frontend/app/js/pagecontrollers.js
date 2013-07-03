@@ -405,6 +405,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
 
     //left side bar add page attribute
     $scope.showeditpageattribute = function(indexid) {
+
         $scope.selectedpageattributeindex = indexid;    //点击显示当前的page 属性面板
     };
 
