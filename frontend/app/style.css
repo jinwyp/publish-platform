@@ -1186,10 +1186,16 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .ico-article-UP_current,
 .ico-article-DOWN_default,
 .ico-article-DOWN_current	{ margin-bottom:8px; padding:2px 20px 2px 8px; border:1px solid #ccc; color:#888; border-radius:4px; background:#fff url(img/icon_attribute.png) no-repeat;}
-.ico-article-UP_default		{ background-position:right -1248px;}
-.ico-article-UP_current		{ background-position:right -1298px;}
-.ico-article-DOWN_default	{ background-position:right -1148px;}
-.ico-article-DOWN_current	{ background-position:right -1198px;}
+
+.ico-article-UP_default				{ background-position:right -1248px;}
+.ico-article-UP_current				{ background-position:right -1298px;}
+.ico-article-DOWN_default			{ background-position:right -1148px;}
+.ico-article-DOWN_current			{ background-position:right -1198px;}
+
+.ico-article-UP_default:hover		{ background-position:right -1298px; color:#fff; background-color:#444; border:1px solid #333;}
+.ico-article-UP_current:hover		{ background-position:right -1298px; }
+.ico-article-DOWN_default:hover		{ background-position:right -1198px; color:#fff; background-color:#444; border:1px solid #333;}
+.ico-article-DOWN_current:hover		{ background-position:right -1198px;}
 
 
 /* Version node */
