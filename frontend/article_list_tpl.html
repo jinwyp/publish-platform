@@ -27,10 +27,29 @@
                         <button class="btn btn-danger"  ng-click="delArticle(articlepreviewdata.id)">Delete</button>
                     </div>
                 </div>
+
+                <div modal="showcomments" options="cssmodalslide" >
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closecomments()">&times;</button>
+                        <h3 >Comments </h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <input type="text" id="comments" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn" ng-click="savedata(true)">Cancel</button>
+                        <button class="btn btn-danger" ng-click="savedata(false)">Save</button>
+                    </div>
+                </div>
             </div>
             <!-- 预览区 -->
             <div id="article-cont-preview" class="article-cont" >
-                <div class="article-templete">
+                <div ng-show="articlepreviewdata.title == undefined" style="width:580px; margin:40px auto;">
+                    <img src="app/img/temp/article_default_pic.jpg" alt="">
+                </div>
+                <div class="article-templete" ng-hide="articlepreviewdata.title == undefined">
 
                     <h1>{{articlepreviewdata.title}}</h1>
 
@@ -61,16 +80,14 @@
                 </i>
                 <div collapse="isCollapsed" style="margin:0; width:100%;">
                     <div class="well">
-                        <input class="ico-article-UP_default" type="button" value="Update Asc" ng-click="orderbytype('updated','asc')">
-                        <input class="ico-article-DOWN_default" type="button" value="Update Desc" ng-click="orderbytype('updated','desc')">
-                        <input class="ico-article-UP_default" type="button" value="Published Asc" ng-click="orderbytype('published','asc')">
-                        <input class="ico-article-DOWN_default" type="button" value="Published Desc" ng-click="orderbytype('published','desc')">
-                        <input class="ico-article-UP_default" type="button" value="Click Asc" ng-click="orderbytype('clickcount','asc')">
-                        <input class="ico-article-DOWN_default" type="button" value="Click Desc" ng-click="orderbytype('clickcount','desc')">
+                        <input ng-hide="showupdate" class="ico-article-UP_default" type="button" value="Update" ng-click="orderbytype('updated','desc')">
+                        <input ng-show="showupdate" class="ico-article-DOWN_default" type="button" value="Update" ng-click="orderbytype('updated','asc')">
+                        <input ng-hide="showpublish" class="ico-article-UP_default" type="button" value="Published" ng-click="orderbytype('published','desc')">
+                        <input ng-show="showpublish" class="ico-article-DOWN_default" type="button" value="Published" ng-click="orderbytype('published','asc')">
+                        <input ng-hide="showclick" class="ico-article-UP_default" type="button" value="Click" ng-click="orderbytype('clickcount','desc')">
+                        <input ng-show="showclick" class="ico-article-DOWN_default" type="button" value="Click" ng-click="orderbytype('clickcount','asc')">
                     </div>
                 </div>
-               
-
             </div>
 
 
@@ -106,7 +123,7 @@
                                <!--  Rviewed状态-->
                                 <dd ng-show="article.status=='reviewed'">
                                     <div class="btn-group">
-                                    	<button class="btn" disabled>Reviewed</button>
+                                    	<button class="btn" disabled>Need Review</button>
                                     	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
                                     	<ul class="dropdown-menu pull-right clearfix">
                                           <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickstatus('draft',article)"></li>
