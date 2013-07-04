@@ -64,31 +64,24 @@
                         <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="delArticle(articledata.id)"></a>
                         <a href="" class="ico-article-backedit" rel="tooltip" title="Back Write" ng-click="cssTagsPanel = !cssTagsPanel"></a>
                     </i>
+                    <div modal="showcomments" options="cssmodalslide" >
+                        <div class="modal-header">
+                            <button type="button" class="close" ng-click="closecomments()">&times;</button>
+                            <h3 >Comments </h3>
+                        </div>
+
+                        <div class="modal-body">
+                            <input type="text" ng-model="articledata.comment" />
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn" ng-click="savedata(true)">Cancel</button>
+                            <button class="btn btn-danger" ng-click="savedata(false)">Save</button>
+                        </div>
+                    </div>
                 </div>
                 <!-- Article Arrtibute -->
                 <div class="article-cont">
-
-                    <!-- 测试用，不用管这段 ->
-                    <div class="tabbable tabs-below">
-                     <div class="tab-content">
-                       <div class="tab-pane active" id="A">
-                         <p>I'm in Section A.</p>
-                       </div>
-                       <div class="tab-pane" id="B">
-                         <p>Howdy, I'm in Section B.</p>
-                       </div>
-                       <div class="tab-pane" id="C">
-                         <p>What up girl, this is Section C.</p>
-                       </div>
-                     </div>
-                     <ul class="nav nav-tabs">
-                       <li class="active"><a href="#A" data-toggle="tab">Section 1</a></li>
-                       <li><a href="#B" data-toggle="tab">Section 2</a></li>
-                       <li><a href="#C" data-toggle="tab">Section 3</a></li>
-                     </ul>
-                   </div>
-                   <!-- 测试用，不用管这段 //End -->
-
                     <!-- Tags -->
                     <div class="atricle_attribute_box">
                         <h3>Tags</h3>
@@ -118,8 +111,6 @@
                             <option>Car</option>
                             <option>Law</option>
                             <option>Toys and games</option>
-                            <option>Law</option>
-                            <option>Law</option>
                             <option>Law</option>
                         </select>
                     </div>
@@ -188,13 +179,13 @@
         <!-- 发布按钮 -->
         <div class="article_btn">
             <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="saveArticle(newFeed)">
-            <a href="#" class="btn-publish" rel="tooltip" data-placement="top" title="PUBLISH" ng-click="publisharticle()">PUBLISH</a>
+            <input type="submit" value="PUBLISH" class="btn-publish" ng-click="publisharticle(newFeed)">
         </div>
         
         <!-- 版本节点 -->
         <div class="vernode">
         	<div class="line">
-                <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}" ng-click="displayversioninfo(revision);"  ng-repeat="revision in articledata.revision"  title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy HH:mm:ss'}}">{{revision.versionnum}}</a>
+                <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}" ng-click="displayversioninfo(revision);"  ng-repeat="revision in articledata.revision"  title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy HH:mm:ss'}} {{revision.comment}}">{{revision.versionnum}}</a>
         	</div>
         </div>
     </div>

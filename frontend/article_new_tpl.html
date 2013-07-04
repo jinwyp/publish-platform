@@ -27,6 +27,21 @@
                     <i class="article-title-ico">
                         <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = !cssTagsPanel"></a>
                     </i>
+                    <div modal="cssmodalshow" options="cssmodalslide" >
+                        <div class="modal-header">
+                            <button type="button" class="close" ng-click="closeModal()">&times;</button>
+                            <h3 >Comments </h3>
+                        </div>
+
+                        <div class="modal-body">
+                            <input type="text" ng-model="newarticleadata.comment" />
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn" ng-click="savedata(true)">Cancel</button>
+                            <button class="btn btn-danger" ng-click="savedata(false)">Save</button>
+                        </div>
+                    </div>
                 </div>
                 <!-- 编辑器 -->
                 <div class="article-cont" >
@@ -72,8 +87,6 @@
                             <option>Car</option>
                             <option>Law</option>
                             <option>Toys and games</option>
-                            <option>Law</option>
-                            <option>Law</option>
                             <option>Law</option>
                         </select>
                     </div>
