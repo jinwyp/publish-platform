@@ -191,11 +191,11 @@
 .large_step_2,
 .large_step_3,
 .large_step_4	{
- -webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	 -ms-transition: all 0.5s ease-in-out;
-	  -o-transition: all 0.5s ease-in-out;
-	     transition: all 0.5s ease-in-out;  }
+ -webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	 -ms-transition: all 0.4s ease-in-out;
+	  -o-transition: all 0.4s ease-in-out;
+	     transition: all 0.4s ease-in-out;  }
 		 
 .large_step_1	{ top:28%;}
 .large_step_2	{ top:32%;}
@@ -206,11 +206,11 @@
 .mini_step_2,
 .mini_step_3,
 .mini_step_4	{ top:54%; width:200px; 
--webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-ms-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;  }
+	-webkit-transition: all 0.4s ease-in-out;
+	   -moz-transition: all 0.4s ease-in-out;
+		-ms-transition: all 0.4s ease-in-out;
+		 -o-transition: all 0.4s ease-in-out;
+			transition: all 0.4s ease-in-out;  }
 	
 .large_step_1, .mini_step_1	{ left:5%;}
 .large_step_2, .mini_step_2	{ left:30%;}
@@ -242,9 +242,9 @@
 .site_workflow p	{ text-align:center; margin:0; padding-bottom:20px;}
 .site_workflow .btn	{ width:190px; text-decoration:none;}
 
-.RssFeedLabel		{ margin-right:20px; font-size:18px; font-weight:bold; display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline;}
-.RssFeedLabel input[type="radio"] { vertical-align:-2px; margin-right:4px;}
-.RssFeedOn_Box		{ border:1px solid #bfe3ab; border-radius:4px; padding:10px; background:#e6f2dc; font-weight:bold; color:#000; max-width:180px; word-wrap:break-word;}
+.RssFeedLabel		{ margin-right:20px; font-size:16px; font-weight:bold; display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline;}
+.RssFeedLabel input[type="radio"] { vertical-align:0px; margin-right:4px;}
+.RssFeedOn_Box		{ display:none; border:1px solid #bfe3ab; border-radius:4px; padding:10px; background:#e6f2dc; font-weight:bold; color:#000; max-width:180px; word-wrap:break-word;}
 
 /* 提交按钮 */
 .site_form .submitbox			{ padding:10px; border-radius:0 0 6px 6px; background:#4b4c50; text-align:center;}
@@ -328,6 +328,63 @@ ul.site_theme_ul .select:after{ display:block; position:absolute; right:-1px; bo
 .icon_sitetheme_09		{ background-position:0 -507px;}
 .icon_sitetheme_10		{ background-position:0 -563px;}
 .icon_sitetheme_11		{ background-position:0 -619px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================================================== */
+/*                                          User                                      	       */
+/* =========================================================================================== */
+.userWrap	{ }
+.userBox	{ position:absolute; min-width:310px; border-radius:4px; box-shadow:0 0 30px rgba(0,0,0,0.4); background:#363a3d; }
+
+.userAccount,
+.userPassword		{ top:30%;}
+
+.userAccount		{ left:10%;}
+.userPassword		{ left:50%;}
+
+.userAccount .titlename,
+.userPassword .titlename{ position:absolute; top:-80px; left:0; color:#fff; font-size:30px; text-shadow:0 0 28px rgba(0,0,0,0.6); text-transform:capitalize; font-weight:normal;}
+
+.userFormBox			{ padding:30px; color:#bbb; font-size:16px;}
+.userFormFloat			{ float:left;}
+
+.userPhoto				{ width:242px; height:182px; margin:0 auto 20px; }
+.userPhoto h6			{ margin:40px auto 20px; font-size:18px; color:#81848d; text-align:center; text-transform:uppercase;}
+.userPhoto .userUploadBtn{ display:block; margin:0 auto; padding:0 18px; height:38px; line-height:38px; text-align:center; color:#fff; border:0; font-size:12px; font-weight:bold; text-transform:uppercase; background:url(img/article_btn_bg.png) 0 -196px repeat-x; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.75);}
+.userPhoto .userUploadBtn:hover,
+.userPhoto .userUploadBtn:focus	{ background:#028db0;}
+.userPhoto .userUploadBtn:active{ line-height:39px; box-shadow:0 0 3px rgba(0,0,0,0.75), inset 0 0 20px rgba(0,0,0,0.5);}
+
+.userPhoto.empty		{ border:4px dashed #44494d; border-radius:4px; background:#2e3235;}
+.userPhoto.full			{ border-radius:4px; background:#2e3235;}
+.userPhoto.full img		{ width:242px; height:182px;}
+
+.userInfo				{ padding-left:30px;}
+.userInfo h6			{ margin:0 0 10px 0; text-transform:capitalize; cursor:default;}
+.userInfo label			{ margin:0 20px 10px 0; display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline;}
+.userInfo input[type="radio"]{ margin-right:6px; vertical-align:0px;}
+
+
+
 
 
 

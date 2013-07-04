@@ -70,8 +70,8 @@
                     	<td class="titlename">RSS Feed</td>
                         <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
                         <td>
-                        <label class="RssFeedLabel"><input type="radio" name="RSSfeed" id="RssFeedOn" checked>on</label>
-                        <label class="RssFeedLabel"><input type="radio" name="RSSfeed" id="RssFeedOff">off</label>
+                        <label class="RssFeedLabel"><input type="radio" name="RSSfeed" id="RssFeedOff" checked>Off</label>
+                        <label class="RssFeedLabel"><input type="radio" name="RSSfeed" id="RssFeedOn">On</label>
                         <div class="RssFeedOn_Box">
                         http://feeds.feedburner.com/04396348111312865800
                         </div>
@@ -203,25 +203,25 @@
 				  
 				   //SAVE
 				  $("#save_step1").click(function(){
-					 	$(".large_step_1").addClass("mini_step_1").delay(500).queue(function () {
+					 	$(".large_step_1").addClass("mini_step_1").queue(function () {
 							$(".mini_step_2").removeClass("mini_step_2").addClass("large_step_2");
 						});
 				  });
 				  
 				  $("#save_step2").click(function(){
-					  $(".large_step_2").addClass("mini_step_2").delay(500).queue(function () {
+					  $(".large_step_2").addClass("mini_step_2").queue(function () {
 							$(".mini_step_3").removeClass("mini_step_3").addClass("large_step_3");
 						});
 				  });
 				  
 				  $("#save_step3").click(function(){
-					  $(".large_step_3").addClass("mini_step_3").delay(500).queue(function () {
+					  $(".large_step_3").addClass("mini_step_3").queue(function () {
 							$(".mini_step_4").removeClass("mini_step_4").addClass("large_step_4");
 						});
 				  });
 				  
 				  $("#save_step4").click(function(){
-					  $(".large_step_4").addClass("mini_step_4").delay(500).queue(function () {
+					  $(".large_step_4").addClass("mini_step_4").queue(function () {
 							$(".mini_step_1").removeClass("mini_step_1").addClass("large_step_1");
 						});
 				  });
