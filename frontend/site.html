@@ -47,25 +47,38 @@
             </div>
         	<form class="site_form">
             	<h4>Site Attribute<a href="##" class="edit_step" id="edit_step1">Edit</a></h4>
+                <div class="site_form_Box">
                 <table class="table">
                 	<tr>
                     	<td class="titlename">Name</td>
-                        <td><div class="fancyinput_vcp"><input type="text" value=""></div></td>
-                        <!-- <td><input type="text" value="" class="site_input" placeholder="Name"></td></tr> -->
+                        <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td>-->
+                        <td><input type="text" value="" class="site_input" placeholder="Name"></td></tr>
                     </tr>
                     <tr>
                     	<td class="titlename">Domain</td>
-                        <td><div class="fancyinput_vcp"><input type="text" value=""></div></td>
-                        <!-- <td><input type="text" value="" class="site_input" placeholder="Domain"></td></tr> -->
+                       <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
+                        <td><input type="text" value="" class="site_input" placeholder="Domain"></td></tr>
                     <tr>
                     	<td class="titlename">Meta</td>
-                        <td><div class="fancyinput_vcp"><input type="text" value=""></div></td>
-                        <!-- <td><input type="text" value="" class="site_input" placeholder="Meta"></td></tr> -->
-                    <tr class="last">
+                        <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
+                        <td><input type="text" value="" class="site_input" placeholder="Meta"></td></tr>
+                    <tr>
                     	<td class="titlename">Type</td>
-                        <td><div class="fancyinput_vcp"><input type="text" value=""></div></td>
-                        <!-- <td><input type="text" value="" class="site_input" placeholder="Type"></td></tr> -->
+                        <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
+                        <td><input type="text" value="" class="site_input" placeholder="Type"></td></tr>
+                     <tr class="last">
+                    	<td class="titlename">RSS Feed</td>
+                        <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
+                        <td>
+                        <label class="RssFeedLabel"><input type="radio" name="RSSfeed" id="RssFeedOn" checked>on</label>
+                        <label class="RssFeedLabel"><input type="radio" name="RSSfeed" id="RssFeedOff">off</label>
+                        <div class="RssFeedOn_Box">
+                        http://feeds.feedburner.com/04396348111312865800
+                        </div>
+                        </td>
+                        </tr>
                 </table>
+                </div>
                 <div class="submitbox"><a href="##" class="submit" id="save_step1">Save</a></div>
             </form>
             
@@ -81,21 +94,23 @@
             </div>
         	<form class="site_form">
             	<h4>Select Theme<a href="##" class="edit_step" id="edit_step2">Edit</a></h4>
-                <div class="site_themebox">
-                	<ul class="site_theme_ul clearfix">
-                    <li><a href="#" class="icon_sitetheme_blank">Blank</a></li>
-                    <li><a href="#" class="icon_sitetheme_01">theme1</a></li>
-                    <li><a href="#" class="icon_sitetheme_02">theme2</a></li>
-                    <li><a href="#" class="icon_sitetheme_03">theme3</a></li>
-                    <li><a href="#" class="icon_sitetheme_04">theme4</a></li>
-                    <li><a href="#" class="icon_sitetheme_05 select">theme5</a></li>
-                    <li><a href="#" class="icon_sitetheme_06">theme6</a></li>
-                    <li><a href="#" class="icon_sitetheme_07">theme7</a></li>
-                    <li><a href="#" class="icon_sitetheme_08">theme8</a></li>
-                    <li><a href="#" class="icon_sitetheme_09">theme9</a></li>
-                    <li><a href="#" class="icon_sitetheme_10">theme10</a></li>
-                    <li><a href="#" class="icon_sitetheme_11">theme11</a></li>
-                    </ul>
+                <div class="site_form_Box">
+                    <div class="site_themebox">
+                        <ul class="site_theme_ul clearfix">
+                        <li><a href="#" class="icon_sitetheme_blank">Blank</a></li>
+                        <li><a href="#" class="icon_sitetheme_01">theme1</a></li>
+                        <li><a href="#" class="icon_sitetheme_02">theme2</a></li>
+                        <li><a href="#" class="icon_sitetheme_03">theme3</a></li>
+                        <li><a href="#" class="icon_sitetheme_04">theme4</a></li>
+                        <li><a href="#" class="icon_sitetheme_05 select">theme5</a></li>
+                        <li><a href="#" class="icon_sitetheme_06">theme6</a></li>
+                        <li><a href="#" class="icon_sitetheme_07">theme7</a></li>
+                        <li><a href="#" class="icon_sitetheme_08">theme8</a></li>
+                        <li><a href="#" class="icon_sitetheme_09">theme9</a></li>
+                        <li><a href="#" class="icon_sitetheme_10">theme10</a></li>
+                        <li><a href="#" class="icon_sitetheme_11">theme11</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="submitbox"><a href="##" class="submit" id="save_step2">Save</a></div>
             </form>
@@ -111,11 +126,35 @@
             </div>
         	<form class="site_form">
             	<h4>Logo<a href="##" class="edit_step" id="edit_step3">Edit</a></h4>
-                <table class="table">
-                	<tr><td class="titlename">Logo</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
-                    <tr class="last"><td class="titlename">Web Icon</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
-                </table>
-                <div class="submitbox"><a href="page.html" class="submit" id="save_step3">Save</a></div>
+                <div class="site_form_Box">
+                    <table class="table">
+                        <tr><td class="titlename">Logo</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
+                        <tr class="last"><td class="titlename">Web Icon</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
+                    </table>
+                </div>
+                <div class="submitbox"><a href="##" class="submit" id="save_step3">Save</a></div>
+            </form>
+        </div>
+        
+        
+        
+        <!-- 第 4 步 -->
+        <div class="site_stepbox mini_step_4">
+        	<div class="site_box_title clearfix">
+            	<div class="title_num">4</div>
+                <h3 class="title_name">Workflow</h3>
+            </div>
+        	<form class="site_form">
+            	<h4>Workflow<a href="##" class="edit_step" id="edit_step4">Edit</a></h4>
+                <div class="site_form_Box">
+                    <div class="site_workflow">
+                        <h6>Which one you like the review process?</h6>
+                        <p><a href="###" class="btn btn-info">Publish directly</a></p>
+                        <p><a href="###" class="btn btn-info">One step review and publish</a></p>
+                        <p><a href="###" class="btn btn-info">More step review and publish</a></p>
+                    </div>
+                </div>
+                <div class="submitbox"><a href="page.html" class="submit" id="save_step4">Save</a></div>
             </form>
         </div>
         
@@ -140,7 +179,7 @@
             <script src="lib/flatui/jquery.tagsinput.js"></script>
             <script src="lib/flatui/jquery.placeholder.js"></script>
             <script src="lib/flatui/application.js"></script>
-            <script src="app/js/fancyInput.js"></script>
+            <!-- <script src="app/js/fancyInput.js"></script>-->
             <!--[if lt IE 8]>
               <script src="lib/flatui/icon-font-ie7.js"></script>
               <script src="lib/flatui/lte-ie7-24.js"></script>
@@ -149,11 +188,19 @@
        			
 	
     		<script type="text/jscript">
-			$('.fancyinput_vcp :input').val('').fancyInput()[0].focus();
+			 //$('.fancyinput_vcp :input').val('').fancyInput()[0].focus();
 			
 			$(function() {
 				
-				
+				  // RSS 关闭/打开
+				  $("#RssFeedOn").click(function(){
+						$(".RssFeedOn_Box").slideDown(200);
+				  });
+				  $("#RssFeedOff").click(function(){
+						$(".RssFeedOn_Box").slideUp(200);
+				  });
+				  
+				  
 				   //SAVE
 				  $("#save_step1").click(function(){
 					 	$(".large_step_1").addClass("mini_step_1").delay(500).queue(function () {
@@ -169,6 +216,12 @@
 				  
 				  $("#save_step3").click(function(){
 					  $(".large_step_3").addClass("mini_step_3").delay(500).queue(function () {
+							$(".mini_step_4").removeClass("mini_step_4").addClass("large_step_4");
+						});
+				  });
+				  
+				  $("#save_step4").click(function(){
+					  $(".large_step_4").addClass("mini_step_4").delay(500).queue(function () {
 							$(".mini_step_1").removeClass("mini_step_1").addClass("large_step_1");
 						});
 				  });
@@ -181,18 +234,28 @@
 					  $(".mini_step_1").removeClass("mini_step_1").addClass("large_step_1");
 					  $(".large_step_2").addClass("mini_step_2");
 					  $(".large_step_3").addClass("mini_step_3");
+					  $(".large_step_4").addClass("mini_step_4");
 				  });
 				  
 				  $("#edit_step2").click(function(){
 					  $(".large_step_1").addClass("mini_step_1");
 					  $(".mini_step_2").removeClass("mini_step_2").addClass("large_step_2");
 					  $(".large_step_3").addClass("mini_step_3");
+					  $(".large_step_4").addClass("mini_step_4");
 				  });
 				  
 				  $("#edit_step3").click(function(){
 					  $(".large_step_1").addClass("mini_step_1");
 					  $(".large_step_2").addClass("mini_step_2");
 					  $(".mini_step_3").removeClass("mini_step_3").addClass("large_step_3");
+					  $(".large_step_4").addClass("mini_step_4");
+				  });
+				  
+				  $("#edit_step4").click(function(){
+					  $(".large_step_1").addClass("mini_step_1");
+					  $(".large_step_2").addClass("mini_step_2");
+					  $(".large_step_3").addClass("mini_step_3");
+					  $(".mini_step_4").removeClass("mini_step_4").addClass("large_step_4");
 				  });
 				
 				  
