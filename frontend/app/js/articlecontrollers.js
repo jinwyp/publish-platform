@@ -646,7 +646,8 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
 
     //显示Insert预览内容
     $scope.showinserthtml = function(val){
-        return val;
+        $("#contentpreview").html(val);
+        //return val;
     }
 
     $scope.cssmodalslide = {
