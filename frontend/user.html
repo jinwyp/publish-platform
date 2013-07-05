@@ -39,42 +39,75 @@
 <div class="vcpbox">
 	<div class="userWrap">
     
+    	<!-- 头像、基本信息 -->
     	<div class="userBox userAccount">
         	<h1 class="titlename">account information</h1>
             <div class="userFormBox clearfix">
             	<div class="userFormFloat">
+                
+                	<!-- 无头像时: class="userPhoto empty" -->
             		<div class="userPhoto empty">
                     	<h6>drop here</h6>
                         <input type="submit" class="userUploadBtn" value="browser">
                     </div>
+                    
+                    <!-- 有头像时: class="userPhoto full" -->
                     <div class="userPhoto full">
                     	<img src="app/img/temp/1.jpg">
+                        <input type="submit" class="userChangePhoto" value="change">
                     </div>
+                    
                 </div>
                 <div class="userFormFloat">
                 	<div class="userInfo">
                     	<h6>first name</h6>
-                        <input type="text" class="" value="" placeholder="">
+                        <!-- 编辑状态时显示：--><input type="text" class="" value="" placeholder="">
+                        <!-- 保存后显示：<p>Melvon</p> -->
                         <h6>last name</h6>
-                        <input type="text" class="" value="" placeholder="">
+                        <!-- 编辑状态时显示：--><input type="text" class="" value="" placeholder="">
+                        <!-- 保完后显示：<p>Melvon</p> -->
                         <h6>gender</h6>
-                        <label><input type="radio" class="" name="gender" checked>Male</label>
-                        <label><input type="radio" class="" name="gender">Female</label>
+                        <!-- 编辑状态时显示：--><label><input type="radio" class="" name="gender" checked>Male</label>
+                        <!-- 编辑状态时显示：--><label><input type="radio" class="" name="gender">Female</label>
+                        <!-- 保存后显示：<p>Male</p> -->
                         <h6>email</h6>
-                        <input type="text" class="" value="" placeholder="">
+                        <!-- 编辑状态时显示：--><input type="text" class="" value="" placeholder="">
+                        <!-- 保存后显示：<p>xufeng.7xuan@gmail.com</p> -->
                         <h6>telephone</h6>
-                        <input type="text" class="" value="" placeholder="">
+                        <!-- 编辑状态时显示：--><input type="text" class="" value="" placeholder="">
+                        <!-- 保存后显示：<p>010-62068000</p> -->
                     </div>
                 </div>
+                
+            </div>
+            <div class="UserBoxButton">
+            <input type="submit" class="saveUserBtn" value="save changes">
+            <input type="submit" class="editUserBtn" value="edit">
             </div>
         </div>
+        <!-- 头像、基本信息 //End-->
         
+        
+        <!-- 更改密码 -->
         <div class="userBox userPassword">
         	<h1 class="titlename">change password</h1>
-            <div class="userFormBox">
-            	change passwordchange passwordchange password
+            <div class="userFormBox clearfix">
+                <div class="userChangePassword">
+                    <h6>old password</h6>
+                    <input type="password" class="" value="" placeholder="">
+                    <hr>
+                    <h6>new password</h6>
+                    <input type="password" class="" value="" placeholder="">
+                    <h6>confirm new password</h6>
+                    <input type="password" class="" value="" placeholder="">
+                </div>
+            </div>
+            <div class="UserBoxButton">
+            <input type="submit" class="saveUserBtn" value="save changes">
+            <input type="submit" class="editUserBtn" value="edit">
             </div>
         </div>
+        <!-- 更改密码 //End -->
         
     </div>
 </div>  

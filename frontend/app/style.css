@@ -356,32 +356,66 @@ ul.site_theme_ul .select:after{ display:block; position:absolute; right:-1px; bo
 .userBox	{ position:absolute; min-width:310px; border-radius:4px; box-shadow:0 0 30px rgba(0,0,0,0.4); background:#363a3d; }
 
 .userAccount,
-.userPassword		{ top:30%;}
+.userPassword		{ top:25%; height:580px;  }
 
 .userAccount		{ left:10%;}
 .userPassword		{ left:50%;}
 
-.userAccount .titlename,
+.userAccount  .titlename,
 .userPassword .titlename{ position:absolute; top:-80px; left:0; color:#fff; font-size:30px; text-shadow:0 0 28px rgba(0,0,0,0.6); text-transform:capitalize; font-weight:normal;}
 
-.userFormBox			{ padding:30px; color:#bbb; font-size:16px;}
+.UserBoxButton						{ position:absolute; bottom:0; width:100%; background:#44494c; padding:20px 0; box-shadow:inset 0 1px 1px rgba(0,0,0,0.4); border-radius:0 0 4px 4px;}
+/* 保存 */
+.UserBoxButton .saveUserBtn				{ display:block; margin:0 auto; width:136px; height:38px; line-height:38px; text-align:center; color:#fff; border:0; font-size:12px; font-weight:bold; text-transform:uppercase; background:url(img/article_btn_bg.png) 0 -234px repeat-x; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.75); text-decoration:none;}
+.UserBoxButton .saveUserBtn:hover,
+.UserBoxButton .saveUserBtn:focus		{ background:#66cc64;}
+.UserBoxButton .saveUserBtn:active		{ line-height:39px; box-shadow:0 0 3px rgba(0,0,0,0.75), inset 0 0 20px rgba(0,0,0,0.5);}
+/* 编辑 */
+.UserBoxButton .editUserBtn				{ display:block; margin:0 auto; width:136px; height:38px; line-height:38px; text-align:center; color:#fff; border:0; font-size:12px; font-weight:bold; text-transform:uppercase; background:url(img/article_btn_bg.png) 0 -272px repeat-x; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.75); text-decoration:none;}
+.UserBoxButton .editUserBtn:hover,
+.UserBoxButton .editUserBtn:focus		{ background:#6ea0e5;}
+.UserBoxButton .editUserBtn:active		{ line-height:39px; box-shadow:0 0 3px rgba(0,0,0,0.75), inset 0 0 20px rgba(0,0,0,0.5);}
+
+.userFormBox			{ padding:30px; height:auto; color:#bbb; font-size:16px;}
 .userFormFloat			{ float:left;}
 
-.userPhoto				{ width:242px; height:182px; margin:0 auto 20px; }
+.userPhoto				{ width:242px; margin:0 auto 20px; background:#2e3235; }
 .userPhoto h6			{ margin:40px auto 20px; font-size:18px; color:#81848d; text-align:center; text-transform:uppercase;}
 .userPhoto .userUploadBtn{ display:block; margin:0 auto; padding:0 18px; height:38px; line-height:38px; text-align:center; color:#fff; border:0; font-size:12px; font-weight:bold; text-transform:uppercase; background:url(img/article_btn_bg.png) 0 -196px repeat-x; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.75);}
 .userPhoto .userUploadBtn:hover,
 .userPhoto .userUploadBtn:focus	{ background:#028db0;}
 .userPhoto .userUploadBtn:active{ line-height:39px; box-shadow:0 0 3px rgba(0,0,0,0.75), inset 0 0 20px rgba(0,0,0,0.5);}
 
-.userPhoto.empty		{ border:4px dashed #44494d; border-radius:4px; background:#2e3235;}
-.userPhoto.full			{ border-radius:4px; background:#2e3235;}
-.userPhoto.full img		{ width:242px; height:182px;}
+/* 无头像 */
+.userPhoto.empty		{ height:182px; border:4px dashed #44494d; border-radius:4px; }
 
-.userInfo				{ padding-left:30px;}
-.userInfo h6			{ margin:0 0 10px 0; text-transform:capitalize; cursor:default;}
-.userInfo label			{ margin:0 20px 10px 0; display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline;}
-.userInfo input[type="radio"]{ margin-right:6px; vertical-align:0px;}
+/* 有头像 */
+.userPhoto.full			{ margin-bottom:40px; position:relative; border:4px solid #44494d; border-radius:4px;}
+.userPhoto.full img		{ width:242px; height:182px; border-radius:2px;}
+.userPhoto.full .userChangePhoto{ display:block; position:absolute; left:30%; bottom:-54px; margin:0 auto; padding:0 18px; height:38px; line-height:38px; text-align:center; color:#fff; border:0; font-size:12px; font-weight:bold; text-transform:uppercase; background:url(img/article_btn_bg.png) 0 -196px repeat-x; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.75);}
+.userPhoto.full .userChangePhoto:hover,
+.userPhoto.full .userChangePhoto:focus	{ background:#028db0;}
+.userPhoto.full .userChangePhoto:active{ line-height:39px; box-shadow:0 0 3px rgba(0,0,0,0.75), inset 0 0 20px rgba(0,0,0,0.5);}
+
+.userInfo							{ padding-left:30px;}
+.userInfo h6						{ margin:0 0 10px 0; text-transform:capitalize; cursor:default;}
+.userInfo label						{ margin:0 20px 14px 0; display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline;}
+.userInfo input[type="text"]		{ padding:8px; background-color:#ccc; width:250px; font-size:18px; color:#000; font-weight:bold; }
+.userInfo input[type="text"]:focus	{ background:#fff;}
+.userInfo input[type="radio"]		{ margin-right:6px; vertical-align:0px;}
+.userInfo p							{ color:#fff; font-size:18px;}
+.userInfo input,
+.userInfo p							{ margin-bottom:16px;}
+
+.userChangePassword							{}
+.userChangePassword hr						{ border-top: 1px solid #282b2e; border-bottom: 1px solid #44494c; }
+.userChangePassword h6						{ margin:0 0 10px 0; text-transform:capitalize; cursor:default;}
+.userChangePassword input[type="password"]	{ padding:8px; background-color:#ccc; width:250px; font-size:18px; color:#000; font-weight:bold; }
+.userChangePassword input[type="password"]:focus{ background:#fff;}
+.userChangePassword input					{ margin-bottom:16px;}
+.userInfo p									{ color:#fff; font-size:18px;}
+.userChangePassword input,					
+.userChangePassword p						{ margin-bottom:16px;}
 
 
 
