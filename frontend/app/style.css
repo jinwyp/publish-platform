@@ -998,6 +998,10 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -500px;}
 .tip_box dt		{ width:120px; float:left; text-align:right; vertical-align:top;}
 .tip_box dd		{ width:360px; float:left; text-align:left; }
 
+.tip_box textarea{ position:static; padding:10px; color:#000; background:#999; border-color:#999;}
+.tip_box textarea:focus{ background:#fff;}
+
+
 .tip_auto h1,
 .tip_editor h1		{ background:#ea6465; }
 .tip_static h1,
@@ -1052,21 +1056,36 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -500px;}
 
 .tip_box .ui-slider{ margin-top:6px;}
 
+/* 静态元素Block */
+.StaticElementBlock			{ padding:20px; list-style:none;}
+.StaticElementBlock li		{ float:left; margin:0 40px 10px 0; width:50px; height:50px; }
+
+.icon_static_txt,
+.icon_static_pic,
+.icon_static_video,
+.icon_static_slider			{ display:block; width:50px; height:50px; background:url(img/static_block.png) no-repeat; overflow:hidden; text-indent:-99999px;}	
+
+.icon_static_txt			{ background-position:0 0;}
+.icon_static_pic			{ background-position:0 -50px;}
+.icon_static_video			{ background-position:0 -100px;}
+.icon_static_slider			{ background-position:0 -150px;}
+
+
 /* TipBox: Filter */
-.tipbox_filter input[type="text"],
-.tipbox_filter input[type="password"],
-.tipbox_filter input[type="datetime"],
-.tipbox_filter input[type="datetime-local"],
-.tipbox_filter input[type="date"],
-.tipbox_filter input[type="month"],
-.tipbox_filter input[type="time"],
-.tipbox_filter input[type="week"],
-.tipbox_filter input[type="number"],
-.tipbox_filter input[type="email"],
-.tipbox_filter input[type="url"],
-.tipbox_filter input[type="search"],
-.tipbox_filter input[type="tel"],
-.tipbox_filter input[type="color"]{ width:154px;  border:none; color: #000; font-family: "Lato", sans-serif; font-size:14px; font-weight:bold; padding:4px; text-indent:1px;  -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; -webkit-box-shadow:none; -moz-box-shadow:none; box-shadow:none;
+.tip_box input[type="text"],
+.tip_box input[type="password"],
+.tip_box input[type="datetime"],
+.tip_box input[type="datetime-local"],
+.tip_box input[type="date"],
+.tip_box input[type="month"],
+.tip_box input[type="time"],
+.tip_box input[type="week"],
+.tip_box input[type="number"],
+.tip_box input[type="email"],
+.tip_box input[type="url"],
+.tip_box input[type="search"],
+.tip_box input[type="tel"],
+.tip_box input[type="color"]{ width:154px;  border:none; color: #000; font-family: "Lato", sans-serif; font-size:14px; font-weight:bold; padding:4px; text-indent:1px;  -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; -webkit-box-shadow:none; -moz-box-shadow:none; box-shadow:none;
     background:#999;
     -webkit-transition:all 0.3s ease-in-out;
     -moz-transition:all 0.3s ease-in-out;
@@ -1074,65 +1093,66 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -500px;}
     -o-transition:all 0.3s ease-in-out;
     transition:all 0.3s ease-in-out; }
 
-.tipbox_filter input[type="text"]:-moz-placeholder,
-.tipbox_filter input[type="password"]:-moz-placeholder,
-.tipbox_filter input[type="datetime"]:-moz-placeholder,
-.tipbox_filter input[type="datetime-local"]:-moz-placeholder,
-.tipbox_filter input[type="date"]:-moz-placeholder,
-.tipbox_filter input[type="month"]:-moz-placeholder,
-.tipbox_filter input[type="time"]:-moz-placeholder,
-.tipbox_filter input[type="week"]:-moz-placeholder,
-.tipbox_filter input[type="number"]:-moz-placeholder,
-.tipbox_filter input[type="email"]:-moz-placeholder,
-.tipbox_filter input[type="url"]:-moz-placeholder,
-.tipbox_filter input[type="search"]:-moz-placeholder,
-.tipbox_filter input[type="tel"]:-moz-placeholder,
-.tipbox_filter input[type="color"]:-moz-placeholder{ color:#acb6c0; }
+.tip_box input[type="text"]:-moz-placeholder,
+.tip_box input[type="password"]:-moz-placeholder,
+.tip_box input[type="datetime"]:-moz-placeholder,
+.tip_box input[type="datetime-local"]:-moz-placeholder,
+.tip_box input[type="date"]:-moz-placeholder,
+.tip_box input[type="month"]:-moz-placeholder,
+.tip_box input[type="time"]:-moz-placeholder,
+.tip_box input[type="week"]:-moz-placeholder,
+.tip_box input[type="number"]:-moz-placeholder,
+.tip_box input[type="email"]:-moz-placeholder,
+.tip_box input[type="url"]:-moz-placeholder,
+.tip_box input[type="search"]:-moz-placeholder,
+.tip_box input[type="tel"]:-moz-placeholder,
+.tip_box input[type="color"]:-moz-placeholder{ color:#acb6c0; }
 
-.tipbox_filter input[type="text"]::-webkit-input-placeholder,
-.tipbox_filter input[type="password"]::-webkit-input-placeholder,
-.tipbox_filter input[type="datetime"]::-webkit-input-placeholder,
-.tipbox_filter input[type="datetime-local"]::-webkit-input-placeholder,
-.tipbox_filter input[type="date"]::-webkit-input-placeholder,
-.tipbox_filter input[type="month"]::-webkit-input-placeholder,
-.tipbox_filter input[type="time"]::-webkit-input-placeholder,
-.tipbox_filter input[type="week"]::-webkit-input-placeholder,
-.tipbox_filter input[type="number"]::-webkit-input-placeholder,
-.tipbox_filter input[type="email"]::-webkit-input-placeholder,
-.tipbox_filter input[type="url"]::-webkit-input-placeholder,
-.tipbox_filter input[type="search"]::-webkit-input-placeholder,
-.tipbox_filter input[type="tel"]::-webkit-input-placeholder,
-.tipbox_filter input[type="color"]::-webkit-input-placeholder{ color:#acb6c0; }
+.tip_box input[type="text"]::-webkit-input-placeholder,
+.tip_box input[type="password"]::-webkit-input-placeholder,
+.tip_box input[type="datetime"]::-webkit-input-placeholder,
+.tip_box input[type="datetime-local"]::-webkit-input-placeholder,
+.tip_box input[type="date"]::-webkit-input-placeholder,
+.tip_box input[type="month"]::-webkit-input-placeholder,
+.tip_box input[type="time"]::-webkit-input-placeholder,
+.tip_box input[type="week"]::-webkit-input-placeholder,
+.tip_box input[type="number"]::-webkit-input-placeholder,
+.tip_box input[type="email"]::-webkit-input-placeholder,
+.tip_box input[type="url"]::-webkit-input-placeholder,
+.tip_box input[type="search"]::-webkit-input-placeholder,
+.tip_box input[type="tel"]::-webkit-input-placeholder,
+.tip_box input[type="color"]::-webkit-input-placeholder{ color:#acb6c0; }
 
-.tipbox_filter input[type="text"].placeholder,
-.tipbox_filter input[type="password"].placeholder,
-.tipbox_filter input[type="datetime"].placeholder,
-.tipbox_filter input[type="datetime-local"].placeholder,
-.tipbox_filter input[type="date"].placeholder,
-.tipbox_filter input[type="month"].placeholder,
-.tipbox_filter input[type="time"].placeholder,
-.tipbox_filter input[type="week"].placeholder,
-.tipbox_filter input[type="number"].placeholder,
-.tipbox_filter input[type="email"].placeholder,
-.tipbox_filter input[type="url"].placeholder,
-.tipbox_filter input[type="search"].placeholder,
-.tipbox_filter input[type="tel"].placeholder,
-.tipbox_filter input[type="color"].placeholder{ color:#acb6c0; }
+.tip_box input[type="text"].placeholder,
+.tip_box input[type="password"].placeholder,
+.tip_box input[type="datetime"].placeholder,
+.tip_box input[type="datetime-local"].placeholder,
+.tip_box input[type="date"].placeholder,
+.tip_box input[type="month"].placeholder,
+.tip_box input[type="time"].placeholder,
+.tip_box input[type="week"].placeholder,
+.tip_box input[type="number"].placeholder,
+.tip_box input[type="email"].placeholder,
+.tip_box input[type="url"].placeholder,
+.tip_box input[type="search"].placeholder,
+.tip_box input[type="tel"].placeholder,
+.tip_box input[type="color"].placeholder{ color:#acb6c0; }
 
-.tipbox_filter input[type="text"]:focus,
-.tipbox_filter input[type="password"]:focus,
-.tipbox_filter input[type="datetime"]:focus,
-.tipbox_filter input[type="datetime-local"]:focus,
-.tipbox_filter input[type="date"]:focus,
-.tipbox_filter input[type="month"]:focus,
-.tipbox_filter input[type="time"]:focus,
-.tipbox_filter input[type="week"]:focus,
-.tipbox_filter input[type="number"]:focus,
-.tipbox_filter input[type="email"]:focus,
-.tipbox_filter input[type="url"]:focus,
-.tipbox_filter input[type="search"]:focus,
-.tipbox_filter input[type="tel"]:focus,
-.tipbox_filter input[type="color"]:focus{ -webkit-box-shadow:none; -moz-box-shadow:none;  box-shadow:none; background:#fff;}
+.tip_box input[type="text"]:focus,
+.tip_box input[type="password"]:focus,
+.tip_box input[type="datetime"]:focus,
+.tip_box input[type="datetime-local"]:focus,
+.tip_box input[type="date"]:focus,
+.tip_box input[type="month"]:focus,
+.tip_box input[type="time"]:focus,
+.tip_box input[type="week"]:focus,
+.tip_box input[type="number"]:focus,
+.tip_box input[type="email"]:focus,
+.tip_box input[type="url"]:focus,
+.tip_box input[type="search"]:focus,
+.tip_box input[type="tel"]:focus,
+.tip_box input[type="color"]:focus{ -webkit-box-shadow:none; -moz-box-shadow:none;  box-shadow:none; background:#fff;}
+
 /* Add Tag */
 .tipbox_filter .tagsinput { background:none; border:none; border-radius:6px; height:100px; padding:0; overflow-y:auto; text-align:left; }
 .tipbox_filter .tagsinput .tag {

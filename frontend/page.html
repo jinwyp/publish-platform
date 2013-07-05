@@ -175,13 +175,31 @@
 <!-- ======================================= tip_static ======================================= -->
 <div class="tip_box tip_static" ng-show="'static'==cssblocktipbox">
     <h1>Static</h1>
-    <p><img src="app/img/temp/status.png" style="margin:0 auto"></p>
+    <ul class="StaticElementBlock clearfix">
+     	<li><a href="###" class="icon_static_txt">TXT</a></li>
+        <li><a href="###" class="icon_static_pic">PIC</a></li>
+        <li><a href="###" class="icon_static_video">VIDEO</a></li>
+        <li><a href="###" class="icon_static_slider">Slider</a></li>
+    </ul>
 </div>
 
 <!-- ======================================= tip_ad ======================================= -->
 <div class="tip_box tip_ads" ng-show="'ads'==cssblocktipbox">
     <h1>AD block attribute</h1>
-    <p><img src="app/img/temp/ad.png"></p>
+    <div class="tab-content">
+        <dl class="clearfix">
+            <dt>AD ID:</dt>
+            <dd><input type="text" data-provide="typeahead" data-items="10"></dd>
+        </dl>
+        <dl class="clearfix">
+            <dt>Code :</dt>
+            <dd><textarea rows="3"></textarea></dd>
+        </dl>
+        <dl class="clearfix">
+        	<dt>&nbsp;</dt>
+            <dd><input type="submit" class="btn btn-success" value="Add" style=" height:30px; margin:0 0 10px 0;"></dd>
+        </dl>
+    </div>
 </div>
 
 <!-- ======================================= tip_RSS ======================================= -->
@@ -189,9 +207,18 @@
     <h1>RSS block attribute</h1>
     <div class="tab-content">
         <dl class="clearfix">
-            <dt>API:</dt>
+            <dt>URL:</dt>
             <dd><input type="text" data-provide="typeahead" data-items="10" ng-model="newblock.blockname">
                 <input type="submit" class="btn btn-success" value="Add" style=" height:30px; margin:0 0 10px 0;">
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt>Layout :</dt>
+            <dd>
+                <div class="tipbox_laytou">
+                    <a href="#" class="icon_layout_1 selected" ng-click=""></a>
+                    <a href="#" class="icon_layout_2"></a>
+                </div>
             </dd>
         </dl>
     </div>
