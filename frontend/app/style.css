@@ -341,7 +341,7 @@
 
 
 /* === Form === */
-.site_form		{ display:block; padding:0; margin:0; overflow:hidden; }
+.site_form		{ display:block; padding:0; margin:0;  }
 .site_form_Box	{ background:#f3f4f6; padding:0; }
 .site_form h4	{ position:relative; display:block; margin:0; padding:0; color:#fff; font-weight:bold; line-height:40px; text-indent:20px; height:40px; border-radius:6px 6px 0 0; background:#393a3e;   }
 .site_workflow		{ padding:0; margin:0;}
@@ -390,12 +390,55 @@
 
 /* === 选择Theme === */
 .site_themebox{ padding:30px 14px; background:#f3f4f6;}
-ul.site_theme_ul{ margin:0; padding:0; list-style:none;}
-ul.site_theme_ul li{ float:left; margin:7px; border-radius:8px;}
+ul.site_theme_ul{ margin:0; padding:0; list-style:none; position:relative;}
+ul.site_theme_ul li{ float:left; margin:0; padding:7px; border-radius:8px;}
 ul.site_theme_ul a{ display:block; border:3px solid transparent; width:46px; height:46px; text-indent:-9999px; border-radius:8px; background-color:transparent; }
 
 ul.site_theme_ul .select{ border:3px solid #34ae01; position:relative; box-shadow:0 0 5px rgba(0,0,0,0.3);}
 ul.site_theme_ul .select:after{ display:block; position:absolute; right:-1px; bottom:-1px; width:24px; height:24px; background:url(img/sitetheme_select.png) no-repeat; content:''}
+
+/* 缩略图预览特效 */
+ul.site_theme_ul li.ts_thumbnails{
+	display:none;
+	position:absolute;
+	padding:0; 
+	margin:0;
+}
+ul.site_theme_ul li.ts_thumbnails span{
+	background:transparent url(img/triangle.png) no-repeat top center;
+	width:15px;
+	height:6px;
+	position:absolute;
+}
+.ts_preview_wrapper{
+	border:5px solid #fff;
+	overflow:hidden;
+	position:relative;
+	-moz-box-shadow:0px 0px 15px rgba(0,0,0,0.3);
+	-webkit-box-shadow:0px 0px 15px rgba(0,0,0,0.3);
+	box-shadow:0px 0px 15px rgba(0,0,0,0.3);
+}
+ul.ts_preview{
+	position:absolute;
+	left:0px;
+	top:0px;
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+ul.ts_preview li{
+	float:left;
+	margin:0;
+	padding:0;
+}
+ul.ts_preview li img{
+	display:block;
+	width:300px;
+	height:200px;
+	margin:0;
+	padding:0;
+}
+
 
 .icon_sitetheme_blank,
 .icon_sitetheme_01,
@@ -1049,10 +1092,10 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -500px;}
 .icon_layout_5{ display:block; width:60px; height:38px;}
 
 .icon_layout_1{ background:#000 url(img/ico_layout_01.png) no-repeat;}
-.icon_layout_2{ background:#000 url(img/ico_layout_01.png) no-repeat;}
-.icon_layout_3{ background:#000 url(img/ico_layout_01.png) no-repeat;}
-.icon_layout_4{ background:#000 url(img/ico_layout_01.png) no-repeat;}
-.icon_layout_5{ background:#000 url(img/ico_layout_01.png) no-repeat;}
+.icon_layout_2{ background:#000 url(img/ico_layout_02.png) no-repeat;}
+.icon_layout_3{ background:#000 url(img/ico_layout_03.png) no-repeat;}
+.icon_layout_4{ background:#000 url(img/ico_layout_04.png) no-repeat;}
+.icon_layout_5{ background:#000 url(img/ico_layout_05.png) no-repeat;}
 
 .tip_box .ui-slider{ margin-top:6px;}
 
@@ -1926,3 +1969,7 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
     list-style: none;
     width: auto;
   }
+
+
+
+
