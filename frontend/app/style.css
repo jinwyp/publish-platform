@@ -202,8 +202,8 @@
 	  -o-transition: all 0.4s ease-in-out;
 	     transition: all 0.4s ease-in-out;  }
 		 
-.reg_step_1	{ top:28%;}
-.reg_step_2	{ top:32%;}
+.reg_step_1	{ top:30%;}
+.reg_step_2	{ top:26%;}
 .reg_step_3	{ top:30%;}
 
 .regmini_step_1,
@@ -267,7 +267,7 @@
 .reg_form input.reg_input:-moz-placeholder,
 .reg_form input.reg_input::-webkit-input-placeholder{ }
 /*gender */
-.regGenderLabel		{ margin-right:20px; font-size:16px; font-weight:bold; display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline;}
+.regGenderLabel		{ color:#a0b3c4; margin-right:20px; font-size:16px; font-weight:bold; display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline;}
 .regGenderLabel input[type="radio"] { vertical-align:0px; margin-right:4px;}
 
 
@@ -462,10 +462,10 @@ ul.site_theme_ul .select:after{ display:block; position:absolute; right:-1px; bo
 .userBox	{ position:absolute; min-width:310px; border-radius:4px; box-shadow:0 0 30px rgba(0,0,0,0.4); background:#363a3d; }
 
 .userAccount,
-.userPassword		{ top:25%; height:580px;  }
+.userPassword		{ top:22%; height:580px;  }
 
 .userAccount		{ left:20%;}
-.userPassword		{ left:50%;}
+.userPassword		{ left:60%;}
 
 .userAccount  .titlename,
 .userPassword .titlename{ position:absolute; top:-80px; left:0; color:#fff; font-size:30px; text-shadow:0 0 28px rgba(0,0,0,0.6); text-transform:capitalize; font-weight:normal;}
