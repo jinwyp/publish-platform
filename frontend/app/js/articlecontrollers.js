@@ -16,6 +16,10 @@ articleapp.directive('ckEditor', function() {
                 });
             });
 
+            ck.on('change', function(e) {
+                $("#contentpreview").html(e.editor.getData());
+            });
+
             ngModel.$render = function(value) {
                 ck.setData(ngModel.$viewValue);
             };
@@ -403,11 +407,12 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
     $scope.showcomments = false;
     //点击draft按钮事件
 
-    var nowdata1='';
+    var nowdata1='',articlestatus="";
     $scope.clickstatus=function(param,data){
         $scope.showcomments = true;
         nowdata1=this.article;
-        this.article.status=param;
+        articlestatus = param;
+        //this.article.status=param;
         $("#comments")[0].value="";
     }
 
@@ -477,6 +482,7 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
     $scope.savedata = function(){
         nowdata1.published = modelArticle.getDateNow();
         nowdata1.reviewcomment=$("#comments")[0].value;
+        nowdata1.status = articlestatus;
 /*        var newrevisionid = nowdata1.revision.length + 1;
         var newrevision = {
             "versionid" :  newrevisionid ,
@@ -492,7 +498,6 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
         $scope.showcomments = false;
     }
 }
-
 
 articleapp.controller.articleDetail = function ($scope, $routeParams, modelArticle) {
     $scope.cssTagsPanel = false;
@@ -637,12 +642,6 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
             $scope.cssmodalshow = true;
             $scope.saveflag = savestatus;
         }
-    }
-
-    //显示Insert预览内容
-    $scope.showinserthtml = function(val){
-        $("#contentpreview").html(val);
-        //return val;
     }
 
     $scope.cssmodalslide = {
