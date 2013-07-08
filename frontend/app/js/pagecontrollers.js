@@ -1,26 +1,10 @@
 'use strict';
 
-var pageapp = angular.module('pagemodule', ['uiSlider', 'ui.bootstrap']);
-
-pageapp.directive('enterKeypress', function(){
-    return function(scope, element, attrs) {
-        element.bind("keypress", function(event) {
-            if(event.which === 13) {
-                scope.$apply(function(){
-                    scope.$eval(attrs.enterKeypress);
-                });
-                event.preventDefault();
-            }
-        });
-    };
-});
-
+var pageapp = angular.module('vcpmodule', [ 'vcpmodule.directive' ]);
 
 var page = {
-    m:{},
     c:{}
-};
-
+}
 pageapp.controller(page.c);
 
 pageapp.factory('modelSite', function(){
@@ -298,7 +282,7 @@ pageapp.factory('modelSite', function(){
 
 
 /* Controllers */
-page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, modelSite) {
+page.c.pageListcontroller = function($scope, $location, $http,  modelSite) {
 
     function initialize(){
 

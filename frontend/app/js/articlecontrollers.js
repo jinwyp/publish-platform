@@ -1,27 +1,9 @@
 'use strict';
 
 /* App Module */
-var articleapp =angular.module('articlemodule', ['ui.bootstrap']);
+var articleapp = angular.module('vcpmodule', ['ui.bootstrap', 'vcpmodule.directive']);
 
-articleapp.directive('ckEditor', function() {
-    return {
-        require: '?ngModel',
-        link: function(scope, elm, attr, ngModel) {
-            var ck = CKEDITOR.replace(elm[0]);
-            if (!ngModel) return;
 
-            ck.on('pasteState', function() {
-                scope.$apply(function() {
-                    ngModel.$setViewValue(ck.getData());
-                });
-            });
-
-            ngModel.$render = function(value) {
-                ck.setData(ngModel.$viewValue);
-            };
-        }
-    };
-});
 
 
 articleapp.factory('modelArticle', function(){
