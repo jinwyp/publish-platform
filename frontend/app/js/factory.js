@@ -109,9 +109,11 @@ vcpapp.factory('modelSite', function(){
         ]}
     ];
     var blocklayout = [
-        {id: 100, layoutname: '一列纯文字', fitforblocktype : 0, order:1, layoutimage:'app/img/ico_layout_01.png'},
-        {id: 101, layoutname: '两列纯文字', fitforblocktype : 0, order:2, layoutimage:'app/img/ico_layout_01.png'},
-        {id: 102, layoutname: '两列纯文字', fitforblocktype : 0, order:3, layoutimage:'app/img/ico_layout_01.png'}
+        {id: 100, layoutname: '一列纯文字', fitforblocktype : 0, order:1, layoutimage:'app/img/ico_layout_03.png'},
+        {id: 101, layoutname: '两列纯文字', fitforblocktype : 0, order:2, layoutimage:'app/img/ico_layout_04.png'},
+        {id: 102, layoutname: '两列图文字', fitforblocktype : 0, order:3, layoutimage:'app/img/ico_layout_01.png'},
+        {id: 103, layoutname: '两列图文字', fitforblocktype : 0, order:3, layoutimage:'app/img/ico_layout_02.png'}
+
     ];
 
 

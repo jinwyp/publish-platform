@@ -259,6 +259,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             blocktype : 'auto',
             blockstatictype:'',
             blockname : "",
+            apiurl : "",
             blocklayout : 10,
             blockquantity : 6,
             blocktag : [],
@@ -318,6 +319,9 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
             case 'RSS':
                 newblock.blocktype = 'RSS';
+                newblock.blockname = $scope.newblock.blockname;
+                newblock.urlapi = $scope.newblock.urlapi;
+
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 break;
             default:

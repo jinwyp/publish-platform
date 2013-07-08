@@ -154,8 +154,9 @@
             <dt>Layout :</dt>
             <dd>
                 <div class="tipbox_layout">
-                    <a href="#" class="icon_layout_1 selected" ng-click="addblocktopage('editor', currentlayoutcontainer)"></a>
-                    <a href="#" class="icon_layout_2"></a>
+                    <a href="#"  ng-repeat="blocklayout in blocklayouts" ng-class="{selected:$index == cssblocklayoutselected}" ng-click="addblocktopage('editor', currentlayoutcontainer, $index)">
+                        <img src="{{ blocklayout.layoutimage }}" alt="">
+                    </a>
                 </div>
             </dd>
         </dl>
@@ -212,16 +213,16 @@
         </dl>
         <dl class="clearfix">
             <dt>URL:</dt>
-            <dd><input type="text" data-provide="typeahead" data-items="10" ng-model="newblock.blockname">
-                <input type="submit" class="btn btn-success" value="Add" style=" height:30px; margin:0 0 10px 0;">
+            <dd><input type="text" data-provide="typeahead" data-items="10" ng-model="newblock.urlapi">
             </dd>
         </dl>
         <dl class="clearfix">
             <dt>Layout :</dt>
             <dd>
                 <div class="tipbox_layout">
-                    <a href="#" class="icon_layout_1"></a>
-                    <a href="#" class="icon_layout_2"></a>
+                    <a href="#"  ng-repeat="blocklayout in blocklayouts" ng-class="{selected:$index == cssblocklayoutselected}" ng-click="addblocktopage('RSS', currentlayoutcontainer, $index)">
+                        <img src="{{ blocklayout.layoutimage }}" alt="">
+                    </a>
                 </div>
             </dd>
         </dl>
@@ -345,7 +346,7 @@
                             </div>
 
                             <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='RSS'">
-                                <h2>{{ block.blockname}}</h2>
+                                <h3>{{ block.blockname}}</h3>
 
                                 <p><a href="#">政治局为6个半天会议准备60天 听取老常委意见</a></p>
                                 <p><a href="#">韩亚失事飞机上近半中国人背后：票价低1/3抢中国市场</a></p>
