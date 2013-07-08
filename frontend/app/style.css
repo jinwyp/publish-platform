@@ -1081,9 +1081,9 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -500px;}
 .tip_box .nav-tabs > .active > a:hover 	{ color: #fff; cursor: default; background: #343434; border:0; box-shadow:0 0 0 #000; }
 
 /* TipBox: Layout */
-.tipbox_laytou					{ margin:0; padding:0; list-style:none; clear:both; *zoom:1;}
-.tipbox_laytou a				{ display:block; float:left; margin-right:10px; position:relative; width:60px; height:38px; overflow:hidden;}
-.tipbox_laytou .selected		{ background:url(img/ico_layout_select.png);}
+.tipbox_layout					{ margin:0; padding:0; list-style:none; clear:both; *zoom:1;}
+.tipbox_layout a				{ display:block; float:left; margin-right:10px; position:relative; width:60px; height:38px; overflow:hidden;}
+.tipbox_layout .selected		{ background:url(img/ico_layout_select.png);}
 
 .icon_layout_1,
 .icon_layout_2,

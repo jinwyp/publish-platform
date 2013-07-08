@@ -233,7 +233,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         switch(divid)
         {
             case 'tab-layout':
-                heightdiff = 283;
+                heightdiff = 301;
                 break;
             case 'tab-filter':
                 heightdiff = 210;
@@ -257,6 +257,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         var newblock = {
             blockid : 200,
             blocktype : 'auto',
+            blockstatictype:'',
             blockname : "",
             blocklayout : 10,
             blockquantity : 6,
@@ -292,22 +293,31 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
 
                 //通过Tags 获取文章
-                newblock.blockarticles = modelSite.getArticlesByTags(newblock.blocktag);
+                newblock.blockarticles = modelArticle.getArticlesByTags(newblock.blocktag);
 
                 if (temptagslistname.length == 0 ){
-                    newblock.blockarticles = modelSite.getArticles();
+                    newblock.blockarticles = modelArticle.getArticles();
                 }
 
                 break;
-            case 'editor':
 
+            case 'editor':
                 newblock.blocktype = 'editor';
                 newblock.blockname = $scope.newblock.blockname;
                 break;
+
             case 'static':
+                newblock.blocktype = 'static';
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 break;
+
             case 'ads':
+                newblock.blocktype = 'ads';
+                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                break;
+
+            case 'RSS':
+                newblock.blocktype = 'RSS';
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 break;
             default:

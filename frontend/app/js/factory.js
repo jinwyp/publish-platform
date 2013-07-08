@@ -128,7 +128,7 @@ vcpapp.factory('modelSite', function(){
                     { siteid:1, pagename:'Homepage', pageid:101, pagetype:10, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
                         pagelayoutdata:[
                             {layoutcontainerclass:"span9", layoutcontainerid:1000 , blocks:[
-                                {blockid:100, blocktype:'auto', blockname:"Today hot",blocklayout:10, blockquantity:6, blocktag:[], blockcategory:[], blocksortby:'date' , blockarticles:[
+                                {blockid:100, blocktype:'auto', blockstatictype:'', blockname:"Today hot",blocklayout:10, blockquantity:6, blocktag:[], blockcategory:[], blocksortby:'date' , blockarticles:[
   /*                                  {"id": 1000, "title": "multiple partial views in angularjs111.",  "status": "needreview",
                                         "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023,
                                         "category": "Today", "categoryid":1000,
