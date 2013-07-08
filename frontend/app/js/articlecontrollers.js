@@ -412,7 +412,7 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
     }
 
     $scope.closecomments = function(){
-        $scope.savedata(true);
+        $scope.showcomments = false;
     }
 
     //搜索提示
@@ -474,14 +474,10 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
         $scope.articlepreviewdata = $scope.articlesdata[0];
     }
 
-    $scope.savedata = function(flag){
+    $scope.savedata = function(){
         nowdata1.published = modelArticle.getDateNow();
-        if(flag){
-            nowdata1.comment = '';
-        }else{
-            nowdata1.comment = $("#comments")[0].value;
-        }
-        var newrevisionid = nowdata1.revision.length + 1;
+        nowdata1.reviewcomment=$("#comments")[0].value;
+/*        var newrevisionid = nowdata1.revision.length + 1;
         var newrevision = {
             "versionid" :  newrevisionid ,
             "versionnum" :  newrevisionid ,
@@ -489,9 +485,9 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
             "created": nowdata1.created, "updated":nowdata1.updated, "published": nowdata1.published,
             "author": nowdata1.author,  "editor": nowdata1.editor,  "clickcount":nowdata1.clickcount,
             "category": nowdata1.category, "categoryid": nowdata1.categoryid,
-            "tags": nowdata1.tags,"comment":nowdata1.comment
+            "tags": nowdata1.tags,"versioncomment":nowdata1.versioncomment
         };
-        nowdata1.revision.push(newrevision);
+        nowdata1.revision.push(newrevision);*/
         modelArticle.saveArticle(nowdata1);
         $scope.showcomments = false;
     }
@@ -538,7 +534,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
     $scope.saveArticle = function(feed) {
         $scope.ispublish=false;
-        $scope.articledata.comment='';
+        $scope.articledata.versioncomment='';
         $scope.articledata.updated=modelArticle.getDateNow();
         $scope.articledata.status='draft';
         if (feed.$valid) {
@@ -549,10 +545,10 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
     //关闭comments对话框
     $scope.closecomments = function(){
-        $scope.savedata(true);
+        $scope.showcomments = false;
     }
 
-    $scope.savedata=function(flag){
+    $scope.savedata=function(){
         var temptagslistname = $(".tagsinput").exportTags();
         $scope.articledata.tags = [];
         for(var i=0;i<temptagslistname.length;i++){
@@ -567,9 +563,6 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
             }
             $scope.articledata.tags.push(newtag);
         }
-        if(flag){
-            $scope.articledata.comment='';
-        }
         $scope.articledata.category=$(".dk_label")[0].textContent;
         var newrevisionid = $scope.articledata.revision.length + 1;
         var newrevision = {
@@ -579,7 +572,8 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
             "created": $scope.articledata.created, "updated":modelArticle.getDateNow(), "published": $scope.articledata.published,
             "author": $scope.articledata.author,  "editor": $scope.articledata.editor,  "clickcount":$scope.articledata.clickcount,
             "category": $scope.articledata.category, "categoryid": $scope.articledata.categoryid,
-            "tags": $scope.articledata.tags,"comment":$scope.articledata.comment
+            "tags": $scope.articledata.tags,"versioncomment":$scope.articledata.versioncomment,
+            "reviewcomment": $scope.articledata.reviewcomment
         };
 
         $scope.articledata.revision.push(newrevision);
@@ -589,7 +583,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
 
     $scope.ispublish=false;
     $scope.publisharticle=function(feed){
-        $scope.articledata.comment='';
+        $scope.articledata.versioncomment='';
         $scope.articledata.published=modelArticle.getDateNow();
         $scope.articledata.status='publish';
         if (feed.$valid) {
@@ -630,7 +624,8 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
         "category": "Today", "categoryid":1000,
         "tags": [],
         "revision" : [],
-        "comment":""
+        "versioncomment":"",
+        "reviewcomment":""
     }
 
     $scope.cssTagsPanel = false;
@@ -656,10 +651,10 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
     };
 
     $scope.closeModal = function () {
-        $scope.savedata(true);
+        $scope.cssmodalshow = false;
     };
 
-    $scope.savedata = function(flag) {
+    $scope.savedata = function() {
          var temptagslistname = $(".tagsinput").exportTags();
          $scope.newarticleadata.tags=[];
          for(var i=0;i<temptagslistname.length;i++){
@@ -675,9 +670,6 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
              }
              $scope.newarticleadata.tags.push(newtag);
          }
-         if(flag){
-             $scope.newarticleadata.comment='';
-         }
          $scope.newarticleadata.category=$(".dk_label")[0].textContent;
          $scope.newarticleadata.status=$scope.saveflag;
          //增加文章每一次修改版本信息
@@ -689,7 +681,8 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
              "created": $scope.newarticleadata.created, "updated": $scope.newarticleadata.updated, "published": $scope.newarticleadata.published,
              "author": $scope.newarticleadata.author,  "editor": $scope.newarticleadata.editor,  "clickcount":$scope.newarticleadata.clickcount,
              "category": $scope.newarticleadata.category, "categoryid": $scope.newarticleadata.categoryid,
-             "tags":$scope.newarticleadata.tags,"comment":$scope.newarticleadata.comment
+             "tags":$scope.newarticleadata.tags,"versioncomment":$scope.newarticleadata.versioncomment,
+             "reviewcomment":$scope.newarticleadata.reviewcomment
          };
 
          $scope.newarticleadata.revision.push(newrevision);
