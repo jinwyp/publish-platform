@@ -8,9 +8,9 @@
         <div class="article-span9">
             <div class="article-title">REVIEW by <b>{{articlepreviewdata.editor}}</b>
                 <i class="article-title-ico">
-                    <a href="#/detail/{{articlepreviewdata.id}}" class="ico-article-edit" rel="tooltip" title="Edit Article"></a>
+                    <!-- <a href="#/detail/{{articlepreviewdata.id}}" class="ico-article-edit" rel="tooltip" title="Edit Article"></a>
                     <a href="" class="ico-article-del" rel="tooltip" title="Delete Article"  ng-click="openModal()"></a>
-                    <!-- <a href="" class="ico-article-setup" rel="tooltip" title="Tag Category"></a> -->
+                    <a href="" class="ico-article-setup" rel="tooltip" title="Tag Category"></a> -->
                 </i>
                 <div modal="cssmodalshow" options="cssmodalslide" >
                     <div class="modal-header">
@@ -55,7 +55,7 @@
 
                     <div class="tagbox">
                         May 05 2013  |  Tag »
-                        <a href="#/tag/{{tag.tagid}}" ng-repeat="tag in newarticleadata.tags">{{tag.tagname}}</a>
+                        <a href="#/tag/{{tag.tagid}}" ng-repeat="tag in articlepreviewdata.tags">{{tag.tagname}}</a>
                     </div>
                     <p id="pcontent" ng-bind-html-unsafe="loadhtml(articlepreviewdata.contentbody)">
 
@@ -75,10 +75,11 @@
                 <i class="article-title-ico clearfix">
                        <!-- <pre>Model: {{selected| json}}</pre>-->
                     	<a href="#/newarticle/" class="ico-article-addnew" rel="tooltip" title="Add New Article"></a>
-                        <a href="#" class="ico-article-sequence dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>
+                        <!--<a href="#" class="ico-article-sequence dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>-->
                         <input class="aiticleList_search" type="text" ng-model="selected" ng-change="selectdata()" typeahead="state for state in states | filter:$viewValue">
                 </i>
-                <div collapse="isCollapsed" style="margin:0; width:100%;">
+                <hr>
+                <div style="margin:0; width:100%;">
                     <div class="well">
                         <input ng-hide="showupdate" class="ico-article-UP_default" type="button" value="Update" ng-click="orderbytype('updated','desc')">
                         <input ng-show="showupdate" class="ico-article-DOWN_default" type="button" value="Update" ng-click="orderbytype('updated','asc')">
@@ -109,6 +110,13 @@
                         </div>
                         <div class="list-count">
                             <dl>
+                                <dd style="padding-bottom: 20px;">
+                                    <i class="article-title-ico">
+                                        <a href="" class="ico-article-del" rel="tooltip" title="" ng-click="openModal()" data-original-title="Delete Article"></a>
+                                        <a href="#/detail/1004" class="ico-article-edit" rel="tooltip" title="Edit Article"></a>
+                                        <!-- <a href="" class="ico-article-setup" rel="tooltip" title="Tag Category"></a> -->
+                                    </i>
+                                </dd>
                                 <dd><span>{{article.clickcount}}</span></dd>
                                 <!-- Draft状态 -->
                                 <dd ng-show="article.status=='draft'">

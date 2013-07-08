@@ -16,7 +16,16 @@
                 </div>
                 <!-- 预览区 -->
                 <div id="article-cont-preview" class="article-cont">
-                	<div id="contentpreview" class="article-templete"></div>
+                    <div class="article-templete">
+                        <div class="tagbox">
+                            May 05 2013  |  Tag »
+                            <!--<a href="#/tag/{{tag.tagid}}" ng-repeat="tag in articlepreviewdata.tags">{{tag.tagname}}</a>-->
+                        </div>
+                        <p id="contentpreview">
+
+                        </p>
+                    </div>
+                	<!--<div id="contentpreview" class="article-templete"></div>-->
                 </div>
                 <!-- 预览区 //End-->
             </div>
@@ -26,6 +35,7 @@
                 <div class="article-title">CKeditor
                     <i class="article-title-ico">
                         <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = !cssTagsPanel"></a>
+                        <a href="" class="ico-article-backedit" rel="tooltip" title="" ng-click="cssTagsPanel = !cssTagsPanel" data-original-title="Back Edit"></a>
                     </i>
                     <div modal="cssmodalshow" options="cssmodalslide" >
                         <div class="modal-header">
@@ -34,19 +44,18 @@
                         </div>
 
                         <div class="modal-body">
-                            <input type="text" ng-model="newarticleadata.versioncomment" />
+                            <input type="text" ng-model="newarticleadata.comment" />
                         </div>
 
                         <div class="modal-footer">
-                            <button class="btn" ng-click="closeModal()">Cancel</button>
-                            <button class="btn btn-danger" ng-click="savedata()">Save</button>
+                            <button class="btn" ng-click="savedata(true)">Cancel</button>
+                            <button class="btn btn-danger" ng-click="savedata(false)">Save</button>
                         </div>
                     </div>
                 </div>
                 <!-- 编辑器 -->
                 <div class="article-cont" >
                     <textarea ck-editor cols="80" id="editor1" name="editor1" rows="10" ng-model="newarticleadata.contentbody"></textarea>
-                    <!--<textarea ck-editor cols="80" id="editor1" name="editor1" rows="10" ng-change="showinserthtml(newarticleadata.contentbody);" ng-model="newarticleadata.contentbody"></textarea>-->
                 </div>
                 <!-- 编辑器 //End-->
             </div>
@@ -56,7 +65,8 @@
                 <!-- Tags & Category -->
                 <div class="article-title">ARTICLE ATTRIBUTE
                     <i class="article-title-ico">
-                        <a href="" class="ico-article-backedit" rel="tooltip" title="Back Write" ng-click="cssTagsPanel = !cssTagsPanel"></a>
+                        <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = !cssTagsPanel"></a>
+                        <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = !cssTagsPanel"></a>
                     </i>
                 </div>
 
@@ -73,7 +83,8 @@
                     <!-- Category -->
                     <div class="atricle_attribute_box">
                         <h3>Category</h3>
-                        <select ng-model="newarticleadata.category" class="select-block span3">
+                        <!--<input type="text" ng-model="newarticleadata.category">-->
+                        <select ng-selected="newarticleadata.category">
                             <option>Cosmetics</option>
                             <option>Insurance</option>
                             <option>Healthcare</option>
@@ -149,7 +160,7 @@
         <div class="article-footer">
             <div class="article_btn">
                 <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="createNewArticle(newFeed,'draft')">
-                <input type="submit" value="PUBLISH" class="btn-publish" style="display:none;" ng-click="createNewArticle(newFeed,'publish')">
+                <input type="submit" value="PUBLISH" class="btn-publish" style="display: none;" ng-click="createNewArticle(newFeed,'publish')">
             </div>
             <!-- 版本节点 -->
             <div class="vernode">

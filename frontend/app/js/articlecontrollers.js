@@ -20,6 +20,26 @@ articleapp.directive('ckEditor', function() {
                 $("#contentpreview").html(e.editor.getData());
             });
 
+           /* ck.on('instanceReady', function(event){
+                var editor = event.editor;
+                editor.resize( editor.container.getStyle( 'height' ),400);
+                /*var editor = event.editor;
+                setTimeout( function()
+                {
+                    // Delay bit more if editor is still not ready.
+                    if ( !editor.element )
+                    {
+                        setTimeout( arguments.callee, 100 );
+                        return;
+                    }
+                    event.removeListener( 'instanceReady', this.callee );
+                    if ( editor.name == 'content' )
+                    {
+                        editor.resize( editor.container.getStyle( 'width' ), CKEDITOR.document.getById( 'cke_'+'content' ).getParent().$.offsetHeight );
+                    }
+                }, 0 );
+            })*/
+
             ngModel.$render = function(value) {
                 ck.setData(ngModel.$viewValue);
             };
@@ -501,10 +521,10 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
 
 articleapp.controller.articleDetail = function ($scope, $routeParams, modelArticle) {
     $scope.cssTagsPanel = false;
-    $("select").dropkick();
+   // $("select").dropkick();
     var articleId = $routeParams.articleId;
     $scope.articledata = modelArticle.getArticleById(articleId);
-    $(".dk_label")[0].textContent=$scope.articledata.category;
+    //$(".dk_label")[0].textContent=$scope.articledata.category;
 
     var tagstr = '';
     for(var i=0;i<$scope.articledata.tags.length;i++){
@@ -568,7 +588,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
             }
             $scope.articledata.tags.push(newtag);
         }
-        $scope.articledata.category=$(".dk_label")[0].textContent;
+        //$scope.articledata.category=$(".dk_label")[0].textContent;
         var newrevisionid = $scope.articledata.revision.length + 1;
         var newrevision = {
             "versionid" :  newrevisionid ,
@@ -620,13 +640,13 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
         'autocomplete': modelArticle.getTagList()
     });   //初始化 加载tag标签
 
-    $("select").dropkick();
+    //$("select").dropkick();
     $scope.newarticleadata = {
         "id": modelArticle.getMaxArticleID(),
         "title": "", "contentbody": "", "status": "needreview",
         "created": modelArticle.getDateNow(), "updated": modelArticle.getDateNow(), "published": modelArticle.getDateNow(),
         "author": "Eric",  "editor": "iFan",  "clickcount":0,
-        "category": "Today", "categoryid":1000,
+        "category": "", "categoryid":1000,
         "tags": [],
         "revision" : [],
         "versioncomment":"",
@@ -669,7 +689,7 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
              }
              $scope.newarticleadata.tags.push(newtag);
          }
-         $scope.newarticleadata.category=$(".dk_label")[0].textContent;
+         //$scope.newarticleadata.category=$(".dk_label")[0].textContent;
          $scope.newarticleadata.status=$scope.saveflag;
          //增加文章每一次修改版本信息
          var newrevisionid = $scope.newarticleadata.revision.length + 1;

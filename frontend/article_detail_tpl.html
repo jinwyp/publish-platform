@@ -18,7 +18,16 @@
                 </div>
                 <!-- 预览区 -->
                 <div id="article-cont-preview" class="article-cont">
-                	<div class="article-templete"  ng-bind-html-unsafe="showeditpreview(articledata.contentbody)"></div>
+                    <div class="article-templete">
+                        <div class="tagbox">
+                            May 05 2013  |  Tag »
+                            <a href="#/tag/{{tag.tagid}}" ng-repeat="tag in articledata.tags">{{tag.tagname}}</a>
+                        </div>
+                        <p id="contentpreview"  ng-bind-html-unsafe="showeditpreview(articledata.contentbody)">
+
+                        </p>
+                    </div>
+                	<!--<div id="contentpreview" class="article-templete"  ng-bind-html-unsafe="showeditpreview(articledata.contentbody)"></div>-->
                 </div>
                 <!-- 预览区 //End-->
             </div>
@@ -31,6 +40,7 @@
                     <i class="article-title-ico">
                         <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="openModal()" ></a>
                         <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = !cssTagsPanel"></a>
+                        <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = !cssTagsPanel"></a>
                     </i>
                     <div modal="cssmodalshow" options="cssmodalslide" >
                         <div class="modal-header">
@@ -62,7 +72,8 @@
                 <div class="article-title">ARTICLE ATTRIBUTE
                     <i class="article-title-ico">
                         <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="delArticle(articledata.id)"></a>
-                        <a href="" class="ico-article-backedit" rel="tooltip" title="Back Write" ng-click="cssTagsPanel = !cssTagsPanel"></a>
+                        <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = !cssTagsPanel"></a>
+                        <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = !cssTagsPanel"></a>
                     </i>
                     <div modal="showcomments" options="cssmodalslide" >
                         <div class="modal-header">
@@ -96,23 +107,24 @@
                     <!-- Category -->
                     <div class="atricle_attribute_box">
                         <h3>Category</h3>
-                        <select class="select-block span3">
-                            <option>Cosmetics</option>
-                            <option>Insurance</option>
-                            <option>Healthcare</option>
-                            <option selected="selected">Health and leisure</option>
-                            <option>Commercial</option>
+                        <input type="text" ng-model="articledata.category">
+                        <!-- <select class="select-block span3">
+                             <option>Cosmetics</option>
+                             <option>Insurance</option>
+                             <option>Healthcare</option>
+                             <option selected="selected">Health and leisure</option>
+                             <option>Commercial</option>
                             <option>Online service</option>
-                            <option>Entertainment</option>
-                            <option>Season</option>
-                            <option>Family</option>
-                            <option>Education</option>
-                            <option>Traveling</option>
-                            <option>Car</option>
-                            <option>Law</option>
-                            <option>Toys and games</option>
-                            <option>Law</option>
-                        </select>
+                             <option>Entertainment</option>
+                             <option>Season</option>
+                             <option>Family</option>
+                             <option>Education</option>
+                             <option>Traveling</option>
+                             <option>Car</option>
+                             <option>Law</option>
+                             <option>Toys and games</option>
+                             <option>Law</option>
+                        </select>-->
                     </div>
                     <!-- Category End -->
 
