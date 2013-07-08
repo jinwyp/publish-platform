@@ -71,12 +71,12 @@
                         </div>
 
                         <div class="modal-body">
-                            <input type="text" ng-model="articledata.comment" />
+                            <input type="text" ng-model="articledata.versioncomment" />
                         </div>
 
                         <div class="modal-footer">
-                            <button class="btn" ng-click="savedata(true)">Cancel</button>
-                            <button class="btn btn-danger" ng-click="savedata(false)">Save</button>
+                            <button class="btn" ng-click="closecomments()">Cancel</button>
+                            <button class="btn btn-danger" ng-click="savedata()">Save</button>
                         </div>
                     </div>
                 </div>
@@ -179,13 +179,13 @@
         <!-- 发布按钮 -->
         <div class="article_btn">
             <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="saveArticle(newFeed)">
-            <input type="submit" value="PUBLISH" class="btn-publish" ng-click="publisharticle(newFeed)">
+            <input type="submit" value="PUBLISH" class="btn-publish" style="display:none;" ng-click="publisharticle(newFeed)">
         </div>
         
         <!-- 版本节点 -->
         <div class="vernode">
         	<div class="line">
-                <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}" ng-click="displayversioninfo(revision);"  ng-repeat="revision in articledata.revision"  title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy HH:mm:ss'}} {{revision.comment}}">{{revision.versionnum}}</a>
+                <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}" ng-click="displayversioninfo(revision);"  ng-repeat="revision in articledata.revision"  title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy HH:mm:ss'}} {{revision.versioncomment}}">{{revision.versionnum}}</a>
         	</div>
         </div>
     </div>
