@@ -1,6 +1,7 @@
 'use strict';
 
 /* App Module */
+
 var articleapp = angular.module('vcpmodule', ['ui.bootstrap', 'vcpmodule.directive']);
 
 
@@ -385,11 +386,12 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
     $scope.showcomments = false;
     //点击draft按钮事件
 
-    var nowdata1='';
+    var nowdata1='',articlestatus="";
     $scope.clickstatus=function(param,data){
         $scope.showcomments = true;
         nowdata1=this.article;
-        this.article.status=param;
+        articlestatus = param;
+        //this.article.status=param;
         $("#comments")[0].value="";
     }
 
@@ -459,6 +461,7 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
     $scope.savedata = function(){
         nowdata1.published = modelArticle.getDateNow();
         nowdata1.reviewcomment=$("#comments")[0].value;
+        nowdata1.status = articlestatus;
 /*        var newrevisionid = nowdata1.revision.length + 1;
         var newrevision = {
             "versionid" :  newrevisionid ,
@@ -475,13 +478,12 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
     }
 }
 
-
 articleapp.controller.articleDetail = function ($scope, $routeParams, modelArticle) {
     $scope.cssTagsPanel = false;
-    $("select").dropkick();
+   // $("select").dropkick();
     var articleId = $routeParams.articleId;
     $scope.articledata = modelArticle.getArticleById(articleId);
-    $(".dk_label")[0].textContent=$scope.articledata.category;
+    //$(".dk_label")[0].textContent=$scope.articledata.category;
 
     var tagstr = '';
     for(var i=0;i<$scope.articledata.tags.length;i++){
@@ -545,7 +547,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
             }
             $scope.articledata.tags.push(newtag);
         }
-        $scope.articledata.category=$(".dk_label")[0].textContent;
+        //$scope.articledata.category=$(".dk_label")[0].textContent;
         var newrevisionid = $scope.articledata.revision.length + 1;
         var newrevision = {
             "versionid" :  newrevisionid ,
@@ -597,13 +599,13 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
         'autocomplete': modelArticle.getTagList()
     });   //初始化 加载tag标签
 
-    $("select").dropkick();
+    //$("select").dropkick();
     $scope.newarticleadata = {
         "id": modelArticle.getMaxArticleID(),
         "title": "", "contentbody": "", "status": "needreview",
         "created": modelArticle.getDateNow(), "updated": modelArticle.getDateNow(), "published": modelArticle.getDateNow(),
         "author": "Eric",  "editor": "iFan",  "clickcount":0,
-        "category": "Today", "categoryid":1000,
+        "category": "", "categoryid":1000,
         "tags": [],
         "revision" : [],
         "versioncomment":"",
@@ -619,12 +621,6 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
             $scope.cssmodalshow = true;
             $scope.saveflag = savestatus;
         }
-    }
-
-    //显示Insert预览内容
-    $scope.showinserthtml = function(val){
-        $("#contentpreview").html(val);
-        //return val;
     }
 
     $scope.cssmodalslide = {
@@ -652,7 +648,7 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
              }
              $scope.newarticleadata.tags.push(newtag);
          }
-         $scope.newarticleadata.category=$(".dk_label")[0].textContent;
+         //$scope.newarticleadata.category=$(".dk_label")[0].textContent;
          $scope.newarticleadata.status=$scope.saveflag;
          //增加文章每一次修改版本信息
          var newrevisionid = $scope.newarticleadata.revision.length + 1;

@@ -50,6 +50,11 @@ CKEDITOR.editorConfig = function( config ) {
     //Uploadcare
     UPLOADCARE_PUBLIC_KEY = "demopublickey"; //set publick key for Uploadcare
     UPLOADCARE_LOCALE = 'ru'; //set locale if you wish
+
+    var ckheight1=800;
+    //$(".xxx").css("height",thisHeight);
+
+    config.height = ckheight1;
 };
 
 

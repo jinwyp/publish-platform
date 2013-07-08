@@ -26,21 +26,46 @@ angular.module('vcpmodule.directive', []).
 
 angular.module('vcpmodule.directive', []).
     directive('ckEditor', function() {
-    return {
-        require: '?ngModel',
-        link: function(scope, elm, attr, ngModel) {
-            var ck = CKEDITOR.replace(elm[0]);
-            if (!ngModel) return;
+        return {
+            require: '?ngModel',
+            link: function(scope, elm, attr, ngModel) {
+                var ck = CKEDITOR.replace(elm[0]);
+                if (!ngModel) return;
 
-            ck.on('pasteState', function() {
-                scope.$apply(function() {
-                    ngModel.$setViewValue(ck.getData());
+                ck.on('pasteState', function() {
+                    scope.$apply(function() {
+                        ngModel.$setViewValue(ck.getData());
+                    });
                 });
-            });
 
-            ngModel.$render = function(value) {
-                ck.setData(ngModel.$viewValue);
-            };
-        }
-    };
+                ck.on('change', function(e) {
+                    $("#contentpreview").html(e.editor.getData());
+                });
+
+                /* ck.on('instanceReady', function(event){
+                 var editor = event.editor;
+                 editor.resize( editor.container.getStyle( 'height' ),400);
+                 /*var editor = event.editor;
+                 setTimeout( function()
+                 {
+                 // Delay bit more if editor is still not ready.
+                 if ( !editor.element )
+                 {
+                 setTimeout( arguments.callee, 100 );
+                 return;
+                 }
+                 event.removeListener( 'instanceReady', this.callee );
+                 if ( editor.name == 'content' )
+                 {
+                 editor.resize( editor.container.getStyle( 'width' ), CKEDITOR.document.getById( 'cke_'+'content' ).getParent().$.offsetHeight );
+                 }
+                 }, 0 );
+                 })*/
+
+                ngModel.$render = function(value) {
+                    ck.setData(ngModel.$viewValue);
+                };
+            }
+        };
 });
+
