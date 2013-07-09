@@ -42,10 +42,12 @@ angular.module('vcpmodule.directive', []).
                     $("#contentpreview").html(e.editor.getData());
                 });
 
-                /* ck.on('instanceReady', function(event){
+                /*ck.on('instanceReady', function(event){
                  var editor = event.editor;
-                 editor.resize( editor.container.getStyle( 'height' ),400);
-                 /*var editor = event.editor;
+                     console.log(editor.container);
+                     //alert(editor.container.getStyle( 'height' ));
+                 //editor.resize( editor.container.getStyle( 'height' ),400);
+                 var editor = event.editor;
                  setTimeout( function()
                  {
                  // Delay bit more if editor is still not ready.
