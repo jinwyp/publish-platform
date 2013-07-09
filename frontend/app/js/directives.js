@@ -37,32 +37,9 @@ angular.module('vcpmodule.directive', []).
                         ngModel.$setViewValue(ck.getData());
                     });
                 });
-
                 ck.on('change', function(e) {
                     $("#contentpreview").html(e.editor.getData());
                 });
-
-                /*ck.on('instanceReady', function(event){
-                 var editor = event.editor;
-                     console.log(editor.container);
-                     //alert(editor.container.getStyle( 'height' ));
-                 //editor.resize( editor.container.getStyle( 'height' ),400);
-                 var editor = event.editor;
-                 setTimeout( function()
-                 {
-                 // Delay bit more if editor is still not ready.
-                 if ( !editor.element )
-                 {
-                 setTimeout( arguments.callee, 100 );
-                 return;
-                 }
-                 event.removeListener( 'instanceReady', this.callee );
-                 if ( editor.name == 'content' )
-                 {
-                 editor.resize( editor.container.getStyle( 'width' ), CKEDITOR.document.getById( 'cke_'+'content' ).getParent().$.offsetHeight );
-                 }
-                 }, 0 );
-                 })*/
 
                 ngModel.$render = function(value) {
                     ck.setData(ngModel.$viewValue);

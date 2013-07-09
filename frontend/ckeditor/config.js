@@ -22,10 +22,12 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
         { name: 'tools' },
         { name: 'styles' },
-        { name: 'texttransform', groups: ['TransformTextToUppercase','TransformTextToLowercase','TransformTextCapitalize','TransformTextSwitcher']}
+        { name: 'texttransform', groups: ['TransformTextToUppercase','TransformTextToLowercase','TransformTextCapitalize','TransformTextSwitcher']},
+        { name: 'CreatePlaceholder'}
     ];
+
     config.extraPlugins='tableresize,wysiwygarea,floating-tools,youtube,wordcount,texttransform,zoom,autosave,' +
-        'backgrounds,insertpre,uploadcare,onchange';
+        'backgrounds,insertpre,uploadcare,onchange,placeholder';
     config.removePlugins='resize';
 
     //控制显示youtube视频
