@@ -13,17 +13,20 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'forms' },
         { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
         { name: 'links' },
+        '/',
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+        { name: 'colors' },
+        { name: 'CreatePlaceholder'},
+        '/',
         { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
         { name: 'insert' },
-        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-        { name: 'colors' },
         { name: 'others' },
-        '/',
-        { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
-        { name: 'tools' },
-        { name: 'styles' },
         { name: 'texttransform', groups: ['TransformTextToUppercase','TransformTextToLowercase','TransformTextCapitalize','TransformTextSwitcher']},
-        { name: 'CreatePlaceholder'}
+        '/',
+        { name: 'styles' },
+        { name: 'tools' }
+
     ];
 
     config.extraPlugins='tableresize,wysiwygarea,floating-tools,youtube,wordcount,texttransform,zoom,autosave,' +
@@ -46,7 +49,7 @@ CKEDITOR.editorConfig = function( config ) {
         charLimit: 'unlimited',
 
         // Option to limit the words in the Editor
-        wordLimit: '500'
+        wordLimit: '10000'
     };
 
     //Uploadcare
@@ -54,7 +57,7 @@ CKEDITOR.editorConfig = function( config ) {
     UPLOADCARE_LOCALE = 'ru'; //set locale if you wish
 
 
-    config.height = 800;
+    config.height = 500;
 };
 
 

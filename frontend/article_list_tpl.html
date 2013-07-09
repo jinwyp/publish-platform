@@ -31,7 +31,7 @@
                 <div modal="showcomments" options="cssmodalslide" >
                     <div class="modal-header">
                         <button type="button" class="close" ng-click="closecomments()">&times;</button>
-                        <h3 >Comments </h3>
+                        <h3 >Review Comments </h3>
                     </div>
 
                     <div class="modal-body">
@@ -97,7 +97,7 @@
 
                 <ul class="article-list">
                     
-                    <li ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata track by $index | filter:query"  ng-click="clickArticle(article, $index)" >
+                    <li  ng-mouseenter="showediticon()" ng-mouseleave="hideediticon($index)" ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata track by $index | filter:query"  ng-click="clickArticle(article, $index)" >
                         <div class="list-date">
                             <h1><a href="" >{{article.title}}</a></h1>
                             <dl>
@@ -111,7 +111,7 @@
                         <div class="list-count">
                             <dl>
                                 <dd style="padding-bottom: 20px;">
-                                    <i class="article-title-ico">
+                                    <i class="article-title-ico" ng-show="isshowediticon">
                                         <a href="" class="ico-article-del" rel="tooltip" title="" ng-click="openModal()" data-original-title="Delete Article"></a>
                                         <a href="#/detail/{{article.id }}" class="ico-article-edit" rel="tooltip" title="Edit Article"></a>
                                         <!-- <a href="" class="ico-article-setup" rel="tooltip" title="Tag Category"></a> -->

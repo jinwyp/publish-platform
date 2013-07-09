@@ -323,6 +323,7 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
     $scope.clickArticle = function(article, index) {
         $scope.articlepreviewdata = article;
         $scope.cssarticleindex = index;
+        this.isshowediticon = true;
     };
 
     $scope.openModal = function () {
@@ -475,6 +476,20 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
         nowdata1.revision.push(newrevision);*/
         modelArticle.saveArticle(nowdata1);
         $scope.showcomments = false;
+    }
+
+    $scope.isshowediticon = false;
+    $scope.showediticon = function(){
+          this.isshowediticon = true;
+    }
+
+
+    $scope.hideediticon = function($index){
+        if($scope.cssarticleindex == $index){
+            this.isshowediticon = true;
+        }else{
+            this.isshowediticon = false;
+        }
     }
 }
 
@@ -667,5 +682,9 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
          modelArticle.createNewArticle($scope.newarticleadata);
          $location.path('/');
     }
+
+    $scope.showeditpreview = function(val){
+        return val;
+    };
 }
 
