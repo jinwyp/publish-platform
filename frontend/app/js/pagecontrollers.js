@@ -31,10 +31,9 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             adsname : "",
             adscode : ""
         };
-        $scope.newarticle = undefined;
+        $scope.newarticle = {};
 
         $scope.site = modelSite.getSite();
-
 
         $scope.pages = $scope.site.pagelist;
 
@@ -286,14 +285,14 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 for(var i=0;i<temptagslistname.length;i++){
                     //在tag 数据库查询是否是已经存在的tag
                     var newtag;
-                    if(  modelSite.checkTagExist(temptagslistname[i]) ){
-                        newtag = modelSite.checkTagExist(temptagslistname[i]);
+                    if(  modelTag.checkTagExist(temptagslistname[i]) ){
+                        newtag = modelTag.checkTagExist(temptagslistname[i]);
                     }else{
                         newtag = {
-                            "tagid" : modelSite.getMaxTagID(),
+                            "tagid" : modelTag.getMaxTagID(),
                             "tagname" : temptagslistname[i]
                         }
-                        modelSite.createNewTag(newtag);
+                        modelTag.createNewTag(newtag);
                     }
                     newblock.blocktag.push(newtag);
                 }
@@ -389,7 +388,9 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         blocktypemenu.css({"left":left+"px", "top":-(blocktypemenu.height()), "position":"absolute"});
     }
 
-
+    $scope.check = function( ) {
+        console.log(this.blockarticles);
+    }
 
 
 

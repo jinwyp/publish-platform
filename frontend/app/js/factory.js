@@ -222,6 +222,10 @@ vcpapp.factory('modelSite',  function(){
                             console.log(block.blockquantity, articles, block.blockarticles);
                         }
 
+                        _.each(block.blockarticles, function(article){
+                            console.log(article.title);
+                        });
+
                     })
                 })
             });
@@ -262,10 +266,25 @@ vcpapp.factory('modelSite',  function(){
     var factory = {};
     factory.getSite = function () {
 
+        _.each(sitedata.pagelist, function(page){
+            _.each(page.pagelayoutdata, function(layout){
+                _.each(layout.blocks, function(block){
+                    var articles = getArticlesByTags(block.blocktag, block.blockquantity);
 
+                    block.blockarticles = articles;
 
+                    if (block.blocktag.length == 0 ){
+                        block.blockarticles = getArticles(block.blockquantity);   //如果没有选择tags则获取所有文章
+                        console.log(block.blockquantity, articles, block.blockarticles);
+                    }
 
+                    _.each(block.blockarticles, function(article){
+                        console.log(article.title);
+                    });
 
+                })
+            })
+        });
         return  sitedata;
     };
 
@@ -277,6 +296,7 @@ vcpapp.factory('modelSite',  function(){
     };
 
     factory.updateSinglePage= function(pagedata){
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
         return;
     };
 
