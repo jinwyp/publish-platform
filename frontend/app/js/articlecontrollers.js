@@ -118,6 +118,7 @@ articleapp.factory('modelArticle', function(){
         }else{
             articlelist = JSON.parse(localStorage.getItem("articlesData"));
             taglist = JSON.parse(localStorage.getItem("tagsData"));
+            console.log(articlelist);
         }
    }
 

@@ -36,7 +36,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $scope.site = modelSite.getSite();
 
 
-
         $scope.pages = $scope.site.pagelist;
 
         $scope.singlepage =  $scope.pages[0];   //默认读取首页
