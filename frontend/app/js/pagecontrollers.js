@@ -134,7 +134,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
     //left side bar add page attribute
     $scope.showeditpageattribute = function(indexid) {
-
         $scope.selectedpageattributeindex = indexid;    //点击显示当前的page 属性面板
     };
 
@@ -236,7 +235,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         switch(divid)
         {
             case 'tab-layout':
-                heightdiff = 301;
+                heightdiff = 306;
                 break;
             case 'tab-filter':
                 heightdiff = 210;
@@ -261,9 +260,8 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             blocktype : 'auto',
             blockstatictype:'',
             blockname : "",
-
             blocklayout : 10,
-            blockquantity : 6,
+            blockquantity : 0,
             blocktag : [],
             blockcategory : [],
             blocksortby : 'date',
@@ -278,6 +276,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             case 'auto':
                 newblock.blocktype = 'auto';
                 newblock.blockname = $scope.newblock.blockname;
+                newblock.blockquantity = Number($scope.newblock.blockquantity);
                 //检查Tags
                 var temptagslistname = $(".tagsinput").exportTags();
 
@@ -298,40 +297,37 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
 
                 //通过Tags 获取文章
-                newblock.blockarticles = modelArticle.getArticlesByTags(newblock.blocktag);
+                newblock.blockarticles = modelArticle.getArticlesByTags(newblock.blocktag, newblock.blockquantity);
 
                 if (temptagslistname.length == 0 ){
-                    newblock.blockarticles = modelArticle.getArticles();
+                    newblock.blockarticles = modelArticle.getArticles(newblock.blockquantity);   //如果没有选择tags则获取所有文章
                 }
-
                 break;
 
             case 'editor':
                 newblock.blocktype = 'editor';
                 newblock.blockname = $scope.newblock.blockname;
+                newblock.blockquantity = Number($scope.newblock.blockquantity);
                 break;
 
             case 'statictext':
                 newblock.blocktype = 'static';
                 newblock.blockstatictype = 'text';
-
                 break;
+
             case 'staticpic':
                 newblock.blocktype = 'static';
                 newblock.blockstatictype = 'pic';
-
-
                 break;
+
             case 'staticvideo':
                 newblock.blocktype = 'static';
                 newblock.blockstatictype = 'video';
-
                 break;
+
             case 'staticslideshow':
                 newblock.blocktype = 'static';
                 newblock.blockstatictype = 'slideshow';
-
-
                 break;
 
 
@@ -346,19 +342,20 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 newblock.blockname = $scope.newblock.blockname;
                 newblock.urlapi = $scope.newblock.urlapi;
                 break;
+
             default:
         }
-
 
         modelSite.addSingleBlockToPage(newblock, layoutcontainer, $scope.singlepage );
         this.cssblocktipadd = false;          //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipbox = false;
     };
 
-    $scope.addaritcletoblock = function(block, layoutcontainer ){
-        var newaritcle = this.newarticle;
-        modelSite.addArticleToBlock(newaritcle, block, layoutcontainer, $scope.singlepage);
-        console.log(this.newarticle);
+    $scope.addaritcletoeditorblock = function(block, layoutcontainer ){
+        if(block.blockarticles.length < block.blockquantity){
+            var newaritcle = this.newarticle;
+            modelSite.addArticleToBlock(newaritcle, block, layoutcontainer, $scope.singlepage);
+        }
     }
 
     // del a block to page

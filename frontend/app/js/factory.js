@@ -22,29 +22,41 @@ vcpapp.factory('modelArticle', function(){
 
     var factory = {};
 
-    factory.getArticlesByTags = function (taglistdata) {
+    factory.getArticlesByTags = function (taglistdata, quantity) {
         var articlesresult = [];
 
         articlesresult = _.filter(articlelist, function(element1){
-            var article1;
+
             var singlearticletags = _.filter(element1.tags, function(element2){
                 var tagresult = _.where(taglistdata, element2);
                 return tagresult.length;
             });
 //            console.log(element1, singlearticletags);
             return  singlearticletags.length;
-
         });
+
+        if(articlesresult.length > quantity){
+            articlesresult.splice(0, articlesresult.length - quantity);    //判断文章数量
+        }
+        return articlesresult;
+    };
+
+    factory.getArticles = function (quantity) {
+        var articlesresult = articlelist;
+        if(articlesresult.length > quantity){
+            articlesresult.splice(0, articlesresult.length - quantity);    //判断文章数量
+            console.log(articlesresult.length, quantity);
+        }
 
         return articlesresult;
     };
 
-    factory.getArticles = function () {
-        return articlelist;
-    };
     return factory;
 
 });
+
+
+
 
 vcpapp.factory('modelTag', function(){
     var taglist = [];
@@ -89,6 +101,11 @@ vcpapp.factory('modelTag', function(){
     return factory;
 
 });
+
+
+
+
+
 
 vcpapp.factory('modelSite', function(){
 
@@ -202,15 +219,20 @@ vcpapp.factory('modelSite', function(){
     };
 
     factory.getPageList = function () {
+        _.each(sitedata.pagelist, function(page){
+            _.each(page.pagelayoutdata, function(layout){
+                _.each(layout.blocks, function(block){
+                    block.blockarticles =
+                })
+            })
+        })
+
         return  sitedata.pagelist;
     };
 
-    factory.getSinglePage = function (selectedpage) {
-        var pageindex = sitedata.pagelist.indexOf(selectedpage);
-        return  sitedata.pagelist[pageindex];
-    };
 
     factory.addSinglePage = function (pagedata) {
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
         return  sitedata.pagelist.push(pagedata);
     };
 
@@ -224,6 +246,7 @@ vcpapp.factory('modelSite', function(){
             var pageindex = sitedata.pagelist.indexOf(pagedata);
             sitedata.pagelist.splice(pageindex, 1);
         }
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
     };
 
     factory.addSingleBlockToPage = function (newblock, pagelayout, pagedata) {
@@ -234,6 +257,7 @@ vcpapp.factory('modelSite', function(){
         pagelayout.blocks.push(newblock);
 
         sitedata.pagelist[pageindex].pagelayoutdata[layoutindex] = pagelayout;
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
     };
 
     factory.addArticleToBlock = function (newartcle, block, pagelayout, pagedata) {
@@ -249,7 +273,7 @@ vcpapp.factory('modelSite', function(){
         var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
         var blockindex = sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks.indexOf(block) ;
         sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks.splice(blockindex, 1);
-
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
     }
 
 
