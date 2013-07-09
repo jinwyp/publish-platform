@@ -1,0 +1,148 @@
+<!-- Content -->
+<div class="article" >
+
+    <div class="article-row">
+
+
+        <!-- Left -->
+        <div class="article-span9">
+            <div class="article-title">REVIEW by <b>{{articlepreviewdata.editor}}</b>
+                <i class="article-title-ico">
+                    <a href="#/detail/{{articlepreviewdata.id}}" class="ico-article-edit" rel="tooltip" title="Edit Article"></a>
+                    <a href="" class="ico-article-del" rel="tooltip" title="Delete Article"  ng-click="openModal()"></a>
+                    <!-- <a href="" class="ico-article-setup" rel="tooltip" title="Tag Category"></a> -->
+                </i>
+                <div modal="cssmodalshow" options="cssmodalslide" >
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal()">&times;</button>
+                        <h3 >Delete Article </h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <h4>Are you sure delete this article "{{articlepreviewdata.title}}" ?</h4>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn" ng-click="closeModal()">Cancel</button>
+                        <button class="btn btn-danger"  ng-click="delArticle(articlepreviewdata.id)">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 预览区 -->
+            <div id="article-cont-preview" class="article-cont" >
+                <div class="article-templete">
+
+                    <h1>{{articlepreviewdata.title}}</h1>
+
+                    <div class="tagbox">
+                        May 05 2013  |  Tag »
+                        <a href="#/tag/{{tag.tagid}}" ng-repeat="tag in newarticleadata.tags">{{tag.tagname}}</a>
+                    </div>
+                    <p id="pcontent" ng-bind-html-unsafe="loadhtml(articlepreviewdata.contentbody)">
+
+                    </p>
+                </div>
+            </div>
+
+            <!-- 预览区 //End-->
+        </div>
+        <!-- Left //End -->
+
+
+        <!-- Right -->
+        <div class="article-span9">
+
+            <div class="article-title">ARTICLE LIST
+                <i class="article-title-ico clearfix">
+                       <!-- <pre>Model: {{selected| json}}</pre>-->
+                    	<a href="#/newarticle/" class="ico-article-addnew" rel="tooltip" title="Add New Article"></a>
+                        <a href="#" class="ico-article-sequence dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>
+                        <input class="aiticleList_search" type="text" ng-model="selected" ng-change="selectdata()" typeahead="state for state in states | filter:$viewValue">
+                </i>
+                <div collapse="isCollapsed" style="margin:0; width:100%;">
+                    <div class="well">
+                        <input class="ico-article-UP_default" type="button" value="Update Asc" ng-click="orderbytype('updated','asc')">
+                        <input class="ico-article-DOWN_default" type="button" value="Update Desc" ng-click="orderbytype('updated','desc')">
+                        <input class="ico-article-UP_default" type="button" value="Published Asc" ng-click="orderbytype('published','asc')">
+                        <input class="ico-article-DOWN_default" type="button" value="Published Desc" ng-click="orderbytype('published','desc')">
+                        <input class="ico-article-UP_default" type="button" value="Click Asc" ng-click="orderbytype('clickcount','asc')">
+                        <input class="ico-article-DOWN_default" type="button" value="Click Desc" ng-click="orderbytype('clickcount','desc')">
+                    </div>
+                </div>
+               
+
+            </div>
+
+
+            <!-- sssss列表 -->
+            <div class="article-cont">
+
+                <ul class="article-list">
+                    
+                    <li ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata track by $index | filter:query"  ng-click="clickArticle(article, $index)" >
+                        <div class="list-date">
+                            <h1><a href="" >{{article.title}}</a></h1>
+                            <dl>
+                                <dd><p class="titlename">Created</p><p>{{article.created | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
+                                <dd><p class="titlename">Published</p><p>{{article.published | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
+                                <dd><p class="titlename">Updated</p><p>{{article.updated | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
+                                <dd><p class="titlename">Author</p><p>{{article.author}}</p></dd>
+                                <dd><p class="titlename">Editor</p><p>{{article.editor}}</p></dd>
+                            </dl>
+                        </div>
+                        <div class="list-count">
+                            <dl>
+                                <dd><span>{{article.clickcount}}</span></dd>
+                                <!-- Draft状态 -->
+                                <dd ng-show="article.status=='draft'">
+                                    <div class="btn-group">
+                                    	<button class="btn" disabled>Draft</button>
+                                    	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
+                                    	<ul class="dropdown-menu pull-right clearfix">
+                                          <li><input type="submit" value="Review" class="btn btn-block btn-warning" ng-click="clickstatus('reviewed',article)"></li>
+                                        </ul>
+                                	</div>
+                                </dd>
+                               <!--  Rviewed状态-->
+                                <dd ng-show="article.status=='reviewed'">
+                                    <div class="btn-group">
+                                    	<button class="btn" disabled>Reviewed</button>
+                                    	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
+                                    	<ul class="dropdown-menu pull-right clearfix">
+                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickstatus('draft',article)"></li>
+                                          <li><input type="submit" value="Publish" class="btn btn-block btn-success" ng-click="clickstatus('publish',article)"></li>
+                                        </ul>
+                                	</div>
+                                </dd>
+                                <!-- Published状态-->
+                                <dd ng-show="article.status=='publish'">
+                                    <div class="btn-group">
+                                    	<button class="btn" disabled>Published</button>
+                                    	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
+                                    	<ul class="dropdown-menu pull-right clearfix">
+                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickstatus('draft',article)"></li>
+                                        </ul>
+                                	</div>
+                                </dd>
+
+                            </dl>
+                        </div>
+                    </li>
+
+                </ul>
+
+                <!-- 翻页 -->
+                <div class="pagination pagination-centered">
+                    <pagination num-pages="noOfPages" current-page="currentPage"></pagination>
+                </div>
+                <!-- 翻页 / End -->
+
+            </div>
+            <!-- 列表 //End-->
+
+        </div>
+        <!-- Right //End -->
+
+    </div>
+</div>
+<!-- Content //End -->

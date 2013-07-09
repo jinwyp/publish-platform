@@ -169,28 +169,34 @@
 	
 	// clear all existing tags and import new ones from a string
 	$.fn.importTags = function(str) {
-                id = $(this).attr('id');
+        id = $(this).attr('id');
 		$('#'+id+'_tagsinput .tag').remove();
 		$.fn.tagsInput.importTags(this,str);
 	}
+
+    $.fn.exportTags = function() {
+        var id = $(this).attr('id');
+        var tagslistdata = $(this).val()=="" ? [] : $(this).val().split(delimiter[id]);
+        return tagslistdata;
+    }
 		
 	$.fn.tagsInput = function(options) { 
-    var settings = jQuery.extend({
-      interactive:true,
-      defaultText:'',
-      minChars:0,
-      width:'',
-      height:'',
-      autocomplete: {selectFirst: false },
-      'hide':true,
-      'delimiter':',',
-      'unique':true,
-      removeWithBackspace:true,
-      placeholderColor:'#666666',
-      autosize: true,
-      comfortZone: 20,
-      inputPadding: 6*2
-    },options);
+        var settings = jQuery.extend({
+          interactive:true,
+          defaultText:'',
+          minChars:0,
+          width:'',
+          height:'',
+          autocomplete: {selectFirst: false },
+          'hide':true,
+          'delimiter':',',
+          'unique':true,
+          removeWithBackspace:true,
+          placeholderColor:'#666666',
+          autosize: true,
+          comfortZone: 20,
+          inputPadding: 6*2
+        },options);
 
 		this.each(function() { 
 			if (settings.hide) { 
@@ -208,9 +214,7 @@
 				input_wrapper: '#'+id+'_addTag',
 				fake_input: '#'+id+'_tag'
 			},settings);
-	
 			delimiter[id] = data.delimiter;
-			
 			if (settings.onAddTag || settings.onRemoveTag || settings.onChange) {
 				tags_callbacks[id] = new Array();
 				tags_callbacks[id]['onAddTag'] = settings.onAddTag;
@@ -218,10 +222,10 @@
 				tags_callbacks[id]['onChange'] = settings.onChange;
 			}
 	
-			var markup = '<div id="'+id+'_tagsinput" class="tagsinput"><div class="tagsinput-add fui-plus-16"></div><input id="'+id+'_tag" value="" data-default="'+settings.defaultText+'" data-provide="typeahead" data-items="10" data-source=\'\["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]\'\ /><div class="clearfix"></div><div class="tagsinput-add-container" id="'+id+'_addTag">';
+			var markup = '<div id="'+id+'_tagsinput" class="tagsinput"><div class="tagsinput-add-container" id="'+id+'_addTag"><div class="tagsinput-add fui-plus-16"></div>';
 			
 			if (settings.interactive) {
-				markup = markup + '';
+				markup = markup + '<input id="'+id+'_tag" value="" data-default="'+settings.defaultText+'" />';
 			}
 			
 			markup = markup + '</div></div>';
@@ -248,7 +252,9 @@
 					if ($(event.data.fake_input).val()==$(event.data.fake_input).attr('data-default')) { 
 						$(event.data.fake_input).val('');
 					}
-					$(event.data.fake_input).css('color','#000000');		
+					$(event.data.fake_input).css({background:'#fff', color:'#000'});		
+					$('.tagsinput-add').css('border-radius','4px 0px 0px 4px');
+					$('.tagsinput-add-container').css('box-shadow','0 0 2px 0 #000');
 				});
 						
 				if (settings.autocomplete_url != undefined) {
