@@ -480,10 +480,8 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
 
 articleapp.controller.articleDetail = function ($scope, $routeParams, modelArticle) {
     $scope.cssTagsPanel = false;
-   // $("select").dropkick();
     var articleId = $routeParams.articleId;
     $scope.articledata = modelArticle.getArticleById(articleId);
-    //$(".dk_label")[0].textContent=$scope.articledata.category;
 
     var tagstr = '';
     for(var i=0;i<$scope.articledata.tags.length;i++){
@@ -605,7 +603,7 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
         "title": "", "contentbody": "", "status": "needreview",
         "created": modelArticle.getDateNow(), "updated": modelArticle.getDateNow(), "published": modelArticle.getDateNow(),
         "author": "Eric",  "editor": "iFan",  "clickcount":0,
-        "category": "", "categoryid":1000,
+        "category": "Cosmetics", "categoryid":1000,
         "tags": [],
         "revision" : [],
         "versioncomment":"",

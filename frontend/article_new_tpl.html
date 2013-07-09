@@ -34,8 +34,8 @@
             <div class="article-span9" ng-hide="cssTagsPanel">
                 <div class="article-title">CKeditor
                     <i class="article-title-ico">
-                        <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = !cssTagsPanel"></a>
-                        <a href="" class="ico-article-backedit" rel="tooltip" title="" ng-click="cssTagsPanel = !cssTagsPanel" data-original-title="Back Edit"></a>
+                        <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = false"></a>
+                        <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = true"></a>
                     </i>
                     <div modal="cssmodalshow" options="cssmodalslide" >
                         <div class="modal-header">
@@ -65,8 +65,8 @@
                 <!-- Tags & Category -->
                 <div class="article-title">ARTICLE ATTRIBUTE
                     <i class="article-title-ico">
-                        <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = !cssTagsPanel"></a>
-                        <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = !cssTagsPanel"></a>
+                        <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = false"></a>
+                        <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = true"></a>
                     </i>
                 </div>
 
@@ -84,11 +84,11 @@
                     <div class="atricle_attribute_box">
                         <h3>Category</h3>
                         <!--<input type="text" ng-model="newarticleadata.category">-->
-                        <select ng-selected="newarticleadata.category">
+                        <select ng-model="newarticleadata.category">
                             <option>Cosmetics</option>
                             <option>Insurance</option>
                             <option>Healthcare</option>
-                            <option selected="selected">Health and leisure</option>
+                            <option>Health and leisure</option>
                             <option>Commercial</option>
                             <option>Online service</option>
                             <option>Entertainment</option>

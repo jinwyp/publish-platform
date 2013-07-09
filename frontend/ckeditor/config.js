@@ -24,7 +24,7 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'styles' },
         { name: 'texttransform', groups: ['TransformTextToUppercase','TransformTextToLowercase','TransformTextCapitalize','TransformTextSwitcher']}
     ];
-    config.extraPlugins='tableresize,autogrow,wysiwygarea,floating-tools,youtube,wordcount,texttransform,zoom,autosave,' +
+    config.extraPlugins='tableresize,wysiwygarea,floating-tools,youtube,wordcount,texttransform,zoom,autosave,' +
         'backgrounds,insertpre,uploadcare,onchange';
     config.removePlugins='resize';
 
@@ -51,10 +51,8 @@ CKEDITOR.editorConfig = function( config ) {
     UPLOADCARE_PUBLIC_KEY = "demopublickey"; //set publick key for Uploadcare
     UPLOADCARE_LOCALE = 'ru'; //set locale if you wish
 
-    var ckheight1=800;
-    //$(".xxx").css("height",thisHeight);
 
-    config.height = ckheight1;
+    config.height = 800;
 };
 
 
