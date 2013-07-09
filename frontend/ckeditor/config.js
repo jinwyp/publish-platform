@@ -22,10 +22,12 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
         { name: 'tools' },
         { name: 'styles' },
-        { name: 'texttransform', groups: ['TransformTextToUppercase','TransformTextToLowercase','TransformTextCapitalize','TransformTextSwitcher']}
+        { name: 'texttransform', groups: ['TransformTextToUppercase','TransformTextToLowercase','TransformTextCapitalize','TransformTextSwitcher']},
+        { name: 'CreatePlaceholder'}
     ];
-    config.extraPlugins='tableresize,autogrow,wysiwygarea,floating-tools,youtube,wordcount,texttransform,zoom,autosave,' +
-        'backgrounds,insertpre,uploadcare,onchange';
+
+    config.extraPlugins='tableresize,wysiwygarea,floating-tools,youtube,wordcount,texttransform,zoom,autosave,' +
+        'backgrounds,insertpre,uploadcare,onchange,placeholder';
     config.removePlugins='resize';
 
     //控制显示youtube视频
@@ -51,10 +53,8 @@ CKEDITOR.editorConfig = function( config ) {
     UPLOADCARE_PUBLIC_KEY = "demopublickey"; //set publick key for Uploadcare
     UPLOADCARE_LOCALE = 'ru'; //set locale if you wish
 
-    var ckheight1=800;
-    //$(".xxx").css("height",thisHeight);
 
-    config.height = ckheight1;
+    config.height = 800;
 };
 
 
