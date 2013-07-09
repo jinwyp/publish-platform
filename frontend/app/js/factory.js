@@ -22,29 +22,39 @@ vcpapp.factory('modelArticle', function(){
 
     var factory = {};
 
-    factory.getArticlesByTags = function (taglistdata) {
+    factory.getArticlesByTags = function (taglistdata, quantity) {
         var articlesresult = [];
 
         articlesresult = _.filter(articlelist, function(element1){
-            var article1;
+
             var singlearticletags = _.filter(element1.tags, function(element2){
                 var tagresult = _.where(taglistdata, element2);
                 return tagresult.length;
             });
 //            console.log(element1, singlearticletags);
             return  singlearticletags.length;
-
         });
 
+        if(articlesresult.length > quantity){
+            articlesresult.splice(0, articlesresult.length - quantity);    //判断文章数量
+        }
         return articlesresult;
     };
 
-    factory.getArticles = function () {
-        return articlelist;
+    factory.getArticles = function (quantity) {
+        var articlesresult2 = articlelist;
+        if(articlesresult2.length > quantity){
+            articlesresult2.splice(0, articlesresult2.length - quantity);    //判断文章数量
+        }
+        return articlesresult2;
     };
+
     return factory;
 
 });
+
+
+
 
 vcpapp.factory('modelTag', function(){
     var taglist = [];
@@ -90,7 +100,11 @@ vcpapp.factory('modelTag', function(){
 
 });
 
-vcpapp.factory('modelSite', function(){
+
+
+
+
+vcpapp.factory('modelSite',  function(){
 
     var layoutdata = [
         {layoutid: 10, layoutname: '两列1', layouttype : 1, layoutorder:1, layoutcss:'ico_layout_00', layoutimage:'app/img/layout_templete.png', layoutdata:[
@@ -130,7 +144,7 @@ vcpapp.factory('modelSite', function(){
                     { siteid:1, pagename:'Homepage', pageid:101, pagetype:10, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
                         pagelayoutdata:[
                             {layoutcontainerclass:"span9", layoutcontainerid:1000 , blocks:[
-                                {blockid:100, blocktype:'auto', blockstatictype:'', blockname:"Today hot",blocklayout:10, blockquantity:6, blocktag:[], blockcategory:[], blocksortby:'date' , blockarticles:[
+                                {blockid:100, blocktype:'auto', blockstatictype:'', blockname:"Today hot",blocklayout:10, blockquantity:4, blocktag:[], blockcategory:[], blocksortby:'date' , blockarticles:[
   /*                                  {"id": 1000, "title": "multiple partial views in angularjs111.",  "status": "needreview",
                                         "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023,
                                         "category": "Today", "categoryid":1000,
@@ -192,25 +206,73 @@ vcpapp.factory('modelSite', function(){
 
         }else{
             sitedata = JSON.parse(localStorage.getItem("siteData"));
+
+            var articlelist = JSON.parse(localStorage.getItem("articlesData"));
+            var taglist = JSON.parse(localStorage.getItem("tagsData"));
+
+            _.each(sitedata.pagelist, function(page){
+                _.each(page.pagelayoutdata, function(layout){
+                    _.each(layout.blocks, function(block){
+                        var articles = getArticlesByTags(block.blocktag, block.blockquantity);
+
+                        block.blockarticles = articles;
+
+                        if (block.blocktag.length == 0 ){
+                            block.blockarticles = getArticles(block.blockquantity);   //如果没有选择tags则获取所有文章
+                            console.log(block.blockquantity, articles, block.blockarticles);
+                        }
+
+                    })
+                })
+            });
+
+            localStorage.setItem("siteData",JSON.stringify(sitedata));
         }
     }
+
+        function getArticlesByTags (taglistdata, quantity) {
+            var articlesresult = [];
+
+            articlesresult = _.filter(articlelist, function(element1){
+
+                var singlearticletags = _.filter(element1.tags, function(element2){
+                    var tagresult = _.where(taglistdata, element2);
+                    return tagresult.length;
+                });
+//            console.log(element1, singlearticletags);
+                return  singlearticletags.length;
+            });
+
+            if(articlesresult.length > quantity){
+                articlesresult.splice(0, articlesresult.length - quantity);    //判断文章数量
+            }
+            return articlesresult;
+        };
+
+        function getArticles(quantity) {
+            var articlesresult2 = [];
+            articlesresult2 = articlelist;
+            if(articlesresult2.length > quantity){
+                articlesresult2.splice(0, articlesresult2.length - quantity);    //判断文章数量
+            }
+            return articlesresult2;
+        };
 
 
     var factory = {};
     factory.getSite = function () {
+
+
+
+
+
         return  sitedata;
     };
 
-    factory.getPageList = function () {
-        return  sitedata.pagelist;
-    };
 
-    factory.getSinglePage = function (selectedpage) {
-        var pageindex = sitedata.pagelist.indexOf(selectedpage);
-        return  sitedata.pagelist[pageindex];
-    };
 
     factory.addSinglePage = function (pagedata) {
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
         return  sitedata.pagelist.push(pagedata);
     };
 
@@ -224,6 +286,7 @@ vcpapp.factory('modelSite', function(){
             var pageindex = sitedata.pagelist.indexOf(pagedata);
             sitedata.pagelist.splice(pageindex, 1);
         }
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
     };
 
     factory.addSingleBlockToPage = function (newblock, pagelayout, pagedata) {
@@ -231,10 +294,24 @@ vcpapp.factory('modelSite', function(){
         var pageindex = sitedata.pagelist.indexOf(pagedata);
         var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
 
-        pagelayout.blocks.push(newblock);
+        sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks.push(newblock);
+//        pagelayout.blocks.push(newblock);
+
+//        sitedata.pagelist[pageindex].pagelayoutdata[layoutindex] = pagelayout;
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
+    };
+
+/*    factory.updateBlockArticles = function (block, pagelayout, pagedata, blockarticles) {
+        var pageindex = sitedata.pagelist.indexOf(pagedata);
+        var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
+        var blockindex =  pagelayout.blocks.indexOf(block);
+        pagelayout.blocks[blockindex].blockarticles = blockarticles;
 
         sitedata.pagelist[pageindex].pagelayoutdata[layoutindex] = pagelayout;
-    };
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
+
+        console.log(pagelayout.blocks[blockindex].blockarticles);
+    };*/
 
     factory.addArticleToBlock = function (newartcle, block, pagelayout, pagedata) {
         var pageindex = sitedata.pagelist.indexOf(pagedata);
@@ -249,7 +326,7 @@ vcpapp.factory('modelSite', function(){
         var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
         var blockindex = sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks.indexOf(block) ;
         sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks.splice(blockindex, 1);
-
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
     }
 
 
@@ -309,4 +386,5 @@ vcpapp.factory('modelSite', function(){
 
 
     return factory;
-});
+}
+);
