@@ -259,13 +259,15 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             blocktype : 'auto',
             blockstatictype:'',
             blockname : "",
-            apiurl : "",
+
             blocklayout : 10,
             blockquantity : 6,
             blocktag : [],
             blockcategory : [],
             blocksortby : 'date',
-            blockarticles : []
+            blockarticles : [],
+            apiurl : "",
+            adsname : "",
         };
 
         switch(blocktype)
@@ -313,6 +315,8 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 break;
 
             case 'ads':
+                newblock.blocktype = 'ads';
+                newblock.blocktype = 'ads';
                 newblock.blocktype = 'ads';
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 break;
