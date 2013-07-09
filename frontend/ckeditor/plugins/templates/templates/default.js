@@ -20,7 +20,14 @@ CKEDITOR.addTemplates("default",{
                      title:"Custom template",
                      image:"template4.gif",
                      description:"add a new template",
-                     html:'<div style="color: greenyellow;font-size: 20px;">1.The first section</div><br><div style="color:#000000;font-size: 20px;">2. The second section</div>'
+                     html:'<div class="ckeditor_templete_01">'+
+					 	  '<h6>Financial Careers According To Hollywood</h6>'+
+						  '<p>Find out if classic films about Wall Street reflect what it is actually like to work there.</p>'+
+						  '<p>Experience and hard work go a long way toward securing a position in this challenging field.</p>'+
+						  '<p>For Siemens to produce value, it all comes down to better operating margins and cash flow.</p>'+
+						  '<p>Genworth is looking at serious pressure from competition</p>'+
+						  '<p>Hartford is transformation is going better than expected, and the shares could still be cheap.</p>'+
+						  '</div>'
                  },
                 {
                     title:"Text and Table",
