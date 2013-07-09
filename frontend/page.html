@@ -62,7 +62,7 @@
                     <dt>Layout :</dt>
                     <dd>
                         <div class="tipbox_layout">
-                            <a href="#"  ng-repeat="blocklayout in blocklayouts" ng-class="{selected:$index == cssblocklayoutselected}" ng-click="addblocktopage('auto', currentlayoutcontainer, $index)">
+                            <a href="#"  ng-repeat="blocklayout in blocklayouts"  ng-click="addblocktopage('auto', currentlayoutcontainer, $index)">
                                 <img src="{{ blocklayout.layoutimage }}" alt="">
                             </a>
                         </div>
@@ -154,7 +154,7 @@
             <dt>Layout :</dt>
             <dd>
                 <div class="tipbox_layout">
-                    <a href="#"  ng-repeat="blocklayout in blocklayouts" ng-class="{selected:$index == cssblocklayoutselected}" ng-click="addblocktopage('editor', currentlayoutcontainer, $index)">
+                    <a href="#"  ng-repeat="blocklayout in blocklayouts"  ng-click="addblocktopage('editor', currentlayoutcontainer, $index)">
                         <img src="{{ blocklayout.layoutimage }}" alt="">
                     </a>
                 </div>
@@ -173,10 +173,10 @@
 <div class="tip_box tip_static" ng-show="'static'==cssblocktipbox">
     <h1>Static</h1>
     <ul class="StaticElementBlock clearfix">
-     	<li><a href="###" class="icon_static_txt">TXT</a></li>
-        <li><a href="###" class="icon_static_pic">PIC</a></li>
-        <li><a href="###" class="icon_static_video">VIDEO</a></li>
-        <li><a href="###" class="icon_static_slider">Slider</a></li>
+     	<li><a href="#" class="icon_static_txt" ng-click="addblocktopage('statictext', currentlayoutcontainer, 0) ">TXT</a></li>
+        <li><a href="#" class="icon_static_pic" ng-click="addblocktopage('staticpic', currentlayoutcontainer, 0)">PIC</a></li>
+        <li><a href="#" class="icon_static_video" ng-click="addblocktopage('staticvideo', currentlayoutcontainer, 0)">VIDEO</a></li>
+        <li><a href="#" class="icon_static_slider" ng-click="addblocktopage('staticslideshow', currentlayoutcontainer, 0)">Slideshow</a></li>
     </ul>
 </div>
 
@@ -185,16 +185,16 @@
     <h1>AD block attribute</h1>
     <div class="tab-content">
         <dl class="clearfix">
-            <dt>AD ID:</dt>
-            <dd><input type="text" data-provide="typeahead" data-items="10"></dd>
+            <dt>AD Name:</dt>
+            <dd><input type="text" data-provide="typeahead" data-items="10" ng-model="newblock.adsname"></dd>
         </dl>
         <dl class="clearfix">
             <dt>Code :</dt>
-            <dd><textarea rows="3"></textarea></dd>
+            <dd><textarea rows="3" ng-model="newblock.adscode"></textarea></dd>
         </dl>
         <dl class="clearfix">
         	<dt>&nbsp;</dt>
-            <dd><input type="submit" class="btn btn-success" value="Add" style=" height:30px; margin:0 0 10px 0;"></dd>
+            <dd><input type="submit" class="btn btn-success" value="Add" style=" height:30px; margin:0 0 10px 0;" ng-click="addblocktopage('ads', currentlayoutcontainer, 0)"></dd>
         </dl>
     </div>
 </div>
@@ -220,7 +220,7 @@
             <dt>Layout :</dt>
             <dd>
                 <div class="tipbox_layout">
-                    <a href="#"  ng-repeat="blocklayout in blocklayouts" ng-class="{selected:$index == cssblocklayoutselected}" ng-click="addblocktopage('RSS', currentlayoutcontainer, $index)">
+                    <a href="#"  ng-repeat="blocklayout in blocklayouts" ng-click="addblocktopage('RSS', currentlayoutcontainer, $index)">
                         <img src="{{ blocklayout.layoutimage }}" alt="">
                     </a>
                 </div>
@@ -335,7 +335,7 @@
                         <!-- Block Box -->
                         <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks" ng-class="{hoverfill:cssblockeditmenubutton}"  ng-mouseenter="showeditblockmenubutton()" ng-mouseleave="hideeditblockmenubutton()">
                         	<!-- Content -->
-                            <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS'}">
+                            <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
                                 <h2>{{ block.blockname}}</h2>
                                 <ul >
                                 	<li ng-repeat="article in block.blockarticles track by $index"><span>{{ article.created | date:'MM/dd/yyyy' }}</span>
@@ -365,7 +365,7 @@
                                 <p ng-show="block.blockstatictype=='text'">近日由中国企业家单身俱乐部主办的入会面试吸引532名单身女性参加，加入该俱乐部男性需缴纳至少20万元会费，面试也被视为嫁入豪门海选，有与会女孩要求对象年薪最少”七八十万“。俱乐部创始人程勇生曾是世纪佳缘华南总经理…6月27日,何女士在佛山禅城街头遭陌生男子在背后针扎,几分钟后昏迷住院.医生称,其右颈部有针孔血点,疑是阿托品中毒.3天后,又有女子在同一地点遭同一人扎针.涉案男子(30多岁湖南籍)已落网,扎人动机尚在调查,针孔内药物仍待化验。从小我们就在＂你看别人家孩子＂的教育中长大，你看别人家孩子成绩好，你看别人家孩子懂礼貌，你看别人家孩子有出息。我们在别人家孩子的阴影中微卑的做着独一无二的自己。有一天，当我们也开始成为＂别人家的孩子时＂，你会发现每一个人只要有自我，都能成为＂别人家的孩子＂。</p>
                                 <p ng-show="block.blockstatictype=='pic'"><img src="app/img/temp/e56e163e87249aed67fa89fd526316e209902ae65e210-XofCMe.jpg"></p>
                                 <video ng-show="block.blockstatictype=='video'" style="width:100%;" src="app/img/temp/cloud_x264.mp4" autoplay loop></video>
-                                <img ng-show="block.blockstatictype=='slide'" src="app/img/temp/slidebanner.jpg">
+                                <img ng-show="block.blockstatictype=='slideshow'" src="app/img/temp/slidebanner.jpg">
                             </div>
 
                             <!-- Content End -->
@@ -375,7 +375,7 @@
                             <div class="attribute_panel" ng-show="cssblockeditmenubutton" ng-class="{editors: block.blocktype=='editor'}">
                                 <a href="##" class="icon_delete" ng-click="delblock(block, layoutcontainer);">delete</a>
                                <!-- <a href="##" class="icon_move" ng-click="showfilleditform();">move</a>-->
-                                <a href="##" class="icon_setup" ng-click="updateshowblcoksetting(block, $event );">setup</a>
+                                <!--<a href="##" class="icon_setup" ng-click="updateshowblcoksetting(block, $event );">setup</a>-->
                                 <!-- <a href="##" class="icon_editor" ng-click="showfilleditform();">editors</a>-->
                                 <div class="editor_inset" ng-show="block.blocktype=='editor'" >
                                     <input type="text" placeholder="pls input article title" typeahead="article as article.title for article in localarticles | filter:$viewValue"  ng-model="newarticle" enter-Keypress="{enter: addaritcletoblock(block, currentlayoutcontainer)}">

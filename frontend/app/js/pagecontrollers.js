@@ -19,13 +19,17 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $scope.newblock = {
             blockid : 100,
             blocktype : 'auto',
+            blockstatictype : '',
             blocktitle : "title1",
             blockname : "",
             blocklayout : 10,
             blockquantity : 6,
             blocktag : [],
             blockcategory : [],
-            blocksortby : 'bydate'
+            blocksortby : 'bydate',
+            apiurl : "",
+            adsname : "",
+            adscode : ""
         };
         $scope.newarticle = undefined;
 
@@ -62,7 +66,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $scope.cssblockeditmenuinputbox = false;   //点击当前编辑block的 要输入推荐文章的输入框
         $scope.cssblockeditmenubutton = false;     //点击当前编辑block的 设置的按钮
 
-        $scope.cssblocklayoutselected = false;  // 选中的blocklayout
 
         $scope.cssheadermenuhavadata = false;      //Header是否有数据
         $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮显示
@@ -252,20 +255,22 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
     // add a block to page
     $scope.addblocktopage = function(blocktype, layoutcontainer, indexid ) {
-        $scope.cssblocklayoutselected = indexid;
 
         var newblock = {
             blockid : 200,
             blocktype : 'auto',
             blockstatictype:'',
             blockname : "",
-            apiurl : "",
+
             blocklayout : 10,
             blockquantity : 6,
             blocktag : [],
             blockcategory : [],
             blocksortby : 'date',
-            blockarticles : []
+            blockarticles : [],
+            apiurl : "",
+            adsname : "",
+            adscode : ""
         };
 
         switch(blocktype)
@@ -292,7 +297,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 }
 
 
-
                 //通过Tags 获取文章
                 newblock.blockarticles = modelArticle.getArticlesByTags(newblock.blocktag);
 
@@ -307,22 +311,40 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 newblock.blockname = $scope.newblock.blockname;
                 break;
 
-            case 'static':
+            case 'statictext':
                 newblock.blocktype = 'static';
-                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                newblock.blockstatictype = 'text';
+
                 break;
+            case 'staticpic':
+                newblock.blocktype = 'static';
+                newblock.blockstatictype = 'pic';
+
+
+                break;
+            case 'staticvideo':
+                newblock.blocktype = 'static';
+                newblock.blockstatictype = 'video';
+
+                break;
+            case 'staticslideshow':
+                newblock.blocktype = 'static';
+                newblock.blockstatictype = 'slideshow';
+
+
+                break;
+
 
             case 'ads':
                 newblock.blocktype = 'ads';
-                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                newblock.adsname = $scope.newblock.adsname;
+                newblock.adscode = $scope.newblock.adscode;
                 break;
 
             case 'RSS':
                 newblock.blocktype = 'RSS';
                 newblock.blockname = $scope.newblock.blockname;
                 newblock.urlapi = $scope.newblock.urlapi;
-
-                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 break;
             default:
         }
