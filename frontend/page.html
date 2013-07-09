@@ -333,7 +333,7 @@
                     <div class="" ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
 
                         <!-- Block Box -->
-                        <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks" ng-class="{hoverfill:cssblockeditmenubutton}"  ng-mouseenter="showeditblockmenubutton()" ng-mouseleave="hideeditblockmenubutton()">
+                        <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks track by $index" ng-class="{hoverfill:cssblockeditmenubutton}"  ng-mouseenter="showeditblockmenubutton()" ng-mouseleave="hideeditblockmenubutton()">
                         	<!-- Content -->
                             <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
                                 <h2>{{ block.blockname}}</h2>

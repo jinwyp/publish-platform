@@ -34,10 +34,14 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $scope.newarticle = undefined;
 
         $scope.site = modelSite.getSite();
-        $scope.pages = modelSite.getPageList();
+
+
+
+        $scope.pages = $scope.site.pagelist;
+
         $scope.singlepage =  $scope.pages[0];   //默认读取首页
         $scope.newpage ={};
-        $scope.localarticles = modelArticle.getArticles();
+        $scope.localarticles = modelArticle.getArticles(100);
 
         $scope.layouts = modelSite.getLayoutList();
         $scope.blocklayouts = modelSite.getBlockLayout();
@@ -296,12 +300,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 }
 
 
-                //通过Tags 获取文章
-                newblock.blockarticles = modelArticle.getArticlesByTags(newblock.blocktag, newblock.blockquantity);
-
-                if (temptagslistname.length == 0 ){
-                    newblock.blockarticles = modelArticle.getArticles(newblock.blockquantity);   //如果没有选择tags则获取所有文章
-                }
                 break;
 
             case 'editor':
