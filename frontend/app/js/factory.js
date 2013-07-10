@@ -149,7 +149,7 @@ vcpapp.factory('modelSite',  function(){
     if(window.localStorage){
         if (JSON.parse(localStorage.getItem("siteData")) == null || JSON.parse(localStorage.getItem("siteData")).length == 0){
             sitedata = {
-                userinfo : {usename:"", firstname:''},
+                userinfo : {},
                 siteid : 1,
                 sitename : 'NewSite',
 
@@ -158,22 +158,6 @@ vcpapp.factory('modelSite',  function(){
                         pagelayoutdata:[
                             {layoutcontainerclass:"span9", layoutcontainerid:1000 , blocks:[
                                 {blockid:100, blocktype:'auto', blockstatictype:'', blockname:"Today hot",blocklayout:10, blockquantity:4, blocktag:[], blockcategory:[], blocksortby:'date' , blockarticles:[
-  /*                                  {"id": 1000, "title": "multiple partial views in angularjs111.",  "status": "needreview",
-                                        "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023,
-                                        "category": "Today", "categoryid":1000,
-                                        "tags": [
-                                            { "tagid":10000, "name":"computer" },
-                                            { "tagid":10001, "name":"videocard" }
-                                        ]
-                                    },
-                                    {"id": 1002, "title": "222222222.",  "status": "needreview",
-                                        "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023,
-                                        "category": "Today", "categoryid":1000,
-                                        "tags": [
-                                            { "tagid":10000, "name":"computer" },
-                                            { "tagid":10001, "name":"videocard" }
-                                        ]
-                                    }*/
                                 ]
                                 }
                             ]

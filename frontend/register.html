@@ -46,23 +46,26 @@
             	<div class="title_num">1</div>
                 <h3 class="title_name">New Account</h3>
             </div>-->
-        	<form class="reg_form">
+        	<form name="register" class="reg_form">
             	<h4>Site Attribute<a href="##" class="edit_step" id="edit_step1">Edit</a></h4>
                 <div class="reg_form_Box">
                 <table class="table">
                 	<tr>
                     	<td class="titlename">Email</td>
-                        <td><input type="text" ng-model="user.email" class="reg_input"></td></tr>
+                        <td><input type="email" required ng-model="user.email" class="reg_input"></td></tr>
                     </tr>
                     <tr>
                     	<td class="titlename">Password</td>
-                        <td><input type="password" value="" class="reg_input"></td></tr>
+                        <td><input id="password" type="password" required ng-model="user.password" minlength="6" maxlength="20" class="reg_input"></td></tr>
                     <tr>
                     	<td class="titlename">Confirm Password</td>
-                        <td><input type="password" value="" class="reg_input"></td></tr>
+                        <td><input id="reformpassword" type="password" required ng-model="user.password" class="reg_input"></td>
+                    </tr>
                 </table>
                 </div>
-                <div class="submitbox"><a href="user.html" class="submit" id="save_step1">Save</a></div>
+                <div class="submitbox">
+                    <input type="submit" value="Save" class="submit" ng-click="savebasicinfo(register)">
+                </div>
             </form>
             
         </div>
