@@ -235,7 +235,7 @@
 .reg_stepbox	{ position:absolute; z-index:1; width:500px; padding-top:20px; border:3px solid #465568; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.4); background:#465568; 
 }
 		 
-.reg_step_1	{ top:20%;}
+.reg_step_1	{ top:22%;}
 .reg_step_2	{ top:26%;}
 .reg_step_3	{ top:30%;}
 
