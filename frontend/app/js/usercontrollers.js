@@ -13,7 +13,8 @@ vcpapp.controller(page.c);
 page.c.userController = function($scope, $location, modelSite) {
     $scope.site = modelSite.getSite();
     $scope.user = $scope.site.userinfo;
-    alert(11);
+    $scope.user.gender="male";
+
     //保存密码和邮箱
     $scope.savebasicinfo = function(callback){
         if (callback.$valid) {
@@ -24,6 +25,13 @@ page.c.userController = function($scope, $location, modelSite) {
                 modelSite.updateSinglePage($scope.site);
                 location.href="user.html";
             }
+        }
+    }
+
+    $scope.savebasicinfo = function(callback){
+        if (callback.$valid) {
+            modelSite.updateSinglePage($scope.site);
+            //alert($scope.user.gender);
         }
     }
 }
