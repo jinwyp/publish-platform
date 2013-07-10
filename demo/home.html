@@ -12,7 +12,7 @@
 						<div class="site-theme b-block block-layout-1">
 							<h2 class="ng-binding">Today hot</h2>
 							<ul>
-								<li ng-repeat="article in articles | filter:todayhot| limitTo:5" class="ng-scope"><span class="ng-binding">{{article.date}}</span>
+								<li ng-repeat="article in articles | filter:todayhot| limitTo:5" class="ng-scope"><span class="ng-binding">{{article.created}}</span>
 									<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
 								</li>
 							</ul>
@@ -28,7 +28,7 @@
 						<div class="site-theme b-block block-layout-1">
 							<h2 class="ng-binding">Investing</h2>
 							<ul>
-								<li ng-repeat="article in articles | filter:{tag:'investing'} | limitTo:5" class="ng-scope"><span class="ng-binding">{{article.date}}</span>
+								<li ng-repeat="article in articles | filter:{tag:'investing'} | limitTo:5" class="ng-scope"><span class="ng-binding">{{article.created}}</span>
 									<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
 								</li>
 							</ul>
@@ -41,7 +41,7 @@
 						<div class="site-theme b-block block-layout-1">
 							<h2 class="ng-binding">Personal Finance</h2>
 							<ul>
-								<li ng-repeat="article in articles | filter:{tag:'personal-finance'} | limitTo:5" class="ng-scope"><span class="ng-binding">{{article.date}}</span>
+								<li ng-repeat="article in articles | filter:{tag:'personal-finance'} | limitTo:5" class="ng-scope"><span class="ng-binding">{{article.created}}</span>
 									<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
 								</li>
 							</ul>
@@ -54,7 +54,7 @@
 							<div class="site-theme b-block block-layout-1">
 								<h2 class="ng-binding">Active Trading</h2>
 								<ul>
-									<li ng-repeat="article in articles | filter:{tag:'active-trading'} | limitTo:5" class="ng-scope"><span class="ng-binding">{{article.date}}</span>
+									<li ng-repeat="article in articles | filter:{tag:'active-trading'} | limitTo:5" class="ng-scope"><span class="ng-binding">{{article.created}}</span>
 										<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
 									</li>
 								</ul>

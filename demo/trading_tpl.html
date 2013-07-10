@@ -4,7 +4,7 @@
 						<div class="site-theme b-block block-layout-1">
 							<h2 class="ng-binding">Articles</h2>
 							<ul>
-								<li ng-repeat="article in articles | filter:{tag:'active-trading',type:'article'}" class="ng-scope"><span class="ng-binding">{{article.date}}</span>
+								<li ng-repeat="article in articles | filter:{tag:'active-trading',type:'article'}" class="ng-scope"><span class="ng-binding">{{article.created}}</span>
 									<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
 								</li>
 							</ul>
@@ -20,7 +20,7 @@
 						<div class="site-theme b-block block-layout-1">
 							<h2 class="ng-binding">Definitions</h2>
 							<ul>
-								<li ng-repeat="article in articles | filter:{tag:'active-trading',type:'term'} | limitTo:5" class="ng-scope"><span class="ng-binding">{{article.date}}</span>
+								<li ng-repeat="article in articles | filter:{tag:'active-trading',type:'term'} | limitTo:5" class="ng-scope"><span class="ng-binding">{{article.created}}</span>
 									<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
 								</li>
 							</ul>
@@ -33,7 +33,7 @@
 						<div class="site-theme b-block block-layout-1">
 							<h2 class="ng-binding">Tutorials</h2>
 							<ul>
-								<li ng-repeat="article in articles | filter:{tag:'active-trading',type:'tutorial'} | limitTo:5" class="ng-scope"><span class="ng-binding">{{article.date}}</span>
+								<li ng-repeat="article in articles | filter:{tag:'active-trading',type:'tutorial'} | limitTo:5" class="ng-scope"><span class="ng-binding">{{article.created}}</span>
 									<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
 								</li>
 							</ul>
