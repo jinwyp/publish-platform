@@ -6,7 +6,6 @@ var articleapp = angular.module('vcpmodule', ['ui.bootstrap', 'vcpmodule.directi
 
 
 
-
 articleapp.factory('modelArticle', function(){
 
     var articlelist=[],taglist=[];

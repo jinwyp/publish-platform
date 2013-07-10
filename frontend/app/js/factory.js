@@ -22,8 +22,10 @@ vcpapp.factory('modelArticle', function(){
 
     var factory = {};
 
-    factory.getArticlesByTags = function (taglistdata, quantity) {
+    factory.getArticlesByTags = function (taglistdata, quantity, blockcategory) {
+        var articlesresultfinal = [];
         var articlesresult = [];
+        var articlesresult2 = [];
 
         articlesresult = _.filter(articlelist, function(element1){
 
@@ -31,14 +33,23 @@ vcpapp.factory('modelArticle', function(){
                 var tagresult = _.where(taglistdata, element2);
                 return tagresult.length;
             });
-//            console.log(element1, singlearticletags);
             return  singlearticletags.length;
         });
 
-        if(articlesresult.length > quantity){
-            articlesresult.splice(0, articlesresult.length - quantity);    //判断文章数量
+        articlesresult2 = _.filter(articlelist, function(element1){
+
+            if (element1.category.toString() == blockcategory){
+//                console.log(blockcategory, element1.category);
+                return true
+            }
+        });
+
+        articlesresultfinal = _.union(articlesresult, articlesresult2)
+
+        if(articlesresultfinal.length > quantity){
+            articlesresultfinal.splice(0, articlesresultfinal.length - quantity);    //判断文章数量
         }
-        return articlesresult;
+        return articlesresultfinal;
     };
 
     factory.getArticles = function (quantity) {
@@ -105,6 +116,7 @@ vcpapp.factory('modelTag', function(){
 
 
 
+
 vcpapp.factory('modelSite',  function(){
 
     var layoutdata = [
@@ -137,7 +149,7 @@ vcpapp.factory('modelSite',  function(){
     if(window.localStorage){
         if (JSON.parse(localStorage.getItem("siteData")) == null || JSON.parse(localStorage.getItem("siteData")).length == 0){
             sitedata = {
-                userinfo : {usename:"", firstname:''},
+                userinfo : {},
                 siteid : 1,
                 sitename : 'NewSite',
 
@@ -146,22 +158,6 @@ vcpapp.factory('modelSite',  function(){
                         pagelayoutdata:[
                             {layoutcontainerclass:"span9", layoutcontainerid:1000 , blocks:[
                                 {blockid:100, blocktype:'auto', blockstatictype:'', blockname:"Today hot",blocklayout:10, blockquantity:4, blocktag:[], blockcategory:[], blocksortby:'date' , blockarticles:[
-  /*                                  {"id": 1000, "title": "multiple partial views in angularjs111.",  "status": "needreview",
-                                        "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023,
-                                        "category": "Today", "categoryid":1000,
-                                        "tags": [
-                                            { "tagid":10000, "name":"computer" },
-                                            { "tagid":10001, "name":"videocard" }
-                                        ]
-                                    },
-                                    {"id": 1002, "title": "222222222.",  "status": "needreview",
-                                        "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023,
-                                        "category": "Today", "categoryid":1000,
-                                        "tags": [
-                                            { "tagid":10000, "name":"computer" },
-                                            { "tagid":10001, "name":"videocard" }
-                                        ]
-                                    }*/
                                 ]
                                 }
                             ]
@@ -207,15 +203,8 @@ vcpapp.factory('modelSite',  function(){
 
         }else{
             sitedata = JSON.parse(localStorage.getItem("siteData"));
-
-/*            var articlelist = JSON.parse(localStorage.getItem("articlesData"));
-            var taglist = JSON.parse(localStorage.getItem("tagsData"));*/
-
-
-//            localStorage.setItem("siteData",JSON.stringify(sitedata));
         }
     }
-
 
 
 
@@ -249,7 +238,6 @@ vcpapp.factory('modelSite',  function(){
 
         var pageindex = sitedata.pagelist.indexOf(pagedata);
         var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
-
         pagelayout.blocks.push(newblock);
 
         sitedata.pagelist[pageindex].pagelayoutdata[layoutindex] = pagelayout;
@@ -271,8 +259,11 @@ vcpapp.factory('modelSite',  function(){
     factory.addArticleToBlock = function (newartcle, block, pagelayout, pagedata) {
         var pageindex = sitedata.pagelist.indexOf(pagedata);
         var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
+        console.log(pageindex, layoutindex, block)
         var blockindex = sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks.indexOf(block) ;
+
         sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks[blockindex].blockarticles.push(newartcle);
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
 
     };
 
