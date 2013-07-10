@@ -1,6 +1,6 @@
 'use strict';
 
-var vcpapp = angular.module('vcpmodule', [ 'vcpmodule.directive', 'ui.bootstrap' ]);
+var vcpapp = angular.module('vcpmodule', ['ui.bootstrap']);
 
 var page = {
     c:{}
@@ -8,6 +8,18 @@ var page = {
 vcpapp.controller(page.c);
 
 
+vcpapp.directive('enterKeypress', function(){
+        return function(scope, element, attrs) {
+            element.bind("keypress", function(event) {
+                if(event.which === 13) {
+                    scope.$apply(function(){
+                        scope.$eval(attrs.enterKeypress);
+                    });
+                    event.preventDefault();
+                }
+            });
+        };
+    });
 
 /* Controllers */
 page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelArticle, modelTag) {
@@ -42,14 +54,18 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             {
                 for (var k = site.pagelist[i].pagelayoutdata[j].blocks.length-1; k>=0; k--)
                 {
-                    var articles = modelArticle.getArticlesByTags(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity);
-                    site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles;
+                    if(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktype == 'auto'){
+                        var articles = modelArticle.getArticlesByTags(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity);
+                        site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles;
 
-                    if (site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag.length == 0 ){
-                        var articles2 = modelArticle.getArticles(site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity);
+                        if (site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag.length == 0 ){
+                            var articles2 = modelArticle.getArticles(site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity);
 
-                        site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles2;   //如果没有选择tags则获取所有文章
+                            site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles2;   //如果没有选择tags则获取所有文章
+                        }
                     }
+
+
                 }
             }
         }
