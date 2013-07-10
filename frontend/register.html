@@ -5,7 +5,6 @@
     <title>VCP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="lib/flatui/bootstrap.css" rel="stylesheet">
-    <link href="lib/flatui/flat-ui.css" rel="stylesheet">
     <link href="app/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="app/img/favicon.ico">
     <!--[if lt IE 9]>
@@ -42,12 +41,12 @@
     	
     	<!-- 第 1 步 -->
     	<div class="reg_stepbox reg_step_1">
-        	<!--<div class="reg_box_title clearfix">
-            	<div class="title_num">1</div>
-                <h3 class="title_name">New Account</h3>
-            </div>-->
+        	<div class="reg_box_title clearfix">
+            	 <!-- <div class="title_num">1</div>-->
+                <h3 class="title_name">Register</h3>
+            </div>
         	<form name="register" class="reg_form">
-            	<h4>Site Attribute<a href="##" class="edit_step" id="edit_step1">Edit</a></h4>
+            	<h4>Register Information</h4>
                 <div class="reg_form_Box">
                 <table class="table">
                 	<tr>
@@ -148,13 +147,6 @@
 
             <script src="lib/jquery/jquery-1.8.2.min.js"></script>  
 			<script src="lib/boostrap/bootstrap.min.js"></script>
-            <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
-            <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
-            <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
-            <script src="lib/flatui/custom_radio.js"></script>
-            <script src="lib/flatui/jquery.tagsinput.js"></script>
-            <script src="lib/flatui/jquery.placeholder.js"></script>
-            <script src="lib/flatui/application.js"></script>
             <!-- <script src="lib/jqueryplugin/fancyInput.js"></script>-->
             <!--[if lt IE 8]>
               <script src="lib/flatui/icon-font-ie7.js"></script>
@@ -168,46 +160,7 @@
 			$(function() {
 				  
 				  
-				   //SAVE
-				  $("#save_step1").click(function(){
-					 	$(".reg_step_1").addClass("regmini_step_1").queue(function () {
-							$(".regmini_step_2").removeClass("regmini_step_2").addClass("reg_step_2");
-						});
-				  });
 				  
-				  $("#save_step2").click(function(){
-					  $(".reg_step_2").addClass("regmini_step_2").queue(function () {
-							$(".regmini_step_3").removeClass("regmini_step_3").addClass("reg_step_3");
-						});
-				  });
-				  
-				  $("#save_step3").click(function(){
-					  $(".reg_step_3").addClass("regmini_step_3").queue(function () {
-							$(".regmini_step_1").removeClass("regmini_step_1").addClass("reg_step_1");
-						});
-				  });
-				  
-				  
-				  
-				  
-				  //EDIT
-				  $("#edit_step1").click(function(){
-					  $(".regmini_step_1").removeClass("regmini_step_1").addClass("reg_step_1");
-					  $(".reg_step_2").addClass("regmini_step_2");
-					  $(".reg_step_3").addClass("regmini_step_3");
-				  });
-				  
-				  $("#edit_step2").click(function(){
-					  $(".reg_step_1").addClass("regmini_step_1");
-					  $(".regmini_step_2").removeClass("regmini_step_2").addClass("reg_step_2");
-					  $(".reg_step_3").addClass("regmini_step_3");
-				  });
-				  
-				  $("#edit_step3").click(function(){
-					  $(".reg_step_1").addClass("regmini_step_1");
-					  $(".reg_step_2").addClass("regmini_step_2");
-					  $(".regmini_step_3").removeClass("regmini_step_3").addClass("reg_step_3");
-				  });
 				
 				  
         	});
