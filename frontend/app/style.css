@@ -232,32 +232,18 @@
 /* =========================================================================================== */
 .reg_box		{ position:absolute; bottom:0px; width:100%; min-width:1024px; height:100%; /* box-shadow:inset 0 0 800px 100px #d7d7d7;  background:url(img/pagebg.jpg) top center repeat; */}
 .reg_bgpline	{ position:absolute; left:0; top:50%; width:100%; height:4px; overflow:hidden; /* background:#ddd0c8; */ background:rgba(0,0,0,0.2); z-index:0;}
-.reg_stepbox	{ position:absolute; z-index:1; width:300px; padding-top:20px; border:3px solid #465568; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.4); background:#465568; 
+.reg_stepbox	{ position:absolute; z-index:1; width:500px; padding-top:20px; border:3px solid #465568; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.4); background:#465568; 
 }
-
-.reg_step_1,
-.reg_step_2,
-.reg_step_3	{
- -webkit-transition: all 0.4s ease-in-out;
-	-moz-transition: all 0.4s ease-in-out;
-	 -ms-transition: all 0.4s ease-in-out;
-	  -o-transition: all 0.4s ease-in-out;
-	     transition: all 0.4s ease-in-out;  }
 		 
-.reg_step_1	{ top:30%;}
+.reg_step_1	{ top:20%;}
 .reg_step_2	{ top:26%;}
 .reg_step_3	{ top:30%;}
 
 .regmini_step_1,
 .regmini_step_2,
-.regmini_step_3{ top:54%; width:200px; 
-	-webkit-transition: all 0.4s ease-in-out;
-	   -moz-transition: all 0.4s ease-in-out;
-		-ms-transition: all 0.4s ease-in-out;
-		 -o-transition: all 0.4s ease-in-out;
-			transition: all 0.4s ease-in-out;  }
+.regmini_step_3{ top:54%; width:200px;}
 	
-.reg_step_1, .regmini_step_1	{ left:28%;}
+.reg_step_1, .regmini_step_1	{ left:30%;}
 .reg_step_2, .regmini_step_2	{ left:56%;}
 .reg_step_3, .regmini_step_3	{ left:65%;}
 
@@ -280,18 +266,18 @@
 /* 表格 */
 .reg_form table	{ border:0; margin:0; padding:0; background:#465568; border-collapse:0 !important;}
 .reg_form table tr	{ border-bottom:2px solid #566578;}
-.reg_form table td	{ border:0; margin:0; padding:20px 10px; vertical-align:middle;}
+.reg_form table td	{ border:0; margin:0; padding:40px 10px; vertical-align:middle;}
 .reg_form table tr.last{ border-bottom:0;}
-.reg_form table .titlename{ width:66px; padding:20px 0; color:#a0b3c4; text-align:center; background:#2a3644;}
+.reg_form table .titlename{ width:100px; padding:20px 0; color:#a0b3c4; text-align:center; background:#2a3644;}
 
 /* === 步骤标题 === */
-.reg_box_title{ position:absolute; left:0; top:-100px;}
+.reg_box_title{ position:absolute; left:40%; top:-60px;}
 .reg_box_title .title_num{ display:block; float:left; margin:0 10px 0 0; padding:0; width:35px; height:35px; color:#ff6861; /* border:1px solid #a2cf4e; */ border:1px solid #212b35; text-align:center; font-size:20px; font-weight:bold; line-height:36px; font-family:Arial, Helvetica, sans-serif; border-radius:100px; background:#fff;  }
 .reg_box_title .title_name{ display:block;  float:left; margin:0; padding:0; /* color:#82ab35; */ color:#fff; text-shadow:0 0 10px rgba(0,0,0,0.4); font-weight:normal; line-height:36px; font-family:Arial, Helvetica, sans-serif; }
 
 /* 提交按钮 */
-.reg_form .submitbox			{ padding:10px; border-radius:0 0 6px 6px; background:#212b35; text-align:center;}
-.reg_form .submit				{ display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; margin:0 auto; padding:3px 10px 4px; border-radius:4px; color:#fff; text-decoration:none; background:url(img/article_btn_bg.png) repeat-x; box-shadow:0 1px 3px #000; 
+.reg_form .submitbox			{ padding:20px; border-radius:0 0 6px 6px; background:#212b35; text-align:center;}
+.reg_form .submit				{ border:0; display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; margin:0 auto; padding:3px 20px 4px; border-radius:4px; color:#fff; text-decoration:none; background:url(img/article_btn_bg.png) repeat-x; box-shadow:0 1px 3px #000; 
 -webkit-transition: 0s;
     -moz-transition: 0s;
     -o-transition: 0s;
@@ -304,7 +290,7 @@
 .reg_form .edit_step:hover		{ background:#83a93d;}
 .reg_form .edit_step:active	{ box-shadow:inset 0 0 7px rgba(0,0,0,0.5);}
 /* 输入框 */
-.reg_form input.reg_input{ font-size:16px; margin:0 auto; display:block; padding:6px; width:86%; height:auto; vertical-align:baseline; background:#95a2b2; border-width:2px; border-color:#95a2b2; color:#fff; box-shadow:none;}
+.reg_form input.reg_input{ font-size:18px; margin:0 auto; display:block; padding:8px; width:80%; height:auto; vertical-align:baseline; background:#95a2b2; border-width:2px; border-color:#95a2b2; color:#fff; box-shadow:none;}
 .reg_form input.reg_input:focus{ background:#fff; color:#000; border-color:#2a3644; border-width:2px;}
 .reg_form input.reg_input:-moz-placeholder,
 .reg_form input.reg_input::-webkit-input-placeholder{ }
