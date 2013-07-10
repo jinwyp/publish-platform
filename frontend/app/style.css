@@ -591,8 +591,10 @@ ul.ts_preview li img{
 .userInfo							{ padding-left:30px;}
 .userInfo h6						{ margin:0 0 10px 0; text-transform:capitalize; cursor:default;}
 .userInfo label						{ margin:0 20px 14px 0; display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline;}
-.userInfo input[type="text"]		{ padding:8px; background-color:#ccc; width:250px; font-size:18px; color:#000; font-weight:bold; }
-.userInfo input[type="text"]:focus	{ background:#fff;}
+.userInfo input[type="text"],
+.userInfo input[type="password"]		{ padding:8px; background-color:#ccc; width:250px; font-size:18px; color:#000; font-weight:bold; }
+.userInfo input[type="text"]:focus,
+.userInfo input[type="password"]:focus	{ background:#fff;}
 .userInfo input[type="radio"]		{ margin-right:6px; vertical-align:0px;}
 .userInfo p							{ color:#fff; font-size:18px;}
 .userInfo input,
