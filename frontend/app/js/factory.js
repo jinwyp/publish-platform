@@ -42,10 +42,12 @@ vcpapp.factory('modelArticle', function(){
     };
 
     factory.getArticles = function (quantity) {
-        var articlesresult2 = articlelist;
+        var articlesresult2 = _.clone(articlelist);
+
         if(articlesresult2.length > quantity){
             articlesresult2.splice(0, articlesresult2.length - quantity);    //判断文章数量
         }
+
         return articlesresult2;
     };
 
@@ -136,7 +138,7 @@ vcpapp.factory('modelSite',  function(){
     if(window.localStorage){
         if (JSON.parse(localStorage.getItem("siteData")) == null || JSON.parse(localStorage.getItem("siteData")).length == 0){
             sitedata = {
-                userinfo : {},
+                userinfo : {usename:"", firstname:''},
                 siteid : 1,
                 sitename : 'NewSite',
 
@@ -207,84 +209,20 @@ vcpapp.factory('modelSite',  function(){
         }else{
             sitedata = JSON.parse(localStorage.getItem("siteData"));
 
-            var articlelist = JSON.parse(localStorage.getItem("articlesData"));
-            var taglist = JSON.parse(localStorage.getItem("tagsData"));
+/*            var articlelist = JSON.parse(localStorage.getItem("articlesData"));
+            var taglist = JSON.parse(localStorage.getItem("tagsData"));*/
 
-            _.each(sitedata.pagelist, function(page){
-                _.each(page.pagelayoutdata, function(layout){
-                    _.each(layout.blocks, function(block){
-                        var articles = getArticlesByTags(block.blocktag, block.blockquantity);
 
-                        block.blockarticles = articles;
-
-                        if (block.blocktag.length == 0 ){
-                            block.blockarticles = getArticles(block.blockquantity);   //如果没有选择tags则获取所有文章
-                            console.log(block.blockquantity, articles, block.blockarticles);
-                        }
-
-                        _.each(block.blockarticles, function(article){
-                            console.log(article.title);
-                        });
-
-                    })
-                })
-            });
-
-            localStorage.setItem("siteData",JSON.stringify(sitedata));
+//            localStorage.setItem("siteData",JSON.stringify(sitedata));
         }
     }
 
-        function getArticlesByTags (taglistdata, quantity) {
-            var articlesresult = [];
 
-            articlesresult = _.filter(articlelist, function(element1){
-
-                var singlearticletags = _.filter(element1.tags, function(element2){
-                    var tagresult = _.where(taglistdata, element2);
-                    return tagresult.length;
-                });
-//            console.log(element1, singlearticletags);
-                return  singlearticletags.length;
-            });
-
-            if(articlesresult.length > quantity){
-                articlesresult.splice(0, articlesresult.length - quantity);    //判断文章数量
-            }
-            return articlesresult;
-        };
-
-        function getArticles(quantity) {
-            var articlesresult2 = [];
-            articlesresult2 = articlelist;
-            if(articlesresult2.length > quantity){
-                articlesresult2.splice(0, articlesresult2.length - quantity);    //判断文章数量
-            }
-            return articlesresult2;
-        };
 
 
     var factory = {};
     factory.getSite = function () {
 
-        _.each(sitedata.pagelist, function(page){
-            _.each(page.pagelayoutdata, function(layout){
-                _.each(layout.blocks, function(block){
-                    var articles = getArticlesByTags(block.blocktag, block.blockquantity);
-
-                    block.blockarticles = articles;
-
-                    if (block.blocktag.length == 0 ){
-                        block.blockarticles = getArticles(block.blockquantity);   //如果没有选择tags则获取所有文章
-                        console.log(block.blockquantity, articles, block.blockarticles);
-                    }
-
-                    _.each(block.blockarticles, function(article){
-                        console.log(article.title);
-                    });
-
-                })
-            })
-        });
         return  sitedata;
     };
 
@@ -314,10 +252,9 @@ vcpapp.factory('modelSite',  function(){
         var pageindex = sitedata.pagelist.indexOf(pagedata);
         var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
 
-        sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks.push(newblock);
-//        pagelayout.blocks.push(newblock);
+        pagelayout.blocks.push(newblock);
 
-//        sitedata.pagelist[pageindex].pagelayoutdata[layoutindex] = pagelayout;
+        sitedata.pagelist[pageindex].pagelayoutdata[layoutindex] = pagelayout;
         localStorage.setItem("siteData",JSON.stringify(sitedata));
     };
 
