@@ -33,9 +33,29 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         };
         $scope.newarticle = {};
 
-        $scope.site = modelSite.getSite();
+        var site = modelSite.getSite();
 
-        $scope.pages = $scope.site.pagelist;
+        for (var i=site.pagelist.length-1; i>=0; i--)
+        {
+            for (var j = site.pagelist[i].pagelayoutdata.length-1; j>=0; j--)
+            {
+                for (var k = site.pagelist[i].pagelayoutdata[j].blocks.length-1; k>=0; k--)
+                {
+                    var articles = modelArticle.getArticlesByTags(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity);
+                    site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles;
+
+                    if (site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag.length == 0 ){
+                        var articles2 = modelArticle.getArticles(site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity);
+
+                        site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles2;   //如果没有选择tags则获取所有文章
+                    }
+                }
+            }
+        }
+
+
+
+        $scope.pages = site.pagelist;
 
         $scope.singlepage =  $scope.pages[0];   //默认读取首页
         $scope.newpage ={};
@@ -48,17 +68,17 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $scope.header = modelSite.getHeader();
         $scope.headerthemes = modelSite.getHeaderTheme();
 
-        $scope.pagearticletype = $scope.site.defaultsettings.articleTypeId;    // left menu default selected page
-        $scope.pagefilterarticle = $scope.site.defaultsettings.pagefilterArticleType;  //Article Type Page
-        $scope.pagefilterlist = $scope.site.defaultsettings.pagefilterListType;         //List Type Page
-        $scope.layoutfilterlisttype = $scope.site.defaultsettings.layoutfilterListType;
+        $scope.pagearticletype = site.defaultsettings.articleTypeId;    // left menu default selected page
+        $scope.pagefilterarticle = site.defaultsettings.pagefilterArticleType;  //Article Type Page
+        $scope.pagefilterlist = site.defaultsettings.pagefilterListType;         //List Type Page
+        $scope.layoutfilterlisttype = site.defaultsettings.layoutfilterListType;
 
-        $scope.defaultselectedpageindex = $scope.site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
+        $scope.defaultselectedpageindex = site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
         $scope.selectedpageattributeindex = -1;    //默认隐藏所有page的属性面板
 
         $scope.selectedpageblockindex = -1;
 
-        $scope.defaultselectedlayoutindex = $scope.site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
+        $scope.defaultselectedlayoutindex = site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
 
         $scope.cssshowpageaddinput = false;    //添加page的输入框默认不显示
 
