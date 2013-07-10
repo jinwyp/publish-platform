@@ -16,7 +16,7 @@ page.c.userController = function($scope, $location, modelSite) {
     $scope.user.gender="male";
 
     //保存密码和邮箱
-    $scope.savebasicinfo = function(callback){
+    $scope.saveemailinfo = function(callback){
         if (callback.$valid) {
             if(!($("#password")[0].value == $("#reformpassword")[0].value)){
                 alert('Password Inconsistent!');
