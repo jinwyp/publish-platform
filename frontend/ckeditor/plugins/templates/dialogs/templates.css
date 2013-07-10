@@ -82,3 +82,15 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 	text-align: center;
 	padding: 5px;
 }
+
+
+
+
+/* =========================================================================================== */
+/*                                   CK Editor                             		               */
+/* =========================================================================================== */
+
+.ckeditor_templete_01		{ padding:0; margin:0; background:#fff; }
+.ckeditor_templete_01 h6	{ margin:0 !important; padding:12px 4px; color:#fff !important; font-size:18px; color:#333; font-weight:normal; text-transform:uppercase; background:#5b5b5b; background:-webkit-gradient(linear, 0 0, 0 100%, from(#6a6a6a), to(#5a5a5a)); background:-moz-linear-gradient(top, #6a6a6a, #5a5a5a); border-radius:4px 4px 0 0; }
+.ckeditor_templete_01 p		{ padding:10px 8px !important; margin:0 !important; border-bottom:1px solid #dfdfdf; text-indent:30px !important; background:#f2f2f2 url(img/icon_circledot.png) 14px center no-repeat;}
+.ckeditor_templete_01 p:hover{ background-color:#f6f6f6;}

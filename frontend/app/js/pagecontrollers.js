@@ -31,13 +31,35 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             adsname : "",
             adscode : ""
         };
-        $scope.newarticle = undefined;
+        $scope.newarticle = {};
 
-        $scope.site = modelSite.getSite();
-        $scope.pages = modelSite.getPageList();
+        var site = modelSite.getSite();
+
+        for (var i=site.pagelist.length-1; i>=0; i--)
+        {
+            for (var j = site.pagelist[i].pagelayoutdata.length-1; j>=0; j--)
+            {
+                for (var k = site.pagelist[i].pagelayoutdata[j].blocks.length-1; k>=0; k--)
+                {
+                    var articles = modelArticle.getArticlesByTags(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity);
+                    site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles;
+
+                    if (site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag.length == 0 ){
+                        var articles2 = modelArticle.getArticles(site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity);
+
+                        site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles2;   //如果没有选择tags则获取所有文章
+                    }
+                }
+            }
+        }
+
+
+
+        $scope.pages = site.pagelist;
+
         $scope.singlepage =  $scope.pages[0];   //默认读取首页
         $scope.newpage ={};
-        $scope.localarticles = modelArticle.getArticles();
+        $scope.localarticles = modelArticle.getArticles(100);
 
         $scope.layouts = modelSite.getLayoutList();
         $scope.blocklayouts = modelSite.getBlockLayout();
@@ -46,17 +68,17 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $scope.header = modelSite.getHeader();
         $scope.headerthemes = modelSite.getHeaderTheme();
 
-        $scope.pagearticletype = $scope.site.defaultsettings.articleTypeId;    // left menu default selected page
-        $scope.pagefilterarticle = $scope.site.defaultsettings.pagefilterArticleType;  //Article Type Page
-        $scope.pagefilterlist = $scope.site.defaultsettings.pagefilterListType;         //List Type Page
-        $scope.layoutfilterlisttype = $scope.site.defaultsettings.layoutfilterListType;
+        $scope.pagearticletype = site.defaultsettings.articleTypeId;    // left menu default selected page
+        $scope.pagefilterarticle = site.defaultsettings.pagefilterArticleType;  //Article Type Page
+        $scope.pagefilterlist = site.defaultsettings.pagefilterListType;         //List Type Page
+        $scope.layoutfilterlisttype = site.defaultsettings.layoutfilterListType;
 
-        $scope.defaultselectedpageindex = $scope.site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
+        $scope.defaultselectedpageindex = site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
         $scope.selectedpageattributeindex = -1;    //默认隐藏所有page的属性面板
 
         $scope.selectedpageblockindex = -1;
 
-        $scope.defaultselectedlayoutindex = $scope.site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
+        $scope.defaultselectedlayoutindex = site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
 
         $scope.cssshowpageaddinput = false;    //添加page的输入框默认不显示
 
@@ -134,7 +156,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
     //left side bar add page attribute
     $scope.showeditpageattribute = function(indexid) {
-
         $scope.selectedpageattributeindex = indexid;    //点击显示当前的page 属性面板
     };
 
@@ -236,7 +257,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         switch(divid)
         {
             case 'tab-layout':
-                heightdiff = 301;
+                heightdiff = 306;
                 break;
             case 'tab-filter':
                 heightdiff = 210;
@@ -261,9 +282,8 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             blocktype : 'auto',
             blockstatictype:'',
             blockname : "",
-
             blocklayout : 10,
-            blockquantity : 6,
+            blockquantity : 0,
             blocktag : [],
             blockcategory : [],
             blocksortby : 'date',
@@ -278,60 +298,52 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             case 'auto':
                 newblock.blocktype = 'auto';
                 newblock.blockname = $scope.newblock.blockname;
+                newblock.blockquantity = Number($scope.newblock.blockquantity);
                 //检查Tags
                 var temptagslistname = $(".tagsinput").exportTags();
 
                 for(var i=0;i<temptagslistname.length;i++){
                     //在tag 数据库查询是否是已经存在的tag
                     var newtag;
-                    if(  modelSite.checkTagExist(temptagslistname[i]) ){
-                        newtag = modelSite.checkTagExist(temptagslistname[i]);
+                    if(  modelTag.checkTagExist(temptagslistname[i]) ){
+                        newtag = modelTag.checkTagExist(temptagslistname[i]);
                     }else{
                         newtag = {
-                            "tagid" : modelSite.getMaxTagID(),
+                            "tagid" : modelTag.getMaxTagID(),
                             "tagname" : temptagslistname[i]
                         }
-                        modelSite.createNewTag(newtag);
+                        modelTag.createNewTag(newtag);
                     }
                     newblock.blocktag.push(newtag);
                 }
 
-
-                //通过Tags 获取文章
-                newblock.blockarticles = modelArticle.getArticlesByTags(newblock.blocktag);
-
-                if (temptagslistname.length == 0 ){
-                    newblock.blockarticles = modelArticle.getArticles();
-                }
 
                 break;
 
             case 'editor':
                 newblock.blocktype = 'editor';
                 newblock.blockname = $scope.newblock.blockname;
+                newblock.blockquantity = Number($scope.newblock.blockquantity);
                 break;
 
             case 'statictext':
                 newblock.blocktype = 'static';
                 newblock.blockstatictype = 'text';
-
                 break;
+
             case 'staticpic':
                 newblock.blocktype = 'static';
                 newblock.blockstatictype = 'pic';
-
-
                 break;
+
             case 'staticvideo':
                 newblock.blocktype = 'static';
                 newblock.blockstatictype = 'video';
-
                 break;
+
             case 'staticslideshow':
                 newblock.blocktype = 'static';
                 newblock.blockstatictype = 'slideshow';
-
-
                 break;
 
 
@@ -346,19 +358,20 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 newblock.blockname = $scope.newblock.blockname;
                 newblock.urlapi = $scope.newblock.urlapi;
                 break;
+
             default:
         }
-
 
         modelSite.addSingleBlockToPage(newblock, layoutcontainer, $scope.singlepage );
         this.cssblocktipadd = false;          //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipbox = false;
     };
 
-    $scope.addaritcletoblock = function(block, layoutcontainer ){
-        var newaritcle = this.newarticle;
-        modelSite.addArticleToBlock(newaritcle, block, layoutcontainer, $scope.singlepage);
-        console.log(this.newarticle);
+    $scope.addaritcletoeditorblock = function(block, layoutcontainer ){
+        if(block.blockarticles.length < block.blockquantity){
+            var newaritcle = this.newarticle;
+            modelSite.addArticleToBlock(newaritcle, block, layoutcontainer, $scope.singlepage);
+        }
     }
 
     // del a block to page
@@ -395,7 +408,9 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         blocktypemenu.css({"left":left+"px", "top":-(blocktypemenu.height()), "position":"absolute"});
     }
 
-
+    $scope.check = function( ) {
+        console.log(this.blockarticles);
+    }
 
 
 

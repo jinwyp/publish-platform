@@ -118,6 +118,7 @@ articleapp.factory('modelArticle', function(){
         }else{
             articlelist = JSON.parse(localStorage.getItem("articlesData"));
             taglist = JSON.parse(localStorage.getItem("tagsData"));
+            console.log(articlelist);
         }
    }
 
@@ -314,15 +315,19 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
             }
         }
     }
-
     $scope.loadcurrentpagedata();
-
     $scope.articlepreviewdata = $scope.articlesdata[0];
     $scope.isCollapsed = true;
 
+    var copyselectedlist='';
     $scope.clickArticle = function(article, index) {
+        if(copyselectedlist != ''){
+            copyselectedlist.isshowediticon=false;
+        }
         $scope.articlepreviewdata = article;
         $scope.cssarticleindex = index;
+        this.isshowediticon = true;
+        copyselectedlist=this;
     };
 
     $scope.openModal = function () {
@@ -476,15 +481,31 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
         modelArticle.saveArticle(nowdata1);
         $scope.showcomments = false;
     }
+
+    $scope.isshowediticon = false;
+    $scope.showediticon = function(){
+          this.isshowediticon = true;
+    }
+
+
+    $scope.hideediticon = function($index){
+        if($scope.cssarticleindex == $index){
+            this.isshowediticon = true;
+        }else{
+            this.isshowediticon = false;
+        }
+    }
+
+    //标签显示提示框
+    $('.vcpbox').tooltip({
+        selector: "a[rel=tooltip]"
+    });
 }
 
 articleapp.controller.articleDetail = function ($scope, $routeParams, modelArticle) {
     $scope.cssTagsPanel = false;
-   // $("select").dropkick();
     var articleId = $routeParams.articleId;
     $scope.articledata = modelArticle.getArticleById(articleId);
-    //$(".dk_label")[0].textContent=$scope.articledata.category;
-
     var tagstr = '';
     for(var i=0;i<$scope.articledata.tags.length;i++){
         tagstr += $scope.articledata.tags[i].tagname+',';
@@ -516,8 +537,8 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
         $scope.articledata = modelArticle.getArticleList()[0];
     };
 
-    $scope.saveArticle = function(feed) {
-        $scope.ispublish=false;
+     $scope.saveArticle = function(feed) {
+       $scope.ispublish=false;
         $scope.articledata.versioncomment='';
         $scope.articledata.updated=modelArticle.getDateNow();
         $scope.articledata.status='draft';
@@ -532,7 +553,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
         $scope.showcomments = false;
     }
 
-    $scope.savedata=function(){
+     $scope.savedata=function(){
         var temptagslistname = $(".tagsinput").exportTags();
         $scope.articledata.tags = [];
         for(var i=0;i<temptagslistname.length;i++){
@@ -592,6 +613,11 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
         }
         $('.tagsinput').importTags(tagstr);
     }
+
+    //标签显示提示框
+    $('.vcpbox').tooltip({
+        selector: "a[rel=tooltip]"
+    });
 };
 
 articleapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle) {
@@ -605,7 +631,7 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
         "title": "", "contentbody": "", "status": "needreview",
         "created": modelArticle.getDateNow(), "updated": modelArticle.getDateNow(), "published": modelArticle.getDateNow(),
         "author": "Eric",  "editor": "iFan",  "clickcount":0,
-        "category": "", "categoryid":1000,
+        "category": "Cosmetics", "categoryid":1000,
         "tags": [],
         "revision" : [],
         "versioncomment":"",
@@ -669,5 +695,14 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
          modelArticle.createNewArticle($scope.newarticleadata);
          $location.path('/');
     }
+
+    $scope.showeditpreview = function(val){
+        return val;
+    };
+
+    //标签显示提示框
+    $('.vcpbox').tooltip({
+        selector: "a[rel=tooltip]"
+    });
 }
 
