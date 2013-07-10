@@ -264,7 +264,9 @@ vcpapp.factory('modelSite',  function(){
     factory.addArticleToBlock = function (newartcle, block, pagelayout, pagedata) {
         var pageindex = sitedata.pagelist.indexOf(pagedata);
         var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
+        console.log(pageindex, layoutindex, block)
         var blockindex = sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks.indexOf(block) ;
+
         sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks[blockindex].blockarticles.push(newartcle);
         localStorage.setItem("siteData",JSON.stringify(sitedata));
 
