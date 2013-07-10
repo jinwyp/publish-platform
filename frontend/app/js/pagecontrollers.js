@@ -1,6 +1,6 @@
 'use strict';
 
-var vcpapp = angular.module('vcpmodule', [ 'vcpmodule.directive' ]);
+var vcpapp = angular.module('vcpmodule', [ 'vcpmodule.directive', 'ui.bootstrap' ]);
 
 var page = {
     c:{}
@@ -318,6 +318,12 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                     newblock.blocktag.push(newtag);
                 }
 
+                //通过Tags 获取文章
+                newblock.blockarticles = modelArticle.getArticlesByTags(newblock.blocktag, newblock.blockquantity);
+
+                if (temptagslistname.length == 0 ){
+                    newblock.blockarticles = modelArticle.getArticles(newblock.blockquantity);
+                }
 
                 break;
 
@@ -373,6 +379,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             var newaritcle = this.newarticle;
             modelSite.addArticleToBlock(newaritcle, block, layoutcontainer, $scope.singlepage);
         }
+        console.log(this.newarticle);
     }
 
     // del a block to page

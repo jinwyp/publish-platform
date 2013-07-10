@@ -243,7 +243,6 @@ vcpapp.factory('modelSite',  function(){
 
         var pageindex = sitedata.pagelist.indexOf(pagedata);
         var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
-
         pagelayout.blocks.push(newblock);
 
         sitedata.pagelist[pageindex].pagelayoutdata[layoutindex] = pagelayout;
