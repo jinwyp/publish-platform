@@ -33,4 +33,10 @@ page.c.userController = function($scope, $location, modelSite) {
             modelSite.updateSinglePage($scope.site);
         }
     }
+
+    $scope.userlogin = function(callback){
+        if (callback.$valid) {
+            alert(11);
+        }
+    }
 }
