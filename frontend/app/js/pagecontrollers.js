@@ -37,7 +37,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             blocklayout : 10,
             blockquantity : 6,
             blocktag : [],
-            blockcategory : [],
+            blockcategory : 'Health and leisure',
             blocksortby : 'bydate',
             apiurl : "",
             adsname : "",
@@ -55,14 +55,14 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 for (var k = site.pagelist[i].pagelayoutdata[j].blocks.length-1; k>=0; k--)
                 {
                     if(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktype == 'auto'){
-                        var articles = modelArticle.getArticlesByTags(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity);
+                        var articles = modelArticle.getArticlesByTags(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity, site.pagelist[i].pagelayoutdata[j].blocks[k].blockcategory);
                         site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles;
 
-                        if (site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag.length == 0 ){
+/*                        if (site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag.length == 0 ){
                             var articles2 = modelArticle.getArticles(site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity);
 
                             site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles2;   //如果没有选择tags则获取所有文章
-                        }
+                        }*/
                     }
 
 
@@ -302,7 +302,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             blocklayout : 10,
             blockquantity : 0,
             blocktag : [],
-            blockcategory : [],
+            blockcategory : 'Health and leisure',
             blocksortby : 'date',
             blockarticles : [],
             apiurl : "",
@@ -316,6 +316,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 newblock.blocktype = 'auto';
                 newblock.blockname = $scope.newblock.blockname;
                 newblock.blockquantity = Number($scope.newblock.blockquantity);
+                newblock.blockcategory = $scope.newblock.blockcategory;
                 //检查Tags
                 var temptagslistname = $(".tagsinput").exportTags();
 
@@ -335,11 +336,11 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 }
 
                 //通过Tags 获取文章
-                newblock.blockarticles = modelArticle.getArticlesByTags(newblock.blocktag, newblock.blockquantity);
+                newblock.blockarticles = modelArticle.getArticlesByTags(newblock.blocktag, newblock.blockquantity, newblock.blockcategory);
 
-                if (temptagslistname.length == 0 ){
+/*                if (temptagslistname.length == 0 || newblock.blockquantity == ''){
                     newblock.blockarticles = modelArticle.getArticles(newblock.blockquantity);
-                }
+                }*/
 
                 break;
 

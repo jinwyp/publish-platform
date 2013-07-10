@@ -22,8 +22,10 @@ vcpapp.factory('modelArticle', function(){
 
     var factory = {};
 
-    factory.getArticlesByTags = function (taglistdata, quantity) {
+    factory.getArticlesByTags = function (taglistdata, quantity, blockcategory) {
+        var articlesresultfinal = [];
         var articlesresult = [];
+        var articlesresult2 = [];
 
         articlesresult = _.filter(articlelist, function(element1){
 
@@ -31,14 +33,23 @@ vcpapp.factory('modelArticle', function(){
                 var tagresult = _.where(taglistdata, element2);
                 return tagresult.length;
             });
-//            console.log(element1, singlearticletags);
             return  singlearticletags.length;
         });
 
-        if(articlesresult.length > quantity){
-            articlesresult.splice(0, articlesresult.length - quantity);    //判断文章数量
+        articlesresult2 = _.filter(articlelist, function(element1){
+
+            if (element1.category.toString() == blockcategory){
+//                console.log(blockcategory, element1.category);
+                return true
+            }
+        });
+
+        articlesresultfinal = _.union(articlesresult, articlesresult2)
+
+        if(articlesresultfinal.length > quantity){
+            articlesresultfinal.splice(0, articlesresultfinal.length - quantity);    //判断文章数量
         }
-        return articlesresult;
+        return articlesresultfinal;
     };
 
     factory.getArticles = function (quantity) {
