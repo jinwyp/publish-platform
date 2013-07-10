@@ -105,6 +105,7 @@ vcpapp.factory('modelTag', function(){
 
 
 
+
 vcpapp.factory('modelSite',  function(){
 
     var layoutdata = [
@@ -207,15 +208,8 @@ vcpapp.factory('modelSite',  function(){
 
         }else{
             sitedata = JSON.parse(localStorage.getItem("siteData"));
-
-/*            var articlelist = JSON.parse(localStorage.getItem("articlesData"));
-            var taglist = JSON.parse(localStorage.getItem("tagsData"));*/
-
-
-//            localStorage.setItem("siteData",JSON.stringify(sitedata));
         }
     }
-
 
 
 
@@ -249,7 +243,6 @@ vcpapp.factory('modelSite',  function(){
 
         var pageindex = sitedata.pagelist.indexOf(pagedata);
         var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
-
         pagelayout.blocks.push(newblock);
 
         sitedata.pagelist[pageindex].pagelayoutdata[layoutindex] = pagelayout;
@@ -273,6 +266,7 @@ vcpapp.factory('modelSite',  function(){
         var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
         var blockindex = sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks.indexOf(block) ;
         sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks[blockindex].blockarticles.push(newartcle);
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
 
     };
 

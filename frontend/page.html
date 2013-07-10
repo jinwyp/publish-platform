@@ -379,8 +379,7 @@
                                 <!--<a href="##" class="icon_setup" ng-click="updateshowblcoksetting(block, $event );">setup</a>-->
                                 <!-- <a href="##" class="icon_editor" ng-click="showfilleditform();">editors</a>-->
                                 <div class="editor_inset" ng-show="block.blocktype=='editor'" >
-                                    <input type="text" placeholder="pls input article title" typeahead="article as article.title for article in localarticles | filter:$viewValue"  ng-model="newarticle" enter-Keypress="{enter: addaritcletoeditorblock(block, currentlayoutcontainer)}">
-
+                                    <input type="text" placeholder="pls input article title" value="" ng-model="newarticle" typeahead="article as article.title for article in localarticles | filter:$viewValue"   enter-Keypress="{enter: addaritcletoeditorblock(block, currentlayoutcontainer)}">
                                 </div>
                             </div>
                             <!-- Block Menu Attribute Panel //End -->
@@ -541,7 +540,6 @@
     <script src="lib/underscore/underscore-min.js"></script>
     <script src="lib/angular/1.1.5/angular.js"></script>
     <script src="lib/angularui/ui-bootstrap-tpls-0.4.0.min.js"></script>
-    <script src="lib/angularslider/angular-slider.js"></script>
     <script src="app/js/pagecontrollers.js"></script>
     <script src="app/js/factory.js"></script>
     <script src="app/js/directives.js"></script>
