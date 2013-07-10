@@ -105,6 +105,7 @@ vcpapp.factory('modelTag', function(){
 
 
 
+
 vcpapp.factory('modelSite',  function(){
 
     var layoutdata = [
@@ -207,15 +208,8 @@ vcpapp.factory('modelSite',  function(){
 
         }else{
             sitedata = JSON.parse(localStorage.getItem("siteData"));
-
-/*            var articlelist = JSON.parse(localStorage.getItem("articlesData"));
-            var taglist = JSON.parse(localStorage.getItem("tagsData"));*/
-
-
-//            localStorage.setItem("siteData",JSON.stringify(sitedata));
         }
     }
-
 
 
 

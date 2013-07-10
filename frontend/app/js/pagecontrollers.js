@@ -35,6 +35,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
         var site = modelSite.getSite();
 
+        //载入所有block的文章
         for (var i=site.pagelist.length-1; i>=0; i--)
         {
             for (var j = site.pagelist[i].pagelayoutdata.length-1; j>=0; j--)
