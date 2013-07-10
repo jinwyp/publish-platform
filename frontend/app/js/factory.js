@@ -105,7 +105,6 @@ vcpapp.factory('modelTag', function(){
 
 
 
-
 vcpapp.factory('modelSite',  function(){
 
     var layoutdata = [
@@ -222,7 +221,6 @@ vcpapp.factory('modelSite',  function(){
 
     var factory = {};
     factory.getSite = function () {
-
         return  sitedata;
     };
 
