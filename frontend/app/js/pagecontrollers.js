@@ -393,6 +393,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     $scope.addaritcletoeditorblock = function(block, layoutcontainer ){
         if(block.blockarticles.length < block.blockquantity){
             var newaritcle = this.newarticle;
+            console.log(block);
             modelSite.addArticleToBlock(newaritcle, block, layoutcontainer, $scope.singlepage);
         }
         console.log(this.newarticle);
