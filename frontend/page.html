@@ -380,7 +380,6 @@
                                 <!-- <a href="##" class="icon_editor" ng-click="showfilleditform();">editors</a>-->
                                 <div class="editor_inset" ng-show="block.blocktype=='editor'" >
                                     <input type="text" placeholder="pls input article title" value="" ng-model="newarticle" typeahead="article as article.title for article in localarticles | filter:$viewValue"   enter-Keypress="{enter: addaritcletoeditorblock(block, currentlayoutcontainer)}">
-                                    <button class="btn-large">{{block.blockname}}</button>
                                 </div>
                             </div>
                             <!-- Block Menu Attribute Panel //End -->

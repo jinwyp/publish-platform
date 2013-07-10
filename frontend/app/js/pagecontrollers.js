@@ -43,7 +43,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             adsname : "",
             adscode : ""
         };
-        $scope.newarticle = {};
+        $scope.newarticle = undefined;
 
         var site = modelSite.getSite();
 
