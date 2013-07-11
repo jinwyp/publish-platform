@@ -14,8 +14,17 @@
     <!-- 默认 Site Theme -->
     <link href="theme/default/site-theme.css" rel="stylesheet">
     <style type="text/css">
-		#reports{ text-align:center; padding:0; margin:0;}
-		#reports img{ padding:0; margin:0;}
+		#reports{  padding:0; margin:0;}
+		
+		.displaypic{ position:relative; padding:0; margin:0 auto; width:1500px; height:900px; text-align:center; background:url(app/img/temp/report.jpg) center top no-repeat; z-index:0;}
+		
+		.selecttime,
+		.selectchart,
+		.selectoption	{ position:absolute; display:block; z-index:999;}
+		
+		.selecttime		{ width: 85px; height: 40px; left: 25px; top: 97px; }
+		.selectchart	{ width: 198px; height: 40px; left: 1262px; top: 88px; }
+		.selectoption	{ width: 172px; height: 50px; left: 38px; top: 441px; }
 	</style>
   </head>
 <body style="background:#e9e8ee">
@@ -36,11 +45,16 @@
 </header>
         
 
-<!-- Container -->
-
-	<div id="reports">
-			<a href="reports2.html"><img src="app/img/temp/report.jpg" alt=""></a>
-    </div>
+<div id="reports">
+        
+        <div class="displaypic">
+        
+                <a href="reports2.html" class="selecttime"></a>
+                <a href="reports3.html" class="selectchart"></a>
+                <a href="reports4.html" class="selectoption"></a>
+        
+        </div>
+</div>
  
 
 			<!-- Load JS -->
