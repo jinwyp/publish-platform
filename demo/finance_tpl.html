@@ -1,0 +1,50 @@
+<!-- Page: Row -->
+				<div class="row">
+					<div class="span8 site-theme">
+						<div id ="demo2">
+						近日由中国企业家单身俱乐部主办的入会面试吸引532名单身女性参加，加入该俱乐部男性需缴纳至少20万元会费，面试也被视为嫁入豪门海选，有与会女孩要求对象年薪最少”七八十万“。俱乐部创始人程勇生曾是世纪佳缘华南总经理…6月27日,何女士在佛山禅城街头遭陌生男子在背后针扎,几分钟后昏迷住院.医生称,其右颈部有针孔血点,疑是阿托品中毒.3天后,又有女子在同一地点遭同一人扎针.涉案男子(30多岁湖南籍)已落网,扎人动机尚在调查,针孔内药物仍待化验。从小我们就在＂你看别人家孩子＂的教育中长大，你看别人家孩子成绩好，你看别人家孩子懂礼貌，你看别人家孩子有出息。我们在别人家孩子的阴影中微卑的做着独一无二的自己。有一天，当我们也开始成为＂别人家的孩子时＂，你会发现每一个人只要有自我，都能成为＂别人家的孩子＂。
+						</div>
+					</div>
+				</div>
+
+                <div class="row">
+					<div class="span8">  
+						<div class="site-theme b-block block-layout-1">
+							<h2 class="ng-binding">Articles</h2>
+							<ul>
+								<li ng-repeat="article in articles | filter:{tag:'personal-finance',type:'article'}" class="ng-scope"><span class="ng-binding">{{article.created}}</span>
+									<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
+								</li>
+							</ul>
+						</div>
+					</div>
+                </div>
+            	<!-- Page: Row //End -->
+
+
+                <!-- Page: Footer -->
+                <div class="row">
+                    	<div class="span8">  
+						<div class="site-theme b-block block-layout-1">
+							<h2 class="ng-binding">Definitions</h2>
+							<ul>
+								<li ng-repeat="article in articles | filter:{tag:'personal-finance',type:'term'} | limitTo:5" class="ng-scope"><span class="ng-binding">{{article.created}}</span>
+									<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
+								</li>
+							</ul>
+						</div>
+					</div>
+                </div>
+
+				 <div class="row">
+                    	<div class="span8">  
+						<div class="site-theme b-block block-layout-1">
+							<h2 class="ng-binding">Tutorials</h2>
+							<ul>
+								<li ng-repeat="article in articles | filter:{tag:'personal-finance',type:'tutorial'} | limitTo:5" class="ng-scope"><span class="ng-binding">{{article.created}}</span>
+									<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
+								</li>
+							</ul>
+						</div>
+					</div>
+                </div>

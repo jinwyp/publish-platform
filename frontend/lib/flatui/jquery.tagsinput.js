@@ -231,7 +231,6 @@
 			markup = markup + '</div></div>';
 			
 			$(markup).insertAfter(this);
-
 			$(data.holder).css('width',settings.width);
 			$(data.holder).css('min-height',settings.height);
 			$(data.holder).css('height','100%');

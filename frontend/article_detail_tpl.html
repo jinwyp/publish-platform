@@ -14,11 +14,20 @@
             <!-- Left  -->
             <div class="article-span9">
                 <div class="article-title">PREVIEW
-                    <i class="article-title-ico">520 Words</i>
+                    <!--<i class="article-title-ico">520 Words</i>-->
                 </div>
                 <!-- 预览区 -->
                 <div id="article-cont-preview" class="article-cont">
-                	<div class="article-templete"  ng-bind-html-unsafe="showeditpreview(articledata.contentbody)"></div>
+                    <div class="article-templete">
+                        <div class="tagbox">
+                            May 05 2013  |  Tag »
+                            <a href="#/tag/{{tag.tagid}}" ng-repeat="tag in articledata.tags">{{tag.tagname}}</a>
+                        </div>
+                        <p id="contentpreview"  ng-bind-html-unsafe="showeditpreview(articledata.contentbody)">
+
+                        </p>
+                    </div>
+                	<!--<div id="contentpreview" class="article-templete"  ng-bind-html-unsafe="showeditpreview(articledata.contentbody)"></div>-->
                 </div>
                 <!-- 预览区 //End-->
             </div>
@@ -30,7 +39,8 @@
                 <div class="article-title">CKeditor
                     <i class="article-title-ico">
                         <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="openModal()" ></a>
-                        <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = !cssTagsPanel"></a>
+                        <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = true"></a>
+                        <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = false"></a>
                     </i>
                     <div modal="cssmodalshow" options="cssmodalslide" >
                         <div class="modal-header">
@@ -62,33 +72,27 @@
                 <div class="article-title">ARTICLE ATTRIBUTE
                     <i class="article-title-ico">
                         <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="delArticle(articledata.id)"></a>
-                        <a href="" class="ico-article-backedit" rel="tooltip" title="Back Write" ng-click="cssTagsPanel = !cssTagsPanel"></a>
+                        <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = true"></a>
+                        <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = false"></a>
                     </i>
+                    <div modal="showcomments" options="cssmodalslide" >
+                        <div class="modal-header">
+                            <button type="button" class="close" ng-click="closecomments()">&times;</button>
+                            <h3 >Version Comment</h3>
+                        </div>
+
+                        <div class="modal-body">
+                            <input type="text" ng-model="articledata.versioncomment" />
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn" ng-click="closecomments()">Cancel</button>
+                            <button class="btn btn-danger" ng-click="savedata()">Save</button>
+                        </div>
+                    </div>
                 </div>
                 <!-- Article Arrtibute -->
                 <div class="article-cont">
-
-                    <!-- 测试用，不用管这段 ->
-                    <div class="tabbable tabs-below">
-                     <div class="tab-content">
-                       <div class="tab-pane active" id="A">
-                         <p>I'm in Section A.</p>
-                       </div>
-                       <div class="tab-pane" id="B">
-                         <p>Howdy, I'm in Section B.</p>
-                       </div>
-                       <div class="tab-pane" id="C">
-                         <p>What up girl, this is Section C.</p>
-                       </div>
-                     </div>
-                     <ul class="nav nav-tabs">
-                       <li class="active"><a href="#A" data-toggle="tab">Section 1</a></li>
-                       <li><a href="#B" data-toggle="tab">Section 2</a></li>
-                       <li><a href="#C" data-toggle="tab">Section 3</a></li>
-                     </ul>
-                   </div>
-                   <!-- 测试用，不用管这段 //End -->
-
                     <!-- Tags -->
                     <div class="atricle_attribute_box">
                         <h3>Tags</h3>
@@ -103,11 +107,11 @@
                     <!-- Category -->
                     <div class="atricle_attribute_box">
                         <h3>Category</h3>
-                        <select class="select-block span3">
+                        <select ng-model="articledata.category">
                             <option>Cosmetics</option>
                             <option>Insurance</option>
                             <option>Healthcare</option>
-                            <option selected="selected">Health and leisure</option>
+                            <option>Health and leisure</option>
                             <option>Commercial</option>
                             <option>Online service</option>
                             <option>Entertainment</option>
@@ -119,8 +123,6 @@
                             <option>Law</option>
                             <option>Toys and games</option>
                             <option>Law</option>
-                            <option>Law</option>
-                            <option>Law</option>
                         </select>
                     </div>
                     <!-- Category End -->
@@ -128,7 +130,7 @@
 
                     <!-- Social -->
                     <div class="atricle_attribute_box">
-                        <h3>Social Up</h3>
+                        <h3>Sync Up</h3>
                         <div class="share mrl">
                             <ul>
                                 <li>
@@ -188,13 +190,13 @@
         <!-- 发布按钮 -->
         <div class="article_btn">
             <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="saveArticle(newFeed)">
-            <a href="#" class="btn-publish" rel="tooltip" data-placement="top" title="PUBLISH" ng-click="publisharticle()">PUBLISH</a>
+            <input type="submit" value="PUBLISH" class="btn-publish" style="display:none;" ng-click="publisharticle(newFeed)">
         </div>
         
         <!-- 版本节点 -->
         <div class="vernode">
         	<div class="line">
-                <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}" ng-click="displayversioninfo(revision);"  ng-repeat="revision in articledata.revision"  title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy HH:mm:ss'}}">{{revision.versionnum}}</a>
+                <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}" ng-click="displayversioninfo(revision);"  ng-repeat="revision in articledata.revision"  title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy HH:mm:ss'}} {{revision.versioncomment}}">{{revision.versionnum}}</a>
         	</div>
         </div>
     </div>

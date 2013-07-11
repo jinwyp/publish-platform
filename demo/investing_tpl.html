@@ -1,0 +1,55 @@
+<!-- Page: Row -->
+				<div class="row">
+					<div class="span8 site-theme">  
+						<div id ="demo1" class="slideBox" ng-show="slideshow('demo1')">
+							<ul class="items">
+								<li><a target="_blank" href="https://www.schwabetfeducationexchange.com/charlesschwab/" title="这里是测试标题一"><img ng-src="app/img/temp/reel_1.jpg"></a></li>
+								<li><a target="_blank" href="http://www.optionsxpress.com/promos/experience_an_options_specialist.aspx" title="这里是测试标题二"><img ng-src="app/img/temp/reel_2.jpg"></a></li>
+								<li><a target="_blank" href="http://www.atacfund.com/index.html" title="这里是测试标题三"><img ng-src="app/img/temp/reel_3.jpg"></a></li>
+								<li><a target="_blank" href="http://www.fxcm.com/resources/education/guides/traits-of-successful-traders/" title="这里是测试标题四"><img ng-src="app/img/temp/reel_4.jpg"></a></li>
+							 </ul>
+						</div>
+					</div>
+				</div>
+
+                <div class="row">
+					<div class="span8">  
+						<div class="site-theme b-block block-layout-1">
+							<h2 class="ng-binding">Articles</h2>
+							<ul>
+								<li ng-repeat="article in articles | filter:{tag:'investing',type:'article'}" class="ng-scope"><span class="ng-binding">{{article.created}}</span>
+									<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
+								</li>
+							</ul>
+						</div>
+					</div>
+                </div>
+            	<!-- Page: Row //End -->
+
+
+                <!-- Page: Footer -->
+                <div class="row">
+                    	<div class="span8">  
+						<div class="site-theme b-block block-layout-1">
+							<h2 class="ng-binding">Definitions</h2>
+							<ul>
+								<li ng-repeat="article in articles | filter:{tag:'investing',type:'term'} | limitTo:5" class="ng-scope"><span class="ng-binding">{{article.created}}</span>
+									<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
+								</li>
+							</ul>
+						</div>
+					</div>
+                </div>
+
+				 <div class="row">
+                    	<div class="span8">  
+						<div class="site-theme b-block block-layout-1">
+							<h2 class="ng-binding">Tutorials</h2>
+							<ul>
+								<li ng-repeat="article in articles | filter:{tag:'investing',type:'tutorial'} | limitTo:5" class="ng-scope"><span class="ng-binding">{{article.created}}</span>
+									<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
+								</li>
+							</ul>
+						</div>
+					</div>
+                </div>

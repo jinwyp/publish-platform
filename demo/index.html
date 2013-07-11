@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="demo">
+  <head>
+    <meta charset="utf-8">
+    <title>VCP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="lib/flatui/bootstrap.css" rel="stylesheet">
+    <link href="lib/flatui/flat-ui.css" rel="stylesheet">
+    <link href="app/style.css" rel="stylesheet">
+	<link href="app/jquery.slideBox.css" rel="stylesheet">
+    <link href="lib/angularslider/angular-slider.css" rel="stylesheet">
+    <link rel="shortcut icon" href="app/img/favicon.ico">
+    <!--[if lt IE 9]>
+      <script src="lib/other/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 默认 Site Theme -->
+    <link href="theme/default/site-theme.css" rel="stylesheet">
+	<script src="lib/jquery/jquery-1.8.2.min.js"></script>
+	<script src="app/js/jquery.slideBox.min.js"></script>
+
+  </head>
+<body style="background:#f1f1f1;" ng-controller="GlobalCtrl">
+
+<div class="pagewrap">
+                <!-- Page: Row -->
+                <div class="row">
+                    <div class="span12">
+
+                        <!-- Header Block 2 -->
+                        <div  class="block_header">
+
+                           <!-- 有header 数据 -->
+                            <div ng-class="{zindextop:cssheadermenuhavadata}"  class="site-theme b-header zindextop" style="">
+                                <h1 class="b-h-logo">LOGO</h1>
+                                <ul class="b-h-nav">
+                                    <li ng-repeat="head in header" class="ng-scope">
+										<a href="#/{{head.link}}" class="ng-binding" ng-class="{current:$index == cssblocklayoutselected}" ng-click="showCurrent($index)">{{head.name}}</a>
+									</li>
+                                </ul>
+                                <div class="b-h-info">
+                                    <a href="#">Melvon</a>
+                                    <a href="#">Link</a>
+                                </div>
+                            </div>
+							<div class="banner">
+								<img src="app/img/temp/banner_top_970_90.jpg" alt=""/>
+							</div>
+                            <!-- 有header //End -->
+                        </div>
+                        <!-- Header Block 2 //End -->
+                    </div>
+                </div>
+                <!-- Page: Row //End -->
+                <div id ="LayoutL" ng-view>
+                
+				</div>
+				<div id ="LayoutR">
+					<div class="row">
+						<div class="span4">
+							<div class="site-theme b-block block-layout-1">
+								<a href="http://www.fi.com/weballey/alleyletter.aspx" target="_blank"><img src = "app/img/temp/14769888589743746852.jpg" alt = ""/></a>
+							</div>
+					 	</div>
+					 </div>
+					 <div class="row">
+						<div class="span4">
+							<div class="site-theme b-block block-layout-1">
+								<h2 class="ng-binding">Editor Picks</h2>
+								<ul>
+									<li ng-repeat="article in articles | filter:todayhot| limitTo:5" class="ng-scope">
+										<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+                    <div class="span12">
+						<!--  Footer -->
+						<div  class="site-theme b-footer zindextop" style="margin:20px 0;">
+							<p>
+								<!-- ngRepeat: footer in footer -->
+							</p>
+							<p>Copyright©2013 ValueClick Brands, Inc. All Rights Reserved.</p>
+						</div>
+						<!--  Footer -->
+                    </div>
+                </div>
+     </div>
+     <!-- Load JS -->
+    <script src="lib/underscore/underscore-min.js"></script>
+    <script src="lib/angular/1.1.5/angular.js"></script>
+    <script src="lib/angularui/ui-bootstrap-tpls-0.4.0.min.js"></script>
+    <script src="lib/angularslider/angular-slider.js"></script>
+    <script src="app/js/app.js"></script>
+    <script src="app/js/pagecontrollers.js"></script>
+    <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
+    <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
+  <!--  <script src="lib/flatui/custom_radio.js"></script>-->
+    <script src="lib/flatui/jquery.tagsinput.js"></script>
+    <script src="lib/flatui/jquery.placeholder.js"></script>
+    <script src="lib/flatui/application.js"></script>
+    <!-- Bootstrap Plug -->
+    <script src="lib/boostrap/bootstrap.js"></script>
+    <!--[if lt IE 8]>
+      <script src="lib/flatui/icon-font-ie7.js"></script>
+      <script src="lib/flatui/lte-ie7-24.js"></script>
+    <![endif]-->
+    <script src="app/js/custom.js"></script>
+    
+</body>
+</html>

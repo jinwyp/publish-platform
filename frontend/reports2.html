@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pagemodule">
+  <head>
+    <meta charset="utf-8">
+    <title>VCP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="lib/flatui/bootstrap.css" rel="stylesheet">
+    <link href="lib/flatui/flat-ui.css" rel="stylesheet">
+    <link href="app/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="app/img/favicon.ico">
+    <!--[if lt IE 9]>
+      <script src="lib/other/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 默认 Site Theme -->
+    <link href="theme/default/site-theme.css" rel="stylesheet">
+    <style type="text/css">
+		#reports{  padding:0; margin:0;}
+		
+		.displaypic{ position:relative; padding:0; margin:0 auto; width:1500px; height:900px; text-align:center; background:url(app/img/temp/report2.jpg) center top no-repeat; z-index:0;}
+		
+		.selecttime,
+		.selectchart,
+		.selectoption	{ position:absolute; display:block; z-index:999;}
+		
+		.selecttime		{ width: 309px; height: 299px; left: 33px; top: 105px; }
+		.selectchart	{ width: 198px; height: 40px; left: 1262px; top: 88px; }
+		.selectoption	{ width: 172px; height: 50px; left: 38px; top: 441px; }
+	</style>
+  </head>
+<body style="background:#e9e8ee">
+
+
+
+<!-- Header -->
+<header class="header">
+	<h1 class="logo"><a href="index.html">VCP</a></h1><a href="user.html" class="signin">User</a>
+    <ul class="menu clearfix">
+    	<li><a href="user.html">User</a></li>
+    	<li><a href="site.html">Site</a></li>
+        <li><a href="page.html">Page</a></li>
+        <li><a href="article.html">Article</a></li>
+        <li><a href="reports.html" class="current">Reports</a></li>
+        <li><a href="store.html">Store</a></li>
+    </ul>
+</header>
+        
+
+<div id="reports">
+        
+        <div class="displaypic">
+        
+                <a href="reports.html" class="selecttime"></a>
+                <a href="reports3.html" class="selectchart"></a>
+                <a href="reports4.html" class="selectoption"></a>
+        
+        </div>
+</div>
+ 
+
+			<!-- Load JS -->
+            <script src="lib/jquery/jquery-1.8.2.min.js"></script>
+    		<script type="text/jscript">
+			
+			$(function() {
+				   
+				   
+				  
+        	});
+			</script>      
+ </body>
+</html>

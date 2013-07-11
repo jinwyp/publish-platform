@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="pagemodule">
+<html lang="en" ng-app="vcpmodule">
   <head>
     <meta charset="utf-8">
     <title>VCP</title>
@@ -25,7 +25,7 @@
 
 <!-- Header -->
 <header class="header">
-	<h1 class="logo">VCP</h1><a href="page.html" class="signin">Sign In</a>
+	<h1 class="logo"><a href="index.html">VCP</a></h1><a href="user.html" class="signin">User</a>
     <ul class="menu clearfix">
     	<li><a href="user.html">User</a></li>
     	<li><a href="site.html">Site</a></li>
@@ -39,7 +39,7 @@
 
 <!-- Container -->
 <div class="vcpbox page">
-<div class="container" ng-controller="Pagelist" >
+<div class="container" ng-controller="pageListcontroller" >
 
 
 
@@ -54,15 +54,15 @@
                     <dt>Block name :</dt>
                     <dd>
                         <div class="tipbox_filter">
-                            <input type="text" data-provide="typeahead" data-items="10" ng-model="newblock.blockname" min="0" max="5" required >
+                            <input type="text" data-provide="typeahead" data-items="10" ng-model="newblock.blockname" placeholder="block name" min="0" max="5" required >
                         </div>
                     </dd>
                 </dl>
                 <dl class="clearfix">
                     <dt>Layout :</dt>
                     <dd>
-                        <div class="tipbox_laytou">
-                            <a href="#"  ng-repeat="blocklayout in blocklayouts" ng-class="{selected:$index == cssblocklayoutselected}" ng-click="addblocktopage('auto', currentlayoutcontainer, $index)">
+                        <div class="tipbox_layout">
+                            <a href="#"  ng-repeat="blocklayout in blocklayouts"  ng-click="addblocktopage('auto', currentlayoutcontainer, $index)">
                                 <img src="{{ blocklayout.layoutimage }}" alt="">
                             </a>
                         </div>
@@ -71,7 +71,8 @@
                 <dl class="clearfix">
                     <dt>Quantity :</dt>
                     <dd>
-                    	<slider floor="6" ceiling="20" step="1" ng-model="newblock.blockquantity"></slider>
+                        <input type="text" ng-model="newblock.blockquantity" >
+
                     </dd>
                 </dl>
                 <dl class="clearfix">
@@ -92,10 +93,28 @@
             <!-- Tab2: Filter -->
             <div class="tab-pane" id="tab-filter">
                 <dl class="clearfix">
-                    <dt>Catagory :</dt>
+                    <dt>Category :</dt>
                     <dd>
                         <div class="tipbox_filter">
-                            <input type="text" data-provide="typeahead" data-items="10" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                            <select ng-model="newblock.blockcategory" >
+                                <option>Cosmetics</option>
+                                <option>Insurance</option>
+                                <option>Healthcare</option>
+                                <option selected="selected">Health and leisure</option>
+                                <option>Commercial</option>
+                                <option>Online service</option>
+                                <option>Entertainment</option>
+                                <option>Season</option>
+                                <option>Family</option>
+                                <option>Education</option>
+                                <option>Traveling</option>
+                                <option>Car</option>
+                                <option>Law</option>
+                                <option>Toys and games</option>
+                                <option>Law</option>
+                                <option>Law</option>
+                                <option>Law</option>
+                            </select>
                         </div>
                     </dd>
                 </dl>
@@ -145,28 +164,24 @@
             <dt>Block name :</dt>
             <dd>
                 <div class="tipbox_filter">
-                    <input type="text" data-provide="typeahead" data-items="10" ng-model="newblock.blockname"
-                           data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                    <input type="text" data-provide="typeahead" data-items="10" ng-model="newblock.blockname" placeholder="block name" data-source='[]'>
                 </div>
             </dd>
         </dl>
         <dl class="clearfix">
             <dt>Layout :</dt>
             <dd>
-                <div class="tipbox_laytou">
-                    <a href="#" class="icon_layout_1 selected" ng-click="addblocktopage('editor', currentlayoutcontainer)"></a>
-                    <a href="#" class="icon_layout_2"></a>
+                <div class="tipbox_layout">
+                    <a href="#"  ng-repeat="blocklayout in blocklayouts"  ng-click="addblocktopage('editor', currentlayoutcontainer, $index)">
+                        <img src="{{ blocklayout.layoutimage }}" alt="">
+                    </a>
                 </div>
             </dd>
         </dl>
         <dl class="clearfix">
             <dt>Quantity :</dt>
             <dd>
-                <div id="slider2" class="ui-slider">
-                    <div class="ui-slider-segment"></div>
-                    <div class="ui-slider-segment"></div>
-                    <div class="ui-slider-segment"></div>
-                </div>
+                <input type="text" ng-model="newblock.blockquantity" >
             </dd>
         </dl>
     </div>
@@ -175,13 +190,31 @@
 <!-- ======================================= tip_static ======================================= -->
 <div class="tip_box tip_static" ng-show="'static'==cssblocktipbox">
     <h1>Static</h1>
-    <p><img src="app/img/temp/status.png" style="margin:0 auto"></p>
+    <ul class="StaticElementBlock clearfix">
+     	<li><a href="#" class="icon_static_txt" ng-click="addblocktopage('statictext', currentlayoutcontainer, 0) ">TXT</a></li>
+        <li><a href="#" class="icon_static_pic" ng-click="addblocktopage('staticpic', currentlayoutcontainer, 0)">PIC</a></li>
+        <li><a href="#" class="icon_static_video" ng-click="addblocktopage('staticvideo', currentlayoutcontainer, 0)">VIDEO</a></li>
+        <li><a href="#" class="icon_static_slider" ng-click="addblocktopage('staticslideshow', currentlayoutcontainer, 0)">Slideshow</a></li>
+    </ul>
 </div>
 
 <!-- ======================================= tip_ad ======================================= -->
 <div class="tip_box tip_ads" ng-show="'ads'==cssblocktipbox">
     <h1>AD block attribute</h1>
-    <p><img src="app/img/temp/ad.png"></p>
+    <div class="tab-content">
+        <dl class="clearfix">
+            <dt>AD Name:</dt>
+            <dd><input type="text" data-provide="typeahead" data-items="10" ng-model="newblock.adsname"></dd>
+        </dl>
+        <dl class="clearfix">
+            <dt>Code :</dt>
+            <dd><textarea rows="3" ng-model="newblock.adscode"></textarea></dd>
+        </dl>
+        <dl class="clearfix">
+        	<dt>&nbsp;</dt>
+            <dd><input type="submit" class="btn btn-success" value="Add" style=" height:30px; margin:0 0 10px 0;" ng-click="addblocktopage('ads', currentlayoutcontainer, 0)"></dd>
+        </dl>
+    </div>
 </div>
 
 <!-- ======================================= tip_RSS ======================================= -->
@@ -189,9 +222,26 @@
     <h1>RSS block attribute</h1>
     <div class="tab-content">
         <dl class="clearfix">
-            <dt>API:</dt>
-            <dd><input type="text" data-provide="typeahead" data-items="10" ng-model="newblock.blockname">
-                <input type="submit" class="btn btn-success" value="Add" style=" height:30px; margin:0 0 10px 0;">
+            <dt>Block name :</dt>
+            <dd>
+                <div class="tipbox_filter">
+                    <input type="text" data-provide="typeahead" data-items="10" ng-model="newblock.blockname" placeholder="block name" data-source='[]'>
+                </div>
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt>URL:</dt>
+            <dd><input type="text" data-provide="typeahead" data-items="10" ng-model="newblock.urlapi">
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt>Layout :</dt>
+            <dd>
+                <div class="tipbox_layout">
+                    <a href="#"  ng-repeat="blocklayout in blocklayouts" ng-click="addblocktopage('RSS', currentlayoutcontainer, $index)">
+                        <img src="{{ blocklayout.layoutimage }}" alt="">
+                    </a>
+                </div>
             </dd>
         </dl>
     </div>
@@ -200,7 +250,6 @@
 
 		<!-- Page -->
         <div class="pagewrap" >
-
 
                 <!-- Page: Navigation -->
                 <div class="row">
@@ -302,29 +351,56 @@
                     <div class="" ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
 
                         <!-- Block Box -->
-                        <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks" ng-class="{hoverfill:cssblockeditmenubutton}"  ng-mouseenter="showeditblockmenubutton()" ng-mouseleave="hideeditblockmenubutton()">
+                        <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks track by $index" ng-class="{hoverfill:cssblockeditmenubutton}"  ng-mouseenter="showeditblockmenubutton()" ng-mouseleave="hideeditblockmenubutton()">
                         	<!-- Content -->
-                            <div class="site-theme b-block block-layout-1">
-                                <h2>{{ block.blockname}}</h2>
-                                <ul>
-                                	<li ng-repeat="article in block.blockarticles track by $index"><span>{{ article.created | date:'MM/dd/yyyy' }}</span>
-                                        <h3><a href="/articledetail/{{ article.id }}">{{ article.title }}</a></h3>
+                            <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
+                                <h2 >{{ block.blockname}}</h2>
+                                <ul >
+                                	<li ng-repeat="article in block.blockarticles ">
+                                        <span>{{ article.created | date:'MM/dd/yyyy' }}</span>
+                                        <h3 ng-click="check(block)"><a href="/articledetail/{{ article.id }}">{{ article.title }}</a></h3>
                                     </li>
                                 </ul>
+
                             </div>
-                            <!-- ======================================= Block Attribute Panel ======================================= -->
+
+                            <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='RSS'">
+                                <h3>{{ block.blockname}}</h3>
+
+                                <p><a href="#">政治局为6个半天会议准备60天 听取老常委意见</a></p>
+                                <p><a href="#">韩亚失事飞机上近半中国人背后：票价低1/3抢中国市场</a></p>
+                                <p><a href="#">柳传志劝年轻人勿急着买房 上半年十大房企逆市涨价</a></p>
+                                <p><a href="#">十大濒危著名景点:中国长城(图) 探访粉红色刚果(高清)</a></p>
+                                <p><a href="#">调查称近7成中国高考状元或已流失海外</a></p>
+
+                            </div>
+
+                            <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='ads'">
+                                <img src="app/img/temp/ad_temp01.jpg">
+                            </div>
+
+                            <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='static'">
+                                <h2 ng-show="block.blockstatictype=='text'">{{ block.blockname}}</h2>
+                                <p ng-show="block.blockstatictype=='text'">近日由中国企业家单身俱乐部主办的入会面试吸引532名单身女性参加，加入该俱乐部男性需缴纳至少20万元会费，面试也被视为嫁入豪门海选，有与会女孩要求对象年薪最少”七八十万“。俱乐部创始人程勇生曾是世纪佳缘华南总经理…6月27日,何女士在佛山禅城街头遭陌生男子在背后针扎,几分钟后昏迷住院.医生称,其右颈部有针孔血点,疑是阿托品中毒.3天后,又有女子在同一地点遭同一人扎针.涉案男子(30多岁湖南籍)已落网,扎人动机尚在调查,针孔内药物仍待化验。从小我们就在＂你看别人家孩子＂的教育中长大，你看别人家孩子成绩好，你看别人家孩子懂礼貌，你看别人家孩子有出息。我们在别人家孩子的阴影中微卑的做着独一无二的自己。有一天，当我们也开始成为＂别人家的孩子时＂，你会发现每一个人只要有自我，都能成为＂别人家的孩子＂。</p>
+                                <p ng-show="block.blockstatictype=='pic'"><img src="app/img/temp/e56e163e87249aed67fa89fd526316e209902ae65e210-XofCMe.jpg"></p>
+                                <video ng-show="block.blockstatictype=='video'" style="width:100%;" src="app/img/temp/cloud_x264.mp4" autoplay loop></video>
+                                <img ng-show="block.blockstatictype=='slideshow'" src="app/img/temp/slidebanner.jpg">
+                            </div>
+
+                            <!-- Content End -->
+
+                            <!-- ======================================= Block Menu Attribute Panel ======================================= -->
 
                             <div class="attribute_panel" ng-show="cssblockeditmenubutton" ng-class="{editors: block.blocktype=='editor'}">
                                 <a href="##" class="icon_delete" ng-click="delblock(block, layoutcontainer);">delete</a>
                                <!-- <a href="##" class="icon_move" ng-click="showfilleditform();">move</a>-->
-                                <a href="##" class="icon_setup" ng-click="updateshowblcoksetting(block, $event );">setup</a>
+                                <!--<a href="##" class="icon_setup" ng-click="updateshowblcoksetting(block, $event );">setup</a>-->
                                 <!-- <a href="##" class="icon_editor" ng-click="showfilleditform();">editors</a>-->
                                 <div class="editor_inset" ng-show="block.blocktype=='editor'" >
-                                    <input type="text" placeholder="pls input article title" typeahead="article as article.title for article in localarticles | filter:$viewValue"  ng-model="newarticle" enter-Keypress="{enter: addaritcletoblock(block, currentlayoutcontainer)}">
-                                    <!--<button class="btn-large" ng-click="addaritcletoblock(block)">add</button>-->
+                                    <input type="text" placeholder="pls input article title" value="" ng-model="newarticle" typeahead="article as article.title for article in localarticles | filter:$viewValue"   enter-Keypress="{enter: addaritcletoeditorblock(block, currentlayoutcontainer)}">
                                 </div>
                             </div>
-                            <!-- Block Box //End -->
+                            <!-- Block Menu Attribute Panel //End -->
                         </div>
 
                         <!-- Add Block Box -->
@@ -348,6 +424,8 @@
                     </div>
                 </div>
             	<!-- Page: Row //End -->
+                
+
 
 
 
@@ -480,17 +558,18 @@
     <script src="lib/underscore/underscore-min.js"></script>
     <script src="lib/angular/1.1.5/angular.js"></script>
     <script src="lib/angularui/ui-bootstrap-tpls-0.4.0.min.js"></script>
-    <script src="lib/angularslider/angular-slider.js"></script>
-    <script src="app/js/app.js"></script>
     <script src="app/js/pagecontrollers.js"></script>
+    <script src="app/js/factory.js"></script>
+    <script src="app/js/directives.js"></script>
+
     <script src="lib/jquery/jquery-1.8.2.min.js"></script>
     <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
-    <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
+
     <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
   <!--  <script src="lib/flatui/custom_radio.js"></script>-->
     <script src="lib/flatui/jquery.tagsinput.js"></script>
     <script src="lib/flatui/jquery.placeholder.js"></script>
-    <script src="lib/flatui/application.js"></script>
+
     <!-- Bootstrap Plug -->
     <script src="lib/boostrap/bootstrap.js"></script>
     <!--[if lt IE 8]>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="pagemodule">
+<html lang="en" ng-app="vcpmodule">
   <head>
     <meta charset="utf-8">
     <title>VCP</title>
@@ -22,12 +22,12 @@
 
 <!-- Header -->
 <header class="header">
-	<h1 class="logo">VCP</h1><a href="page.html" class="signin">Sign In</a>
+	<h1 class="logo"><a href="index.html">VCP</a></h1><a href="user.html" class="signin">User</a>
     <ul class="menu clearfix">
     	<li><a href="user.html">User</a></li>
     	<li><a href="site.html" class="current">Site</a></li>
         <li><a href="page.html">Page</a></li>
-        <li><a href="article.html">Article</a></li>
+        <li><a href="article_list_index.html">Article</a></li>
         <li><a href="reports.html">Reports</a></li>
         <li><a href="store.html">Store</a></li>
     </ul>
@@ -35,7 +35,7 @@
         
 
 <!-- Container -->
-<div class="vcpbox">
+<div class="vcpbox" ng-controller="siteController">
 	<div class="site_box">
     
     	
@@ -43,30 +43,49 @@
     	<div class="site_stepbox large_step_1">
         	<div class="site_box_title clearfix">
             	<div class="title_num">1</div>
-                <h3 class="title_name">Site Attribute</h3>
+                <h3 class="title_name">Join Now</h3>
             </div>
-        	<form class="site_form">
-            	<h4>Site Attribute<a href="##" class="edit_step" id="edit_step1">Edit</a></h4>
+        	<form class="site_form" name="siteinfoform"  >
+            	<h4>Site Attribute<a href="#" class="edit_step" id="edit_step1">Edit</a></h4>
+                <div class="site_form_Box">
                 <table class="table">
                 	<tr>
                     	<td class="titlename">Name</td>
-                        <td><div class="fancyinput_vcp"><input type="text" value=""></div></td>
-                        <!-- <td><input type="text" value="" class="site_input" placeholder="Name"></td></tr> -->
+                        <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td>-->
+                        <td><input type="text" value="" class="site_input" placeholder="Pls input Site Name" required ng-model="siteinfodata.name"></td></tr>
                     </tr>
                     <tr>
                     	<td class="titlename">Domain</td>
-                        <td><div class="fancyinput_vcp"><input type="text" value=""></div></td>
-                        <!-- <td><input type="text" value="" class="site_input" placeholder="Domain"></td></tr> -->
+                       <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
+                        <td><input type="text" value="" class="site_input" placeholder="Domain" required ng-model="siteinfodata.domain"></td></tr>
                     <tr>
                     	<td class="titlename">Meta</td>
-                        <td><div class="fancyinput_vcp"><input type="text" value=""></div></td>
-                        <!-- <td><input type="text" value="" class="site_input" placeholder="Meta"></td></tr> -->
-                    <tr class="last">
+                        <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
+                        <td><input type="text" value="" class="site_input" placeholder="Meta" required ng-model="siteinfodata.meta"></td></tr>
+                    <tr>
                     	<td class="titlename">Type</td>
-                        <td><div class="fancyinput_vcp"><input type="text" value=""></div></td>
-                        <!-- <td><input type="text" value="" class="site_input" placeholder="Type"></td></tr> -->
+                        <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
+                        <td>
+                            <select ng-model="siteinfodata.type">
+                                <option>Bussness</option>
+                                <option>Organization</option>
+                                <option>Persional</option>
+                            </select></td>
+                    </tr>
+                     <tr class="last">
+                    	<td class="titlename">RSS Feed</td>
+                        <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
+                        <td>
+                        <label class="RssFeedLabel"><input type="radio" name="RSSfeed" id="RssFeedOff" ng-model="siteinfodata.rssapi">Off</label>
+                        <label class="RssFeedLabel"><input type="radio" name="RSSfeed" id="RssFeedOn" ng-model="siteinfodata.rssapi">On</label>
+                        <div class="RssFeedOn_Box" >
+                        http://api.{{ siteinfodata.domain }}/04396348111312865800
+                        </div>
+                        </td>
+                        </tr>
                 </table>
-                <div class="submitbox"><a href="##" class="submit" id="save_step1">Save</a></div>
+                </div>
+                <div class="submitbox" ><a href="#" class="submit" id="save_step1" ng-click="savesiteinfo(siteinfoform)">Save</a></div>
             </form>
             
         </div>
@@ -81,21 +100,74 @@
             </div>
         	<form class="site_form">
             	<h4>Select Theme<a href="##" class="edit_step" id="edit_step2">Edit</a></h4>
-                <div class="site_themebox">
-                	<ul class="site_theme_ul clearfix">
-                    <li><a href="#" class="icon_sitetheme_blank">Blank</a></li>
-                    <li><a href="#" class="icon_sitetheme_01">theme1</a></li>
-                    <li><a href="#" class="icon_sitetheme_02">theme2</a></li>
-                    <li><a href="#" class="icon_sitetheme_03">theme3</a></li>
-                    <li><a href="#" class="icon_sitetheme_04">theme4</a></li>
-                    <li><a href="#" class="icon_sitetheme_05 select">theme5</a></li>
-                    <li><a href="#" class="icon_sitetheme_06">theme6</a></li>
-                    <li><a href="#" class="icon_sitetheme_07">theme7</a></li>
-                    <li><a href="#" class="icon_sitetheme_08">theme8</a></li>
-                    <li><a href="#" class="icon_sitetheme_09">theme9</a></li>
-                    <li><a href="#" class="icon_sitetheme_10">theme10</a></li>
-                    <li><a href="#" class="icon_sitetheme_11">theme11</a></li>
-                    </ul>
+                <div class="site_form_Box">
+                    <div class="site_themebox">
+                    
+                    	<!-- 
+                    	<div id="demo3" class="demo">
+                            <h2><span>Demo 3</span> with large thumbnails:</h2>
+                            <ul class="ts_container">
+                                <li><a href="">Image 1</a></li>
+                                <li><a href="">Image 2</a></li>
+                                <li><a href="">Image 3</a></li>
+                                <li><a href="">Image 4</a></li>
+                                <li><a href="">Image 5</a></li>
+                                <li><a href="">Image 6</a></li>
+                                
+                                <li class="ts_thumbnails">
+                                    <div class="ts_preview_wrapper">
+                                        <ul class="ts_preview">
+                                            <li><img src="app/img/temp/sitetheme_01.jpg" alt="Thumb 1" /></li>
+                                            <li><img src="app/img/temp/sitetheme_02.jpg" alt="Thumb 2" /></li>
+                                            <li><img src="app/img/temp/sitetheme_03.jpg" alt="Thumb 3" /></li>
+                                            <li><img src="app/img/temp/sitetheme_04.jpg" alt="Thumb 4" /></li>
+                                            <li><img src="app/img/temp/sitetheme_05.jpg" alt="Thumb 5" /></li>
+                                            <li><img src="app/img/temp/sitetheme_06.jpg" alt="Thumb 6" /></li>
+                                        </ul>
+                                    </div>
+                                    <span></span>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                        -->
+                
+                        <ul class="site_theme_ul clearfix">
+                        <li><a href="#" class="icon_sitetheme_blank">Blank</a></li>
+                        <li><a href="#" class="icon_sitetheme_01">theme1</a></li>
+                        <li><a href="#" class="icon_sitetheme_02">theme2</a></li>
+                        <li><a href="#" class="icon_sitetheme_03">theme3</a></li>
+                        <li><a href="#" class="icon_sitetheme_04">theme4</a></li>
+                        <li><a href="#" class="icon_sitetheme_05 select">theme5</a></li>
+                        <li><a href="#" class="icon_sitetheme_06">theme6</a></li>
+                        <li><a href="#" class="icon_sitetheme_07">theme7</a></li>
+                        <li><a href="#" class="icon_sitetheme_08">theme8</a></li>
+                        <li><a href="#" class="icon_sitetheme_09">theme9</a></li>
+                        <li><a href="#" class="icon_sitetheme_10">theme10</a></li>
+                        <li><a href="#" class="icon_sitetheme_11">theme11</a></li>
+                        
+                        <li class="ts_thumbnails">
+                            <div class="ts_preview_wrapper">
+                                <ul class="ts_preview">
+                                    <li><img src="app/img/temp/sitetheme_01.jpg" alt="Thumb 1" /></li>
+                                    <li><img src="app/img/temp/sitetheme_02.jpg" alt="Thumb 2" /></li>
+                                    <li><img src="app/img/temp/sitetheme_03.jpg" alt="Thumb 3" /></li>
+                                    <li><img src="app/img/temp/sitetheme_04.jpg" alt="Thumb 4" /></li>
+                                    <li><img src="app/img/temp/sitetheme_05.jpg" alt="Thumb 5" /></li>
+                                    <li><img src="app/img/temp/sitetheme_06.jpg" alt="Thumb 6" /></li>
+                                    <li><img src="app/img/temp/sitetheme_07.jpg" alt="Thumb 7" /></li>
+                                    <li><img src="app/img/temp/sitetheme_08.jpg" alt="Thumb 8" /></li>
+                                    <li><img src="app/img/temp/sitetheme_09.jpg" alt="Thumb 9" /></li>
+                                    <li><img src="app/img/temp/sitetheme_10.jpg" alt="Thumb 10" /></li>
+                                    <li><img src="app/img/temp/sitetheme_11.jpg" alt="Thumb 11" /></li>
+                                    <li><img src="app/img/temp/sitetheme_12.jpg" alt="Thumb 12" /></li>
+                                </ul>
+                            </div>
+                            <span></span>
+                        </li>
+                                
+                        </ul>
+                    </div>
                 </div>
                 <div class="submitbox"><a href="##" class="submit" id="save_step2">Save</a></div>
             </form>
@@ -111,11 +183,35 @@
             </div>
         	<form class="site_form">
             	<h4>Logo<a href="##" class="edit_step" id="edit_step3">Edit</a></h4>
-                <table class="table">
-                	<tr><td class="titlename">Logo</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
-                    <tr class="last"><td class="titlename">Web Icon</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
-                </table>
-                <div class="submitbox"><a href="page.html" class="submit" id="save_step3">Save</a></div>
+                <div class="site_form_Box">
+                    <table class="table">
+                        <tr><td class="titlename">Logo</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
+                        <tr class="last"><td class="titlename">Web Icon</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
+                    </table>
+                </div>
+                <div class="submitbox"><a href="##" class="submit" id="save_step3">Save</a></div>
+            </form>
+        </div>
+        
+        
+        
+        <!-- 第 4 步 -->
+        <div class="site_stepbox mini_step_4">
+        	<div class="site_box_title clearfix">
+            	<div class="title_num">4</div>
+                <h3 class="title_name">Workflow</h3>
+            </div>
+        	<form class="site_form">
+            	<h4>Workflow<a href="##" class="edit_step" id="edit_step4">Edit</a></h4>
+                <div class="site_form_Box">
+                    <div class="site_workflow">
+                        <h6>Which one you like the review process?</h6>
+                        <p><a href="###" class="btn btn-info">Publish directly</a></p>
+                        <p><a href="###" class="btn btn-success">One step review and publish</a></p>
+                        <p><a href="###" class="btn btn-warning">More step review and publish</a></p>
+                    </div>
+                </div>
+                <div class="submitbox"><a href="page.html" class="submit" id="save_step4">Save</a></div>
             </form>
         </div>
         
@@ -131,44 +227,208 @@
 </div>  
 
 			<!-- Load JS -->
-            <script src="lib/jquery/jquery-1.8.2.min.js"></script>  
-			<script src="lib/boostrap/bootstrap.min.js"></script>
-            <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
-            <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
-            <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
-            <script src="lib/flatui/custom_radio.js"></script>
-            <script src="lib/flatui/jquery.tagsinput.js"></script>
-            <script src="lib/flatui/jquery.placeholder.js"></script>
-            <script src="lib/flatui/application.js"></script>
-            <script src="app/js/fancyInput.js"></script>
-            <!--[if lt IE 8]>
-              <script src="lib/flatui/icon-font-ie7.js"></script>
-              <script src="lib/flatui/lte-ie7-24.js"></script>
-            <![endif]-->
-            <script src="app/js/custom.js"></script>      
-       			
-	
+    <script src="lib/angular/1.1.5/angular.js"></script>
+    <script src="app/js/usercontrollers.js"></script>
+    <script src="app/js/factory.js"></script>
+    <script src="app/js/directives.js"></script>
+
+    <script src="lib/jquery/jquery-1.8.2.min.js"></script>
+    <script src="lib/jqueryplugin/jquery.easing.1.3.js"></script>
+    <script src="lib/boostrap/bootstrap.min.js"></script>
+    <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
+
+    <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
+    <script src="lib/flatui/custom_radio.js"></script>
+    <script src="lib/flatui/jquery.tagsinput.js"></script>
+    <script src="lib/flatui/jquery.placeholder.js"></script>
+    <!--<script src="lib/flatui/application.js"></script>-->
+    <!-- <script src="app/js/fancyInput.js"></script>-->
+    <!--[if lt IE 8]>
+      <script src="lib/flatui/icon-font-ie7.js"></script>
+      <script src="lib/flatui/lte-ie7-24.js"></script>
+    <![endif]-->
+    <script src="app/js/custom.js"></script>
+
+    <script type="text/javascript">
+			(function($) {
+				$.fn.thumbnailSlider = function(options) {
+					var opts = $.extend({}, $.fn.thumbnailSlider.defaults, options);
+					return this.each(function() {
+						var $this 				= $(this),
+							o 					= $.meta ? $.extend({}, opts, $pxs_container.data()) : opts;
+						
+						var $ts_container		= $this.children('.site_theme_ul'),
+							$ts_thumbnails		= $ts_container.children('.ts_thumbnails'),
+							$nav_elems			= $ts_container.children('li').not($ts_thumbnails),
+							total_elems			= $nav_elems.length,
+							$ts_preview_wrapper	= $ts_thumbnails.children('.ts_preview_wrapper'),
+							$arrow				= $ts_thumbnails.children('span'),
+							$ts_preview			= $ts_preview_wrapper.children('.ts_preview');
+						
+						/*
+						calculate sizes for $ts_thumbnails:
+						width 	-> width thumbnail + border (2*5)
+						height 	-> height thumbnail + border + triangle height(6)
+						top		-> -(height plus margin of 5)
+						left	-> leftDot - 0.5*width + 0.5*widthNavDot 
+							this will be set when hovering the nav,
+							and the default value will correspond to the first nav dot	
+						*/
+						var w_ts_thumbnails	= o.thumb_width + 2*5,
+							h_ts_thumbnails	= o.thumb_height + 2*5 + 6,
+							t_ts_thumbnails	= -(h_ts_thumbnails + 5),
+							$first_nav		= $nav_elems.eq(0),
+							l_ts_thumbnails	= $first_nav.position().left - 0.5*w_ts_thumbnails + 0.5*$first_nav.width();
+						
+						$ts_thumbnails.css({
+							width	: w_ts_thumbnails + 'px',
+							height	: h_ts_thumbnails + 'px',
+							top		: t_ts_thumbnails + 'px',
+							left	: l_ts_thumbnails + 'px'
+						});
+						
+						/*
+						calculate the top and left for the arrow of the tooltip
+						top		-> thumb height + border(2*5)
+						left	-> (thumb width + border)/2 -width/2
+						*/
+						var t_arrow	= o.thumb_height + 2*5,
+							l_arrow	= (o.thumb_width + 2*5) / 2 - $arrow.width() / 2;
+						$arrow.css({
+							left	: l_arrow + 'px',
+							top		: t_arrow + 'px'
+						});
+						
+						/*
+						calculate the $ts_preview width -> thumb width times number of thumbs
+						*/
+						$ts_preview.css('width' , total_elems*o.thumb_width + 'px');
+						
+						/*
+						set the $ts_preview_wrapper width and height -> thumb width / thumb height
+						*/
+						$ts_preview_wrapper.css({
+							width	: o.thumb_width + 'px',
+							height	: o.thumb_height + 'px'
+						});
+						
+						//hover the nav elems
+						$nav_elems.bind('mouseenter',function(){
+							var $nav_elem	= $(this),
+								idx			= $nav_elem.index();
+								
+							/*
+							calculate the new left
+							for $ts_thumbnails
+							*/
+							var new_left	= $nav_elem.position().left - 0.5*w_ts_thumbnails + 0.5*$nav_elem.width();
+							
+							$ts_thumbnails.stop(true)
+										  .show()	
+										  .animate({
+											left	: new_left + 'px'
+										  },o.speed,o.easing);				  
+							
+							/*
+							animate the left of the $ts_preview to show the right thumb 
+							*/
+							$ts_preview.stop(true)
+									   .animate({
+											left	: -idx*o.thumb_width + 'px'
+									   },o.speed,o.easing);
+							
+							//zoom in the thumb image if zoom is true
+							if(o.zoom && o.zoomratio > 1){
+								var new_width	= o.zoomratio * o.thumb_width,
+									new_height	= o.zoomratio * o.thumb_height;
+								
+								//increase the $ts_preview width in order to fit the zoomed image
+								var ts_preview_w	= $ts_preview.width();
+								$ts_preview.css('width' , (ts_preview_w - o.thumb_width + new_width)  + 'px');
+								
+								$ts_preview.children().eq(idx).find('img').stop().animate({
+									width		: new_width + 'px',
+									height		: new_height + 'px'
+								},o.zoomspeed);
+							}		
+							
+						}).bind('mouseleave',function(){
+							//if zoom set the width and height to defaults
+							if(o.zoom && o.zoomratio > 1){
+								var $nav_elem	= $(this),
+									idx			= $nav_elem.index();
+								$ts_preview.children().eq(idx).find('img').stop().css({
+									width	: o.thumb_width + 'px',
+									height	: o.thumb_height + 'px'	
+								});	
+							}
+							
+							$ts_thumbnails.stop(true)
+										  .hide();
+										  
+						}).bind('click',function(){
+							var $nav_elem	= $(this),
+								idx			= $nav_elem.index();
+							
+							o.onClick(idx);
+						});
+						
+					});
+				};
+				$.fn.thumbnailSlider.defaults = {
+					speed		: 100,//speed of each slide animation
+					easing		: 'jswing',//easing effect for the slide animation
+					thumb_width	: 75,//your photos width
+					thumb_height: 75,//your photos height
+					zoom		: false,//zoom animation for the thumbs
+					zoomratio	: 1.3,//multiplicator for zoom (must be > 1)
+					zoomspeed	: 15000,//speed of zoom animation
+					onClick		: function(){return false;}//click callback
+				};
+			})(jQuery);
+			</script>
+        
     		<script type="text/jscript">
-			$('.fancyinput_vcp :input').val('').fancyInput()[0].focus();
+			 //$('.fancyinput_vcp :input').val('').fancyInput()[0].focus();
 			
 			$(function() {
 				
+				  $('.site_themebox').thumbnailSlider({
+					thumb_width	: 300,
+					thumb_height: 200,
+					speed		: 300
+				  });
 				
+				  // RSS 关闭/打开
+				  $("#RssFeedOn").click(function(){
+						$(".RssFeedOn_Box").slideDown(200);
+				  });
+				  $("#RssFeedOff").click(function(){
+						$(".RssFeedOn_Box").slideUp(200);
+				  });
+				  
+				  
 				   //SAVE
 				  $("#save_step1").click(function(){
-					 	$(".large_step_1").addClass("mini_step_1").delay(500).queue(function () {
+					 	$(".large_step_1").addClass("mini_step_1").queue(function () {
 							$(".mini_step_2").removeClass("mini_step_2").addClass("large_step_2");
 						});
 				  });
 				  
 				  $("#save_step2").click(function(){
-					  $(".large_step_2").addClass("mini_step_2").delay(500).queue(function () {
+					  $(".large_step_2").addClass("mini_step_2").queue(function () {
 							$(".mini_step_3").removeClass("mini_step_3").addClass("large_step_3");
 						});
 				  });
 				  
 				  $("#save_step3").click(function(){
-					  $(".large_step_3").addClass("mini_step_3").delay(500).queue(function () {
+					  $(".large_step_3").addClass("mini_step_3").queue(function () {
+							$(".mini_step_4").removeClass("mini_step_4").addClass("large_step_4");
+						});
+				  });
+				  
+				  $("#save_step4").click(function(){
+					  $(".large_step_4").addClass("mini_step_4").queue(function () {
 							$(".mini_step_1").removeClass("mini_step_1").addClass("large_step_1");
 						});
 				  });
@@ -181,18 +441,28 @@
 					  $(".mini_step_1").removeClass("mini_step_1").addClass("large_step_1");
 					  $(".large_step_2").addClass("mini_step_2");
 					  $(".large_step_3").addClass("mini_step_3");
+					  $(".large_step_4").addClass("mini_step_4");
 				  });
 				  
 				  $("#edit_step2").click(function(){
 					  $(".large_step_1").addClass("mini_step_1");
 					  $(".mini_step_2").removeClass("mini_step_2").addClass("large_step_2");
 					  $(".large_step_3").addClass("mini_step_3");
+					  $(".large_step_4").addClass("mini_step_4");
 				  });
 				  
 				  $("#edit_step3").click(function(){
 					  $(".large_step_1").addClass("mini_step_1");
 					  $(".large_step_2").addClass("mini_step_2");
 					  $(".mini_step_3").removeClass("mini_step_3").addClass("large_step_3");
+					  $(".large_step_4").addClass("mini_step_4");
+				  });
+				  
+				  $("#edit_step4").click(function(){
+					  $(".large_step_1").addClass("mini_step_1");
+					  $(".large_step_2").addClass("mini_step_2");
+					  $(".large_step_3").addClass("mini_step_3");
+					  $(".mini_step_4").removeClass("mini_step_4").addClass("large_step_4");
 				  });
 				
 				  

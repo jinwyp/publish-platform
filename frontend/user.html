@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="pagemodule">
+<html lang="en" ng-app="vcpmodule">
   <head>
     <meta charset="utf-8">
     <title>VCP</title>
@@ -23,12 +23,12 @@
 
 <!-- Header -->
 <header class="header">
-	<h1 class="logo">VCP</h1><a href="page.html" class="signin">Sign In</a>
+	<h1 class="logo"><a href="index.html">VCP</a></h1><a href="user.html" class="signin">User</a>
     <ul class="menu clearfix">
     	<li><a href="user.html" class="current">User</a></li>
     	<li><a href="site.html">Site</a></li>
         <li><a href="page.html">Page</a></li>
-        <li><a href="article.html">Article</a></li>
+        <li><a href="article_list_index.html">Article</a></li>
         <li><a href="reports.html">Reports</a></li>
         <li><a href="store.html">Store</a></li>
     </ul>
@@ -36,20 +36,105 @@
         
 
 <!-- Container -->
-<div class="vcpbox">
-	<div style="overflow:hidden;">
-			<img src="app/img/temp/user.jpg" alt="">
-    </div>
-</div>  
+<div class="vcpbox" ng-controller="userController">
+	<div class="userWrap">
+    
+    	<!-- 头像、基本信息 -->
+        <form name="basicinfo">
+            <div class="userBox userAccount">
+                <h1 class="titlename">account information</h1>
+                <div class="userFormBox clearfix">
+                    <div class="userFormFloat">
 
-			<!-- Load JS -->
-            <script src="lib/jquery/jquery-1.8.2.min.js"></script>
-    		<script type="text/jscript">
-			$(function() {
-				   
-				   
-				  
-        	});
-			</script>      
+                        <!-- 无头像时: class="userPhoto empty" -->
+                        <div class="userPhoto empty">
+                            <h6>drop here</h6>
+                            <input type="submit" class="userUploadBtn" value="browser">
+                        </div>
+
+                        <!-- 有头像时: class="userPhoto full" -->
+                        <div class="userPhoto full" ng-show="false">
+                            <img src="app/img/temp/1.jpg">
+                            <input type="submit" class="userChangePhoto" value="change">
+                        </div>
+
+                    </div>
+                    <div class="userFormFloat">
+                        <div class="userInfo">
+                            <h6>first name</h6>
+                            <!-- 编辑状态时显示：--><input type="text" required ng-model="user.firstname">
+                            <!-- 保存后显示：<p>Melvon</p> -->
+                            <h6>last name</h6>
+                            <!-- 编辑状态时显示：--><input type="text" required ng-model="user.lastname">
+                            <!-- 保完后显示：<p>Melvon</p> -->
+                            <h6>gender</h6>
+                            <!-- 编辑状态时显示：--><label><input type="radio" ng-model="user.gender" value="male" name="gender">Male</label>
+                            <!-- 编辑状态时显示：--><label><input type="radio" ng-model="user.gender" value="female" name="gender">Female</label>
+                            <!-- 保存后显示：<p>Male</p> -->
+                            <h6>telephone</h6>
+                            <!-- 编辑状态时显示：--><input type="text" required ng-model="user.tel">
+                            <!-- 保存后显示：<p>010-62068000</p> -->
+                            <h6>&nbsp;</h6>
+                            <input type="button" class="btn" value="Change Password" ng-click="changepassword()">
+                        </div>
+                    </div>
+                </div>
+                <div class="UserBoxButton">
+                    <input type="submit" class="saveUserBtn" value="save changes" ng-click="savebasicinfo(basicinfo)">
+                    <!-- 编辑按钮：<input type="submit" class="editUserBtn" value="edit">  -->
+                </div>
+            </div>
+        </form>
+        <!-- 头像、基本信息 //End-->
+        
+        
+        <!-- 更改密码  -->
+        <div class="userBox userPassword" ng-show="showpassword">
+        	<h1 class="titlename">change password</h1>
+            <div class="userFormBox clearfix">
+                <div class="userChangePassword">
+                    <h6>old password</h6>
+                    <input id="oldpassword" type="password" ng-model="oldpassword">
+                    <hr>
+                    <h6>new password</h6>
+                    <input id="newpassword" type="password" ng-model="newpassword">
+                    <h6>confirm new password</h6>
+                    <input id="conformpassword" type="password" ng-model="conformpassword">
+                    <h6 ng-show="showalert" style="color:#ff0000;">Old password error !</h6>
+                    <h6 ng-show="shownewpwd" style="color:#ff0000;">Please input new password !</h6>
+                    <h6 ng-show="showagainpwd" style="color:#ff0000;">Please input new password again !</h6>
+                    <h6 ng-show="showinconsistent" style="color:#ff0000;">Password inconsistent!</h6>
+                </div>
+            </div>
+            <div class="UserBoxButton">
+                <input type="submit" class="saveUserBtn" value="save changes" ng-click="modifypassword()">
+            </div>
+        </div>
+        <!-- 更改密码 //End -->
+        
+    </div>
+</div>
+
+    <!-- Load JS -->
+    <script src="lib/angular/1.1.5/angular.js"></script>
+    <script src="app/js/usercontrollers.js"></script>
+    <script src="app/js/factory.js"></script>
+    <script src="app/js/directives.js"></script>
+
+    <script src="lib/jquery/jquery-1.8.2.min.js"></script>
+    <script src="lib/boostrap/bootstrap.min.js"></script>
+    <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
+    <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
+    <script src="lib/flatui/custom_radio.js"></script>
+    <script src="lib/flatui/jquery.tagsinput.js"></script>
+    <script src="lib/flatui/jquery.placeholder.js"></script>
+    <script src="lib/flatui/application.js"></script>
+    <!--[if lt IE 8]>
+    <script src="lib/flatui/icon-font-ie7.js"></script>
+    <script src="lib/flatui/lte-ie7-24.js"></script>
+    <![endif]-->
+    <script src="app/js/custom.js"></script>
+
  </body>
 </html>

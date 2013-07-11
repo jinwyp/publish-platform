@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="vcpmodule">
+  <head>
+    <meta charset="utf-8">
+    <title>VCP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="lib/flatui/bootstrap.css" rel="stylesheet">
+    <link href="app/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="app/img/favicon.ico">
+    <!--[if lt IE 9]>
+      <script src="lib/other/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 默认 Site Theme -->
+    <link href="theme/default/site-theme.css" rel="stylesheet">
+    
+
+  </head>
+<body style="background:url(app/img/pagebg.jpg) center 60px repeat;">
+
+
+
+<!-- Header -->
+<header class="header">
+	<h1 class="logo"><a href="index.html">VCP</a></h1>
+    <!-- <ul class="menu clearfix">
+    	<li><a href="user.html">User</a></li>
+    	<li><a href="site.html">Site</a></li>
+        <li><a href="page.html">Page</a></li>
+        <li><a href="article.html">Article</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="store.html">Store</a></li>
+    </ul>
+    -->
+</header>
+        
+
+<!-- Container -->
+<div class="vcpbox" ng-controller="userController">
+	<div class="reg_box">
+    
+    	
+    	<!-- 第 1 步 -->
+    	<div class="reg_stepbox reg_step_1">
+        	<div class="reg_box_title clearfix">
+            	 <!-- <div class="title_num">1</div>-->
+                <h3 class="title_name">Register</h3>
+            </div>
+        	<form name="register" class="reg_form">
+            	<h4>Register Information</h4>
+                <div class="reg_form_Box">
+                <table class="table">
+                	<tr>
+                    	<td class="titlename">Email</td>  <!--user.email-->
+                        <td><input type="email" required ng-model="loginemail" class="reg_input"></td></tr>
+                    </tr>
+                    <tr>
+                    	<td class="titlename">Password</td> <!--user.password-->
+                        <td><input id="password" type="password" required ng-model="passwd" minlength="6" maxlength="20" class="reg_input"></td></tr>
+                    <tr>
+                    	<td class="titlename">Confirm Password</td>
+                        <td><input id="reformpassword" type="password" required ng-model="againpasswd" class="reg_input"></td>
+                    </tr>
+                    <tr ng-show="passwordalert">
+                        <td style="color: #fff; padding:8px; text-align:center; background-color: #930;;" colspan="2">Password Inconsistent!</td>
+                    </tr>
+                </table>
+                </div>
+                <div class="submitbox">
+                    <input type="submit" value="Save" class="submit" ng-click="saveemailinfo(register)">
+                </div>
+            </form>
+            
+        </div>
+        
+        
+        
+        <!-- 第 2 步
+        <div class="reg_stepbox regmini_step_2">
+        	<div class="reg_box_title clearfix">
+            	<div class="title_num">2</div>
+                <h3 class="title_name">User Attribute</h3>
+            </div>
+        	<form class="reg_form">
+            	<h4>Site Attribute<a href="##" class="edit_step" id="edit_step2">Edit</a></h4>
+                <div class="reg_form_Box">
+                <table class="table">
+                	<tr>
+                    	<td class="titlename">First name</td>
+                        <td><input type="text" value="" class="reg_input"></td>
+                    </tr>
+                    <tr>
+                    	<td class="titlename">Last name</td>
+                        <td><input type="password" value="" class="reg_input"></td>
+                    </tr>
+                    <tr>
+                    	<td class="titlename">Gender</td>
+                        <td>
+                        <label class="regGenderLabel"><input type="radio" name="gender" checked>Male</label>
+                        <label class="regGenderLabel"><input type="radio" name="gender" >Female</label>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<td class="titlename">Mobile</td>
+                        <td><input type="text" value="" class="reg_input"></td>
+                    </tr>
+                </table>
+                </div>
+                <div class="submitbox"><a href="user.html" class="submit" id="save_step2">Save</a></div>
+            </form>
+        </div>
+        -->
+        
+        
+        <!-- 第 3 步
+        <div class="reg_stepbox regmini_step_3">
+        	<div class="reg_box_title clearfix">
+            	<div class="title_num">3</div>
+                <h3 class="title_name">REG3</h3>
+            </div>
+        	<form class="reg_form">
+            	<h4>Logo<a href="##" class="edit_step" id="edit_step3">Edit</a></h4>
+                <div class="reg_form_Box">
+                    <table class="table">
+                        <tr><td class="titlename">Logo</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
+                        <tr class="last"><td class="titlename">Web Icon</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
+                    </table>
+                </div>
+                <div class="submitbox"><a href="##" class="submit" id="save_step3">Save</a></div>
+            </form>
+        </div>
+         -->
+        
+        
+        
+        
+        <!-- 背景横线 -->
+		<div class="reg_bgpline"></div>
+        
+        
+        
+        
+    </div>
+</div>  
+
+			<!-- Load JS -->
+            <script src="lib/angular/1.1.5/angular.js"></script>
+            <script src="app/js/usercontrollers.js"></script>
+            <script src="app/js/factory.js"></script>
+            <script src="app/js/directives.js"></script>
+
+            <script src="lib/jquery/jquery-1.8.2.min.js"></script>  
+			<script src="lib/boostrap/bootstrap.min.js"></script>
+            <!-- <script src="lib/jqueryplugin/fancyInput.js"></script>-->
+            <!--[if lt IE 8]>
+              <script src="lib/flatui/icon-font-ie7.js"></script>
+              <script src="lib/flatui/lte-ie7-24.js"></script>
+            <![endif]-->
+            <script src="app/js/custom.js"></script>      
+       			
+
+    		<script type="text/jscript">
+			
+			$(function() {
+				  
+				  
+				  
+				
+				  
+        	});
+	</script>      
+ </body>
+</html>

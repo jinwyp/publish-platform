@@ -20,7 +20,7 @@
 
 <!-- Header -->
 <header class="header">
-	<h1 class="logo">VCP</h1><a href="page.html" class="signin">Sign In</a>
+	<h1 class="logo"><a href="index.html">VCP</a></h1><a href="user.html" class="signin">User</a>
     <ul class="menu clearfix">
     	<li><a href="user.html">User</a></li>
     	<li><a href="site.html">Site</a></li>
@@ -38,10 +38,12 @@
     <!-- Content -->
 	<div class="article" ng-view>
     
+    	<!-- 
     	<div class="write_title">
         	<a href="article_list_index.html" class="showlist" rel="tooltip" title="Article List"></a>
         	<h1>The NYSE And Nasdaq: How They Work </h1>
         </div>
+        -->
         
         <div class="write_title">
         	<a href="article_list_index.html" class="showlist" rel="tooltip" title="Article List"></a>
@@ -61,14 +63,14 @@
                 </div>
                 <!-- 编辑器 -->
                 <div class="article-cont" >
-                	 <!-- Tags -->
-                    <div class="atricle_attribute_box">
-                        <h3>Tags</h3>
-                        <!-- 测试用，不用管这段 ->
+                	
+                    <!-- <div class="atricle_attribute_box">
+                       <h3>Tags</h3>
+                         测试用，不用管这段 ->
                         <input type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-                        -->
+                       
                         <input name="tagsinput" id="tagsinput" class="tagsinput" value="" />
-                    </div>
+                    </div> -->
                     <!-- Tags //End -->
           			 <textarea class="ckeditor" cols="80" id="editor1" name="editor1" rows="10"></textarea>
                      

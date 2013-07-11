@@ -1,304 +1,28 @@
 'use strict';
 
-var pageapp = angular.module('pagemodule', ['uiSlider', 'ui.bootstrap']);
-
-pageapp.directive('enterKeypress', function(){
-    return function(scope, element, attrs) {
-        element.bind("keypress", function(event) {
-            if(event.which === 13) {
-                scope.$apply(function(){
-                    scope.$eval(attrs.enterKeypress);
-                });
-                event.preventDefault();
-            }
-        });
-    };
-});
-
+var vcpapp = angular.module('vcpmodule', ['ui.bootstrap']);
 
 var page = {
-    m:{},
     c:{}
-};
-
-pageapp.controller(page.c);
-
-pageapp.factory('modelSite', function(){
-
-    var articlelist=[],taglist=[];
-    if(window.localStorage){
-        if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
-            articlelist=[];
-            taglist=[];
-        }else{
-            articlelist = JSON.parse(localStorage.getItem("articlesData"));
-            taglist = JSON.parse(localStorage.getItem("tagsData"));
-        }
-    }
-
-    var sitedata = {
-        siteid : 1,
-        sitename : 'NewSite',
-
-        pagelist : [
-            { siteid:1, pagename:'Homepage', pageid:101, pagetype:10, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
-                pagelayoutdata:[
-                    {layoutcontainerclass:"span9", layoutcontainerid:1000 , blocks:[
-                        {blockid:100, blocktype:'auto', blockname:"Today hot",blocklayout:10, blockquantity:6, blocktag:[], blockcategory:[], blocksortby:'date' , blockarticles:[
-                            {"id": 1000, "title": "multiple partial views in angularjs111.",  "status": "needreview",
-                                "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023,
-                                "category": "Today", "categoryid":1000,
-                                "tags": [
-                                    { "tagid":10000, "tagname":"computer" },
-                                    { "tagid":10001, "tagname":"videocard" }
-                                ]
-                            },
-                            {"id": 1002, "title": "222222222.",  "status": "needreview",
-                                "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023,
-                                "category": "Today", "categoryid":1000,
-                                "tags": [
-                                    { "tagid":10000, "tagname":"computer" },
-                                    { "tagid":10001, "tagname":"videocard" }
-                                ]
-                            }
-                            ]
-                        }
-                        ]
-                    },
-                    {layoutcontainerclass:"span3", layoutcontainerid:1001, blocks:[] }
-                ]
-            },
-
-            { siteid:1, pagename:'Article', pageid:103, pagetype:11, pagetitle:"article", pageurl:"article", pageorder:0, pagelayoutid:10, pagelayoutdata:[] }
-        ],
-
-        headerdata:[],
-
-        footerdata:[
-            /*{footerid:1,footername:'foot1',footertype:'local',linkedurl:'',linkedpageid:101,linkedpagename:'Homepage'},
-             {footerid:2,footername:'foot2',footertype:'other',linkedurl:'http://www.1.com',linkedpageid:0,linkedpagename:''}*/
-        ],
-
-        headertheme:[
-            {headerthemeid:1,name:'black',css:'theme_01', image:'app/img/header_theme_01.jpg'},
-            {headerthemeid:2,name:'red',css:'theme_02', image:'app/img/header_theme_02.jpg'},
-            {headerthemeid:3,name:'blue',css:'theme_03', image:'app/img/header_theme_03.jpg' },
-            {headerthemeid:3,name:'blue',css:'theme_04', image:'app/img/header_theme_04.jpg'}
-        ],
+}
+vcpapp.controller(page.c);
 
 
-        defaultsettings:{
-            defaulstSelectedPageIndex:1,
-            defaulstSelectedLayoutIndex:0,
-            articleTypeId:11,
-
-            pagefilterArticleType:{pagetype:1},
-            pagefilterListType:{pagetype:2},
-            layoutfilterListType:{layouttype:0}
-        },
-        footertheme:[
-            {footerthemeid:1,name:'black',css:'theme_01', image:'app/img/footer_theme_01.jpg'},
-            {footerthemeid:2,name:'red',css:'theme_02', image:'app/img/footer_theme_02.jpg'},
-            {footerthemeid:3,name:'blue',css:'theme_03', image:'app/img/footer_theme_03.jpg' },
-            {footerthemeid:4,name:'green',css:'theme_04', image:'app/img/footer_theme_04.jpg'}
-        ]
-    };
-
-    var layoutdata = [
-        {layoutid: 10, layoutname: '两列1', layouttype : 1, layoutorder:1, layoutcss:'ico_layout_00', layoutimage:'app/img/layout_templete.png', layoutdata:[
-            {layoutcontainerclass:"span9", layoutcontainerid:1000, blocks:[]},
-            {layoutcontainerclass:"span3", layoutcontainerid:1001, blocks:[]}
-        ]},
-
-        {layoutid: 10, layoutname: '两列2', layouttype : 1, layoutorder:2, layoutcss:'ico_layout_01', layoutimage:'app/img/layout_templete_01.png', layoutdata:[
-            {layoutcontainerclass:"span3", layoutcontainerid:1002, blocks:[]},
-            {layoutcontainerclass:"span9", layoutcontainerid:1003, blocks:[]}
-        ]},
-        {layoutid: 10, layoutname: '三列1', layouttype : 0, layoutorder:3, layoutcss:'ico_layout_02', layoutimage:'app/img/layout_templete_02.png', layoutdata:[
-            {layoutcontainerclass:"span4", layoutcontainerid:1005, blocks:[]},
-            {layoutcontainerclass:"span4", layoutcontainerid:1006, blocks:[]},
-            {layoutcontainerclass:"span4", layoutcontainerid:1007, blocks:[]}
-        ]}
-    ];
-    var blocklayout = [
-        {id: 100, layoutname: '一列纯文字', fitforblocktype : 0, order:1, layoutimage:'app/img/ico_layout_01.png'},
-        {id: 101, layoutname: '一列纯文字', fitforblocktype : 0, order:2, layoutimage:'app/img/ico_layout_01.png'},
-        {id: 102, layoutname: '一列纯文字', fitforblocktype : 0, order:3, layoutimage:'app/img/ico_layout_01.png'}
-
-    ];
-    //read local header data
-    /*    if(window.localStorage){
-     sitedata.headerdata=JSON.parse(localStorage.getItem("newData")) == null ? [] : JSON.parse(localStorage.getItem("newData"));
-     }*/
-    var factory = {};
-    factory.getSite = function () {
-        return  sitedata;
-    };
-
-    factory.getPageList = function () {
-        return  sitedata.pagelist;
-    };
-
-    factory.getSinglePage = function (selectedpage) {
-        var pageindex = sitedata.pagelist.indexOf(selectedpage);
-        return  sitedata.pagelist[pageindex];
-    };
-
-    factory.addSinglePage = function (pagedata) {
-        return  sitedata.pagelist.push(pagedata);
-    };
-
-    factory.updateSinglePage= function(pagedata){
-        return;
-    };
-
-    factory.delSinglePage= function( pagedata){
-        if(pagedata.pagetype >= 20){
-            //首页和内容页面都是无法删除的
-            var pageindex = sitedata.pagelist.indexOf(pagedata);
-            sitedata.pagelist.splice(pageindex, 1);
-        }
-    };
-
-    factory.addSingleBlockToPage = function (newblock, pagelayout, pagedata) {
-
-        var pageindex = sitedata.pagelist.indexOf(pagedata);
-        var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
-
-        pagelayout.blocks.push(newblock);
-
-        sitedata.pagelist[pageindex].pagelayoutdata[layoutindex] = pagelayout;
-    };
-
-    factory.addArticleToBlock = function (newartcle, block, pagelayout, pagedata) {
-        var pageindex = sitedata.pagelist.indexOf(pagedata);
-        var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
-        var blockindex = sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks.indexOf(block) ;
-        sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks[blockindex].blockarticles.push(newartcle);
-
-    };
-
-    factory.delBlockFromPage = function (block, pagelayout, pagedata) {
-        var pageindex = sitedata.pagelist.indexOf(pagedata);
-        var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
-        var blockindex = sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks.indexOf(block) ;
-        sitedata.pagelist[pageindex].pagelayoutdata[layoutindex].blocks.splice(blockindex, 1);
-
-    }
-
-
-    //layout 修改
-    factory.getLayoutList = function() {
-        return  layoutdata;
-    }
-
-    factory.saveSinglePageLayout = function( selectedpage, layout) {
-        var pageindex = sitedata.pagelist.indexOf(selectedpage);
-//        console.log(pageindex, sitedata.pagelist[pageindex].pagename);
-        sitedata.pagelist[pageindex].pagelayoutdata = layout.layoutdata ;
-        return  ;
-    }
-
-    //blcoklayout 修改
-    factory.getBlockLayout = function () {
-        return blocklayout;
-    };
-
-
-
-    //header Theme
-    factory.getHeaderTheme=function(){
-        return sitedata.headertheme;
-    }
-
-
-
-    //header 修改
-    factory.getHeader=function(){
-        return sitedata.headerdata;
-    }
-    factory.addHeaderMenu = function (menudata) {
-        return  sitedata.headerdata.push(menudata);
-    };
-    factory.addHeaderChildMenu = function (menuindex,childmenudata) {
-        return  sitedata.headerdata[menuindex].childdata.push(childmenudata);
-    };
-
-    factory.editHeaderMenu = function (pagedata) {
-        return  sitedata.headerdata.push(pagedata);
-    };
-    factory.editHeaderChildMenu = function (id,pagedata) {
-        return  sitedata.headerdata[id].childdata.push(pagedata);
-    };
-
-    factory.getfoottheme=function(){
-        return sitedata.footertheme;
-    };
-    factory.getfooter=function(){
-        return sitedata.footerdata;
-    };
-    factory.addfooterMenu = function (menudata) {
-        return  sitedata.footerdata.push(menudata);
-    };
-
-
-
-
-    //Tags
-    factory.getMaxTagID = function () {
-
-        var tagmaxid;
-        if(taglist.length==0){
-            tagmaxid=10001;
-        }else{
-            tagmaxid = taglist[taglist.length-1].tagid + 1;
-        }
-        return tagmaxid;
-    };
-
-    factory.checkTagExist = function (tagname) {
-        var tagresult = _.findWhere(taglist, {tagname: tagname});
-        if (tagresult === undefined) {
-            return false;
-        }else{
-//            console.log(tagresult);
-            return tagresult;
-        }
-    };
-
-    factory.createNewTag = function (tagdata) {
-        taglist.push(tagdata);
-        localStorage.setItem("tagsData",JSON.stringify(taglist));
-        return tagdata;
-    };
-
-    factory.getArticlesByTags = function (taglistdata) {
-        var articlesresult = [];
-
-        articlesresult = _.filter(articlelist, function(element1){
-            var article1;
-            var singlearticletags = _.filter(element1.tags, function(element2){
-                    var tagresult = _.where(taglistdata, element2);
-                    return tagresult.length;
-                });
-//            console.log(element1, singlearticletags);
-            return  singlearticletags.length;
-
-        });
-
-        return articlesresult;
-    };
-
-    factory.getArticles = function () {
-
-        return articlelist;
-    };
-    return factory;
-});
-
+vcpapp.directive('enterKeypress', function(){
+        return function(scope, element, attrs) {
+            element.bind("keypress", function(event) {
+                if(event.which === 13) {
+                    scope.$apply(function(){
+                        scope.$eval(attrs.enterKeypress);
+                    });
+                    event.preventDefault();
+                }
+            });
+        };
+    });
 
 /* Controllers */
-page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, modelSite) {
+page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelArticle, modelTag) {
 
     function initialize(){
 
@@ -307,21 +31,52 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
         $scope.newblock = {
             blockid : 100,
             blocktype : 'auto',
+            blockstatictype : '',
             blocktitle : "title1",
             blockname : "",
             blocklayout : 10,
             blockquantity : 6,
             blocktag : [],
-            blockcategory : [],
-            blocksortby : 'bydate'
+            blockcategory : 'Health and leisure',
+            blocksortby : 'bydate',
+            apiurl : "",
+            adsname : "",
+            adscode : ""
         };
         $scope.newarticle = undefined;
 
-        $scope.site = modelSite.getSite();
-        $scope.pages = modelSite.getPageList();
+        var site = modelSite.getSite();
+
+        //载入所有block的文章
+        for (var i=site.pagelist.length-1; i>=0; i--)
+        {
+            for (var j = site.pagelist[i].pagelayoutdata.length-1; j>=0; j--)
+            {
+                for (var k = site.pagelist[i].pagelayoutdata[j].blocks.length-1; k>=0; k--)
+                {
+                    if(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktype == 'auto'){
+                        var articles = modelArticle.getArticlesByTags(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity, site.pagelist[i].pagelayoutdata[j].blocks[k].blockcategory);
+                        site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles;
+
+/*                        if (site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag.length == 0 ){
+                            var articles2 = modelArticle.getArticles(site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity);
+
+                            site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles2;   //如果没有选择tags则获取所有文章
+                        }*/
+                    }
+
+
+                }
+            }
+        }
+
+
+
+        $scope.pages = site.pagelist;
+
         $scope.singlepage =  $scope.pages[0];   //默认读取首页
         $scope.newpage ={};
-        $scope.localarticles = modelSite.getArticles();
+        $scope.localarticles = modelArticle.getArticles(100);
 
         $scope.layouts = modelSite.getLayoutList();
         $scope.blocklayouts = modelSite.getBlockLayout();
@@ -330,17 +85,17 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
         $scope.header = modelSite.getHeader();
         $scope.headerthemes = modelSite.getHeaderTheme();
 
-        $scope.pagearticletype = $scope.site.defaultsettings.articleTypeId;    // left menu default selected page
-        $scope.pagefilterarticle = $scope.site.defaultsettings.pagefilterArticleType;  //Article Type Page
-        $scope.pagefilterlist = $scope.site.defaultsettings.pagefilterListType;         //List Type Page
-        $scope.layoutfilterlisttype = $scope.site.defaultsettings.layoutfilterListType;
+        $scope.pagearticletype = site.defaultsettings.articleTypeId;    // left menu default selected page
+        $scope.pagefilterarticle = site.defaultsettings.pagefilterArticleType;  //Article Type Page
+        $scope.pagefilterlist = site.defaultsettings.pagefilterListType;         //List Type Page
+        $scope.layoutfilterlisttype = site.defaultsettings.layoutfilterListType;
 
-        $scope.defaultselectedpageindex = $scope.site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
+        $scope.defaultselectedpageindex = site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
         $scope.selectedpageattributeindex = -1;    //默认隐藏所有page的属性面板
 
         $scope.selectedpageblockindex = -1;
 
-        $scope.defaultselectedlayoutindex = $scope.site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
+        $scope.defaultselectedlayoutindex = site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
 
         $scope.cssshowpageaddinput = false;    //添加page的输入框默认不显示
 
@@ -350,7 +105,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
         $scope.cssblockeditmenuinputbox = false;   //点击当前编辑block的 要输入推荐文章的输入框
         $scope.cssblockeditmenubutton = false;     //点击当前编辑block的 设置的按钮
 
-        $scope.cssblocklayoutselected = false;  // 选中的blocklayout
 
         $scope.cssheadermenuhavadata = false;      //Header是否有数据
         $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮显示
@@ -419,7 +173,6 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
 
     //left side bar add page attribute
     $scope.showeditpageattribute = function(indexid) {
-
         $scope.selectedpageattributeindex = indexid;    //点击显示当前的page 属性面板
     };
 
@@ -521,7 +274,7 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
         switch(divid)
         {
             case 'tab-layout':
-                heightdiff = 283;
+                heightdiff = 306;
                 break;
             case 'tab-filter':
                 heightdiff = 210;
@@ -540,18 +293,21 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
 
     // add a block to page
     $scope.addblocktopage = function(blocktype, layoutcontainer, indexid ) {
-        $scope.cssblocklayoutselected = indexid;
 
         var newblock = {
             blockid : 200,
             blocktype : 'auto',
+            blockstatictype:'',
             blockname : "",
             blocklayout : 10,
-            blockquantity : 6,
+            blockquantity : 0,
             blocktag : [],
-            blockcategory : [],
+            blockcategory : 'Health and leisure',
             blocksortby : 'date',
-            blockarticles : []
+            blockarticles : [],
+            apiurl : "",
+            adsname : "",
+            adscode : ""
         };
 
         switch(blocktype)
@@ -559,57 +315,88 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
             case 'auto':
                 newblock.blocktype = 'auto';
                 newblock.blockname = $scope.newblock.blockname;
+                newblock.blockquantity = Number($scope.newblock.blockquantity);
+                newblock.blockcategory = $scope.newblock.blockcategory;
                 //检查Tags
                 var temptagslistname = $(".tagsinput").exportTags();
 
                 for(var i=0;i<temptagslistname.length;i++){
                     //在tag 数据库查询是否是已经存在的tag
                     var newtag;
-                    if(  modelSite.checkTagExist(temptagslistname[i]) ){
-                        newtag = modelSite.checkTagExist(temptagslistname[i]);
+                    if(  modelTag.checkTagExist(temptagslistname[i]) ){
+                        newtag = modelTag.checkTagExist(temptagslistname[i]);
                     }else{
                         newtag = {
-                            "tagid" : modelSite.getMaxTagID(),
+                            "tagid" : modelTag.getMaxTagID(),
                             "tagname" : temptagslistname[i]
                         }
-                        modelSite.createNewTag(newtag);
+                        modelTag.createNewTag(newtag);
                     }
                     newblock.blocktag.push(newtag);
                 }
 
-
-
                 //通过Tags 获取文章
-                newblock.blockarticles = modelSite.getArticlesByTags(newblock.blocktag);
+                newblock.blockarticles = modelArticle.getArticlesByTags(newblock.blocktag, newblock.blockquantity, newblock.blockcategory);
 
-                if (temptagslistname.length == 0 ){
-                    newblock.blockarticles = modelSite.getArticles();
-                }
+/*                if (temptagslistname.length == 0 || newblock.blockquantity == ''){
+                    newblock.blockarticles = modelArticle.getArticles(newblock.blockquantity);
+                }*/
 
                 break;
-            case 'editor':
 
+            case 'editor':
                 newblock.blocktype = 'editor';
                 newblock.blockname = $scope.newblock.blockname;
+                newblock.blockquantity = Number($scope.newblock.blockquantity);
                 break;
-            case 'static':
-                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+
+            case 'statictext':
+                newblock.blocktype = 'static';
+                newblock.blockstatictype = 'text';
                 break;
+
+            case 'staticpic':
+                newblock.blocktype = 'static';
+                newblock.blockstatictype = 'pic';
+                break;
+
+            case 'staticvideo':
+                newblock.blocktype = 'static';
+                newblock.blockstatictype = 'video';
+                break;
+
+            case 'staticslideshow':
+                newblock.blocktype = 'static';
+                newblock.blockstatictype = 'slideshow';
+                break;
+
+
             case 'ads':
-                this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
+                newblock.blocktype = 'ads';
+                newblock.adsname = $scope.newblock.adsname;
+                newblock.adscode = $scope.newblock.adscode;
                 break;
+
+            case 'RSS':
+                newblock.blocktype = 'RSS';
+                newblock.blockname = $scope.newblock.blockname;
+                newblock.urlapi = $scope.newblock.urlapi;
+                break;
+
             default:
         }
-
 
         modelSite.addSingleBlockToPage(newblock, layoutcontainer, $scope.singlepage );
         this.cssblocktipadd = false;          //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipbox = false;
     };
 
-    $scope.addaritcletoblock = function(block, layoutcontainer ){
-        var newaritcle = this.newarticle;
-        modelSite.addArticleToBlock(newaritcle, block, layoutcontainer, $scope.singlepage);
+    $scope.addaritcletoeditorblock = function(block, layoutcontainer ){
+        if(block.blockarticles.length < block.blockquantity){
+            var newaritcle = this.newarticle;
+            console.log(block);
+            modelSite.addArticleToBlock(newaritcle, block, layoutcontainer, $scope.singlepage);
+        }
         console.log(this.newarticle);
     }
 
@@ -647,7 +434,9 @@ page.c.Pagelist = function($scope, $location, $http, $routeParams, $compile, mod
         blocktypemenu.css({"left":left+"px", "top":-(blocktypemenu.height()), "position":"absolute"});
     }
 
-
+    $scope.check = function( ) {
+        console.log(this.blockarticles);
+    }
 
 
 
