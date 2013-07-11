@@ -53,7 +53,7 @@
                         </div>
 
                         <!-- 有头像时: class="userPhoto full" -->
-                        <div class="userPhoto full">
+                        <div class="userPhoto full" ng-show="false">
                             <img src="app/img/temp/1.jpg">
                             <input type="submit" class="userChangePhoto" value="change">
                         </div>
@@ -72,21 +72,12 @@
                             <!-- 编辑状态时显示：--><label><input type="radio" ng-model="user.gender" value="female" name="gender">Female</label>
                             <!-- 保存后显示：<p>Male</p> -->
                             <h6>telephone</h6>
-                            <!-- 编辑状态时显示：--><input type="text" required ng-model="user.tel" class="" placeholder="">
+                            <!-- 编辑状态时显示：--><input type="text" required ng-model="user.tel">
                             <!-- 保存后显示：<p>010-62068000</p> -->
+                            <h6>&nbsp;</h6>
+                            <input type="button" class="btn" value="Change Password" ng-click="changepassword()">
                         </div>
                     </div>
-                    <div class="userFormFloat">
-                    		<div class="userInfo">
-                                <h6>old password</h6>
-                                <input type="password" class="" value="" placeholder="">
-                                <h6>new password</h6>
-                                <input type="password" class="" value="" placeholder="">
-                                <h6>confirm new password</h6>
-                                <input type="password" class="" value="" placeholder="">
-                        </div>
-                    </div>
-
                 </div>
                 <div class="UserBoxButton">
                     <input type="submit" class="saveUserBtn" value="save changes" ng-click="savebasicinfo(basicinfo)">
@@ -97,25 +88,29 @@
         <!-- 头像、基本信息 //End-->
         
         
-        <!-- 更改密码 
-        <div class="userBox userPassword">
+        <!-- 更改密码  -->
+        <div class="userBox userPassword" ng-show="showpassword">
         	<h1 class="titlename">change password</h1>
             <div class="userFormBox clearfix">
                 <div class="userChangePassword">
                     <h6>old password</h6>
-                    <input type="password" class="" value="" placeholder="">
+                    <input id="oldpassword" type="password" ng-model="oldpassword">
                     <hr>
                     <h6>new password</h6>
-                    <input type="password" class="" value="" placeholder="">
+                    <input id="newpassword" type="password" ng-model="newpassword">
                     <h6>confirm new password</h6>
-                    <input type="password" class="" value="" placeholder="">
+                    <input id="conformpassword" type="password" ng-model="conformpassword">
+                    <h6 ng-show="showalert" style="color:#ff0000;">Old password error !</h6>
+                    <h6 ng-show="shownewpwd" style="color:#ff0000;">Please input new password !</h6>
+                    <h6 ng-show="showagainpwd" style="color:#ff0000;">Please input new password again !</h6>
+                    <h6 ng-show="showinconsistent" style="color:#ff0000;">Password inconsistent!</h6>
                 </div>
             </div>
             <div class="UserBoxButton">
-            <input type="submit" class="saveUserBtn" value="save changes">
+                <input type="submit" class="saveUserBtn" value="save changes" ng-click="modifypassword()">
             </div>
         </div>
-         更改密码 //End -->
+        <!-- 更改密码 //End -->
         
     </div>
 </div>
