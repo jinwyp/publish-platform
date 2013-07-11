@@ -33,7 +33,7 @@ page.c.userController = function($scope, $location, modelSite) {
             }else{
                 $scope.user.email = $scope.loginemail;
                 $scope.user.password = $scope.againpasswd;
-                modelSite.updateSinglePage($scope.site);
+                modelSite.updateSite($scope.site);
                 $scope.passwordalert=false;
                 location.href="user.html";
             }
@@ -52,7 +52,7 @@ page.c.userController = function($scope, $location, modelSite) {
             $scope.user.lastname = $scope.userlastname;
             $scope.user.gender = $scope.usergender;
             $scope.user.tel = $scope.usertel;*/
-            modelSite.updateSinglePage($scope.site);
+            modelSite.updateSite($scope.site);
             location.href = "site.html";
         }
     }
@@ -114,7 +114,7 @@ page.c.userController = function($scope, $location, modelSite) {
             return;
         }else{
             $scope.user.password = $scope.newpassword;
-            modelSite.updateSinglePage($scope.site);
+            modelSite.updateSite($scope.site);
             $scope.showpassword = false;
         }
     }

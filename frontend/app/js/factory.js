@@ -211,8 +211,9 @@ vcpapp.factory('modelSite',  function(){
     factory.getSite = function () {
         return  sitedata;
     };
-    factory.getSiteInfo = function () {
-        return  angular.copy(sitedata.siteinfo);
+    factory.updateSite= function(sitedata1){
+        localStorage.setItem("siteData",JSON.stringify(sitedata1));
+        return;
     };
     factory.saveSiteInfo= function(sitedata){
         console.log(sitedata);
