@@ -119,3 +119,25 @@ page.c.userController = function($scope, $location, modelSite) {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+page.c.siteController = function($scope, $location, modelSite) {
+    $scope.siteinfodata = modelSite.getSiteInfo();
+
+    $scope.savesiteinfo = function(callback){
+        console.log($scope.siteinfodata);
+        if (callback.$valid) {
+            modelSite.saveSiteInfo($scope.siteinfodata);
+        }
+    }
+
+
+}

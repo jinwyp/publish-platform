@@ -150,8 +150,7 @@ vcpapp.factory('modelSite',  function(){
         if (JSON.parse(localStorage.getItem("siteData")) == null || JSON.parse(localStorage.getItem("siteData")).length == 0){
             sitedata = {
                 userinfo : {},
-                siteid : 1,
-                sitename : 'NewSite',
+                siteinfo : {},
 
                 pagelist : [
                     { siteid:1, pagename:'Homepage', pageid:101, pagetype:10, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
@@ -212,6 +211,15 @@ vcpapp.factory('modelSite',  function(){
     factory.getSite = function () {
         return  sitedata;
     };
+    factory.getSiteInfo = function () {
+        return  angular.copy(sitedata.siteinfo);
+    };
+    factory.saveSiteInfo= function(sitedata){
+        console.log(sitedata);
+        sitedata.siteinfo =  angular.copy(sitedata);
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
+        return;
+        };
 
     factory.saveUserInfo= function(userdata){
         sitedata.userinfo =  userdata;
