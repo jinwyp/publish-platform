@@ -213,6 +213,11 @@ vcpapp.factory('modelSite',  function(){
         return  sitedata;
     };
 
+    factory.saveUserInfo= function(userdata){
+        sitedata.userinfo =  userdata;
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
+        return;
+    };
 
 
     factory.addSinglePage = function (pagedata) {

@@ -21,7 +21,7 @@ page.c.userController = function($scope, $location, modelSite) {
                 alert('Password Inconsistent!');
                 return;
             }else{
-                modelSite.updateSinglePage($scope.site);
+                modelSite.saveUserInfo($scope.user);
                 location.href="user.html";
             }
         }
@@ -30,7 +30,7 @@ page.c.userController = function($scope, $location, modelSite) {
     //保存用户基本信息
     $scope.savebasicinfo = function(callback){
         if (callback.$valid) {
-            modelSite.updateSinglePage($scope.site);
+            modelSite.saveUserInfo($scope.user);
         }
     }
 
