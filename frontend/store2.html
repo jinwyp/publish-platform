@@ -14,7 +14,8 @@
     <!-- 默认 Site Theme -->
     <link href="theme/default/site-theme.css" rel="stylesheet">
     <style type="text/css">
-		#store{ margin:0; padding:0;}
+		#store{ margin:0; padding:0; width:100%; height:1280px; overflow:hidden;}
+		#store a{ display:block; width:1920px; height:1280px; background:url(app/img/temp/store2.jpg) no-repeat;}
 	</style>
   </head>
 <body style="background:#fff">
@@ -23,14 +24,19 @@
 
 <!-- Header -->
 <header class="header">
-	<h1 class="logo">VCP</h1><a href="page.html" class="signin">Sign In</a>
+	<h1 class="logo">VCP</h1>
     <ul class="menu clearfix">
-    	<li><a href="user.html">User</a></li>
-    	<li><a href="site.html">Site</a></li>
-        <li><a href="page.html">Page</a></li>
-        <li><a href="article.html">Article</a></li>
-        <li><a href="reports.html">Reports</a></li>
-        <li><a href="store.html" class="current">Store</a></li>
+    	<li id="menuUser"><a href="user.html">User</a></li>
+    	<li id="menuSite"><a href="site.html">Site</a></li>
+        <li id="menuPage"><a href="page.html">Page</a></li>
+        <li id="menuArticle"><a href="article_list_index.html">Article</a></li>
+        <li id="menuReports"><a href="reports.html">Reports</a></li>
+        <li id="menuStore"><a href="###" class="current">Store 1</a>
+        	<ul class="subMenuStore">
+            	<li><a href="store.html">Style 1: Fixed width</a></li>
+                <li style="border:0;"><a href="store2.html">Style 2: Adaptive width</a></li>
+            </ul>
+        </li>
     </ul>
 </header>
         
@@ -38,7 +44,7 @@
 <!-- Container -->
 
 	<div id="store">
-			<a href="store.html"><img src="app/img/temp/store2.jpg" alt=""></a>
+			<a href="store.html"></a>
     </div>
 
 
