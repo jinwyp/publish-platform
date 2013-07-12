@@ -761,13 +761,23 @@ ul.layout_list .active	{ opacity:1;}
 .block_content		{ position:relative; margin-bottom:10px; z-index:1; min-height:140px; }
 
 
-.blockempty		{ border:2px dashed #cbcdca !important;      background:url(img/null_block.png) center center no-repeat !important;}
+.blockempty			{ border:2px dashed #cbcdca !important;      background:url(img/null_block.png) center center no-repeat !important;}
 
-.hoverempty	{ border:2px dashed transparent !important; border:1px solid #999\9;  background:none !important; border-radius:4px; box-shadow:inset 0 0 100px rgba(0,0,0,0.1), 0 0 3px rgba(0,0,0,0.6);}
+.hoverempty			{ border:2px dashed transparent !important; border:1px solid #999\9;  background:none !important; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.6); 
+-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	 -ms-transition: all 0.2s ease-in-out;
+	  -o-transition: all 0.2s ease-in-out;
+	     transition: all 0.2s ease-in-out;}
 
 .block-full			{ border:1px solid transparent !important; background:none !important;}
 
-.hoverfill	{ border:1px solid transparent !important; border:1px solid #999\9; background:#fff; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.6);}
+.hoverfill			{ border:1px solid transparent !important; border:1px solid #999\9; background:#fff; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.6); 
+-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	 -ms-transition: all 0.2s ease-in-out;
+	  -o-transition: all 0.2s ease-in-out;
+	     transition: all 0.2s ease-in-out;}
 
 /* =========================================================================================== */
 /*                                 Block：Setup + Move + Delete                                */
@@ -786,7 +796,7 @@ ul.layout_list .active	{ opacity:1;}
 .attribute_panel a.icon_setup,
 .attribute_panel a.icon_move,
 .attribute_panel a.icon_delete,
-.attribute_panel a.icon_editor{ display:block; float:right; width:42px; height:34px; margin-left:1px; border-radius:4px 4px 0 0; background:#f00; text-indent:-9999px; background:#888 url(img/icon_attribute.png) no-repeat; outline:none;}
+.attribute_panel a.icon_editor{ display:block; float:right; width:42px; height:34px; margin-left:1px; border-radius:4px 4px 0 0; background:#f00; text-indent:-9999px; background:#ccc url(img/icon_attribute.png) no-repeat; outline:none; }
 
 .attribute_panel a.icon_setup { background-position:50% 7px;}
 .attribute_panel a.icon_move  { background-position:50% -93px;}
@@ -796,7 +806,7 @@ ul.layout_list .active	{ opacity:1;}
 .attribute_panel a.icon_setup:hover,
 .attribute_panel a.icon_move:hover,
 .attribute_panel a.icon_delete:hover,
-.attribute_panel a.icon_editor:hover{ background-color:#454545;}
+.attribute_panel a.icon_editor:hover{ background-color:#888;}
 
 .attribute_panel .active{ background-color:#454545;}
 
@@ -1027,9 +1037,15 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -500px;}
     width:54px; height:54px;
     margin:5px; vertical-align:top;
     background:url(img/icon_createblock.png) no-repeat;
-    box-shadow:0 1px 2px rgba(0,0,0,0.3);
     border-radius:8px; cursor:pointer;
     zoom:1;
+	-moz-opacity:0.5;
+	opacity:0.5;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	 -ms-transition: all 0.2s ease-in-out;
+	  -o-transition: all 0.2s ease-in-out;
+	     transition: all 0.2s ease-in-out;
 }
 
 .ico_autoblock			{ background-position:0 0;			}
@@ -1042,13 +1058,13 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -500px;}
 .ico_autoeditor:hover,
 .ico_staticblock:hover,
 .ico_adblock:hover,
-.ico_RSS:hover			{ box-shadow:inset 0 0 30px rgba(0,0,0,0.5);}
+.ico_RSS:hover			{ opacity:1;  box-shadow:inset 0 0 30px rgba(0,0,0,0.5);}
 
 .ico_autoblock.ico_active,
 .ico_autoeditor.ico_active,
 .ico_staticblock.ico_active,
 .ico_adblock.ico_active,
-.ico_RSS.ico_active		{ box-shadow:inset 0 0 30px rgba(0,0,0,0.5);}
+.ico_RSS.ico_active		{ opacity:1; box-shadow:inset 0 0 30px rgba(0,0,0,0.5);}
 
 /*.block_content:hover .ico_autoblock,
 .block_content:hover .ico_autoeditor,
