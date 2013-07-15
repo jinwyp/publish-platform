@@ -220,7 +220,7 @@ vcpapp.factory('modelSite',  function(){
         sitedata.siteinfo =  angular.copy(sitedata);
         localStorage.setItem("siteData",JSON.stringify(sitedata));
         return;
-        };
+    };
 
     factory.saveUserInfo= function(userdata){
         sitedata.userinfo =  userdata;
@@ -320,17 +320,25 @@ vcpapp.factory('modelSite',  function(){
         return sitedata.headerdata;
     }
     factory.addHeaderMenu = function (menudata) {
-        return  sitedata.headerdata.push(menudata);
+        sitedata.headerdata.push(menudata);
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
+        return;
     };
     factory.addHeaderChildMenu = function (menuindex,childmenudata) {
-        return  sitedata.headerdata[menuindex].childdata.push(childmenudata);
+        sitedata.headerdata[menuindex].childdata.push(childmenudata);
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
+        return;
     };
 
     factory.editHeaderMenu = function (pagedata) {
-        return  sitedata.headerdata.push(pagedata);
+        sitedata.headerdata.push(pagedata);
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
+        return;
     };
     factory.editHeaderChildMenu = function (id,pagedata) {
-        return  sitedata.headerdata[id].childdata.push(pagedata);
+        sitedata.headerdata[id].childdata.push(pagedata);
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
+        return;
     };
 
     factory.getfoottheme=function(){

@@ -18,7 +18,6 @@
 
  page.c.GlobalCtrl = function($scope, modelSite){
     $scope.header = modelSite.getHeader();
-     alert($scope.header);
     $scope.cssblocklayoutselected = 0;
 /*
 	$scope.header = [

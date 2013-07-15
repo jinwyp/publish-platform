@@ -61,7 +61,7 @@ page.c.userController = function($scope, $location, modelSite) {
     $scope.userlogin = function(callback){
         if (callback.$valid) {
             if(!($scope.loginpassword == $scope.user.password) || !($scope.loginemail == $scope.user.email)){
-                  alert('Password or email error!');
+                alert('Password or email error!');
                 return;
             }else{
                 location.href = "site.html";
