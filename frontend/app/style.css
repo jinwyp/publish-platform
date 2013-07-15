@@ -884,7 +884,7 @@ ul.nav_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-filt
 /* =========================================================================================== */
 /*                                      Footer Block Panel                                     */
 /* =========================================================================================== */
-.footer_view				  { position:relative; z-index:3; margin:0; padding:0; height:80px; border:2px dashed #fff; background:url(img/null_header.png) center center no-repeat; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+.footer_view				  { position:relative; z-index:3; margin:0; padding:0; height:80px; border:2px dashed #fff; background:url(img/null_footer.png) center center no-repeat; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
 .footer_view.hover_view		 { border:0px solid #000; border-radius:4px; background:#fff !important; }
 .footer_view.hover_view:after{ display:block; text-align:center; font-size:30px; font-style:normal; color:#bbb; line-height:66px; content:'Select Footer style/layout'; }
 
@@ -1390,6 +1390,11 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .article-title-ico 	{ display:block; min-width:280px; float:right; font-style:normal; text-align:right;}
 .article-title-ico [class^="ico-article"],
 .article-title-ico [class*="ico-article"]{ margin-left:20px;}
+
+.article-title-ico .ListSequence	{ float:right; margin-right:20px;}
+.article-title-ico .ListSequence [class^="ico-article"],
+.article-title-ico .ListSequence [class*="ico-article"]{ margin:0 2px;}
+
 .radio.searchradio	{ float:left; }
 .article-title .well{ margin:0; padding:10px;}
 .article-title .well input{ font-size:12px;}
