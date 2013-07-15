@@ -1,7 +1,7 @@
 'use strict';
 
 
-var vcpapp = angular.module('vcpmodule', [ 'vcpmodule.directive' ]);
+var vcpapp = angular.module('vcpmodule', ['firebase']);
 
 var page = {
     c:{}
@@ -20,25 +20,7 @@ page.c.userController = function($scope, $location, modelSite) {
     if($scope.user.gender == undefined){
         $scope.user.gender = 'male';
     }
-    //保存密码和邮箱
 
-    $scope.passwd='';
-    $scope.againpasswd='';
-    $scope.passwordalert=false;
-    $scope.saveemailinfo = function(callback){
-        if (callback.$valid) {
-            if(!($scope.passwd == $scope.againpasswd)){
-                $scope.passwordalert=true;
-                return;
-            }else{
-                $scope.user.email = $scope.loginemail;
-                $scope.user.password = $scope.againpasswd;
-                modelSite.updateSite($scope.site);
-                $scope.passwordalert=false;
-                location.href="user.html";
-            }
-        }
-    }
 
     //保存用户基本信息
 
@@ -122,7 +104,44 @@ page.c.userController = function($scope, $location, modelSite) {
 
 
 
+page.c.userRegisterController = function($scope, $location, angularFire) {
 
+    var url = "https://vcplatform.firebaseIO.com/user";
+    var promise = angularFire(url, $scope, 'userFirebase', {});
+
+    $scope.userdata = {
+        email : '',
+        password1 : '',
+        password2 : ''
+    };
+
+    $scope.csspasswordprompt = false;
+
+    promise.then(function() {
+
+        //注册用户 保存密码和邮箱
+        $scope.saveemailinfo = function(callback){
+            if (callback.$valid) {
+                if($scope.userdata.password1 == $scope.userdata.password2){
+                    $scope.csspasswordprompt = false ;
+
+                    $scope.userFirebase = {
+                        email : $scope.userdata.email,
+                        password1 : $scope.userdata.password1,
+                        password2 : $scope.userdata.password2
+                    };
+
+                    modelSite.updateSite($scope.site);
+                    location.href = "user.html";
+                }else{
+                    $scope.csspasswordprompt = true;
+                }
+            }
+        }
+    });
+
+
+}
 
 
 
