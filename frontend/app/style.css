@@ -1390,6 +1390,11 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .article-title-ico 	{ display:block; min-width:280px; float:right; font-style:normal; text-align:right;}
 .article-title-ico [class^="ico-article"],
 .article-title-ico [class*="ico-article"]{ margin-left:20px;}
+
+.article-title-ico .ListSequence	{ float:right; margin-right:20px;}
+.article-title-ico .ListSequence [class^="ico-article"],
+.article-title-ico .ListSequence [class*="ico-article"]{ margin:0 2px;}
+
 .radio.searchradio	{ float:left; }
 .article-title .well{ margin:0; padding:10px;}
 .article-title .well input{ font-size:12px;}
