@@ -452,7 +452,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     $scope.showa=-1;
     $scope.showchilda=-1;
     $scope.showerror=false;
-    $scope.headerlocalurl=$scope.pages[0];
+    $scope.headerlocalurl='';
 
     //show header menu and theme
     $scope.showheadermenusetting = function(){
@@ -506,7 +506,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     $scope.newheaderdata ={};
     $scope.checkpargeid=function(){
         for(var i=0;i<$scope.pages.length;i++){
-            if($scope.pages[i].pagename==$(".dk_label")[0].textContent){
+            if($scope.pages[i].pagename== $scope.headerlocalurl){
                 return $scope.pages[i].pageid;
             }
         }
@@ -527,7 +527,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         }else{
             $scope.newheaderdata.menutype='local';
             $scope.newheaderdata.linkedurl='';
-            $scope.newheaderdata.linkedpagename=$(".dk_label")[0].textContent;
+            $scope.newheaderdata.linkedpagename= $scope.newheaderdata.headerlocalurl;
             $scope.newheaderdata.linkedpageid=$scope.checkpargeid();
         }
         $scope.csstitleform=false;
@@ -581,9 +581,9 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                     headchildclass.linkedpagename=$scope.newheaderdata.linkedpagename;
                 }
             }
-            /*    if(window.localStorage){
-             localStorage.setItem("newData",JSON.stringify($scope.header));
-             }*/
+            /*if(window.localStorage){
+                localStorage.setItem("newData",JSON.stringify($scope.header));
+            }*/
         }else{
             if(insertdata){
                 if($scope.footer.length==0){
