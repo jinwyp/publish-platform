@@ -835,10 +835,11 @@ ul.nav_structure a.main_addlink,
 ul.nav_structure a.sub_addlink		{ display:block; position:relative; width:160px; height:32px; text-decoration:none; line-height:30px; border-radius:4px; background:rgba(255,255,255,1); border:1px dashed #bbb; color:#fff; text-align:center; text-indent:0px;}
 
 /* PageLink & UrlLink */
-ul.nav_structure a.pagelink 		{ background:#478697; /* background-position:0 0; */	}
-ul.nav_structure a.pagelink:hover	{ background:#377485; /* background-position:0 -32px; */}
-ul.nav_structure a.urllink 			{ background:#54bfcf; /* background-position:0 -64px; */}
-ul.nav_structure a.urllink:hover	{ background:#46acbb; /* background-position:0 -96px; */}
+ul.nav_structure a.pagelink 		{ background:#fc8445; /* background-position:0 0; */	}
+ul.nav_structure a.pagelink:hover	{ background:#e7600f; /* background-position:0 -32px; */}
+ul.nav_structure a.urllink 			{ background:#7abbd1; /* background-position:0 -64px; */}
+ul.nav_structure a.urllink:hover	{ background:#4e9bb5; /* background-position:0 -96px; */}
+
 
 /* 横向加 */
 ul.nav_structure a.main_addlink			{ font-size:28px; color:#bbb;}
