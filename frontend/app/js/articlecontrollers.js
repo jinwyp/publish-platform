@@ -2,7 +2,7 @@
 
 /* App Module */
 
-var articleapp = angular.module('vcpmodule', ['ui.bootstrap', 'vcpmodule.directive']);
+var articleapp = angular.module('vcpmodule', ['ui.bootstrap', 'firebase', 'vcpmodule.directive']);
 
 
 
@@ -136,9 +136,17 @@ articleapp.config(['$routeProvider', function($routeProvider) {
 
 
 /* Controllers */
-articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
+articleapp.controller.articleList = function ($scope, $filter, angularFire) {
+    var url = "https://vcplatform.firebaseIO.com/articles";
+    var articlelistpromise = angularFire(url, $scope, 'articlelistFirebase', []);
+
     //获取全部数据
-    $scope.articlestotaldata = modelArticle.getArticleList();
+    articlelistpromise.then(function() {
+        $scope.articlestotaldata = articlelistpromise;
+    });
+
+//    $scope.articlestotaldata = modelArticle.getArticleList();     // use firebase for database
+
     var copytotaldata = [];
     copytotaldata = $scope.articlestotaldata;
     //排序所有数据
