@@ -412,7 +412,7 @@
 /* 输入框 */
 .site_form input.site_input{ margin:0 auto; display:block; padding:6px; width:86%; height:auto; vertical-align:baseline;}
 .site_form input.site_input2{ margin:0 10px; width:50%; float: left;}
-.site_form .site_inputspan{ padding: 3px 0;margin-left: 2px; font-size: 16px }
+.site_form .site_inputspan{ color:#666; padding:4px 0 0; margin-left:0px; font-size:18px }
 /* Logo and Web Icon */
 .site_logo_btn{ display:block; position:relative; margin:0 auto; padding:0; width:100px; height:100px; color:#c0c0c0; text-align:center; border-radius:8px; border:3px solid #e3e4e8; background:#fff url(img/null_block.png) center center no-repeat;}
 .site_logo_btn:hover{ border-color:#aaa; color:#c0c0c0;}
@@ -809,12 +809,12 @@ ul.layout_list .active	{ opacity:1;}
 .header_view.hover_view:after{ display:block; text-align:center; font-size:30px; font-style:normal; color:#bbb; line-height:60px; content:'Select Nav style/layout'; }
 
 /* Panel Box */
-.header_panel   		{ position:absolute; left:0; bottom:21px; width:940px; height:80px; z-index:1; border-radius:4px; background:#fff;  box-shadow:0 0 4px rgba(0,0,0,0.5); -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; }
+.header_panel   		{ position:absolute; left:0; bottom:0px; width:940px; height:80px; z-index:1; border-radius:4px; background:#fff;  box-shadow:0 0 4px rgba(0,0,0,0.5); -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; }
 
 /* Theme panel */
 .theme_panel			{ position:relative; margin:0 auto; top:-64px; width:630px; height:60px; padding:10px 20px; border-radius:4px 4px 0 0; border:0px solid rgba(0,0,0,0.75); border-bottom:0; background: -webkit-gradient(linear, 0 0, 0 100%, from(#eee), to(#ddd)); background: -moz-linear-gradient(top, #eee, #ddd); box-shadow:0 -1px 3px rgba(0,0,0,0.6); }
 .theme_panel a			{ display:block; width:128px; height:30px; float:left; margin-right:20px; border:7px solid #fff /*transparent*/; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.5);}
-.theme_panel .last		{ margin-right:0;}
+.theme_panel .last	{ margin-right:0;}
 .theme_panel .select	{ position:relative; border:7px solid #38b801; box-shadow:none;}
 .theme_panel .select:before	{ display:block; position:absolute; left:-7px; top:-7px; width:142px; height:44px; content:''; background:rgba(56,184,1,0.4) url(img/navtheme_select.png) 104px 10px no-repeat; border-radius:4px;}
 .theme_panel .theme_01	{ background:url(img/header_theme_01.jpg) no-repeat;}
