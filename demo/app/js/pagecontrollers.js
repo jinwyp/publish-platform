@@ -18,15 +18,10 @@
 
  page.c.GlobalCtrl = function($scope, modelSite){
     $scope.header = modelSite.getHeader();
+
+    $scope.footer = modelSite.getfooter();
+    $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
     $scope.cssblocklayoutselected = 0;
-/*
-	$scope.header = [
-        {"name":"Homepage","link":"index"},
-        {"name":"Investing","link":"investing"},
-        {"name":"Finance","link":"finance"},
-        {"name":"Trading","link":"trading"},
-        {"name":"Article","link":"article"}
-	];*/
 
 
 	$scope.todayhot = function(item) {

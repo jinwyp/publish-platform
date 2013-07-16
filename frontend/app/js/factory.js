@@ -348,7 +348,9 @@ vcpapp.factory('modelSite',  function(){
         return sitedata.footerdata;
     };
     factory.addfooterMenu = function (menudata) {
-        return  sitedata.footerdata.push(menudata);
+        sitedata.footerdata.push(menudata);
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
+        return;
     };
 
 
