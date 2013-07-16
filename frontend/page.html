@@ -268,6 +268,10 @@
                            <!-- 有header 数据 -->
                             <div class="site-theme b-header" ng-show="cssheadermenuhavadata" ng-class="{zindextop:cssheadermenuhavadata}">
                                 <h1 class="b-h-logo"><img src="theme/default/img/logo.png" alt="SymptomFind"></h1>
+                                <div class="b-h-information">
+                                	<input type="text" class="search" value="" placeholder="search...">
+                                    <input type="button" class="search_btn" value="Search">
+                                </div>
                                 <ul class="b-h-nav">
                                     <li ng-repeat="head in header"><a href="#{{head.linkedurl}}" ng-class="{current: $index==cssheadernavindex}" >{{head.menuname}}</a></li>
                                 </ul>
@@ -365,6 +369,11 @@
                                         <span>{{ article.created | date:'MM/dd/yyyy' }}</span>
                                         <h3 ng-click="check(block)"><a href="/articledetail/{{ article.id }}">{{ article.title }}</a></h3>
                                     </li>
+                                    <li><h3><a href="#">alsdjfaoidsuvasd</a></h3></li>
+                                    <li><h3><a href="#">alsdjfaoidsuvasd</a></h3></li>
+                                    <li><h3><a href="#">alsdjfaoidsuvasd</a></h3></li>
+                                    <li><h3><a href="#">alsdjfaoidsuvasd</a></h3></li>
+                                    <li><h3><a href="#">alsdjfaoidsuvasd</a></h3></li>
                                 </ul>
 
                             </div>
