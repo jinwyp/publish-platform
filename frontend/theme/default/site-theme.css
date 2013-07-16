@@ -56,6 +56,9 @@
 .site-theme.b-block ul.listarticle li a	{ font-size:14px; color:#17a49c; text-decoration:none;}
 .site-theme.b-block ul.listarticle li a:hover{ color:#1a95d0;}
 
+.site-theme.b-block .b-block-staticTitle	{ color:#df9282; font-size:16px; margin:10px 0;}
+.site-theme.b-block .b-block-staticTxt		{ color:#464a49; font-size:13px; line-height:20px; margin-bottom:10px;}
+
 
 
 
