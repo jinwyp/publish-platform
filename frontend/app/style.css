@@ -838,9 +838,9 @@ ul.nav_structure a.sub_addlink		{ display:block; position:relative; width:160px;
 
 /* PageLink & UrlLink */
 ul.nav_structure a.pagelink 			{ background:#999; font-weight:bold; /* background-position:0 0; */}
-ul.nav_structure a.pagelink:hover	{ background:#888; /* background-position:0 -32px; */}
+ul.nav_structure a.pagelink:hover	{ /*background:#888;  background-position:0 -32px; */}
 ul.nav_structure a.urllink 			{ background:#bbb; /* background-position:0 -64px; */}
-ul.nav_structure a.urllink:hover		{ background:#888; /* background-position:0 -96px; */}
+ul.nav_structure a.urllink:hover		{ /*background:#888;  background-position:0 -96px; */}
 
 
 /* 横向加 */
@@ -1389,12 +1389,12 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .article-span9		{ width:700px; float:left; min-height:1px; margin-left:12px; border:1px solid #d4d0cd; border-radius:4px; background:#fff; }
 
 /* Container Title */
-.article-title		{ padding:14px; margin:0; color:#999; background:#f8f8f8; border-radius:4px 4px 0 0; border-bottom:1px solid #e0e0e0;}
+.article-title		{ position:relative; padding:14px; margin:0; color:#999; background:#f8f8f8; border-radius:4px 4px 0 0; border-bottom:1px solid #e0e0e0;}
 .article-title-ico 	{ display:block; min-width:280px; float:right; font-style:normal; text-align:right;}
 .article-title-ico [class^="ico-article"],
 .article-title-ico [class*="ico-article"]{ margin-left:20px;}
 
-.article-title-ico .ListSequence	{ float:right; margin-right:20px;}
+.article-title-ico .ListSequence	{ position:absolute; right:260px; top:12px; }
 .article-title-ico .ListSequence [class^="ico-article"],
 .article-title-ico .ListSequence [class*="ico-article"]{ margin:0 2px;}
 
