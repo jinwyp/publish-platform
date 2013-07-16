@@ -14,23 +14,23 @@
 <body style="background:#f1f1f1;">
 
 <!-- Header -->
-<header class="header" ng-controller="userController">
+<header class="header" ng-controller="userLoginController">
 	<h1 class="logo"><a href="index.html">VCP</a></h1>
     <div class="dropdown toprightlogin">
     	  <a href="user.html" class="signin" data-toggle="dropdown">Login</a>
           
          <div class="dropdown-menu pull-right loginform">
-            <form name="loginfo" class="form-horizontal">
+            <form name="loginform" class="form-horizontal">
                   <div class="control-group">
                     <label class="control-label" for="inputEmail">Email</label>
                     <div class="controls">
-                      <input type="email" required id="inputEmail" ng-model="loginemail" placeholder="Email">
+                      <input type="email" required id="inputEmail" ng-model="userdata.email" placeholder="Email">
                     </div>
                   </div>
                   <div class="control-group">
                     <label class="control-label" for="inputPassword">Password</label>
                     <div class="controls">
-                      <input type="password" required id="inputPassword" ng-model="loginpassword" placeholder="Password">
+                      <input type="password" required id="inputPassword" ng-model="userdata.password" placeholder="Password">
                     </div>
                   </div>
                   <div class="control-group">
@@ -38,7 +38,7 @@
                       <label class="checkbox">
                         <input type="checkbox"> Remember me
                       </label>
-                      <input type="submit" class="btn" ng-click="userlogin(loginfo)" value="Sign in">
+                      <input type="submit" class="btn" ng-click="userlogin(loginform)" value="Sign in">
                     </div>
                   </div>
              </form>

@@ -386,7 +386,7 @@
 
 .RssFeedLabel		{ margin-right:20px; font-size:16px; font-weight:bold; display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline;}
 .RssFeedLabel input[type="radio"] { vertical-align:0px; margin-right:4px;}
-.RssFeedOn_Box		{ display:none; border:1px solid #bfe3ab; border-radius:4px; padding:10px; background:#e6f2dc; font-weight:bold; color:#000; max-width:180px; word-wrap:break-word;}
+.RssFeedOn_Box		{  border:1px solid #bfe3ab; border-radius:4px; padding:10px; background:#e6f2dc; font-weight:bold; color:#000; max-width:180px; word-wrap:break-word;}
 
 /* 提交按钮 */
 .site_form .submitbox			{ padding:10px; border-radius:0 0 6px 6px; background:#4b4c50; text-align:center;}
@@ -411,6 +411,8 @@
 .site_form table .titlename{ width:66px; padding:20px 0; color:#e2e3e7; text-align:center; background:#8c8d91;}
 /* 输入框 */
 .site_form input.site_input{ margin:0 auto; display:block; padding:6px; width:86%; height:auto; vertical-align:baseline;}
+.site_form input.site_input2{ margin:0 10px; width:50%; float: left;}
+.site_form .site_inputspan{ padding: 3px 0;margin-left: 2px; font-size: 16px }
 /* Logo and Web Icon */
 .site_logo_btn{ display:block; position:relative; margin:0 auto; padding:0; width:100px; height:100px; color:#c0c0c0; text-align:center; border-radius:8px; border:3px solid #e3e4e8; background:#fff url(img/null_block.png) center center no-repeat;}
 .site_logo_btn:hover{ border-color:#aaa; color:#c0c0c0;}

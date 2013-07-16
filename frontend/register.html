@@ -60,7 +60,7 @@
                     	<td class="titlename">Confirm Password</td>
                         <td><input id="reformpassword" type="password" required ng-model="userdata.password2" class="reg_input"></td>
                     </tr>
-                    <tr ng-show="csspasswordprompt">
+                    <tr ng-cloak ng-show="csspasswordprompt">
                         <td style="color: #fff; padding:8px; text-align:center; background-color: #930;;" colspan="2">Password Inconsistent!</td>
                     </tr>
                 </table>
