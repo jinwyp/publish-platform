@@ -14,7 +14,8 @@
     <![endif]-->
     <!-- 默认 Site Theme -->
     <link href="../frontend/theme/default/site-theme.css" rel="stylesheet">
-
+      <!-- 幻灯片 -->
+      <link type="text/css" rel="stylesheet" href="../frontend/lib/jqueryplugin/slidebanner/css/slidebanner.css" />
   </head>
 <body style="background:#f1f1f1;" ng-controller="GlobalCtrl">
 
@@ -28,29 +29,94 @@
 
                            <!-- 有header 数据 -->
                             <div ng-class="{zindextop:cssheadermenuhavadata}"  class="site-theme b-header zindextop" style="">
-                                <h1 class="b-h-logo">LOGO</h1>
+                                <h1 class="b-h-logo"><img src="../frontend/theme/default/img/logo.png" alt="SymptomFind"></h1>
+                                <div class="b-h-information">
+                                    <input type="text" class="search" value="" placeholder="search...">
+                                    <input type="button" class="search_btn" value="Search">
+                                </div>
                                 <ul class="b-h-nav">
                                     <li ng-repeat="head in header" class="ng-scope">
-										<a href="#/{{head.link}}" class="ng-binding" ng-class="{current:$index == cssblocklayoutselected}" ng-click="showCurrent($index)">{{head.menuname}}</a>
+										<a href="#/{{head.link}}" class="ng-binding" ng-class="{current:$index == cssblocklayoutselected}" ng-click="showCurrent(head.linkedurl)">{{head.menuname}}</a>
 									    <ul class="b-h-subnav">
-                                            <li ng-repeat="child in head.childdata"><a href="#">{{child.menuname}}</a> </li>
+                                            <li ng-repeat="child in head.childdata" ng-click="showCurrent(child.linkedurl)"><a href="#">{{child.menuname}}</a> </li>
 									    </ul>
                                     </li>
                                 </ul>
-                                <div class="b-h-info">
-                                    <a href="#">Melvon</a>
-                                    <a href="#">Link</a>
-                                </div>
                             </div>
-							<div class="banner">
+							<!--<div class="banner">
 								<img src="app/img/temp/banner_top_970_90.jpg" alt=""/>
-							</div>
+							</div>-->
                             <!-- 有header //End -->
                         </div>
                         <!-- Header Block 2 //End -->
                     </div>
                 </div>
                 <!-- Page: Row //End -->
+                <div class="row">
+                    <div ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
+                        <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks track by $index">
+                            <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
+                                <h2 >{{ block.blockname}}</h2>
+                                <ul class="listarticle">
+                                    <li ng-repeat="article in block.blockarticles ">
+                                        <span>{{ article.created | date:'MM/dd/yyyy' }}</span>
+                                        <h3 ng-click="check(block)"><a href="/articledetail/{{ article.id }}">{{ article.title }}</a></h3>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='RSS'">
+                                <h3>{{ block.blockname}}</h3>
+
+                                <p><a href="#">How To Be A Top Financial Advisor</a></p>
+                                <p><a href="#">Retail Banking Vs. Commercial Banking</a></p>
+                                <p><a href="#">The Basics Of A 401(k) Retirement Plan</a></p>
+                                <p><a href="#">6 Tough Questions To Ask Before Retirement</a></p>
+                                <p><a href="#">Quit Your Job To Trade Stocks?</a></p>
+                            </div>
+                            <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='ads'">
+                                <img src="../frontend/app/img/temp/ad_temp01.jpg">
+                            </div>
+                            <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='static'">
+
+                                <h2 ng-show="block.blockstatictype=='text'">{{ block.blockname}}</h2>
+                                <h4 class="b-block-staticTitle" ng-show="block.blockstatictype=='text'">Seasonal Allergy Symptoms</h4>
+                                <p class="b-block-staticTxt" ng-show="block.blockstatictype=='text'">SymptomFind.com is one of the leading providers of health information on the Web. </p>
+                                <h4 class="b-block-staticTitle" ng-show="block.blockstatictype=='text'">Our Mission</h4>
+                                <p class="b-block-staticTxt" ng-show="block.blockstatictype=='text'">At SymptomFind.com, we are committed to providing the most accurate and authoritative information regarding health and nutrition to suit the needs of the everyday person.</p>
+
+                            </div>
+
+                            <!-- ?? -->
+                            <div ng-show="block.blockstatictype=='pic'">
+                                <p><img src="../frontend/app/img/temp/pic.jpg"></p>
+                            </div>
+
+                            <!-- ?? -->
+                            <video ng-show="block.blockstatictype=='video'" style="width:100%;" src="../frontend/app/img/temp/forest.mp4" autoplay loop controls></video>
+
+                            <!-- ??? Slider Banner -->
+                            <img ng-show="block.blockstatictype=='slideshow'" src="../frontend/lib/jqueryplugin/slidebanner/images/one.jpg" width="680" height="272" />
+                           <!-- <div id="focus" ng-show="block.blockstatictype=='slideshow'">
+                                <div class="focusWarp">
+                                    <ul class="imgList">
+                                        <li><a href="#"><img src="../frontend/lib/jqueryplugin/slidebanner/images/one.jpg" width="680" height="272" /></a></li>
+                                        <li><a href="#"><img src="../frontend/lib/jqueryplugin/slidebanner/images/two.jpg" width="680" height="272" /></a></li>
+                                        <li><a href="#"><img src="../frontend/lib/jqueryplugin/slidebanner/images/thr.jpg" width="680" height="272" /></a></li>
+                                        <li><a href="#"><img src="../frontend/lib/jqueryplugin/slidebanner/images/four.jpg" width="680" height="272" /></a></li>
+                                    </ul>
+                                    <ul class="imgList_two">
+                                        <li><img src="../frontend/lib/jqueryplugin/slidebanner/images/one_size.png" width="375" height="150" /></li>
+                                        <li><img src="../frontend/lib/jqueryplugin/slidebanner/images/two_size.png" width="367" height="105" /></li>
+                                        <li><img src="../frontend/lib/jqueryplugin/slidebanner/images/thr_size.png" width="412" height="94" /></li>
+                                        <li><img src="../frontend/lib/jqueryplugin/slidebanner/images/four_size.png" width="372" height="96" /></li>
+                                    </ul>
+                                </div>
+                            </div>-->
+                            <!-- ??? Slider Banner //End-->
+                        </div>
+                    </div>
+                </div>
+                <!--
                 <div id ="LayoutL" ng-view>
                 
 				</div>
@@ -75,7 +141,7 @@
 						</div>
 					</div>
 				</div>
-
+                -->
 				<div class="row">
                     <div class="span12">
 						<!--  Footer -->
@@ -111,6 +177,25 @@
       <script src="../frontend/lib/flatui/lte-ie7-24.js"></script>
     <![endif]-->
     <script src="../frontend/app/js/custom.js"></script>
-    
+    <!-- 幻灯片 -->
+    <script type="text/javascript" src="../frontend/lib/jqueryplugin/slidebanner/js/easing.js"></script>
+    <script type="text/javascript" src="../lib/jqueryplugin/slidebanner/js/MogFocus.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#focus").mogFocus({
+                loadAnimation : true, //效果初次加载是否有动画效果
+                loadswitch : false,//是否开启loading
+                loading : "lib/jqueryplugin/slidebanner/images/loading.gif",//loading图片路径
+                time : 2000,//间隔时间
+                scrollWidth : "680",//焦点图宽度，任意数值，设置为100%或者auto时，占满全屏
+                autoScroll : true,//是否自动滚动
+                prevNextAnima : {duration: 600, easing: "easeInOutBack"},//按钮滑动出来的方式，支持缓动公式，如果直接设置数值，那么就没有缓动效果
+                prevNextToggle : "show",//设置为toggle时鼠标放到滑动图上显示，离开影藏。设置show时一直显示，设置hide时影藏
+                single: true,//设置true则显示第二层，false则第二层影藏
+                focusDelay: 250,//焦点图延迟时间
+                focusDelayTwo : 0//第二层焦点图延迟时间
+            });
+        });
+    </script>
 </body>
 </html>

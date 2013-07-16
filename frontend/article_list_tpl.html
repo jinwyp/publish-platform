@@ -94,7 +94,7 @@
 
                 <ul class="article-list">
                     
-                    <li  ng-mouseenter="showediticon()" ng-mouseleave="hideediticon($index)" ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata track by $index | filter:query"  ng-click="clickArticle(article, $index)" >
+                    <li ng-mouseenter="showediticon()" ng-mouseleave="hideediticon($index)" ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata track by $index | filter:query"  ng-click="clickArticle(article, $index)" >
                         <div class="list-date">
                             <h1><a href="" >{{article.title}}</a></h1>
                             <dl>
