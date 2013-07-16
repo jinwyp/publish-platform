@@ -119,8 +119,6 @@
                                 <option>Law</option>
                                 <option>Toys and games</option>
                                 <option>Law</option>
-                                <option>Law</option>
-                                <option>Law</option>
                             </select>
                         </div>
                     </dd>
@@ -347,7 +345,6 @@
                                 <!-- Nav Link //End -->
                             </div>
                             <!-- HeaderNavSettings 设置面板区 //End -->
-                            showpassword
                         </div>
                         <!-- Header Block 2 //End -->
                     </div>
@@ -369,11 +366,6 @@
                                         <span>{{ article.created | date:'MM/dd/yyyy' }}</span>
                                         <h3 ng-click="check(block)"><a href="/articledetail/{{ article.id }}">{{ article.title }}</a></h3>
                                     </li>
-                                    <li><h3><a href="#">No Finance Degree? No Problem! Top 10 Ways To Jumpstart A Career In Finance</a></h3></li>
-                                    <li><h3><a href="#">Using Index Futures To Predict The Future</a></h3></li>
-                                    <li><h3><a href="#">Tracking Volatility: How The VIX Is Calculated</a></h3></li>
-                                    <li><h3><a href="#">Summer Money-Making Opportunities For Finance Students</a></h3></li>
-                                    <li><h3><a href="#">The Causes And Costs Of Absenteeism</a></h3></li>
                                 </ul>
 
                             </div>
@@ -409,25 +401,26 @@
                                 <!-- 视频 -->
                                 <video ng-show="block.blockstatictype=='video'" style="width:100%;" src="app/img/temp/forest.mp4" autoplay loop controls></video>
                                 
-                                <!-- 幻灯片 Slider Banner -->
-                                <div id="focus" ng-show="block.blockstatictype=='slideshow'">
-                                    <div class="focusWarp">
-                                        <ul class="imgList">
-                                            <li><a href="#"><img src="lib/jqueryplugin/slidebanner/images/one.jpg" width="680" height="272" /></a></li>
-                                            <li><a href="#"><img src="lib/jqueryplugin/slidebanner/images/two.jpg" width="680" height="272" /></a></li>
-                                            <li><a href="#"><img src="lib/jqueryplugin/slidebanner/images/thr.jpg" width="680" height="272" /></a></li>
-                                            <li><a href="#"><img src="lib/jqueryplugin/slidebanner/images/four.jpg" width="680" height="272" /></a></li>
-                                        </ul>
-                                        <ul class="imgList_two">
-                                            <li><img src="lib/jqueryplugin/slidebanner/images/one_size.png" width="375" height="150" /></li>
-                                            <li><img src="lib/jqueryplugin/slidebanner/images/two_size.png" width="367" height="105" /></li>
-                                            <li><img src="lib/jqueryplugin/slidebanner/images/thr_size.png" width="412" height="94" /></li>
-                                            <li><img src="lib/jqueryplugin/slidebanner/images/four_size.png" width="372" height="96" /></li>
-                                        </ul>
-                                    </div>
+
+                            </div><!-- 幻灯片 Slider Banner -->
+                            <img ng-show="block.blockstatictype=='slideshow'" src="../frontend/lib/jqueryplugin/slidebanner/images/one.jpg" width="680" height="272" />
+                            <!--<div id="focus" ng-show="block.blockstatictype=='slideshow'">
+                                <div class="focusWarp">
+                                    <ul class="imgList">
+                                        <li><a href="#"><img src="lib/jqueryplugin/slidebanner/images/one.jpg" width="680" height="272" /></a></li>
+                                        <li><a href="#"><img src="lib/jqueryplugin/slidebanner/images/two.jpg" width="680" height="272" /></a></li>
+                                        <li><a href="#"><img src="lib/jqueryplugin/slidebanner/images/thr.jpg" width="680" height="272" /></a></li>
+                                        <li><a href="#"><img src="lib/jqueryplugin/slidebanner/images/four.jpg" width="680" height="272" /></a></li>
+                                    </ul>
+                                    <ul class="imgList_two">
+                                        <li><img src="lib/jqueryplugin/slidebanner/images/one_size.png" width="375" height="150" /></li>
+                                        <li><img src="lib/jqueryplugin/slidebanner/images/two_size.png" width="367" height="105" /></li>
+                                        <li><img src="lib/jqueryplugin/slidebanner/images/thr_size.png" width="412" height="94" /></li>
+                                        <li><img src="lib/jqueryplugin/slidebanner/images/four_size.png" width="372" height="96" /></li>
+                                    </ul>
                                 </div>
-                                <!-- 幻灯片 Slider Banner //End-->
-                            </div>
+                            </div>-->
+                            <!-- 幻灯片 Slider Banner //End-->
                             
 
                             <!-- Content End -->
@@ -547,8 +540,7 @@
                             <i class="drag"></i>{{page.pagename}}
                         </a>
 
-                        <!-- ======================================= Page Attribute Panel ======================================= -->
-                        <div class="page_attri_panel" ng-show="$index == selectedpageattributeindex">
+                        <!-- ======================================= Page Attribute Panel ======================================= --> <div class="page_attri_panel" ng-show="$index == selectedpageattributeindex">
                             <a href="" class="panel_close" ng-click="closeeditpageattribute($index)">X</a>
                             <h2>Page Attribute</h2>
                             <div class="page_attri_cont">
