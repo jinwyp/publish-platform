@@ -522,12 +522,12 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 return;
             }
             $scope.newheaderdata.linkedurl=$scope.newheaderdata.linkedurl;
-            $scope.newheaderdata.linkedpagename='';
+            $scope.newheaderdata.linkedpagename=$scope.newheaderdata.linkedurl;
             $scope.newheaderdata.linkedpageid=0;
         }else{
             $scope.newheaderdata.menutype='local';
-            $scope.newheaderdata.linkedurl='';
-            $scope.newheaderdata.linkedpagename= $scope.newheaderdata.headerlocalurl;
+            $scope.newheaderdata.linkedurl=$scope.headerlocalurl;
+            $scope.newheaderdata.linkedpagename= $scope.headerlocalurl;
             $scope.newheaderdata.linkedpageid=$scope.checkpargeid();
         }
         $scope.csstitleform=false;

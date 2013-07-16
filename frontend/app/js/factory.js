@@ -412,8 +412,6 @@ vcpapp.factory('modelSite',  function(){
         return sitedata.headertheme;
     }
 
-
-
     //header 修改
     factory.getHeader=function(){
         return sitedata.headerdata;

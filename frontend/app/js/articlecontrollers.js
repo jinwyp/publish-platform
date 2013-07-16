@@ -11,10 +11,12 @@ articleapp.factory('modelArticle', function(){
     var articlelist=[],taglist=[];
     if(window.localStorage){
         if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
+
             articlelist=[];
             taglist=[{"tagid":10001,"tagname":"Personal Debt","$$hashKey":"00L"},
                 {"tagid":10002,"tagname":"Economic","$$hashKey":"00M"},
                 {"tagid":10003,"tagname":"Students"},{"tagid":10004,"tagname":"Investment"}];
+
 
 
         }else{
@@ -309,7 +311,7 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
     //搜索提示
     $scope.selected = undefined;
     $scope.states = [];
-    $scope.states.length = 0;
+    /*  $scope.states.length = 0;
     var author1=[];
     for(var i = 0;i < copytotaldata.length; i++){
         $scope.states[i] = copytotaldata[i].title;
@@ -319,7 +321,7 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
     $scope.states=_.union($scope.states);
     for(var i = 0;i < author1.length; i++){
         $scope.states.push(author1[i]);
-    }
+    }*/
 
     $scope.selectdata=function(){
         var titledata=[],data=[],articledata=[];
@@ -338,7 +340,8 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
             //去除重复title
             resultdata=_.union(resultdata);
             resultarticle= _.union(resultarticle);
-            //根据title获取相应的数据
+            //根据title获取相应的
+            // 数据
             for(var j = 0;j < resultdata.length; j++){
                 for(var i = 0;i < copytotaldata.length; i++){
                     if(copytotaldata[i].title == resultdata[j]){
