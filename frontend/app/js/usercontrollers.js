@@ -21,14 +21,6 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
     var promise = angularFire(url, $scope, 'userFirebase', {});
 
     $scope.userdata = {
-        firstname : '',
-        lastname : '',
-        mobilenumber : '',
-        email : '',
-        oldpassword : '',
-        newpassword1 : '',
-        newpassword2 : '',
-        gender : "male"
     };
 
     //显示修改密码form
@@ -42,6 +34,18 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
     };
 
     promise.then(function() {
+        $scope.userdata = {
+            firstname : $scope.userFirebase.firstname,
+            lastname : $scope.userFirebase.lastname,
+            mobilenumber : $scope.userFirebase.mobilenumber,
+            email : '',
+            oldpassword : '',
+            newpassword1 : '',
+            newpassword2 : '',
+            gender : $scope.userFirebase.gender
+        };
+
+
         //保存用户基本信息
         $scope.saveuserinfo = function(callback){
             if (callback.$valid) {
