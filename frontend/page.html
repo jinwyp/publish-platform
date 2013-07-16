@@ -267,14 +267,10 @@
 
                            <!-- 有header 数据 -->
                             <div class="site-theme b-header" ng-show="cssheadermenuhavadata" ng-class="{zindextop:cssheadermenuhavadata}">
-                                <h1 class="b-h-logo">LOGO</h1>
+                                <h1 class="b-h-logo"><img src="theme/default/img/logo.png" alt="SymptomFind"></h1>
                                 <ul class="b-h-nav">
                                     <li ng-repeat="head in header"><a href="#{{head.linkedurl}}" ng-class="{current: $index==cssheadernavindex}" >{{head.menuname}}</a></li>
                                 </ul>
-                                <div class="b-h-info">
-                                    <a href="#">Melvon</a>
-                                    <a href="#">Link</a>
-                                </div>
                             </div>
                             <!-- 有header //End -->
 
