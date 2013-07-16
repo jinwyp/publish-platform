@@ -832,24 +832,24 @@ ul.nav_structure > li > ul > li { margin:0 0 8px 0;}
 
 ul.nav_structure		{ margin:0; padding:0; list-style:none;}
 ul.nav_structure a.pagelink,
-ul.nav_structure a.urllink			{ display:block; position:relative; width:160px; height:32px; font-size:12px; color:#fff; text-decoration:none; line-height:30px; text-indent:10px; border-radius:4px; /* background:url(img/navlink_btnbg.png) repeat-x; */}
+ul.nav_structure a.urllink			{ display:block; position:relative; width:160px; height:32px; font-size:12px; color:#fff; text-decoration:none; line-height:30px; text-indent:10px; border-radius:4px; text-transform:capitalize; /* background:url(img/navlink_btnbg.png) repeat-x; */}
 ul.nav_structure a.main_addlink,
 ul.nav_structure a.sub_addlink		{ display:block; position:relative; width:160px; height:32px; text-decoration:none; line-height:30px; border-radius:4px; background:rgba(255,255,255,1); border:1px dashed #bbb; color:#fff; text-align:center; text-indent:0px;}
 
 /* PageLink & UrlLink */
-ul.nav_structure a.pagelink 		{ background:#fc8445; /* background-position:0 0; */	}
-ul.nav_structure a.pagelink:hover	{ background:#e7600f; /* background-position:0 -32px; */}
-ul.nav_structure a.urllink 			{ background:#7abbd1; /* background-position:0 -64px; */}
-ul.nav_structure a.urllink:hover	{ background:#4e9bb5; /* background-position:0 -96px; */}
+ul.nav_structure a.pagelink 			{ background:#999; font-weight:bold; /* background-position:0 0; */}
+ul.nav_structure a.pagelink:hover	{ background:#888; /* background-position:0 -32px; */}
+ul.nav_structure a.urllink 			{ background:#bbb; /* background-position:0 -64px; */}
+ul.nav_structure a.urllink:hover		{ background:#888; /* background-position:0 -96px; */}
 
 
 /* 横向加 */
-ul.nav_structure a.main_addlink			{ font-size:28px; color:#bbb;}
-ul.nav_structure a.main_addlink:hover	{ background:rgba(0,0,0,0.4); border:1px dashed #999; color:#fff;}
+ul.nav_structure a.main_addlink			{ font-size:28px; color:#ccc; }
+ul.nav_structure a.main_addlink:hover	{ font-size:38px; background:rgba(0,0,0,0.1); border:1px dashed #999; color:#fff;}
 
 /* 纵向加 */
-ul.nav_structure a.sub_addlink			{ font-size:18px; color:#bbb;}
-ul.nav_structure a.sub_addlink:hover	{ background:rgba(0,0,0,0.2); border:1px dashed #999; color:#fff;}
+ul.nav_structure a.sub_addlink			{ font-size:18px; color:#ccc;}
+ul.nav_structure a.sub_addlink:hover	{ font-size:28px; background:rgba(0,0,0,0.1); border:1px dashed #999; color:#fff;}
 
 /* Edit Nav */
 ul.nav_structure .ico_edit				{ display:none; position:absolute; top:6px; right:4px; background:url(img/icon_attribute.png) 0px -400px no-repeat;}
@@ -857,15 +857,15 @@ ul.nav_structure a:hover .ico_edit		{ display:block; width:20px; height:20px; -m
 ul.nav_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-filter:"progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";  filter:alpha(opacity=100); -moz-opacity:1; opacity:1;}
 
 /* ========= NewLink panel ========= */
-.newlink_panel						{ width:160px; margin:0; padding:0; background:#8e8e8e; border-radius:4px; }
+.newlink_panel						{ width:160px; margin:0; padding:0; background:#999; border-radius:4px; }
 .newlink_panel form					{ margin:0; padding:0;}
 
 /* Name & Radio & Input & Select */
 .newlink_panel_name	{ padding:8px;}
-.newlink_panel_form	{ padding:20px 8px; margin:0; border:1px solid #8e8e8e; background:#fff; border-radius:0 0 4px 4px;}
+.newlink_panel_form	{ padding:20px 8px; margin:0; border:1px solid #999; background:#fff; border-radius:0 0 4px 4px;}
 .newlink_panel_btn	{ padding-left:34px;}
 
-.newlink_panel_name .input_newlink		{ width:132px; border:2px solid #c2c5ca; margin:0; color:#34495e; font-family:"Lato", sans-serif; font-size:14px; padding:2px 4px; text-indent:0px; border-radius:4px; box-shadow:none; border-color:#666 !important;}
+.newlink_panel_name .input_newlink		{ width:132px; border:2px solid #c2c5ca; margin:0; color:#34495e; font-family:"Lato", sans-serif; font-size:14px; padding:2px 4px; text-indent:0px; border-radius:4px; box-shadow:none; border-color:#777 !important;}
 .newlink_panel_name .input_newlink.placeholder{ color:#ccc; }
 .newlink_panel_name .input_newlink:focus	{ border-color:#38b800 !important;}
 .newlink_panel_name input[type="text"]:focus{ box-shadow:0 0 0 transparent;}
