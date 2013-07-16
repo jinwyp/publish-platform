@@ -18,6 +18,105 @@ vcpapp.factory('modelArticle', function(){
         }else{
             articlelist = JSON.parse(localStorage.getItem("articlesData"));
         }
+
+
+        /* articlelist = [
+         {  "id": 1000, "title": "???? multiple partial views in angularjs111.", "contentbody": "<b>111111</b>", "status": "needreview",
+         "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023, "category": "Today", "categoryid":1000,
+         "tags": [
+         { "tagid":10000, "tagname":"computer" },
+         { "tagid":10001, "tagname":"videocard" }
+         ],
+         "revision" : [
+         {
+         "versionid" :  1 ,
+         "versionnum" :  1 ,
+         "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+         "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+         "author": "Eric",  "editor": "iFan", "clickcount":1023,
+         "category": "Today", "categoryid":1000,
+         "tags": []
+         },
+         {
+         "versionid" :  2 ,
+         "versionnum" :  2 ,
+         "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+         "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+         "author": "Eric",  "editor": "iFan", "clickcount":1023,
+         "category": "Today", "categoryid":1000,
+         "tags": [
+         { "tagid":10000, "tagname":"computer" },
+         { "tagid":10001, "tagname":"videocard" }
+         ]
+         }
+         ]
+         },
+
+         {  "id": 1001, "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+         "created": "1370361600000", "updated": "1370361600000", "published": "1370361600000",  "author": "Eric",  "editor": "iFan", "clickcount":13, "category": "Today", "categoryid":1000,
+         "tags": [],
+         "revision" : [
+         {
+         "versionid" :  1 ,
+         "versionnum" :  1 ,
+         "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+         "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+         "author": "Eric",  "editor": "iFan", "clickcount":1023,
+         "category": "Today", "categoryid":1000,
+         "tags": [
+         { "tagid":10000, "tagname":"computer" },
+         { "tagid":10001, "tagname":"videocard" }
+         ]
+         },
+         {
+         "versionid" :  2 ,
+         "versionnum" :  2 ,
+         "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+         "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+         "author": "Eric",  "editor": "iFan", "clickcount":1023,
+         "category": "Today", "categoryid":1000,
+         "tags": [
+         { "tagid":10000, "tagname":"computer" },
+         { "tagid":10001, "tagname":"videocard" }
+         ]
+         }
+         ]
+         },
+
+         {  "id": 1002, "title": "?????? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+         "created": "1370188800000", "updated": "1370361600000", "published": "1370188800000",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
+         "tags": [],
+         "revision" : [
+         {
+         "versionid" :  1 ,
+         "versionnum" :  1 ,
+         "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+         "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+         "author": "Eric",  "editor": "iFan", "clickcount":1023,
+         "category": "Today", "categoryid":1000,
+         "tags": [
+         { "tagid":10000, "tagname":"computer" },
+         { "tagid":10001, "tagname":"videocard" }
+         ]
+         },
+         {
+         "versionid" :  2 ,
+         "versionnum" :  2 ,
+         "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+         "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+         "author": "Eric",  "editor": "iFan", "clickcount":1023,
+         "category": "Today", "categoryid":1000,
+         "tags": [
+         { "tagid":10000, "tagname":"computer" },
+         { "tagid":10001, "tagname":"videocard" }
+         ]
+         }
+         ]
+         }
+         ];
+
+
+         */
     }
 
     var factory = {};
