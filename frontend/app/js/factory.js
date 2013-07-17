@@ -73,38 +73,9 @@ vcpapp.factory('modelArticle', function(){
      ]
      }
      ]
-     },
+     }
 
-     {  "id": 1002, "title": "?????? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
-     "created": "1370188800000", "updated": "1370361600000", "published": "1370188800000",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
-     "tags": [],
-     "revision" : [
-     {
-     "versionid" :  1 ,
-     "versionnum" :  1 ,
-     "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
-     "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
-     "author": "Eric",  "editor": "iFan", "clickcount":1023,
-     "category": "Today", "categoryid":1000,
-     "tags": [
-     { "tagid":10000, "tagname":"computer" },
-     { "tagid":10001, "tagname":"videocard" }
-     ]
-     },
-     {
-     "versionid" :  2 ,
-     "versionnum" :  2 ,
-     "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
-     "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
-     "author": "Eric",  "editor": "iFan", "clickcount":1023,
-     "category": "Today", "categoryid":1000,
-     "tags": [
-     { "tagid":10000, "tagname":"computer" },
-     { "tagid":10001, "tagname":"videocard" }
-     ]
-     }
-     ]
-     }
+
      ];
 
      */
@@ -220,7 +191,45 @@ vcpapp.factory('modelArticle', function(){
 });
 
 
+vcpapp.factory('modelTagFireBase', [ 'angularFireCollection', function(angularFireCollection){
+        var urltaglist = 'https://vcplatform.firebaseIO.com/tags';
 
+
+        var factory = {
+            getTagList : function () {
+                var result = angularFireCollection(urltaglist);
+                return result;
+            },
+
+            checkTagExist : function (tagname) {
+                var taglist = this.getTagList();
+
+                var tagresult = _.findWhere(taglist, {tagname: tagname});
+                console.log(tagresult,taglist);
+                if (tagresult === undefined) {
+                    return false;
+                }else{
+                    return tagresult;
+                }
+            },
+
+            createNewTag : function(newtag) {
+
+                this.getTagList().add(newtag, function() {
+
+                });
+            },
+
+            deleteTag : function (deletedtag) {
+                this.getTagList().remove(deletedtag);
+            }
+
+
+
+        };
+        return factory;
+    }]
+)
 
 vcpapp.factory('modelTag', function(){
     var taglist = [];
@@ -240,6 +249,22 @@ vcpapp.factory('modelTag', function(){
     factory.getTagList = function () {
         return taglist;
     };
+
+    factory.getMaxTagID = function () {
+        //factory.getTagList();
+        var tagmaxid;
+        try{
+            if(taglist.length==0){
+                tagmaxid=10001;
+            }else{
+                tagmaxid = taglist[taglist.length-1].tagid + 1;
+            }
+        }catch(e){
+            tagmaxid=10001;
+        }
+        return tagmaxid;
+    };
+
 
     factory.getMaxTagID = function () {
         //factory.getTagList();

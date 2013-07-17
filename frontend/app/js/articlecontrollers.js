@@ -19,15 +19,16 @@ vcpapp.config(['$routeProvider', function($routeProvider) {
 
 /* Controllers */
 vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArticle, modelTag) {
-    var url = "https://vcplatform.firebaseIO.com/articles";
-    var articlelistpromise = angularFire(url, $scope, 'articlelistFirebase', []);
 
-/*    //获取全部数据
-    articlelistpromise.then(function() {
-        $scope.articlestotaldata = articlelistpromise;
-    });*/
+    var urlartilcelist = 'https://vcplatform.firebaseIO.com/articles';
+    $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
 
-    $scope.articlestotaldata = modelArticle.getArticleList();     // use firebase for database
+    $scope.articlesFirebase.then(function() {
+        $scope.articlestotaldata = $scope.articlesFirebase;
+
+
+
+//    $scope.articlestotaldata = modelArticle.getArticleList();     // use firebase for database
 
     var copytotaldata = [];
     copytotaldata = $scope.articlestotaldata;
@@ -280,7 +281,7 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
     $scope.isshowediticon = false;
     $scope.showediticon = function(){
           this.isshowediticon = true;
-    }
+    };
 
 
     $scope.hideediticon = function($index){
@@ -289,7 +290,11 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
         }else{
             this.isshowediticon = false;
         }
-    }
+    };
+
+
+    });
+
 
     //标签显示提示框
     $('.vcpbox').tooltip({
@@ -297,10 +302,44 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
     });
 }
 
-vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, modelTag) {
+
+
+
+
+
+vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, angularFire) {
+    var urlmaxid = 'https://vcplatform.firebaseIO.com/maxid';
+    $scope.maxidFirebase = angularFire(urlmaxid, $scope, 'maxidFirebase', {});
+
+
+
+    var urltaglist = 'https://vcplatform.firebaseIO.com/tags';
+    $scope.tagsFirebase = angularFire(urltaglist, $scope, 'tagsFirebase', [] );
+
+    function getMaxTagId(){
+        if($scope.maxidFirebase.tagid == undefined ){
+            $scope.maxidFirebase = {tagid : 100001};
+        }else{
+            $scope.maxidFirebase.tagid = $scope.maxidFirebase.tagid + 1;
+        }
+        return $scope.maxidFirebase.tagid
+    }
+
+    function checkTagExist(tagname) {
+        var tagresult = _.findWhere($scope.tagsFirebase, {tagname: tagname});
+
+        if (tagresult === undefined) {
+            return false;
+        }else{
+            return tagresult;
+        }
+    }
+
+
     $scope.cssTagsPanel = false;
     var articleId = $routeParams.articleId;
     $scope.articledata = modelArticle.getArticleById(articleId);
+
     var tagstr = '';
     for(var i=0;i<$scope.articledata.tags.length;i++){
         tagstr += $scope.articledata.tags[i].tagname+',';
@@ -348,38 +387,38 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, 
         $scope.showcomments = false;
     }
 
-     $scope.savedata=function(){
-        var temptagslistname = $(".tagsinput").exportTags();
-        $scope.articledata.tags = [];
-        for(var i=0;i<temptagslistname.length;i++){
-            if(  modelTag.checkTagExist(temptagslistname[i]) ){
-                var newtag = modelTag.checkTagExist(temptagslistname[i]);
-            }else{
-                var newtag = {
-                    "tagid" : modelTag.getMaxTagID(),
-                    "tagname" : temptagslistname[i]
-                }
-                modelTag.createNewTag(newtag);
+    $scope.savedata = function(){
+    var temptagslistname = $(".tagsinput").exportTags();
+    $scope.articledata.tags = [];
+    for(var i=0;i<temptagslistname.length;i++){
+        if(  modelTag.checkTagExist(temptagslistname[i]) ){
+            var newtag = modelTag.checkTagExist(temptagslistname[i]);
+        }else{
+            var newtag = {
+                "tagid" : modelTag.getMaxTagID(),
+                "tagname" : temptagslistname[i]
             }
-            $scope.articledata.tags.push(newtag);
+            modelTag.createNewTag(newtag);
         }
-        //$scope.articledata.category=$(".dk_label")[0].textContent;
-        var newrevisionid = $scope.articledata.revision.length + 1;
-        var newrevision = {
-            "versionid" :  newrevisionid ,
-            "versionnum" :  newrevisionid ,
-            "title" : $scope.articledata.title, "contentbody": $scope.articledata.contentbody, "status": $scope.articledata.status,
-            "created": $scope.articledata.created, "updated":modelArticle.getDateNow(), "published": $scope.articledata.published,
-            "author": $scope.articledata.author,  "editor": $scope.articledata.editor,  "clickcount":$scope.articledata.clickcount,
-            "category": $scope.articledata.category, "categoryid": $scope.articledata.categoryid,
-            "tags": $scope.articledata.tags,"versioncomment":$scope.articledata.versioncomment,
-            "reviewcomment": $scope.articledata.reviewcomment
-        };
-
-        $scope.articledata.revision.push(newrevision);
-        modelArticle.saveArticle($scope.articledata);
-        $scope.showcomments = false;
+        $scope.articledata.tags.push(newtag);
     }
+    //$scope.articledata.category=$(".dk_label")[0].textContent;
+    var newrevisionid = $scope.articledata.revision.length + 1;
+    var newrevision = {
+        "versionid" :  newrevisionid ,
+        "versionnum" :  newrevisionid ,
+        "title" : $scope.articledata.title, "contentbody": $scope.articledata.contentbody, "status": $scope.articledata.status,
+        "created": $scope.articledata.created, "updated":modelArticle.getDateNow(), "published": $scope.articledata.published,
+        "author": $scope.articledata.author,  "editor": $scope.articledata.editor,  "clickcount":$scope.articledata.clickcount,
+        "category": $scope.articledata.category, "categoryid": $scope.articledata.categoryid,
+        "tags": $scope.articledata.tags,"versioncomment":$scope.articledata.versioncomment,
+        "reviewcomment": $scope.articledata.reviewcomment
+    };
+
+    $scope.articledata.revision.push(newrevision);
+    modelArticle.saveArticle($scope.articledata);
+    $scope.showcomments = false;
+    };
 
     $scope.ispublish=false;
     $scope.publisharticle=function(feed){
@@ -388,7 +427,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, 
         $scope.articledata.status='publish';
         if (feed.$valid) {
             $scope.showcomments=true;
-        };
+        }
         //modelArticle.saveArticle($scope.articledata);
     };
 
@@ -407,7 +446,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, 
             tagstr += $scope.articledata.tags[i].tagname+',';
         }
         $('.tagsinput').importTags(tagstr);
-    }
+    };
 
     //标签显示提示框
     $('.vcpbox').tooltip({
@@ -415,89 +454,169 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, 
     });
 };
 
-vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle, modelTag) {
-   $(".tagsinput").tagsInput({
-        'autocomplete': modelTag.getTagList()
-    });   //初始化 加载tag标签
 
-    //$("select").dropkick();
-    $scope.newarticleadata = {
-        "id": modelArticle.getMaxArticleID(),
-        "title": "", "contentbody": "", "status": "needreview",
-        "created": modelArticle.getDateNow(), "updated": modelArticle.getDateNow(), "published": modelArticle.getDateNow(),
-        "author": "Eric",  "editor": "iFan",  "clickcount":0,
-        "category": "Cosmetics", "categoryid":1000,
-        "tags": [],
-        "revision" : [],
-        "versioncomment":"",
-        "reviewcomment":""
+
+
+
+
+
+vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle, angularFire ) {
+    var urluser = "https://vcplatform.firebaseIO.com/user";
+    $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
+
+    var urlmaxtagid = "https://vcplatform.firebaseIO.com/maxtagid";
+    $scope.maxtagidFirebase = angularFire(urlmaxtagid, $scope, 'maxtagidFirebase', {});
+
+    var urlmaxarticleid = "https://vcplatform.firebaseIO.com/maxarticleid";
+    $scope.maxarticleidFirebase = angularFire(urlmaxarticleid, $scope, 'maxarticleidFirebase', {});
+
+    var urltaglist = "https://vcplatform.firebaseIO.com/tags";
+    $scope.tagsFirebase = angularFire(urltaglist, $scope, 'tagsFirebase', [] );
+
+    var urlartilcelist = "https://vcplatform.firebaseIO.com/articles";
+    $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
+
+
+    function getMaxTagId(){
+        if($scope.maxtagidFirebase.id == undefined ){
+            $scope.maxtagidFirebase.id = 100001;
+        }else{
+            $scope.maxtagidFirebase.id = $scope.maxtagidFirebase.id  + 1;
+            console.log($scope.maxtagidFirebase);
+        }
+        return $scope.maxtagidFirebase.id
     }
 
-    $scope.cssTagsPanel = false;
+    function getMaxArticleId(){
+        if($scope.maxarticleidFirebase.id == undefined ){
+            $scope.maxarticleidFirebase.id = 10000001;
+        }else{
+            $scope.maxarticleidFirebase.id = $scope.maxarticleidFirebase.id + 1;
+            console.log($scope.maxarticleidFirebase);
+        }
+        return $scope.maxarticleidFirebase.id
+    }
 
-    $scope.cssmodalshow = false;
-    $scope.saveflag ='';
-    $scope.createNewArticle = function(feed,savestatus) {
-        if (feed.$valid) {
-            $scope.cssmodalshow = true;
-            $scope.saveflag = savestatus;
+    function checkTagExist(tagname) {
+        var tagresult = _.findWhere($scope.tagsFirebase, {tagname: tagname});
+
+        if (tagresult === undefined) {
+            return false;
+        }else{
+            return tagresult;
         }
     }
 
+
+    $scope.newarticleadata = {
+        "id": getMaxArticleId(),
+        "title": "",
+        "contentbody": "",
+        "status": "draft",
+        "created": modelArticle.getDateNow(),
+        "updated": modelArticle.getDateNow(),
+        "published": modelArticle.getDateNow(),
+        "author": $scope.userFirebase.then(function() {return $scope.userFirebase.firstname }),
+        "editor": $scope.userFirebase.then(function() {return $scope.userFirebase.firstname }),
+        "clickcount":0,
+        "category": "Cosmetics",
+        "categoryid":1000,
+        "tags": [],
+        "revision" : [],
+        "lastversioncomment" : "",
+        "lastreviewcomment" : "",
+        "reviewhistory" : []
+    };
+
+
+
+
+
+
+    $(".tagsinput").tagsInput({
+//        'autocomplete': modelTag.getTagList()
+    });   //初始化 加载tag标签
+
+
+
+
+    $scope.cssTagsPanel = false;
+    $scope.cssmodalshow = false;
     $scope.cssmodalslide = {
         backdropFade: true,
         dialogFade:true
     };
 
+    $scope.showEditPreview = function(val){
+        return val;
+    };
+
+    $scope.conformNewArticle = function(callback) {
+        if (callback.$valid) {
+            $scope.cssmodalshow = true;
+        }
+    };
     $scope.closeModal = function () {
         $scope.cssmodalshow = false;
     };
+    $scope.saveNewArtcle = function() {
 
-    $scope.savedata = function() {
-         var temptagslistname = $(".tagsinput").exportTags();
-         $scope.newarticleadata.tags=[];
-         for(var i=0;i<temptagslistname.length;i++){
-             //在tag 数据库查询是否是已经存在的tag
-             if(modelTag.checkTagExist(temptagslistname[i])){
-                var newtag = modelTag.checkTagExist(temptagslistname[i]);
-             }else{
-                 var newtag = {
-                     "tagid" : modelTag.getMaxTagID(),
-                     "tagname" : temptagslistname[i]
-                 }
-                 modelTag.createNewTag(newtag);
-             }
-             $scope.newarticleadata.tags.push(newtag);
-         }
-         //$scope.newarticleadata.category=$(".dk_label")[0].textContent;
-         $scope.newarticleadata.status=$scope.saveflag;
-         //增加文章每一次修改版本信息
-         var newrevisionid = $scope.newarticleadata.revision.length + 1;
-         var newrevision = {
-             "versionid" :  newrevisionid ,
-             "versionnum" :  newrevisionid ,
-             "title" : $scope.newarticleadata.title, "contentbody": $scope.newarticleadata.contentbody, "status": $scope.newarticleadata.status,
-             "created": $scope.newarticleadata.created, "updated": $scope.newarticleadata.updated, "published": $scope.newarticleadata.published,
-             "author": $scope.newarticleadata.author,  "editor": $scope.newarticleadata.editor,  "clickcount":$scope.newarticleadata.clickcount,
-             "category": $scope.newarticleadata.category, "categoryid": $scope.newarticleadata.categoryid,
-             "tags":$scope.newarticleadata.tags,"versioncomment":$scope.newarticleadata.versioncomment,
-             "reviewcomment":$scope.newarticleadata.reviewcomment
-         };
+        //读取文章的Tags
+        var temptagslistname = $(".tagsinput").exportTags();
+        $scope.newarticleadata.tags = [];
 
-         $scope.newarticleadata.revision.push(newrevision);
-         $scope.cssmodalshow = false;
-         //保存文章
-         modelArticle.createNewArticle($scope.newarticleadata);
-         $location.path('/');
-    }
+        //在tag 数据库查询是否是已经存在的tag 如果不存在就新增加到firebase里面
+        for(var i=0;i<temptagslistname.length;i++){
+            var newtag;
+            if(checkTagExist(temptagslistname[i])){
+                newtag = checkTagExist(temptagslistname[i]);
+            }else{
+                newtag = {
+                    "tagid" : getMaxArticleId(),
+                    "tagname" : temptagslistname[i]
+                };
+                $scope.tagsFirebase.push(newtag);
+            }
+            $scope.newarticleadata.tags.push(newtag);
+        }
 
-    $scope.showeditpreview = function(val){
-        return val;
+        //$scope.newarticleadata.category=$(".dk_label")[0].textContent;
+
+        //增加文章每一次修改版本信息
+        var newrevisionid = $scope.newarticleadata.revision.length + 1;
+        var newrevision = {
+            "versionid" :  newrevisionid ,
+            "versionnum" :  newrevisionid ,
+            "title" : $scope.newarticleadata.title,
+            "contentbody": $scope.newarticleadata.contentbody,
+            "status": $scope.newarticleadata.status,
+            "created": $scope.newarticleadata.created,
+            "updated": $scope.newarticleadata.updated,
+            "published": $scope.newarticleadata.published,
+            "author": $scope.newarticleadata.author,
+            "editor": $scope.newarticleadata.editor,
+            "clickcount":$scope.newarticleadata.clickcount,
+            "category": $scope.newarticleadata.category,
+            "categoryid": $scope.newarticleadata.categoryid,
+            "tags" : $scope.newarticleadata.tags,
+            "lastversioncomment":$scope.newarticleadata.versioncomment,
+            "lastreviewcomment":$scope.newarticleadata.reviewcomment
+        };
+
+        $scope.newarticleadata.revision.push(newrevision);
+        $scope.cssmodalshow = false;
+
+        //保存文章
+//        modelArticle.createNewArticle($scope.newarticleadata);  //使用firebase
+        $scope.articlesFirebase.push($scope.newarticleadata);
+
+        $location.path('/');
     };
+
 
     //标签显示提示框
     $('.vcpbox').tooltip({
         selector: "a[rel=tooltip]"
     });
-}
+};
 
