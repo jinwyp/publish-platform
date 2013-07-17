@@ -13,9 +13,6 @@
     <![endif]-->
     <!-- 默认 Site Theme -->
     <link href="theme/default/site-theme.css" rel="stylesheet">
-    <style type="text/css">
-		#reports{ text-align:center;}
-	</style>
   </head>
 <body style="background:url(app/img/pagebg.jpg) center 60px repeat;">
 
@@ -49,9 +46,10 @@
         <form name="userinfo">
             <div class="userBox userAccount">
                 <h1 class="titlename">account information</h1>
+                <!-- userFormBox -->
                 <div class="userFormBox clearfix">
                     <div class="userFormFloat">
-
+						  <h6 style="margin:0 0 10px 0; text-transform:capitalize;">head photo</h6>
                         <!-- 无头像时: class="userPhoto empty" -->
                         <div class="userPhoto empty"  ng-hide = "csshaveavatar">
                             <h6>drop here</h6>
@@ -81,42 +79,54 @@
                             <!-- 编辑状态时显示：--><input type="text" required ng-model="userdata.mobilenumber">
                             <!-- 保存后显示：<p>010-62068000</p> -->
                             <h6>&nbsp;</h6>
-                            <input type="button" class="btn" value="Change Password" ng-click="changepassword()">
+                            <input type="button" id="changepwd" class="btn" value="Change Password" ng-click="changepassword()">
                         </div>
                     </div>
                 </div>
+                
+                <!-- 更改密码  -->
+                <div class="userBox userPassword" ng-cloak ng-show="cssshowpasswordbox">
+                    <!-- <h1 class="titlename">change password</h1> -->
+                    <div class="userFormBox clearfix">
+                        <div class="userChangePassword">
+                            <h6>old password</h6>
+                            <input id="oldpassword" type="password" ng-model="userdata.oldpassword">
+                            <hr>
+                            <h6>new password</h6>
+                            <input id="newpassword" type="password" ng-model="userdata.newpassword1">
+                            <h6>confirm new password</h6>
+                            <input id="conformpassword" type="password" ng-model="userdata.newpassword2">
+                            <h6 ng-show="cssoldpassword" style="color:#ff0000;">Old password error !</h6>
+                            <h6 ng-show="cssnewpassword" style="color:#ff0000;">Please input new password !</h6>
+                            <h6 ng-show="cssnewpassword2" style="color:#ff0000;">Please input new password again !</h6>
+                            <h6 ng-show="cssshowinconsistent" style="color:#ff0000;">Password inconsistent!</h6>
+                        </div>
+                    </div>
+                    <div class="UserBoxButton savePWD">
+                        <input type="submit" id="savepwd" class="btn btn-danger" value="save PassWord" ng-click="modifypassword()">
+                    </div>
+                </div>
+                <!-- 更改密码 //End -->
+            
+            
+                <!-- userFormBox // End -->
                 <div class="UserBoxButton">
                     <input type="submit" class="saveUserBtn" value="save changes" ng-click="saveuserinfo(userinfo)">
                     <!-- 编辑按钮：<input type="submit" class="editUserBtn" value="edit">  -->
                 </div>
+                
+                
             </div>
+            
+            
+            
+        
+        
         </form>
         <!-- 头像、基本信息 //End-->
         
         
-        <!-- 更改密码  -->
-        <div class="userBox userPassword" ng-cloak ng-show="cssshowpasswordbox">
-        	<h1 class="titlename">change password</h1>
-            <div class="userFormBox clearfix">
-                <div class="userChangePassword">
-                    <h6>old password</h6>
-                    <input id="oldpassword" type="password" ng-model="userdata.oldpassword">
-                    <hr>
-                    <h6>new password</h6>
-                    <input id="newpassword" type="password" ng-model="userdata.newpassword1">
-                    <h6>confirm new password</h6>
-                    <input id="conformpassword" type="password" ng-model="userdata.newpassword2">
-                    <h6 ng-show="cssoldpassword" style="color:#ff0000;">Old password error !</h6>
-                    <h6 ng-show="cssnewpassword" style="color:#ff0000;">Please input new password !</h6>
-                    <h6 ng-show="cssnewpassword2" style="color:#ff0000;">Please input new password again !</h6>
-                    <h6 ng-show="cssshowinconsistent" style="color:#ff0000;">Password inconsistent!</h6>
-                </div>
-            </div>
-            <div class="UserBoxButton">
-                <input type="submit" class="saveUserBtn" value="save changes" ng-click="modifypassword()">
-            </div>
-        </div>
-        <!-- 更改密码 //End -->
+        
         
     </div>
 </div>
@@ -144,6 +154,18 @@
     <script src="lib/flatui/lte-ie7-24.js"></script>
     <![endif]-->
     <script src="app/js/custom.js"></script>
+    <script type="text/javascript">
+        $(function() {
+             $("#changepwd").click(function(){
+				  $(".userAccount").animate({left:"18%"});
+				  $(".userPassword").animate({left:"100%"});
+			  });
+			  $("#savepwd").click(function(){
+				  $(".userAccount").animate({left:"28%"});
+				  $(".userPassword").animate({left:"0%"});
+			  });
+        });
+    </script>
 
  </body>
 </html>
