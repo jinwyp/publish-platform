@@ -2,133 +2,15 @@
 
 /* App Module */
 
-var articleapp = angular.module('vcpmodule', ['ui.bootstrap', 'vcpmodule.directive']);
+var vcpapp = angular.module('vcpmodule', ['ui.bootstrap', 'firebase', 'vcpmodule.directive']);
 
 
 
-articleapp.factory('modelArticle', function(){
-
-    var articlelist=[],taglist=[];
-    if(window.localStorage){
-        if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
-
-            articlelist=[];
-            taglist=[{"tagid":10001,"tagname":"Personal Debt","$$hashKey":"00L"},
-                {"tagid":10002,"tagname":"Economic","$$hashKey":"00M"},
-                {"tagid":10003,"tagname":"Students"},{"tagid":10004,"tagname":"Investment"}];
-
-
-
-        }else{
-            articlelist = JSON.parse(localStorage.getItem("articlesData"));
-            taglist = JSON.parse(localStorage.getItem("tagsData"));
-            console.log(articlelist);
-        }
-   }
-
-    var factory = {};
-
-    factory.getArticleList = function () {
-        return  articlelist;
-    };
-
-    factory.getArticleById = function (articleid) {
-        for(var i = 0;i < articlelist.length; i++){
-            if (articlelist[i].id == articleid) {
-                return articlelist[i];
-            }
-        }
-    };
-
-    factory.getMaxArticleID = function () {
-        var articlemaxid;
-        if(articlelist.length==0){
-            articlemaxid=1001;
-        }else{
-            articlemaxid = articlelist[0].id + 1;
-        }
-        return articlemaxid;
-    };
-
-    factory.saveArticle = function (articledata) {
-        for(var i = articlelist.length; i--;){
-            if (articlelist[i].id == articledata.id) {
-                articlelist[i] = articledata;
-                localStorage.setItem("articlesData",JSON.stringify(articlelist));
-                return ;
-            }
-        }
-    };
-
-    factory.delArticleById = function (articleid) {
-        for(var i = articlelist.length; i--;){
-            if (articlelist[i].id == articleid) {
-                articlelist.splice(i, 1);
-                localStorage.setItem("articlesData",JSON.stringify(articlelist));
-                return;
-            }
-        }
-    };
-
-    factory.createNewArticle = function (articledata) {
-        articlelist.push(articledata);
-        localStorage.setItem("articlesData",JSON.stringify(articlelist));
-        return ;
-    };
-
-
-    factory.getTagList = function () {
-        return taglist;
-    };
-
-    factory.getMaxTagID = function () {
-        //factory.getTagList();
-        var tagmaxid;
-        try{
-            if(taglist.length==0){
-                tagmaxid=10001;
-            }else{
-                tagmaxid = taglist[taglist.length-1].tagid + 1;
-            }
-        }catch(e){
-            tagmaxid=10001;
-        }
-        return tagmaxid;
-    };
-
-    factory.checkTagExist = function (tagname) {
-        var tagresult = _.findWhere(taglist, {tagname: tagname});
-        if (tagresult === undefined) {
-            return false;
-        }else{
-            return tagresult;
-        }
-    };
-
-    factory.createNewTag = function (tagdata) {
-        try{
-            taglist.push(tagdata);
-        }catch(e){
-            taglist=[];
-            taglist.push(tagdata);
-        }
-        localStorage.setItem("tagsData",JSON.stringify(taglist));
-        return tagdata;
-    };
-
-    factory.getDateNow = function () {
-        var newdate = new Date().getTime();
-        return newdate;
-    };
-
-    return factory;
-});
-
-articleapp.config(['$routeProvider', function($routeProvider) {
+vcpapp.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
-        when('/',                      {templateUrl: 'article_list_tpl.html', controller: articleapp.controller.articleList }).
-        when('/newarticle',          {templateUrl: 'article_new_tpl.html', controller: articleapp.controller.articleCreateNew }).
-        when('/detail/:articleId',  {templateUrl: 'article_detail_tpl.html', controller: articleapp.controller.articleDetail }).
+        when('/',                      {templateUrl: 'article_list_tpl.html', controller: vcpapp.controller.articleList }).
+        when('/newarticle',          {templateUrl: 'article_new_tpl.html', controller: vcpapp.controller.articleCreateNew }).
+        when('/detail/:articleId',  {templateUrl: 'article_detail_tpl.html', controller: vcpapp.controller.articleDetail }).
 
         otherwise({redirectTo: '/'});
 }]);
@@ -136,9 +18,17 @@ articleapp.config(['$routeProvider', function($routeProvider) {
 
 
 /* Controllers */
-articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
-    //获取全部数据
-    $scope.articlestotaldata = modelArticle.getArticleList();
+vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArticle, modelTag) {
+    var url = "https://vcplatform.firebaseIO.com/articles";
+    var articlelistpromise = angularFire(url, $scope, 'articlelistFirebase', []);
+
+/*    //获取全部数据
+    articlelistpromise.then(function() {
+        $scope.articlestotaldata = articlelistpromise;
+    });*/
+
+    $scope.articlestotaldata = modelArticle.getArticleList();     // use firebase for database
+
     var copytotaldata = [];
     copytotaldata = $scope.articlestotaldata;
     //排序所有数据
@@ -407,7 +297,7 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
     });
 }
 
-articleapp.controller.articleDetail = function ($scope, $routeParams, modelArticle) {
+vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, modelTag) {
     $scope.cssTagsPanel = false;
     var articleId = $routeParams.articleId;
     $scope.articledata = modelArticle.getArticleById(articleId);
@@ -462,14 +352,14 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
         var temptagslistname = $(".tagsinput").exportTags();
         $scope.articledata.tags = [];
         for(var i=0;i<temptagslistname.length;i++){
-            if(  modelArticle.checkTagExist(temptagslistname[i]) ){
-                var newtag = modelArticle.checkTagExist(temptagslistname[i]);
+            if(  modelTag.checkTagExist(temptagslistname[i]) ){
+                var newtag = modelTag.checkTagExist(temptagslistname[i]);
             }else{
                 var newtag = {
-                    "tagid" : modelArticle.getMaxTagID(),
+                    "tagid" : modelTag.getMaxTagID(),
                     "tagname" : temptagslistname[i]
                 }
-                modelArticle.createNewTag(newtag);
+                modelTag.createNewTag(newtag);
             }
             $scope.articledata.tags.push(newtag);
         }
@@ -525,9 +415,9 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
     });
 };
 
-articleapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle) {
+vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle, modelTag) {
    $(".tagsinput").tagsInput({
-        'autocomplete': modelArticle.getTagList()
+        'autocomplete': modelTag.getTagList()
     });   //初始化 加载tag标签
 
     //$("select").dropkick();
@@ -568,14 +458,14 @@ articleapp.controller.articleCreateNew = function ($scope, $routeParams, $locati
          $scope.newarticleadata.tags=[];
          for(var i=0;i<temptagslistname.length;i++){
              //在tag 数据库查询是否是已经存在的tag
-             if(modelArticle.checkTagExist(temptagslistname[i])){
-                var newtag = modelArticle.checkTagExist(temptagslistname[i]);
+             if(modelTag.checkTagExist(temptagslistname[i])){
+                var newtag = modelTag.checkTagExist(temptagslistname[i]);
              }else{
                  var newtag = {
-                     "tagid" : modelArticle.getMaxTagID(),
+                     "tagid" : modelTag.getMaxTagID(),
                      "tagname" : temptagslistname[i]
                  }
-                modelArticle.createNewTag(newtag);
+                 modelTag.createNewTag(newtag);
              }
              $scope.newarticleadata.tags.push(newtag);
          }

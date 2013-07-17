@@ -57,6 +57,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                     if(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktype == 'auto'){
                         var articles = modelArticle.getArticlesByTags(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity, site.pagelist[i].pagelayoutdata[j].blocks[k].blockcategory);
                         site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles;
+                        console.log(articles, site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag );
 
 /*                        if (site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag.length == 0 ){
                             var articles2 = modelArticle.getArticles(site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity);
@@ -76,7 +77,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
         $scope.singlepage =  $scope.pages[0];   //默认读取首页
         $scope.newpage ={};
-        $scope.localarticles = modelArticle.getArticles(100);
+        $scope.localarticles = modelArticle.getArticleList(100);
 
         $scope.layouts = modelSite.getLayoutList();
         $scope.blocklayouts = modelSite.getBlockLayout();
