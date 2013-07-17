@@ -285,7 +285,7 @@
                             <!-- Menu 右上角button ========== Block Attribute Panel ======================================= -->
                             <div class="attribute_panel clearfix" ng-show="cssheadermenubutton">
                                 <a href="#" class="icon_setup" ng-click="slideshowheadersetting()">setup</a>
-                                <a href="#" class="icon_delete">delete</a>
+                                <a href="#" class="icon_delete" ng-hide="true">delete</a>
                             </div>
 
                             <!-- HeaderNavSettings 设置面板区 -->
@@ -541,7 +541,8 @@
                             <i class="drag"></i>{{page.pagename}}
                         </a>
 
-                        <!-- ======================================= Page Attribute Panel ======================================= --> <div class="page_attri_panel" ng-show="$index == selectedpageattributeindex">
+                        <!-- ======================================= Page Attribute Panel ======================================= -->
+                        <div class="page_attri_panel" ng-show="$index == selectedpageattributeindex">
                             <a href="" class="panel_close" ng-click="closeeditpageattribute($index)">X</a>
                             <h2>Page Attribute</h2>
                             <div class="page_attri_cont">

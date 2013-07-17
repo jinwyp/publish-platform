@@ -26,6 +26,8 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
     //显示修改密码form
     $scope.changepassword = function(){
         $scope.cssshowpasswordbox = true;
+        $(".userAccount").animate({left:"18%"});
+        $(".userPassword").animate({left:"100%"});
     };
 
     //显示头像是否上传
@@ -57,6 +59,8 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
                     mobilenumber : $scope.userdata.mobilenumber,
                     gender : $scope.userdata.gender
                 };
+                $(".userAccount").animate({left:"28%"});
+                $(".userPassword").animate({left:"0%"});
 
 //            modelSite.updateSite($scope.site);    // use firebase for database
 //            location.href = "site.html";
