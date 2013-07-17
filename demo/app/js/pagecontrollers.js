@@ -45,8 +45,9 @@
 
      //链接页面
 
-     $scope.showCurrent = function(currentpage){
+     $scope.showCurrent = function(currentpage, index){
          $scope.singlepage = currentpage;
+         $scope.cssblocklayoutselected = index;
      }
 }
 
