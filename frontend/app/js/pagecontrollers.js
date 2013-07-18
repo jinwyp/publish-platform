@@ -24,7 +24,6 @@ vcpapp.directive('enterKeypress', function(){
 /* Controllers */
 page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelArticle, modelTag) {
 
-    $("#kinMaxShow").kinMaxShow();
     function initialize(){
 
         $('#tagsinput').tagsInput();
