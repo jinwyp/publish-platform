@@ -409,11 +409,49 @@
                                 <!-- 视频 -->
                                 <video ng-show="block.blockstatictype=='video'" style="width:100%;" src="app/img/temp/forest.mp4" autoplay loop controls></video>
 
+
                                 <!-- 幻灯片 Slider Banner -->
-                                <!--<img ng-show="block.blockstatictype=='slideshow'" src="../frontend/lib/jqueryplugin/slidebanner/images/one.jpg" width="680" height="272" />-->
+                                <div  ng-show="block.blockstatictype=='slideshow'" id="content-slider">
+                                    <div id="slider">
+                                        <div id="mask">
+                                        <ul>
+                                        <li id="first" class="firstanimation">
+                                        <a href="#">
+                                        <img src="app/img/temp/img_1.jpg" alt="Cougar"/>
+                                        </a>
+                                        <div class="tooltip">
+                                        <h1>Cougar</h1>
+                                        </div>
+                                        </li>
+                            
+                                        <li id="second" class="secondanimation">
+                                        <a href="#">
+                                        <img src="app/img/temp/img_2.jpg" alt="Lions"/>
+                                        </a>
+                                        <div class="tooltip">
+                                        <h1>Lions</h1>
+                                        </div>
+                                        </li>
+                                        
+                                        <li id="third" class="thirdanimation">
+                                        <a href="#">
+                                        <img src="app/img/temp/img_3.jpg" alt="Snowalker"/>
+                                        </a>
+                                        <div class="tooltip">
+                                        <h1>Snowalker</h1>
+                                        </div>
+                                        </li>
+                                        </ul>
+                                        </div>
+                                        <div class="progress-bar"></div>
+                                    </div>
+                                </div>
+
 
                             </div>
 
+                            
+                            
 
 
                             <!-- Content End -->
@@ -579,6 +617,11 @@
         <!-- Page Layout//End -->
 </div>
 </div>
+
+
+
+
+
     <!-- Load JS -->
     <script src="lib/underscore/underscore-min.js"></script>
     <script src="lib/angular/1.1.5/angular.js"></script>
