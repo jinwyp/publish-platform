@@ -461,6 +461,7 @@ vcpapp.factory('modelSite',  function(){
         var pageindex = sitedata.pagelist.indexOf(selectedpage);
 //        console.log(pageindex, sitedata.pagelist[pageindex].pagename);
         sitedata.pagelist[pageindex].pagelayoutdata = layout.layoutdata ;
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
         return  ;
     }
 
