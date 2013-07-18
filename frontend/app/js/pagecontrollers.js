@@ -57,16 +57,16 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                     if(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktype == 'auto'){
                         var articles = modelArticle.getArticlesByTags(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity, site.pagelist[i].pagelayoutdata[j].blocks[k].blockcategory);
                         site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles;
-                        console.log(articles, site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag );
+                        /*
+                        console.log(articles, site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity );
 
-/*                        if (site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag.length == 0 ){
+                        if (site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag.length == 0 ){
                             var articles2 = modelArticle.getArticles(site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity);
 
                             site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles2;   //如果没有选择tags则获取所有文章
-                        }*/
+                        }
+*/
                     }
-
-
                 }
             }
         }

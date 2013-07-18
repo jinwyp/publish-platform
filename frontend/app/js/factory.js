@@ -125,11 +125,10 @@ vcpapp.factory('modelArticle', function(){
         var articlesresult = [];
         var articlesresult2 = [];
 
-        console.log(taglistdata);
-        articlesresult = _.filter(articlelist, function(element1){
+        articlesresult = _.filter(articlelist, function(aritcle){
 
-            var singlearticletags = _.filter(element1.tags, function(element2){
-                var tagresult = _.where(taglistdata, element2);
+            var singlearticletags = _.filter(aritcle.tags, function(singletag){
+                var tagresult = _.where(taglistdata, {tagname: singletag.tagname});
 
                 return tagresult.length;
             });
@@ -267,13 +266,11 @@ vcpapp.factory('modelTag', function(){
     };
 
 
-
     factory.createNewTag = function (tagdata) {
         taglist.push(tagdata);
         localStorage.setItem("tagsData",JSON.stringify(taglist));
         return tagdata;
     };
-
 
     return factory;
 
