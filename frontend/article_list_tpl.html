@@ -12,6 +12,8 @@
                     <a href="" class="ico-article-del" rel="tooltip" title="Delete Article"  ng-click="openModal()"></a>
                     <a href="" class="ico-article-setup" rel="tooltip" title="Tag Category"></a> -->
                 </i>
+                
+                <!-- Delete 弹窗 -->
                 <div modal="cssmodalshow" options="cssmodalslide" >
                     <div class="modal-header">
                         <button type="button" class="close" ng-click="closeModal()">&times;</button>
@@ -27,15 +29,78 @@
                         <button class="btn btn-danger"  ng-click="delArticle(articlepreviewdata.id)">Delete</button>
                     </div>
                 </div>
-
-                <div modal="showcomments" options="cssmodalslide" >
+				
+                <!-- Review 弹窗 -->
+                <div class="modal" modal="showcomments" options="cssmodalslide" >
                     <div class="modal-header">
                         <button type="button" class="close" ng-click="closecomments()">&times;</button>
-                        <h3 >Review Comment </h3>
+                        <h3>Review Comment</h3>
                     </div>
-
+					
                     <div class="modal-body">
-                        <input type="text" id="comments" />
+                        <!-- <input type="text" id="comments" /> -->
+                		
+                        <div class="alert alert-success">
+                        	<button type="button" class="close" data-dismiss="alert">&times;</button>
+                        	Well done! You successfully write this comment.
+                        </div>
+                        <table class="table table-condensed">
+                          <thead>
+                            <tr>
+                              <th>Date</th>
+                              <th>Version</th>
+                              <th>Operator</th>
+                              <th>Comment</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>7/15/2013</td>
+                              <td><span class="badge badge-success">10</span></td>
+                              <td>Eric</td>
+                              <td>There is an ambiguous word article.</td>
+                            </tr>
+                            <tr>
+                              <td>6/30/2013</td>
+                              <td><span class="badge badge-success">9</span></td>
+                              <td>Jerome</td>
+                              <td>This article is not sensational.</td>
+                            </tr>
+                            <tr>
+                              <td>5/21/2013</td>
+                              <td><span class="badge badge-success">6</span></td>
+                              <td>Jin</td>
+                              <td>Content of the article did not mention a woman.</td>
+                            </tr>
+                            <tr>
+                              <td>5/21/2013</td>
+                              <td><span class="badge badge-success">3</span></td>
+                              <td>Susa</td>
+                              <td>Wrong word article.</td>
+                            </tr>
+                            <tr>
+                              <td>5/06/2013</td>
+                              <td><span class="badge badge-success">1</span></td>
+                              <td>Melvon</td>
+                              <td>World of Warcraft content of the article should contain subject matter.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        
+                        <div class="pagination pagination-mini pagination-centered">
+                          <ul>
+                            <li><a href="#">&laquo;</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                          </ul>
+                        </div>
+
+                        <textarea rows="3" id="comments" style="width:96%"></textarea>
+                        
                     </div>
 
                     <div class="modal-footer">
@@ -43,6 +108,9 @@
                         <button class="btn btn-danger" ng-click="savedata()">Save</button>
                     </div>
                 </div>
+                
+                
+                
             </div>
             <!-- 预览区 -->
             <div id="article-cont-preview" class="article-cont" >
@@ -73,22 +141,19 @@
 
             <div class="article-title">ARTICLE LIST
                 <i class="article-title-ico clearfix">
-                       <!-- <pre>Model: {{selected| json}}</pre>-->
-                    	<a href="#/newarticle/" class="ico-article-addnew" rel="tooltip" title="Add New Article"></a>
+                        <!-- <pre>Model: {{selected| json}}</pre>-->
+                    	   <a href="#/newarticle/" class="ico-article-addnew" rel="tooltip" title="Add New Article"></a>
                         <!--<a href="#" class="ico-article-sequence dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>-->
                         <input class="aiticleList_search" type="text" ng-model="selected" ng-change="selectdata()" typeahead="state for state in states | filter:$viewValue">
+                        <div class="ListSequence">
+                        	<input ng-hide="showupdate" class="ico-article-UP_default" type="button" value="Update" ng-click="orderbytype('updated','desc')">
+                        	<input ng-show="showupdate" class="ico-article-DOWN_default" type="button" value="Update" ng-click="orderbytype('updated','asc')">
+                        	<input ng-hide="showpublish" class="ico-article-UP_default" type="button" value="Published" ng-click="orderbytype('published','desc')">
+                        	<input ng-show="showpublish" class="ico-article-DOWN_default" type="button" value="Published" ng-click="orderbytype('published','asc')">
+                        	<input ng-hide="showclick" class="ico-article-UP_default" type="button" value="Click" ng-click="orderbytype('clickcount','desc')">
+                        	<input ng-show="showclick" class="ico-article-DOWN_default" type="button" value="Click" ng-click="orderbytype('clickcount','asc')">
+                        </div>
                 </i>
-                <hr>
-                <div style="margin:0; width:100%;">
-                    <div class="well">
-                        <input ng-hide="showupdate" class="ico-article-UP_default" type="button" value="Update" ng-click="orderbytype('updated','desc')">
-                        <input ng-show="showupdate" class="ico-article-DOWN_default" type="button" value="Update" ng-click="orderbytype('updated','asc')">
-                        <input ng-hide="showpublish" class="ico-article-UP_default" type="button" value="Published" ng-click="orderbytype('published','desc')">
-                        <input ng-show="showpublish" class="ico-article-DOWN_default" type="button" value="Published" ng-click="orderbytype('published','asc')">
-                        <input ng-hide="showclick" class="ico-article-UP_default" type="button" value="Click" ng-click="orderbytype('clickcount','desc')">
-                        <input ng-show="showclick" class="ico-article-DOWN_default" type="button" value="Click" ng-click="orderbytype('clickcount','asc')">
-                    </div>
-                </div>
             </div>
 
 
@@ -97,7 +162,7 @@
 
                 <ul class="article-list">
                     
-                    <li  ng-mouseenter="showediticon()" ng-mouseleave="hideediticon($index)" ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata track by $index | filter:query"  ng-click="clickArticle(article, $index)" >
+                    <li ng-mouseenter="showediticon()" ng-mouseleave="hideediticon($index)" ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata track by $index | filter:query"  ng-click="clickArticle(article, $index)" >
                         <div class="list-date">
                             <h1><a href="" >{{article.title}}</a></h1>
                             <dl>
@@ -121,17 +186,17 @@
                                 <!-- Draft状态 -->
                                 <dd ng-show="article.status=='draft'">
                                     <div class="btn-group">
-                                    	<button class="btn" disabled>Draft</button>
+                                    	<button class="btn btn-info" disabled>Draft</button>
                                     	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
                                     	<ul class="dropdown-menu pull-right clearfix">
-                                          <li><input type="submit" value="Review" class="btn btn-block btn-warning" ng-click="clickstatus('reviewed',article)"></li>
+                                          <li><input type="submit" value="Need Review" class="btn btn-block btn-warning" ng-click="clickstatus('reviewed',article)"></li>
                                         </ul>
                                 	</div>
                                 </dd>
                                <!--  Rviewed状态-->
                                 <dd ng-show="article.status=='reviewed'">
                                     <div class="btn-group">
-                                    	<button class="btn" disabled>Need Review</button>
+                                    	<button class="btn btn-warning" disabled>Need Review</button>
                                     	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
                                     	<ul class="dropdown-menu pull-right clearfix">
                                           <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickstatus('draft',article)"></li>
@@ -142,7 +207,7 @@
                                 <!-- Published状态-->
                                 <dd ng-show="article.status=='publish'">
                                     <div class="btn-group">
-                                    	<button class="btn" disabled>Published</button>
+                                    	<button class="btn btn-success" disabled>Published</button>
                                     	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
                                     	<ul class="dropdown-menu pull-right clearfix">
                                           <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickstatus('draft',article)"></li>

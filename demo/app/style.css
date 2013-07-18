@@ -124,7 +124,7 @@
     *background:url(img/pagebg.jpg) center top repeat;
      background-size:cover;*/ }
 .container		{ position:relative; }
-.pagewrap		{ width:980px;margin:0px auto;min-height:1000px; padding:10px; background:#fff; border-radius:8px;box-shadow:0 5px 5px rgba(0,0,0,0.3);}
+.pagewrap		{ width:940px;margin:0px auto;min-height:1000px; padding:10px; background:#fff; border-radius:8px;box-shadow:0 5px 5px rgba(0,0,0,0.3);}
 .banner {padding:10px 0px}
 #LayoutL{float:left;width:620px;overflow:hidden;}
 #LayoutR{float:right;margin-right:30px;}
@@ -442,6 +442,8 @@ ul.layout_list .active	{ opacity:1;}
 /*                                         Global Block                                        */
 /* =========================================================================================== */
 .displaynone		{ display:none !important;}
+.displaynone2		{ display:none !important;}
+.displaynone3		{ display:none !important;}
 .z-index-0			{ z-index:0;}
 .z-index-1			{ z-index:1;}
 .z-index-999		{ z-index:999;}

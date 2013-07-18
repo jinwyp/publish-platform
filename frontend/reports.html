@@ -16,7 +16,7 @@
     <style type="text/css">
 		#reports{  padding:0; margin:0;}
 		
-		.displaypic{ position:relative; padding:0; margin:0 auto; width:1500px; height:900px; text-align:center; background:url(app/img/temp/report.jpg) center top no-repeat; z-index:0;}
+		.displaypic{ position:relative; padding:0; margin:0 auto; width:1500px; height:1074px; text-align:center; background:url(app/img/temp/report.jpg) center top no-repeat; z-index:0;}
 		
 		.selecttime,
 		.selectchart,
@@ -33,14 +33,20 @@
 
 <!-- Header -->
 <header class="header">
-	<h1 class="logo"><a href="index.html">VCP</a></h1><a href="user.html" class="signin">User</a>
+	<h1 class="logo"><a href="index.html">VCP</a></h1>
+    <a href="../demo/index.html" class="preview">preview</a>
     <ul class="menu clearfix">
-    	<li><a href="user.html">User</a></li>
-    	<li><a href="site.html">Site</a></li>
-        <li><a href="page.html">Page</a></li>
-        <li><a href="article.html">Article</a></li>
-        <li><a href="reports.html" class="current">Reports</a></li>
-        <li><a href="store.html">Store</a></li>
+    	<li id="menuUser"><a href="user.html">User</a></li>
+    	<li id="menuSite"><a href="site.html">Site</a></li>
+        <li id="menuPage"><a href="page.html">Page</a></li>
+        <li id="menuArticle"><a href="article_list_index.html">Article</a></li>
+        <li id="menuReports"><a href="reports.html" class="current">Reports</a></li>
+        <li id="menuStore"><a href="###">Store</a>
+        	<ul class="subMenuStore">
+            	<li><a href="store.html">Style 1: Fixed width</a></li>
+                <li style="border:0;"><a href="store2.html">Style 2: Adaptive width</a></li>
+            </ul>
+        </li>
     </ul>
 </header>
         
@@ -48,10 +54,6 @@
 <div id="reports">
         
         <div class="displaypic">
-        
-                <a href="reports2.html" class="selecttime"></a>
-                <a href="reports3.html" class="selectchart"></a>
-                <a href="reports4.html" class="selectoption"></a>
         
         </div>
 </div>

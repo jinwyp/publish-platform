@@ -1,4 +1,4 @@
-<form name="newFeed">
+<form name="newArticleForm">
     <!-- Content -->
     <div class="article" >
 
@@ -21,7 +21,7 @@
                             May 05 2013  |  Tag »
                             <!--<a href="#/tag/{{tag.tagid}}" ng-repeat="tag in articlepreviewdata.tags">{{tag.tagname}}</a>-->
                         </div>
-                        <p id="contentpreview"  ng-bind-html-unsafe="showeditpreview(newarticleadata.contentbody)">
+                        <p id="contentpreview"  ng-bind-html-unsafe="showEditPreview(newarticleadata.contentbody)">
 
                         </p>
                     </div>
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="modal-body">
-                            <input type="text" ng-model="newarticleadata.comment" />
+                            <input type="text" ng-model="newarticleadata.lastversioncomment" />
                         </div>
 
                         <div class="modal-footer">
@@ -159,8 +159,8 @@
         </div>
         <div class="article-footer">
             <div class="article_btn">
-                <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="createNewArticle(newFeed,'draft')">
-                <input type="submit" value="PUBLISH" class="btn-publish" style="display: none;" ng-click="createNewArticle(newFeed,'publish')">
+                <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="conformNewArticle(newArticleForm)">
+                <input type="submit" value="PUBLISH" class="btn-publish" style="display: none;" ng-click="conformNewArticle(newArticleForm)">
             </div>
             <!-- 版本节点 -->
             <div class="vernode">

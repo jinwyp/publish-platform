@@ -13,9 +13,6 @@
     <![endif]-->
     <!-- 默认 Site Theme -->
     <link href="theme/default/site-theme.css" rel="stylesheet">
-    <style type="text/css">
-		#reports{ text-align:center;}
-	</style>
   </head>
 <body style="background:url(app/img/pagebg.jpg) center 60px repeat;">
 
@@ -23,37 +20,44 @@
 
 <!-- Header -->
 <header class="header">
-	<h1 class="logo"><a href="index.html">VCP</a></h1><a href="user.html" class="signin">User</a>
+	<h1 class="logo"><a href="../demo/index.html">VCP</a></h1>
+    <a href="../demo/index.html" class="preview">preview</a>
     <ul class="menu clearfix">
-    	<li><a href="user.html" class="current">User</a></li>
-    	<li><a href="site.html">Site</a></li>
-        <li><a href="page.html">Page</a></li>
-        <li><a href="article_list_index.html">Article</a></li>
-        <li><a href="reports.html">Reports</a></li>
-        <li><a href="store.html">Store</a></li>
+    	<li id="menuUser"><a href="user.html" class="current">User</a></li>
+    	<li id="menuSite"><a href="site.html">Site</a></li>
+        <li id="menuPage"><a href="page.html">Page</a></li>
+        <li id="menuArticle"><a href="article_list_index.html">Article</a></li>
+        <li id="menuReports"><a href="reports.html">Reports</a></li>
+        <li id="menuStore"><a href="#">Store</a>
+        	<ul class="subMenuStore">
+            	<li><a href="store.html">Style 1: Fixed width</a></li>
+                <li style="border:0;"><a href="store2.html">Style 2: Adaptive width</a></li>
+            </ul>
+        </li>
     </ul>
 </header>
         
 
 <!-- Container -->
-<div class="vcpbox" ng-controller="userController">
+<div class="vcpbox" ng-controller="userInfoController">
 	<div class="userWrap">
     
     	<!-- 头像、基本信息 -->
-        <form name="basicinfo">
+        <form name="userinfo">
             <div class="userBox userAccount">
                 <h1 class="titlename">account information</h1>
+                <!-- userFormBox -->
                 <div class="userFormBox clearfix">
                     <div class="userFormFloat">
-
+						  <h6 style="margin:0 0 10px 0; text-transform:capitalize;">head photo</h6>
                         <!-- 无头像时: class="userPhoto empty" -->
-                        <div class="userPhoto empty">
+                        <div class="userPhoto empty"  ng-hide = "csshaveavatar">
                             <h6>drop here</h6>
-                            <input type="submit" class="userUploadBtn" value="browser">
+                            <input type="submit" class="userUploadBtn" value="browser" ng-click="uploadavator()">
                         </div>
 
                         <!-- 有头像时: class="userPhoto full" -->
-                        <div class="userPhoto full" ng-show="false">
+                        <div class="userPhoto full" ng-cloak ng-show = "csshaveavatar">
                             <img src="app/img/temp/1.jpg">
                             <input type="submit" class="userChangePhoto" value="change">
                         </div>
@@ -62,55 +66,67 @@
                     <div class="userFormFloat">
                         <div class="userInfo">
                             <h6>first name</h6>
-                            <!-- 编辑状态时显示：--><input type="text" required ng-model="user.firstname">
+                            <!-- 编辑状态时显示：--><input type="text" required ng-model="userdata.firstname">
                             <!-- 保存后显示：<p>Melvon</p> -->
                             <h6>last name</h6>
-                            <!-- 编辑状态时显示：--><input type="text" required ng-model="user.lastname">
+                            <!-- 编辑状态时显示：--><input type="text" required ng-model="userdata.lastname">
                             <!-- 保完后显示：<p>Melvon</p> -->
                             <h6>gender</h6>
-                            <!-- 编辑状态时显示：--><label><input type="radio" ng-model="user.gender" value="male" name="gender">Male</label>
-                            <!-- 编辑状态时显示：--><label><input type="radio" ng-model="user.gender" value="female" name="gender">Female</label>
+                            <!-- 编辑状态时显示：--><label><input type="radio" ng-model="userdata.gender" value="male" name="gender">Male</label>
+                            <!-- 编辑状态时显示：--><label><input type="radio" ng-model="userdata.gender" value="female" name="gender">Female</label>
                             <!-- 保存后显示：<p>Male</p> -->
                             <h6>telephone</h6>
-                            <!-- 编辑状态时显示：--><input type="text" required ng-model="user.tel">
+                            <!-- 编辑状态时显示：--><input type="text" required ng-model="userdata.mobilenumber">
                             <!-- 保存后显示：<p>010-62068000</p> -->
                             <h6>&nbsp;</h6>
-                            <input type="button" class="btn" value="Change Password" ng-click="changepassword()">
+                            <input type="button" id="changepwd" class="btn" value="Change Password" ng-click="changepassword()">
                         </div>
                     </div>
                 </div>
+                
+                <!-- 更改密码  -->
+                <div class="userBox userPassword" ng-cloak ng-show="cssshowpasswordbox">
+                    <!-- <h1 class="titlename">change password</h1> -->
+                    <div class="userFormBox clearfix">
+                        <div class="userChangePassword">
+                            <h6>old password</h6>
+                            <input id="oldpassword" type="password" ng-model="userdata.oldpassword">
+                            <hr>
+                            <h6>new password</h6>
+                            <input id="newpassword" type="password" ng-model="userdata.newpassword1">
+                            <h6>confirm new password</h6>
+                            <input id="conformpassword" type="password" ng-model="userdata.newpassword2">
+                            <h6 ng-show="cssoldpassword" style="color:#ff0000;">Old password error !</h6>
+                            <h6 ng-show="cssnewpassword" style="color:#ff0000;">Please input new password !</h6>
+                            <h6 ng-show="cssnewpassword2" style="color:#ff0000;">Please input new password again !</h6>
+                            <h6 ng-show="cssshowinconsistent" style="color:#ff0000;">Password inconsistent!</h6>
+                        </div>
+                    </div>
+                    <div class="UserBoxButton savePWD">
+                        <input type="submit" id="savepwd" class="btn btn-danger" value="save PassWord" ng-click="modifypassword()">
+                    </div>
+                </div>
+                <!-- 更改密码 //End -->
+            
+            
+                <!-- userFormBox // End -->
                 <div class="UserBoxButton">
-                    <input type="submit" class="saveUserBtn" value="save changes" ng-click="savebasicinfo(basicinfo)">
+                    <input type="submit" class="saveUserBtn" value="save changes" ng-click="saveuserinfo(userinfo)">
                     <!-- 编辑按钮：<input type="submit" class="editUserBtn" value="edit">  -->
                 </div>
+                
+                
             </div>
+            
+            
+            
+        
+        
         </form>
         <!-- 头像、基本信息 //End-->
         
         
-        <!-- 更改密码  -->
-        <div class="userBox userPassword" ng-show="showpassword">
-        	<h1 class="titlename">change password</h1>
-            <div class="userFormBox clearfix">
-                <div class="userChangePassword">
-                    <h6>old password</h6>
-                    <input id="oldpassword" type="password" ng-model="oldpassword">
-                    <hr>
-                    <h6>new password</h6>
-                    <input id="newpassword" type="password" ng-model="newpassword">
-                    <h6>confirm new password</h6>
-                    <input id="conformpassword" type="password" ng-model="conformpassword">
-                    <h6 ng-show="showalert" style="color:#ff0000;">Old password error !</h6>
-                    <h6 ng-show="shownewpwd" style="color:#ff0000;">Please input new password !</h6>
-                    <h6 ng-show="showagainpwd" style="color:#ff0000;">Please input new password again !</h6>
-                    <h6 ng-show="showinconsistent" style="color:#ff0000;">Password inconsistent!</h6>
-                </div>
-            </div>
-            <div class="UserBoxButton">
-                <input type="submit" class="saveUserBtn" value="save changes" ng-click="modifypassword()">
-            </div>
-        </div>
-        <!-- 更改密码 //End -->
+        
         
     </div>
 </div>
@@ -120,6 +136,9 @@
     <script src="app/js/usercontrollers.js"></script>
     <script src="app/js/factory.js"></script>
     <script src="app/js/directives.js"></script>
+
+    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+    <script src="lib/angularfire/angularfire.js"></script>
 
     <script src="lib/jquery/jquery-1.8.2.min.js"></script>
     <script src="lib/boostrap/bootstrap.min.js"></script>

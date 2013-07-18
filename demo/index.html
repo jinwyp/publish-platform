@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="demo">
+<html lang="en" ng-app="vcpmodule">
   <head>
     <meta charset="utf-8">
     <title>VCP</title>
@@ -7,17 +7,15 @@
     <link href="lib/flatui/bootstrap.css" rel="stylesheet">
     <link href="lib/flatui/flat-ui.css" rel="stylesheet">
     <link href="app/style.css" rel="stylesheet">
-	<link href="app/jquery.slideBox.css" rel="stylesheet">
-    <link href="lib/angularslider/angular-slider.css" rel="stylesheet">
-    <link rel="shortcut icon" href="app/img/favicon.ico">
+    <link href="../frontend/lib/angularslider/angular-slider.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../frontend/app/img/favicon.ico">
     <!--[if lt IE 9]>
-      <script src="lib/other/html5shiv.js"></script>
+      <script src="../frontend/lib/other/html5shiv.js"></script>
     <![endif]-->
     <!-- 默认 Site Theme -->
-    <link href="theme/default/site-theme.css" rel="stylesheet">
-	<script src="lib/jquery/jquery-1.8.2.min.js"></script>
-	<script src="app/js/jquery.slideBox.min.js"></script>
-
+    <link href="../frontend/theme/default/site-theme.css" rel="stylesheet">
+      <!-- 幻灯片 -->
+      <link type="text/css" rel="stylesheet" href="../frontend/lib/jqueryplugin/slidebanner/css/slidebanner.css" />
   </head>
 <body style="background:#f1f1f1;" ng-controller="GlobalCtrl">
 
@@ -31,57 +29,166 @@
 
                            <!-- 有header 数据 -->
                             <div ng-class="{zindextop:cssheadermenuhavadata}"  class="site-theme b-header zindextop" style="">
-                                <h1 class="b-h-logo">LOGO</h1>
+                                <h1 class="b-h-logo"><img src="../frontend/theme/default/img/logo.png" alt="SymptomFind"></h1>
+                                <div class="b-h-information">
+                                    <input type="text" class="search" value="" placeholder="search...">
+                                    <input type="button" class="search_btn" value="Search">
+                                </div>
                                 <ul class="b-h-nav">
                                     <li ng-repeat="head in header" class="ng-scope">
-										<a href="#/{{head.link}}" class="ng-binding" ng-class="{current:$index == cssblocklayoutselected}" ng-click="showCurrent($index)">{{head.name}}</a>
-									</li>
+										<a id="link" ng-href="#" class="ng-binding" ng-class="{current:$index == cssblocklayoutselected}" ng-click="showCurrent(head.linkedurl, $index)">{{head.menuname}}</a>
+									    <ul class="b-h-subnav">
+                                            <li ng-repeat="child in head.childdata" ng-click="showCurrent(child.linkedurl)"><a href="#">{{child.menuname}}</a> </li>
+									    </ul>
+                                    </li>
                                 </ul>
-                                <div class="b-h-info">
-                                    <a href="#">Melvon</a>
-                                    <a href="#">Link</a>
-                                </div>
                             </div>
-							<div class="banner">
+							<!--<div class="banner">
 								<img src="app/img/temp/banner_top_970_90.jpg" alt=""/>
-							</div>
+							</div>-->
                             <!-- 有header //End -->
                         </div>
                         <!-- Header Block 2 //End -->
                     </div>
                 </div>
                 <!-- Page: Row //End -->
-                <div id ="LayoutL" ng-view>
-                
-				</div>
-				<div id ="LayoutR">
-					<div class="row">
-						<div class="span4">
-							<div class="site-theme b-block block-layout-1">
-								<a href="http://www.fi.com/weballey/alleyletter.aspx" target="_blank"><img src = "app/img/temp/14769888589743746852.jpg" alt = ""/></a>
-							</div>
-					 	</div>
-					 </div>
-					 <div class="row">
-						<div class="span4">
-							<div class="site-theme b-block block-layout-1">
-								<h2 class="ng-binding">Editor Picks</h2>
-								<ul>
-									<li ng-repeat="article in articles | filter:todayhot| limitTo:5" class="ng-scope">
-										<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
 
+
+
+                    <div class="breadCurrent" ng-show="showdetails">
+                        <ul class="clearfix">
+                            <li><a href="index.html">Home</a> </li>
+                            <li class="arrow">&raquo;</li>
+                            <li><a href="#" ng-click="hidearticledetail();">{{ showblockname }}</a> </li>
+                            <li class="arrow">&raquo;</li>
+                            <li><span>{{ showheader }}</span></li>
+                        </ul>
+
+                    </div>
+
+
+
+                <div class="row" ng-show="showlist">
+                    <div ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
+                        <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks track by $index">
+                            <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
+                                <h2 >{{ block.blockname}}</h2>
+                                <ul class="listarticle">
+                                    <li ng-repeat="article in block.blockarticles " ng-click="showarticledetail(article,block.blockname)">
+                                        <span>{{ article.created | date:'MM/dd/yyyy' }}</span>
+                                        <h3 ng-click="check(block)"><a href="#">{{ article.title }}</a></h3>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='RSS'">
+                                <h3>{{ block.blockname}}</h3>
+
+                                <p><a href="#">How To Be A Top Financial Advisor</a></p>
+                                <p><a href="#">Retail Banking Vs. Commercial Banking</a></p>
+                                <p><a href="#">The Basics Of A 401(k) Retirement Plan</a></p>
+                                <p><a href="#">6 Tough Questions To Ask Before Retirement</a></p>
+                                <p><a href="#">Quit Your Job To Trade Stocks?</a></p>
+                            </div>
+                            <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='ads'">
+                                <img src="../frontend/app/img/temp/ad_temp01.jpg">
+                            </div>
+                            <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='static'">
+
+                                <h2 ng-show="block.blockstatictype=='text'">{{ block.blockname}}</h2>
+                                <h4 class="b-block-staticTitle" ng-show="block.blockstatictype=='text'">Seasonal Allergy Symptoms</h4>
+                                <p class="b-block-staticTxt" ng-show="block.blockstatictype=='text'">SymptomFind.com is one of the leading providers of health information on the Web. </p>
+                                <h4 class="b-block-staticTitle" ng-show="block.blockstatictype=='text'">Our Mission</h4>
+                                <p class="b-block-staticTxt" ng-show="block.blockstatictype=='text'">At SymptomFind.com, we are committed to providing the most accurate and authoritative information regarding health and nutrition to suit the needs of the everyday person.</p>
+
+                            </div>
+
+                            <!-- ?? -->
+                            <div ng-show="block.blockstatictype=='pic'">
+                                <p><img src="../frontend/app/img/temp/pic.jpg"></p>
+                            </div>
+
+                            <!-- ?? -->
+                            <video ng-show="block.blockstatictype=='video'" style="width:100%;" src="../frontend/app/img/temp/forest.mp4" autoplay loop controls></video>
+
+                            <!-- ??? Slider Banner -->
+                             <div  ng-show="block.blockstatictype=='slideshow'" id="content-slider">
+                                    <div id="slider">
+                                        <div id="mask">
+                                        <ul>
+                                        <li id="first" class="firstanimation">
+                                        <a href="#">
+                                        <img src="../frontend/app/img/temp/img_1.jpg" alt="Cougar"/>
+                                        </a>
+                                        <div class="tooltip">
+                                        <h1>Cougar</h1>
+                                        </div>
+                                        </li>
+                            
+                                        <li id="second" class="secondanimation">
+                                        <a href="#">
+                                        <img src="../frontend/app/img/temp/img_2.jpg" alt="Lions"/>
+                                        </a>
+                                        <div class="tooltip">
+                                        <h1>Lions</h1>
+                                        </div>
+                                        </li>
+                                        
+                                        <li id="third" class="thirdanimation">
+                                        <a href="#">
+                                        <img src="../frontend/app/img/temp/img_3.jpg" alt="Snowalker"/>
+                                        </a>
+                                        <div class="tooltip">
+                                        <h1>Snowalker</h1>
+                                        </div>
+                                        </li>
+                                        </ul>
+                                        </div>
+                                        <div class="progress-bar"></div>
+                                    </div>
+                                </div>
+                                
+                            <!-- ??? Slider Banner //End-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-show="showdetails">
+                     <div class="span9">
+                         <div class="site-theme b-block block-layout-1">
+                             <div class="article-templete">
+
+                                 <h1>{{ showheader }}</h1>
+
+                                 <div class="tagbox">
+                                     May 05 2013  |  Tag »
+                                     <a href="#" ng-repeat="tag in showtags">{{tag.tagname}}</a>
+                                 </div>
+                                 <p id="articledetail">
+
+                                 </p>
+                             </div>
+                         </div>
+                     </div>
+                    <div class="span3">
+                        <div class="site-theme b-block block-layout-1">
+                            <img src="../frontend/app/img/temp/pic.jpg">
+                        </div>
+                        <div class="site-theme b-block block-layout-1">
+
+                            <h2 class="ng-binding"></h2>
+                            <h4 class="b-block-staticTitle">Seasonal Allergy Symptoms</h4>
+                            <p class="b-block-staticTxt">SymptomFind.com is one of the leading providers of health information on the Web. </p>
+                            <h4 class="b-block-staticTitle">Our Mission</h4>
+                            <p class="b-block-staticTxt">At SymptomFind.com, we are committed to providing the most accurate and authoritative information regarding health and nutrition to suit the needs of the everyday person.</p>
+
+                        </div>
+                    </div>
+                </div>
 				<div class="row">
                     <div class="span12">
 						<!--  Footer -->
 						<div  class="site-theme b-footer zindextop" style="margin:20px 0;">
 							<p>
-								<!-- ngRepeat: footer in footer -->
+                                <span ng-repeat="footer in footer"><a href="#">{{footer.footername}}</a><span ng-hide="$index==footermaxindex">&nbsp;|</span></span>
 							</p>
 							<p>Copyright©2013 ValueClick Brands, Inc. All Rights Reserved.</p>
 						</div>
@@ -90,26 +197,46 @@
                 </div>
      </div>
      <!-- Load JS -->
-    <script src="lib/underscore/underscore-min.js"></script>
-    <script src="lib/angular/1.1.5/angular.js"></script>
-    <script src="lib/angularui/ui-bootstrap-tpls-0.4.0.min.js"></script>
-    <script src="lib/angularslider/angular-slider.js"></script>
-    <script src="app/js/app.js"></script>
+    <script src="../frontend/lib/underscore/underscore-min.js"></script>
+    <script src="../frontend/lib/angular/1.1.5/angular.js"></script>
+    <script src="../frontend/lib/angularui/ui-bootstrap-tpls-0.4.0.min.js"></script>
+    <script src="../frontend/lib/angularslider/angular-slider.js"></script>
+    <script src="../frontend/app/js/app.js"></script>
     <script src="app/js/pagecontrollers.js"></script>
-    <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
-    <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
-    <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
-  <!--  <script src="lib/flatui/custom_radio.js"></script>-->
-    <script src="lib/flatui/jquery.tagsinput.js"></script>
-    <script src="lib/flatui/jquery.placeholder.js"></script>
-    <script src="lib/flatui/application.js"></script>
+    <script src="../frontend/app/js/factory.js"></script>
+    <script src="../frontend/app/js/directives.js"></script>
+    <script src="../frontend/lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="../frontend/lib/flatui/jquery.dropkick-1.0.0.js"></script>
+    <script src="../frontend/lib/flatui/custom_checkbox_and_radio.js"></script>
+    <script src="../frontend/lib/flatui/jquery.tagsinput.js"></script>
+    <script src="../frontend/lib/flatui/jquery.placeholder.js"></script>
+    <script src="../frontend/lib/flatui/application.js"></script>
     <!-- Bootstrap Plug -->
-    <script src="lib/boostrap/bootstrap.js"></script>
+    <script src="../frontend/lib/boostrap/bootstrap.js"></script>
     <!--[if lt IE 8]>
-      <script src="lib/flatui/icon-font-ie7.js"></script>
-      <script src="lib/flatui/lte-ie7-24.js"></script>
+      <script src="../frontend/lib/flatui/icon-font-ie7.js"></script>
+      <script src="../frontend/lib/flatui/lte-ie7-24.js"></script>
     <![endif]-->
-    <script src="app/js/custom.js"></script>
-    
+    <script src="../frontend/app/js/custom.js"></script>
+    <!-- 幻灯片 -->
+    <script type="text/javascript" src="../frontend/lib/jqueryplugin/slidebanner/js/easing.js"></script>
+    <script type="text/javascript" src="../lib/jqueryplugin/slidebanner/js/MogFocus.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#focus").mogFocus({
+                loadAnimation : true, //效果初次加载是否有动画效果
+                loadswitch : false,//是否开启loading
+                loading : "lib/jqueryplugin/slidebanner/images/loading.gif",//loading图片路径
+                time : 2000,//间隔时间
+                scrollWidth : "680",//焦点图宽度，任意数值，设置为100%或者auto时，占满全屏
+                autoScroll : true,//是否自动滚动
+                prevNextAnima : {duration: 600, easing: "easeInOutBack"},//按钮滑动出来的方式，支持缓动公式，如果直接设置数值，那么就没有缓动效果
+                prevNextToggle : "show",//设置为toggle时鼠标放到滑动图上显示，离开影藏。设置show时一直显示，设置hide时影藏
+                single: true,//设置true则显示第二层，false则第二层影藏
+                focusDelay: 250,//焦点图延迟时间
+                focusDelayTwo : 0//第二层焦点图延迟时间
+            });
+        });
+    </script>
 </body>
 </html>

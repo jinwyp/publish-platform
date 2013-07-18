@@ -10,6 +10,104 @@
 
 /*  Factory  */
 vcpapp.factory('modelArticle', function(){
+
+
+    /* articlelist = [
+     {  "id": 1000, "title": "???? multiple partial views in angularjs111.", "contentbody": "<b>111111</b>", "status": "needreview",
+     "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",  "author": "Eric",  "editor": "iFan", "clickcount":1023, "category": "Today", "categoryid":1000,
+     "tags": [
+     { "tagid":10000, "tagname":"computer" },
+     { "tagid":10001, "tagname":"videocard" }
+     ],
+     "revision" : [
+     {
+     "versionid" :  1 ,
+     "versionnum" :  1 ,
+     "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+     "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+     "author": "Eric",  "editor": "iFan", "clickcount":1023,
+     "category": "Today", "categoryid":1000,
+     "tags": []
+     },
+     {
+     "versionid" :  2 ,
+     "versionnum" :  2 ,
+     "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+     "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+     "author": "Eric",  "editor": "iFan", "clickcount":1023,
+     "category": "Today", "categoryid":1000,
+     "tags": [
+     { "tagid":10000, "tagname":"computer" },
+     { "tagid":10001, "tagname":"videocard" }
+     ]
+     }
+     ]
+     },
+
+     {  "id": 1001, "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+     "created": "1370361600000", "updated": "1370361600000", "published": "1370361600000",  "author": "Eric",  "editor": "iFan", "clickcount":13, "category": "Today", "categoryid":1000,
+     "tags": [],
+     "revision" : [
+     {
+     "versionid" :  1 ,
+     "versionnum" :  1 ,
+     "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+     "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+     "author": "Eric",  "editor": "iFan", "clickcount":1023,
+     "category": "Today", "categoryid":1000,
+     "tags": [
+     { "tagid":10000, "tagname":"computer" },
+     { "tagid":10001, "tagname":"videocard" }
+     ]
+     },
+     {
+     "versionid" :  2 ,
+     "versionnum" :  2 ,
+     "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+     "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+     "author": "Eric",  "editor": "iFan", "clickcount":1023,
+     "category": "Today", "categoryid":1000,
+     "tags": [
+     { "tagid":10000, "tagname":"computer" },
+     { "tagid":10001, "tagname":"videocard" }
+     ]
+     }
+     ]
+     },
+
+     {  "id": 1002, "title": "?????? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+     "created": "1370188800000", "updated": "1370361600000", "published": "1370188800000",  "author": "Eric",  "editor": "iFan",  "clickcount":975, "category": "Today", "categoryid":1000,
+     "tags": [],
+     "revision" : [
+     {
+     "versionid" :  1 ,
+     "versionnum" :  1 ,
+     "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+     "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+     "author": "Eric",  "editor": "iFan", "clickcount":1023,
+     "category": "Today", "categoryid":1000,
+     "tags": [
+     { "tagid":10000, "tagname":"computer" },
+     { "tagid":10001, "tagname":"videocard" }
+     ]
+     },
+     {
+     "versionid" :  2 ,
+     "versionnum" :  2 ,
+     "title": "???? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
+     "created": "1370707200000", "updated": "1370707200000", "published": "1370707200000",
+     "author": "Eric",  "editor": "iFan", "clickcount":1023,
+     "category": "Today", "categoryid":1000,
+     "tags": [
+     { "tagid":10000, "tagname":"computer" },
+     { "tagid":10001, "tagname":"videocard" }
+     ]
+     }
+     ]
+     }
+     ];
+
+     */
     var articlelist = [];
 
     if(window.localStorage){
@@ -27,12 +125,14 @@ vcpapp.factory('modelArticle', function(){
         var articlesresult = [];
         var articlesresult2 = [];
 
-        articlesresult = _.filter(articlelist, function(element1){
+        articlesresult = _.filter(articlelist, function(aritcle){
 
-            var singlearticletags = _.filter(element1.tags, function(element2){
-                var tagresult = _.where(taglistdata, element2);
+            var singlearticletags = _.filter(aritcle.tags, function(singletag){
+                var tagresult = _.where(taglistdata, {tagname: singletag.tagname});
+
                 return tagresult.length;
             });
+
             return  singlearticletags.length;
         });
 
@@ -52,7 +152,8 @@ vcpapp.factory('modelArticle', function(){
         return articlesresultfinal;
     };
 
-    factory.getArticles = function (quantity) {
+
+    factory.getArticleList = function (quantity) {
         var articlesresult2 = _.clone(articlelist);
 
         if(articlesresult2.length > quantity){
@@ -61,6 +162,57 @@ vcpapp.factory('modelArticle', function(){
 
         return articlesresult2;
     };
+
+    factory.getArticleById = function (articleid) {
+        for(var i = 0;i < articlelist.length; i++){
+            if (articlelist[i].id == articleid) {
+                return articlelist[i];
+            }
+        }
+    };
+
+    factory.getMaxArticleID = function () {
+        var articlemaxid;
+        if(articlelist.length==0){
+            articlemaxid=1001;
+        }else{
+            articlemaxid = articlelist[0].id + 1;
+        }
+        return articlemaxid;
+    };
+
+    factory.saveArticle = function (articledata) {
+        for(var i = articlelist.length; i--;){
+            if (articlelist[i].id == articledata.id) {
+                articlelist[i] = articledata;
+                localStorage.setItem("articlesData",JSON.stringify(articlelist));
+                return ;
+            }
+        }
+    };
+
+    factory.delArticleById = function (articleid) {
+        for(var i = articlelist.length; i--;){
+            if (articlelist[i].id == articleid) {
+                articlelist.splice(i, 1);
+                localStorage.setItem("articlesData",JSON.stringify(articlelist));
+                return;
+            }
+        }
+    };
+
+    factory.createNewArticle = function (articledata) {
+        articlelist.push(articledata);
+        localStorage.setItem("articlesData",JSON.stringify(articlelist));
+        return ;
+    };
+
+    factory.getDateNow = function () {
+        var newdate = new Date().getTime();
+        return newdate;
+    };
+
+
 
     return factory;
 
@@ -83,13 +235,22 @@ vcpapp.factory('modelTag', function(){
     var factory = {};
 
     //Tags
-    factory.getMaxTagID = function () {
 
+    factory.getTagList = function () {
+        return taglist;
+    };
+
+    factory.getMaxTagID = function () {
+        //factory.getTagList();
         var tagmaxid;
-        if(taglist.length==0){
+        try{
+            if(taglist.length==0){
+                tagmaxid=10001;
+            }else{
+                tagmaxid = taglist[taglist.length-1].tagid + 1;
+            }
+        }catch(e){
             tagmaxid=10001;
-        }else{
-            tagmaxid = taglist[taglist.length-1].tagid + 1;
         }
         return tagmaxid;
     };
@@ -104,11 +265,13 @@ vcpapp.factory('modelTag', function(){
         }
     };
 
+
     factory.createNewTag = function (tagdata) {
         taglist.push(tagdata);
         localStorage.setItem("tagsData",JSON.stringify(taglist));
         return tagdata;
     };
+
     return factory;
 
 });
@@ -220,7 +383,7 @@ vcpapp.factory('modelSite',  function(){
         sitedata.siteinfo =  angular.copy(sitedata);
         localStorage.setItem("siteData",JSON.stringify(sitedata));
         return;
-        };
+    };
 
     factory.saveUserInfo= function(userdata){
         sitedata.userinfo =  userdata;
@@ -249,7 +412,6 @@ vcpapp.factory('modelSite',  function(){
     };
 
     factory.addSingleBlockToPage = function (newblock, pagelayout, pagedata) {
-
         var pageindex = sitedata.pagelist.indexOf(pagedata);
         var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
         pagelayout.blocks.push(newblock);
@@ -299,6 +461,7 @@ vcpapp.factory('modelSite',  function(){
         var pageindex = sitedata.pagelist.indexOf(selectedpage);
 //        console.log(pageindex, sitedata.pagelist[pageindex].pagename);
         sitedata.pagelist[pageindex].pagelayoutdata = layout.layoutdata ;
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
         return  ;
     }
 
@@ -313,24 +476,30 @@ vcpapp.factory('modelSite',  function(){
         return sitedata.headertheme;
     }
 
-
-
     //header 修改
     factory.getHeader=function(){
         return sitedata.headerdata;
     }
     factory.addHeaderMenu = function (menudata) {
-        return  sitedata.headerdata.push(menudata);
+        sitedata.headerdata.push(menudata);
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
+        return;
     };
     factory.addHeaderChildMenu = function (menuindex,childmenudata) {
-        return  sitedata.headerdata[menuindex].childdata.push(childmenudata);
+        sitedata.headerdata[menuindex].childdata.push(childmenudata);
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
+        return;
     };
 
     factory.editHeaderMenu = function (pagedata) {
-        return  sitedata.headerdata.push(pagedata);
+        sitedata.headerdata.push(pagedata);
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
+        return;
     };
     factory.editHeaderChildMenu = function (id,pagedata) {
-        return  sitedata.headerdata[id].childdata.push(pagedata);
+        sitedata.headerdata[id].childdata.push(pagedata);
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
+        return;
     };
 
     factory.getfoottheme=function(){
@@ -340,10 +509,15 @@ vcpapp.factory('modelSite',  function(){
         return sitedata.footerdata;
     };
     factory.addfooterMenu = function (menudata) {
-        return  sitedata.footerdata.push(menudata);
+        sitedata.footerdata.push(menudata);
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
+        return;
     };
 
-
+    factory.savesitedata = function(menudata){
+        localStorage.setItem("siteData",JSON.stringify(menudata));
+        return;
+    }
 
     return factory;
 }

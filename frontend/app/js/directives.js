@@ -12,16 +12,19 @@
 
 angular.module('vcpmodule.directive', []).
     directive('enterKeypress', function(){
-    return function(scope, element, attrs) {
-        element.bind("keypress", function(event) {
-            if(event.which === 13) {
-                scope.$apply(function(){
-                    scope.$eval(attrs.enterKeypress);
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                element.bind("keypress", function(event) {
+                    if(event.which === 13) {
+                        scope.$apply(function(){
+                            scope.$eval(attrs.enterKeypress);
+                        });
+                        event.preventDefault();
+                    }
                 });
-                event.preventDefault();
             }
-        });
-    };
+        };
 });
 
 angular.module('vcpmodule.directive', []).
