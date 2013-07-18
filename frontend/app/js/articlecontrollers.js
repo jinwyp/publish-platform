@@ -18,14 +18,8 @@ vcpapp.config(['$routeProvider', function($routeProvider) {
 
 
 /* Controllers */
-vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArticle, modelTag) {
-    var url = "https://vcplatform.firebaseIO.com/articles";
-    var articlelistpromise = angularFire(url, $scope, 'articlelistFirebase', []);
+vcpapp.controller.articleList = function ($scope, $filter, modelArticle) {
 
-/*    //获取全部数据
-    articlelistpromise.then(function() {
-        $scope.articlestotaldata = articlelistpromise;
-    });*/
 
     $scope.articlestotaldata = modelArticle.getArticleList();     // use firebase for database
 
@@ -333,7 +327,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, 
     };
 
      $scope.saveArticle = function(feed) {
-       $scope.ispublish=false;
+        $scope.ispublish=false;
         $scope.articledata.versioncomment='';
         $scope.articledata.updated=modelArticle.getDateNow();
         $scope.articledata.status='draft';
