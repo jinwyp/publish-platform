@@ -412,7 +412,6 @@ vcpapp.factory('modelSite',  function(){
     };
 
     factory.addSingleBlockToPage = function (newblock, pagelayout, pagedata) {
-
         var pageindex = sitedata.pagelist.indexOf(pagedata);
         var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
         pagelayout.blocks.push(newblock);

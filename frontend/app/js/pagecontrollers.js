@@ -170,6 +170,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             pageurl : $scope.newpage.pageurl
         };
         modelSite.addSinglePage(newpage);
+        $scope.layouts = modelSite.getLayoutList();
     };
 
 
@@ -196,7 +197,8 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
         $scope.cssblocktipbox = false;
         $scope.defaultselectedlayoutindex = indexid;
-        modelSite.saveSinglePageLayout($scope.singlepage, layout);
+        modelSite.saveSinglePageLayout($scope.singlepage, angular.copy(layout));
+
     };
 
 
