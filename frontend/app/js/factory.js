@@ -412,7 +412,6 @@ vcpapp.factory('modelSite',  function(){
     };
 
     factory.addSingleBlockToPage = function (newblock, pagelayout, pagedata) {
-
         var pageindex = sitedata.pagelist.indexOf(pagedata);
         var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
         pagelayout.blocks.push(newblock);
@@ -462,6 +461,7 @@ vcpapp.factory('modelSite',  function(){
         var pageindex = sitedata.pagelist.indexOf(selectedpage);
 //        console.log(pageindex, sitedata.pagelist[pageindex].pagename);
         sitedata.pagelist[pageindex].pagelayoutdata = layout.layoutdata ;
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
         return  ;
     }
 
