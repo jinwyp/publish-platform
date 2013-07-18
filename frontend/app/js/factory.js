@@ -266,13 +266,11 @@ vcpapp.factory('modelTag', function(){
     };
 
 
-
     factory.createNewTag = function (tagdata) {
         taglist.push(tagdata);
         localStorage.setItem("tagsData",JSON.stringify(taglist));
         return tagdata;
     };
-
 
     return factory;
 
