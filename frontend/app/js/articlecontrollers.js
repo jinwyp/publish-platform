@@ -464,11 +464,8 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
     var urluser = "https://vcplatform.firebaseIO.com/user";
     $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
 
-    var urlmaxtagid = "https://vcplatform.firebaseIO.com/maxtagid";
-    $scope.maxtagidFirebase = angularFire(urlmaxtagid, $scope, 'maxtagidFirebase', {});
-
-    var urlmaxarticleid = "https://vcplatform.firebaseIO.com/maxarticleid";
-    $scope.maxarticleidFirebase = angularFire(urlmaxarticleid, $scope, 'maxarticleidFirebase', {});
+    var urlmaxid = "https://vcplatform.firebaseIO.com/maxid";
+    $scope.maxidFirebase = angularFire(urlmaxid, $scope, 'maxidFirebase', {});
 
     var urltaglist = "https://vcplatform.firebaseIO.com/tags";
     $scope.tagsFirebase = angularFire(urltaglist, $scope, 'tagsFirebase', [] );
@@ -476,25 +473,23 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
     var urlartilcelist = "https://vcplatform.firebaseIO.com/articles";
     $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
 
-
     function getMaxTagId(){
-        if($scope.maxtagidFirebase.id == undefined ){
-            $scope.maxtagidFirebase.id = 100001;
+        if($scope.maxidFirebase.tagid == undefined ){
+            $scope.maxidFirebase.tagid = 100001;
         }else{
-            $scope.maxtagidFirebase.id = $scope.maxtagidFirebase.id  + 1;
-            console.log($scope.maxtagidFirebase);
+            $scope.maxidFirebase.tagid = $scope.maxidFirebase.tagid  + 1;
         }
-        return $scope.maxtagidFirebase.id
+        return $scope.maxidFirebase.tagid
     }
 
     function getMaxArticleId(){
-        if($scope.maxarticleidFirebase.id == undefined ){
-            $scope.maxarticleidFirebase.id = 10000001;
+        if($scope.maxidFirebase.aritcleid == undefined ){
+            $scope.maxidFirebase.aritcleid = 100001;
         }else{
-            $scope.maxarticleidFirebase.id = $scope.maxarticleidFirebase.id + 1;
-            console.log($scope.maxarticleidFirebase);
+            $scope.maxidFirebase.aritcleid = $scope.maxidFirebase.aritcleid  + 1;
         }
-        return $scope.maxarticleidFirebase.id
+        return $scope.maxidFirebase.aritcleid
+
     }
 
     function checkTagExist(tagname) {
@@ -507,29 +502,27 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
         }
     }
 
-
-    $scope.newarticleadata = {
-        "id": getMaxArticleId(),
-        "title": "",
-        "contentbody": "",
-        "status": "draft",
-        "created": modelArticle.getDateNow(),
-        "updated": modelArticle.getDateNow(),
-        "published": modelArticle.getDateNow(),
-        "author": $scope.userFirebase.then(function() {return $scope.userFirebase.firstname }),
-        "editor": $scope.userFirebase.then(function() {return $scope.userFirebase.firstname }),
-        "clickcount":0,
-        "category": "Cosmetics",
-        "categoryid":1000,
-        "tags": [],
-        "revision" : [],
-        "lastversioncomment" : "",
-        "lastreviewcomment" : "",
-        "reviewhistory" : []
-    };
-
-
-
+    $scope.maxidFirebase.then(function() {
+        $scope.newarticleadata = {
+            "id": getMaxArticleId(),
+            "title": "",
+            "contentbody": "",
+            "status": "draft",
+            "created": modelArticle.getDateNow(),
+            "updated": modelArticle.getDateNow(),
+            "published": modelArticle.getDateNow(),
+            "author": $scope.userFirebase.firstname ,
+            "editor": $scope.userFirebase.firstname ,
+            "clickcount":0,
+            "category": "Cosmetics",
+            "categoryid":1000,
+            "tags": [],
+            "revision" : [],
+            "lastversioncomment" : "",
+            "lastreviewcomment" : "",
+            "reviewhistory" : []
+        };
+    });
 
 
 
@@ -554,12 +547,15 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
     $scope.conformNewArticle = function(callback) {
         if (callback.$valid) {
             $scope.cssmodalshow = true;
+            getMaxArticleId();
         }
+
     };
     $scope.closeModal = function () {
         $scope.cssmodalshow = false;
     };
     $scope.saveNewArtcle = function() {
+
 
         //读取文章的Tags
         var temptagslistname = $(".tagsinput").exportTags();
@@ -572,7 +568,7 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
                 newtag = checkTagExist(temptagslistname[i]);
             }else{
                 newtag = {
-                    "tagid" : getMaxArticleId(),
+                    "tagid" : getMaxTagId(),
                     "tagname" : temptagslistname[i]
                 };
                 $scope.tagsFirebase.push(newtag);
