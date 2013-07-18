@@ -124,7 +124,7 @@
     *background:url(img/pagebg.jpg) center top repeat;
      background-size:cover;*/ }
 .container		{ position:relative; }
-.pagewrap		{ margin-top:190px; margin-bottom:40px; min-height:600px; padding:10px; background:#fff; border-radius:8px; position:relative; z-index:99; box-shadow:0 5px 5px rgba(0,0,0,0.3);}
+.pagewrap		{ margin-top:210px; margin-bottom:40px; min-height:600px; padding:10px; background:#fff; border-radius:8px; position:relative; z-index:99; box-shadow:0 5px 5px rgba(0,0,0,0.3);}
 
 
 /* =========================================================================================== */
@@ -596,7 +596,7 @@ ul.ts_preview li img{ display:block; width:300px; height:200px; margin:0; paddin
 /* =========================================================================================== */
 /*                                          Page List                                          */
 /* =========================================================================================== */
-.pagelist		{ position:absolute; left:-164px; top:210px; width:164px; height:auto;}
+.pagelist		{ position:absolute; left:-164px; top:230px; width:164px; height:auto;}
 .pagelistbox	{ margin-bottom:14px; padding:0; list-style:none;}
 .pagelistbox li	{ margin:0; padding:0; position:relative;}
 
@@ -682,7 +682,7 @@ ul.ts_preview li img{ display:block; width:300px; height:200px; margin:0; paddin
 /* =========================================================================================== */
 /*                                          Page Layout                                        */
 /* =========================================================================================== */
-.pagelayout		{ position:absolute; right:-151px; top:210px; width:151px;}
+.pagelayout		{ position:absolute; right:-151px; top:230px; width:151px;}
 
 ul.layout_list	{ display:block; position:absolute; left:0px; width:90px; margin:0;  padding:20px 0; background:#000; opacity:0.4; list-style:none; border-radius:0 0 8px 0; }
 ul.layout_list li		{ margin:0 auto; width:65px; height:55px; margin-bottom:12px; border:5px solid rgba(0,0,0,0); cursor:pointer; opacity:0.6; }
