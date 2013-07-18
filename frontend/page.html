@@ -58,7 +58,7 @@
 
 <!-- =======================================  tip_auto ======================================= -->
 <div class="tip_box tip_auto" ng-show="'auto'==cssblocktipbox" >
-    <h1>Auto pick block attribute</h1>
+    <h1><a href="###" class="TipBoxClose">X</a>Auto pick block attribute</h1>
     <div class="tabbable tabs-below">
         <div class="tab-content">
             <!-- Tab1: Layout -->
@@ -169,7 +169,7 @@
 
 <!-- ======================================= tip_editor ======================================= -->
 <div class="tip_box tip_editor"  ng-show="'editor'==cssblocktipbox">
-    <h1>Editor's pick block attribute</h1>
+    <h1><a href="###" class="TipBoxClose">X</a>Editor's pick block attribute</h1>
     <div class="tab-content">
         <dl class="clearfix">
             <dt>Block name :</dt>
@@ -200,7 +200,7 @@
 
 <!-- ======================================= tip_static ======================================= -->
 <div class="tip_box tip_static" ng-show="'static'==cssblocktipbox">
-    <h1>Static</h1>
+    <h1><a href="###" class="TipBoxClose">X</a>Static</h1>
     <ul class="StaticElementBlock clearfix">
      	<li><a href="#" class="icon_static_txt" ng-click="addblocktopage('statictext', currentlayoutcontainer, 0) ">TXT</a></li>
         <li><a href="#" class="icon_static_pic" ng-click="addblocktopage('staticpic', currentlayoutcontainer, 0)">PIC</a></li>
@@ -211,7 +211,7 @@
 
 <!-- ======================================= tip_ad ======================================= -->
 <div class="tip_box tip_ads" ng-show="'ads'==cssblocktipbox">
-    <h1>AD block attribute</h1>
+    <h1><a href="###" class="TipBoxClose">X</a>AD block attribute</h1>
     <div class="tab-content">
         <dl class="clearfix">
             <dt>AD Name:</dt>
@@ -230,7 +230,7 @@
 
 <!-- ======================================= tip_RSS ======================================= -->
 <div class="tip_box tip_RSS" ng-show="'RSS'==cssblocktipbox">
-    <h1>RSS block attribute</h1>
+    <h1><a href="###" class="TipBoxClose">RSS block attribute</h1>
     <div class="tab-content">
         <dl class="clearfix">
             <dt>Block name :</dt>
@@ -642,6 +642,14 @@
             focusDelay: 250,//焦点图延迟时间			
             focusDelayTwo : 0//第二层焦点图延迟时间
         });
+		
+		
+		//关闭TipBox
+		$(".TipBoxClose").click(function(){
+			 $(".tip_box").fadeOut(300);
+		});
+				  
+				  
     });
     </script>
 </body>

@@ -1013,6 +1013,7 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-f
 .tip_box		{ margin:0; padding:0; width:500px; color:#bbb; border-radius:8px; background:#343434; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:999999; }
 .tip_box:after	{ content:''; position:absolute; left:50%; bottom:-10px; margin-left:-12px; width:23px; height:10px; background:url(img/tip_arrow.png) no-repeat;}
 .tip_box h1		{ font-size:18px; height:36px; line-height:34px; text-align:center; color:#fff; margin:0; padding:0; border-radius:8px 8px 0 0;}
+.tip_box h1 .TipBoxClose{ float:right; width:24px; height:24px; line-height:24px; text-align:center; margin:6px 10px 0 0; font-size:16px; color:#fff; text-decoration:none; border-radius:100px; background:#454545;}
 .tip_box dl		{ margin-bottom:10px;}
 .tip_box dt		{ width:120px; float:left; text-align:right; vertical-align:top;}
 .tip_box dd		{ width:360px; float:left; text-align:left; }
