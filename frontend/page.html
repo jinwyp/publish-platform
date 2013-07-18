@@ -272,7 +272,7 @@
                                     <input type="button" class="search_btn" value="Search">
                                 </div>
                                 <ul class="b-h-nav">
-                                    <li ng-repeat="head in header"><a href="#{{head.linkedurl}}" ng-class="{current: $index==cssheadernavindex}" >{{head.menuname}}</a></li>
+                                    <li ng-repeat="head in header track by $index"><a href="#{{head.linkedurl}}" ng-class="{current: $index==cssheadernavindex}" >{{head.menuname}}</a></li>
                                 </ul>
                             </div>
                             <!-- 有header //End -->
@@ -330,9 +330,7 @@
                                                     </label>
                                                     <label class="radio clearfix">
                                                         <input type="radio" id="urltype2" ng-model="newheaderdata.menutype" value="local">
-                                                        <pre>{{ pages }}</pre><br>
-                                                        <pre>{{ headerlocalurl }}  </pre>
-                                                        <select style="width:110px;" ng-model="headerlocalurl" ng-options="page.pagename for page in pages">
+                                                        <select style="width:110px;" ng-model="headerlocalurl" ng-options="page.pagename as page.pagename for page in pages">
                                                         </select>
                                                     </label>
                                                     <div class="newlink_panel_btn">
