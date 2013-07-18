@@ -12,6 +12,8 @@
                     <a href="" class="ico-article-del" rel="tooltip" title="Delete Article"  ng-click="openModal()"></a>
                     <a href="" class="ico-article-setup" rel="tooltip" title="Tag Category"></a> -->
                 </i>
+                
+                <!-- Delete 弹窗 -->
                 <div modal="cssmodalshow" options="cssmodalslide" >
                     <div class="modal-header">
                         <button type="button" class="close" ng-click="closeModal()">&times;</button>
@@ -27,15 +29,75 @@
                         <button class="btn btn-danger"  ng-click="delArticle(articlepreviewdata.id)">Delete</button>
                     </div>
                 </div>
-
-                <div modal="showcomments" options="cssmodalslide" >
+				
+                <!-- Review 弹窗 -->
+                <div class="modal" modal="showcomments" options="cssmodalslide" >
                     <div class="modal-header">
                         <button type="button" class="close" ng-click="closecomments()">&times;</button>
-                        <h3 >Review Comment </h3>
+                        <h3>Review Comment</h3>
                     </div>
-
+					
                     <div class="modal-body">
-                        <input type="text" id="comments" />
+                        <!-- <input type="text" id="comments" /> -->
+                		
+                        
+                        <table class="table table-condensed">
+                          <thead>
+                            <tr>
+                              <th>Date</th>
+                              <th>Version</th>
+                              <th>Operator</th>
+                              <th>Comment</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>7/15/2013</td>
+                              <td><span class="badge badge-success">10</span></td>
+                              <td>Eric</td>
+                              <td>There is an ambiguous word article.</td>
+                            </tr>
+                            <tr>
+                              <td>6/30/2013</td>
+                              <td><span class="badge badge-success">9</span></td>
+                              <td>Jerome</td>
+                              <td>This article is not sensational.</td>
+                            </tr>
+                            <tr>
+                              <td>5/21/2013</td>
+                              <td><span class="badge badge-success">6</span></td>
+                              <td>Jin</td>
+                              <td>Content of the article did not mention a woman.</td>
+                            </tr>
+                            <tr>
+                              <td>5/21/2013</td>
+                              <td><span class="badge badge-success">3</span></td>
+                              <td>Susa</td>
+                              <td>Wrong word article.</td>
+                            </tr>
+                            <tr>
+                              <td>5/06/2013</td>
+                              <td><span class="badge badge-success">1</span></td>
+                              <td>Melvon</td>
+                              <td>World of Warcraft content of the article should contain subject matter.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        
+                        <div class="pagination pagination-mini pagination-centered">
+                          <ul>
+                            <li><a href="#">&laquo;</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                          </ul>
+                        </div>
+
+                        <textarea rows="3" id="comments" style="width:96%"></textarea>
+                        
                     </div>
 
                     <div class="modal-footer">
@@ -43,6 +105,9 @@
                         <button class="btn btn-danger" ng-click="savedata()">Save</button>
                     </div>
                 </div>
+                
+                
+                
             </div>
             <!-- 预览区 -->
             <div id="article-cont-preview" class="article-cont" >
