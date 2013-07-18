@@ -22,7 +22,7 @@
 .site-theme.b-header .b-h-nav > li > a.current:hover{ background:#478697; color:#fff; }
 
 .site-theme.b-header .b-h-information{ float:right; display:block; margin:0; padding:0 12px; border:0; color:#fff; font-size:12px; font-weight:bold; height:48px; line-height:46px; text-decoration:none; border-right:1px solid #4ba5b0;}
-.site-theme.b-header .b-h-information input.search{  width:100px; height:20px; margin:2px 0 0 0; border:0; border-radius:2px;}
+.site-theme.b-header .b-h-information input.search{  width:180px; height:20px; margin:2px 0 0 0; border:0; border-radius:2px;}
 .site-theme.b-header .b-h-information input.search_btn{ height:28px; padding:0 10px; line-height:26px; color:#fff; background:#d76246; border:1px solid #c04f30; border-radius:2px; box-shadow:inset 0 1px 0px #dd7b64, 0 1px 1px rgba(0,0,0,0.4); }
 
 /* SubNav */
