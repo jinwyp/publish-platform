@@ -16,19 +16,7 @@
 
     //加载block内容
      var site = modelSite.getSite();
- /*    for (var i=site.pagelist.length-1; i>=0; i--)
-     {
-         for (var j = site.pagelist[i].pagelayoutdata.length-1; j>=0; j--)
-         {
-             for (var k = site.pagelist[i].pagelayoutdata[j].blocks.length-1; k>=0; k--)
-             {
-                 if(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktype == 'auto'){
-                     var articles = modelArticle.getArticlesByTags(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity, site.pagelist[i].pagelayoutdata[j].blocks[k].blockcategory);
-                     site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles;
-                 }
-             }
-         }
-     }*/
+
      $scope.serachlinkdom = function(currentpage){
          for(var i = 0; i < $scope.pages.length; i++){
              if($scope.pages[i].pagename == currentpage){
@@ -43,9 +31,15 @@
      }
 
      //链接页面
-
+     var copysinglepage='';
      $scope.showCurrent = function(currentpage, index){
          $scope.singlepage = $scope.serachlinkdom(currentpage);
+         if($scope.singlepage == undefined){
+             $scope.singlepage = copysinglepage;
+             window.open(currentpage);
+         }else{
+             copysinglepage = $scope.singlepage;
+         }
          $scope.cssblocklayoutselected = index;
      }
 
@@ -56,6 +50,7 @@
      $scope.showlist = true;
      $scope.showblockname ='';
 
+     //显示详细信息
      $scope.showarticledetail = function(content,blockname){
          $scope.showheader = content.title;
          $scope.showtags = content.tags;
@@ -65,6 +60,7 @@
          document.getElementById("articledetail").innerHTML =content.contentbody;
      }
 
+     //显示列表页面
      $scope.hidearticledetail = function(){
          $scope.showdetails = false;
          $scope.showlist = true;

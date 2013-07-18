@@ -486,7 +486,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         var blockcontent = $(evt.target).parent().parent();
         blockcontent.append($(".newlink_panel"));
         $scope.csstitleform=true;
-        debugger;
         ishead=isheader;
         $scope.footercommonfunction();
         if(isheader){
@@ -497,12 +496,13 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         }else{
             $scope.footerli=$scope.csstitleform ? param1 : -1;
         }
-        $scope.newheaderdata.menutype='other';
+        $scope.newheaderdata.menutype='local';
         $scope.newheaderdata.menuname="";
         $scope.newheaderdata.linkedurl="";
         $("#delete")[0].value='Cancel';
-        $("#urltype1").attr("checked",true);
-        $("#urltype2").attr("checked",false);
+        $scope.headerlocalurl="Homepage";
+        $("#urltype1").attr("checked",false);
+        $("#urltype2").attr("checked",true);
         setupLabel();
         insertdata=true;
     }
@@ -529,7 +529,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             $scope.newheaderdata.linkedpageid=0;
         }else{
             $scope.newheaderdata.menutype='local';
-            $scope.newheaderdata.linkedurl=$scope.headerlocalurl.pagename;
+            $scope.newheaderdata.linkedurl=$scope.headerlocalurl;
             $scope.newheaderdata.linkedpagename= $scope.headerlocalurl;
             $scope.newheaderdata.linkedpageid=$scope.checkpargeid();
         }
@@ -586,9 +586,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                     modelSite.savesitedata($scope.get_site);
                 }
             }
-            /*if(window.localStorage){
-                localStorage.setItem("newData",JSON.stringify($scope.header));
-            }*/
         }else{
             if(insertdata){
                 if($scope.footer.length==0){
@@ -662,6 +659,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         var blockcontent = $(evt.target).parent().parent();
         blockcontent.append($(".newlink_panel"));
         headerflag=false;
+        ishead=true;
         headchildclass=obj;
         $scope.csstitleform=true;
         $scope.footercommonfunction();
@@ -676,7 +674,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     }
     //delete menu
     $scope.deleteparentmenu=function(evt){
-        debugger;
         if(ishead){
             if($("#delete")[0].value=='Delete'){
                 if(childmenuindex===''){
@@ -696,9 +693,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             }else{
                 $scope.csstitleform=false;
             }
-            /*   if(window.localStorage){
-             localStorage.setItem("newData",JSON.stringify($scope.header));
-             }*/
         }else{
             if($("#delete")[0].value=='Delete'){
                 $scope.footer.splice(footerindex,1);
@@ -707,6 +701,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 $scope.csstitleform=false;
             }
         }
+        modelSite.savesitedata($scope.get_site);
         $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
         $("body").append($(".newlink_panel"));//delete before remove form position,it is must step
         $scope.footercommonfunction();
@@ -732,7 +727,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $scope.footerlia=-1;
     }
     $scope.assignmentform=function(obj){
-        debugger;
         $("#delete")[0].value='Delete';
         if($scope.newheaderdata.menutype=="other"){
             $("#urltype1").attr("checked",true);
@@ -743,7 +737,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             $("#urltype1").attr("checked",false);
             $("#urltype2").attr("checked",true);
             $scope.headerlocalurl=obj.linkedpagename;
-            console.log(obj.linkedpagename);
         }
         setupLabel();
     }

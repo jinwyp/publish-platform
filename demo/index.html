@@ -36,7 +36,7 @@
                                 </div>
                                 <ul class="b-h-nav">
                                     <li ng-repeat="head in header" class="ng-scope">
-										<a href="#/{{head.link}}" class="ng-binding" ng-class="{current:$index == cssblocklayoutselected}" ng-click="showCurrent(head.linkedurl, $index)">{{head.menuname}}</a>
+										<a id="link" ng-href="#" class="ng-binding" ng-class="{current:$index == cssblocklayoutselected}" ng-click="showCurrent(head.linkedurl, $index)">{{head.menuname}}</a>
 									    <ul class="b-h-subnav">
                                             <li ng-repeat="child in head.childdata" ng-click="showCurrent(child.linkedurl)"><a href="#">{{child.menuname}}</a> </li>
 									    </ul>
