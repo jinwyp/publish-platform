@@ -409,49 +409,62 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, 
     });
 };
 
-vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle, modelTag) {
+
+
+vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle, modelTag, angularFire) {
+    var urluser = "https://vcplatform.firebaseIO.com/user";
+    $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
+
     $(".tagsinput").tagsInput({
-        'autocomplete': modelTag.getTagList()
+//        'autocomplete': modelTag.getTagList()
     });   //初始化 加载tag标签
 
-    $scope.newarticleadata = {
-        "id": modelArticle.getMaxArticleID(),
-        "title": "",
-        "contentbody": "",
-        "status": "needreview",
-        "created": modelArticle.getDateNow(),
-        "updated": modelArticle.getDateNow(),
-        "published": modelArticle.getDateNow(),
-        "author": "Eric",
-        "editor": "iFan",
-        "clickcount":0,
-        "category": "Cosmetics",
-        "categoryid":1000,
-        "tags": [],
-        "revision" : [],
-        "versioncomment":"",
-        "reviewcomment":""
-    }
+
+    $scope.userFirebase.then(function() {
+        $scope.newarticleadata = {
+            "id": modelArticle.getMaxArticleID(),
+            "title": "",
+            "contentbody": "",
+            "status": "draft",
+            "created": modelArticle.getDateNow(),
+            "updated": modelArticle.getDateNow(),
+            "published": modelArticle.getDateNow(),
+            "author": $scope.userFirebase.firstname ,
+            "editor": $scope.userFirebase.firstname ,
+            "clickcount": 0,
+            "category": "Cosmetics",
+            "categoryid" : 1000,
+            "tags": [],
+            "revision" : [],
+            "lastversioncomment" : "",
+            "lastreviewcomment" : "",
+            "reviewhistory" : []
+        };
+    });
+
 
     $scope.cssTagsPanel = false;
-
     $scope.cssmodalshow = false;
-    $scope.saveflag ='';
-    $scope.createNewArticle = function(feed,savestatus) {
-        if (feed.$valid) {
-            $scope.cssmodalshow = true;
-            $scope.saveflag = savestatus;
-        }
-    }
-
     $scope.cssmodalslide = {
         backdropFade: true,
         dialogFade:true
     };
 
+    $scope.showEditPreview = function(val){
+        return val;
+    };
+
+    $scope.conformNewArticle = function(callback) {
+        if (callback.$valid) {
+            $scope.cssmodalshow = true;
+            getMaxArticleId();
+        }
+    };
+
     $scope.closeModal = function () {
         $scope.cssmodalshow = false;
     };
+
 
     $scope.savedata = function() {
         var temptagslistname = $(".tagsinput").exportTags();
@@ -472,30 +485,36 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
             $scope.newarticleadata.tags.push(newtag);
         }
 
-         $scope.newarticleadata.status=$scope.saveflag;
          //增加文章每一次修改版本信息
-         var newrevisionid = $scope.newarticleadata.revision.length + 1;
-         var newrevision = {
-             "versionid" :  newrevisionid ,
-             "versionnum" :  newrevisionid ,
-             "title" : $scope.newarticleadata.title, "contentbody": $scope.newarticleadata.contentbody, "status": $scope.newarticleadata.status,
-             "created": $scope.newarticleadata.created, "updated": $scope.newarticleadata.updated, "published": $scope.newarticleadata.published,
-             "author": $scope.newarticleadata.author,  "editor": $scope.newarticleadata.editor,  "clickcount":$scope.newarticleadata.clickcount,
-             "category": $scope.newarticleadata.category, "categoryid": $scope.newarticleadata.categoryid,
-             "tags":$scope.newarticleadata.tags,"versioncomment":$scope.newarticleadata.versioncomment,
-             "reviewcomment":$scope.newarticleadata.reviewcomment
-         };
+        var newrevisionid = $scope.newarticleadata.revision.length + 1;
+        var newrevision = {
+            "versionid" :  newrevisionid ,
+            "versionnum" :  newrevisionid ,
+            "title" : $scope.newarticleadata.title,
+            "contentbody": $scope.newarticleadata.contentbody,
+            "status": $scope.newarticleadata.status,
+            "created": $scope.newarticleadata.created,
+            "updated": $scope.newarticleadata.updated,
+            "published": $scope.newarticleadata.published,
+            "author": $scope.newarticleadata.author,
+            "editor": $scope.newarticleadata.editor,
+            "clickcount":$scope.newarticleadata.clickcount,
+            "category": $scope.newarticleadata.category,
+            "categoryid": $scope.newarticleadata.categoryid,
+            "tags" : $scope.newarticleadata.tags,
+            "lastversioncomment":$scope.newarticleadata.versioncomment,
+            "lastreviewcomment":$scope.newarticleadata.reviewcomment
+        };
 
          $scope.newarticleadata.revision.push(newrevision);
          $scope.cssmodalshow = false;
+
          //保存文章
-         modelArticle.createNewArticle($scope.newarticleadata);
+         modelArticle.createNewArticle(angular.copy($scope.newarticleadata));
          $location.path('/');
     }
 
-    $scope.showeditpreview = function(val){
-        return val;
-    };
+
 
     //标签显示提示框
     $('.vcpbox').tooltip({
