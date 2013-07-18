@@ -1173,63 +1173,9 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-f
 .tip_box input[type="tel"]:focus,
 .tip_box input[type="color"]:focus{ -webkit-box-shadow:none; -moz-box-shadow:none;  box-shadow:none; background:#fff;}
 
-/* Add Tag 
-.tipbox_filter .tagsinput { background:none; border:none; border-radius:6px; height:100px; padding:0; overflow-y:auto; text-align:left; }
-.tipbox_filter .tagsinput .tag {
-    margin-left:1px;
-    border-radius:4px;
-    background:#666;
-    color:#fff;
-    cursor:pointer;
-    margin-right:5px;
-    margin-bottom:5px;
-    overflow:hidden;
-    padding:4px;
-    position:relative;
-    vertical-align:middle;
-    display:inline-block;
-    zoom:1;
-    *display:inline;
-    -webkit-transition:0.14s linear;
-    -moz-transition:0.14s linear;
-    -o-transition:0.14s linear;
-    transition:0.14s linear;
-    -webkit-backface-visibility:hidden;
-}
-.tipbox_filter .tagsinput .tag:hover { color:#000; background-color:#fff; padding-left:12px; padding-right:20px; }
-.tipbox_filter .tagsinput .tag:hover .tagsinput-remove-link { color:black; opacity:1; display:block\9; }
-*/
-
-
+/* Add Tag */
 .tipbox_filter .tagsinput input { width:120px;}
-/*
-.tipbox_filter .tagsinput input:hover,
-.tipbox_filter .tagsinput input:focus			{ background:#fff;}
 
-.tipbox_filter .tagsinput-remove-link 			{ bottom:0; color:#000; cursor:pointer; font-size:12px; opacity:0; padding:6px 6px 6px 0; position:absolute; right:0; text-align:right; text-decoration:none; top:0; width:100%; z-index:2; display:none\9; }
-.tipbox_filter .tagsinput-remove-link:before 	{ color:#000; }
-.tipbox_filter .tagsinput-add-container 		{ vertical-align:middle; display:inline-block; zoom:1; *display:inline; padding:0; margin:0; box-shadow:0; }
-.tipbox_filter .tagsinput-add {
-    height:20px;
-    background-color:#999;
-    border-radius:4px 0 0 4px;
-    color:#fff;
-    cursor:pointer;
-    margin-left:1px;
-    margin-bottom:5px;
-    padding:4px 10px;
-    display:inline-block;
-    zoom:1;
-    *display:inline;
-    -webkit-transition:0.25s;
-    -moz-transition:0.25s;
-    -o-transition:0.25s;
-    transition:0.25s;
-    -webkit-backface-visibility:hidden; }
-.tipbox_filter .tagsinput-add:hover { background-color:#999; }
-.tipbox_filter .tags_clear 			{ clear:both; width:100%; height:0px; }
-.tipbox_filter .not_valid 			{ background:#fbd8db !important; color:#90111a !important; }
-*/
 
 /* TipBox: Sort */
 .tipbox_sort{}
