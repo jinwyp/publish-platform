@@ -302,7 +302,7 @@
                                 <!-- Nav Link -->
                                 <div class="navlink_panel" ng-show="cssheadersetting" ng-animate="{show: 'fade-show', hide: ''}" >
                                 	<ul class="nav_structure clearfix">
-                                        <li ng-repeat="head in header track by $index" class="classid">
+                                        <li ng-repeat="head in header" class="classid">
                                             <a ng-hide='$index==showa' href="#" class="pagelink">
                                                 {{head.menuname}}<i class="ico_edit" ng-click="openheaderinfo($index,head,$event)"></i>
                                             </a>
@@ -330,8 +330,6 @@
                                                     </label>
                                                     <label class="radio clearfix">
                                                         <input type="radio" id="urltype2" ng-model="newheaderdata.menutype" value="local">
-                                                        <pre>{{ pages }}</pre><br>
-                                                        <pre>{{ headerlocalurl }}  </pre>
                                                         <select style="width:110px;" ng-model="headerlocalurl" ng-options="page.pagename for page in pages">
                                                         </select>
                                                     </label>
@@ -637,7 +635,7 @@
             prevNextToggle : "show",//设置为toggle时鼠标放到滑动图上显示，离开影藏。设置show时一直显示，设置hide时影藏
             single: true,//设置true则显示第二层，false则第二层影藏
             focusDelay: 250,//焦点图延迟时间			
-            focusDelayTwo : 0//第二层焦点图延迟时间
+            focusDelayTwo : 0,//第二层焦点图延迟时间
         });
     });
     </script>

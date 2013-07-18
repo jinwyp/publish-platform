@@ -72,7 +72,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         }
 
 
-        $scope.get_site = modelSite.getSite();
 
         $scope.pages = site.pagelist;
 
@@ -486,7 +485,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         var blockcontent = $(evt.target).parent().parent();
         blockcontent.append($(".newlink_panel"));
         $scope.csstitleform=true;
-        debugger;
         ishead=isheader;
         $scope.footercommonfunction();
         if(isheader){
@@ -529,7 +527,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             $scope.newheaderdata.linkedpageid=0;
         }else{
             $scope.newheaderdata.menutype='local';
-            $scope.newheaderdata.linkedurl=$scope.headerlocalurl.pagename;
+            $scope.newheaderdata.linkedurl=$scope.headerlocalurl;
             $scope.newheaderdata.linkedpagename= $scope.headerlocalurl;
             $scope.newheaderdata.linkedpageid=$scope.checkpargeid();
         }
@@ -559,7 +557,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                     headclass.linkedurl=$scope.newheaderdata.linkedurl;
                     headclass.linkedpageid=$scope.newheaderdata.linkedpageid;
                     headclass.linkedpagename=$scope.newheaderdata.linkedpagename;
-                    modelSite.savesitedata($scope.get_site);
                 }
             }else{
                 if(insertdata){
@@ -583,7 +580,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                     headchildclass.linkedurl=$scope.newheaderdata.linkedurl;
                     headchildclass.linkedpageid=$scope.newheaderdata.linkedpageid;
                     headchildclass.linkedpagename=$scope.newheaderdata.linkedpagename;
-                    modelSite.savesitedata($scope.get_site);
                 }
             }
             /*if(window.localStorage){
@@ -611,7 +607,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 footerclass.linkedurl=$scope.newheaderdata.linkedurl;
                 footerclass.linkedpageid=$scope.newheaderdata.linkedpageid;
                 footerclass.linkedpagename=$scope.newheaderdata.linkedpagename;
-                modelSite.savesitedata($scope.get_site);
             }
             $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
         }
@@ -631,7 +626,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         childmenuindex='';
         childmenudata='';
         headclass=obj;
-        ishead=true;
         $scope.newheaderdata.menuname=obj.menuname;
         $scope.newheaderdata.menutype=obj.menutype;
         $scope.assignmentform(obj);
@@ -676,7 +670,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     }
     //delete menu
     $scope.deleteparentmenu=function(evt){
-        debugger;
         if(ishead){
             if($("#delete")[0].value=='Delete'){
                 if(childmenuindex===''){
@@ -732,7 +725,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $scope.footerlia=-1;
     }
     $scope.assignmentform=function(obj){
-        debugger;
         $("#delete")[0].value='Delete';
         if($scope.newheaderdata.menutype=="other"){
             $("#urltype1").attr("checked",true);
@@ -742,8 +734,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             $scope.newheaderdata.linkedurl="";
             $("#urltype1").attr("checked",false);
             $("#urltype2").attr("checked",true);
-            $scope.headerlocalurl=obj.linkedpagename;
-            console.log(obj.linkedpagename);
+            $(".dk_label")[0].textContent=obj.linkedpagename;
         }
         setupLabel();
     }

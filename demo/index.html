@@ -52,31 +52,15 @@
                     </div>
                 </div>
                 <!-- Page: Row //End -->
-
-
-
-                    <div class="breadCurrent" ng-show="showdetails">
-                        <ul class="clearfix">
-                            <li><a href="index.html">Home</a> </li>
-                            <li class="arrow">&raquo;</li>
-                            <li><a href="#" ng-click="hidearticledetail();">{{ showblockname }}</a> </li>
-                            <li class="arrow">&raquo;</li>
-                            <li><span>{{ showheader }}</span></li>
-                        </ul>
-
-                    </div>
-
-
-
-                <div class="row" ng-show="showlist">
+                <div class="row">
                     <div ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
                         <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks track by $index">
                             <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
                                 <h2 >{{ block.blockname}}</h2>
                                 <ul class="listarticle">
-                                    <li ng-repeat="article in block.blockarticles " ng-click="showarticledetail(article,block.blockname)">
+                                    <li ng-repeat="article in block.blockarticles ">
                                         <span>{{ article.created | date:'MM/dd/yyyy' }}</span>
-                                        <h3 ng-click="check(block)"><a href="#">{{ article.title }}</a></h3>
+                                        <h3 ng-click="check(block)"><a href="/articledetail/{{ article.id }}">{{ article.title }}</a></h3>
                                     </li>
                                 </ul>
                             </div>
@@ -132,38 +116,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" ng-show="showdetails">
-                     <div class="span9">
-                         <div class="site-theme b-block block-layout-1">
-                             <div class="article-templete">
-
-                                 <h1>{{ showheader }}</h1>
-
-                                 <div class="tagbox">
-                                     May 05 2013  |  Tag »
-                                     <a href="#" ng-repeat="tag in showtags">{{tag.tagname}}</a>
-                                 </div>
-                                 <p id="articledetail">
-
-                                 </p>
-                             </div>
-                         </div>
-                     </div>
-                    <div class="span3">
-                        <div class="site-theme b-block block-layout-1">
-                            <img src="../frontend/app/img/temp/pic.jpg">
-                        </div>
-                        <div class="site-theme b-block block-layout-1">
-
-                            <h2 class="ng-binding"></h2>
-                            <h4 class="b-block-staticTitle">Seasonal Allergy Symptoms</h4>
-                            <p class="b-block-staticTxt">SymptomFind.com is one of the leading providers of health information on the Web. </p>
-                            <h4 class="b-block-staticTitle">Our Mission</h4>
-                            <p class="b-block-staticTxt">At SymptomFind.com, we are committed to providing the most accurate and authoritative information regarding health and nutrition to suit the needs of the everyday person.</p>
-
-                        </div>
-                    </div>
-                </div>
+                <!--
+                <div id ="LayoutL" ng-view>
+                
+				</div>
+				<div id ="LayoutR">
+					<div class="row">
+						<div class="span4">
+							<div class="site-theme b-block block-layout-1">
+								<a href="http://www.fi.com/weballey/alleyletter.aspx" target="_blank"><img src = "app/img/temp/14769888589743746852.jpg" alt = ""/></a>
+							</div>
+					 	</div>
+					 </div>
+					 <div class="row">
+						<div class="span4">
+							<div class="site-theme b-block block-layout-1">
+								<h2 class="ng-binding">Editor Picks</h2>
+								<ul>
+									<li ng-repeat="article in articles | filter:todayhot| limitTo:5" class="ng-scope">
+										<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+                -->
 				<div class="row">
                     <div class="span12">
 						<!--  Footer -->
