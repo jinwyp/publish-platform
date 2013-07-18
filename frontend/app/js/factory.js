@@ -126,17 +126,17 @@ vcpapp.factory('modelArticle', function(){
         var articlesresult2 = [];
 
         console.log(taglistdata);
-        articlesresult = _.filter(articlelist, function(element1){
+        articlesresult = _.filter(articlelist, function(aritcle){
 
-            var singlearticletags = _.filter(element1.tags, function(element2){
-                var tagresult = _.where(taglistdata, element2);
-
+            var singlearticletags = _.filter(aritcle.tags, function(singletag){
+                var tagresult = _.where(taglistdata, singletag);
+                console.log(singletag);
                 return tagresult.length;
             });
 
             return  singlearticletags.length;
         });
-
+        console.log(articlesresult);
         articlesresult2 = _.filter(articlelist, function(element1){
 
             if (element1.category.toString() == blockcategory){

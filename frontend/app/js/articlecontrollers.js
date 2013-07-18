@@ -410,17 +410,23 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, 
 };
 
 vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle, modelTag) {
-   $(".tagsinput").tagsInput({
+    $(".tagsinput").tagsInput({
         'autocomplete': modelTag.getTagList()
     });   //初始化 加载tag标签
 
-    //$("select").dropkick();
     $scope.newarticleadata = {
         "id": modelArticle.getMaxArticleID(),
-        "title": "", "contentbody": "", "status": "needreview",
-        "created": modelArticle.getDateNow(), "updated": modelArticle.getDateNow(), "published": modelArticle.getDateNow(),
-        "author": "Eric",  "editor": "iFan",  "clickcount":0,
-        "category": "Cosmetics", "categoryid":1000,
+        "title": "",
+        "contentbody": "",
+        "status": "needreview",
+        "created": modelArticle.getDateNow(),
+        "updated": modelArticle.getDateNow(),
+        "published": modelArticle.getDateNow(),
+        "author": "Eric",
+        "editor": "iFan",
+        "clickcount":0,
+        "category": "Cosmetics",
+        "categoryid":1000,
         "tags": [],
         "revision" : [],
         "versioncomment":"",
@@ -448,22 +454,24 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
     };
 
     $scope.savedata = function() {
-         var temptagslistname = $(".tagsinput").exportTags();
-         $scope.newarticleadata.tags=[];
-         for(var i=0;i<temptagslistname.length;i++){
+        var temptagslistname = $(".tagsinput").exportTags();
+        $scope.newarticleadata.tags=[];
+        for(var i=0;i<temptagslistname.length;i++){
              //在tag 数据库查询是否是已经存在的tag
-             if(modelTag.checkTagExist(temptagslistname[i])){
-                var newtag = modelTag.checkTagExist(temptagslistname[i]);
-             }else{
-                 var newtag = {
+            var newtag ={};
+
+            if(modelTag.checkTagExist(temptagslistname[i])){
+            newtag = modelTag.checkTagExist(temptagslistname[i]);
+            }else{
+                 newtag = {
                      "tagid" : modelTag.getMaxTagID(),
                      "tagname" : temptagslistname[i]
                  }
                  modelTag.createNewTag(newtag);
-             }
-             $scope.newarticleadata.tags.push(newtag);
-         }
-         //$scope.newarticleadata.category=$(".dk_label")[0].textContent;
+            }
+            $scope.newarticleadata.tags.push(newtag);
+        }
+
          $scope.newarticleadata.status=$scope.saveflag;
          //增加文章每一次修改版本信息
          var newrevisionid = $scope.newarticleadata.revision.length + 1;
