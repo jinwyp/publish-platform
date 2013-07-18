@@ -36,6 +36,19 @@
 
 
 
+/* BreadCurrent */
+.breadCurrent{ border: 1px solid #ddd; background: #f8f8f8;}
+.breadCurrent ul{ margin: 4px; list-style: none;}
+.breadCurrent ul li{ float: left;  }
+.breadCurrent ul li.arrow{ padding:0 2px;}
+.breadCurrent ul li span,
+.breadCurrent ul li a{ padding:0 4px;}
+
+
+
+
+
+
 /* Page Footer */
 .site-theme.b-footer	{ position:relative; margin:0; padding:20px 0 0 0; height:60px; border-top:2px solid #bbb; background:#f6f6f6;}
 .site-theme.b-footer p	{ color:#888; text-align:center; font-size:12px;}

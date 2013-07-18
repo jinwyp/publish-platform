@@ -517,7 +517,10 @@ vcpapp.factory('modelSite',  function(){
         return;
     };
 
-
+    factory.savesitedata = function(menudata){
+        localStorage.setItem("siteData",JSON.stringify(menudata));
+        return;
+    }
 
     return factory;
 }
