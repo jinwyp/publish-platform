@@ -1172,7 +1172,7 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-f
 .tip_box input[type="tel"]:focus,
 .tip_box input[type="color"]:focus{ -webkit-box-shadow:none; -moz-box-shadow:none;  box-shadow:none; background:#fff;}
 
-/* Add Tag */
+/* Add Tag 
 .tipbox_filter .tagsinput { background:none; border:none; border-radius:6px; height:100px; padding:0; overflow-y:auto; text-align:left; }
 .tipbox_filter .tagsinput .tag {
     margin-left:1px;
@@ -1197,27 +1197,11 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-f
 }
 .tipbox_filter .tagsinput .tag:hover { color:#000; background-color:#fff; padding-left:12px; padding-right:20px; }
 .tipbox_filter .tagsinput .tag:hover .tagsinput-remove-link { color:black; opacity:1; display:block\9; }
-.tipbox_filter .tagsinput input {
-    background:#999;
-    border:none;
-    color:#34495e;
-    font-family:"Lato", sans-serif;
-    font-size:14px;
-    margin:0;
-    padding:4px;
-    outline:0;
-    margin-right:5px;
-    margin-bottom:5px;
-    border-radius:0 4px 4px 0;
-    width:120px;
-    height:20px;
-    vertical-align:baseline;
-    -webkit-transition:all 0.3s ease-in-out;
-    -moz-transition:all 0.3s ease-in-out;
-    -ms-transition:all 0.3s ease-in-out;
-    -o-transition:all 0.3s ease-in-out;
-    transition:all 0.3s ease-in-out;
-}
+*/
+
+
+.tipbox_filter .tagsinput input { width:120px;}
+/*
 .tipbox_filter .tagsinput input:hover,
 .tipbox_filter .tagsinput input:focus			{ background:#fff;}
 
@@ -1244,6 +1228,7 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-f
 .tipbox_filter .tagsinput-add:hover { background-color:#999; }
 .tipbox_filter .tags_clear 			{ clear:both; width:100%; height:0px; }
 .tipbox_filter .not_valid 			{ background:#fbd8db !important; color:#90111a !important; }
+*/
 
 /* TipBox: Sort */
 .tipbox_sort{}
