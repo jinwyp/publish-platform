@@ -1544,9 +1544,20 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .list-count > dl dd			{ text-align:right; color:#bbb; position:relative; }
 .list-count > dl dd span	{ display:block; margin-top:20px; font-size:36px; color:#bbb; font-family:Helvetica, Arial, sans-serif; font-weight:bold;}
 .list-count .btn			{ margin:20px 0 0 0; text-decoration:none; outline:none;}
-.list-count .dropdown-menu	{ }
+
+.list-count .dropdown-menu	{ margin-top:8px;}
 .list-count .dropdown-menu li{ padding:4px 8px; }
 .list-count .dropdown-menu .btn{ margin:0;}
+
+.list-count .dropdown-menu:before,
+.list-count .dropdown-menu.pull-right:before{ right: 12px; left: auto; }
+
+.list-count .dropdown-menu:before{ position: absolute; top: -7px; left: 9px; display: inline-block; border-right: 7px solid transparent; border-bottom: 7px solid #ccc; border-left: 7px solid transparent; border-bottom-color: rgba(0, 0, 0, 0.2); content: ''; }
+
+.list-count .dropdown-menu:after,
+.list-count .dropdown-menu.pull-right:after{ right: 13px; left: auto; }
+
+.list-count .dropdown-menu:after { position: absolute; top: -6px; left: 10px; display: inline-block; border-right: 6px solid transparent; border-bottom: 6px solid #ffffff; border-left: 6px solid transparent; content: ''; }
 /*
 .list-count .btn			{ margin:20px 0 0 0; border-top:0; padding:0 12px; height:28px; line-height:26px; font-size:12px; color:#fff; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.3); outline:none; text-shadow:0 -1px 0 rgba(0,0,0,0.3); text-decoration:none; font-weight:bold;
     background:url(../app/img/article_btn_bg.png) 0 -136px repeat-x;
