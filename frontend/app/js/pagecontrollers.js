@@ -73,32 +73,30 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
 
         $scope.get_site = modelSite.getSite();
-        //debugger;
+        //获取选中的header theme
         $scope.get_headertheme = modelSite.getselectheadertheme();
 
         if($scope.get_headertheme == ""){
             $scope.cssheaderthemeindex = -1;
-            $scope.cssheadermenubutton = false;
             $scope.cssheadermenuhavadata = false;
         }else{
             $scope.cssheaderthemeindex = $scope.get_headertheme;
             $scope.cssheadermenuhavadata = true;
-            $scope.cssheadermenubutton = true;
         }
-        debugger;
+
+        //获取选中的footer theme
         $scope.get_footertheme = modelSite.getselectfootertheme();
 
         if($scope.get_footertheme == ""){
             $scope.cssfooterthemeindex = -1;
             $scope.cssfootermenuhavadata = false;
-            $scope.cssfootermenubutton=false;
         }else{
             $scope.cssfooterthemeindex = $scope.get_footertheme;
             $scope.cssfootermenuhavadata = true;
-            $scope.cssfootermenubutton = true;
         }
 
-        //$scope.cssfootermenuhavadata = false;
+        $scope.cssheadermenubutton = false;
+        $scope.cssfootermenubutton=false;
         $scope.pages = site.pagelist;
 
         $scope.singlepage =  $scope.pages[0];   //默认读取首页
@@ -132,16 +130,10 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $scope.cssblockeditmenuinputbox = false;   //点击当前编辑block的 要输入推荐文章的输入框
         $scope.cssblockeditmenubutton = false;     //点击当前编辑block的 设置的按钮
 
-
-       // $scope.cssheadermenuhavadata = false;      //Header是否有数据
-       // $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮显示
         $scope.cssheadersetting = false;      //Header设置nav下拉界面
-       // $scope.cssheaderthemeindex = -1;      //Header默认主题Theme 选择哪一个
         $scope.cssheadernavindex = 0;      //Header默认菜单的颜色为首页
 
-        //$scope.cssfootermenubutton=false;
         $scope.cssfootersetting=false;
-        //$scope.cssfooterthemeindex=-1;
         $scope.footerthemes=modelSite.getfoottheme();
         $scope.footer=modelSite.getfooter();
         $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
