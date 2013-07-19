@@ -1467,7 +1467,7 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .article-list > li.active		{ position:relative; border-bottom:1px solid #d8d8d8;
 background: -webkit-gradient(linear, 0 0, 0 100%, from(#ececec), to(#f6f6f6));
 background: -moz-linear-gradient(top, #ececec, #f6f6f6); /* border-bottom:1px solid #d8d8d8; background:#f4f4f4; box-shadow:inset 0 0 10px rgba(0,0,0,0.08); */}
-.article-list > li.active:before{ display:block; position:absolute; left:-1px; top:0; width:5px; height:100%; background:#31a300; overflow:hidden; }
+.article-list > li.active:before{ display:block; position:absolute; left:-1px; top:0; width:5px; height:100%; background:#6ed740; overflow:hidden; }
 .article-list > li.active .list-date h1 a	{ color:#31a300 !important;}
 .article-list > li.active .list-date p		{ color:#000 !important;}
 .article-list > li.active .list-count dd,
