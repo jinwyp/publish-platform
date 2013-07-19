@@ -350,7 +350,7 @@
 .globalTitle		{ position:relative; padding:0 14px; height:54px; border-top:1px solid #f0f0f0; box-shadow:0 1px 1px #ccc; }
 .globalTitle .arrow	{ position:absolute; left:30px; bottom:-15px; width:26px; height:15px; background:url(../../app/img/symptomfind/globaltitle_arrow.png) no-repeat;}
 .globalTitle .t_icon{ width:32px; height:53px; display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; vertical-align: top; background:url(../img/icon_64.png) no-repeat;}
-.globalTitle h6		{ font-size:18px; font-family:'Roboto Slab', serif; font-weight:700; display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; text-indent:10px; text-transform:uppercase; line-height:52px; vertical-align: top;}
+.globalTitle h6		{ font-size:18px; font-family:'Roboto Slab', serif; font-weight:700; display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; text-indent:10px; text-transform:uppercase; line-height:36px; vertical-align: top;}
 .globalTitle h6 .GT_more{ font-size:12px; float:right; font-family:Verdana, Geneva, sans-serif; text-transform:capitalize;}
 
 /* Blue */
@@ -373,10 +373,10 @@
 .t_icon.theweb		{ background-position:-16px -582px;}
 .t_icon.alsolike	{ background-position:-16px -646px;}
 
-.globalContBox			{ padding:20px;}
+.globalContBox			{ padding:0px;}
 .globalContBox h6		{ font-family:'Roboto Slab', serif; font-weight:400; font-size:18px;}
 
-.imgGroupBox			{ }
+.imgGroupBox			{ padding:20px; background:#3d4c61; }
 .imgGroupBox_Left,
 .imgGroupBox_Right		{ float:left;}
 .imgGroupBox_Left		{ width:200px; overflow:hidden;}
@@ -391,14 +391,15 @@
 
 .imgGroupColumUL				{ margin:0; padding:0;  list-style:none;}
 .imgGroupColumUL li				{ width:180px; float:left; margin-right:20px;}
+.imgGroupColumUL li h6			{ overflow:hidden;/*注意不要写在最后了*/ white-space:nowrap; -o-text-overflow:ellipsis; text-overflow:ellipsis;/*IE专有*/ }
 .imgGroupColumUL li a			{ display:block; padding:10px; }
 .imgGroupColumUL li a.linkImg	{ border:1px solid #ddd;  }
-.imgGroupColumUL li p.linkTxt	{ padding:10px; color: #d76246; font-family:'Roboto Slab', serif; font-weight:400; font-size: 14px; text-indent:0; }
+.imgGroupColumUL li p.linkTxt	{ padding:10px; color: #888; font-family:'Roboto Slab', serif; font-weight:400; font-size: 13px; text-indent:0; }
 .imgGroupColumUL li.last		{ margin-right:0;}
 
 
 /* ListArticle */
-.globalContBox ul.templete_listarticle						{ border:0 !important; list-style:none; margin:0; padding:0 !important;}
+.globalContBox ul.templete_listarticle						{ border:0 !important; list-style:none; margin:0; padding:10px 0 0 0 !important;}
 .globalContBox ul.templete_listarticle li:after				{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
 .globalContBox ul.templete_listarticle li					{ border-bottom:1px solid #dbdbdb; padding-bottom:12px; margin-bottom:12px; display:inline-block;}
 .globalContBox ul.templete_listarticle li					{ display:block;}
@@ -408,7 +409,20 @@
 .globalContBox ul.templete_listarticle li .rightList h6		{ margin-bottom:0;}
 .globalContBox ul.templete_listarticle li .rightList h6,
 .globalContBox ul.templete_listarticle li .rightList h6 a	{ font-family:'Roboto Slab', serif; font-weight:700; text-transform:capitalize; font-size:14px; color:#18a69d; text-decoration:none;}
-.globalContBox ul.templete_listarticle li .rightList p		{ color:#707070; margin-bottom:0px !important;}
+.globalContBox ul.templete_listarticle li .rightList p		{ color:#707070; margin-bottom:0px !important; text-indent:0;}
 .globalContBox ul.templete_listarticle li .rightList p a	{ font-family:'Roboto', sans-serif; color:#36ada5; text-decoration:underline;}
 .globalContBox ul.templete_listarticle li .rightList span	{ color:#929292; font-family:'Roboto Slab', serif; font-weight:700; }
 .globalContBox ul.templete_listarticle li.last				{ border-bottom:none;}
+
+/* 段落 */
+.ParagraphArticle	{ padding:40px 30px; position:relative;}
+.ParagraphArticle .redTitle{ color:#c54f2f; line-height:28px; font-family:Georgia, "Times New Roman", Times, serif; margin-bottom:10px;}
+.ParagraphArticle .subTitle{ position:relative; height:26px; border-bottom:2px solid #43bcb6; margin-bottom:12px;}
+.ParagraphArticle .subTitle h6{ display:block; position:absolute; top:13px; left:0; padding-right:10px; font-family:'Roboto Slab', serif; font-weight:700; text-transform:uppercase; background:#fff;}
+.ParagraphArticle p	{ line-height:22px; margin-bottom:6px; text-indent:0; }
+
+ul.symptoms		{ padding:0 0 0 28px; margin-top:11px; margin-bottom:6px; list-style:none;}
+ul.symptoms li	{ padding-left:24px; height:28px; font-family: 'Roboto', sans-serif; font-weight:500; text-transform:capitalize; background:url(../img/icon_have.png) left 4px no-repeat;}
+ul.causes		{ padding:0 0 0 30px; margin-top:11px; margin-bottom:6px; list-style:none;}
+ul.causes li	{ padding-left:18px; margin-bottom:24px; background:url(../img/icon_circledot.png) left 6px no-repeat;}
+ul.causes li b	{ font-family:'Roboto', sans-serif; font-weight:700; text-transform:capitalize;}
