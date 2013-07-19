@@ -18,7 +18,7 @@
                 <div id="article-cont-preview" class="article-cont">
                     <div class="article-templete">
                         <div class="tagbox">
-                            May 05 2013  |  Tag »
+                            {{ newarticleadata.created | date:'yyyy/MM/dd HH:mm' }}
                             <!--<a href="#/tag/{{tag.tagid}}" ng-repeat="tag in articlepreviewdata.tags">{{tag.tagname}}</a>-->
                         </div>
                         <p id="contentpreview"  ng-bind-html-unsafe="showEditPreview(newarticleadata.contentbody)">

@@ -25,12 +25,8 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
     $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
 
 
-
     $scope.articlesFirebase.then(function() {
         $scope.articlestotaldata = $scope.articlesFirebase;
-
-
-
 //    $scope.articlestotaldata = modelArticle.getArticleList();     // use firebase for database
 
     var copytotaldata = [];
@@ -85,9 +81,11 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
     }
 
     $scope.loadinit('updated','desc');
+
     //页面总数
-    var count=10;
-    var pagecount=$scope.articlestotaldata.length/count;
+    var articlesinonepage = 10;  // 文章每页数量
+    var pagecount = $scope.articlestotaldata.length / articlesinonepage;
+
     $scope.noOfPages =parseInt(pagecount)== pagecount ? pagecount : parseInt(pagecount)+1;
     if($scope.noOfPages==0){
         $scope.noOfPages=1;
@@ -96,6 +94,7 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
     //当前页数
     $scope.currentPage = 1;
     $scope.articlesdata = [];
+
     //获取选中数据
     $scope.loadcurrentpagedata = function(){
         $scope.articlesdata.length = 0;
@@ -105,27 +104,27 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
             }
         }
         var j = 0;
-        for(var i = (($scope.currentPage-1)*count);i < $scope.articlestotaldata.length;i ++){
+        for(var i = (($scope.currentPage-1)*articlesinonepage);i < $scope.articlestotaldata.length;i ++){
             $scope.articlesdata[j] = $scope.articlestotaldata[i];
             j++;
-            if($scope.articlesdata.length > (count-1)){
+            if($scope.articlesdata.length > (articlesinonepage-1)){
                 return;
             }
         }
     }
-    $scope.loadcurrentpagedata();
-    $scope.articlepreviewdata = $scope.articlesdata[0];
-    $scope.isCollapsed = true;
 
-    var copyselectedlist='';
+    $scope.loadcurrentpagedata();
+
+
+    $scope.articlepreviewdata = $scope.articlesdata[0];
+
+    $scope.showEditIcon = function(index){
+        $scope.cssshowediticon = index;
+    };
+
     $scope.clickArticle = function(article, index) {
-        if(copyselectedlist != ''){
-            copyselectedlist.isshowediticon=false;
-        }
         $scope.articlepreviewdata = article;
         $scope.cssarticleindex = index;
-        this.isshowediticon = true;
-        copyselectedlist=this;
     };
 
     $scope.openModal = function () {
@@ -138,6 +137,7 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
         backdropFade: true,
         dialogFade:true
     };
+
 
     $scope.delArticle = function(articleid) {
         $scope.cssmodalshow = false;      //关闭弹出提示框 Modal
@@ -184,15 +184,15 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
         }else if(flag == 'clickcount'){
             $scope.showclick = !$scope.showclick;
         }
-    }
+    };
 
     $scope.showcomments = false;
     //点击draft按钮事件
 
     var nowdata1='',articlestatus="";
-    $scope.clickstatus=function(param,data){
+    $scope.clickstatus = function(param,data){
         $scope.showcomments = true;
-        nowdata1=this.article;
+        nowdata1 = this.article;
         articlestatus = param;
         //this.article.status=param;
         $("#comments")[0].value="";
@@ -281,22 +281,12 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
         $scope.showcomments = false;
     }
 
-    $scope.isshowediticon = false;
-    $scope.showediticon = function(){
-          this.isshowediticon = true;
-    };
 
 
-    $scope.hideediticon = function($index){
-        if($scope.cssarticleindex == $index){
-            this.isshowediticon = true;
-        }else{
-            this.isshowediticon = false;
-        }
-    };
 
 
-    });
+
+    });//firebase then End
 
 
     //标签显示提示框
@@ -514,7 +504,7 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
             "status": "draft",
             "created": modelArticle.getDateNow(),
             "updated": modelArticle.getDateNow(),
-            "published": modelArticle.getDateNow(),
+            "published": 0,
             "author": $scope.userFirebase.firstname ,
             "editor": $scope.userFirebase.firstname ,
             "clickcount":0,
@@ -603,8 +593,8 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
             "category": $scope.newarticleadata.category,
             "categoryid": $scope.newarticleadata.categoryid,
             "tags" : $scope.newarticleadata.tags,
-            "lastversioncomment":$scope.newarticleadata.versioncomment,
-            "lastreviewcomment":$scope.newarticleadata.reviewcomment
+            "lastversioncomment" : $scope.newarticleadata.lastversioncomment,
+            "lastreviewcomment" : $scope.newarticleadata.lastreviewcomment
         };
 
         $scope.newarticleadata.revision.push(newrevision);
@@ -612,7 +602,7 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
 
         //保存文章
 //        modelArticle.createNewArticle($scope.newarticleadata);  //使用firebase
-        $scope.articlesFirebase.push($scope.newarticleadata);
+        $scope.articlesFirebase.push(angular.copy($scope.newarticleadata));
 
         $location.path('/');
     };
