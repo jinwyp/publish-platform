@@ -409,20 +409,22 @@
 
 
 /* ===== 图文横向列表UL ===== */
-ul.horizontal_UL						{ border:0 !important; list-style:none; margin:0; padding:10px 0 0 0 !important;}
+ul.horizontal_UL						{ border:0 !important; list-style:none; margin:0; padding:20px 0 0 0 !important;}
 ul.horizontal_UL li:after				{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
 ul.horizontal_UL li						{ border-bottom:1px solid #dbdbdb; padding-bottom:12px; margin-bottom:12px; display:inline-block;}
 ul.horizontal_UL li						{ display:block;}
-ul.horizontal_UL li .leftImg			{ float:left; margin-right:20px; overflow:hidden;}
-ul.horizontal_UL li .leftImg img		{ /*width:119px; height:86px; */}
-ul.horizontal_UL li .rightList			{}
-ul.horizontal_UL li .rightList h6		{ margin-bottom:0;}
+ul.horizontal_UL li .leftImg			{ float:left; width:14%; margin-right:20px; overflow:hidden;}
+ul.horizontal_UL li .leftImg img		{ margin-top:4px; /*width:119px; height:86px; */}
+ul.horizontal_UL li .rightList			{ }
+ul.horizontal_UL li .rightList h6		{ margin-bottom:0; margin-top:0;}
 ul.horizontal_UL li .rightList h6,
 ul.horizontal_UL li .rightList h6 a		{ font-family:'Roboto Slab', serif; font-weight:700; text-transform:capitalize; font-size:14px; color:#18a69d; text-decoration:none;}
 ul.horizontal_UL li .rightList p		{ color:#707070; margin-bottom:0px !important; text-indent:0;}
 ul.horizontal_UL li .rightList p a		{ font-family:'Roboto', sans-serif; color:#36ada5; text-decoration:underline;}
 ul.horizontal_UL li .rightList span		{ color:#929292; font-family:'Roboto Slab', serif; font-weight:700; }
 ul.horizontal_UL li.last				{ border-bottom:none;}
+
+ul.horizontal_UL.mini li .leftImg  		{ margin-top:4px; width:40%;}
 
 
 /* ===== 垂直多列列表UL ===== */
@@ -454,6 +456,23 @@ ul.ParagraphArticle_Global_UL li		{ padding-left:24px; height:28px; font-family:
 ul.ParagraphArticle_Global_ULCir		{ padding:0 0 0 30px; margin-top:11px; margin-bottom:6px; list-style:none;}
 ul.ParagraphArticle_Global_ULCir li		{ padding-left:18px; margin-bottom:24px; background:url(../../app/img/icon_circledot.png) left 6px no-repeat;}
 ul.ParagraphArticle_Global_ULCir li b	{ font-family:'Roboto', sans-serif; font-weight:700; text-transform:capitalize;}
+
+
+/* ===== Left and Right Layout ===== */
+.UL_layoutbox						{ border-bottom:1px solid #d7d7d7;}
+.UL_layoutbox h6					{ font-family:'Roboto Slab', serif; font-weight:400; line-height:22px; margin-bottom:16px; text-transform:capitalize;}
+.UL_layoutbox_left,
+.UL_layoutbox_right					{ width:42%; padding:30px 20px 0;}
+.UL_layoutbox_left					{ float:left; }
+.UL_layoutbox_left p				{ margin-bottom:16px;}
+.UL_layoutbox_right					{ float:right; border-left:1px solid #d7d7d7;}
+
+ul.UL_layoutbox_ULColum				{ list-style:none; margin:0; padding:0; }
+ul.UL_layoutbox_ULColum li			{ float:left; width:40%; padding:0 20px 10px 0;}
+ul.UL_layoutbox_ULColum li span		{ display:block; width:20%; height:20px; margin:0 10px 0 0; float:left; text-align:center; color:#fff; font-weight:bold; line-height:20px; background:url(../../app/img/symptomfind/uldot.jpg) no-repeat;}
+ul.UL_layoutbox_ULColum li p		{ display:block; float:left; width:70%; text-indent:0px; word-break:break-all; word-wrap:break-word;}
+
+a.btn_PrintQuestions				{ font-family:'Roboto Slab', serif; font-weight:400; display:block; margin:10px auto; width:118px; height:39px; text-align:center; color:#fff; font-size:16px; line-height:38px; background:url(../../app/img/symptomfind/btn_red_bigmini.png) no-repeat; text-transform:capitalize;}
 
 
 
