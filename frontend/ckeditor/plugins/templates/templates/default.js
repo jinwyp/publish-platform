@@ -172,9 +172,9 @@ CKEDITOR.addTemplates("default",{
          image:'template2.gif',
          description:'',
          html:'<div class="globalContBox" style=""><div class="imgGroupColumUL clearfix">'+
-             '<li><h6>Health Hazards At The Movies</h6><a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a><p class="linkTxt">Signs and Symptoms Of Early Miscarriage</p></li>'+
-             '<li><h6>Getting A Flu Shot</h6><a href="#" class="linkImg"><img src="app/img/symptomfind/temp_13.jpg" alt="" /></a><p class="linkTxt">8 Germ-Filled Things In Your Home That Will Shock You</p></li>'+
-             '<li class="last"><h6>Taming Frizzy Hair</h6><a href="#" class="linkImg"><img src="app/img/symptomfind/temp_14.jpg" alt="" /></a><p class="linkTxt">Diabetic Eye Disease: How Diabetes Can Affect Your Vision</p></li>'+
+             '<li><h6><a href="#">Health Hazards At The Movies</a></h6><a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a><p class="linkTxt">Signs and Symptoms Of Early Miscarriage</p></li>'+
+             '<li><h6><a href="#">Getting A Flu Shot</a></h6><a href="#" class="linkImg"><img src="app/img/symptomfind/temp_13.jpg" alt="" /></a><p class="linkTxt">8 Germ-Filled Things In Your Home That Will Shock You</p></li>'+
+             '<li class="last"><h6><a href="#">Taming Frizzy Hair</a></h6><a href="#" class="linkImg"><img src="app/img/symptomfind/temp_14.jpg" alt="" /></a><p class="linkTxt">Diabetic Eye Disease: How Diabetes Can Affect Your Vision</p></li>'+
              '</div></div>'
      }]
 });
