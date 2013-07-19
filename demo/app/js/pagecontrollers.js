@@ -15,7 +15,7 @@
     $scope.cssblocklayoutselected = 0;
 
     //加载block内容
-     var site = modelSite.getSite();
+    var site = modelSite.getSite();
 
      $scope.serachlinkdom = function(currentpage){
          for(var i = 0; i < $scope.pages.length; i++){
@@ -33,6 +33,9 @@
      //链接页面
      var copysinglepage='';
      $scope.showCurrent = function(currentpage, index){
+         //debugger;
+         $scope.showdetails = false;
+         $scope.showlist = true;
          $scope.singlepage = $scope.serachlinkdom(currentpage);
          if($scope.singlepage == undefined){
              $scope.singlepage = copysinglepage;
