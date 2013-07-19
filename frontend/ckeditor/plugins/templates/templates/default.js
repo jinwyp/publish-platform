@@ -125,6 +125,56 @@ CKEDITOR.addTemplates("default",{
          title:'Example 8',
          image:'template4.gif',
          description:'',
-         html:''
+         html:'<div class="globalContBox"><div class="ParagraphArticle">'+
+             '<div class="subTitle"><h6>TITLE</h6></div>'+
+             '<p>Symptoms of lactose intolerance can occur 30 minutes to 2 hours after consuming lactose. The severity of the symptoms depends on how much lactose was ingested and how much lactose a person can handle. Common symptoms of lactose intolerance include:</p>'+
+             '<ul class="ParagraphArticle_Global_ULCir"><li><p><b>Age</b></p>'+
+             '<p>Most babies and infants produce ample amounts of lactase. After 2 to 12 years of age, at least two distinct groups of people start to emerge: those who continue to produce lactase actively, and those who do not, resulting in lactose intolerance. Even in those who</p></li>'+
+             '<li><p><b>Genetics</b></p>'+
+             '<p>In addition to the genetics of the common form of lactose intolerance due to inadequate lactase production, a complete deficiency of lactase can be inherited from your parents. This disorder is autosomal recessive, which means that both parents must pass on a mutated form of the lactase encoding gene. Infants with congenital lactose intolerance are unable to tolerate lactose found in breast milk. Therefore, these babies must be fed lactose-free infant formulas.</p></li>'+
+             '<li><p><b>Illness or injury</b></p>'+
+             '<p>Illness, surgery or injury to the small intestine can result in the decreased production of lactase. Furthermore, gastrointestinal diseases such as celiac disease, gastroenteritis and Crohn is disease can cause a short-term lactose deficiency and symptoms of lactose intolerance. Resolution or treatment of these underlying disorders may restore lactase levels.</p></li>'+
+             '</ul></div></div>'
+     },{
+         title:'Example 9',
+         image:'template1.gif',
+         description:'',
+         html:'<div class="globalContBox"><div class="ParagraphArticle">'+
+             '<div class="quote_largespace"><div class="quoteboard"><div class="icon_topright"></div><div class="icon_bottomleft"></div>'+
+             '<div class="quote_board clearfix"><div class="qb_contbox"><h3>What can I eat?</h3>'+
+             '<p><b>Eat or drink other foods instead of milk and milk products. </b>ou can substitute soy milk and soy cheese for milk and milk products. You can also use nondairy creamers in your coffee. But keep in mind that nondairy creamers do not contain the same vitamins and minerals as milk, and they may contain more fat than milk contains.</p>'+
+             '</div><div class="qb_contbox havedot"><h3>Foods to Avoid</h3><p><b>Broccoli, okra, kale, collards, and turnip greens</b></p>'+
+             '<p><b>Canned sardines, tuna, and salmon</b></p><p><b>Calcium-fortified juices and cereals</b></p>'+
+             '<p><b>Calcium-fortified soy products such as soy milk, tofu, and soybeans</b></p><p><b>Almonds</b></p>'+
+             '</div></div></div></div></div></div>'
+     },{
+         title:'Example 10',
+         image:'template2.gif',
+         description:'',
+         html:'<div class="globalTitle GT_blue clearfix"><div class="arrow"></div><h6>TITLE</h6></div><div class="globalContBox">'+
+             '<div class="UL_layoutbox clearfix"><div class="UL_layoutbox_left"><h6>Additional Information on Lactose Intolerance</h6>'+
+             '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>'+
+             '<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat</p>'+
+             '<h6>Questions to Ask Your Doctor</h6>'+
+             '<ul class="UL_layoutbox_ULColum clearfix">'+
+             '<li><span>1.</span><p>Lorem ipsum dolor sit amet</p></li><li><span>2.</span><p>Lorem ipsum dolor sit amet</p></li>'+
+             '<li><span>3.</span><p>Lorem ipsum dolor sit amet</p></li><li><span>4.</span><p>Lorem ipsum dolor sit amet</p></li>'+
+             '<li><span>5.</span><p>Lorem ipsum dolor sit amet</p></li><li><span>6.</span><p>Lorem ipsum dolor sit amet</p></li>'+
+             '</ul><a href="###" class="btn_PrintQuestions">Print Question Checklist</a></div>'+
+             '<div class="UL_layoutbox_right"><h6>Related Articles on Lactose Intolerance</h6>'+
+             '<ul class="horizontal_UL mini clearfix">'+
+             '<li><div class="leftImg"><a href="###"><img src="app/img/symptomfind/temp_01.jpg" alt="" /></a></div>'+
+             '<div class="rightList"><h6><a href="#">Guidelines For A Lactose Intolerance Diet</a></h6>'+
+             '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam... <a href="###">more</a></p>'+
+             '</div></li><li><div class="leftImg"><a href="###"><img src="app/img/symptomfind/temp_02.jpg" alt="" /></a></div>'+
+             '<div class="rightList"><h6><a href="#">Non-Dairy Milk Substitutes</a></h6>'+
+             '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam... <a href="###">more</a></p>'+
+             '</div></li><li><div class="leftImg"><a href="###"><img src="app/img/symptomfind/temp_03.jpg" alt="" /></a></div>'+
+             '<div class="rightList"><h6><a href="#">Organic Soy Milk</a></h6>'+
+             '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam... <a href="###">more</a></p>'+
+             '</div></li><li class="last"><div class="leftImg"><a href="###"><img src="app/img/symptomfind/temp_04.jpg" alt="" /></a></div>'+
+             '<div class="rightList"><h6><a href="#">Wheat Allergies</a></h6>'+
+             '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam... <a href="###">more</a></p>'+
+             '</div></li></ul></div></div></div>'
      }]
 });
