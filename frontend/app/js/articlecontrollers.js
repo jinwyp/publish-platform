@@ -18,10 +18,13 @@ vcpapp.config(['$routeProvider', function($routeProvider) {
 
 
 /* Controllers */
+
 vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArticle, modelTag) {
 
     var urlartilcelist = 'https://vcplatform.firebaseIO.com/articles';
     $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
+
+
 
     $scope.articlesFirebase.then(function() {
         $scope.articlestotaldata = $scope.articlesFirebase;
@@ -257,7 +260,7 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
         }
         $scope.loadcurrentpagedata();
         $scope.articlepreviewdata = $scope.articlesdata[0];
-    }
+    };
 
     $scope.savedata = function(){
         nowdata1.published = modelArticle.getDateNow();
@@ -300,7 +303,7 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
     $('.vcpbox').tooltip({
         selector: "a[rel=tooltip]"
     });
-}
+};
 
 
 
@@ -372,7 +375,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, 
     };
 
      $scope.saveArticle = function(feed) {
-       $scope.ispublish=false;
+        $scope.ispublish=false;
         $scope.articledata.versioncomment='';
         $scope.articledata.updated=modelArticle.getDateNow();
         $scope.articledata.status='draft';
@@ -397,7 +400,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, 
             var newtag = {
                 "tagid" : modelTag.getMaxTagID(),
                 "tagname" : temptagslistname[i]
-            }
+            };
             modelTag.createNewTag(newtag);
         }
         $scope.articledata.tags.push(newtag);
@@ -453,6 +456,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, 
         selector: "a[rel=tooltip]"
     });
 };
+
 
 
 
@@ -533,6 +537,7 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
 
 
 
+
     $scope.cssTagsPanel = false;
     $scope.cssmodalshow = false;
     $scope.cssmodalslide = {
@@ -549,12 +554,15 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
             $scope.cssmodalshow = true;
             getMaxArticleId();
         }
-
     };
+
+
+
     $scope.closeModal = function () {
         $scope.cssmodalshow = false;
     };
     $scope.saveNewArtcle = function() {
+
 
 
         //读取文章的Tags

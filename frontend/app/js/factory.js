@@ -96,11 +96,10 @@ vcpapp.factory('modelArticle', function(){
         var articlesresult = [];
         var articlesresult2 = [];
 
-        console.log(taglistdata);
-        articlesresult = _.filter(articlelist, function(element1){
+        articlesresult = _.filter(articlelist, function(aritcle){
 
-            var singlearticletags = _.filter(element1.tags, function(element2){
-                var tagresult = _.where(taglistdata, element2);
+            var singlearticletags = _.filter(aritcle.tags, function(singletag){
+                var tagresult = _.where(taglistdata, {tagname: singletag.tagname});
 
                 return tagresult.length;
             });
@@ -292,13 +291,11 @@ vcpapp.factory('modelTag', function(){
     };
 
 
-
     factory.createNewTag = function (tagdata) {
         taglist.push(tagdata);
         localStorage.setItem("tagsData",JSON.stringify(taglist));
         return tagdata;
     };
-
 
     return factory;
 
@@ -440,7 +437,6 @@ vcpapp.factory('modelSite',  function(){
     };
 
     factory.addSingleBlockToPage = function (newblock, pagelayout, pagedata) {
-
         var pageindex = sitedata.pagelist.indexOf(pagedata);
         var layoutindex = sitedata.pagelist[pageindex].pagelayoutdata.indexOf(pagelayout);
         pagelayout.blocks.push(newblock);
@@ -490,6 +486,7 @@ vcpapp.factory('modelSite',  function(){
         var pageindex = sitedata.pagelist.indexOf(selectedpage);
 //        console.log(pageindex, sitedata.pagelist[pageindex].pagename);
         sitedata.pagelist[pageindex].pagelayoutdata = layout.layoutdata ;
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
         return  ;
     }
 
@@ -542,7 +539,10 @@ vcpapp.factory('modelSite',  function(){
         return;
     };
 
-
+    factory.savesitedata = function(menudata){
+        localStorage.setItem("siteData",JSON.stringify(menudata));
+        return;
+    }
 
     return factory;
 }

@@ -57,21 +57,22 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                     if(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktype == 'auto'){
                         var articles = modelArticle.getArticlesByTags(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity, site.pagelist[i].pagelayoutdata[j].blocks[k].blockcategory);
                         site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles;
-                        console.log(articles, site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag );
+                        /*
+                        console.log(articles, site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity );
 
-/*                        if (site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag.length == 0 ){
+                        if (site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag.length == 0 ){
                             var articles2 = modelArticle.getArticles(site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity);
 
                             site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles2;   //如果没有选择tags则获取所有文章
-                        }*/
+                        }
+*/
                     }
-
-
                 }
             }
         }
 
 
+        $scope.get_site = modelSite.getSite();
 
         $scope.pages = site.pagelist;
 
@@ -169,6 +170,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             pageurl : $scope.newpage.pageurl
         };
         modelSite.addSinglePage(newpage);
+        $scope.layouts = modelSite.getLayoutList();
     };
 
 
@@ -195,7 +197,8 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
         $scope.cssblocktipbox = false;
         $scope.defaultselectedlayoutindex = indexid;
-        modelSite.saveSinglePageLayout($scope.singlepage, layout);
+        modelSite.saveSinglePageLayout($scope.singlepage, angular.copy(layout));
+
     };
 
 
@@ -495,12 +498,13 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         }else{
             $scope.footerli=$scope.csstitleform ? param1 : -1;
         }
-        $scope.newheaderdata.menutype='other';
+        $scope.newheaderdata.menutype='local';
         $scope.newheaderdata.menuname="";
         $scope.newheaderdata.linkedurl="";
         $("#delete")[0].value='Cancel';
-        $("#urltype1").attr("checked",true);
-        $("#urltype2").attr("checked",false);
+        $scope.headerlocalurl="Homepage";
+        $("#urltype1").attr("checked",false);
+        $("#urltype2").attr("checked",true);
         setupLabel();
         insertdata=true;
     }
@@ -557,6 +561,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                     headclass.linkedurl=$scope.newheaderdata.linkedurl;
                     headclass.linkedpageid=$scope.newheaderdata.linkedpageid;
                     headclass.linkedpagename=$scope.newheaderdata.linkedpagename;
+                    modelSite.savesitedata($scope.get_site);
                 }
             }else{
                 if(insertdata){
@@ -580,11 +585,9 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                     headchildclass.linkedurl=$scope.newheaderdata.linkedurl;
                     headchildclass.linkedpageid=$scope.newheaderdata.linkedpageid;
                     headchildclass.linkedpagename=$scope.newheaderdata.linkedpagename;
+                    modelSite.savesitedata($scope.get_site);
                 }
             }
-            /*if(window.localStorage){
-                localStorage.setItem("newData",JSON.stringify($scope.header));
-            }*/
         }else{
             if(insertdata){
                 if($scope.footer.length==0){
@@ -607,6 +610,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 footerclass.linkedurl=$scope.newheaderdata.linkedurl;
                 footerclass.linkedpageid=$scope.newheaderdata.linkedpageid;
                 footerclass.linkedpagename=$scope.newheaderdata.linkedpagename;
+                modelSite.savesitedata($scope.get_site);
             }
             $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
         }
@@ -626,6 +630,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         childmenuindex='';
         childmenudata='';
         headclass=obj;
+        ishead=true;
         $scope.newheaderdata.menuname=obj.menuname;
         $scope.newheaderdata.menutype=obj.menutype;
         $scope.assignmentform(obj);
@@ -656,6 +661,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         var blockcontent = $(evt.target).parent().parent();
         blockcontent.append($(".newlink_panel"));
         headerflag=false;
+        ishead=true;
         headchildclass=obj;
         $scope.csstitleform=true;
         $scope.footercommonfunction();
@@ -689,9 +695,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             }else{
                 $scope.csstitleform=false;
             }
-            /*   if(window.localStorage){
-             localStorage.setItem("newData",JSON.stringify($scope.header));
-             }*/
         }else{
             if($("#delete")[0].value=='Delete'){
                 $scope.footer.splice(footerindex,1);
@@ -700,6 +703,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 $scope.csstitleform=false;
             }
         }
+        modelSite.savesitedata($scope.get_site);
         $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
         $("body").append($(".newlink_panel"));//delete before remove form position,it is must step
         $scope.footercommonfunction();
@@ -734,7 +738,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             $scope.newheaderdata.linkedurl="";
             $("#urltype1").attr("checked",false);
             $("#urltype2").attr("checked",true);
-            $(".dk_label")[0].textContent=obj.linkedpagename;
+            $scope.headerlocalurl=obj.linkedpagename;
         }
         setupLabel();
     }

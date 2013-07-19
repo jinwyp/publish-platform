@@ -36,7 +36,7 @@
                                 </div>
                                 <ul class="b-h-nav">
                                     <li ng-repeat="head in header" class="ng-scope">
-										<a href="#/{{head.link}}" class="ng-binding" ng-class="{current:$index == cssblocklayoutselected}" ng-click="showCurrent(head.linkedurl, $index)">{{head.menuname}}</a>
+										<a id="link" ng-href="#" class="ng-binding" ng-class="{current:$index == cssblocklayoutselected}" ng-click="showCurrent(head.linkedurl, $index)">{{head.menuname}}</a>
 									    <ul class="b-h-subnav">
                                             <li ng-repeat="child in head.childdata" ng-click="showCurrent(child.linkedurl)"><a href="#">{{child.menuname}}</a> </li>
 									    </ul>
@@ -52,15 +52,31 @@
                     </div>
                 </div>
                 <!-- Page: Row //End -->
-                <div class="row">
+
+
+
+                    <div class="breadCurrent" ng-show="showdetails">
+                        <ul class="clearfix">
+                            <li><a href="index.html">Home</a> </li>
+                            <li class="arrow">&raquo;</li>
+                            <li><a href="#" ng-click="hidearticledetail();">{{ showblockname }}</a> </li>
+                            <li class="arrow">&raquo;</li>
+                            <li><span>{{ showheader }}</span></li>
+                        </ul>
+
+                    </div>
+
+
+
+                <div class="row" ng-show="showlist">
                     <div ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
                         <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks track by $index">
                             <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
                                 <h2 >{{ block.blockname}}</h2>
                                 <ul class="listarticle">
-                                    <li ng-repeat="article in block.blockarticles ">
+                                    <li ng-repeat="article in block.blockarticles " ng-click="showarticledetail(article,block.blockname)">
                                         <span>{{ article.created | date:'MM/dd/yyyy' }}</span>
-                                        <h3 ng-click="check(block)"><a href="/articledetail/{{ article.id }}">{{ article.title }}</a></h3>
+                                        <h3 ng-click="check(block)"><a href="#">{{ article.title }}</a></h3>
                                     </li>
                                 </ul>
                             </div>
@@ -95,53 +111,78 @@
                             <video ng-show="block.blockstatictype=='video'" style="width:100%;" src="../frontend/app/img/temp/forest.mp4" autoplay loop controls></video>
 
                             <!-- ??? Slider Banner -->
-                            <img ng-show="block.blockstatictype=='slideshow'" src="../frontend/lib/jqueryplugin/slidebanner/images/one.jpg" width="680" height="272" />
-                           <!-- <div id="focus" ng-show="block.blockstatictype=='slideshow'">
-                                <div class="focusWarp">
-                                    <ul class="imgList">
-                                        <li><a href="#"><img src="../frontend/lib/jqueryplugin/slidebanner/images/one.jpg" width="680" height="272" /></a></li>
-                                        <li><a href="#"><img src="../frontend/lib/jqueryplugin/slidebanner/images/two.jpg" width="680" height="272" /></a></li>
-                                        <li><a href="#"><img src="../frontend/lib/jqueryplugin/slidebanner/images/thr.jpg" width="680" height="272" /></a></li>
-                                        <li><a href="#"><img src="../frontend/lib/jqueryplugin/slidebanner/images/four.jpg" width="680" height="272" /></a></li>
-                                    </ul>
-                                    <ul class="imgList_two">
-                                        <li><img src="../frontend/lib/jqueryplugin/slidebanner/images/one_size.png" width="375" height="150" /></li>
-                                        <li><img src="../frontend/lib/jqueryplugin/slidebanner/images/two_size.png" width="367" height="105" /></li>
-                                        <li><img src="../frontend/lib/jqueryplugin/slidebanner/images/thr_size.png" width="412" height="94" /></li>
-                                        <li><img src="../frontend/lib/jqueryplugin/slidebanner/images/four_size.png" width="372" height="96" /></li>
-                                    </ul>
+                             <div  ng-show="block.blockstatictype=='slideshow'" id="content-slider">
+                                    <div id="slider">
+                                        <div id="mask">
+                                        <ul>
+                                        <li id="first" class="firstanimation">
+                                        <a href="#">
+                                        <img src="../frontend/app/img/temp/img_1.jpg" alt="Cougar"/>
+                                        </a>
+                                        <div class="tooltip">
+                                        <h1>Cougar</h1>
+                                        </div>
+                                        </li>
+                            
+                                        <li id="second" class="secondanimation">
+                                        <a href="#">
+                                        <img src="../frontend/app/img/temp/img_2.jpg" alt="Lions"/>
+                                        </a>
+                                        <div class="tooltip">
+                                        <h1>Lions</h1>
+                                        </div>
+                                        </li>
+                                        
+                                        <li id="third" class="thirdanimation">
+                                        <a href="#">
+                                        <img src="../frontend/app/img/temp/img_3.jpg" alt="Snowalker"/>
+                                        </a>
+                                        <div class="tooltip">
+                                        <h1>Snowalker</h1>
+                                        </div>
+                                        </li>
+                                        </ul>
+                                        </div>
+                                        <div class="progress-bar"></div>
+                                    </div>
                                 </div>
-                            </div>-->
+                                
                             <!-- ??? Slider Banner //End-->
                         </div>
                     </div>
                 </div>
-                <!--
-                <div id ="LayoutL" ng-view>
-                
-				</div>
-				<div id ="LayoutR">
-					<div class="row">
-						<div class="span4">
-							<div class="site-theme b-block block-layout-1">
-								<a href="http://www.fi.com/weballey/alleyletter.aspx" target="_blank"><img src = "app/img/temp/14769888589743746852.jpg" alt = ""/></a>
-							</div>
-					 	</div>
-					 </div>
-					 <div class="row">
-						<div class="span4">
-							<div class="site-theme b-block block-layout-1">
-								<h2 class="ng-binding">Editor Picks</h2>
-								<ul>
-									<li ng-repeat="article in articles | filter:todayhot| limitTo:5" class="ng-scope">
-										<h3><a href="#/article/{{article.id}}" class="ng-binding">{{article.title}}</a></h3>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-                -->
+                <div class="row" ng-show="showdetails">
+                     <div class="span9">
+                         <div class="site-theme b-block block-layout-1">
+                             <div class="article-templete">
+
+                                 <h1>{{ showheader }}</h1>
+
+                                 <div class="tagbox">
+                                     May 05 2013  |  Tag »
+                                     <a href="#" ng-repeat="tag in showtags">{{tag.tagname}}</a>
+                                 </div>
+                                 <p id="articledetail">
+
+                                 </p>
+                             </div>
+                         </div>
+                     </div>
+                    <div class="span3">
+                        <div class="site-theme b-block block-layout-1">
+                            <img src="../frontend/app/img/temp/pic.jpg">
+                        </div>
+                        <div class="site-theme b-block block-layout-1">
+
+                            <h2 class="ng-binding"></h2>
+                            <h4 class="b-block-staticTitle">Seasonal Allergy Symptoms</h4>
+                            <p class="b-block-staticTxt">SymptomFind.com is one of the leading providers of health information on the Web. </p>
+                            <h4 class="b-block-staticTitle">Our Mission</h4>
+                            <p class="b-block-staticTxt">At SymptomFind.com, we are committed to providing the most accurate and authoritative information regarding health and nutrition to suit the needs of the everyday person.</p>
+
+                        </div>
+                    </div>
+                </div>
 				<div class="row">
                     <div class="span12">
 						<!--  Footer -->
