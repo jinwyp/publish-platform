@@ -380,14 +380,14 @@
 .imgGroupBox_Left,
 .imgGroupBox_Right		{ float:left;}
 .imgGroupBox_Left		{ width:200px; overflow:hidden;}
-.imgGroupBox_Right		{ width:540px; padding-left:20px;}
+.imgGroupBox_Right		{ width:380px; padding-left:20px;}
 .imgGroupBox_Right h6	{ color:#f7c794; text-transform:capitalize; margin-bottom:10px; font-family:'Roboto Slab', serif; font-weight:400;}
 .imgGroupBox_Right p	{ color:#fff; line-height:18px; margin-bottom:10px;}
 .imgGroupBox_Right b	{ color:#fff; font-weight:bold;}
 
 .imgGroupCircleUL		{ margin:0; padding:0; list-style:none;}
-.imgGroupCircleUL li	{ width:260px; float:left; margin-bottom:10px; background:url(../../app/img/icon_circledot.png) left center no-repeat; text-indent:14px;}
-.imgGroupCircleUL li a	{ color:#88dae5;}
+.imgGroupCircleUL li	{ width:45%; float:left; margin-bottom:10px; background:url(../../app/img/icon_circledot.png) left center no-repeat; text-indent:14px;}
+.imgGroupCircleUL li a	{ color:#88dae5; font-size:12px;}
 
 .imgGroupColumUL				{ margin:0; padding:0;  list-style:none;}
 .imgGroupColumUL li				{ width:180px; float:left; margin-right:20px;}
