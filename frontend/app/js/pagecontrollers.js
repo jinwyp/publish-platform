@@ -73,7 +73,32 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
 
         $scope.get_site = modelSite.getSite();
+        //debugger;
+        $scope.get_headertheme = modelSite.getselectheadertheme();
 
+        if($scope.get_headertheme == ""){
+            $scope.cssheaderthemeindex = -1;
+            $scope.cssheadermenubutton = false;
+            $scope.cssheadermenuhavadata = false;
+        }else{
+            $scope.cssheaderthemeindex = $scope.get_headertheme;
+            $scope.cssheadermenuhavadata = true;
+            $scope.cssheadermenubutton = true;
+        }
+        debugger;
+        $scope.get_footertheme = modelSite.getselectfootertheme();
+
+        if($scope.get_footertheme == ""){
+            $scope.cssfooterthemeindex = -1;
+            $scope.cssfootermenuhavadata = false;
+            $scope.cssfootermenubutton=false;
+        }else{
+            $scope.cssfooterthemeindex = $scope.get_footertheme;
+            $scope.cssfootermenuhavadata = true;
+            $scope.cssfootermenubutton = true;
+        }
+
+        //$scope.cssfootermenuhavadata = false;
         $scope.pages = site.pagelist;
 
         $scope.singlepage =  $scope.pages[0];   //默认读取首页
@@ -108,16 +133,15 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $scope.cssblockeditmenubutton = false;     //点击当前编辑block的 设置的按钮
 
 
-        $scope.cssheadermenuhavadata = false;      //Header是否有数据
-        $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮显示
+       // $scope.cssheadermenuhavadata = false;      //Header是否有数据
+       // $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮显示
         $scope.cssheadersetting = false;      //Header设置nav下拉界面
-        $scope.cssheaderthemeindex = -1;      //Header默认主题Theme 选择哪一个
+       // $scope.cssheaderthemeindex = -1;      //Header默认主题Theme 选择哪一个
         $scope.cssheadernavindex = 0;      //Header默认菜单的颜色为首页
 
-        $scope.cssfootermenuhavadata = false;
-        $scope.cssfootermenubutton=false;
+        //$scope.cssfootermenubutton=false;
         $scope.cssfootersetting=false;
-        $scope.cssfooterthemeindex=-1;
+        //$scope.cssfooterthemeindex=-1;
         $scope.footerthemes=modelSite.getfoottheme();
         $scope.footer=modelSite.getfooter();
         $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
@@ -472,7 +496,8 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     $scope.clickheadertheme = function(indexid, themedata){
         //点击Nav 的每个Theme
         $scope.cssheaderthemeindex = indexid;      //Header选中的theme
-        $scope.cssheadermenuhavadata = true;      //Header是否有数据已有数据了y
+        $scope.cssheadermenuhavadata = true;      //Header是否有数据已有数据了
+        modelSite.setheadertheme(indexid);
     }
 
     $scope.slideshowheadersetting = function(){
@@ -709,7 +734,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $scope.footercommonfunction();
     }
     $scope.showfootmenusetting=function(){
-        $scope.cssfootermenubutton=true;
+        $scope.cssfootermenubutton = true;
     }
     $scope.hidefootmenusetting=function(){
         $scope.cssfootermenubutton = false;
@@ -717,6 +742,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     $scope.clickfootertheme = function(indexid, themedata){
         $scope.cssfooterthemeindex = indexid;
         $scope.cssfootermenuhavadata = true;
+        modelSite.setfootertheme($scope.cssfooterthemeindex);
     }
     $scope.slideshowfootersetting = function(){
         $scope.cssfootersetting = true;

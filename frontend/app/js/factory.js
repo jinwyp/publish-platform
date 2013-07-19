@@ -308,7 +308,8 @@ vcpapp.factory('modelSite',  function(){
 
 
     var sitedata = {};
-
+    var selectheadertheme='';
+    var  selectfootertheme='';
     if(window.localStorage){
         if (JSON.parse(localStorage.getItem("siteData")) == null || JSON.parse(localStorage.getItem("siteData")).length == 0){
             sitedata = {
@@ -366,11 +367,22 @@ vcpapp.factory('modelSite',  function(){
         }else{
             sitedata = JSON.parse(localStorage.getItem("siteData"));
         }
+        if(JSON.parse(localStorage.getItem("headertheme")) == null || JSON.parse(localStorage.getItem("headertheme")).length == 0){
+            selectheadertheme ='';
+        }else{
+            selectheadertheme = JSON.parse(localStorage.getItem("headertheme"));
+        }
+        if(JSON.parse(localStorage.getItem("footertheme")) == null || JSON.parse(localStorage.getItem("footertheme")).length == 0){
+            selectfootertheme ='';
+        }else{
+            selectfootertheme = JSON.parse(localStorage.getItem("footertheme"));
+        }
     }
 
 
 
     var factory = {};
+
     factory.getSite = function () {
         return  sitedata;
     };
@@ -480,11 +492,13 @@ vcpapp.factory('modelSite',  function(){
     factory.getHeader=function(){
         return sitedata.headerdata;
     }
+
     factory.addHeaderMenu = function (menudata) {
         sitedata.headerdata.push(menudata);
         localStorage.setItem("siteData",JSON.stringify(sitedata));
         return;
     };
+
     factory.addHeaderChildMenu = function (menuindex,childmenudata) {
         sitedata.headerdata[menuindex].childdata.push(childmenudata);
         localStorage.setItem("siteData",JSON.stringify(sitedata));
@@ -496,6 +510,7 @@ vcpapp.factory('modelSite',  function(){
         localStorage.setItem("siteData",JSON.stringify(sitedata));
         return;
     };
+
     factory.editHeaderChildMenu = function (id,pagedata) {
         sitedata.headerdata[id].childdata.push(pagedata);
         localStorage.setItem("siteData",JSON.stringify(sitedata));
@@ -505,9 +520,11 @@ vcpapp.factory('modelSite',  function(){
     factory.getfoottheme=function(){
         return sitedata.footertheme;
     };
+
     factory.getfooter=function(){
         return sitedata.footerdata;
     };
+
     factory.addfooterMenu = function (menudata) {
         sitedata.footerdata.push(menudata);
         localStorage.setItem("siteData",JSON.stringify(sitedata));
@@ -518,6 +535,23 @@ vcpapp.factory('modelSite',  function(){
         localStorage.setItem("siteData",JSON.stringify(menudata));
         return;
     }
+
+    factory.setheadertheme = function(headertheme){
+        localStorage.setItem("headertheme" , JSON.stringify(headertheme));
+    }
+
+    factory.setfootertheme = function(footertheme){
+        localStorage.setItem("footertheme" , JSON.stringify(footertheme));
+    }
+
+    factory.getselectheadertheme = function(){
+        return selectheadertheme;
+    }
+
+    factory.getselectfootertheme = function(){
+        return selectfootertheme;
+    }
+
 
     return factory;
 }
