@@ -1395,7 +1395,7 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .ico-article-UP_default,
 .ico-article-UP_current,
 .ico-article-DOWN_default,
-.ico-article-DOWN_current	{ margin-bottom:8px; padding:2px 20px 2px 8px; border:1px solid #ccc; color:#888; border-radius:4px; background:#fff url(img/icon_attribute.png) no-repeat;}
+.ico-article-DOWN_current	{ margin-bottom:8px; padding:2px 20px 2px 8px; border:1px solid #ccc; color:#888; border-radius:4px; background:#fff url(img/icon_attribute.png) no-repeat; }
 
 .ico-article-UP_default				{ background-position:right -1248px;}
 .ico-article-UP_current				{ background-position:right -1298px;}
