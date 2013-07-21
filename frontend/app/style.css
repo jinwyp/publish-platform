@@ -774,7 +774,7 @@ ul.layout_list .active	{ opacity:1;}
 /* =========================================================================================== */
 /*                                 Block：Setup + Move + Delete                                */
 /* =========================================================================================== */
-.attribute_panel{ position:absolute; right:-1px; top:-34px;}
+.attribute_panel{ position:absolute; right:-1px; top:-36px;}
 .attribute_panel.editors{ top:-67px;}
 /* 插入推荐位 */
 .editor_inset{ width:704px; margin-right:-7px; height:32px; padding:4px;}
@@ -788,7 +788,7 @@ ul.layout_list .active	{ opacity:1;}
 .attribute_panel a.icon_setup,
 .attribute_panel a.icon_move,
 .attribute_panel a.icon_delete,
-.attribute_panel a.icon_editor{ display:block; float:right; width:42px; height:34px; margin-left:1px; border-radius:4px 4px 0 0; text-indent:-9999px; background:#fff url(img/icon_attribute.png) no-repeat; outline:none; box-shadow:0 -1px 3px rgba(0,0,0,0.4); }
+.attribute_panel a.icon_editor{ display:block; float:right; width:42px; height:34px; margin-left:1px; border-radius:4px 4px 0 0; text-indent:-9999px; border-width:1px 1px 0px 1px; border-color:#bbb; border-style:solid; background:#fff url(img/icon_attribute.png) no-repeat; outline:none; box-shadow:0 -1px 2px rgba(0,0,0,0.2); }
 
 .attribute_panel a.icon_setup { background-position:50% -43px; }
 .attribute_panel a.icon_move  { background-position:50% -143px;}

@@ -366,15 +366,25 @@
                         <!-- Block Box -->
                         <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks track by $index" ng-class="{hoverfill:cssblockeditmenubutton}"  ng-mouseenter="showeditblockmenubutton()" ng-mouseleave="hideeditblockmenubutton()">
                         
-                        	<!-- Content -->
+                        	   <!-- Content -->
                             <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
-                                <h2 >{{ block.blockname}}</h2>
-                                <ul class="listarticle">
-                                	<li ng-repeat="article in block.blockarticles ">
-                                        <span>{{ article.created | date:'MM/dd/yyyy' }}</span>
-                                        <h3 ng-click="check(block)"><a href="/articledetail/{{ article.id }}">{{ article.title }}</a></h3>
-                                    </li>
-                                </ul>
+                            		<div class="globalTitle GT_blue clearfix">
+                                		<div class="arrow"></div>
+                                		<h6 class="blue">{{ block.blockname}}</h6>
+                            		</div>
+                                <div class="globalContBox">
+                                    <ul class="horizontal_UL clearfix">
+                                        <li ng-repeat="article in block.blockarticles ">
+                                        	 <div class="leftImg"><a href="###"><img src="app/img/symptomfind/Calendar.png" alt="" /></a></div>
+                                            <div class="rightList">
+                                               <h6 ng-click="check(block)"><a href="/articledetail/{{ article.id }}">{{ article.title }}</a></h6>
+                                               
+                                            	<span>{{ article.created | date:'MM/dd/yyyy' }}</span>
+                                               <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
 
                             </div>
 
