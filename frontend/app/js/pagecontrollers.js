@@ -142,7 +142,8 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     initialize();
 
     //left side bar
-    $scope.clickpage = function(indexid, page) {
+    $scope.isarticle = '';
+    $scope.clickpage = function(indexid, page, layout) {
         $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
         $scope.defaultselectedpageindex = indexid;
         $scope.singlepage = page;
@@ -152,8 +153,13 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         }else{
             $scope.layoutfilterlisttype = {layouttype:0 };
         }
-
         $scope.cssshowpageaddinput = false;       //添加page的输入框不显示
+        if(page.pagetype == 11){
+            $scope.isarticle = 'span9';
+
+        }else{
+            $scope.isarticle = '';
+        }
     };
 
     $scope.showaddpageinput = function() {
