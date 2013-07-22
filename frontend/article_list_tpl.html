@@ -14,24 +14,24 @@
                 </i>
                 
                 <!-- Delete 弹窗 -->
-                <div modal="cssmodalshow" options="cssmodalslide" >
+                <div modal="cssshowdelmodal" options="cssmodalslide" >
                     <div class="modal-header">
-                        <button type="button" class="close" ng-click="closeModal()">&times;</button>
+                        <button type="button" class="close" ng-click="closeDelModal()">&times;</button>
                         <h3 >Delete Article </h3>
                     </div>
 
                     <div class="modal-body">
-                        <h4>Are you sure delete this article "{{articlepreviewdata.title}}" ?</h4>
+                        <h4>Are you sure delete "{{articlepreviewdata.title}}" ?</h4>
                     </div>
 
                     <div class="modal-footer">
-                        <button class="btn" ng-click="closeModal()">Cancel</button>
-                        <button class="btn btn-danger"  ng-click="delArticle(articlepreviewdata.id)">Delete</button>
+                        <button class="btn" ng-click="closeDelModal()">Cancel</button>
+                        <button class="btn btn-danger"  ng-click="delArticle(articlepreviewdata)">Delete</button>
                     </div>
                 </div>
 				
                 <!-- Review 弹窗 -->
-                <div class="modal" modal="showcomments" options="cssmodalslide" >
+                <div class="modal" modal="cssshowcomments" options="cssmodalslide" >
                     <div class="modal-header">
                         <button type="button" class="close" ng-click="closecomments()">&times;</button>
                         <h3>Review Comment</h3>
@@ -40,10 +40,12 @@
                     <div class="modal-body">
                         <!-- <input type="text" id="comments" /> -->
                 		
+                        <!--
                         <div class="alert alert-success">
                         	<button type="button" class="close" data-dismiss="alert">&times;</button>
                         	Well done! You successfully write this comment.
                         </div>
+                        -->
                         <table class="table table-condensed">
                           <thead>
                             <tr>
@@ -56,19 +58,19 @@
                           </thead>
 
                           <tbody>
-                            <tr>
-                              <td>7/15/2013</td>
-                                <td>111</td>
-                              <td><span class="badge badge-success">10</span></td>
-                              <td>Eric</td>
-                              <td>There is an ambiguous word article.</td>
+                            <tr ng-repeat="review in currentarticle.reviewhistory">
+                                <td>{{ review.date | date:'yyyy/MM/dd HH:mm' }}</td>
+                                <td>{{ review.status }}</td>
+                                <td><span class="badge badge-success">{{ review.version }}</span></td>
+                                <td>{{ review.operator }}</td>
+                                <td>{{ review.reviewcomment }}</td>
                             </tr>
 
 
                           </tbody>
                         </table>
                         
-                        <div class="pagination pagination-mini pagination-centered">
+<!--                        <div class="pagination pagination-mini pagination-centered">
                           <ul>
                             <li><a href="#">&laquo;</a></li>
                             <li><a href="#">1</a></li>
@@ -78,15 +80,15 @@
                             <li><a href="#">5</a></li>
                             <li><a href="#">&raquo;</a></li>
                           </ul>
-                        </div>
+                        </div>-->
 
-                        <textarea rows="3" id="comments" style="width:96%"></textarea>
+                        <textarea rows="3" id="comments" style="width:96%" ng-model="currentarticlereviewcomment"></textarea>
                         
                     </div>
 
                     <div class="modal-footer">
                         <button class="btn" ng-click="closecomments()">Cancel</button>
-                        <button class="btn btn-danger" ng-click="savedata()">Save</button>
+                        <button class="btn btn-danger" ng-click="savearticlestatus()">Save</button>
                     </div>
                 </div>
                 
@@ -127,23 +129,23 @@
                     <!--<a href="#" class="ico-article-sequence dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>-->
                     <input class="aiticleList_search" type="text" ng-model="selected" ng-change="selectdata()" typeahead="state for state in states | filter:$viewValue">
                     <div class="ListSequence">
-                        <input ng-hide="showupdate" class="ico-article-UP_default" type="button" value="Update" ng-click="orderbytype('updated','desc')">
-                        <input ng-show="showupdate" class="ico-article-DOWN_default" type="button" value="Update" ng-click="orderbytype('updated','asc')">
-                        <input ng-hide="showpublish" class="ico-article-UP_default" type="button" value="Published" ng-click="orderbytype('published','desc')">
-                        <input ng-show="showpublish" class="ico-article-DOWN_default" type="button" value="Published" ng-click="orderbytype('published','asc')">
-                        <input ng-hide="showclick" class="ico-article-UP_default" type="button" value="Click" ng-click="orderbytype('clickcount','desc')">
-                        <input ng-show="showclick" class="ico-article-DOWN_default" type="button" value="Click" ng-click="orderbytype('clickcount','asc')">
+                        <input ng-hide="cssshowupdate" class="ico-article-UP_default" type="button" value="Update" ng-click="orderbytype('updated','desc')">
+                        <input ng-show="cssshowupdate" class="ico-article-DOWN_default" type="button" value="Update" ng-click="orderbytype('updated','asc')">
+                        <input ng-hide="cssshowpublish" class="ico-article-UP_default" type="button" value="Published" ng-click="orderbytype('published','desc')">
+                        <input ng-show="cssshowpublish" class="ico-article-DOWN_default" type="button" value="Published" ng-click="orderbytype('published','asc')">
+                        <input ng-hide="cssshowclick" class="ico-article-UP_default" type="button" value="Click" ng-click="orderbytype('clickcount','desc')">
+                        <input ng-show="cssshowclick" class="ico-article-DOWN_default" type="button" value="Click" ng-click="orderbytype('clickcount','asc')">
                     </div>
                 </i>
             </div>
 
 
-            <!-- sssss列表 -->
+            <!-- Aritcles列表 -->
             <div class="article-cont">
 
                 <ul class="article-list">
                     
-                    <li ng-mouseenter="showEditIcon($index)"  ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata | filter:query"  ng-click="clickArticle(article, $index)" >
+                    <li ng-mouseenter="showEditIcon($index)"  ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata track by $index | filter:query"  ng-click="clickArticle(article, $index)" >
                         <div class="list-date">
                             <h1><a href="" >{{article.title}}</a></h1>
                             <dl>
@@ -158,7 +160,7 @@
                             <dl>
                                 <dd style="padding-bottom: 20px;">
                                     <i class="article-title-ico" ng-show="$index == cssshowediticon">
-                                        <a href="" class="ico-article-del" rel="tooltip" title="" ng-click="openDelModal()" data-original-title="Delete Article"></a>
+                                        <a href="" class="ico-article-del" rel="tooltip" title="" ng-click="openDelModal(article)" data-original-title="Delete Article"></a>
                                         <a href="#/detail/{{article.id }}" class="ico-article-edit" rel="tooltip" title="Edit Article"></a>
                                         <!-- <a href="" class="ico-article-setup" rel="tooltip" title="Tag Category"></a> -->
                                     </i>
@@ -170,7 +172,7 @@
                                     	<button class="btn btn-info" disabled>Draft</button>
                                     	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
                                     	<ul class="dropdown-menu pull-right clearfix">
-                                          <li><input type="submit" value="Need Review" class="btn btn-block btn-warning" ng-click="clickstatus('reviewed',article)"></li>
+                                          <li><input type="submit" value="Need Review" class="btn btn-block btn-warning" ng-click="clickarticlestatus('reviewed', article)"></li>
                                         </ul>
                                 	</div>
                                 </dd>
@@ -180,8 +182,8 @@
                                     	<button class="btn btn-warning" disabled>Need Review</button>
                                     	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
                                     	<ul class="dropdown-menu pull-right clearfix">
-                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickstatus('draft',article)"></li>
-                                          <li><input type="submit" value="Publish" class="btn btn-block btn-success" ng-click="clickstatus('publish',article)"></li>
+                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickarticlestatus('draft', article)"></li>
+                                          <li><input type="submit" value="Publish" class="btn btn-block btn-success" ng-click="clickarticlestatus('publish', article)"></li>
                                         </ul>
                                 	</div>
                                 </dd>
@@ -191,7 +193,7 @@
                                     	<button class="btn btn-success" disabled>Published</button>
                                     	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
                                     	<ul class="dropdown-menu pull-right clearfix">
-                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickstatus('draft',article)"></li>
+                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickarticlestatus('draft',article)"></li>
                                         </ul>
                                 	</div>
                                 </dd>
