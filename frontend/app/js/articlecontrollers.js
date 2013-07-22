@@ -31,6 +31,7 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
 
     var copytotaldata = [];
     copytotaldata = $scope.articlestotaldata;
+
     //排序所有数据
     $scope.loadinit = function(flag,sort){
         for(var i = 0; i < $scope.articlestotaldata.length; i++){
@@ -103,6 +104,7 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
                 $scope.currentPage = $scope.noOfPages;
             }
         }
+
         var j = 0;
         for(var i = (($scope.currentPage-1)*articlesinonepage);i < $scope.articlestotaldata.length;i ++){
             $scope.articlesdata[j] = $scope.articlestotaldata[i];
