@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <title>VCP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../frontend/app/style.css" rel="stylesheet">
     <link href="lib/flatui/bootstrap.css" rel="stylesheet">
     <link href="lib/flatui/flat-ui.css" rel="stylesheet">
-    <link href="app/style.css" rel="stylesheet">
     <link href="../frontend/lib/angularslider/angular-slider.css" rel="stylesheet">
     <link rel="shortcut icon" href="../frontend/app/img/favicon.ico">
     <!--[if lt IE 9]>
@@ -17,9 +17,10 @@
       <!-- 幻灯片 -->
       <link type="text/css" rel="stylesheet" href="../frontend/lib/jqueryplugin/slidebanner/css/slidebanner.css" />
   </head>
-<body style="background:#f1f1f1;" ng-controller="GlobalCtrl">
+<body style="background:#fff;" ng-controller="GlobalCtrl">
 
-<div class="pagewrap">
+<div class="vcpbox nomag">
+<div class="container bgwhite">
                 <!-- Page: Row -->
                 <div class="row">
                     <div class="span12">
@@ -195,7 +196,8 @@
 						<!--  Footer -->
                     </div>
                 </div>
-     </div>
+</div>
+</div>
      <!-- Load JS -->
     <script src="../frontend/lib/underscore/underscore-min.js"></script>
     <script src="../frontend/lib/angular/1.1.5/angular.js"></script>
@@ -221,22 +223,5 @@
     <!-- 幻灯片 -->
     <script type="text/javascript" src="../frontend/lib/jqueryplugin/slidebanner/js/easing.js"></script>
     <script type="text/javascript" src="../lib/jqueryplugin/slidebanner/js/MogFocus.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            $("#focus").mogFocus({
-                loadAnimation : true, //效果初次加载是否有动画效果
-                loadswitch : false,//是否开启loading
-                loading : "lib/jqueryplugin/slidebanner/images/loading.gif",//loading图片路径
-                time : 2000,//间隔时间
-                scrollWidth : "680",//焦点图宽度，任意数值，设置为100%或者auto时，占满全屏
-                autoScroll : true,//是否自动滚动
-                prevNextAnima : {duration: 600, easing: "easeInOutBack"},//按钮滑动出来的方式，支持缓动公式，如果直接设置数值，那么就没有缓动效果
-                prevNextToggle : "show",//设置为toggle时鼠标放到滑动图上显示，离开影藏。设置show时一直显示，设置hide时影藏
-                single: true,//设置true则显示第二层，false则第二层影藏
-                focusDelay: 250,//焦点图延迟时间
-                focusDelayTwo : 0//第二层焦点图延迟时间
-            });
-        });
-    </script>
 </body>
 </html>
