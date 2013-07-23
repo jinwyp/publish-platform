@@ -27,12 +27,16 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
     var urlartilcelist = 'https://vcplatform.firebaseIO.com/articles';
     $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
 
+    var copytotaldata = [];
+    var articlesinonepage;
+    var pagecount;
 
     $scope.articlesFirebase.then(function() {
+
         $scope.articlestotaldata = $scope.articlesFirebase;
 //    $scope.articlestotaldata = modelArticle.getArticleList();     // use firebase for database
 
-    var copytotaldata = [];
+
     copytotaldata = $scope.articlestotaldata;
 
     //排序所有数据
@@ -87,8 +91,8 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
     $scope.loadinit('updated','desc');
 
     //页面总数
-    var articlesinonepage = 10;  // 文章每页数量
-    var pagecount = $scope.articlestotaldata.length / articlesinonepage;
+    articlesinonepage = 10;  // 文章每页数量
+    pagecount = $scope.articlestotaldata.length / articlesinonepage;
 
     $scope.noOfPages = parseInt(pagecount)== pagecount ? pagecount : parseInt(pagecount) + 1;  //当前页数
     if($scope.noOfPages==0){
@@ -121,11 +125,19 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
     $scope.loadcurrentpagedata();
     $scope.articlepreviewdata = $scope.articlesdata[0];
 
+
     //检测currentPage值
     $scope.$watch('currentPage', function(newPage){
         $scope.watchPage = newPage;
         $scope.loadcurrentpagedata();
     });
+
+
+    });//firebase then End
+
+
+
+
 
     $scope.cssshowupdate = true;
     $scope.cssshowpublish = true;
@@ -303,9 +315,6 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
 
 
 
-    });//firebase then End
-
-
     //标签显示提示框
     $('.vcpbox').tooltip({
         selector: "a[rel=tooltip]"
@@ -378,7 +387,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
                 $(".tagsinput").tagsInput();    //初始化 加载tag标签
             }
         }
-
+    });
 
     $scope.openDelModal = function () {
         $scope.cssmodalshow = true;
@@ -422,7 +431,6 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
     $scope.saveModifyArticle = function(){
         $scope.articledata.updated = modelArticle.getDateNow();
         $scope.articledata.lastversioncomment = $scope.newversioncomment;
-
 
 
         var temptagslistname = $(".tagsinput").exportTags();
@@ -500,7 +508,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
         $('.tagsinput').importTags(tagstr);
     };
 
-    });
+
 
     //标签显示提示框
     $('.vcpbox').tooltip({
