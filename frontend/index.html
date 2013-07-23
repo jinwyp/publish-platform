@@ -4,12 +4,27 @@
     <meta charset="utf-8">
     <title>VCP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--[if IE]> 
+    <link rel="stylesheet" href="app/ie.css">
+    <div class="fuck_ie">
+    <h1>IE公开践踏W3C标准，可是一样流行，所谓标准不过是人定义的东西。</h1>
+    <p>--- 鲁迅</p>
+    <span>主席推荐：</span>
+    <a class="chrome" href="http://www.google.com/chrome/" target="_blank"><img src="app/img/browser_chrome.png">Chrome浏览器</a>
+    <a class="safari" href="http://www.apple.com.cn/safari/" target="_blank"><img src="app/img/browser_safari.png">Safari浏览器</a>
+    </div>
+    <![endif]-->
+    
     <link href="lib/flatui/bootstrap.css" rel="stylesheet">
     <link href="app/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="app/img/favicon.ico">
     <!--[if lt IE 9]>
       <script src="lib/other/html5shiv.js"></script>
     <![endif]-->
+    <script src="lib/jquery/jquery-1.8.2.min.js"></script>
+    <script src="app/js/jquery.loader.js"></script>
+    <script>$(document).ready(function (){ $("body").queryLoader2({ }); });</script>
   </head>
 <body style="background:#f1f1f1;">
 
@@ -87,7 +102,7 @@
     <script src="lib/angularfire/angularfire.js"></script>
 
 
-    <script src="lib/jquery/jquery-1.8.2.min.js"></script>
+    
     <script src="lib/boostrap/bootstrap.min.js"></script>
     <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
     <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
