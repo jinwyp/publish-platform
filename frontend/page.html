@@ -82,7 +82,7 @@
                     <dt>Layout :</dt>
                     <dd>
                         <div class="tipbox_layout">
-                            <a href="#"  ng-repeat="blocklayout in blocklayouts"  ng-click="addblocktopage('auto', currentlayoutcontainer, $index)">
+                            <a href="#"  ng-repeat="blocklayout in blocklayouts"  ng-click="addblocktopage('auto', currentlayoutcontainer, $index, blocklayout.id)">
                                 <img src="{{ blocklayout.layoutimage }}" alt="">
                             </a>
                         </div>
@@ -407,7 +407,7 @@
                         
                         	<!-- Content -->
                             <!-- Block Layou: 三列有图 class="PageBlockLayout_Column3" -->
-                            <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
+                            <!--<div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
                             		<div class="globalTitle GT_blue clearfix">
                                 		<div class="arrow"></div>
                                 		<h6 class="blue">{{ block.blockname}}</h6>
@@ -421,82 +421,38 @@
                                             </li>
                                         </ul>
                                     </div>
-                            </div>
+                            </div>-->
 
-
-                            <div class="site-theme b-block block-layout-1">
+                            <!-- Block Layout: 图文列表 -->
+                            <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
                                 <div class="globalTitle GT_blue clearfix">
                                     <div class="arrow"></div>
-                                    <h6 class="blue">Block Name</h6>
+                                    <h6 class="blue">{{ block.blockname}},{{ block.blocklayout }}</h6>
                                 </div>
                                 <div class="globalContBox">
                                     <ul class="PageBlockLayout_Column3 clearfix">
-                                        <li>
-                                            <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="/articledetail/{{ article.id }}">Article Name</a></h6>
+                                        <li ng-repeat="article in block.blockarticles ">
+                                            <h6><span class="time">2013/7/15</span><a href="/articledetail/{{ article.id }}">{{ article.title }}</a></h6>
                                             <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
-                                            <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
-                                        </li>
-                                        <li>
-                                            <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="/articledetail/{{ article.id }}">Article Name</a></h6>
-                                            <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
-                                            <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
-                                        </li>
-                                        <li>
-                                            <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="/articledetail/{{ article.id }}">Article Name</a></h6>
-                                            <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
-                                            <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
-                                        </li>
-                                        <li>
-                                            <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="/articledetail/{{ article.id }}">Article Name</a></h6>
-                                            <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
-                                            <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
-                                        </li>
-                                        <li>
-                                            <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="/articledetail/{{ article.id }}">Article Name</a></h6>
-                                            <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
-                                            <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                            <p>{{ article.contentbody }}<a href="###">more</a></p>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                            
+                            <!-- Block Layout: 图文列表 //End -->
+
                             <!-- Block Layou: 两列无图 class="PageBlockLayout_Column2_noIMG" -->
-                            <div class="site-theme b-block block-layout-1" ng-class="">
+                            <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
                             		<div class="globalTitle GT_blue clearfix">
                                 		<div class="arrow"></div>
-                                		<h6 class="blue">Block Name</h6>
+                                		<h6 class="blue">{{ block.blockname}},{{ block.blocklayout}}</h6>
                             		</div>
                                     <div class="globalContBox">
                                         <ul class="PageBlockLayout_Column2_noIMG clearfix">
-                                            <li>
-                                                <h6><span class="time">2013/7/15</span><a href="#">Health Hazards At The</a></h6>
+                                            <li ng-repeat="article in block.blockarticles ">
+                                                <h6><span class="time">2013/7/15</span><a href="#">{{ article.title }}</a></h6>
                                                 <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
-                                                <p>If you're a stickler for rules, this could be a promising career path for you.</p>
-                                        	</li>
-                                            <li>
-                                                <h6><span class="time">2013/7/15</span><a href="#">Health Hazards At The</a></h6>
-                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
-                                                <p>If you're a stickler for rules, this could be a promising career path for you.</p>
-                                        	</li>
-                                            <li>
-                                                <h6><span class="time">2013/7/15</span><a href="#">Health Hazards At The</a></h6>
-                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
-                                                <p>If you're a stickler for rules, this could be a promising career path for you.</p>
-                                        	</li>
-                                            <li>
-                                                <h6><span class="time">2013/7/15</span><a href="#">Health Hazards At The</a></h6>
-                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
-                                                <p>If you're a stickler for rules, this could be a promising career path for you.</p>
-                                        	</li>
-                                            <li>
-                                                <h6><span class="time">2013/7/15</span><a href="#">Health Hazards At The</a></h6>
-                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
-                                                <p>If you're a stickler for rules, this could be a promising career path for you.</p>
-                                        	</li>
-                                            <li>
-                                                <h6><span class="time">2013/7/15</span><a href="#">Health Hazards At The</a></h6>
-                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
-                                                <p>If you're a stickler for rules, this could be a promising career path for you.</p>
+                                                <p>{{ article.contentbody }}</p>
                                         	</li>
                                         </ul>
                                     </div>
@@ -505,41 +461,17 @@
                             
                             
                             <!-- Block Layou: 有图列表 class="PageBlockLayout_Row" -->
-                            <div class="site-theme b-block block-layout-1" ng-class="">
+                            <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
                             		<div class="globalTitle GT_blue clearfix">
                                 		<div class="arrow"></div>
-                                		<h6 class="blue">Block Name</h6>
+                                		<h6 class="blue">{{ block.blockname}},{{ block.blocklayout}}</h6>
                             		</div>
                                     <div class="globalContBox">
                                         <ul class="PageBlockLayout_Row clearfix">
-                                            <li>
-                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
+                                            <li ng-repeat="article in block.blockarticles ">
+                                                <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="#">{{ article.title }}</a></h6>
                                                 <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_06.jpg" alt="" /></a>
-                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
-                                            </li>
-                                            
-                                            <li>
-                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
-                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_07.jpg" alt="" /></a>
-                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
-                                            </li>
-                                            
-                                            <li>
-                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
-                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_08.jpg" alt="" /></a>
-                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
-                                            </li>
-                                            
-                                            <li>
-                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
-                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_09.jpg" alt="" /></a>
-                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
-                                            </li>
-                                            
-                                            <li>
-                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
-                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_10.jpg" alt="" /></a>
-                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                                <p>{{ article.contentbody }}<a href="###">more</a></p>
                                             </li>
                                         </ul>
                                     </div>
@@ -548,41 +480,17 @@
                             
                             
                             <!-- Block Layou: 无图列表 class="PageBlockLayout_Row_noIMG" -->
-                            <div class="site-theme b-block block-layout-1" ng-class="">
+                            <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
                             		<div class="globalTitle GT_blue clearfix">
                                 		<div class="arrow"></div>
-                                		<h6 class="blue">Block Name</h6>
+                                		<h6 class="blue">{{ block.blockname}},{{ block.blocklayout}}</h6>
                             		</div>
                                     <div class="globalContBox">
                                         <ul class="PageBlockLayout_Row_noIMG clearfix">
-                                            <li>
-                                                <h6><span class="time">2013/7/15</span><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
+                                            <li ng-repeat="article in block.blockarticles ">
+                                                <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="#">{{ article.title }}</a></h6>
                                                 <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_06.jpg" alt="" /></a>
-                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
-                                            </li>
-                                            
-                                            <li>
-                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
-                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_07.jpg" alt="" /></a>
-                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
-                                            </li>
-                                            
-                                            <li>
-                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
-                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_08.jpg" alt="" /></a>
-                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
-                                            </li>
-                                            
-                                            <li>
-                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
-                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_09.jpg" alt="" /></a>
-                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
-                                            </li>
-                                            
-                                            <li>
-                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
-                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_10.jpg" alt="" /></a>
-                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                                <p>{{ article.contentbody }}<a href="###">more</a></p>
                                             </li>
                                         </ul>
                                     </div>

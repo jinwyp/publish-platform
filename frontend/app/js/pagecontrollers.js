@@ -34,7 +34,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             blockstatictype : '',
             blocktitle : "title1",
             blockname : "",
-            blocklayout : 10,
+            blocklayout : 100,
             blockquantity : 6,
             blocktag : [],
             blockcategory : 'Health and leisure',
@@ -318,14 +318,14 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     };
 
     // add a block to page
-    $scope.addblocktopage = function(blocktype, layoutcontainer, indexid ) {
-
+    $scope.addblocktopage = function(blocktype, layoutcontainer, indexid, blocklayoutid ) {
+        debugger;
         var newblock = {
             blockid : 200,
             blocktype : 'auto',
             blockstatictype:'',
             blockname : "",
-            blocklayout : 10,
+            blocklayout : blocklayoutid,
             blockquantity : 0,
             blocktag : [],
             blockcategory : 'Health and leisure',
