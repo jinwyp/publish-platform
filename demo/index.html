@@ -72,7 +72,7 @@
                 <div class="row" ng-show="showlist">
                     <div ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
                         <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks track by $index">
-                            <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
+                            <!--<div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
                                 <h2 >{{ block.blockname}}</h2>
                                 <ul class="listarticle">
                                     <li ng-repeat="article in block.blockarticles " ng-click="showarticledetail(article,block.blockname)">
@@ -80,7 +80,25 @@
                                         <h3 ng-click="check(block)"><a href="#">{{ article.title }}</a></h3>
                                     </li>
                                 </ul>
+                            </div>-->
+
+                            <!-- Block Layou: 无图列表 class="PageBlockLayout_Row_noIMG" -->
+                            <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
+                                <div class="globalTitle GT_blue clearfix">
+                                    <div class="arrow"></div>
+                                    <h6 class="blue">{{ block.blockname}}</h6>
+                                </div>
+                                <div class="globalContBox">
+                                    <ul ng-class="{PageBlockLayout_Row_noIMG:block.blocklayout == '101',PageBlockLayout_Row:block.blocklayout == '100',PageBlockLayout_Column2_noIMG:block.blocklayout == '103',PageBlockLayout_Column3:block.blocklayout == '102'}" class="clearfix">
+                                        <li ng-repeat="article in block.blockarticles ">
+                                            <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="#" ng-click="showarticledetail(article,block.blockname)">{{ article.title }}</a></h6>
+                                            <a href="#" class="linkImg"><img src="../frontend/app/img/symptomfind/temp_06.jpg" alt="" /></a>
+                                            <p>{{ article.description }}...<a href="###" ng-click="showarticledetail(article,block.blockname)">more</a></p>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
+                            <!-- Block Layou: 无图列表 // End -->
                             <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='RSS'">
                                 <h3>{{ block.blockname}}</h3>
 
@@ -91,7 +109,10 @@
                                 <p><a href="#">Quit Your Job To Trade Stocks?</a></p>
                             </div>
                             <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='ads'">
-                                <img src="../frontend/app/img/temp/ad_temp01.jpg">
+                                <!-- 长条形广告 -->
+                                <img src="../frontend/app/img/AD/AD_span9.jpg" ng-show="block.blocklayout==1001">
+                                <!-- 短形广告 -->
+                                <img src="../frontend/app/img/AD/AD_span3.jpg" ng-show="block.blocklayout==1002">
                             </div>
                             <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='static'">
 
