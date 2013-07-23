@@ -17,6 +17,13 @@
     <!-- 幻灯片 -->
     <link type="text/css" rel="stylesheet" href="lib/jqueryplugin/slidebanner/css/slidebanner.css" />
   </head>
+
+  <style type="text/css">
+  <!-- 
+  html { overflow-y:scroll}
+  #kinMaxShow{width:100%; height:500px; overflow:hidden;}
+  -->
+  </style>
 <body style="background: fixed url(app/img/pagebg.jpg) center 60px repeat;">
 
 
@@ -53,7 +60,7 @@
 
 <!-- =======================================  tip_auto ======================================= -->
 <div class="tip_box tip_auto" ng-show="'auto'==cssblocktipbox" >
-    <h1>Auto pick block attribute</h1>
+    <h1><a href="###" class="TipBoxClose">X</a>Auto pick block attribute</h1>
     <div class="tabbable tabs-below">
         <div class="tab-content">
             <!-- Tab1: Layout -->
@@ -128,7 +135,7 @@
                     <dt>Tag :</dt>
                     <dd>
                         <div class="tipbox_filter">
-                            <input name="tagsinput"  id="tagsinput" class="tagsinput" value="" />
+                            <input name="tagsinput"  id="tagsinput" class="tagsinput" value=""  />
                         </div>
                     </dd>
                 </dl>
@@ -164,7 +171,7 @@
 
 <!-- ======================================= tip_editor ======================================= -->
 <div class="tip_box tip_editor"  ng-show="'editor'==cssblocktipbox">
-    <h1>Editor's pick block attribute</h1>
+    <h1><a href="###" class="TipBoxClose">X</a>Editor's pick block attribute</h1>
     <div class="tab-content">
         <dl class="clearfix">
             <dt>Block name :</dt>
@@ -195,7 +202,7 @@
 
 <!-- ======================================= tip_static ======================================= -->
 <div class="tip_box tip_static" ng-show="'static'==cssblocktipbox">
-    <h1>Static</h1>
+    <h1><a href="###" class="TipBoxClose">X</a>Static</h1>
     <ul class="StaticElementBlock clearfix">
      	<li><a href="#" class="icon_static_txt" ng-click="addblocktopage('statictext', currentlayoutcontainer, 0) ">TXT</a></li>
         <li><a href="#" class="icon_static_pic" ng-click="addblocktopage('staticpic', currentlayoutcontainer, 0)">PIC</a></li>
@@ -206,15 +213,24 @@
 
 <!-- ======================================= tip_ad ======================================= -->
 <div class="tip_box tip_ads" ng-show="'ads'==cssblocktipbox">
-    <h1>AD block attribute</h1>
+    <h1><a href="###" class="TipBoxClose">X</a>AD block attribute</h1>
     <div class="tab-content">
         <dl class="clearfix">
             <dt>AD Name:</dt>
             <dd><input type="text" data-provide="typeahead" data-items="10" ng-model="newblock.adsname"></dd>
         </dl>
         <dl class="clearfix">
+        	<dt>Layout :</dt>
+            <dd>
+                <div class="tipbox_layout">
+                    <a href="#"><img src="app/img/ad_layout_big.png" alt=""></a>
+                    <a href="#"><img src="app/img/ad_layout_small.png" alt=""></a>
+                </div>
+            </dd>
+            <!-- 
             <dt>Code :</dt>
             <dd><textarea rows="3" ng-model="newblock.adscode"></textarea></dd>
+            -->
         </dl>
         <dl class="clearfix">
         	<dt>&nbsp;</dt>
@@ -225,7 +241,7 @@
 
 <!-- ======================================= tip_RSS ======================================= -->
 <div class="tip_box tip_RSS" ng-show="'RSS'==cssblocktipbox">
-    <h1>RSS block attribute</h1>
+    <h1><a href="###" class="TipBoxClose">X</a>RSS block attribute</h1>
     <div class="tab-content">
         <dl class="clearfix">
             <dt>Block name :</dt>
@@ -272,7 +288,7 @@
                                     <input type="button" class="search_btn" value="Search">
                                 </div>
                                 <ul class="b-h-nav">
-                                    <li ng-repeat="head in header"><a href="#{{head.linkedurl}}" ng-class="{current: $index==cssheadernavindex}" >{{head.menuname}}</a></li>
+                                    <li ng-repeat="head in header track by $index"><a href="#{{head.linkedurl}}" ng-class="{current: $index==cssheadernavindex}" >{{head.menuname}}</a></li>
                                 </ul>
                             </div>
                             <!-- 有header //End -->
@@ -302,7 +318,7 @@
                                 <!-- Nav Link -->
                                 <div class="navlink_panel" ng-show="cssheadersetting" ng-animate="{show: 'fade-show', hide: ''}" >
                                 	<ul class="nav_structure clearfix">
-                                        <li ng-repeat="head in header" class="classid">
+                                        <li ng-repeat="head in header track by $index" class="classid">
                                             <a ng-hide='$index==showa' href="#" class="pagelink">
                                                 {{head.menuname}}<i class="ico_edit" ng-click="openheaderinfo($index,head,$event)"></i>
                                             </a>
@@ -330,7 +346,7 @@
                                                     </label>
                                                     <label class="radio clearfix">
                                                         <input type="radio" id="urltype2" ng-model="newheaderdata.menutype" value="local">
-                                                        <select style="width:110px;" ng-model="headerlocalurl" ng-options="page.pagename for page in pages">
+                                                        <select style="width:110px;" ng-model="headerlocalurl" ng-options="page.pagename as page.pagename for page in pages">
                                                         </select>
                                                     </label>
                                                     <div class="newlink_panel_btn">
@@ -353,23 +369,195 @@
                 <!-- Page: Navigation//End -->
                 <!-- Page: Row -->
                 <div class="row">
-                
-                    <div class="" ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
 
+                    <div ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
                         <!-- Block Box -->
                         <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks track by $index" ng-class="{hoverfill:cssblockeditmenubutton}"  ng-mouseenter="showeditblockmenubutton()" ng-mouseleave="hideeditblockmenubutton()">
                         
                         	<!-- Content -->
+                            <!-- Block Layou: 三列有图 class="PageBlockLayout_Column3" -->
                             <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
-                                <h2 >{{ block.blockname}}</h2>
-                                <ul class="listarticle">
-                                	<li ng-repeat="article in block.blockarticles ">
-                                        <span>{{ article.created | date:'MM/dd/yyyy' }}</span>
-                                        <h3 ng-click="check(block)"><a href="/articledetail/{{ article.id }}">{{ article.title }}</a></h3>
-                                    </li>
-                                </ul>
-
+                            		<div class="globalTitle GT_blue clearfix">
+                                		<div class="arrow"></div>
+                                		<h6 class="blue">{{ block.blockname}}</h6>
+                            		</div>
+                                    <div class="globalContBox">
+                                        <ul class="PageBlockLayout_Column3 clearfix">
+                                            <li ng-repeat="article in block.blockarticles ">
+                                            	 <h6 ng-click="check(block)"><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="/articledetail/{{ article.id }}">{{ article.title }}</a></h6>
+                                                 <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
+                                                 <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                            </li>
+                                        </ul>
+                                    </div>
                             </div>
+
+
+                            <div class="site-theme b-block block-layout-1">
+                                <div class="globalTitle GT_blue clearfix">
+                                    <div class="arrow"></div>
+                                    <h6 class="blue">Block Name</h6>
+                                </div>
+                                <div class="globalContBox">
+                                    <ul class="PageBlockLayout_Column3 clearfix">
+                                        <li>
+                                            <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="/articledetail/{{ article.id }}">Article Name</a></h6>
+                                            <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
+                                            <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                        </li>
+                                        <li>
+                                            <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="/articledetail/{{ article.id }}">Article Name</a></h6>
+                                            <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
+                                            <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                        </li>
+                                        <li>
+                                            <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="/articledetail/{{ article.id }}">Article Name</a></h6>
+                                            <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
+                                            <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                        </li>
+                                        <li>
+                                            <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="/articledetail/{{ article.id }}">Article Name</a></h6>
+                                            <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
+                                            <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                        </li>
+                                        <li>
+                                            <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="/articledetail/{{ article.id }}">Article Name</a></h6>
+                                            <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
+                                            <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- Block Layou: 两列无图 class="PageBlockLayout_Column2_noIMG" -->
+                            <div class="site-theme b-block block-layout-1" ng-class="">
+                            		<div class="globalTitle GT_blue clearfix">
+                                		<div class="arrow"></div>
+                                		<h6 class="blue">Block Name</h6>
+                            		</div>
+                                    <div class="globalContBox">
+                                        <ul class="PageBlockLayout_Column2_noIMG clearfix">
+                                            <li>
+                                                <h6><span class="time">2013/7/15</span><a href="#">Health Hazards At The</a></h6>
+                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
+                                                <p>If you're a stickler for rules, this could be a promising career path for you.</p>
+                                        	</li>
+                                            <li>
+                                                <h6><span class="time">2013/7/15</span><a href="#">Health Hazards At The</a></h6>
+                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
+                                                <p>If you're a stickler for rules, this could be a promising career path for you.</p>
+                                        	</li>
+                                            <li>
+                                                <h6><span class="time">2013/7/15</span><a href="#">Health Hazards At The</a></h6>
+                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
+                                                <p>If you're a stickler for rules, this could be a promising career path for you.</p>
+                                        	</li>
+                                            <li>
+                                                <h6><span class="time">2013/7/15</span><a href="#">Health Hazards At The</a></h6>
+                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
+                                                <p>If you're a stickler for rules, this could be a promising career path for you.</p>
+                                        	</li>
+                                            <li>
+                                                <h6><span class="time">2013/7/15</span><a href="#">Health Hazards At The</a></h6>
+                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
+                                                <p>If you're a stickler for rules, this could be a promising career path for you.</p>
+                                        	</li>
+                                            <li>
+                                                <h6><span class="time">2013/7/15</span><a href="#">Health Hazards At The</a></h6>
+                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_12.jpg" alt="" /></a>
+                                                <p>If you're a stickler for rules, this could be a promising career path for you.</p>
+                                        	</li>
+                                        </ul>
+                                    </div>
+                            </div>
+                            <!-- Block Layou: 两列无图 // End -->
+                            
+                            
+                            <!-- Block Layou: 有图列表 class="PageBlockLayout_Row" -->
+                            <div class="site-theme b-block block-layout-1" ng-class="">
+                            		<div class="globalTitle GT_blue clearfix">
+                                		<div class="arrow"></div>
+                                		<h6 class="blue">Block Name</h6>
+                            		</div>
+                                    <div class="globalContBox">
+                                        <ul class="PageBlockLayout_Row clearfix">
+                                            <li>
+                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
+                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_06.jpg" alt="" /></a>
+                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                            </li>
+                                            
+                                            <li>
+                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
+                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_07.jpg" alt="" /></a>
+                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                            </li>
+                                            
+                                            <li>
+                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
+                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_08.jpg" alt="" /></a>
+                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                            </li>
+                                            
+                                            <li>
+                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
+                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_09.jpg" alt="" /></a>
+                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                            </li>
+                                            
+                                            <li>
+                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
+                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_10.jpg" alt="" /></a>
+                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                            </div>
+                            <!-- Block Layou: 有图列表 // End -->
+                            
+                            
+                            <!-- Block Layou: 无图列表 class="PageBlockLayout_Row_noIMG" -->
+                            <div class="site-theme b-block block-layout-1" ng-class="">
+                            		<div class="globalTitle GT_blue clearfix">
+                                		<div class="arrow"></div>
+                                		<h6 class="blue">Block Name</h6>
+                            		</div>
+                                    <div class="globalContBox">
+                                        <ul class="PageBlockLayout_Row_noIMG clearfix">
+                                            <li>
+                                                <h6><span class="time">2013/7/15</span><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
+                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_06.jpg" alt="" /></a>
+                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                            </li>
+                                            
+                                            <li>
+                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
+                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_07.jpg" alt="" /></a>
+                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                            </li>
+                                            
+                                            <li>
+                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
+                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_08.jpg" alt="" /></a>
+                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                            </li>
+                                            
+                                            <li>
+                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
+                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_09.jpg" alt="" /></a>
+                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                            </li>
+                                            
+                                            <li>
+                                                <h6><span class="time">2013/7/15</span><a href="#">Reasons Why Your Eye Keeps Twitching</a></h6>
+                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_10.jpg" alt="" /></a>
+                                                <p>The public restroom is a delicate topic of conversation for many people. There are men who cringe at the near mention of a public urinal, while many women refuse to use public restrooms for anything aside from washing their hands. Here...<a href="###">more</a></p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                            </div>
+                            <!-- Block Layou: 无图列表 // End -->
+                            
 
                             <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='RSS'">
                                 <h3>{{ block.blockname}}</h3>
@@ -393,37 +581,57 @@
                                 <p class="b-block-staticTxt" ng-show="block.blockstatictype=='text'">SymptomFind.com is one of the leading providers of health information on the Web. </p>
                                 <h4 class="b-block-staticTitle" ng-show="block.blockstatictype=='text'">Our Mission</h4>
                                 <p class="b-block-staticTxt" ng-show="block.blockstatictype=='text'">At SymptomFind.com, we are committed to providing the most accurate and authoritative information regarding health and nutrition to suit the needs of the everyday person.</p>
-                                
+
                                 <!-- 图片 -->
                                 <div ng-show="block.blockstatictype=='pic'">
                                 	<p><img src="app/img/temp/pic.jpg"></p>
                                 </div>
-                                
+
                                 <!-- 视频 -->
                                 <video ng-show="block.blockstatictype=='video'" style="width:100%;" src="app/img/temp/forest.mp4" autoplay loop controls></video>
 
+
                                 <!-- 幻灯片 Slider Banner -->
-                                <!--<img ng-show="block.blockstatictype=='slideshow'" src="../frontend/lib/jqueryplugin/slidebanner/images/one.jpg" width="680" height="272" />-->
+                                <div  ng-show="block.blockstatictype=='slideshow'" id="content-slider">
+                                    <div id="slider">
+                                        <div id="mask">
+                                            <ul>
+                                            <li id="first" class="firstanimation">
+                                            <a href="#">
+                                            <img src="app/img/temp/img_1.jpg" alt="Cougar"/>
+                                            </a>
+                                            <div class="tooltip">
+                                            <h1>Cougar</h1>
+                                            </div>
+                                            </li>
+
+                                            <li id="second" class="secondanimation">
+                                            <a href="#">
+                                            <img src="app/img/temp/img_2.jpg" alt="Lions"/>
+                                            </a>
+                                            <div class="tooltip">
+                                            <h1>Lions</h1>
+                                            </div>
+                                            </li>
+
+                                            <li id="third" class="thirdanimation">
+                                            <a href="#">
+                                            <img src="app/img/temp/img_3.jpg" alt="Snowalker"/>
+                                            </a>
+                                            <div class="tooltip">
+                                            <h1>Snowalker</h1>
+                                            </div>
+                                            </li>
+
+                                            </ul>
+                                        </div>
+                                        <div class="progress-bar"></div>
+                                    </div>
+                                </div>
+
 
                             </div>
-                            <div id="focus" ng-show="true">
-                                <div class="focusWarp">
-                                    <ul class="imgList">
-                                        <li><a href="#"><img src="lib/jqueryplugin/slidebanner/images/one.jpg" width="680" height="272" /></a></li>
-                                        <li><a href="#"><img src="lib/jqueryplugin/slidebanner/images/two.jpg" width="680" height="272" /></a></li>
-                                        <li><a href="#"><img src="lib/jqueryplugin/slidebanner/images/thr.jpg" width="680" height="272" /></a></li>
-                                        <li><a href="#"><img src="lib/jqueryplugin/slidebanner/images/four.jpg" width="680" height="272" /></a></li>
-                                    </ul>
-                                    <ul class="imgList_two">
-                                        <li><img src="lib/jqueryplugin/slidebanner/images/one_size.png" width="375" height="150" /></li>
-                                        <li><img src="lib/jqueryplugin/slidebanner/images/two_size.png" width="367" height="105" /></li>
-                                        <li><img src="lib/jqueryplugin/slidebanner/images/thr_size.png" width="412" height="94" /></li>
-                                        <li><img src="lib/jqueryplugin/slidebanner/images/four_size.png" width="372" height="96" /></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- 幻灯片 Slider Banner //End-->
-                            
+
 
                             <!-- Content End -->
 
@@ -442,7 +650,7 @@
                         </div>
 
                         <!-- Add Block Box -->
-                        <div id="blockcontent" class="block_content blockempty" ng-class="{hoverempty:cssblockaddmenubutton}"  ng-mouseenter="showaddblockmenubutton()" ng-mouseleave="hideaddblockmenubutton()">
+                        <div ng-hide="layoutcontainer.layoutcontainerclass == isarticle" id="blockcontent" class="block_content blockempty" ng-class="{hoverempty:cssblockaddmenubutton}"  ng-mouseenter="showaddblockmenubutton()" ng-mouseleave="hideaddblockmenubutton()">
 
                             <!-- ICO -->
                             <div class="ico_box" ng-show="cssblockaddmenubutton">
@@ -586,16 +794,13 @@
             <span href="##" class="ico_layout_close ico_layout_open"></span>
         </div>
         <!-- Page Layout//End -->
-        
-        
-        
-
-
-
-
-
 </div>
 </div>
+
+
+
+
+
     <!-- Load JS -->
     <script src="lib/underscore/underscore-min.js"></script>
     <script src="lib/angular/1.1.5/angular.js"></script>
@@ -619,26 +824,21 @@
       <script src="lib/flatui/lte-ie7-24.js"></script>
     <![endif]-->
     <script src="app/js/custom.js"></script>
+
     
-    <!-- 幻灯片 -->
-	<script type="text/javascript" src="lib/jqueryplugin/slidebanner/js/easing.js"></script>
-    <script type="text/javascript" src="lib/jqueryplugin/slidebanner/js/MogFocus.js"></script>
-    <script type="text/javascript">
-    $(function(){
-        $("#focus").mogFocus({
-            loadAnimation : true, //效果初次加载是否有动画效果
-            loadswitch : false,//是否开启loading
-            loading : "lib/jqueryplugin/slidebanner/images/loading.gif",//loading图片路径
-            time : 2000,//间隔时间
-            scrollWidth : "680",//焦点图宽度，任意数值，设置为100%或者auto时，占满全屏
-            autoScroll : true,//是否自动滚动
-            prevNextAnima : {duration: 600, easing: "easeInOutBack"},//按钮滑动出来的方式，支持缓动公式，如果直接设置数值，那么就没有缓动效果
-            prevNextToggle : "show",//设置为toggle时鼠标放到滑动图上显示，离开影藏。设置show时一直显示，设置hide时影藏
-            single: true,//设置true则显示第二层，false则第二层影藏
-            focusDelay: 250,//焦点图延迟时间			
-            focusDelayTwo : 0,//第二层焦点图延迟时间
-        });
-    });
-    </script>
+    
+    <script type="text/jscript">
+			 //$('.fancyinput_vcp :input').val('').fancyInput()[0].focus();
+			
+			$(function() {
+				
+				  //关闭TipBox
+					$(".TipBoxClose").click(function(){
+						 $(".tip_box").fadeOut(300);
+					});
+				
+				  
+        	});
+	</script>
 </body>
 </html>

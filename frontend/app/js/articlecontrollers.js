@@ -2,133 +2,15 @@
 
 /* App Module */
 
-var articleapp = angular.module('vcpmodule', ['ui.bootstrap', 'vcpmodule.directive']);
+var vcpapp = angular.module('vcpmodule', ['ui.bootstrap', 'firebase', 'vcpmodule.directive']);
 
 
 
-articleapp.factory('modelArticle', function(){
-
-    var articlelist=[],taglist=[];
-    if(window.localStorage){
-        if (JSON.parse(localStorage.getItem("articlesData")) == null || JSON.parse(localStorage.getItem("articlesData")).length == 0){
-
-            articlelist=[];
-            taglist=[{"tagid":10001,"tagname":"Personal Debt","$$hashKey":"00L"},
-                {"tagid":10002,"tagname":"Economic","$$hashKey":"00M"},
-                {"tagid":10003,"tagname":"Students"},{"tagid":10004,"tagname":"Investment"}];
-
-
-
-        }else{
-            articlelist = JSON.parse(localStorage.getItem("articlesData"));
-            taglist = JSON.parse(localStorage.getItem("tagsData"));
-            console.log(articlelist);
-        }
-   }
-
-    var factory = {};
-
-    factory.getArticleList = function () {
-        return  articlelist;
-    };
-
-    factory.getArticleById = function (articleid) {
-        for(var i = 0;i < articlelist.length; i++){
-            if (articlelist[i].id == articleid) {
-                return articlelist[i];
-            }
-        }
-    };
-
-    factory.getMaxArticleID = function () {
-        var articlemaxid;
-        if(articlelist.length==0){
-            articlemaxid=1001;
-        }else{
-            articlemaxid = articlelist[0].id + 1;
-        }
-        return articlemaxid;
-    };
-
-    factory.saveArticle = function (articledata) {
-        for(var i = articlelist.length; i--;){
-            if (articlelist[i].id == articledata.id) {
-                articlelist[i] = articledata;
-                localStorage.setItem("articlesData",JSON.stringify(articlelist));
-                return ;
-            }
-        }
-    };
-
-    factory.delArticleById = function (articleid) {
-        for(var i = articlelist.length; i--;){
-            if (articlelist[i].id == articleid) {
-                articlelist.splice(i, 1);
-                localStorage.setItem("articlesData",JSON.stringify(articlelist));
-                return;
-            }
-        }
-    };
-
-    factory.createNewArticle = function (articledata) {
-        articlelist.push(articledata);
-        localStorage.setItem("articlesData",JSON.stringify(articlelist));
-        return ;
-    };
-
-
-    factory.getTagList = function () {
-        return taglist;
-    };
-
-    factory.getMaxTagID = function () {
-        //factory.getTagList();
-        var tagmaxid;
-        try{
-            if(taglist.length==0){
-                tagmaxid=10001;
-            }else{
-                tagmaxid = taglist[taglist.length-1].tagid + 1;
-            }
-        }catch(e){
-            tagmaxid=10001;
-        }
-        return tagmaxid;
-    };
-
-    factory.checkTagExist = function (tagname) {
-        var tagresult = _.findWhere(taglist, {tagname: tagname});
-        if (tagresult === undefined) {
-            return false;
-        }else{
-            return tagresult;
-        }
-    };
-
-    factory.createNewTag = function (tagdata) {
-        try{
-            taglist.push(tagdata);
-        }catch(e){
-            taglist=[];
-            taglist.push(tagdata);
-        }
-        localStorage.setItem("tagsData",JSON.stringify(taglist));
-        return tagdata;
-    };
-
-    factory.getDateNow = function () {
-        var newdate = new Date().getTime();
-        return newdate;
-    };
-
-    return factory;
-});
-
-articleapp.config(['$routeProvider', function($routeProvider) {
+vcpapp.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
-        when('/',                      {templateUrl: 'article_list_tpl.html', controller: articleapp.controller.articleList }).
-        when('/newarticle',          {templateUrl: 'article_new_tpl.html', controller: articleapp.controller.articleCreateNew }).
-        when('/detail/:articleId',  {templateUrl: 'article_detail_tpl.html', controller: articleapp.controller.articleDetail }).
+        when('/',                      {templateUrl: 'article_list_tpl.html', controller: vcpapp.controller.articleList }).
+        when('/newarticle',          {templateUrl: 'article_new_tpl.html', controller: vcpapp.controller.articleCreateNew }).
+        when('/detail/:articleId',  {templateUrl: 'article_detail_tpl.html', controller: vcpapp.controller.articleDetail }).
 
         otherwise({redirectTo: '/'});
 }]);
@@ -136,9 +18,11 @@ articleapp.config(['$routeProvider', function($routeProvider) {
 
 
 /* Controllers */
-articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
-    //获取全部数据
-    $scope.articlestotaldata = modelArticle.getArticleList();
+vcpapp.controller.articleList = function ($scope, $filter, modelArticle) {
+
+
+    $scope.articlestotaldata = modelArticle.getArticleList();     // use firebase for database
+
     var copytotaldata = [];
     copytotaldata = $scope.articlestotaldata;
     //排序所有数据
@@ -407,7 +291,7 @@ articleapp.controller.articleList = function ($scope, $filter, modelArticle) {
     });
 }
 
-articleapp.controller.articleDetail = function ($scope, $routeParams, modelArticle) {
+vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, modelTag) {
     $scope.cssTagsPanel = false;
     var articleId = $routeParams.articleId;
     $scope.articledata = modelArticle.getArticleById(articleId);
@@ -443,7 +327,7 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
     };
 
      $scope.saveArticle = function(feed) {
-       $scope.ispublish=false;
+        $scope.ispublish=false;
         $scope.articledata.versioncomment='';
         $scope.articledata.updated=modelArticle.getDateNow();
         $scope.articledata.status='draft';
@@ -462,14 +346,14 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
         var temptagslistname = $(".tagsinput").exportTags();
         $scope.articledata.tags = [];
         for(var i=0;i<temptagslistname.length;i++){
-            if(  modelArticle.checkTagExist(temptagslistname[i]) ){
-                var newtag = modelArticle.checkTagExist(temptagslistname[i]);
+            if(  modelTag.checkTagExist(temptagslistname[i]) ){
+                var newtag = modelTag.checkTagExist(temptagslistname[i]);
             }else{
                 var newtag = {
-                    "tagid" : modelArticle.getMaxTagID(),
+                    "tagid" : modelTag.getMaxTagID(),
                     "tagname" : temptagslistname[i]
                 }
-                modelArticle.createNewTag(newtag);
+                modelTag.createNewTag(newtag);
             }
             $scope.articledata.tags.push(newtag);
         }
@@ -525,85 +409,112 @@ articleapp.controller.articleDetail = function ($scope, $routeParams, modelArtic
     });
 };
 
-articleapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle) {
-   $(".tagsinput").tagsInput({
-        'autocomplete': modelArticle.getTagList()
+
+
+vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle, modelTag, angularFire) {
+    var urluser = "https://vcplatform.firebaseIO.com/user";
+    $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
+
+    $(".tagsinput").tagsInput({
+//        'autocomplete': modelTag.getTagList()
     });   //初始化 加载tag标签
 
-    //$("select").dropkick();
-    $scope.newarticleadata = {
-        "id": modelArticle.getMaxArticleID(),
-        "title": "", "contentbody": "", "status": "needreview",
-        "created": modelArticle.getDateNow(), "updated": modelArticle.getDateNow(), "published": modelArticle.getDateNow(),
-        "author": "Eric",  "editor": "iFan",  "clickcount":0,
-        "category": "Cosmetics", "categoryid":1000,
-        "tags": [],
-        "revision" : [],
-        "versioncomment":"",
-        "reviewcomment":""
-    }
+
+    $scope.userFirebase.then(function() {
+        $scope.newarticleadata = {
+            "id": modelArticle.getMaxArticleID(),
+            "title": "",
+            "contentbody": "",
+            "status": "draft",
+            "created": modelArticle.getDateNow(),
+            "updated": modelArticle.getDateNow(),
+            "published": modelArticle.getDateNow(),
+            "author": $scope.userFirebase.firstname ,
+            "editor": $scope.userFirebase.firstname ,
+            "clickcount": 0,
+            "category": "Cosmetics",
+            "categoryid" : 1000,
+            "tags": [],
+            "revision" : [],
+            "lastversioncomment" : "",
+            "lastreviewcomment" : "",
+            "reviewhistory" : []
+        };
+    });
+
 
     $scope.cssTagsPanel = false;
-
     $scope.cssmodalshow = false;
-    $scope.saveflag ='';
-    $scope.createNewArticle = function(feed,savestatus) {
-        if (feed.$valid) {
-            $scope.cssmodalshow = true;
-            $scope.saveflag = savestatus;
-        }
-    }
-
     $scope.cssmodalslide = {
         backdropFade: true,
         dialogFade:true
+    };
+
+    $scope.showEditPreview = function(val){
+        return val;
+    };
+
+    $scope.conformNewArticle = function(callback) {
+        if (callback.$valid) {
+            $scope.cssmodalshow = true;
+            getMaxArticleId();
+        }
     };
 
     $scope.closeModal = function () {
         $scope.cssmodalshow = false;
     };
 
+
     $scope.savedata = function() {
-         var temptagslistname = $(".tagsinput").exportTags();
-         $scope.newarticleadata.tags=[];
-         for(var i=0;i<temptagslistname.length;i++){
+        var temptagslistname = $(".tagsinput").exportTags();
+        $scope.newarticleadata.tags=[];
+        for(var i=0;i<temptagslistname.length;i++){
              //在tag 数据库查询是否是已经存在的tag
-             if(modelArticle.checkTagExist(temptagslistname[i])){
-                var newtag = modelArticle.checkTagExist(temptagslistname[i]);
-             }else{
-                 var newtag = {
-                     "tagid" : modelArticle.getMaxTagID(),
+            var newtag ={};
+
+            if(modelTag.checkTagExist(temptagslistname[i])){
+            newtag = modelTag.checkTagExist(temptagslistname[i]);
+            }else{
+                 newtag = {
+                     "tagid" : modelTag.getMaxTagID(),
                      "tagname" : temptagslistname[i]
                  }
-                modelArticle.createNewTag(newtag);
-             }
-             $scope.newarticleadata.tags.push(newtag);
-         }
-         //$scope.newarticleadata.category=$(".dk_label")[0].textContent;
-         $scope.newarticleadata.status=$scope.saveflag;
+                 modelTag.createNewTag(newtag);
+            }
+            $scope.newarticleadata.tags.push(newtag);
+        }
+
          //增加文章每一次修改版本信息
-         var newrevisionid = $scope.newarticleadata.revision.length + 1;
-         var newrevision = {
-             "versionid" :  newrevisionid ,
-             "versionnum" :  newrevisionid ,
-             "title" : $scope.newarticleadata.title, "contentbody": $scope.newarticleadata.contentbody, "status": $scope.newarticleadata.status,
-             "created": $scope.newarticleadata.created, "updated": $scope.newarticleadata.updated, "published": $scope.newarticleadata.published,
-             "author": $scope.newarticleadata.author,  "editor": $scope.newarticleadata.editor,  "clickcount":$scope.newarticleadata.clickcount,
-             "category": $scope.newarticleadata.category, "categoryid": $scope.newarticleadata.categoryid,
-             "tags":$scope.newarticleadata.tags,"versioncomment":$scope.newarticleadata.versioncomment,
-             "reviewcomment":$scope.newarticleadata.reviewcomment
-         };
+        var newrevisionid = $scope.newarticleadata.revision.length + 1;
+        var newrevision = {
+            "versionid" :  newrevisionid ,
+            "versionnum" :  newrevisionid ,
+            "title" : $scope.newarticleadata.title,
+            "contentbody": $scope.newarticleadata.contentbody,
+            "status": $scope.newarticleadata.status,
+            "created": $scope.newarticleadata.created,
+            "updated": $scope.newarticleadata.updated,
+            "published": $scope.newarticleadata.published,
+            "author": $scope.newarticleadata.author,
+            "editor": $scope.newarticleadata.editor,
+            "clickcount":$scope.newarticleadata.clickcount,
+            "category": $scope.newarticleadata.category,
+            "categoryid": $scope.newarticleadata.categoryid,
+            "tags" : $scope.newarticleadata.tags,
+            "lastversioncomment":$scope.newarticleadata.versioncomment,
+            "lastreviewcomment":$scope.newarticleadata.reviewcomment
+        };
 
          $scope.newarticleadata.revision.push(newrevision);
          $scope.cssmodalshow = false;
+
          //保存文章
-         modelArticle.createNewArticle($scope.newarticleadata);
+         modelArticle.createNewArticle(angular.copy($scope.newarticleadata));
          $location.path('/');
     }
 
-    $scope.showeditpreview = function(val){
-        return val;
-    };
+
 
     //标签显示提示框
     $('.vcpbox').tooltip({

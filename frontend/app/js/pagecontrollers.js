@@ -57,26 +57,51 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                     if(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktype == 'auto'){
                         var articles = modelArticle.getArticlesByTags(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity, site.pagelist[i].pagelayoutdata[j].blocks[k].blockcategory);
                         site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles;
+                        /*
+                        console.log(articles, site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity );
 
-/*                        if (site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag.length == 0 ){
+                        if (site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag.length == 0 ){
                             var articles2 = modelArticle.getArticles(site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity);
 
                             site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles2;   //如果没有选择tags则获取所有文章
-                        }*/
+                        }
+*/
                     }
-
-
                 }
             }
         }
 
 
+        $scope.get_site = modelSite.getSite();
+        //获取选中的header theme
+        $scope.get_headertheme = modelSite.getselectheadertheme();
 
+        if($scope.get_headertheme == ""){
+            $scope.cssheaderthemeindex = -1;
+            $scope.cssheadermenuhavadata = false;
+        }else{
+            $scope.cssheaderthemeindex = $scope.get_headertheme;
+            $scope.cssheadermenuhavadata = true;
+        }
+
+        //获取选中的footer theme
+        $scope.get_footertheme = modelSite.getselectfootertheme();
+
+        if($scope.get_footertheme == ""){
+            $scope.cssfooterthemeindex = -1;
+            $scope.cssfootermenuhavadata = false;
+        }else{
+            $scope.cssfooterthemeindex = $scope.get_footertheme;
+            $scope.cssfootermenuhavadata = true;
+        }
+
+        $scope.cssheadermenubutton = false;
+        $scope.cssfootermenubutton=false;
         $scope.pages = site.pagelist;
 
         $scope.singlepage =  $scope.pages[0];   //默认读取首页
         $scope.newpage ={};
-        $scope.localarticles = modelArticle.getArticles(100);
+        $scope.localarticles = modelArticle.getArticleList(100);
 
         $scope.layouts = modelSite.getLayoutList();
         $scope.blocklayouts = modelSite.getBlockLayout();
@@ -105,17 +130,10 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $scope.cssblockeditmenuinputbox = false;   //点击当前编辑block的 要输入推荐文章的输入框
         $scope.cssblockeditmenubutton = false;     //点击当前编辑block的 设置的按钮
 
-
-        $scope.cssheadermenuhavadata = false;      //Header是否有数据
-        $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮显示
         $scope.cssheadersetting = false;      //Header设置nav下拉界面
-        $scope.cssheaderthemeindex = -1;      //Header默认主题Theme 选择哪一个
         $scope.cssheadernavindex = 0;      //Header默认菜单的颜色为首页
 
-        $scope.cssfootermenuhavadata = false;
-        $scope.cssfootermenubutton=false;
         $scope.cssfootersetting=false;
-        $scope.cssfooterthemeindex=-1;
         $scope.footerthemes=modelSite.getfoottheme();
         $scope.footer=modelSite.getfooter();
         $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
@@ -124,7 +142,8 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     initialize();
 
     //left side bar
-    $scope.clickpage = function(indexid, page) {
+    $scope.isarticle = '';
+    $scope.clickpage = function(indexid, page, layout) {
         $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
         $scope.defaultselectedpageindex = indexid;
         $scope.singlepage = page;
@@ -134,8 +153,13 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         }else{
             $scope.layoutfilterlisttype = {layouttype:0 };
         }
-
         $scope.cssshowpageaddinput = false;       //添加page的输入框不显示
+        if(page.pagetype == 11){
+            $scope.isarticle = 'span9';
+
+        }else{
+            $scope.isarticle = '';
+        }
     };
 
     $scope.showaddpageinput = function() {
@@ -168,6 +192,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             pageurl : $scope.newpage.pageurl
         };
         modelSite.addSinglePage(newpage);
+        $scope.layouts = modelSite.getLayoutList();
     };
 
 
@@ -194,7 +219,8 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
         $scope.cssblocktipbox = false;
         $scope.defaultselectedlayoutindex = indexid;
-        modelSite.saveSinglePageLayout($scope.singlepage, layout);
+        modelSite.saveSinglePageLayout($scope.singlepage, angular.copy(layout));
+
     };
 
 
@@ -468,7 +494,8 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     $scope.clickheadertheme = function(indexid, themedata){
         //点击Nav 的每个Theme
         $scope.cssheaderthemeindex = indexid;      //Header选中的theme
-        $scope.cssheadermenuhavadata = true;      //Header是否有数据已有数据了y
+        $scope.cssheadermenuhavadata = true;      //Header是否有数据已有数据了
+        modelSite.setheadertheme(indexid);
     }
 
     $scope.slideshowheadersetting = function(){
@@ -494,12 +521,13 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         }else{
             $scope.footerli=$scope.csstitleform ? param1 : -1;
         }
-        $scope.newheaderdata.menutype='other';
+        $scope.newheaderdata.menutype='local';
         $scope.newheaderdata.menuname="";
         $scope.newheaderdata.linkedurl="";
         $("#delete")[0].value='Cancel';
-        $("#urltype1").attr("checked",true);
-        $("#urltype2").attr("checked",false);
+        $scope.headerlocalurl="Homepage";
+        $("#urltype1").attr("checked",false);
+        $("#urltype2").attr("checked",true);
         setupLabel();
         insertdata=true;
     }
@@ -556,6 +584,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                     headclass.linkedurl=$scope.newheaderdata.linkedurl;
                     headclass.linkedpageid=$scope.newheaderdata.linkedpageid;
                     headclass.linkedpagename=$scope.newheaderdata.linkedpagename;
+                    modelSite.savesitedata($scope.get_site);
                 }
             }else{
                 if(insertdata){
@@ -579,11 +608,9 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                     headchildclass.linkedurl=$scope.newheaderdata.linkedurl;
                     headchildclass.linkedpageid=$scope.newheaderdata.linkedpageid;
                     headchildclass.linkedpagename=$scope.newheaderdata.linkedpagename;
+                    modelSite.savesitedata($scope.get_site);
                 }
             }
-            /*if(window.localStorage){
-                localStorage.setItem("newData",JSON.stringify($scope.header));
-            }*/
         }else{
             if(insertdata){
                 if($scope.footer.length==0){
@@ -606,6 +633,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 footerclass.linkedurl=$scope.newheaderdata.linkedurl;
                 footerclass.linkedpageid=$scope.newheaderdata.linkedpageid;
                 footerclass.linkedpagename=$scope.newheaderdata.linkedpagename;
+                modelSite.savesitedata($scope.get_site);
             }
             $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
         }
@@ -625,6 +653,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         childmenuindex='';
         childmenudata='';
         headclass=obj;
+        ishead=true;
         $scope.newheaderdata.menuname=obj.menuname;
         $scope.newheaderdata.menutype=obj.menutype;
         $scope.assignmentform(obj);
@@ -655,6 +684,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         var blockcontent = $(evt.target).parent().parent();
         blockcontent.append($(".newlink_panel"));
         headerflag=false;
+        ishead=true;
         headchildclass=obj;
         $scope.csstitleform=true;
         $scope.footercommonfunction();
@@ -688,9 +718,6 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             }else{
                 $scope.csstitleform=false;
             }
-            /*   if(window.localStorage){
-             localStorage.setItem("newData",JSON.stringify($scope.header));
-             }*/
         }else{
             if($("#delete")[0].value=='Delete'){
                 $scope.footer.splice(footerindex,1);
@@ -699,12 +726,13 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 $scope.csstitleform=false;
             }
         }
+        modelSite.savesitedata($scope.get_site);
         $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
         $("body").append($(".newlink_panel"));//delete before remove form position,it is must step
         $scope.footercommonfunction();
     }
     $scope.showfootmenusetting=function(){
-        $scope.cssfootermenubutton=true;
+        $scope.cssfootermenubutton = true;
     }
     $scope.hidefootmenusetting=function(){
         $scope.cssfootermenubutton = false;
@@ -712,6 +740,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     $scope.clickfootertheme = function(indexid, themedata){
         $scope.cssfooterthemeindex = indexid;
         $scope.cssfootermenuhavadata = true;
+        modelSite.setfootertheme($scope.cssfooterthemeindex);
     }
     $scope.slideshowfootersetting = function(){
         $scope.cssfootersetting = true;
@@ -733,7 +762,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             $scope.newheaderdata.linkedurl="";
             $("#urltype1").attr("checked",false);
             $("#urltype2").attr("checked",true);
-            $(".dk_label")[0].textContent=obj.linkedpagename;
+            $scope.headerlocalurl=obj.linkedpagename;
         }
         setupLabel();
     }
