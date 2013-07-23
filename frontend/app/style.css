@@ -1214,7 +1214,7 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-f
 .tip_box input[type="url"]:focus,
 .tip_box input[type="search"]:focus,
 .tip_box input[type="tel"]:focus,
-.tip_box input[type="color"]:focus{ -webkit-box-shadow:none; -moz-box-shadow:none;  box-shadow:none; background:#fff;}
+.tip_box input[type="color"]:focus{ box-shadow:0 0 0 2px #2f9e00; background:#fff;}
 
 /* Add Tag */
 .tipbox_filter .tagsinput input { width:120px;}
