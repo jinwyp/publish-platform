@@ -1,6 +1,6 @@
 'use strict';
 
-var vcpapp = angular.module('vcpmodule', ['ui.bootstrap']);
+var vcpapp = angular.module('vcpmodule', ['ui.bootstrap', 'firebase']);
 
 var page = {
     c:{}
@@ -22,17 +22,41 @@ vcpapp.directive('enterKeypress', function(){
     });
 
 /* Controllers */
-page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelArticle, modelTag, angularFire) {
+page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelArticle, angularFire) {
 
     var urlartilcelist = "https://vcplatform.firebaseIO.com/articles";
     $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
+
+    var urltaglist = "https://vcplatform.firebaseIO.com/tags";
+    $scope.tagsFirebase = angularFire(urltaglist, $scope, 'tagsFirebase', [] );
+
+
+    function getMaxTagId(){
+        if($scope.maxidFirebase.tagid == undefined ){
+            $scope.maxidFirebase.tagid = 100001;
+        }else{
+            $scope.maxidFirebase.tagid = $scope.maxidFirebase.tagid  + 1;
+        }
+        return $scope.maxidFirebase.tagid
+    }
+
+    function checkTagExist(tagname) {
+        var tagresult = _.findWhere($scope.tagsFirebase, {tagname: tagname});
+
+        if (tagresult === undefined) {
+            return false;
+        }else{
+            return tagresult;
+        }
+    }
+
 
     function fireBaseGetArticlesByTags (taglistdata, quantity, blockcategory) {
         var articlesresultfinal = [];
         var articlesresult = [];
         var articlesresult2 = [];
-
-        articlesresult = _.filter($scope.articlesFirebase, function(aritcle){
+        var articlelist = $scope.articlesFirebase;
+        articlesresult = _.filter(articlelist, function(aritcle){
             var singlearticletags = _.filter(aritcle.tags, function(singletag){
                 var tagresult = _.where(taglistdata, {tagname: singletag.tagname});
 
@@ -386,14 +410,14 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 for(var i=0;i<temptagslistname.length;i++){
                     //在tag 数据库查询是否是已经存在的tag
                     var newtag;
-                    if(  modelTag.checkTagExist(temptagslistname[i]) ){
-                        newtag = modelTag.checkTagExist(temptagslistname[i]);
+                    if( checkTagExist(temptagslistname[i]) ){
+                        newtag = checkTagExist(temptagslistname[i]);
                     }else{
                         newtag = {
-                            "tagid" : modelTag.getMaxTagID(),
+                            "tagid" : getMaxTagId(),
                             "tagname" : temptagslistname[i]
-                        }
-                        modelTag.createNewTag(newtag);
+                        };
+                        $scope.tagsFirebase.push(newtag);
                     }
                     newblock.blocktag.push(newtag);
                 }

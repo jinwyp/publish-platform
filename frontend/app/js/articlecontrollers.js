@@ -22,7 +22,7 @@ vcpapp.config(['$routeProvider', function($routeProvider) {
 
 /* Controllers */
 
-vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArticle, modelTag) {
+vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArticle) {
 
     var urlartilcelist = 'https://vcplatform.firebaseIO.com/articles';
     $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
