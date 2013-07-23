@@ -277,42 +277,125 @@
 
 
 /* =========================================================================================== */
-/*                                   T e m p l e t e                                           */
+/*                                   Block Templete                      		               */
 /* =========================================================================================== */
-.globalTitle		{ position:relative; padding:0 14px; height:54px; border-top:1px solid #f0f0f0; box-shadow:0 1px 1px #ccc; }
-
-/* ===== All Title ===== */
+/* ===== Block 标题 ===== */
 .globalTitle		{ position:relative; padding:0 14px; height:54px; border-top:1px solid #f0f0f0; box-shadow:0 1px 1px #ccc; }
 .globalTitle .arrow	{ position:absolute; left:30px; bottom:-15px; width:26px; height:15px; background:url(../../app/img/symptomfind/globaltitle_arrow.png) no-repeat;}
 .globalTitle .t_icon{ width:32px; height:53px; display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; vertical-align: top; background:url(../img/icon_64.png) no-repeat;}
 .globalTitle h6		{ font-size:18px; font-family:'Roboto Slab', serif; font-weight:700; display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; text-indent:10px; text-transform:uppercase; line-height:36px; vertical-align: top;}
 .globalTitle h6 .GT_more{ font-size:12px; float:right; font-family:Verdana, Geneva, sans-serif; text-transform:capitalize;}
-
 /* Blue */
 .GT_blue			{ border-bottom:2px solid #43bcb6; background:#edf8f9; box-shadow:0 1px 1px #ccc; }
 .GT_blue .arrow		{ background-position:0 0;}
 .GT_blue h6			{ color:#000000;}
 .GT_blue h6.blue	{ color:#54a0a9;}
-
 /* red */
 .GT_red				{ border-bottom:2px solid #e57746; background:#ffeadf; box-shadow:0 1px 1px #ccc; }
 .GT_red .arrow		{ background-position:0 -15px;}
 .GT_red h6			{ color:#e57648;}
-
 /* deepblue */
 .GT_deepblue		{ border-bottom:2px solid #43bcb7; background:#b5dce1; box-shadow:0 1px 1px #ccc; }
 .GT_deepblue .arrow	{ background-position:0 -30px;}
 .GT_deepblue h6		{ color:#258a86;}
 
-.t_icon.related		{ background-position:-16px -517px;}
-.t_icon.theweb		{ background-position:-16px -582px;}
-.t_icon.alsolike	{ background-position:-16px -646px;}
 
+
+/* ===== Block 容器 ===== */
 .globalContBox			{ padding:0px;}
 .globalContBox h6		{ font-family:'Roboto Slab', serif; font-weight:400; font-size:18px;}
 
 
-/* ===== 左右图文UL ===== */
+
+/* ===== 横向(有图) ===== */
+ul.PageBlockLayout_Row						{ border:0 !important; list-style:none; margin:0; padding:20px 0 0 0 !important;}
+ul.PageBlockLayout_Row li:after				{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
+ul.PageBlockLayout_Row li					{ border-bottom:1px solid #dbdbdb; padding-bottom:12px; margin-bottom:12px;}
+ul.PageBlockLayout_Row li .linkImg			{ display:block; position:relative; float:left; width:14%; margin:-22px 20px 0 0; border:1px solid #eee; overflow:hidden;}
+ul.PageBlockLayout_Row li .linkImg img		{ margin:0; padding:0; /*width:119px; height:86px; */}
+ul.PageBlockLayout_Row li h6				{ margin-bottom:6px; margin-top:0; padding-left:110px;}
+ul.PageBlockLayout_Row li h6 .time			{ float:right; font-size:12px; color:#888;}
+ul.PageBlockLayout_Row li h6 a				{ font-family:'Roboto Slab', serif; font-weight:700; text-transform:capitalize; font-size:14px; color:#18a69d; text-decoration:none;}
+ul.PageBlockLayout_Row li p					{ color:#707070; margin-bottom:0px !important; text-indent:0;}
+ul.PageBlockLayout_Row li p a				{ font-family:'Roboto', sans-serif; color:#36ada5; text-decoration:underline;}
+ul.PageBlockLayout_Row.mini li .linkImg  	{ margin:0; width:100px;}
+
+
+
+/* ===== 横向(无图) ===== */
+ul.PageBlockLayout_Row_noIMG				{ border:0 !important; list-style:none; margin:0; padding:20px 0 0 0 !important;}
+ul.PageBlockLayout_Row_noIMG li:after		{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
+ul.PageBlockLayout_Row_noIMG li				{ border-bottom:1px solid #dbdbdb; padding-bottom:12px; margin-bottom:12px; display:inline-block;}
+ul.PageBlockLayout_Row_noIMG li .linkImg	{ display:none;}
+ul.PageBlockLayout_Row_noIMG li .linkImg img{ margin:0; padding:0; /*width:119px; height:86px; */}
+ul.PageBlockLayout_Row_noIMG li h6			{ margin-bottom:6px; margin-top:0;}
+ul.PageBlockLayout_Row_noIMG li h6 .time	{ float:right; font-size:12px; color:#888;}
+ul.PageBlockLayout_Row_noIMG li h6 a		{ font-family:'Roboto Slab', serif; font-weight:700; text-transform:capitalize; font-size:14px; color:#18a69d; text-decoration:none;}
+ul.PageBlockLayout_Row_noIMG li p			{ color:#707070; margin-bottom:0px !important; text-indent:0;}
+ul.PageBlockLayout_Row_noIMG li p a			{ font-family:'Roboto', sans-serif; color:#36ada5; text-decoration:underline;}
+ul.PageBlockLayout_Row_noIMG.mini li .linkImg{ margin:0; width:100px;}
+
+
+
+/* ===== 两列(无图) ===== */
+ul.PageBlockLayout_Column2_noIMG					{ list-style:none; padding:20px 0 0 30px; margin:0; background:#f7f7f7;}
+ul.PageBlockLayout_Column2_noIMG li					{ float:left; padding:0 30px 20px 14px; font-size:13px; width:41%; height:auto;  font-family:'Roboto Slab', serif;  word-break:break-all; word-wrap:break-word; background:url(../../app/img/icon_circledot.png) left 7px no-repeat; }
+ul.PageBlockLayout_Column2_noIMG li h6				{ margin:0; padding:0; font-size:16px; text-transform:capitalize; overflow:hidden; white-space:nowrap; -o-text-overflow:ellipsis; text-overflow:ellipsis; text-indent:0;}
+ul.PageBlockLayout_Column2_noIMG li h6 .time		{ display:none;}
+ul.PageBlockLayout_Column2_noIMG li h6 a			{ color:#36ada5; display:block; text-decoration:none;}
+ul.PageBlockLayout_Column2_noIMG li a.linkImg		{ display:none;}
+ul.PageBlockLayout_Column2_noIMG li a.linkImg img	{ width:200px;}
+ul.PageBlockLayout_Column2_noIMG li p				{ color:#666; text-indent:0; font-size:12px; overflow:hidden; white-space:nowrap; -o-text-overflow:ellipsis; text-overflow:ellipsis;}
+
+
+
+/* ===== 三列(有图) ===== */
+ul.PageBlockLayout_Column3							{ margin:0; padding:20px 0 0 0; list-style:none;}
+ul.PageBlockLayout_Column3 li						{ width:31%; float:left; margin:0 7px; list-style:none; font-family:'Roboto Slab', sans-serif;}
+ul.PageBlockLayout_Column3 li h6					{ text-transform:capitalize; font-size:16px; font-weight:400; overflow:hidden; white-space:nowrap; -o-text-overflow:ellipsis; text-overflow:ellipsis;}
+ul.PageBlockLayout_Column3 li h6 .time				{ display:none;}
+ul.PageBlockLayout_Column3 li h6 a					{ color:#36ada5; padding:0; text-decoration:none;}
+ul.PageBlockLayout_Column3 li a						{ display:block; padding:10px; text-decoration:none;}
+ul.PageBlockLayout_Column3 li a.linkImg				{ border:1px solid #ddd;}
+ul.PageBlockLayout_Column3 li a.linkImg img			{ width:200px;}
+ul.PageBlockLayout_Column3 li p						{ color:#666; height:50px; padding:8px 4px; font-size:12px; text-indent:0; overflow:hidden;}
+
+
+
+/* ===== 三列(无图) ==== */
+ul.PageBlockLayout_Column3_noIMG					{ list-style:none; padding:20px 0 0 30px; margin:0; background:#f7f7f7;}
+ul.PageBlockLayout_Column3_noIMG li					{ float:left; padding:0 30px 20px 14px; font-size:13px; width:26%; height:auto;  font-family:'Roboto Slab', serif;  word-break:break-all; word-wrap:break-word; background:url(../../app/img/icon_circledot.png) left 7px no-repeat; }
+ul.PageBlockLayout_Column3_noIMG li h6				{ margin:0; padding:0; font-size:16px; text-transform:capitalize; overflow:hidden; white-space:nowrap; -o-text-overflow:ellipsis; text-overflow:ellipsis; text-indent:0;}
+ul.PageBlockLayout_Column3_noIMG li h6 .time		{ display:none;}
+ul.PageBlockLayout_Column3_noIMG li h6 a			{ color:#36ada5; display:block; text-decoration:none;}
+ul.PageBlockLayout_Column3_noIMG li a.linkImg		{ display:none;}
+ul.PageBlockLayout_Column3_noIMG li a.linkImg img	{ width:200px;}
+ul.PageBlockLayout_Column3_noIMG li p				{ color:#666; text-indent:0; font-size:12px; overflow:hidden; white-space:nowrap; -o-text-overflow:ellipsis; text-overflow:ellipsis;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================================================== */
+/*                                   Article Templete                      		               */
+/* =========================================================================================== */
+/* ===== 左右图文混排 ===== */
 .imgGroupBox			{ padding:20px; background:#3d4c61; }
 .imgGroupBox_Left,
 .imgGroupBox_Right		{ float:left;}
@@ -321,61 +404,9 @@
 .imgGroupBox_Right h6	{ color:#f7c794; text-transform:capitalize; margin-bottom:10px; font-family:'Roboto Slab', serif; font-weight:400;}
 .imgGroupBox_Right p	{ color:#fff; line-height:18px; margin-bottom:10px;}
 .imgGroupBox_Right b	{ color:#fff; font-weight:bold;}
-
 .imgGroupCircleUL		{ margin:0; padding:0; list-style:none;}
 .imgGroupCircleUL li	{ width:45%; float:left; margin-bottom:10px; background:url(../../app/img/icon_circledot.png) left center no-repeat; text-indent:14px;}
 .imgGroupCircleUL li a	{ color:#88dae5; font-size:12px;}
-
-
-/* ===== 三列图文标题UL ===== */
-.imgGroupColumUL				{ margin:0; padding:0; list-style:none;}
-.imgGroupColumUL li				{ width:31%; float:left; margin-right:20px; list-style:none;}
-.imgGroupColumUL li h6			{ text-transform:capitalize; font-size:16px; font-family:'Roboto Slab', serif; font-weight:400; overflow:hidden;/*注意不要写在最后了*/ white-space:nowrap; -o-text-overflow:ellipsis; text-overflow:ellipsis;/*IE专有*/ }
-.imgGroupColumUL li h6 a		{ color:#36ada5; padding:0; text-decoration:none;}
-.imgGroupColumUL li a			{ display:block; padding:10px; }
-.imgGroupColumUL li a.linkImg	{ border:1px solid #ddd;  }
-.imgGroupColumUL li p.linkTxt	{ padding:10px; text-indent:0; color:#707070; }
-.imgGroupColumUL li.last		{ margin-right:0;}
-
-
-
-
-/* ===== 图文横向列表UL ===== */
-ul.horizontal_UL						{ border:0 !important; list-style:none; margin:0; padding:20px 0 0 0 !important;}
-ul.horizontal_UL li:after				{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
-ul.horizontal_UL li					{ border-bottom:1px solid #dbdbdb; padding-bottom:12px; margin-bottom:12px; display:inline-block;}
-ul.horizontal_UL li					{ display:block;}
-ul.horizontal_UL li .leftImg			{ float:left; width:14%; margin-right:20px; overflow:hidden;}
-ul.horizontal_UL li .leftImg img		{ margin-top:4px; /*width:119px; height:86px; */}
-ul.horizontal_UL li .rightList		{ }
-ul.horizontal_UL li .rightList h6	{ margin-bottom:0; margin-top:0;}
-ul.horizontal_UL li .rightList h6,
-ul.horizontal_UL li .rightList h6 a	{ font-family:'Roboto Slab', serif; font-weight:700; text-transform:capitalize; font-size:14px; color:#18a69d; text-decoration:none;}
-ul.horizontal_UL li .rightList p		{ color:#707070; margin-bottom:0px !important; text-indent:0;}
-ul.horizontal_UL li .rightList p a	{ font-family:'Roboto', sans-serif; color:#36ada5; text-decoration:underline;}
-ul.horizontal_UL li .rightList span	{ color:#929292; font-family:'Roboto Slab', serif; font-weight:700; }
-ul.horizontal_UL li.last				{ border-bottom:none;}
-
-ul.horizontal_UL.mini li .leftImg  	{ margin-top:4px; width:40%;}
-
-
-
-
-
-/* ===== 垂直多列列表UL ===== */
-/* Colum 2 */
-ul.vertical_Row2_UL					{ list-style:none; padding:20px 0 0 30px; margin:0; background:#f7f7f7;}
-ul.vertical_Row2_UL li				{ float:left; padding:0 30px 20px 14px; font-size:13px; width:41%; height:auto; font-family:'Roboto', sans-serif;  word-break:break-all; word-wrap:break-word; background:url(../../app/img/icon_circledot.png) left 7px no-repeat; }
-ul.vertical_Row2_UL li h6			{ font-size:16px; margin:0; padding:0; overflow:hidden;/*注意不要写在最后了*/ white-space:nowrap; -o-text-overflow:ellipsis; text-overflow:ellipsis;/*IE专有*/}
-ul.vertical_Row2_UL li p			{ text-indent:0; overflow:hidden;/*注意不要写在最后了*/ white-space:nowrap; -o-text-overflow:ellipsis; text-overflow:ellipsis;/*IE专有*/}
-ul.vertical_Row2_UL li img			{ width:240px;}
-/* Colum 3 */
-ul.vertical_Row3_UL					{ list-style:none; padding:20px 0 0 30px; margin:0; background:#f7f7f7;}
-ul.vertical_Row3_UL li				{ float:left; padding:0 30px 20px 14px; font-size:13px; width:26%; height:auto; font-family:'Roboto', sans-serif;  word-break:break-all; word-wrap:break-word; background:url(../../app/img/icon_circledot.png) left 7px no-repeat; }
-ul.vertical_Row3_UL li h6			{ font-size:14px;  margin:0; padding:0; overflow:hidden;/*注意不要写在最后了*/ white-space:nowrap; -o-text-overflow:ellipsis; text-overflow:ellipsis;/*IE专有*/}
-ul.vertical_Row3_UL li p			{ text-indent:0; overflow:hidden;/*注意不要写在最后了*/ white-space:nowrap; -o-text-overflow:ellipsis; text-overflow:ellipsis;/*IE专有*/}
-ul.vertical_Row3_UL li img			{ width:140px;}
-
 
 
 
