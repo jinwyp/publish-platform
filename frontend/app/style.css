@@ -184,7 +184,7 @@
 .menu #menuPage > a:after,
 .menu #menuArticle > a:after,
 .menu #menuReports > a:after,
-.menu #menuStore > a:after 		{ content:''; display:block; position:absolute; left:50%; top:2px; margin-left:-18px; width:36px; height:36px; background:url(img/icon_nav.png) no-repeat; text-indent:-9999px; overflow:hidden;  }
+.menu #menuStore > a:after 		{ content:''; display:block; position:absolute; left:50%; top:2px; margin-left:-18px; width:36px; height:36px; background:url(img/icon_nav.png) no-repeat; text-indent:-9999px; overflow:hidden; transform:scale(0.9);}
 
 .menu #menuUser > a:after		{ background-position:0 0;}
 .menu #menuSite > a:after		{ background-position:0 -36px;}
