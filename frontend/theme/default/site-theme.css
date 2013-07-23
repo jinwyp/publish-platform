@@ -325,7 +325,7 @@ ul.PageBlockLayout_Row.mini li .linkImg  	{ margin:0; width:100px;}
 /* ===== 横向(无图) ===== */
 ul.PageBlockLayout_Row_noIMG				{ border:0 !important; list-style:none; margin:0; padding:20px 0 0 0 !important;}
 ul.PageBlockLayout_Row_noIMG li:after		{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
-ul.PageBlockLayout_Row_noIMG li				{ border-bottom:1px solid #dbdbdb; padding-bottom:12px; margin-bottom:12px; display:inline-block;}
+ul.PageBlockLayout_Row_noIMG li				{ border-bottom:1px solid #dbdbdb; padding-bottom:12px; margin-bottom:12px;}
 ul.PageBlockLayout_Row_noIMG li .linkImg	{ display:none;}
 ul.PageBlockLayout_Row_noIMG li .linkImg img{ margin:0; padding:0; /*width:119px; height:86px; */}
 ul.PageBlockLayout_Row_noIMG li h6			{ margin-bottom:6px; margin-top:0;}
