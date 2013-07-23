@@ -2493,7 +2493,7 @@ background-image: -moz-linear-gradient(top, #151515, #040404); background-image:
 
 .modal-header h3 { margin: 0; line-height: 30px; }
 
-.modal-body { position: relative; max-height: 500px; padding: 15px; overflow-y: auto; }
+.modal-body { position: relative; max-height: 400px; padding: 15px; overflow-y: auto; }
 
 .modal-form { margin-bottom: 0; }
 

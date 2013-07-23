@@ -30,8 +30,8 @@ CKEDITOR.editorConfig = function( config ) {
     ];
 
     config.extraPlugins='tableresize,wysiwygarea,floating-tools,youtube,wordcount,texttransform,zoom,autosave,' +
-        'backgrounds,insertpre,uploadcare,onchange,placeholder,autogrow';
-    //config.removePlugins='resize';
+        'backgrounds,insertpre,uploadcare,onchange,placeholder';
+    config.removePlugins='resize';
 
     //控制显示youtube视频
     config.allowedContent = true;
@@ -57,9 +57,7 @@ CKEDITOR.editorConfig = function( config ) {
     UPLOADCARE_LOCALE = 'ru'; //set locale if you wish
 
 
-   // config.autoGrow_minHeight = 500;
-
-    config.autoGrow_onStartup = true;
+    config.height = 500;
 };
 
 
