@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <script src="lib/jquery/jquery-1.8.2.min.js"></script>
-    <script src="app/js/jquery.loader.js"></script>
-    <script>$(document).ready(function (){ $("body").queryLoader2({ }); });</script>
+<!--    <script src="app/js/jquery.loader.js"></script>
+    <script>$(document).ready(function (){ $("body").queryLoader2({ }); });</script>-->
     
     <link href="lib/flatui/bootstrap.css" rel="stylesheet">
     <link href="lib/flatui/flat-ui.css" rel="stylesheet">
@@ -190,7 +190,7 @@
             <dt>Layout :</dt>
             <dd>
                 <div class="tipbox_layout">
-                    <a href="#"  ng-repeat="blocklayout in blocklayouts"  ng-click="addblocktopage('editor', currentlayoutcontainer, $index)">
+                    <a href="#"  ng-repeat="blocklayout in blocklayouts"  ng-click="addblocktopage('editor', currentlayoutcontainer, $index, blocklayout.id)">
                         <img src="{{ blocklayout.layoutimage }}" alt="">
                     </a>
                 </div>
