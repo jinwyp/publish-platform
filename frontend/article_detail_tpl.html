@@ -1,4 +1,4 @@
-<form name="newFeed">
+<form name="ArticleForm">
     <!-- Content -->
 	<div class="article" >
     
@@ -75,7 +75,7 @@
                         <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = true"></a>
                         <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = false"></a>
                     </i>
-                    <div modal="showcomments" options="cssmodalslide" >
+                    <div modal="cssshowmodifymodal" options="cssmodalslide" >
                         <div class="modal-header">
                             <button type="button" class="close" ng-click="closecomments()">&times;</button>
                             <h3 >Version Comment</h3>
@@ -83,12 +83,12 @@
 
                         <div class="modal-body">
                             <!-- <input type="text" ng-model="articledata.versioncomment" /> -->
-                            <textarea rows="3" ng-model="articledata.versioncomment" style="width:96%"></textarea>
+                            <textarea rows="3" ng-model="$scope.newversioncomment" style="width:96%"></textarea>
                         </div>
 
                         <div class="modal-footer">
                             <button class="btn" ng-click="closecomments()">Cancel</button>
-                            <button class="btn btn-danger" ng-click="savedata()">Save</button>
+                            <button class="btn btn-danger" ng-click="saveModifyArticle()">Save</button>
                         </div>
                     </div>
                 </div>
@@ -190,8 +190,8 @@
     <div class="article-footer">
         <!-- 发布按钮 -->
         <div class="article_btn">
-            <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="saveArticle(newFeed)">
-            <input type="submit" value="PUBLISH" class="btn-publish" style="display:none;" ng-click="publisharticle(newFeed)">
+            <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="conformModifyArticle(ArticleForm)">
+            <!--<input type="submit" value="PUBLISH" class="btn-publish" style="display:none;" ng-click="publisharticle(ArticleForm)">-->
         </div>
         
         <!-- 版本节点 -->

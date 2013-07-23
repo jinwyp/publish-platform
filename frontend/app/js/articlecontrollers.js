@@ -360,20 +360,24 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
     $scope.articlesFirebase.then(function() {
 
         for(var i = $scope.articlesFirebase.length; i--; i>=0){
+
             if ($scope.articlesFirebase[i].id == articleId) {
+
                 $scope.articledata = $scope.articlesFirebase[i];
+
+                if (typeof($scope.articledata.tags) == "undefined"){
+                    $scope.articledata.tags =[];
+                }
+
+                var tagstr = '';
+
+                for(var i=0;i<$scope.articledata.tags.length;i++){
+                    tagstr += $scope.articledata.tags[i].tagname+',';
+                }
+                $('.tagsinput').importTags(tagstr);
+                $(".tagsinput").tagsInput();    //初始化 加载tag标签
             }
         }
-
-
-
-    var tagstr = '';
-    for(var i=0;i<$scope.articledata.tags.length;i++){
-        tagstr += $scope.articledata.tags[i].tagname+',';
-    }
-    $('.tagsinput').importTags(tagstr);
-    $(".tagsinput").tagsInput();    //初始化 加载tag标签
-
 
 
     $scope.openDelModal = function () {
@@ -392,47 +396,53 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
 //        modelArticle.delArticleById(articleid);
 
         for(var i = $scope.articlesFirebase.length; i--; i>=0){
-            if ($scope.articlesFirebase[i].id == articleid) {
-                $scope.articlesFirebase.splice($scope.articlesFirebase[i], 1);
+            if ($scope.articlesFirebase[i].id === articleid) {
+                $scope.articlesFirebase.splice(i, 1);
             }
         }
-
         $location.path('/');
     };
 
-     $scope.saveArticle = function(feed) {
-        $scope.ispublish = false;
-        $scope.articledata.versioncomment = '';
-        $scope.articledata.updated = modelArticle.getDateNow();
-        $scope.articledata.status = 'draft';
-        if (feed.$valid) {
-             $scope.showcomments = true;
+    $scope.cssshowmodifymodal = false;
+    $scope.newversioncomment = "";
+
+    $scope.conformModifyArticle = function(formcallback) {
+        if (formcallback.$valid) {
+             $scope.cssshowmodifymodal = true;
         }
     };
 
-    $scope.showcomments = false;
 
-    //关闭comments对话框
+    //关闭version comment对话框
     $scope.closecomments = function(){
-        $scope.showcomments = false;
-    }
+        $scope.cssshowmodifymodal = false;
+    };
 
-    $scope.savedata = function(){
+
+    $scope.saveModifyArticle = function(){
+        $scope.articledata.updated = modelArticle.getDateNow();
+        $scope.articledata.lastversioncomment = $scope.newversioncomment;
+
+
+
         var temptagslistname = $(".tagsinput").exportTags();
         $scope.articledata.tags = [];
-        for(var i=0;i<temptagslistname.length;i++){
-            if(  modelTag.checkTagExist(temptagslistname[i]) ){
-                var newtag = modelTag.checkTagExist(temptagslistname[i]);
+        //在tag 数据库查询是否是已经存在的tag 如果不存在就新增加到firebase里面
+        for(var i=0; i<temptagslistname.length; i++){
+            var newtag;
+            if(checkTagExist(temptagslistname[i])){
+                newtag = checkTagExist(temptagslistname[i]);
             }else{
-                var newtag = {
-                    "tagid" : modelTag.getMaxTagID(),
+                newtag = {
+                    "tagid" : getMaxTagId(),
                     "tagname" : temptagslistname[i]
                 };
-                modelTag.createNewTag(newtag);
+                $scope.tagsFirebase.push(newtag);
             }
             $scope.articledata.tags.push(newtag);
         }
-        //$scope.articledata.category=$(".dk_label")[0].textContent;
+
+
         var newrevisionid = $scope.articledata.revision.length + 1;
         var newrevision = {
             "versionid" :  newrevisionid ,
@@ -441,7 +451,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
             "contentbody": $scope.articledata.contentbody,
             "status": $scope.articledata.status,
             "created": $scope.articledata.created,
-            "updated":modelArticle.getDateNow(),
+            "updated": modelArticle.getDateNow(),
             "published": $scope.articledata.published,
             "author": $scope.articledata.author,
             "editor": $scope.articledata.editor,
@@ -454,31 +464,34 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
         };
 
         $scope.articledata.revision.push(newrevision);
-        modelArticle.saveArticle($scope.articledata);
-        $scope.showcomments = false;
+
+//        modelArticle.saveArticle($scope.articledata);
+
+        for(var i = $scope.articlesFirebase.length; i--; i>=0){
+            if ($scope.articlesFirebase[i].id == articleId) {
+                $scope.articlesFirebase[i] = $scope.articledata;
+                console.log($scope.articledata);
+            }
+        }
+
+        $scope.cssshowmodifymodal = false;
     };
 
-    $scope.ispublish=false;
-    $scope.publisharticle=function(feed){
-        $scope.articledata.versioncomment='';
-        $scope.articledata.published=modelArticle.getDateNow();
-        $scope.articledata.status='publish';
-        if (feed.$valid) {
-            $scope.showcomments=true;
-        }
-        //modelArticle.saveArticle($scope.articledata);
-    };
+
 
     //显示Edit预览内容
     $scope.showeditpreview = function(val){
         return val;
     };
 
-    $scope.displayversioninfo=function(data){
+    $scope.displayversioninfo=function(revisiondata){
        // var data=$scope.articledata.revision[index];
-        $scope.articledata.title=data.title;
-        $scope.articledata.contentbody=data.contentbody;
-        $scope.articledata.tags=data.tags;
+        $scope.articledata.title = revisiondata.title;
+        $scope.articledata.contentbody = revisiondata.contentbody;
+        $scope.articledata.tags = revisiondata.tags;
+        if (typeof($scope.articledata.tags) == "undefined"){
+            $scope.articledata.tags =[];
+        }
         var tagstr = '';
         for(var i=0;i<$scope.articledata.tags.length;i++){
             tagstr += $scope.articledata.tags[i].tagname+',';
