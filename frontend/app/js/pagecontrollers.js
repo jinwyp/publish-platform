@@ -22,30 +22,65 @@ vcpapp.directive('enterKeypress', function(){
     });
 
 /* Controllers */
-page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelArticle, modelTag) {
+page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelArticle, modelTag, angularFire) {
 
-    function initialize(){
+    var urlartilcelist = "https://vcplatform.firebaseIO.com/articles";
+    $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
 
-        $('#tagsinput').tagsInput();
+    function fireBaseGetArticlesByTags (taglistdata, quantity, blockcategory) {
+        var articlesresultfinal = [];
+        var articlesresult = [];
+        var articlesresult2 = [];
 
-        $scope.newblock = {
-            blockid : 100,
-            blocktype : 'auto',
-            blockstatictype : '',
-            blocktitle : "title1",
-            blockname : "",
-            blocklayout : 10,
-            blockquantity : 6,
-            blocktag : [],
-            blockcategory : 'Health and leisure',
-            blocksortby : 'bydate',
-            apiurl : "",
-            adsname : "",
-            adscode : ""
-        };
-        $scope.newarticle = undefined;
+        articlesresult = _.filter($scope.articlesFirebase, function(aritcle){
+            var singlearticletags = _.filter(aritcle.tags, function(singletag){
+                var tagresult = _.where(taglistdata, {tagname: singletag.tagname});
 
-        var site = modelSite.getSite();
+                return tagresult.length;
+            });
+            return  singlearticletags.length;
+        });
+
+        articlesresult2 = _.filter(articlelist, function(element1){
+
+            if (element1.category.toString() == blockcategory){
+//                console.log(blockcategory, element1.category);
+                return true
+            }
+        });
+
+        articlesresultfinal = _.union(articlesresult, articlesresult2)
+
+        if(articlesresultfinal.length > quantity){
+            articlesresultfinal.splice(0, articlesresultfinal.length - quantity);    //判断文章数量
+        }
+        return articlesresultfinal;
+    }
+
+
+    $('#tagsinput').tagsInput();
+
+    $scope.newblock = {
+        blockid : 100,
+        blocktype : 'auto',
+        blockstatictype : '',
+        blocktitle : "title1",
+        blockname : "",
+        blocklayout : 10,
+        blockquantity : 6,
+        blocktag : [],
+        blockcategory : 'Health and leisure',
+        blocksortby : 'bydate',
+        apiurl : "",
+        adsname : "",
+        adscode : ""
+    };
+    $scope.newarticle = undefined;
+
+    var site = modelSite.getSite();
+
+
+    $scope.articlesFirebase.then(function() {
 
         //载入所有block的文章
         for (var i=site.pagelist.length-1; i>=0; i--)
@@ -55,8 +90,8 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 for (var k = site.pagelist[i].pagelayoutdata[j].blocks.length-1; k>=0; k--)
                 {
                     if(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktype == 'auto'){
-                        var articles = modelArticle.getArticlesByTags(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity, site.pagelist[i].pagelayoutdata[j].blocks[k].blockcategory);
-                        site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles;
+                        var articlesdata = fireBaseGetArticlesByTags(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity, site.pagelist[i].pagelayoutdata[j].blocks[k].blockcategory);
+                        site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articlesdata;
                         /*
                         console.log(articles, site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity );
 
@@ -71,75 +106,77 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             }
         }
 
+        $scope.localarticles = $scope.articlesFirebase;    // Use FireBase
 
-        $scope.get_site = modelSite.getSite();
-        //获取选中的header theme
-        $scope.get_headertheme = modelSite.getselectheadertheme();
+    });
 
-        if($scope.get_headertheme == ""){
-            $scope.cssheaderthemeindex = -1;
-            $scope.cssheadermenuhavadata = false;
-        }else{
-            $scope.cssheaderthemeindex = $scope.get_headertheme;
-            $scope.cssheadermenuhavadata = true;
-        }
+    $scope.get_site = modelSite.getSite();
+    //获取选中的header theme
+    $scope.get_headertheme = modelSite.getselectheadertheme();
 
-        //获取选中的footer theme
-        $scope.get_footertheme = modelSite.getselectfootertheme();
-
-        if($scope.get_footertheme == ""){
-            $scope.cssfooterthemeindex = -1;
-            $scope.cssfootermenuhavadata = false;
-        }else{
-            $scope.cssfooterthemeindex = $scope.get_footertheme;
-            $scope.cssfootermenuhavadata = true;
-        }
-
-        $scope.cssheadermenubutton = false;
-        $scope.cssfootermenubutton=false;
-        $scope.pages = site.pagelist;
-
-        $scope.singlepage =  $scope.pages[0];   //默认读取首页
-        $scope.newpage ={};
-        $scope.localarticles = modelArticle.getArticleList(100);
-
-        $scope.layouts = modelSite.getLayoutList();
-        $scope.blocklayouts = modelSite.getBlockLayout();
-        $scope.currentlayoutcontainer = {};
-
-        $scope.header = modelSite.getHeader();
-        $scope.headerthemes = modelSite.getHeaderTheme();
-
-        $scope.pagearticletype = site.defaultsettings.articleTypeId;    // left menu default selected page
-        $scope.pagefilterarticle = site.defaultsettings.pagefilterArticleType;  //Article Type Page
-        $scope.pagefilterlist = site.defaultsettings.pagefilterListType;         //List Type Page
-        $scope.layoutfilterlisttype = site.defaultsettings.layoutfilterListType;
-
-        $scope.defaultselectedpageindex = site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
-        $scope.selectedpageattributeindex = -1;    //默认隐藏所有page的属性面板
-
-        $scope.selectedpageblockindex = -1;
-
-        $scope.defaultselectedlayoutindex = site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
-
-        $scope.cssshowpageaddinput = false;    //添加page的输入框默认不显示
-
-        $scope.cssblocktipadd = false;      //点击当前添加block按钮显示对应block类型菜单
-        $scope.cssblocktipedit = false;      //点击当前编辑block按钮显示对应block类型菜单
-
-        $scope.cssblockeditmenuinputbox = false;   //点击当前编辑block的 要输入推荐文章的输入框
-        $scope.cssblockeditmenubutton = false;     //点击当前编辑block的 设置的按钮
-
-        $scope.cssheadersetting = false;      //Header设置nav下拉界面
-        $scope.cssheadernavindex = 0;      //Header默认菜单的颜色为首页
-
-        $scope.cssfootersetting=false;
-        $scope.footerthemes=modelSite.getfoottheme();
-        $scope.footer=modelSite.getfooter();
-        $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
+    if($scope.get_headertheme == ""){
+        $scope.cssheaderthemeindex = -1;
+        $scope.cssheadermenuhavadata = false;
+    }else{
+        $scope.cssheaderthemeindex = $scope.get_headertheme;
+        $scope.cssheadermenuhavadata = true;
     }
 
-    initialize();
+    //获取选中的footer theme
+    $scope.get_footertheme = modelSite.getselectfootertheme();
+
+    if($scope.get_footertheme == ""){
+        $scope.cssfooterthemeindex = -1;
+        $scope.cssfootermenuhavadata = false;
+    }else{
+        $scope.cssfooterthemeindex = $scope.get_footertheme;
+        $scope.cssfootermenuhavadata = true;
+    }
+
+    $scope.cssheadermenubutton = false;
+    $scope.cssfootermenubutton=false;
+    $scope.pages = site.pagelist;
+
+    $scope.singlepage =  $scope.pages[0];   //默认读取首页
+    $scope.newpage ={};
+//        $scope.localarticles = modelArticle.getArticleList(100);
+
+
+    $scope.layouts = modelSite.getLayoutList();
+    $scope.blocklayouts = modelSite.getBlockLayout();
+    $scope.currentlayoutcontainer = {};
+
+    $scope.header = modelSite.getHeader();
+    $scope.headerthemes = modelSite.getHeaderTheme();
+
+    $scope.pagearticletype = site.defaultsettings.articleTypeId;    // left menu default selected page
+    $scope.pagefilterarticle = site.defaultsettings.pagefilterArticleType;  //Article Type Page
+    $scope.pagefilterlist = site.defaultsettings.pagefilterListType;         //List Type Page
+    $scope.layoutfilterlisttype = site.defaultsettings.layoutfilterListType;
+
+    $scope.defaultselectedpageindex = site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
+    $scope.selectedpageattributeindex = -1;    //默认隐藏所有page的属性面板
+
+    $scope.selectedpageblockindex = -1;
+
+    $scope.defaultselectedlayoutindex = site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
+
+    $scope.cssshowpageaddinput = false;    //添加page的输入框默认不显示
+
+    $scope.cssblocktipadd = false;      //点击当前添加block按钮显示对应block类型菜单
+    $scope.cssblocktipedit = false;      //点击当前编辑block按钮显示对应block类型菜单
+
+    $scope.cssblockeditmenuinputbox = false;   //点击当前编辑block的 要输入推荐文章的输入框
+    $scope.cssblockeditmenubutton = false;     //点击当前编辑block的 设置的按钮
+
+    $scope.cssheadersetting = false;      //Header设置nav下拉界面
+    $scope.cssheadernavindex = 0;      //Header默认菜单的颜色为首页
+
+    $scope.cssfootersetting=false;
+    $scope.footerthemes=modelSite.getfoottheme();
+    $scope.footer=modelSite.getfooter();
+    $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
+
 
     //left side bar
     $scope.isarticle = '';
@@ -362,7 +399,8 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 }
 
                 //通过Tags 获取文章
-                newblock.blockarticles = modelArticle.getArticlesByTags(newblock.blocktag, newblock.blockquantity, newblock.blockcategory);
+//                newblock.blockarticles = modelArticle.getArticlesByTags(newblock.blocktag, newblock.blockquantity, newblock.blockcategory);
+                newblock.blockarticles = fireBaseGetArticlesByTags(newblock.blocktag, newblock.blockquantity, newblock.blockcategory);     // Use FireBase
 
 /*                if (temptagslistname.length == 0 || newblock.blockquantity == ''){
                     newblock.blockarticles = modelArticle.getArticles(newblock.blockquantity);
