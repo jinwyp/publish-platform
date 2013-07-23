@@ -228,18 +228,18 @@
         	<dt>Layout :</dt>
             <dd>
                 <div class="tipbox_layout">
-                    <a href="#"><img src="app/img/ad_layout_big.png" alt=""></a>
-                    <a href="#"><img src="app/img/ad_layout_small.png" alt=""></a>
+                    <a href="#" ng-click="addblocktopage('ads', currentlayoutcontainer, 0, 1001)"><img src="app/img/ad_layout_big.png" alt=""></a>
+                    <a href="#" ng-click="addblocktopage('ads', currentlayoutcontainer, 0, 1002)"><img src="app/img/ad_layout_small.png" alt=""></a>
                 </div>
             </dd>
-            <!-- 
-            <dt>Code :</dt>
-            <dd><textarea rows="3" ng-model="newblock.adscode"></textarea></dd>
-            -->
         </dl>
         <dl class="clearfix">
+            <dt>Code :</dt>
+            <dd><textarea rows="3" ng-model="newblock.adscode"></textarea></dd>
+            <!--
         	<dt>&nbsp;</dt>
             <dd><input type="submit" class="btn btn-success" value="Add" style=" height:30px; margin:0 0 10px 0;" ng-click="addblocktopage('ads', currentlayoutcontainer, 0)"></dd>
+            -->
         </dl>
     </div>
 </div>
@@ -375,27 +375,7 @@
                 
                 
                 
-                <!-- 广告 Example -->
-                <div class="row">
-                    <div class="span9">
-                        <div class="block_content block-full">
-                                <!-- 长条形广告 -->
-                                <div class="site-theme b-block block-layout-1">
-                                <img src="app/img/AD/AD_span9.jpg">
-                                </div>
-                        </div>
-                    </div>
-                    
-                    <div class="span3">
-                        <div class="block_content block-full">
-                                <!-- 短形广告 -->
-                                <div class="site-theme b-block block-layout-1">
-                                <img src="app/img/AD/AD_span3.jpg">
-                                </div>
-                        </div>
-                    </div>
-                    <!-- 广告 Example //End -->
-                </div>
+
                 
                 
                     
@@ -510,8 +490,13 @@
                             </div>
 
                             <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='ads'">
-                                <img src="app/img/temp/ad_temp01.jpg">
+                                <!-- 长条形广告 -->
+                                <img src="app/img/AD/AD_span9.jpg" ng-show="block.blocklayout==1001">
+                                <!-- 短形广告 -->
+                                <img src="app/img/AD/AD_span3.jpg" ng-show="block.blocklayout==1002">
                             </div>
+
+
 
                             <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='static'">
                             	<!-- 纯文本 -->

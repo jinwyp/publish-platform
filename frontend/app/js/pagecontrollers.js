@@ -319,11 +319,10 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
     // add a block to page
     $scope.addblocktopage = function(blocktype, layoutcontainer, indexid, blocklayoutid ) {
-        debugger;
         var newblock = {
             blockid : 200,
             blocktype : 'auto',
-            blockstatictype:'',
+            blockstatictype : '',
             blockname : "",
             blocklayout : blocklayoutid,
             blockquantity : 0,
