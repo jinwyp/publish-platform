@@ -5,7 +5,7 @@
  vcpapp.controller(page.c);
 
 
- page.c.GlobalCtrl = function($scope, modelSite, modelArticle){
+ page.c.GlobalCtrl = function($scope, modelSite){
     //加载头部内容
     $scope.header = modelSite.getHeader();
 

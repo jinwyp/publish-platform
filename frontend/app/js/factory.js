@@ -345,9 +345,9 @@ vcpapp.factory('modelSite',  function(){
                     { siteid:1, pagename:'Homepage', pageid:101, pagetype:10, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
                         pagelayoutdata:[
                             {layoutcontainerclass:"span9", layoutcontainerid:1000 , blocks:[
-                                {blockid:100, blocktype:'auto', blockstatictype:'', blockname:"Today hot",blocklayout:10, blockquantity:4, blocktag:[], blockcategory:[], blocksortby:'date' , blockarticles:[
+                                /*{blockid:100, blocktype:'auto', blockstatictype:'', blockname:"Today hot",blocklayout:10, blockquantity:4, blocktag:[], blockcategory:[], blocksortby:'date' , blockarticles:[
                                 ]
-                                }
+                                }*/
                             ]
                             },
                             {layoutcontainerclass:"span3", layoutcontainerid:1001, blocks:[] }
@@ -359,10 +359,7 @@ vcpapp.factory('modelSite',  function(){
 
                 headerdata:[],
 
-                footerdata:[
-                    /*{footerid:1,footername:'foot1',footertype:'local',linkedurl:'',linkedpageid:101,linkedpagename:'Homepage'},
-                     {footerid:2,footername:'foot2',footertype:'other',linkedurl:'http://www.1.com',linkedpageid:0,linkedpagename:''}*/
-                ],
+                footerdata:[],
 
                 headertheme:[
                     {headerthemeid:1,name:'black',css:'theme_01', image:'app/img/header_theme_01.jpg'},
@@ -416,7 +413,6 @@ vcpapp.factory('modelSite',  function(){
         return;
     };
     factory.saveSiteInfo= function(sitedata){
-        console.log(sitedata);
         sitedata.siteinfo =  angular.copy(sitedata);
         localStorage.setItem("siteData",JSON.stringify(sitedata));
         return;

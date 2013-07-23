@@ -82,6 +82,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     }
 
 
+
     $('#tagsinput').tagsInput();
 
     $scope.newblock = {
@@ -379,14 +380,13 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     };
 
     // add a block to page
-    $scope.addblocktopage = function(blocktype, layoutcontainer, indexid ) {
-
+    $scope.addblocktopage = function(blocktype, layoutcontainer, indexid, blocklayoutid ) {
         var newblock = {
             blockid : 200,
             blocktype : 'auto',
-            blockstatictype:'',
+            blockstatictype : '',
             blockname : "",
-            blocklayout : 10,
+            blocklayout : blocklayoutid,
             blockquantity : 0,
             blocktag : [],
             blockcategory : 'Health and leisure',
