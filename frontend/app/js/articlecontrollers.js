@@ -413,11 +413,12 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
     };
 
     $scope.cssshowmodifymodal = false;
-    $scope.newversioncomment = "";
 
-    $scope.conformModifyArticle = function(formcallback) {
+
+    $scope.confirmModifyArticle = function(formcallback) {
         if (formcallback.$valid) {
-             $scope.cssshowmodifymodal = true;
+            $scope.cssshowmodifymodal = true;
+            $scope.newversioncomment = "";
         }
     };
 
@@ -479,7 +480,6 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
         for(var i = $scope.articlesFirebase.length; i--; i>=0){
             if ($scope.articlesFirebase[i].id == articleId) {
                 $scope.articlesFirebase[i] = $scope.articledata;
-                console.log($scope.articledata);
             }
         }
 
@@ -571,7 +571,7 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
             "title": "",
             "description": "",
             "contentbody": "",
-            "status": "draft",
+            "status": "Draft",
             "created": modelArticle.getDateNow(),
             "updated": modelArticle.getDateNow(),
             "published" : 0,
@@ -589,7 +589,7 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
 
         var newstatus ={
             date : modelArticle.getDateNow(),
-            status : "draft",
+            status : "Draft",
             version : 1,
             operator : $scope.newarticleadata.author,
             reviewcomment : 'first commit'

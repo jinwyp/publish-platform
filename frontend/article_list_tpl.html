@@ -30,7 +30,7 @@
                     </div>
                 </div>
 				
-                <!-- Review 弹窗 -->
+                <!-- Review 更改状态弹窗 -->
                 <div class="modal" modal="cssshowcomments" options="cssmodalslide" >
                     <div class="modal-header">
                         <button type="button" class="close" ng-click="closecomments()">&times;</button>
@@ -38,26 +38,28 @@
                     </div>
 					
                     <div class="modal-body">
-                        <!-- <input type="text" id="comments" /> -->
-                		
+
                         <!--
                         <div class="alert alert-success">
                         	<button type="button" class="close" data-dismiss="alert">&times;</button>
                         	Well done! You successfully write this comment.
                         </div>
                         -->
-                        <table class="table table-condensed">
-                          <thead>
-                            <tr>
-                              <th>Date</th>
-                              <th>Status</th>
-                              <th>Version</th>
-                              <th>Operator</th>
-                              <th>Comment</th>
-                            </tr>
-                          </thead>
 
-                          <tbody>
+                        <textarea rows="3" id="comments" style="width:96%" ng-model="currentarticlereviewcomment"></textarea>
+
+                        <table class="table table-condensed">
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Version</th>
+                                <th>Operator</th>
+                                <th>Comment</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
                             <tr ng-repeat="review in currentarticle.reviewhistory">
                                 <td>{{ review.date | date:'yyyy/MM/dd HH:mm' }}</td>
                                 <td>{{ review.status }}</td>
@@ -67,12 +69,12 @@
                             </tr>
 
 
-                          </tbody>
+                            </tbody>
                         </table>
-                        
-<!--                        <div class="pagination pagination-mini pagination-centered">
-                          <ul>
-                            <li><a href="#">&laquo;</a></li>
+
+                        <!--                        <div class="pagination pagination-mini pagination-centered">
+                                                  <ul>
+                                                    <li><a href="#">&laquo;</a></li>
                             <li><a href="#">1</a></li>
                             <li><a href="#">2</a></li>
                             <li><a href="#">3</a></li>
@@ -81,9 +83,6 @@
                             <li><a href="#">&raquo;</a></li>
                           </ul>
                         </div>-->
-
-                        <textarea rows="3" id="comments" style="width:96%" ng-model="currentarticlereviewcomment"></textarea>
-                        
                     </div>
 
                     <div class="modal-footer">
@@ -167,33 +166,33 @@
                                 </dd>
                                 <dd><span>{{article.clickcount}}</span></dd>
                                 <!-- Draft状态 -->
-                                <dd ng-show="article.status=='draft'">
+                                <dd ng-show="article.status=='Draft'">
                                     <div class="btn-group">
                                     	<button class="btn btn-info" disabled>Draft</button>
                                     	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
                                     	<ul class="dropdown-menu pull-right clearfix">
-                                          <li><input type="submit" value="Need Review" class="btn btn-block btn-warning" ng-click="clickarticlestatus('reviewed', article)"></li>
+                                          <li><input type="submit" value="Need Review" class="btn btn-block btn-warning" ng-click="clickarticlestatus('Need Review', article)"></li>
                                         </ul>
                                 	</div>
                                 </dd>
-                               <!--  Rviewed状态-->
-                                <dd ng-show="article.status=='reviewed'">
+                               <!--  Need Review 状态-->
+                                <dd ng-show="article.status=='Need Review'">
                                     <div class="btn-group">
                                     	<button class="btn btn-warning" disabled>Need Review</button>
                                     	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
                                     	<ul class="dropdown-menu pull-right clearfix">
-                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickarticlestatus('draft', article)"></li>
-                                          <li><input type="submit" value="Publish" class="btn btn-block btn-success" ng-click="clickarticlestatus('publish', article)"></li>
+                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickarticlestatus('Draft', article)"></li>
+                                          <li><input type="submit" value="Published" class="btn btn-block btn-success" ng-click="clickarticlestatus('Published', article)"></li>
                                         </ul>
                                 	</div>
                                 </dd>
-                                <!-- Published状态-->
-                                <dd ng-show="article.status=='publish'">
+                                <!-- Published 状态-->
+                                <dd ng-show="article.status=='Published'">
                                     <div class="btn-group">
                                     	<button class="btn btn-success" disabled>Published</button>
                                     	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
                                     	<ul class="dropdown-menu pull-right clearfix">
-                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickarticlestatus('draft',article)"></li>
+                                          <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickarticlestatus('Draft',article)"></li>
                                         </ul>
                                 	</div>
                                 </dd>

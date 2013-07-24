@@ -52,6 +52,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
 
     function fireBaseGetArticlesByTags (taglistdata, quantity, blockcategory) {
+        var articlesresultunion = [];
         var articlesresultfinal = [];
         var articlesresult = [];
         var articlesresult2 = [];
@@ -73,11 +74,16 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
             }
         });
 
-        articlesresultfinal = _.union(articlesresult, articlesresult2)
+        articlesresultunion = _.union(articlesresult, articlesresult2);
 
+        articlesresultfinal = _.where(articlesresultunion, {status: "Published"});
+
+        console.log(articlesresultfinal);
         if(articlesresultfinal.length > quantity){
             articlesresultfinal.splice(0, articlesresultfinal.length - quantity);    //判断文章数量
         }
+
+
         return articlesresultfinal;
     }
 
