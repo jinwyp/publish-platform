@@ -29,7 +29,7 @@ CKEDITOR.editorConfig = function( config ) {
 
     ];
 
-    config.extraPlugins='tableresize,wysiwygarea,floating-tools,youtube,wordcount,texttransform,zoom,autosave,' +
+    config.extraPlugins='tableresize,wysiwygarea,floating-tools,youtube,wordcount,texttransform,zoom,' +
         'backgrounds,insertpre,uploadcare,onchange,placeholder,autogrow';
     //config.removePlugins='resize';
 
