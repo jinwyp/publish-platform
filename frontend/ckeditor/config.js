@@ -29,8 +29,8 @@ CKEDITOR.editorConfig = function( config ) {
 
     ];
 
-    config.extraPlugins='tableresize,wysiwygarea,floating-tools,youtube,wordcount,texttransform,zoom,' +
-        'backgrounds,insertpre,uploadcare,onchange,placeholder,autogrow';
+    config.extraPlugins='tableresize,wysiwygarea,floating-tools,youtube,wordcount,texttransform,zoom,autosave,' +
+        'backgrounds,insertpre,uploadcare,placeholder,autogrow';
     //config.removePlugins='resize';
 
     //控制显示youtube视频
