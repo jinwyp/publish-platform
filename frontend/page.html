@@ -261,7 +261,7 @@
             <dd>
                 <div class="tipbox_layout">
                     <a href="#"  ng-repeat="blocklayout in blocklayouts" ng-click="addblocktopage('RSS', currentlayoutcontainer, $index)">
-                        <img src="{{ blocklayout.layoutimage }}" alt="">
+                        <img ng-src="{{ blocklayout.layoutimage }}" alt="">
                     </a>
                 </div>
             </dd>
