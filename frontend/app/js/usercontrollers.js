@@ -179,6 +179,8 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire) 
 
 page.c.userRegisterController = function($scope, $location, $timeout, angularFire) {
 //    $scope.site = modelSite.getSite(); // use firebase for database
+    var singleuserurl = "https://vcplatform.firebaseIO.com/usernow";
+    $scope.userFirebase = angularFire(singleuserurl, $scope, 'userFirebase', {});
 
     var usersurl = "https://vcplatform.firebaseIO.com/users";
     $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
@@ -214,6 +216,17 @@ page.c.userRegisterController = function($scope, $location, $timeout, angularFir
 
                     $scope.usersFirebase.push(newuser);
 
+
+                    $scope.userFirebase ={
+                        email : $scope.userdata.email,
+                        password : $scope.userdata.password1,
+                        firstname : "",
+                        lastname : "",
+                        mobilenumber : "",
+                        gender : ""
+                    };
+
+                    console.log($scope.userFirebase);
                     //$scope.site.userinfo = $scope.userdata;  // use firebase for database
                     //modelSite.updateSite($scope.site);     // use firebase for database
                     $timeout(function() {
