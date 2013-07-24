@@ -17,10 +17,32 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
 //    $scope.user = $scope.site.userinfo;
 
     var url = "https://vcplatform.firebaseIO.com/usernow";
-    var promise = angularFire(url, $scope, 'userFirebase', {});
+    $scope.userFirebase = angularFire(url, $scope, 'userFirebase', {});
 
-    $scope.userdata = {
-    };
+    var usersurl = "https://vcplatform.firebaseIO.com/users";
+    $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
+
+    $scope.userdata = {};
+
+    $scope.usersFirebase.then(function() {
+    $scope.usercheckexist = _.findWhere($scope.usersFirebase, {email: $scope.userFirebase.email});
+    console.log($scope.usercheckexist);
+
+        $scope.userdata = {
+            firstname : $scope.usercheckexist.firstname,
+            lastname : $scope.usercheckexist.lastname,
+            mobilenumber : $scope.usercheckexist.mobilenumber,
+            email : $scope.usercheckexist.email,
+            oldpassword : '',
+            newpassword1 : '',
+            newpassword2 : '',
+            gender : $scope.usercheckexist.gender
+        };
+    });
+
+
+
+
 
     //显示修改密码form
     $scope.changepassword = function(){
@@ -34,76 +56,78 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
         $scope.csshaveavatar = true;
     };
 
-    promise.then(function() {
-        $scope.userdata = {
-            firstname : $scope.userFirebase.firstname,
-            lastname : $scope.userFirebase.lastname,
-            mobilenumber : $scope.userFirebase.mobilenumber,
-            email : '',
-            oldpassword : '',
-            newpassword1 : '',
-            newpassword2 : '',
-            gender : $scope.userFirebase.gender
-        };
 
+    //保存用户基本信息
+    $scope.saveuserinfo = function(callback){
+        if (callback.$valid) {
+            $scope.usercheckexist = {
+                email : $scope.usercheckexist.email,
+                password : $scope.usercheckexist.password,
+                firstname : $scope.userdata.firstname,
+                lastname : $scope.userdata.lastname,
+                mobilenumber : $scope.userdata.mobilenumber,
+                gender : $scope.userdata.gender
+            };
+            $(".userAccount").animate({left:"28%"});
+            $(".userPassword").animate({left:"0%"});
 
-        //保存用户基本信息
-        $scope.saveuserinfo = function(callback){
-            if (callback.$valid) {
-                $scope.userFirebase = {
-                    email : $scope.userFirebase.email,
-                    password : $scope.userFirebase.password,
-                    firstname : $scope.userdata.firstname,
-                    lastname : $scope.userdata.lastname,
-                    mobilenumber : $scope.userdata.mobilenumber,
-                    gender : $scope.userdata.gender
-                };
-                $(".userAccount").animate({left:"28%"});
-                $(".userPassword").animate({left:"0%"});
+            //保存到firebase中
+            for(var i = $scope.usersFirebase.length; i--; i>=0){
+                if ($scope.usersFirebase[i].email == $scope.usercheckexist.email) {
+                    $scope.usersFirebase[i] = $scope.usercheckexist;
+                }
+            }
 
 //            modelSite.updateSite($scope.site);    // use firebase for database
 //            location.href = "site.html";
+        }
+    };
+
+
+
+    $scope.modifypassword = function(){
+        $scope.cssoldpassword = false;
+        $scope.cssnewpassword = false;
+        $scope.cssnewpassword2 = false;
+        $scope.cssshowinconsistent = false;
+
+        if($scope.userdata.oldpassword != $scope.userFirebase.password){
+            $scope.cssoldpassword = true;
+            $("#oldpassword").focus();
+
+        }else if($scope.userdata.newpassword1 == ""){
+            $scope.cssnewpassword = true;
+            $("#newpassword").focus();
+
+        }else if($scope.userdata.newpassword2 == ""){
+            $scope.cssnewpassword2 = true;
+            $("#conformpassword").focus();
+
+        }else if($scope.userdata.newpassword1 != $scope.userdata.newpassword2){
+            $scope.cssshowinconsistent = true;
+            $("#conformpassword").focus();
+
+        }else{
+            $scope.usercheckexist = {
+                email : $scope.usercheckexist.email,
+                password : $scope.userdata.newpassword1,
+                firstname :$scope.usercheckexist.firstname,
+                lastname : $scope.usercheckexist.lastname,
+                mobilenumber : $scope.usercheckexist.mobilenumber,
+                gender : $scope.usercheckexist.gender
+            };
+
+            //保存到firebase中
+            for(var i = $scope.usersFirebase.length; i--; i>=0){
+                if ($scope.usersFirebase[i].email == $scope.usercheckexist.email) {
+                    $scope.usersFirebase[i] = $scope.usercheckexist;
+                }
             }
-        };
+//              modelSite.updateSite($scope.site);     // use firebase for database
+            $scope.cssshowpasswordbox = false;
+        }
+    };
 
-
-
-        $scope.modifypassword = function(){
-            $scope.cssoldpassword = false;
-            $scope.cssnewpassword = false;
-            $scope.cssnewpassword2 = false;
-            $scope.cssshowinconsistent = false;
-
-            if($scope.userdata.oldpassword != $scope.userFirebase.password){
-                $scope.cssoldpassword = true;
-                $("#oldpassword").focus();
-
-            }else if($scope.userdata.newpassword1 == ""){
-                $scope.cssnewpassword = true;
-                $("#newpassword").focus();
-
-            }else if($scope.userdata.newpassword2 == ""){
-                $scope.cssnewpassword2 = true;
-                $("#conformpassword").focus();
-
-            }else if($scope.userdata.newpassword1 != $scope.userdata.newpassword2){
-                $scope.cssshowinconsistent = true;
-                $("#conformpassword").focus();
-
-            }else{
-                $scope.userFirebase = {
-                    email : $scope.userFirebase.email,
-                    password : $scope.userdata.newpassword1,
-                    firstname : $scope.userFirebase.firstname,
-                    lastname : $scope.userFirebase.lastname,
-                    mobilenumber : $scope.userFirebase.mobilenumber,
-                    gender : $scope.userFirebase.gender
-                };
-//            modelSite.updateSite($scope.site);     // use firebase for database
-                $scope.cssshowpasswordbox = false;
-            }
-        };
-    })
 
 };
 
@@ -126,7 +150,7 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire) 
         var usersdata = $scope.usersFirebase;
         var usercheckexist = _.where($scope.usersFirebase, {email: $scope.userdata.email, password: $scope.userdata.password});
 
-        console.log(usercheckexist);
+        console.log(usercheckexist.length);
         if (callback.$valid) {
             if(usercheckexist.length == 0){
                 alert('Email or Password error!');
