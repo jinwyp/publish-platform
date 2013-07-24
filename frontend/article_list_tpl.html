@@ -175,18 +175,18 @@
                                         </ul>
                                 	</div>
                                 </dd>
-                               <!--  Rviewed状态-->
+                               <!--  Need Review 状态-->
                                 <dd ng-show="article.status=='Need Review'">
                                     <div class="btn-group">
                                     	<button class="btn btn-warning" disabled>Need Review</button>
                                     	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
                                     	<ul class="dropdown-menu pull-right clearfix">
                                           <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickarticlestatus('Draft', article)"></li>
-                                          <li><input type="submit" value="Publish" class="btn btn-block btn-success" ng-click="clickarticlestatus('Published', article)"></li>
+                                          <li><input type="submit" value="Published" class="btn btn-block btn-success" ng-click="clickarticlestatus('Published', article)"></li>
                                         </ul>
                                 	</div>
                                 </dd>
-                                <!-- Published状态-->
+                                <!-- Published 状态-->
                                 <dd ng-show="article.status=='Published'">
                                     <div class="btn-group">
                                     	<button class="btn btn-success" disabled>Published</button>
