@@ -17,7 +17,7 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
 //    $scope.site = modelSite.getSite(); // use firebase for database
 //    $scope.user = $scope.site.userinfo;
 
-    var url = "https://vcplatform.firebaseIO.com/user";
+    var url = "https://vcplatform.firebaseIO.com/usernow";
     var promise = angularFire(url, $scope, 'userFirebase', {});
 
     $scope.userdata = {
@@ -110,9 +110,12 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
 
 
 
-page.c.userLoginController = function($scope, $location, angularFire, modelSite) {
-    var url = "https://vcplatform.firebaseIO.com/user";
-    var promise = angularFire(url, $scope, 'userFirebase', {});
+page.c.userLoginController = function($scope, $location, $timeout, angularFire) {
+    var singleuserurl = "https://vcplatform.firebaseIO.com/usernow";
+    $scope.userFirebase = angularFire(singleuserurl, $scope, 'userFirebase', {});
+
+    var usersurl = "https://vcplatform.firebaseIO.com/users";
+    $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
 
     $scope.userdata = {
         email : '',
@@ -121,14 +124,29 @@ page.c.userLoginController = function($scope, $location, angularFire, modelSite)
 
     //登录
     $scope.userlogin = function(callback){
+        var usersdata = $scope.usersFirebase;
+        var usercheckexist = _.where($scope.usersFirebase, {email: $scope.userdata.email, password: $scope.userdata.password});
+
+        console.log(usercheckexist);
         if (callback.$valid) {
-            console.log($scope.userFirebase.password1);
-            if( $scope.userdata.password != $scope.userFirebase.password || $scope.userdata.email != $scope.userFirebase.email){
+            if(usercheckexist.length == 0){
                 alert('Email or Password error!');
 
             }else{
-                location.href = "user.html";
+                $scope.userFirebase ={
+                    email : usercheckexist[0].email,
+                    password : usercheckexist[0].password,
+                    firstname : usercheckexist[0].firstname,
+                    lastname : usercheckexist[0].lastname,
+                    mobilenumber : usercheckexist[0].mobilenumber,
+                    gender : usercheckexist[0].gender
+                };
+
+                $timeout(function() {
+                    location.href = "user.html";
+                }, 1000);
             }
+
         }
     }
 };
@@ -139,8 +157,8 @@ page.c.userLoginController = function($scope, $location, angularFire, modelSite)
 page.c.userRegisterController = function($scope, $location, $timeout, angularFire) {
 //    $scope.site = modelSite.getSite(); // use firebase for database
 
-    var url = "https://vcplatform.firebaseIO.com/user";
-    var promise = angularFire(url, $scope, 'userFirebase', {});
+    var usersurl = "https://vcplatform.firebaseIO.com/users";
+    $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
 
     $scope.userdata = {
         email : '',
@@ -150,19 +168,28 @@ page.c.userRegisterController = function($scope, $location, $timeout, angularFir
 
     $scope.csspasswordprompt = false;
 
-    promise.then(function() {
+    //注册用户 保存密码和邮箱
+    $scope.saveemailinfo = function(callback){
+        var usersdata = $scope.usersFirebase;
+        var usercheckexist = _.where($scope.usersFirebase, {email: $scope.userdata.email, password: $scope.userdata.password1});
 
-        //注册用户 保存密码和邮箱
-        $scope.saveemailinfo = function(callback){
-            if (callback.$valid) {
-                if($scope.userdata.password1 == $scope.userdata.password2){
+        if (callback.$valid) {
+            if(usercheckexist.length == 1){
+                $scope.cssemailprompt = true;
+
+            }else if($scope.userdata.password1 == $scope.userdata.password2){
                     $scope.csspasswordprompt = false ;
 
-                    $scope.userFirebase = {
+                    var newuser = {
                         email : $scope.userdata.email,
-                        password : $scope.userdata.password1
+                        password : $scope.userdata.password1,
+                        firstname : "",
+                        lastname : "",
+                        mobilenumber : "",
+                        gender : ""
                     };
 
+                    $scope.usersFirebase.push(newuser);
 
                     //$scope.site.userinfo = $scope.userdata;  // use firebase for database
                     //modelSite.updateSite($scope.site);     // use firebase for database
@@ -170,12 +197,13 @@ page.c.userRegisterController = function($scope, $location, $timeout, angularFir
                         location.href = "user.html";
                     }, 2000);
 
-                }else{
-                    $scope.csspasswordprompt = true;
-                }
+            }else{
+                $scope.csspasswordprompt = true;
             }
+
         }
-    });
+    }
+
 };
 
 
