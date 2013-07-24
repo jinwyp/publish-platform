@@ -571,7 +571,7 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
             "title": "",
             "description": "",
             "contentbody": "",
-            "status": "draft",
+            "status": "Draft",
             "created": modelArticle.getDateNow(),
             "updated": modelArticle.getDateNow(),
             "published" : 0,
@@ -589,7 +589,7 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
 
         var newstatus ={
             date : modelArticle.getDateNow(),
-            status : "draft",
+            status : "Draft",
             version : 1,
             operator : $scope.newarticleadata.author,
             reviewcomment : 'first commit'
