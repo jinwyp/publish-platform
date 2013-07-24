@@ -13,7 +13,6 @@ vcpapp.controller(page.c);
 page.c.userInfoController = function($scope, $location, angularFire, modelSite) {
     $scope.csshaveavatar = false;
     $scope.cssshowpasswordbox = false;
-
 //    $scope.site = modelSite.getSite(); // use firebase for database
 //    $scope.user = $scope.site.userinfo;
 

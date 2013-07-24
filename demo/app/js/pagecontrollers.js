@@ -52,11 +52,13 @@
      $scope.showdetails = false;
      $scope.showlist = true;
      $scope.showblockname ='';
+     $scope.showdate = '';
 
      //显示详细信息
      $scope.showarticledetail = function(content,blockname){
          $scope.showheader = content.title;
          $scope.showtags = content.tags;
+         $scope.showdate = content.created;
          $scope.showdetails = true;
          $scope.showlist = false;
          $scope.showblockname = blockname;

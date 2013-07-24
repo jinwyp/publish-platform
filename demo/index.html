@@ -179,7 +179,7 @@
                                  <h1>{{ showheader }}</h1>
 
                                  <div class="tagbox">
-                                     May 05 2013  |  Tag »
+                                     {{ showdate | date:'yyyy/MM/dd HH:mm' }}  |  Tag »
                                      <a href="#" ng-repeat="tag in showtags">{{tag.tagname}}</a>
                                  </div>
                                  <p id="articledetail">
