@@ -75,10 +75,8 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         });
 
         articlesresultunion = _.union(articlesresult, articlesresult2);
-
         articlesresultfinal = _.where(articlesresultunion, {status: "Published"});
 
-        console.log(articlesresultfinal);
         if(articlesresultfinal.length > quantity){
             articlesresultfinal.splice(0, articlesresultfinal.length - quantity);    //判断文章数量
         }

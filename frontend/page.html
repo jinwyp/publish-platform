@@ -186,7 +186,7 @@
             <dd>
                 <div class="tipbox_layout">
                     <a href="#"  ng-repeat="blocklayout in blocklayouts"  ng-click="addblocktopage('editor', currentlayoutcontainer, $index, blocklayout.id)">
-                        <img src="{{ blocklayout.layoutimage }}" alt="">
+                        <img ng-src="{{ blocklayout.layoutimage }}" alt="">
                     </a>
                 </div>
             </dd>
@@ -551,7 +551,7 @@
                                 <!-- 选择Theme -->
                                 <div class="theme_panel">
                                     <a href="#" ng-repeat="theme in footerthemes" ng-class="{select: $index==cssfooterthemeindex,last:$last}" ng-click="clickfootertheme($index, theme)">
-                                        <img src="{{theme.image}}">
+                                        <img ng-src="{{theme.image}}">
                                     </a>
                                 </div>
                                 <!-- 选择Theme //End -->
