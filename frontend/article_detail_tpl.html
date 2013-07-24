@@ -185,7 +185,7 @@
         <!-- 版本节点 -->
         <div class="vernode">
         	<div class="line">
-                <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}" ng-click="displayversioninfo(revision);"  ng-repeat="revision in articledata.revision"  title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy HH:mm:ss'}} {{revision.lastversioncomment}}">{{revision.versionnum}}</a>
+                <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}" ng-click="displayversioninfo(revision);"  ng-repeat="revision in articledata.revision"  title="{{revision.editor}} {{revision.updated | date:'MM/dd/yyyy HH:mm:ss'}} {{revision.lastversioncomment}}">{{revision.versionnum}}</a>
         	</div>
         </div>
     </div>

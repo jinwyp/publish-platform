@@ -23,6 +23,8 @@ vcpapp.config(['$routeProvider', function($routeProvider) {
 /* Controllers */
 
 vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArticle) {
+    var urluser = "https://vcplatform.firebaseIO.com/user";
+    $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
 
     var urlartilcelist = 'https://vcplatform.firebaseIO.com/articles';
     $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
@@ -226,7 +228,7 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
             date : modelArticle.getDateNow(),
             status : $scope.currentarticlestatus,
             version : $scope.currentarticle.revision.length,
-            operator : 'Eric',
+            operator : $scope.userFirebase.firstname,
             reviewcomment : $scope.currentarticlereviewcomment
         };
 
@@ -236,7 +238,7 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
         $scope.currentarticle.updated = modelArticle.getDateNow();
         $scope.currentarticle.status = $scope.currentarticlestatus;
         $scope.currentarticle.lastreviewcomment = $scope.currentarticlereviewcomment;
-
+        $scope.currentarticle.editor =  $scope.userFirebase.firstname;
         $scope.currentarticle.reviewhistory.push(newstatus);
 
 /*        $scope.currentarticle.revision.push(newrevision);
@@ -431,6 +433,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
 
     $scope.saveModifyArticle = function(){
         $scope.articledata.updated = modelArticle.getDateNow();
+        $scope.articledata.editor = $scope.userFirebase.firstname;
         $scope.articledata.lastversioncomment = $scope.newversioncomment;
 
 
@@ -451,7 +454,6 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
             $scope.articledata.tags.push(newtag);
         }
 
-
         var newrevisionid = $scope.articledata.revision.length + 1;
         var newrevision = {
             "versionid" :  newrevisionid ,
@@ -464,7 +466,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
             "updated": modelArticle.getDateNow(),
             "published": $scope.articledata.published,
             "author": $scope.articledata.author,
-            "editor": $scope.articledata.editor,
+            "editor": $scope.userFirebase.firstname,
             "clickcount":$scope.articledata.clickcount,
             "category": $scope.articledata.category,
             "categoryid": $scope.articledata.categoryid,
