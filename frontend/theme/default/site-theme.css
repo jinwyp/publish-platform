@@ -359,6 +359,7 @@ ul.PageBlockLayout_Column3 li a						{ display:block; padding:10px; text-decorat
 ul.PageBlockLayout_Column3 li a.linkImg				{ border:1px solid #ddd;}
 ul.PageBlockLayout_Column3 li a.linkImg img			{ width:200px;}
 ul.PageBlockLayout_Column3 li p						{ color:#666; height:50px; padding:8px 4px; font-size:12px; text-indent:0; overflow:hidden;}
+ul.PageBlockLayout_Column3 li p	a					{ margin:0; padding:0; line-height:14px; text-decoration:underline; display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline;}
 
 
 
