@@ -18,7 +18,7 @@
                 </div>
                 <!-- 预览区 -->
                 <div id="article-cont-preview" class="article-cont">
-                    <div class="article-templete">
+                    <div class="article-templete CkeditorPreview">
                         <div class="tagbox">
                             {{ articledata.created | date:'yyyy/MM/dd HH:mm' }}  |  Tag »
                             <a href="#/tag/{{tag.tagid}}" ng-repeat="tag in articledata.tags">{{tag.tagname}}</a>
