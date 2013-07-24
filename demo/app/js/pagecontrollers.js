@@ -25,13 +25,14 @@
          }
      }
 
+     var copysinglepage='';
      $scope.pages = site.pagelist;
      if($scope.header.length > 0){
          $scope.singlepage = $scope.serachlinkdom($scope.header[0].linkedurl);
+         copysinglepage = $scope.singlepage;
      }
 
      //链接页面
-     var copysinglepage='';
      $scope.showCurrent = function(currentpage, index){
          //debugger;
          $scope.showdetails = false;
