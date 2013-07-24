@@ -70,6 +70,9 @@
                     <tr ng-cloak ng-show="csspasswordprompt">
                         <td style="color: #fff; padding:8px; text-align:center; background-color: #930;;" colspan="2">Password Inconsistent!</td>
                     </tr>
+                    <tr ng-cloak ng-show="cssemailprompt">
+                        <td style="color: #fff; padding:8px; text-align:center; background-color: #930;;" colspan="2">This email is already registered</td>
+                    </tr>
                 </table>
                 </div>
                 <div class="submitbox">
@@ -150,6 +153,8 @@
 </div>  
 
     <!-- Load JS -->
+    <script src="lib/underscore/underscore-min.js"></script>
+
     <script src="lib/angular/1.1.5/angular.js"></script>
     <script src="app/js/usercontrollers.js"></script>
     <script src="app/js/factory.js"></script>

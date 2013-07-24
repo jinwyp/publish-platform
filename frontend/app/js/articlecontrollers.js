@@ -23,7 +23,7 @@ vcpapp.config(['$routeProvider', function($routeProvider) {
 /* Controllers */
 
 vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArticle) {
-    var urluser = "https://vcplatform.firebaseIO.com/user";
+    var urluser = "https://vcplatform.firebaseIO.com/usernow";
     $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
 
     var urlartilcelist = 'https://vcplatform.firebaseIO.com/articles';
@@ -331,7 +331,7 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
 
 
 vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, modelArticle, angularFire) {
-    var urluser = "https://vcplatform.firebaseIO.com/user";
+    var urluser = "https://vcplatform.firebaseIO.com/usernow";
     $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
 
     var urlmaxid = "https://vcplatform.firebaseIO.com/maxid";
@@ -526,7 +526,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
 
 
 vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle, angularFire ) {
-    var urluser = "https://vcplatform.firebaseIO.com/user";
+    var urluser = "https://vcplatform.firebaseIO.com/usernow";
     $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
 
     var urlmaxid = "https://vcplatform.firebaseIO.com/maxid";
