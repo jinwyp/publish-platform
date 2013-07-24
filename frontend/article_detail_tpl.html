@@ -178,14 +178,14 @@
     <div class="article-footer">
         <!-- 发布按钮 -->
         <div class="article_btn">
-            <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="conformModifyArticle(ArticleForm)">
+            <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="confirmModifyArticle(ArticleForm)">
             <!--<input type="submit" value="PUBLISH" class="btn-publish" style="display:none;" ng-click="publisharticle(ArticleForm)">-->
         </div>
         
         <!-- 版本节点 -->
         <div class="vernode">
         	<div class="line">
-                <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}" ng-click="displayversioninfo(revision);"  ng-repeat="revision in articledata.revision"  title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy HH:mm:ss'}} {{revision.lastreviewcomment}}">{{revision.versionnum}}</a>
+                <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}" ng-click="displayversioninfo(revision);"  ng-repeat="revision in articledata.revision"  title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy HH:mm:ss'}} {{revision.lastversioncomment}}">{{revision.versionnum}}</a>
         	</div>
         </div>
     </div>
