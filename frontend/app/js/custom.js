@@ -99,10 +99,10 @@
 		 var element=$(this);
 		  if (element.hasClass("ico_layout_open")){
 		   	element.removeClass("ico_layout_open", {duration:300});
-		   	$('.layout_list').animate({left:'-82px', opacity:'0.4'},{duration:300, queue:true});
+		   	$('.layout_list').animate({left:'-82px'},{duration:300, queue:true});
 		  }else{
 		  	element.addClass("ico_layout_open", {duration:300});
-		   	$('.layout_list').animate({left:'0px', opacity:'0.75'},{duration:300, queue:true});
+		   	$('.layout_list').animate({left:'0px'},{duration:300, queue:true});
 		 }
 	  });
 
