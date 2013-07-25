@@ -186,10 +186,15 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
 
 
     $scope.delArticle = function(article) {
+        debugger;
+
+
+        var getdeleteindex=$scope.searchdeleteindex(article);
+
         $scope.cssshowdelmodal = false;      //关闭弹出提示框 Modal
 //        modelArticle.delArticleById(articleid);
-
-        $scope.articlestotaldata.splice(article, 1);
+        $scope.articlestotaldata.splice(getdeleteindex, 1);
+        //$scope.articlestotaldata.splice(article, 1);
 //        $scope.articlestotaldata = modelArticle.getArticleList();
 
         copytotaldata = $scope.articlestotaldata;
@@ -201,6 +206,14 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
         $scope.loadcurrentpagedata();
         $scope.articlepreviewdata = $scope.articlesdata[0];
     };
+
+    $scope.searchdeleteindex = function(article){
+        for(var i = 0; i < $scope.articlestotaldata.length; i++){
+            if(article.id == $scope.articlestotaldata[i].id){
+                return i;
+            }
+        }
+    }
 
     //显示List详细内容
     $scope.loadhtml = function(val) {
