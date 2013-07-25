@@ -4,33 +4,46 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-    // Define changes to default configuration here. For example:
-    // config.language = 'fr';
-    // config.uiColor = '#f00';
-    config.removeButtons = 'Source,Save,Preview,About,Maximize,list,indent,bidi,mode,document,doctools';
-    config.toolbarGroups = [
-//        { name: 'document', },
-//        { name: 'forms' },
-        { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
-        { name: 'links' },
-        '/',
-        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-        { name: 'paragraph',   groups: [ 'blocks', 'align'] },
-        { name: 'colors' },
-        { name: 'CreatePlaceholder'},
-        '/',
-        { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
-        { name: 'insert' },
-        { name: 'others' },
-//        { name: 'texttransform', groups: ['TransformTextToUppercase','TransformTextToLowercase','TransformTextCapitalize','TransformTextSwitcher']},
-        '/',
-        { name: 'styles' },
-        { name: 'tools' }
-
-    ];
+	// Define changes to default configuration here. For example:
+	// config.language = 'fr';
+	// config.uiColor = '#f00';
+//    config.removeButtons = 'Source,Save,Preview,About,Maximize,list,indent,bidi,mode';
+//    config.toolbarGroups = [
+//        { name: 'document',	   groups: [  '', 'doctools' ] },
+//       { name: 'forms' },
+//        { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+//        { name: 'links' },
+//        '/',
+//        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+//        { name: 'paragraph',   groups: [ 'blocks', 'align'] },
+//        { name: 'CreatePlaceholder'},
+//        '/',
+//        { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+//        { name: 'insert' },
+//        { name: 'others' },
+//       { name: 'texttransform', groups: ['TransformTextToUppercase','TransformTextToLowercase','TransformTextCapitalize','TransformTextSwitcher']},
+//        '/',
+//        { name: 'styles' },
+//        { name: 'tools' }
+//
+//    ];
 
     config.extraPlugins='tableresize,wysiwygarea,floating-tools,youtube,wordcount,' +
-        'backgrounds,autogrow';
+        'backgrounds,onchange,placeholder,autogrow';
+
+    config.toolbar = [
+        [ 'Templates' ],
+        [ 'Cut', 'Copy', 'Paste', 'Undo', 'Redo' ],
+        [ 'Link', 'Unlink' ],
+
+        [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ],
+        [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak', 'ShowBlocks' ],
+        '/',
+        [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', 'RemoveFormat', 'TextColor','BGColor' ],
+        [ 'CreateDiv', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', 'youtube' ],
+        '/',
+        [ 'Styles','Format','Font','FontSize' ]
+    ];
     //config.removePlugins='resize';
 
     //控制显示youtube视频
@@ -57,7 +70,7 @@ CKEDITOR.editorConfig = function( config ) {
     UPLOADCARE_LOCALE = 'ru'; //set locale if you wish
 
 
-    // config.autoGrow_minHeight = 500;
+   // config.autoGrow_minHeight = 500;
 
     config.autoGrow_onStartup = true;
 };
