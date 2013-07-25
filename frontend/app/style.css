@@ -117,6 +117,19 @@
 
 
 
+/* =========================================================================================== */
+/*                                          Button	                                           */
+/* =========================================================================================== */
+/* 提交按钮 */
+.submitbox						{ padding:20px; border-radius:0 0 6px 6px; text-align:center;}
+
+.submitbox.RegisterSubmitBox	{ background:#212b35; }
+.submitbox.UserSubmitBox		{ background:#2e3235; }
+.submitbox.SiteSubmitBox		{ background:#393a3e; }
+
+
+
+
 
 
 
@@ -304,6 +317,7 @@
 .reg_form		{ display:block; padding:0; margin:0; overflow:hidden; }
 .reg_form_Box	{ padding:0; }
 .reg_form h4	{ position:relative; display:block; margin:0; padding:0; color:#a0b3c4; font-weight:bold; line-height:40px; text-indent:20px; height:40px; border-radius:6px 6px 0 0; background:#212b35;   }
+
 /* 表格 */
 .reg_form table				{ border:0; margin:0; padding:0; background:#465568; border-collapse:0 !important;}
 .reg_form table tr			{ border-bottom:2px solid #566578;}
@@ -316,25 +330,16 @@
 .reg_box_title .title_num	{ display:block; float:left; margin:0 10px 0 0; padding:0; width:35px; height:35px; color:#ff6861; /* border:1px solid #a2cf4e; */ border:1px solid #212b35; text-align:center; font-size:20px; font-weight:bold; line-height:36px; font-family:Arial, Helvetica, sans-serif; border-radius:100px; background:#fff;  }
 .reg_box_title .title_name	{ display:block;  float:left; margin:0; padding:0; /* color:#82ab35; */ color:#fff; text-shadow:0 0 10px rgba(0,0,0,0.4); font-weight:normal; line-height:36px; font-family:Arial, Helvetica, sans-serif; }
 
-/* 提交按钮 */
-.reg_form .submitbox			{ padding:20px; border-radius:0 0 6px 6px; background:#212b35; text-align:center;}
-.reg_form .submit				{ border:0; display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; margin:0 auto; padding:7px 30px; border-radius:4px; color:#fff; font-weight:bold; text-decoration:none; background:url(img/article_btn_bg.png) 0 -68px; repeat-x; box-shadow:0 1px 3px #000; 
--webkit-transition: 0s;
-    -moz-transition: 0s;
-    -o-transition: 0s;
-    transition: 0s;
-	}
-.reg_form .submit:hover			{ background-position:0px -102px; color:#fff;}
-.reg_form .submit:active		{ box-shadow:inset 0 0 10px rgba(0,0,0,0.4);}
 /* 编辑按钮 */
-.reg_form .edit_step			{ position:absolute; top:8px; right:8px; margin:0; padding:4px 8px; text-align:center; border-radius:4px; background:#a1d04c; font-size:12px; line-height:18px; color:#fff; text-decoration:none; float:right; text-indent:0px;}
-.reg_form .edit_step:hover		{ background:#83a93d;}
-.reg_form .edit_step:active		{ box-shadow:inset 0 0 7px rgba(0,0,0,0.5);}
+.reg_form .edit_step			{ position:absolute; top:8px; right:8px; }
+
+
 /* 输入框 */
 .reg_form input.reg_input		{ font-size:18px; margin:0 auto; display:block; padding:8px; width:80%; height:auto; vertical-align:baseline; background:#95a2b2; border-width:2px; border-color:#95a2b2; color:#fff; box-shadow:none;}
 .reg_form input.reg_input:focus{ background:#fff; color:#000; border-color:#fff; box-shadow:0 0 0 2px #2f9e00;}
 .reg_form input.reg_input:-moz-placeholder,
 .reg_form input.reg_input::-webkit-input-placeholder{ }
+
 /*gender */
 .regGenderLabel		{ color:#a0b3c4; margin-right:20px; font-size:16px; font-weight:bold; display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline;}
 .regGenderLabel input[type="radio"] { vertical-align:0px; margin-right:4px;}
@@ -434,16 +439,6 @@ background:#fff url(img/site_Thumbnails.png) 20px 12px no-repeat; z-index:1;}
 .site_box_title .title_num	{ display:block; float:left; margin:0 10px 0 0; padding:0; width:35px; height:35px; color:#a2cf4e; /* border:1px solid #a2cf4e; */ border:3px solid #666; text-align:center; font-size:20px; font-weight:bold; line-height:36px; font-family:Arial, Helvetica, sans-serif; border-radius:100px; background:#fff;  }
 .site_box_title .title_name	{ display:block;  float:left; margin:0; padding:0; /* color:#82ab35; */ color:#fff; text-shadow:0 0 10px rgba(0,0,0,0.4); font-weight:normal; line-height:36px; font-family:Arial, Helvetica, sans-serif; }
 
-/* 提交按钮 */
-.site_form .submitbox			{ padding:10px; border-radius:0 0 6px 6px; background:#4b4c50; text-align:center;}
-.site_form .submit				{ display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; margin:0 auto; padding:7px 30px; border-radius:4px; color:#fff; font-size:12px; font-weight:bold; text-transform:uppercase; text-decoration:none; background:url(img/article_btn_bg.png) 0 -68px repeat-x; box-shadow:0 1px 3px #000; 
--webkit-transition: 0s;
-    -moz-transition: 0s;
-    -o-transition: 0s;
-    transition: 0s;
-	}
-.site_form .submit:hover		{ background-position:0px -102px; color:#fff;}
-.site_form .submit:active		{ box-shadow:inset 0 0 10px rgba(0,0,0,0.4);}
 
 /* === 第一步：Form === */
 .site_form			{ display:block; padding:0; margin:0;  }
@@ -455,9 +450,7 @@ background:#fff url(img/site_Thumbnails.png) 20px 12px no-repeat; z-index:1;}
 .RssFeedOn_Box		{  border:1px solid #bfe3ab; border-radius:4px; padding:10px; background:#e6f2dc; font-weight:bold; color:#000; max-width:180px; word-wrap:break-word;}
 
 /* 编辑按钮 */
-.site_form .edit_step			{ position:absolute; top:8px; right:8px; margin:0; padding:4px 8px; text-align:center; border-radius:4px; background:#a1d04c; font-size:12px; line-height:18px; color:#fff; text-decoration:none; float:right; text-indent:0px;}
-.site_form .edit_step:hover		{ background:#83a93d;}
-.site_form .edit_step:active	{ box-shadow:inset 0 0 7px rgba(0,0,0,0.5);}
+.site_form .edit_step			{ position:absolute; top:8px; right:8px; margin:0; text-indent:0; text-decoration:none; }
 
 /* 表格 */
 .site_form table			{ border:0; margin:0; padding:0; background:#f3f4f6; border-collapse:0 !important;}
@@ -535,24 +528,13 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 .userBox				{ position:absolute; min-width:310px; border-radius:4px; box-shadow:0 0 30px rgba(0,0,0,0.4); background:#363a3d; }
 
 .userAccount			{ top:22%; left:28%; height:540px;}
+.userAccount  .titlename{ position:absolute; top:-80px; left:0; color:#fff; font-size:30px; text-shadow:0 0 28px rgba(0,0,0,0.6); text-transform:capitalize; font-weight:normal;  text-align:center; width:100%;}
 
 .userBox.userPassword	{ position:absolute; height:400px; border-radius:0 4px 4px 0; z-index:-1; top:0; box-shadow:0 10px 20px rgba(0,0,0,0.4); background:#2e3235;}
-
-.userAccount  .titlename{ position:absolute; top:-80px; left:0; color:#fff; font-size:30px; text-shadow:0 0 28px rgba(0,0,0,0.6); text-transform:capitalize; font-weight:normal;  text-align:center; width:100%;}
 
 .UserBoxButton					{ position:absolute; bottom:0; width:100%; background:#44494c; padding:20px 0; box-shadow:inset 0 1px 1px rgba(0,0,0,0.4); border-radius:0 0 4px 4px;}
 .UserBoxButton.savePWD			{ padding:20px 0; background:none; box-shadow:none;}
 .UserBoxButton.savePWD .btn		{ margin:0 0 0 32px;}
-/* 保存 */
-.UserBoxButton .saveUserBtn				{ display:block; margin:0 auto; padding:7px 30px; color:#fff; border:0; font-size:12px; font-weight:bold; text-transform:uppercase; background:url(img/article_btn_bg.png) 0 -68px repeat-x; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.75); text-decoration:none;}
-.UserBoxButton .saveUserBtn:hover,
-.UserBoxButton .saveUserBtn:focus		{ background-position:0 -102px;}
-.UserBoxButton .saveUserBtn:active		{ box-shadow:0 0 3px rgba(0,0,0,0.75), inset 0 0 20px rgba(0,0,0,0.5);}
-/* 编辑 */
-.UserBoxButton .editUserBtn				{ display:block; margin:0 auto; width:136px; height:38px; line-height:38px; text-align:center; color:#fff; border:0; font-size:12px; font-weight:bold; text-transform:uppercase; background:url(img/article_btn_bg.png) 0 -272px repeat-x; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.75); text-decoration:none;}
-.UserBoxButton .editUserBtn:hover,
-.UserBoxButton .editUserBtn:focus		{ background:#6ea0e5;}
-.UserBoxButton .editUserBtn:active		{ line-height:39px; box-shadow:0 0 3px rgba(0,0,0,0.75), inset 0 0 20px rgba(0,0,0,0.5);}
 
 .userForm				{ position:relative;}
 .userFormBox			{ padding:30px; height:auto; color:#bbb; font-size:16px;}
@@ -560,10 +542,7 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 
 .userPhoto				{ width:242px; margin:0 auto 20px; background:#2e3235; }
 .userPhoto h6			{ margin:40px auto 20px; font-size:18px; color:#81848d; text-align:center; text-transform:uppercase;}
-.userPhoto .userUploadBtn{ display:block; margin:0 auto; padding:7px 10px;  color:#fff; border:0; font-size:12px; font-weight:bold; text-transform:uppercase; background:url(img/article_btn_bg.png) 0 0 repeat-x; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.75);}
-.userPhoto .userUploadBtn:hover,
-.userPhoto .userUploadBtn:focus	{ background-position:0 -34px;}
-.userPhoto .userUploadBtn:active{ box-shadow:0 0 3px rgba(0,0,0,0.75), inset 0 0 20px rgba(0,0,0,0.5);}
+.userPhoto .btn			{ display:block; margin:0 auto !important;}
 
 /* 无头像 */
 .userPhoto.empty		{ height:182px; border:4px dashed #44494d; border-radius:4px; }
@@ -571,10 +550,7 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 /* 有头像 */
 .userPhoto.full			{ margin-bottom:40px; position:relative; border:4px solid #2a2e31; border-radius:4px;}
 .userPhoto.full img		{ width:242px; height:182px; border-radius:2px;  }
-.userPhoto.full .userChangePhoto{ display:block; position:absolute; left:30%; bottom:-54px; margin:0 auto; padding:0 18px; padding:7px 10px; color:#fff; border:0; font-size:12px; font-weight:bold; text-transform:uppercase; background:url(img/article_btn_bg.png) 0 0 repeat-x; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.75);}
-.userPhoto.full .userChangePhoto:hover,
-.userPhoto.full .userChangePhoto:focus	{ background-position:0 -34px;}
-.userPhoto.full .userChangePhoto:active{ box-shadow:0 0 3px rgba(0,0,0,0.75), inset 0 0 20px rgba(0,0,0,0.5);}
+.userPhoto.full .btn	{ display:block; position:absolute; left:35%; bottom:-54px; margin:0 auto; }
 
 .userInfo							{ padding-left:30px;}
 .userInfo h6						{ margin:0 0 10px 0; text-transform:capitalize; cursor:default;}
