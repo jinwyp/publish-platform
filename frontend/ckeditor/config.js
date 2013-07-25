@@ -7,30 +7,30 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#f00';
-    config.removeButtons = 'Source,Save,Preview,About,Maximize';
+    config.removeButtons = 'Source,Save,Preview,About,Maximize,list,indent,bidi,mode,document,doctools';
     config.toolbarGroups = [
-        { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
-        { name: 'forms' },
+//        { name: 'document', },
+//        { name: 'forms' },
         { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
         { name: 'links' },
         '/',
         { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-        { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+        { name: 'paragraph',   groups: [ 'blocks', 'align'] },
         { name: 'colors' },
         { name: 'CreatePlaceholder'},
         '/',
         { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
         { name: 'insert' },
         { name: 'others' },
-        { name: 'texttransform', groups: ['TransformTextToUppercase','TransformTextToLowercase','TransformTextCapitalize','TransformTextSwitcher']},
+//        { name: 'texttransform', groups: ['TransformTextToUppercase','TransformTextToLowercase','TransformTextCapitalize','TransformTextSwitcher']},
         '/',
         { name: 'styles' },
         { name: 'tools' }
 
     ];
 
-    config.extraPlugins='tableresize,wysiwygarea,floating-tools,youtube,wordcount,texttransform,zoom,autosave,' +
-        'backgrounds,insertpre,uploadcare,onchange,placeholder,autogrow';
+    config.extraPlugins='tableresize,wysiwygarea,floating-tools,youtube,wordcount,' +
+        'backgrounds,autogrow';
     //config.removePlugins='resize';
 
     //控制显示youtube视频
