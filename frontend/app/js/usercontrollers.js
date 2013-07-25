@@ -48,7 +48,7 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
     $scope.changepassword = function(){
         $scope.cssshowpasswordbox = true;
         $(".userAccount").animate({left:"22%"});
-        $(".userPassword").animate({left:"100%"});
+        $(".userPassword").animate({left:"99.3%"});
     };
 
     //显示头像是否上传
