@@ -90,7 +90,7 @@
                                     <ul ng-class="{PageBlockLayout_Row_noIMG:block.blocklayout == '101',PageBlockLayout_Row:block.blocklayout == '100',PageBlockLayout_Column2_noIMG:block.blocklayout == '103',PageBlockLayout_Column3:block.blocklayout == '102'}" class="clearfix">
                                         <li ng-repeat="article in block.blockarticles ">
                                             <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="#" ng-click="showarticledetail(article,block.blockname)">{{ article.title }}</a></h6>
-                                            <a href="#" class="linkImg"><img src="../frontend/app/img/symptomfind/temp_06.jpg" alt="" /></a>
+                                            <a href="#" class="linkImg"><img src="../frontend/app/img/symptomfind/temp_06.jpg" alt="" ng-click="showarticledetail(article,block.blockname)" /></a>
                                             <p>{{ article.description }}...<a href="###" ng-click="showarticledetail(article,block.blockname)">more</a></p>
                                         </li>
                                     </ul>
