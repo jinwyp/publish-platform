@@ -640,7 +640,7 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 .pagelistbox li	{ margin:0; padding:0; position:relative;}
 
 /* Hover: PageList display edit icon. */
-.pagelistbox li .ico_edit		{ position:absolute; z-index:99; top:14px; right:4px; display:none; width:20px; height:20px; text-indent:-9999px; background:url(img/icon_attribute.png) 0 -50px no-repeat; cursor:pointer;}
+.pagelistbox li .ico_edit		{ position:absolute; z-index:99; top:16px; right:8px; display:none; width:20px; height:20px; text-indent:-9999px; background:url(img/icon_attribute.png) 0 -50px no-repeat; cursor:pointer;}
 .pagelistbox li:hover .ico_edit	{ display:block;}
 .pagelistbox li:hover .ico_edit:hover{ background-position:0 -50px;}
 
@@ -688,12 +688,17 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 .addpage_btn:hover{ color:#fff; background:rgba(0,0,0,1); background:#000\9; box-shadow:0 0 3px rgba(255,255,255,0.4); text-decoration:none;}
 
 /* Page Attribute Panel */
-.page_attri_panel					{ position:absolute; right:-280px; top:-20px; padding:10px 30px; background:#454545; z-index:99; border-radius:8px; box-shadow:2px 2px 8px rgba(0,0,0,0.4); cursor:default;}
-.page_attri_panel .panel_close		{ display:block; position:absolute; right:0; top:0; width:40px; height:34px; text-decoration:none; background:#222 url(img/icon_attribute.png) 10px -1394px no-repeat; border-radius:0px 8px 0px 8px; overflow:hidden; text-indent:-9999px; opacity:0.5; }
-.page_attri_panel .panel_close:hover,
-.page_attri_panel .panel_close:active{ color:#fff; box-shadow:inset 0 0 12px rgba(0,0,0,0.5); opacity:1;}
-.page_attri_panel h2				{ font-size:18px; color:#fff; font-weight:normal;}
+.page_attri_panel					{ position:absolute; right:-280px; top:-20px; padding:0; background:#343434; z-index:99; border-radius:8px; box-shadow:2px 2px 30px rgba(0,0,0,0.6); cursor:default;}
+.page_attri_panel:after				{ content:''; position:absolute; left:2px; top:37px; margin-left:-12px; width:10px; height:19px; background:url(img/tip_arrow_l.png) no-repeat;}
+
+.page_attri_panel h1				{ font-size:18px; height:36px; line-height:34px; text-align:center; color:#fff; margin:0; padding:0; border-radius:8px 8px 0 0; background:#ea6465;}
+.page_attri_panel h1 .TipBoxClose	{ float:right; margin:7px 8px 0 0; width:24px; height:24px; border-radius:100%; background:#222 url(img/icon_attribute.png) 2px -1398px no-repeat; overflow:hidden; text-indent:-9999px; opacity:0.65;}
+.page_attri_panel h1 .TipBoxClose:hover,
+.page_attri_panel h1 .TipBoxClose:active{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); opacity:1;}
+
 .page_attri_panel h6				{ margin:0 0 6px 0; font-size: 14px; font-weight: bold; text-transform: capitalize; color:#bbb;}
+
+.page_attri_cont					{ padding:10px 30px;}
 .page_attri_cont i 					{ font-style:normal; font-weight:normal; line-height:14px !important; font-size:12px; color:#9a9a9a;}
 .page_attri_cont input				{ padding:6px; margin:0 0 10px 0;}
 .page_attri_cont .btn_box			{ padding:20px 0 0 0; text-align:right;}
@@ -1059,10 +1064,10 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-f
 /* =========================================================================================== */
 /*                                      TipBox: 弹出创建内容                                     */
 /* =========================================================================================== */
-.tip_box		{ margin:0; padding:0; width:500px; color:#bbb; border-radius:8px; background:#343434; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:999999; }
+.tip_box		{ margin:0; padding:0; width:500px; color:#bbb; border-radius:8px; background:#343434; box-shadow:0 0 30px rgba(0,0,0,0.6); z-index:999999; }
 .tip_box:after	{ content:''; position:absolute; left:50%; bottom:-10px; margin-left:-12px; width:23px; height:10px; background:url(img/tip_arrow.png) no-repeat;}
 .tip_box h1		{ font-size:18px; height:36px; line-height:34px; text-align:center; color:#fff; margin:0; padding:0; border-radius:8px 8px 0 0;}
-.tip_box h1 .TipBoxClose{ float:right; width:36px; height:36px; line-height:36px; text-align:center; margin:0; border-radius:0 8px 0 0; background:#222 url(img/icon_attribute.png) 9px -1392px no-repeat; overflow:hidden; text-indent:-9999px; opacity:0.75;}
+.tip_box h1 .TipBoxClose{ float:right; margin:7px 8px 0 0; width:24px; height:24px; border-radius:100%; background:#222 url(img/icon_attribute.png) 2px -1398px no-repeat; overflow:hidden; text-indent:-9999px; opacity:0.65;}
 .tip_box h1 .TipBoxClose:hover,
 .tip_box h1 .TipBoxClose:active{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); opacity:1;}
 
@@ -1076,7 +1081,7 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-f
 .tip_editor h1		{ background:#ea6465; }
 .tip_static h1,
 .tip_ads	h1,
-.tip_RSS	h1		{ background:#5a99a8; }
+.tip_RSS	h1		{ background:#ea6465; }
 
 /* Bootstrap */
 .tip_box .tab-content						{ padding:10px 0;}
