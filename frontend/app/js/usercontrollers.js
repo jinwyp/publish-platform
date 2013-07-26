@@ -79,7 +79,7 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
             }
 
 //            modelSite.updateSite($scope.site);    // use firebase for database
-//            location.href = "site.html";
+            location.href = "site.html";
         }
     };
 
