@@ -2582,7 +2582,7 @@ background-image: -moz-linear-gradient(top, #151515, #040404); background-image:
 
 .modal.fade.in { bottom: 5%; }
 
-.modal-header { padding: 8px 15px; border-bottom: 1px solid #eee; background:#ea6465; border-radius:4px 4px 0 0; }
+.modal-header { padding: 8px 15px; border-bottom: 1px solid #eee; background:#5a99a8; border-radius:4px 4px 0 0; }
 
 .modal-header .close { margin-top: 2px; width:24px; height:24px; border-radius:100%; background:#222 url(../../app/img/icon_attribute.png) 2px -1398px no-repeat; overflow:hidden; text-indent:-9999px; opacity:0.75;}
 .modal-header .close:hover{ opacity:1;}

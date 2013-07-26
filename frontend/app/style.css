@@ -692,7 +692,7 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 .page_attri_panel					{ position:absolute; right:-222px; top:-20px; padding:0; background:#343434; z-index:99; border-radius:8px; box-shadow:2px 2px 30px rgba(0,0,0,0.6); cursor:default;}
 .page_attri_panel:after				{ content:''; position:absolute; left:2px; top:37px; margin-left:-12px; width:10px; height:19px; background:url(img/tip_arrow_l.png) no-repeat;}
 
-.page_attri_panel h1				{ font-size:18px; height:36px; line-height:34px; text-align:center; color:#fff; margin:0; padding:0; border-radius:8px 8px 0 0; background:#ea6465;}
+.page_attri_panel h1				{ font-size:18px; height:36px; line-height:34px; text-align:center; color:#fff; margin:0; padding:0; border-radius:8px 8px 0 0; background:#5a99a8;}
 .page_attri_panel h1 .TipBoxClose	{ float:right; margin:7px 8px 0 0; width:24px; height:24px; border-radius:100%; background:#222 url(img/icon_attribute.png) 2px -1398px no-repeat; overflow:hidden; text-indent:-9999px; opacity:0.65;}
 .page_attri_panel h1 .TipBoxClose:hover,
 .page_attri_panel h1 .TipBoxClose:active{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); opacity:1;}
@@ -925,7 +925,7 @@ ul.nav_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-filt
 .newlink_panel_name .input_newlink		{ width:122px; margin:0 auto;}
 
 
-.newlink_title h1				{ background:#ea6465; font-size:18px; height:36px; line-height:34px; text-align:center; color:#fff; margin:0; padding:0; border-radius:6px 6px 0 0;}
+.newlink_title h1				{ background:#5a99a8; font-size:18px; height:36px; line-height:34px; text-align:center; color:#fff; margin:0; padding:0; border-radius:6px 6px 0 0;}
 .newlink_title h1 .TipBoxClose	{ float:right; margin:7px 8px 0 0; width:24px; height:24px; border-radius:100%; background:#222 url(img/icon_attribute.png) 2px -1398px no-repeat; overflow:hidden; text-indent:-9999px; opacity:0.65;}
 .newlink_title h1 .TipBoxClose:hover,
 .newlink_title h1 .TipBoxClose:active{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); opacity:1;}
@@ -1084,10 +1084,10 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-f
 
 
 .tip_auto h1,
-.tip_editor h1		{ background:#ea6465; }
+.tip_editor h1		{ background:#5a99a8; /* background:#ea6465; */ }
 .tip_static h1,
 .tip_ads	h1,
-.tip_RSS	h1		{ background:#ea6465; }
+.tip_RSS	h1		{ background:#5a99a8; /* background:#ea6465; */ }
 
 /* Bootstrap */
 .tip_box .tab-content						{ padding:10px 0;}
