@@ -364,7 +364,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, angula
 
         _.each($scope.pages, function(page){
             if(page.pageid == $scope.singlepage.pageid){
-                page.pagelayoutdata = angular.copy(layout.layoutdata) ;
+                page.pagelayoutdata = angular.copy(layout.layoutdata);
                 $scope.singlepage = page;
             }
         });
@@ -567,8 +567,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, angula
 
             default:
         }
-/*
-
+        $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
             _.each($scope.pages, function(page){
                 if(page.pageid == $scope.singlepage.pageid){
                     _.each(page.pagelayoutdata, function(layout){
@@ -580,32 +579,12 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, angula
                             }else{
                                 layout.blocks.push(newblock);
                             }
-                            console.log(layout.blocks.length);
+//                            console.log(layout.blocks.length);
                         }
-                    })
-
+                    });
+                    $scope.singlepage = page;
                 }
             });
-*/
-
-
-
-                _.each($scope.singlepage.pagelayoutdata, function(layout){
-                    if(layout.layoutcontainerid == layoutcontainer.layoutcontainerid){
-                        /*                            _.each(layout.blocks, function(block){
-
-                         })*/
-
-                        if(typeof(layout.blocks) == "undefined"  ){
-                            layout.blocks = [];
-                            layout.blocks.push(newblock);
-                        }else{
-                            layout.blocks.push(newblock);
-                        }
-                        console.log(layout.blocks.length);
-                    }
-                })
-
 
 
 
@@ -618,15 +597,14 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, angula
     $scope.addAritcleToEditorBlock = function(block, layoutcontainer ){
         if(block.blockarticles.length < block.blockquantity){
             var newaritcle = this.newarticle;
-            console.log(block);
+
             modelSite.addArticleToBlock(newaritcle, block, layoutcontainer, $scope.singlepage);
         }
         console.log(this.newarticle);
-    }
+    };
 
     // del a block to page
     $scope.delblock = function(delblock, layoutcontainer, indexid ) {
-/*
         _.each($scope.pages, function(page){
             if(page.pageid == $scope.singlepage.pageid){
                 _.each(page.pagelayoutdata, function(layout){
@@ -636,27 +614,14 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, angula
                         layout.blocks.splice(blockindex, 1);
 //                        console.log(layout.blocks.length);
                     }
-                })
+                });
+                $scope.singlepage = page;
             }
         });
-        */
-
-
-
-                _.each($scope.singlepage.pagelayoutdata, function(layout){
-                    if(layout.layoutcontainerid == layoutcontainer.layoutcontainerid){
-                        var newblock = _.findWhere(layout.blocks, {blockid : delblock.blockid});
-                        var blockindex = layout.blocks.indexOf(newblock);
-                        layout.blocks.splice(blockindex, 1);
-//                        console.log(layout.blocks.length);
-                    }
-                });
-
-
 
 
 //        modelSite.delBlockFromPage(block, layoutcontainer, $scope.singlepage);
-    }
+    };
 
     // update a block setting
     $scope.updateshowblcoksetting = function(block, event1 ) {
@@ -689,7 +654,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, angula
 
     $scope.check = function( ) {
         console.log(this.blockarticles);
-    }
+    };
 
 
 
@@ -712,23 +677,23 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, angula
         //$scope.cssheadermenuhavadata = false;      //Header是否有数据
 //       $scope.cssheadersetting = false;          //Header设置面板是否显示
         $scope.cssheadermenubutton = true;      //Header右上角mouseover按钮     //所有Header Block经过时显示Attribute Panel Icon
-    }
+    };
 
     $scope.hideheadermenusetting = function(){
         $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮
-    }
+    };
 
     $scope.clickheadertheme = function(indexid, themedata){
         //点击Nav 的每个Theme
         $scope.cssheaderthemeindex = indexid;      //Header选中的theme
         $scope.cssheadermenuhavadata = true;      //Header是否有数据已有数据了
         modelSite.setheadertheme(indexid);
-    }
+    };
 
     $scope.slideshowheadersetting = function(){
         //点击Nav Block的设置图标
         $scope.cssheadersetting = true;
-    }
+    };
 
     //insert header data form
     var insertdata=false;
@@ -757,7 +722,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, angula
         $("#urltype2").attr("checked",true);
         setupLabel();
         insertdata=true;
-    }
+    };
     $scope.newheaderdata ={};
     $scope.checkpargeid=function(){
         for(var i=0;i<$scope.pages.length;i++){
@@ -765,7 +730,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, angula
                 return $scope.pages[i].pageid;
             }
         }
-    }
+    };
     //save data
     $scope.saveheaderinfo=function(){
         if($scope.newheaderdata.menuname == ""){
