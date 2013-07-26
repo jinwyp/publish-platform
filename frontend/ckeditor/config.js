@@ -33,16 +33,16 @@ CKEDITOR.editorConfig = function( config ) {
 
     config.toolbar = [
         [ 'Templates' ],
-        [ 'Cut', 'Copy', 'Paste', 'Undo', 'Redo' ],
+        [ 'Undo', 'Redo' ],
         [ 'Link', 'Unlink' ],
 
-        [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ],
-        [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak', 'ShowBlocks' ],
+        [ 'Find' ,'Replace', '-', 'SpellChecker', 'Scayt' ],
+        [ 'Image', 'Flash' ,'Table', 'HorizontalRule','Smiley','SpecialChar','PageBreak', 'ShowBlocks' ],
+	[ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ],
         '/',
-        [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', 'RemoveFormat', 'TextColor','BGColor' ],
-        [ 'CreateDiv', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', 'youtube' ],
-        '/',
-        [ 'Styles','Format','Font','FontSize' ]
+        [ 'Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'TextColor','BGColor' ],
+        [ 'Styles','Format','Font','FontSize' ],
+	[ 'youtube' ]
     ];
     //config.removePlugins='resize';
 
