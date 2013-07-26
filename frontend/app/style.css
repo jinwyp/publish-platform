@@ -529,9 +529,17 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 .site_workflow		{ padding:0; margin:0;}
 .site_workflow h6	{ margin:0; padding:10px 0px; text-align:center; color:#888888; font-size:13px; text-transform:none;}
 .site_workflow p	{ text-align:center; margin:0; padding-bottom:20px;}
+
 .site_workflow .btn	{ width:220px;padding-left:0; padding-right:0; text-decoration:none;}
-.site_workflow .workFlowSelect,
-.site_workflow .workFlowSelect:hover{ color: #ffffff; background-color: #51a351; *background-color: #499249; background-image: none; outline: 0; -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);}
+
+.site_workflow .btn-success.workFlowSelect,
+.site_workflow .btn-success.workFlowSelect:hover{ color: #ffffff; background-color: #51a351; *background-color: #499249; background-image: none; outline: 0; -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);}
+
+.site_workflow .btn-info.workFlowSelect,
+.site_workflow .btn-info.workFlowSelect:hover{ color: #ffffff; background-color: #2f96b4; *background-color: #2a85a0; background-image: none; outline: 0; -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);}
+
+.site_workflow .btn-warning.workFlowSelect,
+.site_workflow .btn-warning.workFlowSelect:hover{ color: #ffffff; background-color: #f89406; *background-color: #df8505; background-image: none; outline: 0; -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);}
 
 
 
