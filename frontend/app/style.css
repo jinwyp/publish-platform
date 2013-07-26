@@ -123,7 +123,7 @@
 /* 提交按钮 */
 .submitbox						{ padding:14px 28px; border-radius:0 0 6px 6px; text-align:right;}
 
-.submitbox.RegisterSubmitBox	{ background:#212b35; }
+.submitbox.RegisterSubmitBox	{ background:#393a3e; }
 .submitbox.UserSubmitBox		{ background:#2e3235; }
 .submitbox.SiteSubmitBox		{ background:#393a3e; }
 .submitbox.savePWD				{ background:#24272a;}
@@ -312,7 +312,7 @@
 /* =========================================================================================== */
 .reg_box		{ position:absolute; bottom:0px; width:100%; min-width:1024px; height:100%; /* box-shadow:inset 0 0 800px 100px #d7d7d7;  background:url(img/pagebg.jpg) top center repeat; */}
 .reg_bgpline	{ position:absolute; left:0; top:50%; width:100%; height:4px; overflow:hidden; /* background:#ddd0c8; */ background:rgba(0,0,0,0.2); z-index:0;}
-.reg_stepbox	{ position:absolute; z-index:1; width:500px; padding-top:20px; border:3px solid #465568; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.4); background:#465568; 
+.reg_stepbox	{ position:absolute; z-index:1; width:400px; padding-top:20px; border:3px solid #65666a; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.4); background:#65666a; 
 }
 		 
 .reg_step_1	{ top:24%;}
@@ -342,14 +342,14 @@
 /* === Form === */
 .reg_form		{ display:block; padding:0; margin:0; overflow:hidden; }
 .reg_form_Box	{ padding:0; }
-.reg_form h4	{ position:relative; display:block; margin:0; padding:0; color:#a0b3c4; line-height:40px; text-indent:20px; height:40px; border-radius:6px 6px 0 0; background:#212b35;   }
+.reg_form h4	{ position:relative; display:block; margin:0; padding:0; color:#bbb; line-height:40px; text-indent:20px; height:40px; border-radius:6px 6px 0 0; background:#393a3e;   }
 
 /* 表格 */
-.reg_form table				{ border:0; margin:0; padding:0; background:#465568; border-collapse:0 !important;}
-.reg_form table tr			{ border-bottom:2px solid #566578;}
+.reg_form table				{ border:0; margin:0; padding:0; background:#f3f4f6; border-collapse:0 !important;}
+.reg_form table tr			{ border-bottom:2px solid #e3e4e8;}
 .reg_form table td			{ border:0; margin:0; padding:40px 10px; vertical-align:middle;}
 .reg_form table tr.last		{ border-bottom:0;}
-.reg_form table .titlename	{ width:100px; padding:20px 0; color:#a0b3c4; text-align:center; background:#2a3644;}
+.reg_form table .titlename	{ width:100px; padding:20px 0; color:#e2e3e7; text-align:center; background:#8c8d91;}
 
 /* === 步骤标题 === */
 .reg_box_title				{ position:absolute; left:40%; top:-60px;}
@@ -360,11 +360,15 @@
 .reg_form .edit_step			{ position:absolute; top:8px; right:8px; }
 
 
-/* 输入框 */
-.reg_form input.reg_input		{ font-size:18px; margin:0 auto; display:block; padding:8px; width:80%; height:auto; vertical-align:baseline; background:#95a2b2; border-width:2px; border-color:#95a2b2; color:#fff; box-shadow:none;}
-.reg_form input.reg_input:focus{ background:#fff; color:#000; border-color:#fff; box-shadow:0 0 0 2px #2f9e00;}
+/* 输入框
+.reg_form input.reg_input		{  margin:0 auto; display:block; padding:6px; width:86%; height:auto; vertical-align:baseline;}
+.reg_form input.reg_input:focus{  }
 .reg_form input.reg_input:-moz-placeholder,
 .reg_form input.reg_input::-webkit-input-placeholder{ }
+ */
+/* 输入框 */
+.reg_form input.reg_input	{ margin:0 auto; display:block; padding:6px; width:86%; height:auto; vertical-align:baseline;}
+
 
 /*gender */
 .regGenderLabel		{ color:#a0b3c4; margin-right:20px; font-size:16px; font-weight:bold; display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline;}
@@ -551,7 +555,7 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 /*                                          User                                      	       */
 /* =========================================================================================== */
 .userWrap				{ }
-.userBox				{ position:absolute; min-width:310px; border-radius:8px; box-shadow:0 0 30px rgba(0,0,0,0.4); background:#363a3d; }
+.userBox				{ position:absolute; min-width:310px; border-radius:8px; box-shadow:0 0 30px rgba(0,0,0,0.4); background:#393a3e; }
 
 .userAccount			{ top:22%; left:32%; }
 .userAccount  .title_name{ position:absolute; top:-80px; left:0; color:#fff; text-shadow:0 0 28px rgba(0,0,0,0.6); text-transform:capitalize; text-align:center; width:100%;}
@@ -560,8 +564,12 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 
 
 .userForm				{ position:relative;}
-.userFormBox			{ padding:30px; height:auto; color:#bbb; font-size:16px;}
+.userFormBox			{ position:relative; padding:30px; height:auto; color:#bbb; font-size:16px;}
 .userFormFloat			{ float:left;}
+
+.userFormBox .panel_close	{ display:block; position:absolute; right:0; top:0; width:40px; height:34px; background:#222 url(img/icon_attribute.png) 10px -1394px no-repeat; border-radius:0px 8px 0px 8px; overflow:hidden; text-indent:-9999px; opacity:0.5;}
+.userFormBox .panel_close:hover,
+.userFormBox .panel_close:active{ color:#fff; box-shadow:inset 0 0 12px rgba(0,0,0,0.5); opacity:1;}
 
 .userPhoto				{ width:242px; margin:0 auto 20px; background:#2e3235; }
 .userPhoto h6			{ margin:40px auto 20px; font-size:18px; color:#81848d; text-align:center; text-transform:uppercase;}
@@ -588,7 +596,8 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 .userInfo p							{ margin-bottom:16px;}
 
 
-/* 输入框
+
+/*
 .reg_form input.reg_input{ font-size:18px; margin:0 auto; display:block; padding:8px; width:80%; height:auto; vertical-align:baseline; background:#95a2b2; border-width:2px; border-color:#95a2b2; color:#fff; box-shadow:none;}
 .reg_form input.reg_input:focus{ background:#fff; color:#000; border-color:#fff; box-shadow:0 0 0 3px #2a3644;}
 .reg_form input.reg_input:-moz-placeholder,
@@ -680,9 +689,9 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 
 /* Page Attribute Panel */
 .page_attri_panel					{ position:absolute; right:-440px; top:-10px; width:360px; padding:10px 40px; height:350px; background:#454545; z-index:99; border-radius:8px; box-shadow:2px 2px 8px rgba(0,0,0,0.4); cursor:default;}
-.page_attri_panel .panel_close		{ display:block; position:absolute; right:0; top:0; width:44px; height:36px; color:#999; font-size:16px; font-weight:bold; line-height:36px; text-align:center; text-decoration:none; background:#333; border-radius:0px 8px 0px 8px;}
+.page_attri_panel .panel_close		{ display:block; position:absolute; right:0; top:0; width:40px; height:34px; text-decoration:none; background:#222 url(img/icon_attribute.png) 10px -1394px no-repeat; border-radius:0px 8px 0px 8px; overflow:hidden; text-indent:-9999px; opacity:0.5; }
 .page_attri_panel .panel_close:hover,
-.page_attri_panel .panel_close:active{ color:#fff; box-shadow:inset 0 0 12px rgba(0,0,0,0.5);}
+.page_attri_panel .panel_close:active{ color:#fff; box-shadow:inset 0 0 12px rgba(0,0,0,0.5); opacity:1;}
 .page_attri_panel h2				{ color:#fff; font-weight:normal;}
 .page_attri_cont i 					{ font-style:normal; font-weight:normal; line-height:14px !important; font-size:12px; color:#9a9a9a;}
 .page_attri_cont input				{ margin:20px 0 0 0; padding:6px; font-size:18px; width:340px; border-radius:6px; font-weight:normal; border:2px solid #454545; background:#ccc; box-shadow:0;}
