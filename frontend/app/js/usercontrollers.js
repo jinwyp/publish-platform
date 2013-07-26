@@ -252,6 +252,27 @@ page.c.siteController = function($scope, $location, angularFire) {
     var promise = angularFire(url, $scope, 'siteinfoFirebase', {});
 
 //    $scope.site = modelSite.getSite();    // use firebase for database
+    $scope.selectpublish = false;
+    $scope.selectone = false;
+    $scope.selectcomplex = false;
+
+    $scope.clickpublish = function(){
+        $scope.selectpublish = true;
+        $scope.selectone = false;
+        $scope.selectcomplex = false;
+    }
+
+    $scope.clickone = function(){
+        $scope.selectpublish = false;
+        $scope.selectone = true;
+        $scope.selectcomplex = false;
+    }
+
+    $scope.clickcomplex = function(){
+        $scope.selectpublish = false;
+        $scope.selectone = false;
+        $scope.selectcomplex = true;
+    }
 
     promise.then(function() {
         $scope.siteinfodata = {
