@@ -22,7 +22,7 @@ vcpapp.config(['$routeProvider', function($routeProvider) {
 
 /* Controllers */
 
-vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArticle) {
+vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, modelArticle) {
     var urluser = "https://vcplatform.firebaseIO.com/usernow";
     $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
 
@@ -33,11 +33,9 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
     var articlesinonepage;
     var pagecount;
 
-    $scope.articlesFirebase.then(function() {
-
+    $q.all([$scope.userFirebase, $scope.articlesFirebase]).then(function() {
         $scope.articlestotaldata = $scope.articlesFirebase;
 //    $scope.articlestotaldata = modelArticle.getArticleList();     // use firebase for database
-
 
     copytotaldata = $scope.articlestotaldata;
 
@@ -88,7 +86,7 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
                    }
                }
         }
-    }
+    };
 
     $scope.loadinit('updated','desc');
 
@@ -186,7 +184,6 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
 
 
     $scope.delArticle = function(article) {
-        debugger;
 
 
         var getdeleteindex=$scope.searchdeleteindex(article);
@@ -343,8 +340,8 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
 
 
 
-vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, modelArticle, angularFire) {
-    debugger;
+vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, $q, modelArticle, angularFire) {
+
     var urluser = "https://vcplatform.firebaseIO.com/usernow";
     $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
 
@@ -382,7 +379,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
     var articleId = $routeParams.articleId;
 //    $scope.articledata = modelArticle.getArticleById(articleId);
 
-    $scope.articlesFirebase.then(function() {
+    $q.all([$scope.userFirebase, $scope.maxidFirebase, $scope.articlesFirebase, $scope.tagsFirebase]).then(function() {
 
         for(var i = $scope.articlesFirebase.length; i--; i>=0){
 
@@ -402,7 +399,6 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
                 $('.tagsinput').importTags(tagstr);
                 $(".tagsinput").tagsInput();    //初始化 加载tag标签
                 return;
-
             }
         }
     });
@@ -541,7 +537,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
 
 
 
-vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle, angularFire ) {
+vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, $q, modelArticle, angularFire ) {
     var urluser = "https://vcplatform.firebaseIO.com/usernow";
     $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
 
@@ -583,7 +579,8 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
         }
     }
 
-    $scope.maxidFirebase.then(function() {
+    $q.all([$scope.userFirebase, $scope.maxidFirebase, $scope.articlesFirebase, $scope.tagsFirebase]).then(function() {
+
         $scope.newarticleadata = {
             "id": getMaxArticleId(),
             "title": "",
@@ -638,7 +635,6 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
     $scope.conformNewArticle = function(callback) {
         if (callback.$valid) {
             $scope.cssmodalshow = true;
-            getMaxArticleId();
         }
     };
 
