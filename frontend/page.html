@@ -41,12 +41,7 @@
         <li id="menuPage"><a href="page.html" class="current">Page</a></li>
         <li id="menuArticle"><a href="article_list_index.html">Article</a></li>
         <li id="menuReports"><a href="reports.html">Reports</a></li>
-        <li id="menuStore"><a href="#">Store</a>
-        	<ul class="subMenuStore">
-            	<li><a href="store.html">Style 1: Fixed width</a></li>
-                <li style="border:0;"><a href="store2.html">Style 2: Adaptive width</a></li>
-            </ul>
-        </li>
+        <li id="menuStore"><a href="store.html">Store</a>
         <li id="menuUser"><a href="user.html">User</a></li>
     </ul>
 </header>
@@ -604,14 +599,15 @@
                             <h2>Page Data</h2>
                             <div class="page_attri_cont">
                                 <form>
+                                	<h6>name</h6>
                                     <input type="text" class="" placeholder="Page Name" ng-model="page.pagename">
-
+									<h6>title</h6>
                                     <input type="text"  class="" placeholder="Page Title" ng-model="page.pagetitle">
-
+									<h6>URL</h6>
                                     <input type="text" class="" placeholder="Page Url" ng-model="page.pageurl">
                                     <div class="btn_box">
-                                    	<a href="#" class="btn btn-delete" ng-click="delpage(page)">Del</a>
                                         <a href="#" class="btn btn-save" ng-click="editsavepage(page)">Save</a>
+                                    	<a href="#" class="btn btn-delete" ng-click="delpage(page)">Del</a>
                                         <!-- 
                                         <a href="#" class="btn attri_del" ng-click="delpage(page)">Del</a>
                                         <a href="#" class="btn attri_save" ng-click="editsavepage(page)">Save</a>
