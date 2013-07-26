@@ -2582,11 +2582,12 @@ background-image: -moz-linear-gradient(top, #151515, #040404); background-image:
 
 .modal.fade.in { top: 10%; }
 
-.modal-header { padding: 9px 15px; border-bottom: 1px solid #eee; }
+.modal-header { padding: 8px 15px; border-bottom: 1px solid #eee; background:#ea6465; border-radius:4px 4px 0 0; }
 
-.modal-header .close { margin-top: 2px; }
+.modal-header .close { margin-top: 2px; width:24px; height:24px; border-radius:100%; background:#222 url(../../app/img/icon_attribute.png) 2px -1398px no-repeat; overflow:hidden; text-indent:-9999px; opacity:0.75;}
+.modal-header .close:hover{ opacity:1;}
 
-.modal-header h3 { margin: 0; line-height: 30px; }
+.modal-header h3 { text-align:center; color:#fff; margin: 0; line-height: 30px; font-size:18px; text-transform:capitalize; }
 
 .modal-body { position: relative; max-height: 500px; padding: 15px; overflow-y: auto; }
 
