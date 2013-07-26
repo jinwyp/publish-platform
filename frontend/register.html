@@ -4,11 +4,7 @@
     <meta charset="utf-8">
     <title>VCP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
-    <script src="lib/jquery/jquery-1.8.2.min.js"></script>
-    
-    <link href="lib/flatui/bootstrap.css" rel="stylesheet">
+    <link href="lib/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="app/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="app/img/favicon.ico">
     <!--[if lt IE 9]>
@@ -50,7 +46,7 @@
     	<div class="reg_stepbox reg_step_1">
         	<div class="reg_box_title clearfix">
             	 <!-- <div class="title_num">1</div>-->
-                <h3 class="title_name">Register</h3>
+                <h1 class="title_name">Register</h1>
             </div>
         	<form name="register" class="reg_form">
             	<h4>Register Information</h4>
@@ -63,7 +59,7 @@
                     <tr>
                     	<td class="titlename">Password</td> <!--user.password-->
                         <td><input id="password" type="password" required ng-model="userdata.password1" minlength="6" maxlength="20" class="reg_input"></td></tr>
-                    <tr>
+                    <tr class="last">
                     	<td class="titlename">Confirm Password</td>
                         <td><input id="reformpassword" type="password" required ng-model="userdata.password2" class="reg_input"></td>
                     </tr>
@@ -75,8 +71,8 @@
                     </tr>
                 </table>
                 </div>
-                <div class="submitbox">
-                    <input type="submit" value="SAVE" class="submit" ng-click="saveemailinfo(register)">
+                <div class="submitbox RegisterSubmitBox">
+                    <input type="submit" value="save" class="btn btn-save" ng-click="saveemailinfo(register)">
                 </div>
             </form>
             
@@ -162,8 +158,9 @@
 
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
     <script src="lib/angularfire/angularfire.js"></script>
-
-    <script src="lib/boostrap/bootstrap.min.js"></script>
+	
+    <script src="lib/jquery/jquery-1.8.2.min.js"></script>
+    <script src="lib/bootstrap/bootstrap.min.js"></script>
     <!-- <script src="lib/jqueryplugin/fancyInput.js"></script>-->
     <!--[if lt IE 8]>
     <script src="lib/flatui/icon-font-ie7.js"></script>

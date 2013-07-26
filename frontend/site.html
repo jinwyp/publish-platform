@@ -4,10 +4,7 @@
     <meta charset="utf-8">
     <title>VCP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <script src="lib/jquery/jquery-1.8.2.min.js"></script>
-    
-    <link href="lib/flatui/bootstrap.css" rel="stylesheet">
+    <link href="lib/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="lib/flatui/flat-ui.css" rel="stylesheet">
     <link href="app/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="app/img/favicon.ico">
@@ -57,10 +54,10 @@
     	<div class="site_stepbox large_step_1">
         	<div class="site_box_title clearfix">
             	 <div class="title_num">1</div>
-                <h3 class="title_name">Create Site</h3>
+                <h1 class="title_name">Create Site</h1>
             </div>
         	<form class="site_form" name="siteinfoform"  >
-            	<h4>Site Attribute<a href="#" class="edit_step" id="edit_step1">Edit</a></h4>
+            	<h4>Site Attribute<a href="#" class="edit_step btn btn-small btn-edit" id="edit_step1">edit</a></h4>
                 <div class="site_form_Box">
                 <table class="table">
                 	<tr>
@@ -99,7 +96,7 @@
                         </tr>
                 </table>
                 </div>
-                <div class="submitbox" ><a href="#" class="submit" id="save_step1" ng-click="savesiteinfo(siteinfoform)">Save</a></div>
+                <div class="submitbox SiteSubmitBox"><input type="submit" class="btn btn-save" id="save_step1" ng-click="savesiteinfo(siteinfoform)" value="save"></div>
             </form>
             
         </div>
@@ -110,10 +107,10 @@
         <div class="site_stepbox mini_step_2">
         	<div class="site_box_title clearfix">
             	<div class="title_num">2</div>
-                <h3 class="title_name">Select Theme</h3>
+                <h1 class="title_name">Select Theme</h1>
             </div>
         	<form class="site_form">
-            	<h4>Select Theme<a href="##" class="edit_step" id="edit_step2">Edit</a></h4>
+            	<h4>Select Theme<a href="##" class="edit_step btn btn-small btn-edit" id="edit_step2">edit</a></h4>
                 <div class="site_form_Box">
                     <div class="site_themebox">
                     
@@ -177,7 +174,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="submitbox"><a href="##" class="submit" id="save_step2">Save</a></div>
+                <div class="submitbox SiteSubmitBox"><input type="submit" class="btn btn-save" id="save_step2" value="save"></div>
             </form>
         </div>
         
@@ -187,17 +184,17 @@
         <div class="site_stepbox mini_step_3">
         	<div class="site_box_title clearfix">
             	<div class="title_num">3</div>
-                <h3 class="title_name">Logo</h3>
+                <h1 class="title_name">Logo</h1>
             </div>
         	<form class="site_form">
-            	<h4>Logo<a href="##" class="edit_step" id="edit_step3">Edit</a></h4>
+            	<h4>Logo<a href="##" class="edit_step btn btn-small btn-edit" id="edit_step3">edit</a></h4>
                 <div class="site_form_Box">
                     <table class="table">
                         <tr><td class="titlename">Logo</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
                         <tr class="last"><td class="titlename">Web Icon</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
                     </table>
                 </div>
-                <div class="submitbox"><a href="##" class="submit" id="save_step3">Save</a></div>
+                <div class="submitbox SiteSubmitBox"><input type="submit" class="btn btn-save" id="save_step3" value="save"></div>
             </form>
         </div>
         
@@ -207,19 +204,19 @@
         <div class="site_stepbox mini_step_4">
         	<div class="site_box_title clearfix">
             	<div class="title_num">4</div>
-                <h3 class="title_name">Workflow</h3>
+                <h1 class="title_name">Workflow</h1>
             </div>
         	<form class="site_form">
-            	<h4>Workflow<a href="##" class="edit_step" id="edit_step4">Edit</a></h4>
+            	<h4>Workflow<a href="##" class="edit_step btn btn-small btn-edit" id="edit_step4">edit</a></h4>
                 <div class="site_form_Box">
                     <div class="site_workflow">
                         <h6>Which one you like the review process?</h6>
                         <p><a href="###" class="btn btn-info">Publish directly</a></p>
-                        <p><a href="###" class="btn btn-success">One step review and publish</a></p>
+                        <p><a href="###" class="btn btn-success workFlowSelect"><i class="icon-ok-sign icon-white"></i> One step review and publish</a></p>
                         <p><a href="###" class="btn btn-warning">More step review and publish</a></p>
                     </div>
                 </div>
-                <div class="submitbox"><a href="page.html" class="submit" id="save_step4">Save</a></div>
+                <div class="submitbox SiteSubmitBox"><input type="submit" class="btn btn-save" id="save_step4" value="save" onclick="location.href='page.html'"></div>
             </form>
         </div>
         
@@ -243,9 +240,9 @@
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
     <script src="lib/angularfire/angularfire.js"></script>
 
-
+	<script src="lib/jquery/jquery-1.8.2.min.js"></script>
     <script src="lib/jqueryplugin/jquery.easing.1.3.js"></script>
-    <script src="lib/boostrap/bootstrap.min.js"></script>
+    <script src="lib/bootstrap/bootstrap.min.js"></script>
     <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
 
     <script src="lib/flatui/custom_checkbox_and_radio.js"></script>

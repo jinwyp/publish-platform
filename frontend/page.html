@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>VCP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="lib/flatui/bootstrap.css" rel="stylesheet">
+    <link href="lib/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="lib/flatui/flat-ui.css" rel="stylesheet">
     <link href="app/style.css" rel="stylesheet">
     <link href="lib/angularslider/angular-slider.css" rel="stylesheet">
@@ -79,6 +79,9 @@
                         <div class="tipbox_layout">
                             <a href="#"  ng-repeat="blocklayout in blocklayouts"  ng-click="addblocktopage('auto', currentlayoutcontainer, $index, blocklayout.id)">
                                 <img ng-src="{{ blocklayout.layoutimage }}" >
+                            </a>
+                            <a href="#" class="selected">
+                                <img src="app/img/ico_layout_01.png">
                             </a>
                         </div>
                     </dd>
@@ -351,8 +354,8 @@
                                                     </label>
                                                     <div class="newlink_panel_btn">
                                                         <span id="error" ng-show="showerror" style="color:red;font-size:12px;">Please delete it's all child menu.</span><br>
-                                                        <input type="submit" value="Save" class="btn btn-success" ng-click="saveheaderinfo()">
-                                                        <input id="delete" type="button" value="Cancel" class="btn" ng-click="deleteparentmenu($event)">
+                                                        <input type="submit" value="save" class="btn btn-save" ng-click="saveheaderinfo()">
+                                                        <input id="delete" type="button" value="cancel" class="btn btn-delete" ng-click="deleteparentmenu($event)">
                                                     </div>
                                                 </div>
                                             </form>
@@ -610,8 +613,12 @@
                                     <input type="text" class="" placeholder="Page Url" ng-model="page.pageurl">
                                     <i class="clearfix">This name for this page that is presented in your navigation bar.</i>
                                     <div class="btn_box">
+                                    	<a href="#" class="btn btn-delete" ng-click="delpage(page)">Del</a>
+                                        <a href="#" class="btn btn-save" ng-click="editsavepage(page)">Save</a>
+                                        <!-- 
                                         <a href="#" class="btn attri_del" ng-click="delpage(page)">Del</a>
                                         <a href="#" class="btn attri_save" ng-click="editsavepage(page)">Save</a>
+                                        -->
                                     </div>
                                 </form>
                             </div>
@@ -636,7 +643,7 @@
                     <img ng-src="{{layout.layoutimage}}">
                 </li>
             </ul>
-            <span href="##" class="ico_layout_close ico_layout_open"></span>
+            <!-- <span href="##" class="ico_layout_close ico_layout_open"></span> -->
         </div>
         <!-- Page Layout//End -->
 </div>
@@ -668,7 +675,7 @@
     <script src="lib/flatui/jquery.placeholder.js"></script>
 
     <!-- Bootstrap Plug -->
-    <script src="lib/boostrap/bootstrap.js"></script>
+    <script src="lib/bootstrap/bootstrap.js"></script>
     <!--[if lt IE 8]>
       <script src="lib/flatui/icon-font-ie7.js"></script>
       <script src="lib/flatui/lte-ie7-24.js"></script>

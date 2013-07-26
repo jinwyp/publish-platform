@@ -53,8 +53,8 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button class="btn" ng-click="closeDelModal()">Cancel</button>
-                            <button class="btn btn-danger"  ng-click="delArticle(articledata.id)">Delete</button>
+                            <button class="btn btn-cancel" ng-click="closeDelModal()">Cancel</button>
+                            <button class="btn btn-save"  ng-click="delArticle(articledata.id)">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -178,7 +178,8 @@
     <div class="article-footer">
         <!-- 发布按钮 -->
         <div class="article_btn">
-            <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="confirmModifyArticle(ArticleForm)">
+            <input type="submit" value="SAVE DRAFT" class="btn btn-save" ng-click="confirmModifyArticle(ArticleForm)">
+            <!-- <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="confirmModifyArticle(ArticleForm)"> -->
             <!--<input type="submit" value="PUBLISH" class="btn-publish" style="display:none;" ng-click="publisharticle(ArticleForm)">-->
         </div>
         
