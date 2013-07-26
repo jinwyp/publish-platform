@@ -966,7 +966,7 @@ ul.nav_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-filt
 .f_theme_panel .theme_04	{ background:url(img/footer_theme_04.jpg) no-repeat;}
 
 /* Footer Link Panel */
-.footerlink_panel			{ position:relative; margin:0 auto; bottom:0px; width:912px; padding:14px 14px 0; border-radius:0 0 4px 4px; box-shadow:0 1px 2px rgba(0,0,0,0.5); background: -webkit-gradient(linear, 0 0, 0 100%, from(#eee), to(#ddd)); background: -moz-linear-gradient(top, #eee, #ddd);}
+.footerlink_panel			{ position:relative; margin:0 auto; bottom:-16px; width:912px; padding:14px 14px 0; border-radius:0 0 4px 4px; box-shadow:0 1px 2px rgba(0,0,0,0.5); background: -webkit-gradient(linear, 0 0, 0 100%, from(#eee), to(#ddd)); background: -moz-linear-gradient(top, #eee, #ddd);}
 
 /* Panel structure */
 ul.footer_structure > li{ float:left; margin:0 14px 14px 0;}
