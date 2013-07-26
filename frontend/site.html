@@ -30,7 +30,6 @@
 	<h1 class="logo"><a href="index.html">VCP</a></h1>
     <a href="../demo/index.html" class="preview">preview</a>
     <ul class="menu clearfix">
-    	<li id="menuUser"><a href="user.html">User</a></li>
     	<li id="menuSite"><a href="site.html" class="current">Site</a></li>
         <li id="menuPage"><a href="page.html">Page</a></li>
         <li id="menuArticle"><a href="article_list_index.html">Article</a></li>
@@ -41,6 +40,7 @@
                 <li style="border:0;"><a href="store2.html">Style 2: Adaptive width</a></li>
             </ul>
         </li>
+        <li id="menuUser"><a href="user.html">User</a></li>
     </ul>
 </header>
         
@@ -54,10 +54,10 @@
     	<div class="site_stepbox large_step_1">
         	<div class="site_box_title clearfix">
             	 <div class="title_num">1</div>
-                <h1 class="title_name">Create Site</h1>
+                <h1 class="title_name">Site Data</h1>
             </div>
         	<form class="site_form" name="siteinfoform"  >
-            	<h4>Site Attribute<a href="#" class="edit_step btn btn-small btn-edit" id="edit_step1">edit</a></h4>
+            	<h4>Site Data<a href="#" class="edit_step btn btn-small btn-edit" id="edit_step1">edit</a></h4>
                 <div class="site_form_Box">
                 <table class="table">
                 	<tr>
@@ -70,25 +70,25 @@
                        <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
                         <td><input type="text" value="" class="site_input site_input2" placeholder="Domain" required ng-model="siteinfodata.domain"><span class="site_inputspan">.vcp.com</span></td></tr>
                     <tr>
-                    	<td class="titlename">Meta</td>
+                    	<td class="titlename">Meta Data</td>
                         <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
                         <td><input type="text" value="" class="site_input" placeholder="Meta" required ng-model="siteinfodata.meta"></td></tr>
                     <tr>
                     	<td class="titlename">Type</td>
                         <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
                         <td>
-                            <select ng-model="siteinfodata.type">
+                            <select ng-model="siteinfodata.type" style="width: 190px;margin-left: 7px;">
                                 <option>Bussness</option>
                                 <option>Organization</option>
                                 <option>Persional</option>
                             </select></td>
                     </tr>
                      <tr class="last">
-                    	<td class="titlename">RSS Feed</td>
+                    	<td class="titlename">RSS Link</td>
                         <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
                         <td>
-                        <label class="RssFeedLabel"><input type="radio" name="RSSfeed" id="RssFeedOff" ng-model="siteinfodata.rssapi" value="false">Off</label>
-                        <label class="RssFeedLabel"><input type="radio" name="RSSfeed" id="RssFeedOn" ng-model="siteinfodata.rssapi" value="true">On</label>
+                        <label class="RssFeedLabel" style="padding-left: 7px;"><input type="radio" name="RSSfeed" id="RssFeedOff" ng-model="siteinfodata.rssapi" value="false">Off</label>
+                        <label class="RssFeedLabel" style="padding-left: 7px;"><input type="radio" name="RSSfeed" id="RssFeedOn" ng-model="siteinfodata.rssapi" value="true">On</label>
                         <div class="RssFeedOn_Box" ng-show="siteinfodata.rssapi" >
                         http://{{ siteinfodata.domain }}.vcp.com/api/0000001
                         </div>
@@ -184,10 +184,10 @@
         <div class="site_stepbox mini_step_3">
         	<div class="site_box_title clearfix">
             	<div class="title_num">3</div>
-                <h1 class="title_name">Logo</h1>
+                <h1 class="title_name">Select Logo</h1>
             </div>
         	<form class="site_form">
-            	<h4>Logo<a href="##" class="edit_step btn btn-small btn-edit" id="edit_step3">edit</a></h4>
+            	<h4>Select Logo<a href="##" class="edit_step btn btn-small btn-edit" id="edit_step3">edit</a></h4>
                 <div class="site_form_Box">
                     <table class="table">
                         <tr><td class="titlename">Logo</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
@@ -204,16 +204,16 @@
         <div class="site_stepbox mini_step_4">
         	<div class="site_box_title clearfix">
             	<div class="title_num">4</div>
-                <h1 class="title_name">Workflow</h1>
+                <h1 class="title_name">Select Publishing Workflow</h1>
             </div>
         	<form class="site_form">
-            	<h4>Workflow<a href="##" class="edit_step btn btn-small btn-edit" id="edit_step4">edit</a></h4>
+            	<h4>Select Publishing Workflow<a href="##" class="edit_step btn btn-small btn-edit" id="edit_step4">edit</a></h4>
                 <div class="site_form_Box">
                     <div class="site_workflow">
-                        <h6>Which one you like the review process?</h6>
-                        <p><a href="###" class="btn btn-info">Publish directly</a></p>
-                        <p><a href="###" class="btn btn-success workFlowSelect"><i class="icon-ok-sign icon-white"></i> One step review and publish</a></p>
-                        <p><a href="###" class="btn btn-warning">More step review and publish</a></p>
+                        <h6></h6>
+                        <p><a href="###" class="btn btn-info">Publish Directly</a></p>
+                        <p><a href="###" class="btn btn-success workFlowSelect"><i class="icon-ok-sign icon-white"></i> One Step</a></p>
+                        <p><a href="###" class="btn btn-warning">Complex Review And Publish</a></p>
                     </div>
                 </div>
                 <div class="submitbox SiteSubmitBox"><input type="submit" class="btn btn-save" id="save_step4" value="save" onclick="location.href='page.html'"></div>
