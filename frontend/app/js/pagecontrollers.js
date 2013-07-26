@@ -402,6 +402,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     $scope.hideaddblockmenubutton = function() {
         this.cssblockaddmenubutton = false;
         this.cssblocktipadd = false;
+        $(".tip_box").fadeOut(300);
     };
 
     $scope.showblocksettingmenu = function( blocktype, event1, layoutcontainer ) {
@@ -991,6 +992,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     }
     $scope.hidefootmenusetting=function(){
         $scope.cssfootermenubutton = false;
+        $scope.cssfootersetting = false; //隐藏footer的设置面板
     }
     $scope.clickfootertheme = function(indexid, themedata){
         $scope.cssfooterthemeindex = indexid;
