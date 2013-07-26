@@ -404,7 +404,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         this.cssblocktipadd = false;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipbox = false;
         $scope.currentlayoutcontainer = layoutcontainer;
-        console.log($scope.currentlayoutcontainer);
+
         switch(blocktype)
         {
             case 'auto':
@@ -601,16 +601,20 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
                                     if(typeof(block.blockarticles) == "undefined"  ){
                                         block.blockarticles = [];
-                                        block.blockarticles.push(angular.copy(newaritcle));
-                                    }else{
+
+                                    }
+                                    var alreadyhavethisarticle = [];
+                                    alreadyhavethisarticle = _.where(block.blockarticles, {id: newaritcle.id});
+                                    if(alreadyhavethisarticle.length == 0){
                                         block.blockarticles.push(angular.copy(newaritcle));
                                     }
+
 
                                 }
                             });
                         }
                     });
-//                    $scope.singlepage = page;
+                    $scope.singlepage = page;
 
                 }
             })
