@@ -34,7 +34,7 @@
                 <div class="modal" modal="cssshowcomments" options="cssmodalslide" >
                     <div class="modal-header">
                         <button type="button" class="close" ng-click="closecomments()">&times;</button>
-                        <h3>Review Comment</h3>
+                        <h3>{{ currentarticlestatus }} Comment</h3>
                     </div>
 					
                     <div class="modal-body">
@@ -86,8 +86,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button class="btn" ng-click="closecomments()">Cancel</button>
-                        <button class="btn btn-danger" ng-click="savearticlestatus()">Save</button>
+                        <!--<button class="btn" ng-click="closecomments()">Cancel</button>-->
+                        <button class="btn btn-save" ng-click="savearticlestatus()">Save</button>
                     </div>
                 </div>
                 
