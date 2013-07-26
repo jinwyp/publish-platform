@@ -23,24 +23,23 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
     $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
 
     $scope.userdata = {};
-
+    var usercheckexist;
     $scope.usersFirebase.then(function() {
-    $scope.usercheckexist = _.findWhere($scope.usersFirebase, {email: $scope.userFirebase.email});
-    console.log($scope.usercheckexist);
+        usercheckexist = _.findWhere($scope.usersFirebase, {email: $scope.userFirebase.email});
 
         $scope.userdata = {
-            firstname : $scope.usercheckexist.firstname,
-            lastname : $scope.usercheckexist.lastname,
-            mobilenumber : $scope.usercheckexist.mobilenumber,
-            email : $scope.usercheckexist.email,
+            firstname : usercheckexist.firstname,
+            lastname : usercheckexist.lastname,
+            mobilenumber : usercheckexist.mobilenumber,
+            email : usercheckexist.email,
             oldpassword : '',
             newpassword1 : '',
             newpassword2 : '',
-            gender : $scope.usercheckexist.gender
+            gender : usercheckexist.gender
         };
+
+        console.log(usercheckexist);
     });
-
-
 
 
 
@@ -60,26 +59,28 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
     //保存用户基本信息
     $scope.saveuserinfo = function(callback){
         if (callback.$valid) {
-            $scope.usercheckexist = {
-                email : $scope.usercheckexist.email,
-                password : $scope.usercheckexist.password,
+            usercheckexist = {
+                email : usercheckexist.email,
+                password : usercheckexist.password,
                 firstname : $scope.userdata.firstname,
                 lastname : $scope.userdata.lastname,
                 mobilenumber : $scope.userdata.mobilenumber,
                 gender : $scope.userdata.gender
             };
+
+            console.log(usercheckexist, $scope.userdata);
             $(".userAccount").animate({left:"28%"});
             $(".userPassword").animate({left:"0%"});
 
             //保存到firebase中
             for(var i = $scope.usersFirebase.length; i--; i>=0){
-                if ($scope.usersFirebase[i].email == $scope.usercheckexist.email) {
-                    $scope.usersFirebase[i] = $scope.usercheckexist;
+                if ($scope.usersFirebase[i].email == usercheckexist.email) {
+                    $scope.usersFirebase[i] = usercheckexist;
                 }
             }
-
+            console.log(usercheckexist);
 //            modelSite.updateSite($scope.site);    // use firebase for database
-            location.href = "site.html";
+//            location.href = "site.html";
         }
     };
 
@@ -145,33 +146,35 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire) 
         password : ''
     };
 
-    //登录
-    $scope.userlogin = function(callback){
-        var usersdata = $scope.usersFirebase;
-        var usercheckexist = _.where($scope.usersFirebase, {email: $scope.userdata.email, password: $scope.userdata.password});
+    $scope.usersFirebase.then(function(){
+        //登录
+        $scope.userlogin = function(callback){
+            var userlist = $scope.usersFirebase;
+            var usercheckexist = _.where($scope.usersFirebase, {email: $scope.userdata.email, password: $scope.userdata.password});
 
-        console.log(usercheckexist.length);
-        if (callback.$valid) {
-            if(usercheckexist.length == 0){
-                alert('Email or Password error!');
+            console.log(usercheckexist.length, userlist);
+            if (callback.$valid) {
+                if(usercheckexist.length == 0){
+                    alert('Email or Password error!');
 
-            }else{
-                $scope.userFirebase ={
-                    email : usercheckexist[0].email,
-                    password : usercheckexist[0].password,
-                    firstname : usercheckexist[0].firstname,
-                    lastname : usercheckexist[0].lastname,
-                    mobilenumber : usercheckexist[0].mobilenumber,
-                    gender : usercheckexist[0].gender
-                };
+                }else{
+                    $scope.userFirebase ={
+                        email : usercheckexist[0].email,
+                        password : usercheckexist[0].password,
+                        firstname : usercheckexist[0].firstname,
+                        lastname : usercheckexist[0].lastname,
+                        mobilenumber : usercheckexist[0].mobilenumber,
+                        gender : usercheckexist[0].gender
+                    };
 
-                $timeout(function() {
-                    location.href = "user.html";
-                }, 1000);
+                    $timeout(function() {
+                        location.href = "user.html";
+                    }, 1000);
+                }
+
             }
-
         }
-    }
+    })
 };
 
 
