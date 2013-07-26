@@ -689,7 +689,7 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 .addpage_btn:hover{ color:#fff; background:rgba(0,0,0,1); background:#000\9; box-shadow:0 0 3px rgba(255,255,255,0.4); text-decoration:none;}
 
 /* Page Attribute Panel */
-.page_attri_panel					{ position:absolute; right:-280px; top:-20px; padding:0; background:#343434; z-index:99; border-radius:8px; box-shadow:2px 2px 30px rgba(0,0,0,0.6); cursor:default;}
+.page_attri_panel					{ position:absolute; right:-222px; top:-20px; padding:0; background:#343434; z-index:99; border-radius:8px; box-shadow:2px 2px 30px rgba(0,0,0,0.6); cursor:default;}
 .page_attri_panel:after				{ content:''; position:absolute; left:2px; top:37px; margin-left:-12px; width:10px; height:19px; background:url(img/tip_arrow_l.png) no-repeat;}
 
 .page_attri_panel h1				{ font-size:18px; height:36px; line-height:34px; text-align:center; color:#fff; margin:0; padding:0; border-radius:8px 8px 0 0; background:#ea6465;}
@@ -697,12 +697,14 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 .page_attri_panel h1 .TipBoxClose:hover,
 .page_attri_panel h1 .TipBoxClose:active{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); opacity:1;}
 
-.page_attri_panel h6				{ margin:0 0 6px 0; font-size: 14px; font-weight: bold; text-transform: capitalize; color:#bbb;}
+.page_attri_panel h6				{ float:left; display:block; width:40px; margin:0 0 6px 0; padding-right:8px; text-align:right; font-size: 14px; font-weight: bold; line-height:30px; text-transform: capitalize; color:#bbb;}
 
 .page_attri_cont					{ padding:10px 30px;}
+.page_attri_cont form				{ margin:0;}
+.page_attri_cont div				{ margin-bottom:10px; clear:both;}
 .page_attri_cont i 					{ font-style:normal; font-weight:normal; line-height:14px !important; font-size:12px; color:#9a9a9a;}
-.page_attri_cont input				{ padding:6px; margin:0 0 10px 0;}
-.page_attri_cont .btn_box			{ padding:20px 0 0 0; text-align:right;}
+.page_attri_cont input				{ width:100px; float:left;}
+.page_attri_cont .btn_box			{ padding:0; text-align:right;}
 
 
 
