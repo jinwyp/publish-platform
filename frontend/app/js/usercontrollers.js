@@ -146,6 +146,7 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire, 
         password : ''
     };
 
+
     //登录
     $scope.userlogin = function(callback){
         var usersdata = $scope.usersFirebase;
