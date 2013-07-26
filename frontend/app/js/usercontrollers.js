@@ -177,7 +177,7 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire) 
 
 
 
-page.c.userRegisterController = function($scope, $location, $timeout, angularFire) {
+page.c.userRegisterController = function($scope, $location,  $q, $timeout, angularFire) {
 //    $scope.site = modelSite.getSite(); // use firebase for database
     var singleuserurl = "https://vcplatform.firebaseIO.com/usernow";
     $scope.userFirebase = angularFire(singleuserurl, $scope, 'userFirebase', {});
@@ -193,12 +193,20 @@ page.c.userRegisterController = function($scope, $location, $timeout, angularFir
 
     $scope.csspasswordprompt = false;
 
+    var usercheckexist =[] ;
+
+
+    $scope.usersFirebase.then(function() {
+
+
+
     //注册用户 保存密码和邮箱
     $scope.saveemailinfo = function(callback){
-        var usersdata = $scope.usersFirebase;
-        var usercheckexist = _.where($scope.usersFirebase, {email: $scope.userdata.email, password: $scope.userdata.password1});
+        usercheckexist = _.where($scope.usersFirebase, {email: $scope.userdata.email, password: $scope.userdata.password1});
+        console.log(usercheckexist);
 
         if (callback.$valid) {
+
             if(usercheckexist.length == 1){
                 $scope.cssemailprompt = true;
 
@@ -216,7 +224,6 @@ page.c.userRegisterController = function($scope, $location, $timeout, angularFir
 
                     $scope.usersFirebase.push(newuser);
 
-
                     $scope.userFirebase ={
                         email : $scope.userdata.email,
                         password : $scope.userdata.password1,
@@ -226,7 +233,6 @@ page.c.userRegisterController = function($scope, $location, $timeout, angularFir
                         gender : ""
                     };
 
-                    console.log($scope.userFirebase);
                     //$scope.site.userinfo = $scope.userdata;  // use firebase for database
                     //modelSite.updateSite($scope.site);     // use firebase for database
                     $timeout(function() {
@@ -240,6 +246,7 @@ page.c.userRegisterController = function($scope, $location, $timeout, angularFir
         }
     }
 
+    })
 };
 
 
