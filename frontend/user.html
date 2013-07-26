@@ -97,12 +97,18 @@
                             <input id="newpassword" type="password" ng-model="userdata.newpassword1">
                             <h6>confirm new password</h6>
                             <input id="conformpassword" type="password" ng-model="userdata.newpassword2">
-                            <h6 ng-show="cssoldpassword" style="color:#ff0000;">Old password error !</h6>
-                            <h6 ng-show="cssnewpassword" style="color:#ff0000;">Please input new password !</h6>
-                            <h6 ng-show="cssnewpassword2" style="color:#ff0000;">Please input new password again !</h6>
-                            <h6 ng-show="cssshowinconsistent" style="color:#ff0000;">Password inconsistent!</h6>
+                            
+                            
+                            
                         </div>
                     </div>
+                    
+                    <div class="wrongTip" ng-show="cssoldpassword">Old password error !</div>
+                    <div class="wrongTip" ng-show="cssnewpassword">Please input new password !</div>
+                    <div class="wrongTip" ng-show="cssnewpassword2">Please input new password again !</div>
+                    <div class="wrongTip" ng-show="cssshowinconsistent">Password inconsistent!</div>
+                            
+                            
                     <div class="submitbox savePWD">
                         <input type="submit" id="savepwd" class="btn btn-save" value="save" ng-click="modifypassword()">
                     </div>
