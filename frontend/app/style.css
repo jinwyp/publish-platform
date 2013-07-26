@@ -542,7 +542,7 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 .site_workflow .btn-warning.workFlowSelect:hover{ color: #ffffff; background-color: #f89406; *background-color: #df8505; background-image: none; outline: 0; -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);}
 
 
-
+   .showicon{display: none;}
 
 
 

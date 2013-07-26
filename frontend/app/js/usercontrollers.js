@@ -39,6 +39,9 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
         };
 
         console.log(usercheckexist);
+
+
+
     });
 
 
@@ -78,9 +81,9 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
                     $scope.usersFirebase[i] = usercheckexist;
                 }
             }
-            console.log(usercheckexist);
+           // console.log(usercheckexist);
 //            modelSite.updateSite($scope.site);    // use firebase for database
-//            location.href = "site.html";
+            location.href = "site.html";
         }
     };
 
@@ -91,7 +94,6 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
         $scope.cssnewpassword = false;
         $scope.cssnewpassword2 = false;
         $scope.cssshowinconsistent = false;
-
         if($scope.userdata.oldpassword != $scope.userFirebase.password){
             $scope.cssoldpassword = true;
             $("#oldpassword").focus();
@@ -110,22 +112,24 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
 
         }else{
             $scope.usercheckexist = {
-                email : $scope.usercheckexist.email,
+                email : usercheckexist.email,
                 password : $scope.userdata.newpassword1,
-                firstname :$scope.usercheckexist.firstname,
-                lastname : $scope.usercheckexist.lastname,
-                mobilenumber : $scope.usercheckexist.mobilenumber,
-                gender : $scope.usercheckexist.gender
+                firstname :usercheckexist.firstname,
+                lastname : usercheckexist.lastname,
+                mobilenumber : usercheckexist.mobilenumber,
+                gender : usercheckexist.gender
             };
 
+            $scope.cssshowpasswordbox = false;
             //保存到firebase中
             for(var i = $scope.usersFirebase.length; i--; i>=0){
-                if ($scope.usersFirebase[i].email == $scope.usercheckexist.email) {
-                    $scope.usersFirebase[i] = $scope.usercheckexist;
+                if ($scope.usersFirebase[i].email == usercheckexist.email) {
+                    $scope.usersFirebase[i] = usercheckexist;
                 }
             }
+            $(".userAccount").animate({left:"28%"});
+            $(".userPassword").animate({left:"0%"});
 //              modelSite.updateSite($scope.site);     // use firebase for database
-            $scope.cssshowpasswordbox = false;
         }
     };
 
@@ -208,7 +212,7 @@ page.c.userRegisterController = function($scope, $location, $timeout, angularFir
 
         if (callback.$valid) {
 
-            if(usercheckexist.length == 1){
+            if(usercheckexist.length >= 1){
                 $scope.cssemailprompt = true;
 
             }else if($scope.userdata.password1 == $scope.userdata.password2){

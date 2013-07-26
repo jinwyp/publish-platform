@@ -749,7 +749,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         setupLabel();
         insertdata=true;
 
-         $scope.cssshowdeleteicon = false;
+        $scope.cssshowdeleteicon = false;
 
     };
     $scope.newheaderdata ={};
