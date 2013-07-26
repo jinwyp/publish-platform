@@ -344,6 +344,7 @@ vcpapp.controller.articleList = function ($scope, $filter, angularFire, modelArt
 
 
 vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, modelArticle, angularFire) {
+    debugger;
     var urluser = "https://vcplatform.firebaseIO.com/usernow";
     $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
 
@@ -400,6 +401,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
                 }
                 $('.tagsinput').importTags(tagstr);
                 $(".tagsinput").tagsInput();    //初始化 加载tag标签
+                return;
             }
         }
     });

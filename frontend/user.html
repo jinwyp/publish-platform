@@ -28,7 +28,6 @@
 	<h1 class="logo"><a href="index.html">VCP</a></h1>
     <a href="../demo/index.html" class="preview">preview</a>
     <ul class="menu clearfix">
-    	<li id="menuUser"><a href="user.html" class="current">User</a></li>
     	<li id="menuSite"><a href="site.html">Site</a></li>
         <li id="menuPage"><a href="page.html">Page</a></li>
         <li id="menuArticle"><a href="article_list_index.html">Article</a></li>
@@ -39,6 +38,7 @@
                 <li style="border:0;"><a href="store2.html">Style 2: Adaptive width</a></li>
             </ul>
         </li>
+        <li id="menuUser"><a href="user.html" class="current">User</a></li>
     </ul>
 </header>
         
@@ -50,15 +50,15 @@
     	<!-- 头像、基本信息 -->
         <form name="userinfo">
             <div class="userBox userAccount">
-                <h1 class="title_name">account information</h1>
+                <h1 class="title_name">User Information</h1>
                 <!-- userFormBox -->
                 <div class="userFormBox clearfix">
                     <div class="userFormFloat">
-						  <h6 style="margin:0 0 10px 0; text-transform:capitalize;">head photo</h6>
+						  <h6 style="margin:0 0 10px 0; text-transform:capitalize;">User Picture</h6>
                         <!-- 无头像时: class="userPhoto empty" -->
                         <div class="userPhoto empty"  ng-hide = "csshaveavatar">
                             <h6>drop here</h6>
-                            <input type="submit" class="btn" value="browser" ng-click="uploadavator()">
+                            <input type="submit" class="btn" value="Browse" ng-click="uploadavator()">
                         </div>
 
                         <!-- 有头像时: class="userPhoto full" -->
