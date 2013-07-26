@@ -722,34 +722,39 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     };
 
     //insert header data form
-    var insertdata=false;
-    var ishead=false;
-    $scope.footerli=-1;
-    $scope.showheaderform=function(param1,param,evt,isheader){
+    var insertdata=false;   //是否新增还是修改
+    var ishead=false;   //是否是头部还是底部
+    $scope.footerli=-1;  // 选中footer菜单索引值
+    $scope.cssshowdeleteicon = false;//显示delete 按钮
+    $scope.showheaderform=function(index,ischild,evt,isheader){
         var blockcontent = $(evt.target).parent().parent();
         blockcontent.append($(".newlink_panel"));
         $scope.csstitleform=true;
         ishead=isheader;
         $scope.footercommonfunction();
         if(isheader){
-            $scope.showli=$scope.csstitleform ? param1 : -1;
-            $scope.showerror=false;
-            headerflag=param;
-            headerparentid=param1;
+            $scope.showli=$scope.csstitleform ? index : -1;//  选中header菜单索引值
+            $scope.showerror=false;  //显示删除出错的信息
+            headerflag=ischild;     //是否header还是child
+            headerparentid=index; //header parentid
         }else{
-            $scope.footerli=$scope.csstitleform ? param1 : -1;
+            $scope.footerli=$scope.csstitleform ? index : -1;
         }
         $scope.newheaderdata.menutype='local';
         $scope.newheaderdata.menuname="";
         $scope.newheaderdata.linkedurl="";
-        $("#delete")[0].value='Cancel';
         $scope.headerlocalurl="Homepage";
         $("#urltype1").attr("checked",false);
         $("#urltype2").attr("checked",true);
         setupLabel();
         insertdata=true;
+
+         $scope.cssshowdeleteicon = false;
+
     };
     $scope.newheaderdata ={};
+
+    //查找page id
     $scope.checkpargeid=function(){
         for(var i=0;i<$scope.pages.length;i++){
             if($scope.pages[i].pagename== $scope.headerlocalurl){
@@ -779,9 +784,9 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         $scope.csstitleform=false;
         $scope.footercommonfunction();
 
-        if(ishead){
-            if(headerflag){
-                if(insertdata){
+        if(ishead){  //当前保存是否是header还是footer
+            if(headerflag){ //是否header还是child
+                if(insertdata){    //是否是添加还是修改
                     if($scope.header.length==0){
                         var headeridindex=1;
                     }else{
@@ -812,7 +817,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
                     $scope.sitedataFirebase.headerdata = $scope.get_site.headerdata;
 //                    modelSite.savesitedata($scope.get_site);
                 }
-            }else{
+            }else{ //child 添加和修改方法
                 if(insertdata){
                     if(typeof($scope.sitedataFirebase.headerdata) == "undefined"){
                         $scope.sitedataFirebase.headerdata = [];
@@ -850,7 +855,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 //                    modelSite.savesitedata($scope.get_site);
                 }
             }
-        }else{
+        }else{  //footer修改和添加方法
             if(insertdata){
                 if($scope.footer.length==0){
                     var footeridindex=1;
@@ -888,23 +893,27 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     var headclass='';
     //edit parent menu
     $scope.openheaderinfo=function(parentindex,obj,evt){
-        insertdata=false;
+        insertdata=false;   //当前是操作是修改（方便保存判断）
         headerflag=true;
         var blockcontent = $(evt.target).parent().parent();
         blockcontent.prepend($(".newlink_panel"));
         $scope.csstitleform=true;
         $scope.footercommonfunction();
-        $scope.showa=$scope.csstitleform ? parentindex : -1;
+        $scope.showa=$scope.csstitleform ? parentindex : -1; //选中header当前index
         $scope.showerror=false;
-        parentmenuindex=parentindex;
-        childmenuindex='';
-        childmenudata='';
-        headclass=obj;
+        parentmenuindex=parentindex;   //保存或删除用到时候，parentid
+        childmenuindex='';    //判断是否是parent index
+        childmenudata='';  //复制当前child所有信息
+        headclass=obj;  //复制当前header所有信息
         ishead=true;
         $scope.newheaderdata.menuname=obj.menuname;
         $scope.newheaderdata.menutype=obj.menutype;
         $scope.assignmentform(obj);
+
+        $scope.cssshowdeleteicon = true;
     }
+
+
     $scope.footerlia=-1;
     var footerclass='';
     var footerindex='';
@@ -922,6 +931,8 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         $scope.newheaderdata.menuname=obj.footername;
         $scope.newheaderdata.menutype=obj.footertype;
         $scope.assignmentform(obj);
+
+        $scope.cssshowdeleteicon = true;
     }
 
     var headchildclass='';
@@ -943,12 +954,14 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         $scope.newheaderdata.menuname=obj.menuname;
         $scope.newheaderdata.menutype=obj.menutype;
         $scope.assignmentform(obj);
+
+        $scope.cssshowdeleteicon = true;
     }
     //delete menu
     $scope.deleteparentmenu=function(evt){
 
         if(ishead){
-            if($("#delete")[0].value=='Delete'){
+            //if($("#delete")[0].value=='Delete'){
                 if(childmenuindex===''){
                     if(typeof($scope.header[parentmenuindex].childdata) == "undefined"){
                         $scope.header[parentmenuindex].childdata = [];
@@ -968,16 +981,16 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
                     childmenudata.splice(childmenuindex,1);
                     $scope.csstitleform=false;
                 }
-            }else{
+         /*   }else{
                 $scope.csstitleform=false;
-            }
+            }*/
         }else{
-            if($("#delete")[0].value=='Delete'){
+            //if($("#delete")[0].value=='Delete'){
                 $scope.footer.splice(footerindex,1);
                 $scope.csstitleform=false;
-            }else{
+          /*  }else{
                 $scope.csstitleform=false;
-            }
+            }*/
         }
 
         $scope.sitedataFirebase.headerdata = $scope.get_site.headerdata;
@@ -987,6 +1000,11 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         $("body").append($(".newlink_panel"));//delete before remove form position,it is must step
         $scope.footercommonfunction();
     }
+
+    $scope.closetipheader = function(){
+        $scope.csstitleform=false;
+    }
+
     $scope.showfootmenusetting=function(){
         $scope.cssfootermenubutton = true;
     }
@@ -1011,7 +1029,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         $scope.footerlia=-1;
     }
     $scope.assignmentform=function(obj){
-        $("#delete")[0].value='Delete';
         if($scope.newheaderdata.menutype=="other"){
             $("#urltype1").attr("checked",true);
             $("#urltype2").attr("checked",false);
@@ -1022,6 +1039,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
             $("#urltype2").attr("checked",true);
             $scope.headerlocalurl=obj.linkedpagename;
         }
-        setupLabel();
+        setupLabel();  //选中radio 按钮方法
     }
 }

@@ -334,7 +334,7 @@
                                         <li ng-hide="$index==showli"><a ng-hide="header.length > 4" href="#" class="sub_addlink" ng-click="showheaderform($index,true,$event,true)">+</a></li>
                                         <li class="newlink_panel" ng-show="csstitleform">
                                             <form action="" method="get">
-                                            	<div class="newlink_title"><h1><a href="#" class="TipBoxClose"></a>Link Date</h1></div>
+                                            	<div class="newlink_title"><h1><a href="#" class="TipBoxClose" ng-click="closetipheader();"></a>Link Data</h1></div>
                                                 <div class="newlink_panel_name">
                                                     <input type="text" class="input_newlink" maxlength="10" required ng-model="newheaderdata.menuname" placeholder="Nav link name">
                                                 </div>
@@ -351,7 +351,7 @@
                                                     <div class="newlink_panel_btn">
                                                         <span id="error" ng-show="showerror" style="color:red;font-size:12px;">Please delete it's all child menu.</span><br>
                                                         <input type="submit" value="save" class="btn btn-save" ng-click="saveheaderinfo()">
-                                                        <input id="delete" type="button" value="cancel" class="btn btn-delete" ng-click="deleteparentmenu($event)">
+                                                        <input id="delete" ng-show="cssshowdeleteicon" type="button" value="cancel" class="btn btn-delete" ng-click="deleteparentmenu($event)">
                                                     </div>
                                                 </div>
                                             </form>
