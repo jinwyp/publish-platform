@@ -1,21 +1,40 @@
- var vcpapp = angular.module('vcpmodule', [ 'vcpmodule.directive' ]);
- var page = {
-     c:{}
- }
- vcpapp.controller(page.c);
+var vcpapp = angular.module('vcpmodule', [ 'vcpmodule.directive', 'firebase' ]);
+var page = {
+    c:{}
+}
+vcpapp.controller(page.c);
 
 
- page.c.GlobalCtrl = function($scope, modelSite){
-    //加载头部内容
-    $scope.header = modelSite.getHeader();
+page.c.GlobalCtrl = function($scope, $q, angularFire){
 
-    //加载底部内容
-    $scope.footer = modelSite.getfooter();
-    $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
-    $scope.cssblocklayoutselected = 0;
+    var urlartilcelist = "https://vcplatform.firebaseIO.com/articles";
+    $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
+
+    var urlsitedata = "https://vcplatform.firebaseIO.com/sitedata";
+    $scope.sitedataFirebase = angularFire(urlsitedata, $scope, 'sitedataFirebase', {} );
+
+    var urlpages = "https://vcplatform.firebaseIO.com/pages";
+    $scope.pages = angularFire(urlpages, $scope, 'pages', [] );
+
+    var site = {};
+    $q.all([$scope.sitedataFirebase, $scope.articlesFirebase, $scope.pages]).then(function() {
+
+        site = $scope.sitedataFirebase;
+
+        $scope.header = site.headerdata;
+
+        //加载底部内容
+        $scope.footer = site.footerdata;
+        $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
+        $scope.cssblocklayoutselected = 0;
+
+
+
+
+
 
     //加载block内容
-    var site = modelSite.getSite();
+//    var site = modelSite.getSite();
 
      $scope.serachlinkdom = function(currentpage){
          for(var i = 0; i < $scope.pages.length; i++){
@@ -26,7 +45,7 @@
      }
 
      var copysinglepage='';
-     $scope.pages = site.pagelist;
+
      if($scope.header.length > 0){
          $scope.singlepage = $scope.serachlinkdom($scope.header[0].linkedurl);
          copysinglepage = $scope.singlepage;
@@ -45,9 +64,9 @@
              copysinglepage = $scope.singlepage;
          }
          $scope.cssblocklayoutselected = index;
-     }
+     };
 
-
+    });
      $scope.showheader = '';
      $scope.showtags = '';
      $scope.showdetails = false;
