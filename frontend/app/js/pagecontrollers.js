@@ -804,6 +804,13 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
                 }
             }else{
                 if(insertdata){
+                    if(typeof($scope.sitedataFirebase.headerdata) == "undefined"){
+                        $scope.sitedataFirebase.headerdata = [];
+                    }
+                    if(typeof($scope.sitedataFirebase.headerdata[headerparentid].childdata) == "undefined"){
+                        $scope.sitedataFirebase.headerdata[headerparentid].childdata=[];
+                    }
+
                     if($scope.header[headerparentid].childdata.length==0){
                         var childidindex=1;
                     }else{
@@ -818,9 +825,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
                         linkedpagename:$scope.newheaderdata.linkedpagename
                     };
 
-                    if(typeof($scope.sitedataFirebase.headerdata[headerparentid].childdata) == "undefined"){
-                        $scope.sitedataFirebase.headerdata[headerparentid].childdata=[];
-                    }
+
                     $scope.sitedataFirebase.headerdata[headerparentid].childdata.push(newheaderdata);
 
 //                    modelSite.addHeaderChildMenu(headerparentid,newheaderdata);
@@ -868,7 +873,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
             }
         }
         $scope.header = $scope.sitedataFirebase.headerdata;
-        $scope.footer = $scope.sitedataFirebase.footer;
+        $scope.footer = $scope.sitedataFirebase.footerdata;
     };
     var headclass='';
     //edit parent menu
@@ -931,9 +936,15 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     }
     //delete menu
     $scope.deleteparentmenu=function(evt){
+
         if(ishead){
             if($("#delete")[0].value=='Delete'){
                 if(childmenuindex===''){
+                    if(typeof($scope.header[parentmenuindex].childdata) == "undefined"){
+                        $scope.header[parentmenuindex].childdata = [];
+                    }
+
+
                     if($scope.header[parentmenuindex].childdata.length>0){
                         $scope.showerror=true;
                         return;
