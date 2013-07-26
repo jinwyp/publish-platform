@@ -28,6 +28,7 @@
 <!-- Header -->
 <header class="header" ng-controller="userLoginController">
 	<h1 class="logo"><a href="index.html">VCP</a></h1>
+    <!-- 
     <div class="dropdown toprightlogin">
     	  <a href="user.html" class="signin" data-toggle="dropdown">Login</a>
           
@@ -55,8 +56,8 @@
                   </div>
              </form>
          </div>
-         
     </div>
+    -->
 </header>
         
  
@@ -66,11 +67,39 @@
         	<div class="bannerTxt">
         		<h1>The easiest way to build a beautiful website. </h1>
            		<h4>30,276,041 sites created. Make yours! Easy to customize. No coding. Google friendly.</h4>
-            	 <a href="register.html" class="login_btn">New Account</a>
-               <a href="#" id="slidebtn" class="login_btn signin_btn" >Sign In</a>
-               <div class="index_socialbox"><a href="register.html"><img src="app/img/temp/signinico.png"></a></div>
+                		<div class="loginform">
+                        <form name="loginform" class="form-horizontal">
+                              <div class="control-group">
+                                <label class="control-label" for="inputEmail">Email</label>
+                                <div class="controls">
+                                  <input type="email" required id="inputEmail" ng-model="userdata.email" placeholder="Email">
+                                </div>
+                              </div>
+                              <div class="control-group">
+                                <label class="control-label" for="inputPassword">Password</label>
+                                <div class="controls">
+                                  <input type="password" required id="inputPassword" ng-model="userdata.password" placeholder="Password">
+                                </div>
+                              </div>
+                              <div class="control-group">
+                                <div class="controls">
+                                  <label class="checkbox">
+                                    <input type="checkbox" checked>Remember me
+                                  </label>
+                                  <input type="submit" class="login_btn signin_btn" ng-click="userlogin(loginform)" value="Sign in">
+                                </div>
+                              </div>
+                              <div class="socialsignin"><a href="#"><img src="app/img/social.png"></a></div>
+                         	  <div class="intoRegister"><a href="register.html">Sign up for a new account</a></div>
+                         </form>
+                         </div>
+                         <!-- 
+            	 		<a href="register.html" class="login_btn">New Account</a>
+               			<a href="#" id="slidebtn" class="login_btn signin_btn" >Sign In</a>
+               			<div class="index_socialbox"><a href="register.html"><img src="app/img/temp/signinico.png"></a></div>
+                        -->
            </div>
-        	<div class="slide_01"><!-- Easy To Use / build site fast / earn money --></div>
+           <div class="slide_01"><!-- Easy To Use / build site fast / earn money --></div>
         </div>
     </div>
 </div>  
