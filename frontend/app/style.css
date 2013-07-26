@@ -516,7 +516,7 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 
 
 /* === Logo and Web Icon === */
-.site_logo_btn				{ display:block; position:relative; margin:0 auto; padding:0; width:100px; height:100px; color:#c0c0c0; text-align:center; border-radius:8px; border:3px solid #e3e4e8; background:#fff url(img/null_block.png) center center no-repeat;}
+.site_logo_btn				{ display:block; position:relative; margin:0 auto; padding:0; width:100px; height:100px; color:#c0c0c0; text-align:center; border-radius:8px; border:3px solid #e3e4e8; background:#fff url(img/null_siteblock.png) center center no-repeat;}
 .site_logo_btn:hover		{ border-color:#aaa; color:#c0c0c0;}
 .site_logo_btn span			{ display:block; width:100%; margin:0; padding:0; position:absolute; left:0; bottom:4px; line-height:14px; text-align:center;}
 
@@ -841,7 +841,7 @@ ul.layout_list .active:hover:after{ content:''; display:block; position:absolute
 /* View */
 .header_view				 { position:relative; z-index:3; margin:0; padding:0; height:80px; border:2px dashed #fff; background:url(img/null_header.png) center center no-repeat; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
 .header_view.hover_view		 { border:0px solid #000; border-radius:4px; background:#fff !important; }
-.header_view.hover_view:after{ display:block; text-align:center; font-size:30px; font-style:normal; color:#bbb; line-height:60px; content:'Select Nav style/layout'; }
+.header_view.hover_view:after{ display:block; text-align:center; font-size:30px; font-style:normal; color:#bbb; line-height:60px; content:'Select Nav Bar Style'; }
 
 /* Panel Box */
 .header_panel   		{ position:absolute; left:0; bottom:0px; width:940px; height:80px; z-index:1; border-radius:4px; background:#fff;  box-shadow:0 0 4px rgba(0,0,0,0.5); -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; }
@@ -929,7 +929,7 @@ ul.nav_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-filt
 /* =========================================================================================== */
 .footer_view				  { position:relative; z-index:3; margin:0; padding:0; height:80px; border:2px dashed #fff; background:url(img/null_footer.png) center center no-repeat; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
 .footer_view.hover_view		 { border:0px solid #000; border-radius:4px; background:#fff !important; }
-.footer_view.hover_view:after{ display:block; text-align:center; font-size:30px; font-style:normal; color:#bbb; line-height:66px; content:'Select Footer style/layout'; }
+.footer_view.hover_view:after{ display:block; text-align:center; font-size:30px; font-style:normal; color:#bbb; line-height:66px; content:'Select Footer Bar Style'; }
 
 /* Panel Box */
 .footer_panel   			 { position:absolute; left:0; bottom:0px; width:940px; height:82px; z-index:1; border-radius:4px; background:#fff; box-shadow:0 0 4px rgba(0,0,0,0.5); -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; }

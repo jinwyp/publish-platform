@@ -60,7 +60,7 @@
 
 <!-- =======================================  tip_auto ======================================= -->
 <div class="tip_box tip_auto" ng-cloak ng-show="'auto'==cssblocktipbox" >
-    <h1><a href="###" class="TipBoxClose">X</a>Auto pick block attribute</h1>
+    <h1><a href="###" class="TipBoxClose">X</a>Auto Block Data</h1>
     <div class="tabbable tabs-below">
         <div class="tab-content">
             <!-- Tab1: Layout -->
@@ -98,7 +98,7 @@
                     <dd>
                         <div class="tipbox_sort">
                             <label class="radio">
-                                <input type="radio" name="optionsRadios" ng-model="newblock.blocksortby" value="bydate" >By Date (Descend)
+                                <input type="radio" name="optionsRadios" ng-model="newblock.blocksortby" value="bydate" >Date
                             </label>
                             <label class="radio">
                                 <input type="radio" name="optionsRadios" ng-model="newblock.blocksortby" value="bypv">By PV (Descend)
@@ -601,17 +601,14 @@
                         <!-- ======================================= Page Attribute Panel ======================================= -->
                         <div class="page_attri_panel" ng-cloak ng-show="$index == selectedpageattributeindex">
                             <a href="" class="panel_close" ng-click="closeeditpageattribute($index)">X</a>
-                            <h2>Page Attribute</h2>
+                            <h2>Page Data</h2>
                             <div class="page_attri_cont">
                                 <form>
                                     <input type="text" class="" placeholder="Page Name" ng-model="page.pagename">
-                                    <i class="clearfix">This name for this page that is presented in your navigation bar.</i>
 
                                     <input type="text"  class="" placeholder="Page Title" ng-model="page.pagetitle">
-                                    <i class="clearfix">The title that appears in the top of the browser window for this page.</i>
 
                                     <input type="text" class="" placeholder="Page Url" ng-model="page.pageurl">
-                                    <i class="clearfix">This name for this page that is presented in your navigation bar.</i>
                                     <div class="btn_box">
                                     	<a href="#" class="btn btn-delete" ng-click="delpage(page)">Del</a>
                                         <a href="#" class="btn btn-save" ng-click="editsavepage(page)">Save</a>
