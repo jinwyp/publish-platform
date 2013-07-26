@@ -703,6 +703,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
     $scope.hideheadermenusetting = function(){
         $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮
+        $scope.cssheadersetting = false;          //Header设置面板是否显示
     };
 
     $scope.clickheadertheme = function(indexid, themedata){
