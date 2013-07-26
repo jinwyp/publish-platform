@@ -133,7 +133,7 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
 
 
 
-page.c.userLoginController = function($scope, $location, $timeout, angularFire) {
+page.c.userLoginController = function($scope, $location, $timeout, angularFire, modelSite) {
     var singleuserurl = "https://vcplatform.firebaseIO.com/usernow";
     $scope.userFirebase = angularFire(singleuserurl, $scope, 'userFirebase', {});
 
@@ -141,20 +141,19 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire) 
     $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
 
     $scope.userdata = {
-        email : '',
+        email : modelSite.getaccount(),
         password : ''
     };
 
+    //$scope.remember = false;
     //登录
     $scope.userlogin = function(callback){
         var usersdata = $scope.usersFirebase;
         var usercheckexist = _.where($scope.usersFirebase, {email: $scope.userdata.email, password: $scope.userdata.password});
-
-        console.log(usercheckexist.length);
         if (callback.$valid) {
             if(usercheckexist.length == 0){
-                alert('Email or Password error!');
-
+                alert('Email Or Password Error!');
+                return;
             }else{
                 $scope.userFirebase ={
                     email : usercheckexist[0].email,
@@ -164,7 +163,11 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire) 
                     mobilenumber : usercheckexist[0].mobilenumber,
                     gender : usercheckexist[0].gender
                 };
-
+                if($scope.remember){
+                    modelSite.saveaccount($scope.userdata.email);
+                }else{
+                    modelSite.saveaccount('');
+                }
                 $timeout(function() {
                     location.href = "user.html";
                 }, 1000);
@@ -235,9 +238,9 @@ page.c.userRegisterController = function($scope, $location,  $q, $timeout, angul
 
                     //$scope.site.userinfo = $scope.userdata;  // use firebase for database
                     //modelSite.updateSite($scope.site);     // use firebase for database
-                    $timeout(function() {
+                    //$timeout(function() {
                         location.href = "user.html";
-                    }, 2000);
+                    //}, 2000);
 
             }else{
                 $scope.csspasswordprompt = true;

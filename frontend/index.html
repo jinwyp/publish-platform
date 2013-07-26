@@ -61,7 +61,7 @@
 </header>
         
  
-<div class="vcpbox">
+<div class="vcpbox" ng-controller="userLoginController">
 	<div class="banner_box">
     	<div class="banner">
         	<div class="bannerTxt">
@@ -84,7 +84,7 @@
                               <div class="control-group">
                                 <div class="controls">
                                   <label class="checkbox">
-                                    <input type="checkbox" checked>Remember me
+                                    <input type="checkbox" ng-model="remember">Remember me
                                   </label>
                                   <input type="submit" class="login_btn signin_btn" ng-click="userlogin(loginform)" value="Login">
                                 </div>
