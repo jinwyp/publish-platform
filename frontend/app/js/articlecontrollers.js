@@ -610,7 +610,7 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
             status : "Draft",
             version : 1,
             operator : $scope.newarticleadata.author,
-            reviewcomment : 'first commit'
+            reviewcomment : ''
         };
 
         $scope.newarticleadata.reviewhistory.push(newstatus);
