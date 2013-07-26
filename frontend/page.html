@@ -381,7 +381,7 @@
                 <div class="row">
                     <div ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
                         <!-- Block Box -->
-                        <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks track by $index" ng-class="{hoverfill:cssblockeditmenubutton}"  ng-mouseenter="showeditblockmenubutton()" ng-mouseleave="hideeditblockmenubutton()">
+                        <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks track by $index" ng-class="{hoverfill:cssblockeditmenubutton}"  ng-mouseenter="showeditblockmenubutton(layoutcontainer)" ng-mouseleave="hideeditblockmenubutton()">
 
                             <!-- Block Layou: 无图列表 class="PageBlockLayout_Row_noIMG" -->
                             <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
@@ -491,7 +491,7 @@
                                 <!--<a href="##" class="icon_setup" ng-click="updateshowblcoksetting(block, $event );">setup</a>-->
                                 <!-- <a href="##" class="icon_editor" ng-click="showfilleditform();">editors</a>-->
                                 <div class="editor_inset" ng-show="block.blocktype=='editor'" >
-                                    <input type="text" placeholder="pls input article title" value="" ng-model="newarticle" typeahead="article as article.title for article in localarticles | filter:$viewValue"   enter-Keypress="{enter: addaritcletoeditorblock(block, currentlayoutcontainer)}">
+                                    <input type="text" placeholder="pls input article title" value="" ng-model="newarticle" typeahead="article as article.title for article in localarticles | filter:$viewValue"   enter-Keypress="{enter: addAritcleToEditorBlock(block, currentlayoutcontainer)}">
                                 </div>
                             </div>
                             <!-- Block Menu Attribute Panel //End -->
@@ -534,7 +534,7 @@
                         	<!-- 有 Footer -->
                         	<div class="site-theme b-footer" ng-show="cssfootermenuhavadata" ng-class="{zindextop:cssfootermenuhavadata}">
                             	<p>
-                                    <span ng-repeat="footer in footer"><a href="#">{{footer.footername}}</a><span ng-hide="$index==footermaxindex">&nbsp;|</span></span>
+                                    <span ng-repeat="footer in footer"><a href="#">{{footer.footername}}</a><span ng-hide="$last">&nbsp;|</span></span>
                                 </p>
                                 <p>Copyright ? 2013 ValueClick Brands, Inc. All Rights Reserved.</p>
                             </div>
@@ -592,7 +592,7 @@
                     <!--</a></li>-->
                     <!-- PageList -->
 
-                    <li ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'"  ng-animate="'repeat'">
+                    <li ng-cloak ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'"  ng-animate="'repeat'">
                         <i class="ico_edit" ng-click="showeditpageattribute($index)"></i>
                         <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:11==page.pagetype}" ng-click="clickpage($index, page)">
                             <i class="drag"></i>{{page.pagename}}
@@ -624,7 +624,7 @@
 
                     <!-- Add new page -->
 
-                    <li ng-show="cssshowpageaddinput"><a href="#" class="pagelist_btn newpage">
+                    <li ng-cloak ng-show="cssshowpageaddinput"><a href="#" class="pagelist_btn newpage">
                         <i class="drag">1</i><input type="text" class="input_addnew" ng-model="newpage.pagename"  placeholder="NewPage" enter-Keypress="{enter: addpage()}"/>
                     </a></li>
 

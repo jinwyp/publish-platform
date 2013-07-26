@@ -313,11 +313,11 @@ vcpapp.factory('modelSite',  function(){
             {layoutcontainerclass:"span3", layoutcontainerid:1001, blocks:[]}
         ]},
 
-        {layoutid: 10, layoutname: '两列2', layouttype : 1, layoutorder:2, layoutcss:'ico_layout_01', layoutimage:'app/img/layout_templete_01.png', layoutdata:[
+        {layoutid: 11, layoutname: '两列2', layouttype : 1, layoutorder:2, layoutcss:'ico_layout_01', layoutimage:'app/img/layout_templete_01.png', layoutdata:[
             {layoutcontainerclass:"span3", layoutcontainerid:1002, blocks:[]},
             {layoutcontainerclass:"span9", layoutcontainerid:1003, blocks:[]}
         ]},
-        {layoutid: 10, layoutname: '三列1', layouttype : 0, layoutorder:3, layoutcss:'ico_layout_02', layoutimage:'app/img/layout_templete_02.png', layoutdata:[
+        {layoutid: 12, layoutname: '三列1', layouttype : 0, layoutorder:3, layoutcss:'ico_layout_02', layoutimage:'app/img/layout_templete_02.png', layoutdata:[
             {layoutcontainerclass:"span4", layoutcontainerid:1005, blocks:[]},
             {layoutcontainerclass:"span4", layoutcontainerid:1006, blocks:[]},
             {layoutcontainerclass:"span4", layoutcontainerid:1007, blocks:[]}
@@ -333,14 +333,10 @@ vcpapp.factory('modelSite',  function(){
 
 
     var sitedata = {};
-    var selectheadertheme='';
-    var  selectfootertheme='';
+
     if(window.localStorage){
         if (JSON.parse(localStorage.getItem("siteData")) == null || JSON.parse(localStorage.getItem("siteData")).length == 0){
             sitedata = {
-                userinfo : {},
-                siteinfo : {},
-
                 pagelist : [
                     { siteid:1, pagename:'Homepage', pageid:101, pagetype:10, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
                         pagelayoutdata:[
@@ -354,7 +350,10 @@ vcpapp.factory('modelSite',  function(){
                         ]
                     },
 
-                    { siteid:1, pagename:'Article', pageid:103, pagetype:11, pagetitle:"article", pageurl:"article", pageorder:0, pagelayoutid:10, pagelayoutdata:[] }
+                    { siteid:1, pagename:'Article', pageid:103, pagetype:11, pagetitle:"article", pageurl:"article", pageorder:0, pagelayoutid:10, pagelayoutdata:[
+                        {layoutcontainerclass:"span9", layoutcontainerid:1000 , blocks:[] },
+                        {layoutcontainerclass:"span3", layoutcontainerid:1001, blocks:[] }
+                    ] }
                 ],
 
                 headerdata:[],
@@ -389,16 +388,6 @@ vcpapp.factory('modelSite',  function(){
         }else{
             sitedata = JSON.parse(localStorage.getItem("siteData"));
         }
-        if(JSON.parse(localStorage.getItem("headertheme")) == null || JSON.parse(localStorage.getItem("headertheme")).length == 0){
-            selectheadertheme ='';
-        }else{
-            selectheadertheme = JSON.parse(localStorage.getItem("headertheme"));
-        }
-        if(JSON.parse(localStorage.getItem("footertheme")) == null || JSON.parse(localStorage.getItem("footertheme")).length == 0){
-            selectfootertheme ='';
-        }else{
-            selectfootertheme = JSON.parse(localStorage.getItem("footertheme"));
-        }
     }
 
 
@@ -412,17 +401,7 @@ vcpapp.factory('modelSite',  function(){
         localStorage.setItem("siteData",JSON.stringify(sitedata1));
         return;
     };
-    factory.saveSiteInfo= function(sitedata){
-        sitedata.siteinfo =  angular.copy(sitedata);
-        localStorage.setItem("siteData",JSON.stringify(sitedata));
-        return;
-    };
 
-    factory.saveUserInfo= function(userdata){
-        sitedata.userinfo =  userdata;
-        localStorage.setItem("siteData",JSON.stringify(sitedata));
-        return;
-    };
 
 
     factory.addSinglePage = function (pagedata) {
@@ -504,15 +483,7 @@ vcpapp.factory('modelSite',  function(){
     };
 
 
-    //header Theme
-    factory.getHeaderTheme=function(){
-        return sitedata.headertheme;
-    }
 
-    //header 修改
-    factory.getHeader=function(){
-        return sitedata.headerdata;
-    }
 
     factory.addHeaderMenu = function (menudata) {
         sitedata.headerdata.push(menudata);
@@ -538,13 +509,7 @@ vcpapp.factory('modelSite',  function(){
         return;
     };
 
-    factory.getfoottheme=function(){
-        return sitedata.footertheme;
-    };
 
-    factory.getfooter=function(){
-        return sitedata.footerdata;
-    };
 
     factory.addfooterMenu = function (menudata) {
         sitedata.footerdata.push(menudata);
@@ -557,21 +522,7 @@ vcpapp.factory('modelSite',  function(){
         return;
     }
 
-    factory.setheadertheme = function(headertheme){
-        localStorage.setItem("headertheme" , JSON.stringify(headertheme));
-    }
 
-    factory.setfootertheme = function(footertheme){
-        localStorage.setItem("footertheme" , JSON.stringify(footertheme));
-    }
-
-    factory.getselectheadertheme = function(){
-        return selectheadertheme;
-    }
-
-    factory.getselectfootertheme = function(){
-        return selectfootertheme;
-    }
 
 
     return factory;

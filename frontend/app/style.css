@@ -60,8 +60,8 @@
     opacity: 1;
 }
 
-.repeat-leave { left:0; height: 74px; opacity: 1; overflow: hidden;}
-.repeat-leave-active { left:-300px; height: 0px; opacity: 0;}
+.repeat-leave {  opacity: 1; overflow: hidden;}
+.repeat-leave-active {  height: 0px; opacity: 0;}
 
 .repeat-show, .repeat-hide {
     -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;

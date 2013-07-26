@@ -21,8 +21,13 @@ vcpapp.directive('enterKeypress', function(){
         };
     });
 
+
+
 /* Controllers */
-page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelArticle, angularFire) {
+page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, angularFire) {
+
+    var urlmaxid = "https://vcplatform.firebaseIO.com/maxid";
+    $scope.maxidFirebase = angularFire(urlmaxid, $scope, 'maxidFirebase', {});
 
     var urlartilcelist = "https://vcplatform.firebaseIO.com/articles";
     $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
@@ -30,6 +35,30 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     var urltaglist = "https://vcplatform.firebaseIO.com/tags";
     $scope.tagsFirebase = angularFire(urltaglist, $scope, 'tagsFirebase', [] );
 
+    var urlsitedata = "https://vcplatform.firebaseIO.com/sitedata";
+    $scope.sitedataFirebase = angularFire(urlsitedata, $scope, 'sitedataFirebase', {} );
+
+    var urlpages = "https://vcplatform.firebaseIO.com/pages";
+    $scope.pages = angularFire(urlpages, $scope, 'pages', [] );
+
+
+    function getMaxBlockId(){
+        if($scope.maxidFirebase.blockid == undefined ){
+            $scope.maxidFirebase.blockid = 101;
+        }else{
+            $scope.maxidFirebase.blockid = $scope.maxidFirebase.blockid  + 1;
+        }
+        return $scope.maxidFirebase.blockid
+    }
+
+    function getMaxPageId(){
+        if($scope.maxidFirebase.pageid == undefined ){
+            $scope.maxidFirebase.pageid = 101;
+        }else{
+            $scope.maxidFirebase.pageid = $scope.maxidFirebase.pageid  + 1;
+        }
+        return $scope.maxidFirebase.pageid
+    }
 
     function getMaxTagId(){
         if($scope.maxidFirebase.tagid == undefined ){
@@ -106,30 +135,79 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     };
     $scope.newarticle = undefined;
 
-    var site = modelSite.getSite();
+//    var site = modelSite.getSite();
+    var site = {};
+
+    $q.all([$scope.sitedataFirebase, $scope.articlesFirebase, $scope.pages]).then(function() {
+        site = $scope.sitedataFirebase ;
+        $scope.get_site = site;
+
+        $scope.pagearticletype = site.defaultsettings.articleTypeId;    // left menu default selected page
+        $scope.pagefilterarticle = site.defaultsettings.pagefilterArticleType;  //Article Type Page
+        $scope.pagefilterlist = site.defaultsettings.pagefilterListType;         //List Type Page
+        $scope.layoutfilterlisttype = site.defaultsettings.layoutfilterListType;
+        $scope.defaultselectedpageindex = site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
+        $scope.defaultselectedlayoutindex = site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
 
 
-    $scope.articlesFirebase.then(function() {
+        //获取选中的header theme
+        $scope.get_headertheme = site.defaultsettings.headerthemeindex;
+
+        if($scope.get_headertheme == -1){
+            $scope.cssheaderthemeindex = -1;
+            $scope.cssheadermenuhavadata = false;
+        }else{
+            $scope.cssheaderthemeindex = $scope.get_headertheme;
+            $scope.cssheadermenuhavadata = true;
+        }
+
+        //获取选中的footer theme
+        $scope.get_footertheme = site.defaultsettings.footerthemeindex;
+
+        if($scope.get_footertheme == -1){
+            $scope.cssfooterthemeindex = -1;
+            $scope.cssfootermenuhavadata = false;
+        }else{
+            $scope.cssfooterthemeindex = $scope.get_footertheme;
+            $scope.cssfootermenuhavadata = true;
+        }
+
+        $scope.header = site.headerdata;
+        $scope.headerthemes = site.headertheme;
+
+        $scope.footer = site.footerdata;
+        $scope.footerthemes = site.footertheme;
+
+        if(typeof(site.headerdata) == "undefined"){
+            $scope.header = [];
+        }
+
+        if(typeof(site.footerdata) == "undefined"){
+            $scope.footer = [];
+        }
+
+
+
+
+        $scope.singlepage =  $scope.pages[0];   //默认读取首页
 
         //载入所有block的文章
-        for (var i=site.pagelist.length-1; i>=0; i--)
+        for (var i= $scope.pages.length-1; i>=0; i--)
         {
-            for (var j = site.pagelist[i].pagelayoutdata.length-1; j>=0; j--)
+            for (var j = $scope.pages[i].pagelayoutdata.length-1; j>=0; j--)
             {
-                for (var k = site.pagelist[i].pagelayoutdata[j].blocks.length-1; k>=0; k--)
-                {
-                    if(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktype == 'auto'){
-                        var articlesdata = fireBaseGetArticlesByTags(site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity, site.pagelist[i].pagelayoutdata[j].blocks[k].blockcategory);
-                        site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articlesdata;
-                        /*
-                        console.log(articles, site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag, site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity );
+                if(typeof($scope.pages[i].pagelayoutdata[j].blocks) == "undefined"  ){
+                }
+                else{
+                    for (var k = $scope.pages[i].pagelayoutdata[j].blocks.length-1; k>=0; k--)
+                    {
+                        if($scope.pages[i].pagelayoutdata[j].blocks[k].blocktype == 'auto'){
+                            var articlesdata = fireBaseGetArticlesByTags($scope.pages[i].pagelayoutdata[j].blocks[k].blocktag, $scope.pages[i].pagelayoutdata[j].blocks[k].blockquantity, $scope.pages[i].pagelayoutdata[j].blocks[k].blockcategory);
+                            $scope.pages[i].pagelayoutdata[j].blocks[k].blockarticles = articlesdata;
 
-                        if (site.pagelist[i].pagelayoutdata[j].blocks[k].blocktag.length == 0 ){
-                            var articles2 = modelArticle.getArticles(site.pagelist[i].pagelayoutdata[j].blocks[k].blockquantity);
+                            console.log(articlesdata, $scope.pages[i].pagelayoutdata[j].blocks[k].blocktag, $scope.pages[i].pagelayoutdata[j].blocks[k].blockquantity );
 
-                            site.pagelist[i].pagelayoutdata[j].blocks[k].blockarticles = articles2;   //如果没有选择tags则获取所有文章
                         }
-*/
                     }
                 }
             }
@@ -139,34 +217,13 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
     });
 
-    $scope.get_site = modelSite.getSite();
-    //获取选中的header theme
-    $scope.get_headertheme = modelSite.getselectheadertheme();
 
-    if($scope.get_headertheme == ""){
-        $scope.cssheaderthemeindex = -1;
-        $scope.cssheadermenuhavadata = false;
-    }else{
-        $scope.cssheaderthemeindex = $scope.get_headertheme;
-        $scope.cssheadermenuhavadata = true;
-    }
 
-    //获取选中的footer theme
-    $scope.get_footertheme = modelSite.getselectfootertheme();
 
-    if($scope.get_footertheme == ""){
-        $scope.cssfooterthemeindex = -1;
-        $scope.cssfootermenuhavadata = false;
-    }else{
-        $scope.cssfooterthemeindex = $scope.get_footertheme;
-        $scope.cssfootermenuhavadata = true;
-    }
 
     $scope.cssheadermenubutton = false;
     $scope.cssfootermenubutton=false;
-    $scope.pages = site.pagelist;
 
-    $scope.singlepage =  $scope.pages[0];   //默认读取首页
     $scope.newpage ={};
 //        $scope.localarticles = modelArticle.getArticleList(100);
 
@@ -175,20 +232,11 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     $scope.blocklayouts = modelSite.getBlockLayout();
     $scope.currentlayoutcontainer = {};
 
-    $scope.header = modelSite.getHeader();
-    $scope.headerthemes = modelSite.getHeaderTheme();
 
-    $scope.pagearticletype = site.defaultsettings.articleTypeId;    // left menu default selected page
-    $scope.pagefilterarticle = site.defaultsettings.pagefilterArticleType;  //Article Type Page
-    $scope.pagefilterlist = site.defaultsettings.pagefilterListType;         //List Type Page
-    $scope.layoutfilterlisttype = site.defaultsettings.layoutfilterListType;
-
-    $scope.defaultselectedpageindex = site.defaultsettings.defaulstSelectedPageIndex;    // left menu default selected page
     $scope.selectedpageattributeindex = -1;    //默认隐藏所有page的属性面板
-
     $scope.selectedpageblockindex = -1;
 
-    $scope.defaultselectedlayoutindex = site.defaultsettings.defaulstSelectedLayoutIndex;    // right menu default selected page
+
 
     $scope.cssshowpageaddinput = false;    //添加page的输入框默认不显示
 
@@ -201,15 +249,15 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     $scope.cssheadersetting = false;      //Header设置nav下拉界面
     $scope.cssheadernavindex = 0;      //Header默认菜单的颜色为首页
 
-    $scope.cssfootersetting=false;
-    $scope.footerthemes=modelSite.getfoottheme();
-    $scope.footer=modelSite.getfooter();
-    $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
+    $scope.cssfootersetting = false;
+
+
 
 
     //left side bar
     $scope.isarticle = '';
     $scope.clickpage = function(indexid, page, layout) {
+
         $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
         $scope.defaultselectedpageindex = indexid;
         $scope.singlepage = page;
@@ -252,13 +300,21 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         var newpage = {
             siteid : 1,
             pagename : $scope.newpage.pagename,
-            pageid : 103,
-            pagetype : 20,
+            pageid : getMaxPageId(),
+            pagetype : 100,
             pagetitle : $scope.newpage.pagetitle,
-            pageurl : $scope.newpage.pageurl
+            pageurl : $scope.newpage.pageurl,
+            pageorder : 100,
+            pagelayoutid : 10,
+            pagelayoutdata:[
+                {layoutcontainerclass:"span9", layoutcontainerid:1000 , blocks:[] },
+                {layoutcontainerclass:"span3", layoutcontainerid:1001, blocks:[] }
+            ]
         };
-        modelSite.addSinglePage(newpage);
-        $scope.layouts = modelSite.getLayoutList();
+        $scope.pages.push(newpage);
+
+//        modelSite.addSinglePage(newpage);
+//        $scope.layouts = modelSite.getLayoutList();
     };
 
 
@@ -273,11 +329,19 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
     $scope.editsavepage = function(page) {
         $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
-        modelSite.updateSinglePage(page);
+//        modelSite.updateSinglePage(page);
+
     };
     $scope.delpage = function( page) {
         $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
-        modelSite.delSinglePage(page);
+        if(page.pagetype >= 20){
+            //首页和内容页面都是无法删除的
+            var pageindex = $scope.pages.indexOf(page);
+            $scope.pages.splice(pageindex, 1);
+
+        }
+
+//        modelSite.delSinglePage(page);
     };
 
     //right side bar
@@ -285,7 +349,19 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
         $scope.cssblocktipbox = false;
         $scope.defaultselectedlayoutindex = indexid;
-        modelSite.saveSinglePageLayout($scope.singlepage, angular.copy(layout));
+
+        _.each($scope.pages, function(page){
+            if(page.pageid == $scope.singlepage.pageid){
+                page.pagelayoutdata = angular.copy(layout.layoutdata);
+                $scope.singlepage = page;
+            }
+        });
+
+//        var pageindex = $scope.pages.indexOf($scope.singlepage);
+//        console.log($scope.singlepage, pageindex);
+
+
+//        modelSite.saveSinglePageLayout($scope.singlepage, angular.copy(layout));
 
     };
 
@@ -293,7 +369,8 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
 
     // show Block MouseOver Menu Button
-    $scope.showeditblockmenubutton= function() {
+    $scope.showeditblockmenubutton= function(layout) {
+        $scope.currentlayoutcontainer = layout;  //移动菜单要赋值当前是哪个layout
         this.cssblockeditmenubutton = true;
     };
     $scope.hideeditblockmenubutton = function() {
@@ -327,6 +404,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         this.cssblocktipadd = false;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipbox = false;
         $scope.currentlayoutcontainer = layoutcontainer;
+        console.log($scope.currentlayoutcontainer);
         switch(blocktype)
         {
             case 'auto':
@@ -386,7 +464,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     // add a block to page
     $scope.addblocktopage = function(blocktype, layoutcontainer, indexid, blocklayoutid ) {
         var newblock = {
-            blockid : 200,
+            blockid : getMaxBlockId(),
             blocktype : 'auto',
             blockstatictype : '',
             blockname : "",
@@ -477,25 +555,87 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
             default:
         }
+        $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
+            _.each($scope.pages, function(page){
+                if(page.pageid == $scope.singlepage.pageid){
+                    _.each(page.pagelayoutdata, function(layout){
+                        if(layout.layoutcontainerid == layoutcontainer.layoutcontainerid){
 
-        modelSite.addSingleBlockToPage(newblock, layoutcontainer, $scope.singlepage );
+                            if(typeof(layout.blocks) == "undefined"  ){
+                                layout.blocks = [];
+                                layout.blocks.push(newblock);
+                            }else{
+                                layout.blocks.push(newblock);
+                            }
+//                            console.log(layout.blocks.length);
+                        }
+                    });
+                    $scope.singlepage = page;
+                }
+            });
+
+
+
+
+//        addSingleBlockToPage(newblock, layoutcontainer, $scope.singlepage );
         this.cssblocktipadd = false;          //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipbox = false;
     };
 
-    $scope.addaritcletoeditorblock = function(block, layoutcontainer ){
-        if(block.blockarticles.length < block.blockquantity){
-            var newaritcle = this.newarticle;
-            console.log(block);
-            modelSite.addArticleToBlock(newaritcle, block, layoutcontainer, $scope.singlepage);
+    $scope.addAritcleToEditorBlock = function(editorblock, layoutcontainer ){
+        if(typeof(editorblock.blockarticles) == "undefined"  ){
+            editorblock.blockarticles = [];
         }
-        console.log(this.newarticle);
-    }
+
+        if(editorblock.blockarticles.length < editorblock.blockquantity){
+            var newaritcle = this.newarticle;
+//            modelSite.addArticleToBlock(newaritcle, block, layoutcontainer, $scope.singlepage);
+            _.each($scope.pages, function(page){
+                if(page.pageid == $scope.singlepage.pageid){
+
+                    _.each(page.pagelayoutdata, function(layout){
+
+                        if(layout.layoutcontainerid == layoutcontainer.layoutcontainerid){
+                            _.each(layout.blocks, function(block){
+                                if(block.blockid == editorblock.blockid){
+
+                                    if(typeof(block.blockarticles) == "undefined"  ){
+                                        block.blockarticles = [];
+                                        block.blockarticles.push(angular.copy(newaritcle));
+                                    }else{
+                                        block.blockarticles.push(angular.copy(newaritcle));
+                                    }
+
+                                }
+                            });
+                        }
+                    });
+//                    $scope.singlepage = page;
+
+                }
+            })
+        }
+    };
 
     // del a block to page
-    $scope.delblock = function(block, layoutcontainer, indexid ) {
-        modelSite.delBlockFromPage(block, layoutcontainer, $scope.singlepage);
-    }
+    $scope.delblock = function(delblock, layoutcontainer, indexid ) {
+        _.each($scope.pages, function(page){
+            if(page.pageid == $scope.singlepage.pageid){
+                _.each(page.pagelayoutdata, function(layout){
+                    if(layout.layoutcontainerid == layoutcontainer.layoutcontainerid){
+                        var newblock = _.findWhere(layout.blocks, {blockid : delblock.blockid});
+                        var blockindex = layout.blocks.indexOf(newblock);
+                        layout.blocks.splice(blockindex, 1);
+//                        console.log(layout.blocks.length);
+                    }
+                });
+                $scope.singlepage = page;
+            }
+        });
+
+
+//        modelSite.delBlockFromPage(block, layoutcontainer, $scope.singlepage);
+    };
 
     // update a block setting
     $scope.updateshowblcoksetting = function(block, event1 ) {
@@ -528,7 +668,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
 
     $scope.check = function( ) {
         console.log(this.blockarticles);
-    }
+    };
 
 
 
@@ -551,23 +691,25 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         //$scope.cssheadermenuhavadata = false;      //Header是否有数据
 //       $scope.cssheadersetting = false;          //Header设置面板是否显示
         $scope.cssheadermenubutton = true;      //Header右上角mouseover按钮     //所有Header Block经过时显示Attribute Panel Icon
-    }
+    };
 
     $scope.hideheadermenusetting = function(){
         $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮
-    }
+    };
 
     $scope.clickheadertheme = function(indexid, themedata){
         //点击Nav 的每个Theme
         $scope.cssheaderthemeindex = indexid;      //Header选中的theme
         $scope.cssheadermenuhavadata = true;      //Header是否有数据已有数据了
-        modelSite.setheadertheme(indexid);
-    }
+
+        $scope.sitedataFirebase.defaultsettings.headerthemeindex = indexid;
+//        modelSite.setheadertheme(indexid);
+    };
 
     $scope.slideshowheadersetting = function(){
         //点击Nav Block的设置图标
         $scope.cssheadersetting = true;
-    }
+    };
 
     //insert header data form
     var insertdata=false;
@@ -596,7 +738,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         $("#urltype2").attr("checked",true);
         setupLabel();
         insertdata=true;
-    }
+    };
     $scope.newheaderdata ={};
     $scope.checkpargeid=function(){
         for(var i=0;i<$scope.pages.length;i++){
@@ -604,7 +746,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 return $scope.pages[i].pageid;
             }
         }
-    }
+    };
     //save data
     $scope.saveheaderinfo=function(){
         if($scope.newheaderdata.menuname == ""){
@@ -626,6 +768,7 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
         }
         $scope.csstitleform=false;
         $scope.footercommonfunction();
+
         if(ishead){
             if(headerflag){
                 if(insertdata){
@@ -643,17 +786,31 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                         linkedpagename:$scope.newheaderdata.linkedpagename,
                         childdata:[]
                     };
-                    modelSite.addHeaderMenu(newheaderdata);
+
+                    if(typeof($scope.sitedataFirebase.headerdata) == "undefined"){
+                        $scope.sitedataFirebase.headerdata=[];
+                    }
+                    $scope.sitedataFirebase.headerdata.push(newheaderdata);
+//                    modelSite.addHeaderMenu(newheaderdata);
                 }else{
                     headclass.menuname=$scope.newheaderdata.menuname;
                     headclass.menutype=$scope.newheaderdata.menutype;
                     headclass.linkedurl=$scope.newheaderdata.linkedurl;
                     headclass.linkedpageid=$scope.newheaderdata.linkedpageid;
                     headclass.linkedpagename=$scope.newheaderdata.linkedpagename;
-                    modelSite.savesitedata($scope.get_site);
+
+                    $scope.sitedataFirebase.headerdata = $scope.get_site.headerdata;
+//                    modelSite.savesitedata($scope.get_site);
                 }
             }else{
                 if(insertdata){
+                    if(typeof($scope.sitedataFirebase.headerdata) == "undefined"){
+                        $scope.sitedataFirebase.headerdata = [];
+                    }
+                    if(typeof($scope.sitedataFirebase.headerdata[headerparentid].childdata) == "undefined"){
+                        $scope.sitedataFirebase.headerdata[headerparentid].childdata=[];
+                    }
+
                     if($scope.header[headerparentid].childdata.length==0){
                         var childidindex=1;
                     }else{
@@ -667,14 +824,20 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                         linkedpageid:$scope.newheaderdata.linkedpageid,
                         linkedpagename:$scope.newheaderdata.linkedpagename
                     };
-                    modelSite.addHeaderChildMenu(headerparentid,newheaderdata);
+
+
+                    $scope.sitedataFirebase.headerdata[headerparentid].childdata.push(newheaderdata);
+
+//                    modelSite.addHeaderChildMenu(headerparentid,newheaderdata);
                 }else{
                     headchildclass.menuname=$scope.newheaderdata.menuname;
                     headchildclass.menutype=$scope.newheaderdata.menutype;
                     headchildclass.linkedurl=$scope.newheaderdata.linkedurl;
                     headchildclass.linkedpageid=$scope.newheaderdata.linkedpageid;
                     headchildclass.linkedpagename=$scope.newheaderdata.linkedpagename;
-                    modelSite.savesitedata($scope.get_site);
+
+                    $scope.sitedataFirebase.headerdata = $scope.get_site.headerdata;
+//                    modelSite.savesitedata($scope.get_site);
                 }
             }
         }else{
@@ -692,18 +855,26 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                     linkedpageid:$scope.newheaderdata.linkedpageid,
                     linkedpagename:$scope.newheaderdata.linkedpagename
                 };
-                modelSite.addfooterMenu(newfooterdata);
+
+                if(typeof($scope.sitedataFirebase.footerdata) == "undefined"){
+                    $scope.sitedataFirebase.footerdata=[];
+                }
+                $scope.sitedataFirebase.footerdata.push(newfooterdata);
+//                modelSite.addfooterMenu(newfooterdata);
             }else{
                 footerclass.footername=$scope.newheaderdata.menuname;
                 footerclass.footertype=$scope.newheaderdata.menutype;
                 footerclass.linkedurl=$scope.newheaderdata.linkedurl;
                 footerclass.linkedpageid=$scope.newheaderdata.linkedpageid;
                 footerclass.linkedpagename=$scope.newheaderdata.linkedpagename;
-                modelSite.savesitedata($scope.get_site);
+
+                $scope.sitedataFirebase.footerdata = $scope.get_site.footerdata;
+//                modelSite.savesitedata($scope.get_site);
             }
-            $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
         }
-    }
+        $scope.header = $scope.sitedataFirebase.headerdata;
+        $scope.footer = $scope.sitedataFirebase.footerdata;
+    };
     var headclass='';
     //edit parent menu
     $scope.openheaderinfo=function(parentindex,obj,evt){
@@ -765,9 +936,15 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     }
     //delete menu
     $scope.deleteparentmenu=function(evt){
+
         if(ishead){
             if($("#delete")[0].value=='Delete'){
                 if(childmenuindex===''){
+                    if(typeof($scope.header[parentmenuindex].childdata) == "undefined"){
+                        $scope.header[parentmenuindex].childdata = [];
+                    }
+
+
                     if($scope.header[parentmenuindex].childdata.length>0){
                         $scope.showerror=true;
                         return;
@@ -792,8 +969,11 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
                 $scope.csstitleform=false;
             }
         }
-        modelSite.savesitedata($scope.get_site);
-        $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
+
+        $scope.sitedataFirebase.headerdata = $scope.get_site.headerdata;
+        $scope.sitedataFirebase.footerdata = $scope.get_site.footerdata;
+
+//        modelSite.savesitedata($scope.get_site);
         $("body").append($(".newlink_panel"));//delete before remove form position,it is must step
         $scope.footercommonfunction();
     }
@@ -806,7 +986,8 @@ page.c.pageListcontroller = function($scope, $location, $http, modelSite, modelA
     $scope.clickfootertheme = function(indexid, themedata){
         $scope.cssfooterthemeindex = indexid;
         $scope.cssfootermenuhavadata = true;
-        modelSite.setfootertheme($scope.cssfooterthemeindex);
+
+        $scope.sitedataFirebase.defaultsettings.footerthemeindex = indexid;
     }
     $scope.slideshowfootersetting = function(){
         $scope.cssfootersetting = true;

@@ -396,12 +396,13 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, mod
 
                 var tagstr = '';
 
-                for(var i=0;i<$scope.articledata.tags.length;i++){
+                for(var i = 0;i<$scope.articledata.tags.length;i++){
                     tagstr += $scope.articledata.tags[i].tagname+',';
                 }
                 $('.tagsinput').importTags(tagstr);
                 $(".tagsinput").tagsInput();    //初始化 加载tag标签
                 return;
+
             }
         }
     });
