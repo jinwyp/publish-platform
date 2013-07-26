@@ -80,13 +80,16 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     }
 
 
-    function fireBaseGetArticlesByTags (taglistdata, quantity, blockcategory) {
+    function fireBaseGetArticlesByTags (taglistdata, blockcategory, quantity) {
         var articlesresultunion = [];
         var articlesresultfinal = [];
-        var articlesresult = [];
-        var articlesresult2 = [];
+
+        var articlesresulttag = [];
+        var articlesresultcategory = [];
+
         var articlelist = $scope.articlesFirebase;
-        articlesresult = _.filter(articlelist, function(aritcle){
+
+        articlesresulttag = _.filter(articlelist, function(aritcle){
             var singlearticletags = _.filter(aritcle.tags, function(singletag){
                 var tagresult = _.where(taglistdata, {tagname: singletag.tagname});
 
@@ -94,16 +97,17 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
             });
             return  singlearticletags.length;
         });
+//        console.log(articlesresulttag);
 
-        articlesresult2 = _.filter(articlelist, function(element1){
-
+        articlesresultcategory = _.filter(articlelist, function(element1){
             if (element1.category.toString() == blockcategory){
 //                console.log(blockcategory, element1.category);
                 return true
             }
         });
+//        console.log(articlesresultcategory);
 
-        articlesresultunion = _.union(articlesresult, articlesresult2);
+        articlesresultunion = _.union(articlesresulttag, articlesresultcategory);
         articlesresultfinal = _.where(articlesresultunion, {status: "Published"});
 
         if(articlesresultfinal.length > quantity){
@@ -202,10 +206,10 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
                     for (var k = $scope.pages[i].pagelayoutdata[j].blocks.length-1; k>=0; k--)
                     {
                         if($scope.pages[i].pagelayoutdata[j].blocks[k].blocktype == 'auto'){
-                            var articlesdata = fireBaseGetArticlesByTags($scope.pages[i].pagelayoutdata[j].blocks[k].blocktag, $scope.pages[i].pagelayoutdata[j].blocks[k].blockquantity, $scope.pages[i].pagelayoutdata[j].blocks[k].blockcategory);
+                            var articlesdata = fireBaseGetArticlesByTags($scope.pages[i].pagelayoutdata[j].blocks[k].blocktag,  $scope.pages[i].pagelayoutdata[j].blocks[k].blockcategory, $scope.pages[i].pagelayoutdata[j].blocks[k].blockquantity);
                             $scope.pages[i].pagelayoutdata[j].blocks[k].blockarticles = articlesdata;
 
-                            console.log(articlesdata, $scope.pages[i].pagelayoutdata[j].blocks[k].blocktag, $scope.pages[i].pagelayoutdata[j].blocks[k].blockquantity );
+//                            console.log(articlesdata, $scope.pages[i].pagelayoutdata[j].blocks[k].blocktag, $scope.pages[i].pagelayoutdata[j].blocks[k].blockquantity );
 
                         }
                     }

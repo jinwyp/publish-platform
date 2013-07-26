@@ -177,7 +177,7 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire) 
 
 
 
-page.c.userRegisterController = function($scope, $location,  $q, $timeout, angularFire) {
+page.c.userRegisterController = function($scope, $location, $timeout, angularFire) {
 //    $scope.site = modelSite.getSite(); // use firebase for database
     var singleuserurl = "https://vcplatform.firebaseIO.com/usernow";
     $scope.userFirebase = angularFire(singleuserurl, $scope, 'userFirebase', {});
