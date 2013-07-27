@@ -1392,7 +1392,7 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .vernode a.node.current,
 .vernode a.node.current:hover{ color:#fff; background:#2a9400; border-color:#38b801;}
 .vernode a.node.last{ margin-right:0;}
-.vernode .tooltip.top  { margin-top: -15px; }
+.vernode .tooltip  { top: -60px !important; }
 .vernode .tooltip-inner{ max-width:200px; padding:10px 4px; color:#fff; text-align:center; text-decoration:none; background-color:#000;
     -webkit-border-radius:4px;
     -moz-border-radius:4px;
