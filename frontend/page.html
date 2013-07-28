@@ -55,7 +55,7 @@
 
 <!-- =======================================  tip_auto ======================================= -->
 <div class="tip_box tip_auto" ng-cloak ng-show="'auto'==cssblocktipbox" >
-    <h1><a href="###" class="TipBoxClose">X</a>Auto Block Data</h1>
+    <h1 class="PopupTitle"><a href="###" class="TipBoxClose">X</a>Auto Block Data</h1>
     <div class="tabbable tabs-below">
         <div class="tab-content">
             <!-- Tab1: Layout -->
@@ -169,7 +169,7 @@
 
 <!-- ======================================= tip_editor ======================================= -->
 <div class="tip_box tip_editor" ng-cloak ng-show="'editor'==cssblocktipbox">
-    <h1><a href="###" class="TipBoxClose">X</a>Editor's Pick Block Data</h1>
+    <h1 class="PopupTitle"><a href="###" class="TipBoxClose">X</a>Editor's Pick Block Data</h1>
     <div class="tab-content">
         <dl class="clearfix">
             <dt>Block name :</dt>
@@ -200,7 +200,7 @@
 
 <!-- ======================================= tip_static ======================================= -->
 <div class="tip_box tip_static" ng-cloak ng-show="'static'==cssblocktipbox">
-    <h1><a href="###" class="TipBoxClose">X</a>Static</h1>
+    <h1 class="PopupTitle"><a href="###" class="TipBoxClose">X</a>Static</h1>
     <ul class="StaticElementBlock clearfix">
      	<li><a href="#" class="icon_static_txt" ng-click="addblocktopage('statictext', currentlayoutcontainer, 0) ">TXT</a></li>
         <li><a href="#" class="icon_static_pic" ng-click="addblocktopage('staticpic', currentlayoutcontainer, 0)">PIC</a></li>
@@ -211,7 +211,7 @@
 
 <!-- ======================================= tip_ad ======================================= -->
 <div class="tip_box tip_ads" ng-cloak ng-show="'ads'==cssblocktipbox">
-    <h1><a href="###" class="TipBoxClose">X</a>Ad Block Data</h1>
+    <h1 class="PopupTitle"><a href="###" class="TipBoxClose">X</a>Ad Block Data</h1>
     <div class="tab-content">
         <dl class="clearfix">
             <dt>Ad Name:</dt>
@@ -239,7 +239,7 @@
 
 <!-- ======================================= tip_RSS ======================================= -->
 <div class="tip_box tip_RSS" ng-cloak  ng-show="'RSS'==cssblocktipbox">
-    <h1><a href="###" class="TipBoxClose">X</a>RSS Block Data</h1>
+    <h1 class="PopupTitle"><a href="###" class="TipBoxClose">X</a>RSS Block Data</h1>
     <div class="tab-content">
         <dl class="clearfix">
             <dt>Block name :</dt>
@@ -300,6 +300,7 @@
                             <div class="attribute_panel clearfix" ng-show="cssheadermenubutton">
                                 <a href="#" class="icon_setup" ng-click="slideshowheadersetting()">setup</a>
                                 <a href="#" class="icon_delete" ng-hide="true">delete</a>
+                                <a href="#" class="icon_space">space</a>
                             </div>
 
                             <!-- HeaderNavSettings 设置面板区 -->
@@ -334,7 +335,7 @@
                                         <li ng-hide="$index==showli"><a ng-hide="header.length > 4" href="#" class="sub_addlink" ng-click="showheaderform($index,true,$event,true)">+</a></li>
                                         <li class="newlink_panel" ng-show="csstitleform">
                                             <form action="" method="get">
-                                            	<div class="newlink_title"><h1><a href="#" class="TipBoxClose" ng-click="closetipheader();"></a>Link Data</h1></div>
+                                                <h1 class="PopupTitle"><a href="#" class="TipBoxClose" ng-click="closetipheader();"></a>Link Data</h1>
                                                 <div class="newlink_panel_name">
                                                     <input type="text" class="input_newlink" maxlength="10" required ng-model="newheaderdata.menuname" placeholder="Nav link name">
                                                 </div>
@@ -542,6 +543,7 @@
                             <!-- Menu 右上角button ========== Block Attribute Panel ======================================= -->
                             <div class="attribute_panel clearfix" ng-show="cssfootermenubutton">
                                 <a href="#" class="icon_setup" ng-click="slideshowfootersetting()">setup</a>
+                                <a href="#" class="icon_space">space</a>
                                 <!--<a href="#" class="icon_delete">delete</a>-->
                             </div>
 
@@ -596,7 +598,7 @@
 
                         <!-- ======================================= Page Attribute Panel ======================================= -->
                         <div class="page_attri_panel" ng-cloak ng-show="$index == selectedpageattributeindex">
-                            <h1><a href="" class="TipBoxClose" ng-click="closeeditpageattribute($index)">X</a>Page Data</h1>
+                            <h1 class="PopupTitle"><a href="" class="TipBoxClose" ng-click="closeeditpageattribute($index)">X</a>Page Data</h1>
                             <div class="page_attri_cont">
                                 <form>
                                 	<div class="clearfix">
