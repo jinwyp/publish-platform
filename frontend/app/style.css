@@ -239,12 +239,13 @@ h1.PopupTitle .TipBoxClose:active	{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); o
 /* =========================================================================================== */
 /*                                          Index                                              */
 /* =========================================================================================== */
-.banner_box		{ width:100%; height:600px; background:url(img/index_banner.jpg) center top repeat;}
-.banner			{ width:1366px; height:600px; margin:0 auto; overflow:hidden; position:relative;}
-.slide_01		{ position:absolute; left:-100px; bottom:-30px; width:823px; height:506px; background:url(img/slide_01.png) no-repeat;}
-.bannerTxt		{ position:absolute; right:72px; top:45px; width:620px; height:100px;}
+.banner_box	{ width:100%; height:600px; background:url(img/index_banner.jpg) center top repeat;}
+.banner			{ width:1366px; height:600px; margin:0 auto; padding:0; position:relative;}
+.slide_01		{ position:absolute; left:-60px; bottom:-26px; width:823px; height:506px; background:url(img/slide_01.png) no-repeat;}
+.bannerTxt		{ position:absolute; right:30px; top:60px; width:640px; height:100px;}
 .bannerTxt	h1,
 .bannerTxt	h4	{ color:#fff; font-weight:200; line-height:1.4em; text-shadow:0 1px 2px rgba(0,0,0,0.5);}
+.bannerTxt	h1	{ font-size:32px;}
 .bannerTxt	h4	{ font-size:16px; margin-bottom:20px;}
 
 .bannerTxt .signin_btn{ display:block; width:272px; height:52px; color:#fff; text-align:center; line-height:50px; font-size:20px; background:url(img/temp/index_btn.png) 0 -62px no-repeat; text-decoration:none; margin-bottom:10px; font-weight:bold; }
@@ -258,7 +259,7 @@ h1.PopupTitle .TipBoxClose:active	{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); o
 .loginform .form-horizontal .control-label  { width:100px; text-align:right; color:#fff; font-size:18px; vertical-align:middle; }
 .loginform .form-horizontal .controls 		{ margin-left:110px !important; }
 
-.loginform .form-horizontal label 			{ line-height:30px; margin-right:10px;}
+.loginform .form-horizontal label 			{ line-height:30px; margin-right:10px; cursor:default;}
 .loginform .form-horizontal label.checkbox	{ line-height:20px; color:#fff; margin-bottom:20px;}
 .loginform .form-horizontal label.checkbox span{ display:none;}
 
@@ -275,7 +276,7 @@ h1.PopupTitle .TipBoxClose:active	{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); o
 .loginform .form-horizontal .controls input[type="submit"]	{ margin-top:10px; border:0;}
 
 .socialsignin	{ padding-left:108px; margin-bottom:20px;}
-.intoRegister a { color:#faae43; padding-left:110px; font-weight:bold; text-decoration:underline;}
+.intoRegister a { color:#ff9; padding-left:111px; font-weight:bold; text-decoration:underline;}
 
 
 
@@ -591,6 +592,7 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 .userInfo p							{ color:#fff; font-size:18px;}
 .userInfo input,
 .userInfo p							{ margin-bottom:16px;}
+.userInfo .chagePWD					{ margin:0; padding:0; line-height:14px; font-size:12px; font-weight:bold; color:#c90; text-decoration:underline;}
 
 
 
