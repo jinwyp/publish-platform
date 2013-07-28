@@ -338,7 +338,7 @@ h1.PopupTitle .TipBoxClose:active	{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); o
 .reg_form table tr			{ border-bottom:2px solid #e3e4e8;}
 .reg_form table td			{ border:0; margin:0; padding:40px 10px; vertical-align:middle;}
 .reg_form table tr.last		{ border-bottom:0;}
-.reg_form table .titlename	{ width:100px; padding:20px 0; color:#e2e3e7; text-align:center; font-weight:bold; background:#8c8d91;}
+.reg_form table .titlename	{ width:100px; padding:20px 0; color:#ddd; text-align:center; font-weight:bold; background:#8c8d91;}
 
 /* === 步骤标题 === */
 .reg_box_title				{ position:absolute; left:40%; top:-60px;}
@@ -476,7 +476,7 @@ background:#fff url(img/site_Thumbnails.png) 20px 12px no-repeat; z-index:1;}
 .site_form table tr			{ border-bottom:2px solid #e3e4e8;}
 .site_form table td			{ border:0; margin:0; padding:20px 10px; vertical-align:middle;}
 .site_form table tr.last	{ border-bottom:0;}
-.site_form table .titlename	{ width:76px; padding:20px 0; color:#e2e3e7; font-weight:bold; text-align:center; background:#8c8d91;}
+.site_form table .titlename	{ width:76px; padding:20px 0; color:#ddd; font-weight:bold; text-align:center; background:#8c8d91;}
 
 /* 输入框 */
 .site_form input.site_input	{ margin:0 auto; display:block; padding:6px; width:86%; height:auto; vertical-align:baseline;}
@@ -551,7 +551,7 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 /* =========================================================================================== */
 /*                                          User                                      	       */
 /* =========================================================================================== */
-.userWrap				{ }
+.userWrap				{ color:#aaa; }
 .userBox				{ position:absolute; min-width:310px; border-radius:8px; box-shadow:0 0 30px rgba(0,0,0,0.4); background:#444549; }
 
 .userAccount			{ top:22%; left:35%; }
@@ -561,16 +561,16 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 
 .wrongTip				{ display:block; padding:8px 0; border-top:1px solid #600; border-bottom:1px solid #600; background:#930; color:#fff; text-align:center; box-shadow:inset 0 0 10px rgba(0,0,0,0.15);}
 
-.userForm				{ position:relative;}
-.userFormBox			{ position:relative; padding:30px; height:auto; color:#bbb; font-size:16px;}
+.userFormBox			{ position:relative; padding:30px; height:auto; font-size:16px;}
 .userFormFloat			{ float:left;}
+.userFormFloat h6		{ margin:0 0 10px 0; font-size:14px; font-weight:bold; text-transform:capitalize; cursor:default;}
 
 .userFormBox .panel_close	{ display:block; position:absolute; right:0; top:0; width:40px; height:34px; background:#222 url(img/icon_attribute.png) 10px -1394px no-repeat; border-radius:0px 8px 0px 8px; overflow:hidden; text-indent:-9999px; opacity:0.5;}
 .userFormBox .panel_close:hover,
 .userFormBox .panel_close:active{ color:#fff; box-shadow:inset 0 0 12px rgba(0,0,0,0.5); opacity:1;}
 
 .userPhoto				{ width:242px; margin:0 auto 20px; background:#2e3235; }
-.userPhoto h6			{ margin:40px auto 20px; font-size:18px; color:#81848d; text-align:center; text-transform:uppercase;}
+.userPhoto h6			{ margin:40px auto 20px; font-size:18px; color:#81848d; text-align:center; text-transform:capitalize;}
 .userPhoto .btn			{ display:block; margin:0 auto !important;}
 
 /* 无头像 */
@@ -582,7 +582,6 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 .userPhoto.full .btn	{ display:block; position:absolute; left:35%; bottom:-54px; margin:0 auto; }
 
 .userInfo							{ padding-left:30px;}
-.userInfo h6						{ margin:0 0 10px 0; font-size:14px; font-weight:bold; text-transform:capitalize; cursor:default;}
 .userInfo label						{ margin:0 20px 14px 0; display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline;}
 .userInfo input[type="text"],
 .userInfo input[type="password"]		{  padding:6px; font-size:18px; }
@@ -635,12 +634,12 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 /* =========================================================================================== */
 .pagelist		{ position:absolute; left:-164px; top:230px; width:164px; height:auto;}
 .pagelistbox	{ margin-bottom:14px; padding:0; list-style:none;}
-.pagelistbox li	{ margin:0; padding:0; position:relative;}
+.pagelistbox > li	{ margin:0; padding:0; position:relative;}
 
 /* Hover: PageList display edit icon. */
-.pagelistbox li .ico_edit		{ position:absolute; z-index:99; top:16px; right:8px; display:none; width:20px; height:20px; text-indent:-9999px; background:url(img/icon_attribute.png) 0 -50px no-repeat; cursor:pointer;}
-.pagelistbox li:hover .ico_edit	{ display:block;}
-.pagelistbox li:hover .ico_edit:hover{ background-position:0 -50px;}
+.pagelistbox > li .ico_edit		{ position:absolute; z-index:99; top:16px; right:8px; display:none; width:20px; height:20px; text-indent:-9999px; background:url(img/icon_attribute.png) 0 -50px no-repeat; cursor:pointer;}
+.pagelistbox > li:hover .ico_edit	{ display:block;}
+.pagelistbox > li:hover .ico_edit:hover{ background-position:0 -50px;}
 
 /* Page List */
 .pagelist_btn	{ display:block; position:relative; padding:14px 0 14px 28px; margin-bottom:1px; color:#333; font-weight:bold; text-decoration:none; text-indent:0; border-radius:4px 0 0 4px;
@@ -686,16 +685,15 @@ ul.ts_preview li img	{ display:block; width:300px; margin:0; padding:0;}
 .addpage_btn:hover{ color:#fff; background:rgba(0,0,0,1); background:#000\9; box-shadow:0 0 3px rgba(255,255,255,0.4); text-decoration:none;}
 
 /* Page Attribute Panel */
-.page_attri_panel					{ position:absolute; right:-222px; top:-20px; padding:0; background:#343434; z-index:99; border-radius:8px; box-shadow:2px 2px 30px rgba(0,0,0,0.6); cursor:default;}
-.page_attri_panel:after				{ content:''; position:absolute; left:2px; top:37px; margin-left:-12px; width:10px; height:19px; background:url(img/tip_arrow_l.png) no-repeat;}
+.page_attri_panel					{ position:absolute; left:139px; top:-20px; padding:0; background:#343434; z-index:99; border-radius:8px; box-shadow:2px 2px 30px rgba(0,0,0,0.6); cursor:default;}
+.page_attri_panel:after			{ content:''; position:absolute; left:2px; top:37px; margin-left:-12px; width:10px; height:19px; background:url(img/tip_arrow_l.png) no-repeat;}
 
-.page_attri_panel h6				{ float:left; display:block; width:40px; margin:0 0 6px 0; padding-right:8px; text-align:right; font-size: 14px; font-weight: bold; line-height:30px; text-transform: capitalize; color:#bbb;}
-
-.page_attri_cont					{ padding:10px 30px;}
+.page_attri_cont					{ padding:20px 30px; width:202px;}
+.page_attri_cont h6				{ float:left; display:block; width:40px; margin:0 0 6px 0; padding-right:8px; text-align:right; font-size: 14px; font-weight: bold; line-height:30px; text-transform:capitalize; color:#aaa;}
 .page_attri_cont form				{ margin:0;}
-.page_attri_cont div				{ margin-bottom:10px; clear:both;}
-.page_attri_cont i 					{ font-style:normal; font-weight:normal; line-height:14px !important; font-size:12px; color:#9a9a9a;}
-.page_attri_cont input				{ width:100px; float:left;}
+.page_attri_cont ul				{ margin:0; padding:0; list-style:none;}
+.page_attri_cont ul li			{ height:50px; clear:both;}
+.page_attri_cont input			{ width:140px; float:left;}
 .page_attri_cont .btn_box			{ padding:0; text-align:right;}
 
 
@@ -1058,7 +1056,7 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-f
 /* =========================================================================================== */
 /*                                      TipBox: 弹出创建内容                                     */
 /* =========================================================================================== */
-.tip_box		{ margin:0; padding:0; width:500px; color:#bbb; border-radius:8px; background:#343434; box-shadow:0 0 30px rgba(0,0,0,0.6); z-index:999999; }
+.tip_box		{ margin:0; padding:0; width:500px; color:#aaa; border-radius:8px; background:#343434; box-shadow:0 0 30px rgba(0,0,0,0.6); z-index:999999; }
 .tip_box:after	{ content:''; position:absolute; left:50%; bottom:-10px; margin-left:-12px; width:23px; height:10px; background:url(img/tip_arrow.png) no-repeat;}
 
 .tip_box dl		{ margin-bottom:10px;}

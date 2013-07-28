@@ -601,18 +601,20 @@
                             <h1 class="PopupTitle"><a href="" class="TipBoxClose" ng-click="closeeditpageattribute($index)">X</a>Page Data</h1>
                             <div class="page_attri_cont">
                                 <form>
-                                	<div class="clearfix">
-                                		<h6>name</h6>
-                                    	<input type="text" class="" placeholder="Page Name" ng-model="page.pagename">
-                                    </div>
-                                    <div class="clearfix">
-										<h6>title</h6>
-                                    	<input type="text"  class="" placeholder="Page Title" ng-model="page.pagetitle">
-                                    </div>
-                                    <div class="clearfix">
-										<h6>URL</h6>
-                                    	<input type="text" class="" placeholder="Page Url" ng-model="page.pageurl">
-                                    </div>
+                                		<ul class="clearfix">
+                                        <li>
+                                            <h6>name</h6>
+                                            <input type="text" class="" placeholder="Page Name" ng-model="page.pagename">
+                                        </li>
+                                        <li>
+                                            <h6>title</h6>
+                                        	<input type="text"  class="" placeholder="Page Title" ng-model="page.pagetitle">
+                                        </li>
+                                        <li>
+                                            <h6>URL</h6>
+                                        	 <input type="text" class="" placeholder="Page Url" ng-model="page.pageurl">
+                                        </li>
+                                    </ul>
                                     <div class="btn_box">
                                         <a href="#" class="btn btn-save" ng-click="editsavepage(page)">Save</a>
                                     	<a href="#" class="btn btn-delete" ng-click="delpage(page)">Del</a>
