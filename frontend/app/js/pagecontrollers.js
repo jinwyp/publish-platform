@@ -1003,6 +1003,11 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
     $scope.closetipheader = function(){
         $scope.csstitleform=false;
+        $scope.footerlia = -1;
+        $scope.footerli = -1;
+        $scope.showli = -1;
+        $scope.showa = -1;
+        $scope.showchilda = -1;
     }
 
     $scope.showfootmenusetting=function(){
