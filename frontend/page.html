@@ -35,7 +35,12 @@
 <!-- Header -->
 <header class="header">
 	<h1 class="logo"><a href="index.html">VCP</a></h1>
-    <a href="../demo/index.html" class="preview">preview</a>
+    <a href="###" class="preview">preview</a>
+    <div class="preview_Item">
+    	<a href="#" class="forMobile">Preview on Mobile</a>
+        <a href="#" class="forPad">Preview on Pad</a>
+    	<a href="../demo/index.html" class="forPC">PC</a>
+    </div>
     <ul class="menu clearfix">
     	<li id="menuSite"><a href="site.html">Site</a></li>
         <li id="menuPage"><a href="page.html" class="current">Page</a></li>
@@ -696,6 +701,20 @@
 				  //关闭TipBox
 					$(".TipBoxClose").click(function(){
 						 $(".tip_box").fadeOut(300);
+					});
+					
+					
+					
+					
+					$(".preview").hover(function(){
+						 	$(".preview").fadeOut(300);
+						 	$(".preview_Item").fadeIn(300);
+					});
+					
+					$(".preview_Item").hover(function(){
+						 }, function() {
+						 	$(".preview").fadeIn(300);
+							$(".preview_Item").fadeOut(300);
 					});
 				
 				  
