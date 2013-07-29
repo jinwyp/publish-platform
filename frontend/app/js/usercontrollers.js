@@ -10,7 +10,7 @@ vcpapp.controller(page.c);
 
 
 /* Controllers */
-page.c.userInfoController = function($scope, $location, angularFire, modelSite) {
+page.c.userInfoController = function($scope, $location, angularFire) {
     $scope.csshaveavatar = false;
     $scope.cssshowpasswordbox = false;
 //    $scope.site = modelSite.getSite(); // use firebase for database
@@ -152,16 +152,16 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire, 
         rememberusername : false
     };
 
+    $scope.cssloginprompt = false;
+
     //登录
     $scope.userlogin = function(callback){
         var usersdata = $scope.usersFirebase;
-        var usercheckexist = _.where(usersdata, {email: $scope.userdata.email, password: $scope.userdata.password});
 
         if (callback.$valid) {
-            console.log(usercheckexist);
+            var usercheckexist = _.where(usersdata, {email: $scope.userdata.email, password: $scope.userdata.password});
             if(usercheckexist.length < 1){
-                alert('Email Or Password Error!');
-
+                $scope.cssloginprompt = true;
             }else{
                 $scope.usersessionFirebase ={
                     email : usercheckexist[0].email,
@@ -181,7 +181,7 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire, 
                 }, 1000);
             }
         }else{
-            alert('Email Or Password Error!');
+            $scope.cssloginprompt = true;
         }
     }
 };
@@ -204,58 +204,55 @@ page.c.userRegisterController = function($scope, $location, $timeout, angularFir
     };
 
     $scope.csspasswordprompt = false;
-
-    var usercheckexist =[] ;
-
-
+    $scope.cssemailprompt = false;
 
     //注册用户 保存密码和邮箱
     $scope.saveemailinfo = function(callback){
         var usersdata = $scope.usersFirebase;
-        usercheckexist = _.where(usersdata, {email: $scope.userdata.email, password: $scope.userdata.password1});
-        console.log(usercheckexist);
 
         if (callback.$valid) {
+            var usercheckexist = _.where(usersdata, {email: $scope.userdata.email, password: $scope.userdata.password1});
+            console.log(usercheckexist, callback.$valid);
 
             if(usercheckexist.length >= 1){
                 $scope.cssemailprompt = true;
-
-            }else if($scope.userdata.password1 == $scope.userdata.password2){
-                    $scope.csspasswordprompt = false ;
-
-                    var newuser = {
-                        email : $scope.userdata.email,
-                        password : $scope.userdata.password1,
-                        firstname : "",
-                        lastname : "",
-                        mobilenumber : "",
-                        gender : ""
-                    };
-
-                    $scope.usersFirebase.push(newuser);
-
-                    $scope.userFirebase ={
-                        email : $scope.userdata.email,
-                        password : $scope.userdata.password1,
-                        firstname : "",
-                        lastname : "",
-                        mobilenumber : "",
-                        gender : ""
-                    };
-
-                    //$scope.site.userinfo = $scope.userdata;  // use firebase for database
-                    //modelSite.updateSite($scope.site);     // use firebase for database
-                    //$timeout(function() {
-                        location.href = "user.html";
-                    //}, 2000);
-
-            }else{
+            }else if($scope.userdata.password1 != $scope.userdata.password2){
                 $scope.csspasswordprompt = true;
-            }
+            }else{
+                $scope.csspasswordprompt = false ;
+                $scope.cssemailprompt = false;
 
+                var newuser = {
+                    email : $scope.userdata.email,
+                    password : $scope.userdata.password1,
+                    firstname : "",
+                    lastname : "",
+                    mobilenumber : "",
+                    gender : ""
+                };
+
+                $scope.usersFirebase.push(newuser);
+
+                $scope.usersessionFirebase = {
+                    email : $scope.userdata.email,
+                    password : $scope.userdata.password1,
+                    firstname : "",
+                    lastname : "",
+                    mobilenumber : "",
+                    gender : ""
+                };
+
+                $timeout(function() {
+                    location.href = "user.html";
+                }, 1000);
+
+                //$scope.site.userinfo = $scope.userdata;  // use firebase for database
+                //modelSite.updateSite($scope.site);     // use firebase for database
+            }
+        }else{
+            $scope.csspasswordprompt = true ;
         }
     }
-
 
 };
 
@@ -277,19 +274,19 @@ page.c.siteController = function($scope, $location, angularFire) {
         $scope.selectpublish = true;
         $scope.selectone = false;
         $scope.selectcomplex = false;
-    }
+    };
 
     $scope.clickone = function(){
         $scope.selectpublish = false;
         $scope.selectone = true;
         $scope.selectcomplex = false;
-    }
+    };
 
     $scope.clickcomplex = function(){
         $scope.selectpublish = false;
         $scope.selectone = false;
         $scope.selectcomplex = true;
-    }
+    };
 
     promise.then(function() {
         $scope.siteinfodata = {
