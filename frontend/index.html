@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="vcpmodule">
+  <head>
+    <meta charset="utf-8">
+    <title>VCP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    
+    <!--[if IE]> 
+    <link rel="stylesheet" href="app/ie.css">
+    <div class="fuck_ie">
+    <h1>IE公开践踏W3C标准，可是一样流行，所谓标准不过是人定义的东西。</h1>
+    <p>--- 鲁迅</p>
+    <span>主席推荐：</span>
+    <a class="chrome" href="http://www.google.com/chrome/" target="_blank"><img src="app/img/browser_chrome.png">Chrome浏览器</a>
+    <a class="safari" href="http://www.apple.com.cn/safari/" target="_blank"><img src="app/img/browser_safari.png">Safari浏览器</a>
+    </div>
+    <![endif]-->
+    
+    <link href="lib/bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="app/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="app/img/favicon.ico">
+    <!--[if lt IE 9]>
+      <script src="lib/other/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+<body style="background:#f1f1f1;">
+
+<!-- Header -->
+<header class="header">
+	<h1 class="logo"><a href="index.html">VCP</a></h1>
+    <!-- 
+    <div class="dropdown toprightlogin">
+    	  <a href="user.html" class="signin" data-toggle="dropdown">Login</a>
+          
+         <div class="dropdown-menu pull-right loginform">
+            <form name="loginform" class="form-horizontal">
+                  <div class="control-group">
+                    <label class="control-label" for="inputEmail">Email</label>
+                    <div class="controls">
+                      <input type="email" required id="inputEmail" ng-model="userdata.email" placeholder="Email">
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label" for="inputPassword">Password</label>
+                    <div class="controls">
+                      <input type="password" required id="inputPassword" ng-model="userdata.password" placeholder="Password">
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="controls">
+                      <label class="checkbox">
+                        <input type="checkbox"> Remember me
+                      </label>
+                      <input type="submit" class="btn" ng-click="userlogin(loginform)" value="Sign in">
+                    </div>
+                  </div>
+             </form>
+         </div>
+    </div>
+    -->
+</header>
+
+<div class="vcpbox"  ng-controller="userLoginController">
+	<div class="banner_box">
+    	<div class="banner">
+        	<div class="bannerTxt">
+        		<h1>The easiest way to build a beautiful website. </h1>
+           		<h4>30,276,041 sites created. No coding. Easy to customize. Google friendly.</h4>
+                		<div class="loginform">
+                        <form name="loginform" class="form-horizontal">
+                              <div class="control-group">
+                                <label class="control-label" for="inputEmail">Account</label>
+                                <div class="controls">
+                                  <input type="email" required id="inputEmail" ng-model="userdata.email" placeholder="Email">
+                                </div>
+                              </div>
+                              <div class="control-group">
+                                <label class="control-label" for="inputPassword">Password</label>
+                                <div class="controls">
+                                  <input type="password" required id="inputPassword" ng-model="userdata.password" placeholder="Password">
+                                  <p ng-cloak ng-show="cssloginprompt" style="color:#f30; margin:8px 0 0 0; padding:0; line-height:14px;">Email Or Password Error!</p>
+                                </div>
+                              </div>
+                              <div class="control-group">
+                                <div class="controls">
+                                  <label class="checkbox">
+                                    <input type="checkbox" ng-model="userdata.rememberusername">Remember me
+                                  </label>
+                                  <input type="submit" class="login_btn signin_btn" ng-click="userlogin(loginform)" value="Login">
+                                </div>
+                              </div>
+                              <div class="socialsignin"><a href="#"><img src="app/img/social.png"></a></div>
+                         	  <div class="intoRegister"><a href="register.html">Login For A New Account</a></div>
+
+                         </form>
+                         </div>
+                         <!-- 
+            	 		<a href="register.html" class="login_btn">New Account</a>
+               			<a href="#" id="slidebtn" class="login_btn signin_btn" >Sign In</a>
+               			<div class="index_socialbox"><a href="register.html"><img src="app/img/temp/signinico.png"></a></div>
+                        -->
+           </div>
+           <div class="slide_01"><!-- Easy To Use / build site fast / earn money --></div>
+        </div>
+    </div>
+</div>  
+
+<!-- Footer -->    
+<footer class="footer">
+    <div class="index_social"></div>
+    <p>
+    <a href="#">Privacy Policy</a>|
+    <a href="#">Terms & Conditions</a>|
+    <a href="#">Press Kit</a>|
+    <a href="#">Trademark Issues</a>|
+    <a href="#">Contact Us</a>
+    </p>
+    <p>Copyright © 2013 ValueClick Brands, Inc. All Rights Reserved.</p>
+</footer>
+
+
+    <!-- Load JS -->
+    <script src="lib/underscore/underscore-min.js"></script>
+
+    <script src="lib/angular/1.1.5/angular.js"></script>
+    <script src="app/js/usercontrollers.js"></script>
+    <script src="app/js/factory.js"></script>
+    <script src="app/js/directives.js"></script>
+
+    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+    <script src="lib/angularfire/angularfire.js"></script>
+
+
+    <script src="lib/jquery/jquery-1.8.2.min.js"></script>
+    <script src="lib/bootstrap/bootstrap.min.js"></script>
+    <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
+    <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
+    <script src="lib/flatui/custom_radio.js"></script>
+    <script src="lib/flatui/jquery.tagsinput.js"></script>
+    <script src="lib/flatui/jquery.placeholder.js"></script>
+    <script src="lib/flatui/application.js"></script>
+    <!-- <script src="lib/jqueryplugin/fancyInput.js"></script>-->
+    <!--[if lt IE 8]>
+    <script src="lib/flatui/icon-font-ie7.js"></script>
+    <script src="lib/flatui/lte-ie7-24.js"></script>
+    <![endif]-->
+    <script src="app/js/custom.js"></script>
+    <script type="text/jscript">
+			$(function() {
+				
+				$(".signin_btn").click(function(){
+				  $(".index_socialbox").slideDown(300);
+				});
+  
+        	});
+	</script>   
+</body>
+</html>
