@@ -7,33 +7,6 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#f00';
-<<<<<<< HEAD
-    config.removeButtons = 'Source,Save,Preview,About,Maximize';
-    config.toolbarGroups = [
-        { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
-        { name: 'forms' },
-        { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
-        { name: 'links' },
-        '/',
-        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-        { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
-        { name: 'colors' },
-        { name: 'CreatePlaceholder'},
-        '/',
-        { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
-        { name: 'insert' },
-        { name: 'others' },
-        { name: 'texttransform', groups: ['TransformTextToUppercase','TransformTextToLowercase','TransformTextCapitalize','TransformTextSwitcher']},
-        '/',
-        { name: 'styles' },
-        { name: 'tools' }
-
-    ];
-
-    config.extraPlugins='tableresize,wysiwygarea,floating-tools,youtube,wordcount,texttransform,zoom,autosave,' +
-        'backgrounds,insertpre,uploadcare,onchange,placeholder';
-    config.removePlugins='resize';
-=======
 //    config.removeButtons = 'Source,Save,Preview,About,Maximize,list,indent,bidi,mode';
 //    config.toolbarGroups = [
 //        { name: 'document',	   groups: [  '', 'doctools' ] },
@@ -72,7 +45,6 @@ CKEDITOR.editorConfig = function( config ) {
 	[ 'youtube' ]
     ];
     //config.removePlugins='resize';
->>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
     //控制显示youtube视频
     config.allowedContent = true;
@@ -98,13 +70,9 @@ CKEDITOR.editorConfig = function( config ) {
     UPLOADCARE_LOCALE = 'ru'; //set locale if you wish
 
 
-<<<<<<< HEAD
-    config.height = 500;
-=======
    // config.autoGrow_minHeight = 500;
 
     config.autoGrow_onStartup = true;
->>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 };
 
 

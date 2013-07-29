@@ -489,11 +489,7 @@
     color:#34495e;
     font-size:16px;
     margin:0;
-<<<<<<< HEAD
-    padding:4px 4px 6px;
-=======
     padding:4px 4px 5px;
->>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     outline:0;
     width:20px;
 	border-radius:0px 4px 4px 0px;
@@ -639,10 +635,7 @@
 
 /* SNS Share */
 .share {
-<<<<<<< HEAD
-=======
 	width:200px;
->>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
   background-color: #ecf0f5;
   border-radius: 6px;
   position: relative; }
@@ -682,11 +675,7 @@
 .share-label {
   float: left;
   font-size: 15px;
-<<<<<<< HEAD
-  padding-top: 5px;
-=======
   padding-top: 0px;
->>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
   width: 50%; }
 
 

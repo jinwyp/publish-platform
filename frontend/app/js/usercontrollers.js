@@ -10,20 +10,6 @@ vcpapp.controller(page.c);
 
 
 /* Controllers */
-<<<<<<< HEAD
-page.c.userInfoController = function($scope, $location, angularFire, modelSite) {
-    $scope.csshaveavatar = false;
-    $scope.cssshowpasswordbox = false;
-
-//    $scope.site = modelSite.getSite(); // use firebase for database
-//    $scope.user = $scope.site.userinfo;
-
-    var url = "https://vcplatform.firebaseIO.com/user";
-    var promise = angularFire(url, $scope, 'userFirebase', {});
-
-    $scope.userdata = {
-    };
-=======
 page.c.userInfoController = function($scope, $location, $timeout, angularFire) {
 //    $scope.site = modelSite.getSite(); // use firebase for database
 //    $scope.user = $scope.site.userinfo;
@@ -56,18 +42,12 @@ page.c.userInfoController = function($scope, $location, $timeout, angularFire) {
     });
 
 
->>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
     //显示修改密码form
     $scope.changepassword = function(){
         $scope.cssshowpasswordbox = true;
-<<<<<<< HEAD
-        $(".userAccount").animate({left:"18%"});
-        $(".userPassword").animate({left:"100%"});
-=======
         $(".userAccount").animate({left:"22%"});
         $(".userPassword").animate({left:"99.3%"});
->>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     };
 
     //显示头像是否上传
@@ -75,79 +55,6 @@ page.c.userInfoController = function($scope, $location, $timeout, angularFire) {
         $scope.csshaveavatar = true;
     };
 
-<<<<<<< HEAD
-    promise.then(function() {
-        $scope.userdata = {
-            firstname : $scope.userFirebase.firstname,
-            lastname : $scope.userFirebase.lastname,
-            mobilenumber : $scope.userFirebase.mobilenumber,
-            email : '',
-            oldpassword : '',
-            newpassword1 : '',
-            newpassword2 : '',
-            gender : $scope.userFirebase.gender
-        };
-
-
-        //保存用户基本信息
-        $scope.saveuserinfo = function(callback){
-            if (callback.$valid) {
-                $scope.userFirebase = {
-                    email : $scope.userFirebase.email,
-                    password : $scope.userFirebase.password,
-                    firstname : $scope.userdata.firstname,
-                    lastname : $scope.userdata.lastname,
-                    mobilenumber : $scope.userdata.mobilenumber,
-                    gender : $scope.userdata.gender
-                };
-                $(".userAccount").animate({left:"28%"});
-                $(".userPassword").animate({left:"0%"});
-
-//            modelSite.updateSite($scope.site);    // use firebase for database
-//            location.href = "site.html";
-            }
-        };
-
-
-
-        $scope.modifypassword = function(){
-            $scope.cssoldpassword = false;
-            $scope.cssnewpassword = false;
-            $scope.cssnewpassword2 = false;
-            $scope.cssshowinconsistent = false;
-
-            if($scope.userdata.oldpassword != $scope.userFirebase.password){
-                $scope.cssoldpassword = true;
-                $("#oldpassword").focus();
-
-            }else if($scope.userdata.newpassword1 == ""){
-                $scope.cssnewpassword = true;
-                $("#newpassword").focus();
-
-            }else if($scope.userdata.newpassword2 == ""){
-                $scope.cssnewpassword2 = true;
-                $("#conformpassword").focus();
-
-            }else if($scope.userdata.newpassword1 != $scope.userdata.newpassword2){
-                $scope.cssshowinconsistent = true;
-                $("#conformpassword").focus();
-
-            }else{
-                $scope.userFirebase = {
-                    email : $scope.userFirebase.email,
-                    password : $scope.userdata.newpassword1,
-                    firstname : $scope.userFirebase.firstname,
-                    lastname : $scope.userFirebase.lastname,
-                    mobilenumber : $scope.userFirebase.mobilenumber,
-                    gender : $scope.userFirebase.gender
-                };
-//            modelSite.updateSite($scope.site);     // use firebase for database
-                $scope.cssshowpasswordbox = false;
-            }
-        };
-    })
-
-=======
 
     //保存用户基本信息
     $scope.saveuserinfo = function(callback){
@@ -224,31 +131,10 @@ page.c.userInfoController = function($scope, $location, $timeout, angularFire) {
 //              modelSite.updateSite($scope.site);     // use firebase for database
         }
     };
->>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 };
 
 
 
-<<<<<<< HEAD
-page.c.userLoginController = function($scope, $location, angularFire, modelSite) {
-    var url = "https://vcplatform.firebaseIO.com/user";
-    var promise = angularFire(url, $scope, 'userFirebase', {});
-
-    $scope.userdata = {
-        email : '',
-        password : ''
-    };
-
-    //登录
-    $scope.userlogin = function(callback){
-        if (callback.$valid) {
-            console.log($scope.userFirebase.password1);
-            if( $scope.userdata.password != $scope.userFirebase.password || $scope.userdata.email != $scope.userFirebase.email){
-                alert('Email or Password error!');
-
-            }else{
-                location.href = "user.html";
-=======
 
 
 page.c.userLoginController = function($scope, $location, $timeout, angularFire, modelSite) {
@@ -288,7 +174,6 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire, 
                 $timeout(function() {
                     location.href = "user.html";
                 }, 1000);
->>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
             }
         }
     }
@@ -299,17 +184,11 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire, 
 
 page.c.userRegisterController = function($scope, $location, $timeout, angularFire) {
 //    $scope.site = modelSite.getSite(); // use firebase for database
-<<<<<<< HEAD
-
-    var url = "https://vcplatform.firebaseIO.com/user";
-    var promise = angularFire(url, $scope, 'userFirebase', {});
-=======
     var usersessionurl = "https://vcplatform.firebaseIO.com/usernow";
     $scope.usersessionFirebase = angularFire(usersessionurl, $scope, 'usersessionFirebase', {});
 
     var usersurl = "https://vcplatform.firebaseIO.com/users";
     $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
->>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
     $scope.userdata = {
         email : '',
@@ -318,35 +197,6 @@ page.c.userRegisterController = function($scope, $location, $timeout, angularFir
     };
 
     $scope.csspasswordprompt = false;
-<<<<<<< HEAD
-
-    promise.then(function() {
-
-        //注册用户 保存密码和邮箱
-        $scope.saveemailinfo = function(callback){
-            if (callback.$valid) {
-                if($scope.userdata.password1 == $scope.userdata.password2){
-                    $scope.csspasswordprompt = false ;
-
-                    $scope.userFirebase = {
-                        email : $scope.userdata.email,
-                        password : $scope.userdata.password1
-                    };
-
-
-                    //$scope.site.userinfo = $scope.userdata;  // use firebase for database
-                    //modelSite.updateSite($scope.site);     // use firebase for database
-                    $timeout(function() {
-                        location.href = "user.html";
-                    }, 2000);
-
-                }else{
-                    $scope.csspasswordprompt = true;
-                }
-            }
-        }
-    });
-=======
     $scope.cssemailprompt = false;
 
     //注册用户 保存密码和邮箱
@@ -393,7 +243,6 @@ page.c.userRegisterController = function($scope, $location, $timeout, angularFir
         }
     }
 
->>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 };
 
 
@@ -406,8 +255,6 @@ page.c.siteController = function($scope, $location, angularFire) {
     var promise = angularFire(url, $scope, 'siteinfoFirebase', {});
 
 //    $scope.site = modelSite.getSite();    // use firebase for database
-<<<<<<< HEAD
-=======
     $scope.selectpublish = false;
     $scope.selectone = false;
     $scope.selectcomplex = false;
@@ -429,7 +276,6 @@ page.c.siteController = function($scope, $location, angularFire) {
         $scope.selectone = false;
         $scope.selectcomplex = true;
     };
->>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
     promise.then(function() {
         $scope.siteinfodata = {

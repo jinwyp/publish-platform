@@ -1,9 +1,6 @@
 
 ;jQuery(function($){
 
-<<<<<<< HEAD
-
-=======
 	$(".preview").hover(function(){
 			$(".preview_Item").fadeIn(300);
 	});
@@ -14,7 +11,6 @@
 			$(".preview_Item").fadeOut(300);
 	});
 					
->>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
        var selectheadertheme=true;
 /*
@@ -112,17 +108,10 @@
 		 var element=$(this);
 		  if (element.hasClass("ico_layout_open")){
 		   	element.removeClass("ico_layout_open", {duration:300});
-<<<<<<< HEAD
-		   	$('.layout_list').animate({left:'-82px', opacity:'0.4'},{duration:300, queue:true});
-		  }else{
-		  	element.addClass("ico_layout_open", {duration:300});
-		   	$('.layout_list').animate({left:'0px', opacity:'0.75'},{duration:300, queue:true});
-=======
 		   	$('.layout_list').animate({left:'-82px'},{duration:300, queue:true});
 		  }else{
 		  	element.addClass("ico_layout_open", {duration:300});
 		   	$('.layout_list').animate({left:'0px'},{duration:300, queue:true});
->>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 		 }
 	  });
 
