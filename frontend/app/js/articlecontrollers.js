@@ -23,8 +23,11 @@ vcpapp.config(['$routeProvider', function($routeProvider) {
 /* Controllers */
 
 vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, modelArticle) {
-    var urluser = "https://vcplatform.firebaseIO.com/usernow";
-    $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
+    var usersessionurl = "https://vcplatform.firebaseIO.com/usernow";
+    $scope.usersessionFirebase = angularFire(usersessionurl, $scope, 'usersessionFirebase', {});
+
+    var usersurl = "https://vcplatform.firebaseIO.com/users";
+    $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
 
     var urlartilcelist = 'https://vcplatform.firebaseIO.com/articles';
     $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
@@ -32,9 +35,13 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
     var copytotaldata = [];
     var articlesinonepage;
     var pagecount;
+    var usersession;
 
-    $q.all([$scope.userFirebase, $scope.articlesFirebase]).then(function() {
+    $q.all([$scope.usersessionFirebase, $scope.usersFirebase, $scope.articlesFirebase]).then(function() {
         $scope.articlestotaldata = $scope.articlesFirebase;
+        var usersdata = $scope.usersFirebase;
+        usersession = _.findWhere(usersdata, {email: $scope.usersessionFirebase.email});
+        console.log(usersession);
 //    $scope.articlestotaldata = modelArticle.getArticleList();     // use firebase for database
 
     copytotaldata = $scope.articlestotaldata;
@@ -238,7 +245,7 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
             date : modelArticle.getDateNow(),
             status : $scope.currentarticlestatus,
             version : $scope.currentarticle.revision.length,
-            operator : $scope.userFirebase.firstname,
+            operator : usersession.firstname,
             reviewcomment : $scope.currentarticlereviewcomment
         };
 
@@ -248,7 +255,7 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
         $scope.currentarticle.updated = modelArticle.getDateNow();
         $scope.currentarticle.status = $scope.currentarticlestatus;
         $scope.currentarticle.lastreviewcomment = $scope.currentarticlereviewcomment;
-        $scope.currentarticle.editor =  $scope.userFirebase.firstname;
+        $scope.currentarticle.editor =  usersession.firstname;
         $scope.currentarticle.reviewhistory.push(newstatus);
 
 /*        $scope.currentarticle.revision.push(newrevision);
@@ -342,8 +349,11 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
 
 vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, $q, modelArticle, angularFire) {
 
-    var urluser = "https://vcplatform.firebaseIO.com/usernow";
-    $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
+    var usersessionurl = "https://vcplatform.firebaseIO.com/usernow";
+    $scope.usersessionFirebase = angularFire(usersessionurl, $scope, 'usersessionFirebase', {});
+
+    var usersurl = "https://vcplatform.firebaseIO.com/users";
+    $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
 
     var urlmaxid = "https://vcplatform.firebaseIO.com/maxid";
     $scope.maxidFirebase = angularFire(urlmaxid, $scope, 'maxidFirebase', {});
@@ -375,11 +385,14 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, $q,
     }
 
     $scope.cssTagsPanel = false;
-
+    var usersession;
     var articleId = $routeParams.articleId;
 //    $scope.articledata = modelArticle.getArticleById(articleId);
 
-    $q.all([$scope.userFirebase, $scope.maxidFirebase, $scope.articlesFirebase, $scope.tagsFirebase]).then(function() {
+    $q.all([$scope.usersessionFirebase, $scope.usersFirebase, $scope.maxidFirebase, $scope.articlesFirebase, $scope.tagsFirebase]).then(function() {
+        var usersdata = $scope.usersFirebase;
+        usersession = _.findWhere(usersdata, {email: $scope.usersessionFirebase.email});
+        console.log(usersession);
 
         for(var i = $scope.articlesFirebase.length; i--; i>=0){
 
@@ -393,14 +406,16 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, $q,
 
                 var tagstr = '';
 
-                for(var i = 0;i<$scope.articledata.tags.length;i++){
-                    tagstr += $scope.articledata.tags[i].tagname+',';
+                for(var j = 0;j<$scope.articledata.tags.length;j++){
+                    tagstr += $scope.articledata.tags[j].tagname+',';
                 }
                 $('.tagsinput').importTags(tagstr);
                 $(".tagsinput").tagsInput();    //初始化 加载tag标签
-                return;
+                break;
             }
         }
+
+
     });
 
     $scope.openDelModal = function () {
@@ -445,7 +460,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, $q,
 
     $scope.saveModifyArticle = function(){
         $scope.articledata.updated = modelArticle.getDateNow();
-        $scope.articledata.editor = $scope.userFirebase.firstname;
+        $scope.articledata.editor = usersession.firstname;
         $scope.articledata.lastversioncomment = $scope.newversioncomment;
 
 
@@ -478,7 +493,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, $q,
             "updated": modelArticle.getDateNow(),
             "published": $scope.articledata.published,
             "author": $scope.articledata.author,
-            "editor": $scope.userFirebase.firstname,
+            "editor": usersession.firstname,
             "clickcount":$scope.articledata.clickcount,
             "category": $scope.articledata.category,
             "categoryid": $scope.articledata.categoryid,
@@ -538,8 +553,11 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, $q,
 
 
 vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, $q, modelArticle, angularFire ) {
-    var urluser = "https://vcplatform.firebaseIO.com/usernow";
-    $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
+    var usersessionurl = "https://vcplatform.firebaseIO.com/usernow";
+    $scope.usersessionFirebase = angularFire(usersessionurl, $scope, 'usersessionFirebase', {});
+
+    var usersurl = "https://vcplatform.firebaseIO.com/users";
+    $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
 
     var urlmaxid = "https://vcplatform.firebaseIO.com/maxid";
     $scope.maxidFirebase = angularFire(urlmaxid, $scope, 'maxidFirebase', {});
@@ -579,7 +597,13 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
         }
     }
 
-    $q.all([$scope.userFirebase, $scope.maxidFirebase, $scope.articlesFirebase, $scope.tagsFirebase]).then(function() {
+    var usersession;
+
+    $q.all([$scope.usersessionFirebase, $scope.usersFirebase, $scope.maxidFirebase, $scope.articlesFirebase, $scope.tagsFirebase]).then(function() {
+
+        var usersdata = $scope.usersFirebase;
+        usersession = _.findWhere(usersdata, {email: $scope.usersessionFirebase.email});
+        console.log(usersession);
 
         $scope.newarticleadata = {
             "id": getMaxArticleId(),
@@ -590,8 +614,8 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
             "created": modelArticle.getDateNow(),
             "updated": modelArticle.getDateNow(),
             "published" : 0,
-            "author": $scope.userFirebase.firstname ,
-            "editor": $scope.userFirebase.firstname ,
+            "author": usersession.firstname ,
+            "editor": usersession.firstname ,
             "clickcount": 0,
             "category" : "Cosmetics",
             "categoryid" : 1000,
