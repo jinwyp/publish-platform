@@ -46,7 +46,7 @@ page.c.userInfoController = function($scope, $location, $timeout, angularFire) {
     //显示修改密码form
     $scope.changepassword = function(){
         $scope.cssshowpasswordbox = true;
-        $(".userAccount").animate({left:"22%"});
+        $(".userAccount").animate({left:"20%"});
         $(".userPassword").animate({left:"99.3%"});
     };
 
