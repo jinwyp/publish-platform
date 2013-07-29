@@ -234,6 +234,11 @@ angular.module("firebase").factory("angularFireCollection", ["$timeout", functio
             item.$ref.set(copy);
         };
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
         return collection;
     };
 }]);

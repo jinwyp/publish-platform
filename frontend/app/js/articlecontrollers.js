@@ -17,6 +17,7 @@ vcpapp.config(['$routeProvider', function($routeProvider) {
 
 
 
+<<<<<<< HEAD
 /* Controllers */
 vcpapp.controller.articleList = function ($scope, $filter, modelArticle) {
 
@@ -25,6 +26,40 @@ vcpapp.controller.articleList = function ($scope, $filter, modelArticle) {
 
     var copytotaldata = [];
     copytotaldata = $scope.articlestotaldata;
+=======
+
+
+
+/* Controllers */
+
+vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, modelArticle) {
+
+    var usersessionurl = "https://vcplatform.firebaseIO.com/usernow";
+    $scope.usersessionFirebase = angularFire(usersessionurl, $scope, 'usersessionFirebase', {});
+
+    var usersurl = "https://vcplatform.firebaseIO.com/users";
+    $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
+
+    var urlartilcelist = 'https://vcplatform.firebaseIO.com/articles';
+    $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
+
+
+
+    var copytotaldata = [];
+    var articlesinonepage;
+    var pagecount;
+    var usersession;
+
+    $q.all([$scope.usersessionFirebase, $scope.usersFirebase, $scope.articlesFirebase]).then(function() {
+        $scope.articlestotaldata = $scope.articlesFirebase;
+        var usersdata = $scope.usersFirebase;
+        usersession = _.findWhere(usersdata, {email: $scope.usersessionFirebase.email});
+        console.log(usersession);
+//    $scope.articlestotaldata = modelArticle.getArticleList();     // use firebase for database
+
+    copytotaldata = $scope.articlestotaldata;
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     //排序所有数据
     $scope.loadinit = function(flag,sort){
         for(var i = 0; i < $scope.articlestotaldata.length; i++){
@@ -72,6 +107,7 @@ vcpapp.controller.articleList = function ($scope, $filter, modelArticle) {
                    }
                }
         }
+<<<<<<< HEAD
     }
 
     $scope.loadinit('updated','desc');
@@ -79,6 +115,17 @@ vcpapp.controller.articleList = function ($scope, $filter, modelArticle) {
     var count=10;
     var pagecount=$scope.articlestotaldata.length/count;
     $scope.noOfPages =parseInt(pagecount)== pagecount ? pagecount : parseInt(pagecount)+1;
+=======
+    };
+
+    $scope.loadinit('updated','desc');
+
+    //页面总数
+    articlesinonepage = 10;  // 文章每页数量
+    pagecount = $scope.articlestotaldata.length / articlesinonepage;
+
+    $scope.noOfPages = parseInt(pagecount)== pagecount ? pagecount : parseInt(pagecount) + 1;  //当前页数
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     if($scope.noOfPages==0){
         $scope.noOfPages=1;
     }
@@ -86,6 +133,10 @@ vcpapp.controller.articleList = function ($scope, $filter, modelArticle) {
     //当前页数
     $scope.currentPage = 1;
     $scope.articlesdata = [];
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     //获取选中数据
     $scope.loadcurrentpagedata = function(){
         $scope.articlesdata.length = 0;
@@ -94,15 +145,25 @@ vcpapp.controller.articleList = function ($scope, $filter, modelArticle) {
                 $scope.currentPage = $scope.noOfPages;
             }
         }
+<<<<<<< HEAD
         var j = 0;
         for(var i = (($scope.currentPage-1)*count);i < $scope.articlestotaldata.length;i ++){
             $scope.articlesdata[j] = $scope.articlestotaldata[i];
             j++;
             if($scope.articlesdata.length > (count-1)){
+=======
+
+        var j = 0;
+        for(var i = (($scope.currentPage-1)*articlesinonepage);i < $scope.articlestotaldata.length;i ++){
+            $scope.articlesdata[j] = $scope.articlestotaldata[i];
+            j++;
+            if($scope.articlesdata.length > (articlesinonepage-1)){
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                 return;
             }
         }
     }
+<<<<<<< HEAD
     $scope.loadcurrentpagedata();
     $scope.articlepreviewdata = $scope.articlesdata[0];
     $scope.isCollapsed = true;
@@ -124,11 +185,70 @@ vcpapp.controller.articleList = function ($scope, $filter, modelArticle) {
     $scope.closeModal = function () {
         $scope.cssmodalshow = false;    //关闭弹出提示框 Modal
     };
+=======
+
+    $scope.loadcurrentpagedata();
+    $scope.articlepreviewdata = $scope.articlesdata[0];
+
+
+    //检测currentPage值
+    $scope.$watch('currentPage', function(newPage){
+        $scope.watchPage = newPage;
+        $scope.loadcurrentpagedata();
+    });
+
+
+    });//firebase then End
+
+
+
+
+
+    $scope.cssshowupdate = true;
+    $scope.cssshowpublish = true;
+    $scope.cssshowclick = true;
+
+    //按类型排序
+    $scope.orderbytype = function(flag,sort){
+        $scope.loadinit(flag,sort);
+        $scope.loadcurrentpagedata();
+        $scope.articlepreviewdata = $scope.articlesdata[0];
+        if(flag == 'updated'){
+            $scope.cssshowupdate = !$scope.cssshowupdate;
+        }else if(flag == 'published'){
+            $scope.cssshowpublish = !$scope.cssshowpublish;
+        }else if(flag == 'clickcount'){
+            $scope.cssshowclick = !$scope.cssshowclick;
+        }
+    };
+
+
+
+    $scope.showEditIcon = function(index){
+        $scope.cssshowediticon = index;
+    };
+
+    $scope.clickArticle = function(article, index) {
+        $scope.articlepreviewdata = article;
+        $scope.cssarticleindex = index;
+    };
+
+    $scope.openDelModal = function (article) {
+        $scope.articlepreviewdata = article;
+        $scope.cssshowdelmodal = true;
+    };
+
+    $scope.closeDelModal = function () {
+        $scope.cssshowdelmodal = false;    //关闭弹出提示框 Modal
+    };
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     $scope.cssmodalslide = {
         backdropFade: true,
         dialogFade:true
     };
 
+<<<<<<< HEAD
     $scope.delArticle = function(articleid) {
         $scope.cssmodalshow = false;      //关闭弹出提示框 Modal
         modelArticle.delArticleById(articleid);
@@ -141,11 +261,42 @@ vcpapp.controller.articleList = function ($scope, $filter, modelArticle) {
         }
         $scope.loadcurrentpagedata();
         $scope.articlepreviewdata = $scope.articlesdata[0];
+=======
+
+    $scope.delArticle = function(article) {
+
+
+        var getdeleteindex=$scope.searchdeleteindex(article);
+
+        $scope.cssshowdelmodal = false;      //关闭弹出提示框 Modal
+//        modelArticle.delArticleById(articleid);
+        $scope.articlestotaldata.splice(getdeleteindex, 1);
+        //$scope.articlestotaldata.splice(article, 1);
+//        $scope.articlestotaldata = modelArticle.getArticleList();
+
+        copytotaldata = $scope.articlestotaldata;
+        var pagecount1 = $scope.articlestotaldata.length/articlesinonepage;
+        $scope.noOfPages = parseInt(pagecount1)== pagecount1 ? pagecount1 : parseInt(pagecount1)+1;
+        if($scope.noOfPages == 0){
+            $scope.noOfPages = 1;
+        }
+        $scope.loadcurrentpagedata();
+        $scope.articlepreviewdata = $scope.articlesdata[0];
+    };
+
+    $scope.searchdeleteindex = function(article){
+        for(var i = 0; i < $scope.articlestotaldata.length; i++){
+            if(article.id == $scope.articlestotaldata[i].id){
+                return i;
+            }
+        }
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     }
 
     //显示List详细内容
     $scope.loadhtml = function(val) {
         return val;
+<<<<<<< HEAD
     }
 
     //点击页面
@@ -191,6 +342,55 @@ vcpapp.controller.articleList = function ($scope, $filter, modelArticle) {
     $scope.closecomments = function(){
         $scope.showcomments = false;
     }
+=======
+    };
+
+
+
+    $scope.cssshowcomments = false;
+
+    //点击更改文章状态按钮事件
+    $scope.clickarticlestatus = function(status1, article){
+        $scope.cssshowcomments = true;
+        $scope.currentarticle  = article;
+        $scope.currentarticlestatus = status1;
+        $scope.currentarticlereviewcomment = "";
+    };
+
+    $scope.closecomments = function(){
+        $scope.cssshowcomments = false;
+    };
+
+    $scope.savearticlestatus = function(){
+        var newstatus ={
+            date : modelArticle.getDateNow(),
+            status : $scope.currentarticlestatus,
+            version : $scope.currentarticle.revision.length,
+            operator : usersession.firstname,
+            reviewcomment : $scope.currentarticlereviewcomment
+        };
+
+        if( $scope.currentarticlestatus == "published"){
+            $scope.currentarticle.published = modelArticle.getDateNow();
+        }
+        $scope.currentarticle.updated = modelArticle.getDateNow();
+        $scope.currentarticle.status = $scope.currentarticlestatus;
+        $scope.currentarticle.lastreviewcomment = $scope.currentarticlereviewcomment;
+        $scope.currentarticle.editor =  usersession.firstname;
+        $scope.currentarticle.reviewhistory.push(newstatus);
+
+/*        $scope.currentarticle.revision.push(newrevision);
+        modelArticle.saveArticle(nowdata1);          //使用firebase
+*/
+        $scope.cssshowcomments = false;
+        //保存到firebase中
+        for(var i = $scope.articlestotaldata.length; i--; i>=0){
+            if ($scope.articlestotaldata[i].id == $scope.currentarticle.id) {
+                $scope.articlestotaldata[i] = $scope.currentarticle;
+            }
+        }
+    };
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
     //搜索提示
     $scope.selected = undefined;
@@ -243,13 +443,18 @@ vcpapp.controller.articleList = function ($scope, $filter, modelArticle) {
             $scope.articlestotaldata = data;
         }
 
+<<<<<<< HEAD
         var pagecount1=$scope.articlestotaldata.length/count;
+=======
+        var pagecount1 = $scope.articlestotaldata.length/articlesinonepage;
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
         $scope.noOfPages =parseInt(pagecount1)== pagecount1 ? pagecount1 : parseInt(pagecount1)+1;
         if($scope.noOfPages==0){
             $scope.noOfPages=1;
         }
         $scope.loadcurrentpagedata();
         $scope.articlepreviewdata = $scope.articlesdata[0];
+<<<<<<< HEAD
     }
 
     $scope.savedata = function(){
@@ -284,11 +489,19 @@ vcpapp.controller.articleList = function ($scope, $filter, modelArticle) {
             this.isshowediticon = false;
         }
     }
+=======
+    };
+
+
+
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
     //标签显示提示框
     $('.vcpbox').tooltip({
         selector: "a[rel=tooltip]"
     });
+<<<<<<< HEAD
 }
 
 vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, modelTag) {
@@ -312,6 +525,92 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, 
         $scope.cssmodalshow = true;
     };
     $scope.closeModal = function () {
+=======
+};
+
+
+
+
+
+
+
+
+vcpapp.controller.articleDetail = function ($scope, $routeParams, $location, $q, modelArticle, angularFire) {
+
+    var usersessionurl = "https://vcplatform.firebaseIO.com/usernow";
+    $scope.usersessionFirebase = angularFire(usersessionurl, $scope, 'usersessionFirebase', {});
+
+    var usersurl = "https://vcplatform.firebaseIO.com/users";
+    $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
+
+    var urlmaxid = "https://vcplatform.firebaseIO.com/maxid";
+    $scope.maxidFirebase = angularFire(urlmaxid, $scope, 'maxidFirebase', {});
+
+    var urltaglist = "https://vcplatform.firebaseIO.com/tags";
+    $scope.tagsFirebase = angularFire(urltaglist, $scope, 'tagsFirebase', [] );
+
+    var urlartilcelist = "https://vcplatform.firebaseIO.com/articles";
+    $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
+
+
+    function getMaxTagId(){
+        if($scope.maxidFirebase.tagid == undefined ){
+            $scope.maxidFirebase = {tagid : 100001};
+        }else{
+            $scope.maxidFirebase.tagid = $scope.maxidFirebase.tagid + 1;
+        }
+        return $scope.maxidFirebase.tagid
+    }
+
+    function checkTagExist(tagname) {
+        var tagresult = _.findWhere($scope.tagsFirebase, {tagname: tagname});
+
+        if (tagresult === undefined) {
+            return false;
+        }else{
+            return tagresult;
+        }
+    }
+
+    $scope.cssTagsPanel = false;
+    var usersession;
+    var articleId = $routeParams.articleId;
+//    $scope.articledata = modelArticle.getArticleById(articleId);
+
+    $q.all([$scope.usersessionFirebase, $scope.usersFirebase, $scope.maxidFirebase, $scope.articlesFirebase, $scope.tagsFirebase]).then(function() {
+        var usersdata = $scope.usersFirebase;
+        usersession = _.findWhere(usersdata, {email: $scope.usersessionFirebase.email});
+        console.log(usersession);
+
+        for(var i = $scope.articlesFirebase.length; i--; i>=0){
+
+            if ($scope.articlesFirebase[i].id == articleId) {
+
+                $scope.articledata = $scope.articlesFirebase[i];
+
+                if (typeof($scope.articledata.tags) == "undefined"){
+                    $scope.articledata.tags =[];
+                }
+
+                var tagstr = '';
+
+                for(var j = 0;j<$scope.articledata.tags.length;j++){
+                    tagstr += $scope.articledata.tags[j].tagname+',';
+                }
+                $('.tagsinput').importTags(tagstr);
+                $(".tagsinput").tagsInput();    //初始化 加载tag标签
+                break;
+            }
+        }
+
+
+    });
+
+    $scope.openDelModal = function () {
+        $scope.cssmodalshow = true;
+    };
+    $scope.closeDelModal = function () {
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
         $scope.cssmodalshow = false;   //关闭弹出提示框 Modal
     };
     $scope.cssmodalslide = {
@@ -321,6 +620,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, 
 
     $scope.delArticle = function(articleid) {
         $scope.cssmodalshow = false;  //关闭弹出提示框 Modal
+<<<<<<< HEAD
         modelArticle.delArticleById(articleid);
         //alert('Article Deleted');
         $scope.articledata = modelArticle.getArticleList()[0];
@@ -358,10 +658,63 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, 
             $scope.articledata.tags.push(newtag);
         }
         //$scope.articledata.category=$(".dk_label")[0].textContent;
+=======
+//        modelArticle.delArticleById(articleid);
+
+        for(var i = $scope.articlesFirebase.length; i--; i>=0){
+            if ($scope.articlesFirebase[i].id === articleid) {
+                $scope.articlesFirebase.splice(i, 1);
+            }
+        }
+        $location.path('/');
+    };
+
+    $scope.cssshowmodifymodal = false;
+
+
+    $scope.confirmModifyArticle = function(formcallback) {
+        if (formcallback.$valid) {
+            $scope.cssshowmodifymodal = true;
+            $scope.newversioncomment = "";
+        }
+    };
+
+
+    //关闭version comment对话框
+    $scope.closecomments = function(){
+        $scope.cssshowmodifymodal = false;
+    };
+
+
+    $scope.saveModifyArticle = function(){
+        $scope.articledata.updated = modelArticle.getDateNow();
+        $scope.articledata.editor = usersession.firstname;
+        $scope.articledata.lastversioncomment = $scope.newversioncomment;
+
+
+        var temptagslistname = $(".tagsinput").exportTags();
+        $scope.articledata.tags = [];
+        //在tag 数据库查询是否是已经存在的tag 如果不存在就新增加到firebase里面
+        for(var i=0; i<temptagslistname.length; i++){
+            var newtag;
+            if(checkTagExist(temptagslistname[i])){
+                newtag = checkTagExist(temptagslistname[i]);
+            }else{
+                newtag = {
+                    "tagid" : getMaxTagId(),
+                    "tagname" : temptagslistname[i]
+                };
+                $scope.tagsFirebase.push(newtag);
+            }
+            $scope.articledata.tags.push(newtag);
+        }
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
         var newrevisionid = $scope.articledata.revision.length + 1;
         var newrevision = {
             "versionid" :  newrevisionid ,
             "versionnum" :  newrevisionid ,
+<<<<<<< HEAD
             "title" : $scope.articledata.title, "contentbody": $scope.articledata.contentbody, "status": $scope.articledata.status,
             "created": $scope.articledata.created, "updated":modelArticle.getDateNow(), "published": $scope.articledata.published,
             "author": $scope.articledata.author,  "editor": $scope.articledata.editor,  "clickcount":$scope.articledata.clickcount,
@@ -386,22 +739,73 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, 
         //modelArticle.saveArticle($scope.articledata);
     };
 
+=======
+            "title" : $scope.articledata.title,
+            "description" : $scope.articledata.description,
+            "contentbody": $scope.articledata.contentbody,
+            "status": $scope.articledata.status,
+            "created": $scope.articledata.created,
+            "updated": modelArticle.getDateNow(),
+            "published": $scope.articledata.published,
+            "author": $scope.articledata.author,
+            "editor": usersession.firstname,
+            "clickcount":$scope.articledata.clickcount,
+            "category": $scope.articledata.category,
+            "categoryid": $scope.articledata.categoryid,
+            "tags": $scope.articledata.tags,
+            "lastversioncomment":$scope.articledata.lastversioncomment,
+            "lastreviewcomment": $scope.articledata.lastreviewcomment
+        };
+
+        $scope.articledata.revision.push(newrevision);
+
+//        modelArticle.saveArticle($scope.articledata);
+
+        for(var i = $scope.articlesFirebase.length; i--; i>=0){
+            if ($scope.articlesFirebase[i].id == articleId) {
+                $scope.articlesFirebase[i] = $scope.articledata;
+            }
+        }
+
+        $scope.cssshowmodifymodal = false;
+    };
+
+
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     //显示Edit预览内容
     $scope.showeditpreview = function(val){
         return val;
     };
 
+<<<<<<< HEAD
     $scope.displayversioninfo=function(data){
        // var data=$scope.articledata.revision[index];
         $scope.articledata.title=data.title;
         $scope.articledata.contentbody=data.contentbody;
         $scope.articledata.tags=data.tags;
+=======
+    $scope.displayversioninfo=function(revisiondata){
+       // var data=$scope.articledata.revision[index];
+        $scope.articledata.title = revisiondata.title;
+        $scope.articledata.contentbody = revisiondata.contentbody;
+        $scope.articledata.tags = revisiondata.tags;
+        if (typeof($scope.articledata.tags) == "undefined"){
+            $scope.articledata.tags =[];
+        }
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
         var tagstr = '';
         for(var i=0;i<$scope.articledata.tags.length;i++){
             tagstr += $scope.articledata.tags[i].tagname+',';
         }
         $('.tagsinput').importTags(tagstr);
+<<<<<<< HEAD
     }
+=======
+    };
+
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
     //标签显示提示框
     $('.vcpbox').tooltip({
@@ -411,6 +815,7 @@ vcpapp.controller.articleDetail = function ($scope, $routeParams, modelArticle, 
 
 
 
+<<<<<<< HEAD
 vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, modelArticle, modelTag, angularFire) {
     var urluser = "https://vcplatform.firebaseIO.com/user";
     $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
@@ -433,6 +838,79 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
             "editor": $scope.userFirebase.firstname ,
             "clickcount": 0,
             "category": "Cosmetics",
+=======
+
+
+
+
+
+vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, $q, modelArticle, angularFire ) {
+    var usersessionurl = "https://vcplatform.firebaseIO.com/usernow";
+    $scope.usersessionFirebase = angularFire(usersessionurl, $scope, 'usersessionFirebase', {});
+
+    var usersurl = "https://vcplatform.firebaseIO.com/users";
+    $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
+
+    var urlmaxid = "https://vcplatform.firebaseIO.com/maxid";
+    $scope.maxidFirebase = angularFire(urlmaxid, $scope, 'maxidFirebase', {});
+
+    var urltaglist = "https://vcplatform.firebaseIO.com/tags";
+    $scope.tagsFirebase = angularFire(urltaglist, $scope, 'tagsFirebase', [] );
+
+    var urlartilcelist = "https://vcplatform.firebaseIO.com/articles";
+    $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
+
+    function getMaxTagId(){
+        if($scope.maxidFirebase.tagid == undefined ){
+            $scope.maxidFirebase.tagid = 100001;
+        }else{
+            $scope.maxidFirebase.tagid = $scope.maxidFirebase.tagid  + 1;
+        }
+        return $scope.maxidFirebase.tagid
+    }
+
+    function getMaxArticleId(){
+        if($scope.maxidFirebase.aritcleid == undefined ){
+            $scope.maxidFirebase.aritcleid = 100001;
+        }else{
+            $scope.maxidFirebase.aritcleid = $scope.maxidFirebase.aritcleid  + 1;
+        }
+        return $scope.maxidFirebase.aritcleid
+
+    }
+
+    function checkTagExist(tagname) {
+        var tagresult = _.findWhere($scope.tagsFirebase, {tagname: tagname});
+
+        if (tagresult === undefined) {
+            return false;
+        }else{
+            return tagresult;
+        }
+    }
+
+    var usersession;
+
+    $q.all([$scope.usersessionFirebase, $scope.usersFirebase, $scope.maxidFirebase, $scope.articlesFirebase, $scope.tagsFirebase]).then(function() {
+
+        var usersdata = $scope.usersFirebase;
+        usersession = _.findWhere(usersdata, {email: $scope.usersessionFirebase.email});
+        console.log(usersession);
+
+        $scope.newarticleadata = {
+            "id": getMaxArticleId(),
+            "title": "",
+            "description": "",
+            "contentbody": "",
+            "status": "Draft",
+            "created": modelArticle.getDateNow(),
+            "updated": modelArticle.getDateNow(),
+            "published" : 0,
+            "author": usersession.firstname ,
+            "editor": usersession.firstname ,
+            "clickcount": 0,
+            "category" : "Cosmetics",
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
             "categoryid" : 1000,
             "tags": [],
             "revision" : [],
@@ -440,9 +918,32 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
             "lastreviewcomment" : "",
             "reviewhistory" : []
         };
+<<<<<<< HEAD
     });
 
 
+=======
+
+        var newstatus ={
+            date : modelArticle.getDateNow(),
+            status : "Draft",
+            version : 1,
+            operator : $scope.newarticleadata.author,
+            reviewcomment : ''
+        };
+
+        $scope.newarticleadata.reviewhistory.push(newstatus);
+    });
+
+
+
+    $(".tagsinput").tagsInput({
+//        'autocomplete': modelTag.getTagList()
+    });   //初始化 加载tag标签
+
+
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     $scope.cssTagsPanel = false;
     $scope.cssmodalshow = false;
     $scope.cssmodalslide = {
@@ -457,6 +958,7 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
     $scope.conformNewArticle = function(callback) {
         if (callback.$valid) {
             $scope.cssmodalshow = true;
+<<<<<<< HEAD
             getMaxArticleId();
         }
     };
@@ -481,16 +983,53 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
                      "tagname" : temptagslistname[i]
                  }
                  modelTag.createNewTag(newtag);
+=======
+        }
+    };
+
+
+
+    $scope.closeModal = function () {
+        $scope.cssmodalshow = false;
+    };
+    $scope.saveNewArtcle = function() {
+
+        //读取文章的Tags
+        var temptagslistname = $(".tagsinput").exportTags();
+        $scope.newarticleadata.tags = [];
+
+        //在tag 数据库查询是否是已经存在的tag 如果不存在就新增加到firebase里面
+        for(var i=0;i<temptagslistname.length;i++){
+            var newtag;
+            if(checkTagExist(temptagslistname[i])){
+                newtag = checkTagExist(temptagslistname[i]);
+            }else{
+                newtag = {
+                    "tagid" : getMaxTagId(),
+                    "tagname" : temptagslistname[i]
+                };
+                $scope.tagsFirebase.push(newtag);
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
             }
             $scope.newarticleadata.tags.push(newtag);
         }
 
+<<<<<<< HEAD
          //增加文章每一次修改版本信息
+=======
+        //$scope.newarticleadata.category=$(".dk_label")[0].textContent;
+
+        //增加文章每一次修改版本信息
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
         var newrevisionid = $scope.newarticleadata.revision.length + 1;
         var newrevision = {
             "versionid" :  newrevisionid ,
             "versionnum" :  newrevisionid ,
             "title" : $scope.newarticleadata.title,
+<<<<<<< HEAD
+=======
+            "description" : $scope.newarticleadata.description,
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
             "contentbody": $scope.newarticleadata.contentbody,
             "status": $scope.newarticleadata.status,
             "created": $scope.newarticleadata.created,
@@ -502,6 +1041,7 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
             "category": $scope.newarticleadata.category,
             "categoryid": $scope.newarticleadata.categoryid,
             "tags" : $scope.newarticleadata.tags,
+<<<<<<< HEAD
             "lastversioncomment":$scope.newarticleadata.versioncomment,
             "lastreviewcomment":$scope.newarticleadata.reviewcomment
         };
@@ -514,11 +1054,30 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
          $location.path('/');
     }
 
+=======
+            "lastversioncomment" : $scope.newarticleadata.lastversioncomment,
+            "lastreviewcomment" : $scope.newarticleadata.lastreviewcomment
+        };
+
+        $scope.newarticleadata.revision.push(newrevision);
+        $scope.cssmodalshow = false;
+
+        //保存文章
+//        modelArticle.createNewArticle($scope.newarticleadata);  //使用firebase
+        $scope.articlesFirebase.push(angular.copy($scope.newarticleadata));
+
+        $location.path('/');
+    };
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
 
     //标签显示提示框
     $('.vcpbox').tooltip({
         selector: "a[rel=tooltip]"
     });
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 

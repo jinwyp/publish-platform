@@ -73,6 +73,7 @@ vcpapp.factory('modelArticle', function(){
      ]
      }
      ]
+<<<<<<< HEAD
      },
 
      {  "id": 1002, "title": "?????? multiple partial views in angularjs.", "contentbody": "", "status": "needreview",
@@ -105,6 +106,11 @@ vcpapp.factory('modelArticle', function(){
      }
      ]
      }
+=======
+     }
+
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
      ];
 
      */
@@ -219,7 +225,49 @@ vcpapp.factory('modelArticle', function(){
 });
 
 
+<<<<<<< HEAD
 
+=======
+vcpapp.factory('modelTagFireBase', [ 'angularFireCollection', function(angularFireCollection){
+        var urltaglist = 'https://vcplatform.firebaseIO.com/tags';
+
+
+        var factory = {
+            getTagList : function () {
+                var result = angularFireCollection(urltaglist);
+                return result;
+            },
+
+            checkTagExist : function (tagname) {
+                var taglist = this.getTagList();
+
+                var tagresult = _.findWhere(taglist, {tagname: tagname});
+                console.log(tagresult,taglist);
+                if (tagresult === undefined) {
+                    return false;
+                }else{
+                    return tagresult;
+                }
+            },
+
+            createNewTag : function(newtag) {
+
+                this.getTagList().add(newtag, function() {
+
+                });
+            },
+
+            deleteTag : function (deletedtag) {
+                this.getTagList().remove(deletedtag);
+            }
+
+
+
+        };
+        return factory;
+    }]
+)
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
 vcpapp.factory('modelTag', function(){
     var taglist = [];
@@ -255,6 +303,25 @@ vcpapp.factory('modelTag', function(){
         return tagmaxid;
     };
 
+<<<<<<< HEAD
+=======
+
+    factory.getMaxTagID = function () {
+        //factory.getTagList();
+        var tagmaxid;
+        try{
+            if(taglist.length==0){
+                tagmaxid=10001;
+            }else{
+                tagmaxid = taglist[taglist.length-1].tagid + 1;
+            }
+        }catch(e){
+            tagmaxid=10001;
+        }
+        return tagmaxid;
+    };
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     factory.checkTagExist = function (tagname) {
         var tagresult = _.findWhere(taglist, {tagname: tagname});
         if (tagresult === undefined) {
@@ -288,11 +355,19 @@ vcpapp.factory('modelSite',  function(){
             {layoutcontainerclass:"span3", layoutcontainerid:1001, blocks:[]}
         ]},
 
+<<<<<<< HEAD
         {layoutid: 10, layoutname: '两列2', layouttype : 1, layoutorder:2, layoutcss:'ico_layout_01', layoutimage:'app/img/layout_templete_01.png', layoutdata:[
             {layoutcontainerclass:"span3", layoutcontainerid:1002, blocks:[]},
             {layoutcontainerclass:"span9", layoutcontainerid:1003, blocks:[]}
         ]},
         {layoutid: 10, layoutname: '三列1', layouttype : 0, layoutorder:3, layoutcss:'ico_layout_02', layoutimage:'app/img/layout_templete_02.png', layoutdata:[
+=======
+        {layoutid: 11, layoutname: '两列2', layouttype : 1, layoutorder:2, layoutcss:'ico_layout_01', layoutimage:'app/img/layout_templete_01.png', layoutdata:[
+            {layoutcontainerclass:"span3", layoutcontainerid:1002, blocks:[]},
+            {layoutcontainerclass:"span9", layoutcontainerid:1003, blocks:[]}
+        ]},
+        {layoutid: 12, layoutname: '三列1', layouttype : 0, layoutorder:3, layoutcss:'ico_layout_02', layoutimage:'app/img/layout_templete_02.png', layoutdata:[
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
             {layoutcontainerclass:"span4", layoutcontainerid:1005, blocks:[]},
             {layoutcontainerclass:"span4", layoutcontainerid:1006, blocks:[]},
             {layoutcontainerclass:"span4", layoutcontainerid:1007, blocks:[]}
@@ -312,31 +387,51 @@ vcpapp.factory('modelSite',  function(){
     if(window.localStorage){
         if (JSON.parse(localStorage.getItem("siteData")) == null || JSON.parse(localStorage.getItem("siteData")).length == 0){
             sitedata = {
+<<<<<<< HEAD
                 userinfo : {},
                 siteinfo : {},
 
+=======
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                 pagelist : [
                     { siteid:1, pagename:'Homepage', pageid:101, pagetype:10, pagetitle:"Homepage", pageurl:"homepage",  pageorder:1, pagelayoutid:10,
                         pagelayoutdata:[
                             {layoutcontainerclass:"span9", layoutcontainerid:1000 , blocks:[
+<<<<<<< HEAD
                                 {blockid:100, blocktype:'auto', blockstatictype:'', blockname:"Today hot",blocklayout:10, blockquantity:4, blocktag:[], blockcategory:[], blocksortby:'date' , blockarticles:[
                                 ]
                                 }
+=======
+                                /*{blockid:100, blocktype:'auto', blockstatictype:'', blockname:"Today hot",blocklayout:10, blockquantity:4, blocktag:[], blockcategory:[], blocksortby:'date' , blockarticles:[
+                                ]
+                                }*/
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                             ]
                             },
                             {layoutcontainerclass:"span3", layoutcontainerid:1001, blocks:[] }
                         ]
                     },
 
+<<<<<<< HEAD
                     { siteid:1, pagename:'Article', pageid:103, pagetype:11, pagetitle:"article", pageurl:"article", pageorder:0, pagelayoutid:10, pagelayoutdata:[] }
+=======
+                    { siteid:1, pagename:'Article', pageid:103, pagetype:11, pagetitle:"article", pageurl:"article", pageorder:0, pagelayoutid:10, pagelayoutdata:[
+                        {layoutcontainerclass:"span9", layoutcontainerid:1000 , blocks:[] },
+                        {layoutcontainerclass:"span3", layoutcontainerid:1001, blocks:[] }
+                    ] }
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                 ],
 
                 headerdata:[],
 
+<<<<<<< HEAD
                 footerdata:[
                     /*{footerid:1,footername:'foot1',footertype:'local',linkedurl:'',linkedpageid:101,linkedpagename:'Homepage'},
                      {footerid:2,footername:'foot2',footertype:'other',linkedurl:'http://www.1.com',linkedpageid:0,linkedpagename:''}*/
                 ],
+=======
+                footerdata:[],
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
                 headertheme:[
                     {headerthemeid:1,name:'black',css:'theme_01', image:'app/img/header_theme_01.jpg'},
@@ -371,6 +466,10 @@ vcpapp.factory('modelSite',  function(){
 
 
     var factory = {};
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     factory.getSite = function () {
         return  sitedata;
     };
@@ -378,6 +477,7 @@ vcpapp.factory('modelSite',  function(){
         localStorage.setItem("siteData",JSON.stringify(sitedata1));
         return;
     };
+<<<<<<< HEAD
     factory.saveSiteInfo= function(sitedata){
         console.log(sitedata);
         sitedata.siteinfo =  angular.copy(sitedata);
@@ -390,6 +490,9 @@ vcpapp.factory('modelSite',  function(){
         localStorage.setItem("siteData",JSON.stringify(sitedata));
         return;
     };
+=======
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
 
     factory.addSinglePage = function (pagedata) {
@@ -471,6 +574,7 @@ vcpapp.factory('modelSite',  function(){
     };
 
 
+<<<<<<< HEAD
     //header Theme
     factory.getHeaderTheme=function(){
         return sitedata.headertheme;
@@ -480,11 +584,19 @@ vcpapp.factory('modelSite',  function(){
     factory.getHeader=function(){
         return sitedata.headerdata;
     }
+=======
+
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     factory.addHeaderMenu = function (menudata) {
         sitedata.headerdata.push(menudata);
         localStorage.setItem("siteData",JSON.stringify(sitedata));
         return;
     };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     factory.addHeaderChildMenu = function (menuindex,childmenudata) {
         sitedata.headerdata[menuindex].childdata.push(childmenudata);
         localStorage.setItem("siteData",JSON.stringify(sitedata));
@@ -496,12 +608,17 @@ vcpapp.factory('modelSite',  function(){
         localStorage.setItem("siteData",JSON.stringify(sitedata));
         return;
     };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     factory.editHeaderChildMenu = function (id,pagedata) {
         sitedata.headerdata[id].childdata.push(pagedata);
         localStorage.setItem("siteData",JSON.stringify(sitedata));
         return;
     };
 
+<<<<<<< HEAD
     factory.getfoottheme=function(){
         return sitedata.footertheme;
     };
@@ -512,12 +629,39 @@ vcpapp.factory('modelSite',  function(){
         sitedata.footerdata.push(menudata);
         localStorage.setItem("siteData",JSON.stringify(sitedata));
         return;
+=======
+
+
+    factory.addfooterMenu = function (menudata) {
+        sitedata.footerdata.push(menudata);
+        localStorage.setItem("siteData",JSON.stringify(sitedata));
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     };
 
     factory.savesitedata = function(menudata){
         localStorage.setItem("siteData",JSON.stringify(menudata));
+<<<<<<< HEAD
         return;
     }
+=======
+    };
+
+    factory.saveLastUserAccount = function(account){
+           localStorage.setItem("user",JSON.stringify(account));
+    };
+
+    factory.getLastLoginUserAccount = function(){
+        if(window.localStorage){
+            if (JSON.parse(localStorage.getItem("user")) == null || JSON.parse(localStorage.getItem("user")).length == 0){
+                  return '';
+            }else{
+                  return JSON.parse(localStorage.getItem("user"));
+            }
+        }
+    };
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
     return factory;
 }

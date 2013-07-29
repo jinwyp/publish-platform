@@ -3,8 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>VCP</title>
+<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="lib/flatui/bootstrap.css" rel="stylesheet">
+=======
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link href="lib/bootstrap/bootstrap.css" rel="stylesheet">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     <link href="lib/flatui/flat-ui.css" rel="stylesheet">
     <link href="app/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="app/img/favicon.ico">
@@ -14,28 +19,55 @@
     <!-- 默认 Site Theme -->
     <link href="theme/default/site-theme.css" rel="stylesheet">
     
+<<<<<<< HEAD
 
   </head>
 <body style="background:url(app/img/pagebg.jpg) center 60px repeat;">
+=======
+    <style type="text/css">
+  <!-- 
+  html { overflow-y:scroll}
+  -->
+  </style>
+
+  </head>
+<body style="background:fixed url(app/img/pagebg.jpg) center 60px repeat;">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
 
 
 <!-- Header -->
 <header class="header">
 	<h1 class="logo"><a href="index.html">VCP</a></h1>
+<<<<<<< HEAD
     <a href="../demo/index.html" class="preview">preview</a>
     <ul class="menu clearfix">
     	<li id="menuUser"><a href="user.html">User</a></li>
+=======
+    <a href="###" class="preview">preview</a>
+    <div class="preview_Item">
+    	<a href="#" class="forMobile">Preview on Mobile</a>
+        <a href="#" class="forPad">Preview on Pad</a>
+    	<a href="../demo/index.html" class="forPC">PC</a>
+    </div>
+    <ul class="menu clearfix">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     	<li id="menuSite"><a href="site.html" class="current">Site</a></li>
         <li id="menuPage"><a href="page.html">Page</a></li>
         <li id="menuArticle"><a href="article_list_index.html">Article</a></li>
         <li id="menuReports"><a href="reports.html">Reports</a></li>
+<<<<<<< HEAD
         <li id="menuStore"><a href="#">Store</a>
         	<ul class="subMenuStore">
             	<li><a href="store.html">Style 1: Fixed width</a></li>
                 <li style="border:0;"><a href="store2.html">Style 2: Adaptive width</a></li>
             </ul>
         </li>
+=======
+        <li id="menuStore"><a href="store.html">Store</a>
+        <li id="menuUser"><a href="user.html">User</a></li>
+        <li id="menuAppGenerate"><a href="#">App Generate</a></li>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     </ul>
 </header>
         
@@ -48,11 +80,19 @@
     	<!-- 第 1 步 -->
     	<div class="site_stepbox large_step_1">
         	<div class="site_box_title clearfix">
+<<<<<<< HEAD
             	<div class="title_num">1</div>
                 <h3 class="title_name">Join Now</h3>
             </div>
         	<form class="site_form" name="siteinfoform"  >
             	<h4>Site Attribute<a href="#" class="edit_step" id="edit_step1">Edit</a></h4>
+=======
+            	 <div class="title_num">1</div>
+                <h1 class="title_name">Site/App Data</h1>
+            </div>
+        	<form class="site_form" name="siteinfoform"  >
+            	<h4>Site Data<a href="#" class="edit_step btn btn-small btn-edit" id="edit_step1">edit</a></h4>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                 <div class="site_form_Box">
                 <table class="table">
                 	<tr>
@@ -65,25 +105,50 @@
                        <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
                         <td><input type="text" value="" class="site_input site_input2" placeholder="Domain" required ng-model="siteinfodata.domain"><span class="site_inputspan">.vcp.com</span></td></tr>
                     <tr>
+<<<<<<< HEAD
                     	<td class="titlename">Meta</td>
+=======
+                    	<td class="titlename">Meta Data</td>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                         <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
                         <td><input type="text" value="" class="site_input" placeholder="Meta" required ng-model="siteinfodata.meta"></td></tr>
                     <tr>
                     	<td class="titlename">Type</td>
                         <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
                         <td>
+<<<<<<< HEAD
                             <select ng-model="siteinfodata.type">
+=======
+                            <select ng-model="siteinfodata.type" style="width: 190px;margin-left: 7px;">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                                 <option>Bussness</option>
                                 <option>Organization</option>
                                 <option>Persional</option>
                             </select></td>
                     </tr>
+<<<<<<< HEAD
                      <tr class="last">
                     	<td class="titlename">RSS Feed</td>
                         <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
                         <td>
                         <label class="RssFeedLabel"><input type="radio" name="RSSfeed" id="RssFeedOff" ng-model="siteinfodata.rssapi" value="false">Off</label>
                         <label class="RssFeedLabel"><input type="radio" name="RSSfeed" id="RssFeedOn" ng-model="siteinfodata.rssapi" value="true">On</label>
+=======
+                    <tr>
+                    	<td class="titlename">APP</td>
+                        <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
+                        <td>
+                        	<label class="appLabel"><div class="iOSApp">iOS App</div><input type="checkbox"></label>   
+                            <label class="appLabel"><div class="AndroidApp">Android App</div><input type="checkbox"></label> 
+                        </td>
+                    </tr>
+                     <tr class="last">
+                    	<td class="titlename">RSS Link</td>
+                        <!-- <td><div class="fancyinput_vcp"><input type="text" value=""></div></td> -->
+                        <td>
+                        <label class="RssFeedLabel" style="padding-left: 7px;"><input type="radio" name="RSSfeed" id="RssFeedOff" ng-model="siteinfodata.rssapi" value="false">Off</label>
+                        <label class="RssFeedLabel" style="padding-left: 7px;"><input type="radio" name="RSSfeed" id="RssFeedOn" ng-model="siteinfodata.rssapi" value="true">On</label>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                         <div class="RssFeedOn_Box" ng-show="siteinfodata.rssapi" >
                         http://{{ siteinfodata.domain }}.vcp.com/api/0000001
                         </div>
@@ -91,7 +156,11 @@
                         </tr>
                 </table>
                 </div>
+<<<<<<< HEAD
                 <div class="submitbox" ><a href="#" class="submit" id="save_step1" ng-click="savesiteinfo(siteinfoform)">Save</a></div>
+=======
+                <div class="submitbox SiteSubmitBox"><input type="submit" class="btn btn-save" id="save_step1" ng-click="savesiteinfo(siteinfoform)" value="save"></div>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
             </form>
             
         </div>
@@ -102,10 +171,17 @@
         <div class="site_stepbox mini_step_2">
         	<div class="site_box_title clearfix">
             	<div class="title_num">2</div>
+<<<<<<< HEAD
                 <h3 class="title_name">Select Theme</h3>
             </div>
         	<form class="site_form">
             	<h4>Select Theme<a href="##" class="edit_step" id="edit_step2">Edit</a></h4>
+=======
+                <h1 class="title_name">Select Theme</h1>
+            </div>
+        	<form class="site_form">
+            	<h4>Select Theme<a href="##" class="edit_step btn btn-small btn-edit" id="edit_step2">edit</a></h4>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                 <div class="site_form_Box">
                     <div class="site_themebox">
                     
@@ -139,6 +215,7 @@
                         -->
                 
                         <ul class="site_theme_ul clearfix">
+<<<<<<< HEAD
                         <li><a href="#" class="icon_sitetheme_blank">Blank</a></li>
                         <li><a href="#" class="icon_sitetheme_01">theme1</a></li>
                         <li><a href="#" class="icon_sitetheme_02">theme2</a></li>
@@ -151,10 +228,22 @@
                         <li><a href="#" class="icon_sitetheme_09">theme9</a></li>
                         <li><a href="#" class="icon_sitetheme_10">theme10</a></li>
                         <li><a href="#" class="icon_sitetheme_11">theme11</a></li>
+=======
+                        <li><a href="#" class="icon_sitetheme_blank"><img src="app/img/sitetheme/Thumb_blank.png"></a></li>
+                        <li><a href="#" class="icon_sitetheme_01 select"><img src="app/img/sitetheme/Thumb_01.png"></a></li>
+                        <li><a href="#" class="icon_sitetheme_02"><img src="app/img/sitetheme/Thumb_02.png"></a></li>
+                        <li><a href="#" class="icon_sitetheme_03"><img src="app/img/sitetheme/Thumb_03.png"></a></li>
+                        <li><a href="#" class="icon_sitetheme_04"><img src="app/img/sitetheme/Thumb_04.png"></a></li>
+                        <li><a href="#" class="icon_sitetheme_05"><img src="app/img/sitetheme/Thumb_05.png"></a></li>
+                        <li><a href="#" class="icon_sitetheme_06"><img src="app/img/sitetheme/Thumb_06.png"></a></li>
+                        <li><a href="#" class="icon_sitetheme_07"><img src="app/img/sitetheme/Thumb_07.png"></a></li>
+                        <li><a href="#" class="icon_sitetheme_08"><img src="app/img/sitetheme/Thumb_08.png"></a></li>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                         
                         <li class="ts_thumbnails">
                             <div class="ts_preview_wrapper">
                                 <ul class="ts_preview">
+<<<<<<< HEAD
                                     <li><img src="app/img/temp/sitetheme_01.jpg" alt="Thumb 1" /></li>
                                     <li><img src="app/img/temp/sitetheme_02.jpg" alt="Thumb 2" /></li>
                                     <li><img src="app/img/temp/sitetheme_03.jpg" alt="Thumb 3" /></li>
@@ -167,6 +256,17 @@
                                     <li><img src="app/img/temp/sitetheme_10.jpg" alt="Thumb 10" /></li>
                                     <li><img src="app/img/temp/sitetheme_11.jpg" alt="Thumb 11" /></li>
                                     <li><img src="app/img/temp/sitetheme_12.jpg" alt="Thumb 12" /></li>
+=======
+                                    <li><img src="app/img/sitetheme/sitetheme_blank.jpg" alt="Thumb 1" /></li>
+                                    <li><img src="app/img/sitetheme/sitetheme_01.jpg" alt="Thumb 2" /></li>
+                                    <li><img src="app/img/sitetheme/sitetheme_02.jpg" alt="Thumb 3" /></li>
+                                    <li><img src="app/img/sitetheme/sitetheme_03.jpg" alt="Thumb 4" /></li>
+                                    <li><img src="app/img/sitetheme/sitetheme_04.jpg" alt="Thumb 5" /></li>
+                                    <li><img src="app/img/sitetheme/sitetheme_05.jpg" alt="Thumb 6" /></li>
+                                    <li><img src="app/img/sitetheme/sitetheme_06.jpg" alt="Thumb 7" /></li>
+                                    <li><img src="app/img/sitetheme/sitetheme_07.jpg" alt="Thumb 8" /></li>
+                                    <li><img src="app/img/sitetheme/sitetheme_08.jpg" alt="Thumb 9" /></li>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                                 </ul>
                             </div>
                             <span></span>
@@ -175,7 +275,11 @@
                         </ul>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="submitbox"><a href="##" class="submit" id="save_step2">Save</a></div>
+=======
+                <div class="submitbox SiteSubmitBox"><input type="submit" class="btn btn-save" id="save_step2" value="save"></div>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
             </form>
         </div>
         
@@ -185,17 +289,28 @@
         <div class="site_stepbox mini_step_3">
         	<div class="site_box_title clearfix">
             	<div class="title_num">3</div>
+<<<<<<< HEAD
                 <h3 class="title_name">Logo</h3>
             </div>
         	<form class="site_form">
             	<h4>Logo<a href="##" class="edit_step" id="edit_step3">Edit</a></h4>
+=======
+                <h1 class="title_name">Select Logo</h1>
+            </div>
+        	<form class="site_form">
+            	<h4>Select Logo<a href="##" class="edit_step btn btn-small btn-edit" id="edit_step3">edit</a></h4>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                 <div class="site_form_Box">
                     <table class="table">
                         <tr><td class="titlename">Logo</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
                         <tr class="last"><td class="titlename">Web Icon</td><td><a href="#" class="site_logo_btn"><span>Click here to add</span></a></td></tr>
                     </table>
                 </div>
+<<<<<<< HEAD
                 <div class="submitbox"><a href="##" class="submit" id="save_step3">Save</a></div>
+=======
+                <div class="submitbox SiteSubmitBox"><input type="submit" class="btn btn-save" id="save_step3" value="save"></div>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
             </form>
         </div>
         
@@ -205,6 +320,7 @@
         <div class="site_stepbox mini_step_4">
         	<div class="site_box_title clearfix">
             	<div class="title_num">4</div>
+<<<<<<< HEAD
                 <h3 class="title_name">Workflow</h3>
             </div>
         	<form class="site_form">
@@ -218,6 +334,21 @@
                     </div>
                 </div>
                 <div class="submitbox"><a href="page.html" class="submit" id="save_step4">Save</a></div>
+=======
+                <h1 class="title_name">Select Publishing Workflow</h1>
+            </div>
+        	<form class="site_form">
+            	<h4>Select Publishing Workflow<a href="##" class="edit_step btn btn-small btn-edit" id="edit_step4">edit</a></h4>
+                <div class="site_form_Box">
+                    <div class="site_workflow">
+                        <h6></h6>
+                        <p ng-click="clickpublish();"><a href="###" class="btn btn-info"><i ng-show="selectpublish" class="icon-ok-sign icon-white"></i>Publish Directly</a></p>
+                        <p ng-click="clickone();"><a href="###" class="btn btn-success"><i ng-show="selectone" class="icon-ok-sign icon-white"></i> 1-Step</a></p>
+                        <p ng-click="clickcomplex();"><a href="###" class="btn btn-warning"><i ng-show="selectcomplex" class="icon-ok-sign icon-white"></i> Complex Review And Publish</a></p>
+                    </div>
+                </div>
+                <div class="submitbox SiteSubmitBox"><input type="submit" class="btn btn-save" id="save_step4" value="save" onclick="location.href='page.html'"></div>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
             </form>
         </div>
         
@@ -241,17 +372,26 @@
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
     <script src="lib/angularfire/angularfire.js"></script>
 
+<<<<<<< HEAD
     <script src="lib/jquery/jquery-1.8.2.min.js"></script>
     <script src="lib/jqueryplugin/jquery.easing.1.3.js"></script>
     <script src="lib/boostrap/bootstrap.min.js"></script>
+=======
+	<script src="lib/jquery/jquery-1.8.2.min.js"></script>
+    <script src="lib/jqueryplugin/jquery.easing.1.3.js"></script>
+    <script src="lib/bootstrap/bootstrap.min.js"></script>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
 
     <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
     <script src="lib/flatui/custom_radio.js"></script>
     <script src="lib/flatui/jquery.tagsinput.js"></script>
     <script src="lib/flatui/jquery.placeholder.js"></script>
+<<<<<<< HEAD
     <!--<script src="lib/flatui/application.js"></script>-->
     <!-- <script src="app/js/fancyInput.js"></script>-->
+=======
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     <!--[if lt IE 8]>
       <script src="lib/flatui/icon-font-ie7.js"></script>
       <script src="lib/flatui/lte-ie7-24.js"></script>
@@ -397,14 +537,22 @@
 			})(jQuery);
 			</script>
         
+<<<<<<< HEAD
     		<script type="text/jscript">
+=======
+    <script type="text/jscript">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 			 //$('.fancyinput_vcp :input').val('').fancyInput()[0].focus();
 			
 			$(function() {
 				
 				  $('.site_themebox').thumbnailSlider({
 					thumb_width	: 300,
+<<<<<<< HEAD
 					thumb_height: 200,
+=======
+					thumb_height: 270,
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 					speed		: 300
 				  });
 				

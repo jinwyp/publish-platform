@@ -3,8 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>VCP</title>
+<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="lib/flatui/bootstrap.css" rel="stylesheet">
+=======
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link href="lib/bootstrap/bootstrap.css" rel="stylesheet">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     <link href="app/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="app/img/favicon.ico">
     <!--[if lt IE 9]>
@@ -12,10 +17,20 @@
     <![endif]-->
     <!-- 默认 Site Theme -->
     <link href="theme/default/site-theme.css" rel="stylesheet">
+<<<<<<< HEAD
     
 
   </head>
 <body style="background:url(app/img/pagebg.jpg) center 60px repeat;">
+=======
+    <style type="text/css">
+  <!-- 
+  html { overflow-y:scroll}
+  -->
+  </style>
+  </head>
+<body style="background:fixed url(app/img/pagebg.jpg) center 60px repeat;">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
 
 
@@ -43,10 +58,17 @@
     	<div class="reg_stepbox reg_step_1">
         	<div class="reg_box_title clearfix">
             	 <!-- <div class="title_num">1</div>-->
+<<<<<<< HEAD
                 <h3 class="title_name">Register</h3>
             </div>
         	<form name="register" class="reg_form">
             	<h4>Register Information</h4>
+=======
+                <h1 class="title_name">Register</h1>
+            </div>
+        	<form name="register" class="reg_form">
+            	<h4>Register</h4>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                 <div class="reg_form_Box">
                 <table class="table">
                 	<tr>
@@ -56,6 +78,7 @@
                     <tr>
                     	<td class="titlename">Password</td> <!--user.password-->
                         <td><input id="password" type="password" required ng-model="userdata.password1" minlength="6" maxlength="20" class="reg_input"></td></tr>
+<<<<<<< HEAD
                     <tr>
                     	<td class="titlename">Confirm Password</td>
                         <td><input id="reformpassword" type="password" required ng-model="userdata.password2" class="reg_input"></td>
@@ -67,6 +90,22 @@
                 </div>
                 <div class="submitbox">
                     <input type="submit" value="Save" class="submit" ng-click="saveemailinfo(register)">
+=======
+                    <tr class="last">
+                    	<td class="titlename">Confirm Password</td>
+                        <td><input id="reformpassword" type="password" required ng-model="userdata.password2" class="reg_input"></td>
+                    </tr>
+                    <tr class="last" ng-cloak ng-show="csspasswordprompt">
+                        <td style="padding:0" colspan="2"><div class="wrongTip">Password Inconsistent!</div></td>
+                    </tr>
+                    <tr class="last" ng-cloak ng-show="cssemailprompt">
+                        <td style="padding:0;" colspan="2"><div class="wrongTip">This email is already registered</div></td>
+                    </tr>
+                </table>
+                </div>
+                <div class="submitbox RegisterSubmitBox">
+                    <input type="submit" value="save" class="btn btn-save" ng-click="saveemailinfo(register)">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                 </div>
             </form>
             
@@ -143,16 +182,32 @@
 </div>  
 
     <!-- Load JS -->
+<<<<<<< HEAD
     <script src="lib/angular/1.1.5/angular.js"></script>
     <script src="app/js/usercontrollers.js"></script>
     <script src="app/js/factory.js"></script>
     <script src="app/js/directives.js"></script>
+=======
+    <script src="lib/underscore/underscore-min.js"></script>
+
+    <script src="lib/angular/1.1.5/angular.js"></script>
+    <script src="app/js/usercontrollers.js"></script>
+
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
     <script src="lib/angularfire/angularfire.js"></script>
 
+<<<<<<< HEAD
     <script src="lib/jquery/jquery-1.8.2.min.js"></script>
     <script src="lib/boostrap/bootstrap.min.js"></script>
+=======
+
+	
+    <script src="lib/jquery/jquery-1.8.2.min.js"></script>
+    <script src="lib/bootstrap/bootstrap.min.js"></script>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     <!-- <script src="lib/jqueryplugin/fancyInput.js"></script>-->
     <!--[if lt IE 8]>
     <script src="lib/flatui/icon-font-ie7.js"></script>

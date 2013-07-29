@@ -11,14 +11,24 @@
 
             <!-- Left -->
             <div class="article-span9">
+<<<<<<< HEAD
                 <div class="article-title">PREVIEW
+=======
+                <div class="article-title">Preview
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                     <!--<i class="article-title-ico">520 Words</i>-->
                 </div>
                 <!-- 预览区 -->
                 <div id="article-cont-preview" class="article-cont">
+<<<<<<< HEAD
                     <div class="article-templete">
                         <div class="tagbox">
                             May 05 2013  |  Tag »
+=======
+                    <div class="article-templete CkeditorPreview">
+                        <div class="tagbox">
+                            {{ newarticleadata.created | date:'yyyy/MM/dd HH:mm' }}
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                             <!--<a href="#/tag/{{tag.tagid}}" ng-repeat="tag in articlepreviewdata.tags">{{tag.tagname}}</a>-->
                         </div>
                         <p id="contentpreview"  ng-bind-html-unsafe="showEditPreview(newarticleadata.contentbody)">
@@ -32,7 +42,11 @@
             <!-- Left //End -->
             <!-- Right  -->
             <div class="article-span9" ng-hide="cssTagsPanel">
+<<<<<<< HEAD
                 <div class="article-title">CKeditor
+=======
+                <div class="article-title">Editor
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                     <i class="article-title-ico">
                         <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = true"></a>
                         <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = false"></a>
@@ -40,6 +54,7 @@
                     <div modal="cssmodalshow" options="cssmodalslide" >
                         <div class="modal-header">
                             <button type="button" class="close" ng-click="closeModal()">&times;</button>
+<<<<<<< HEAD
                             <h3 >Version Comment</h3>
                         </div>
 
@@ -50,6 +65,18 @@
                         <div class="modal-footer">
                             <button class="btn" ng-click="closeModal()">Cancel</button>
                             <button class="btn btn-danger" ng-click="savedata(false)">Save</button>
+=======
+                            <h3 >Article Comment</h3>
+                        </div>
+
+                        <div class="modal-body">
+                            <textarea rows="3" ng-model="newarticleadata.lastversioncomment" style="width:96%"></textarea>
+                        </div>
+
+                        <div class="modal-footer">
+                           <!-- <button class="btn btn-cancel" ng-click="closeModal()">Cancel</button>-->
+                            <button class="btn btn-save" ng-click="saveNewArtcle()">Save</button>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                         </div>
                     </div>
                 </div>
@@ -63,7 +90,11 @@
             <!-- Right Hide Panel -->
             <div class="article-span9" ng-show="cssTagsPanel">
                 <!-- Tags & Category -->
+<<<<<<< HEAD
                 <div class="article-title">ARTICLE ATTRIBUTE
+=======
+                <div class="article-title">Article Data
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                     <i class="article-title-ico">
                         <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = true"></a>
                         <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = false"></a>
@@ -75,7 +106,11 @@
 
                     <!-- Tags -->
                     <div class="atricle_attribute_box">
+<<<<<<< HEAD
                         <h3>Tags</h3>
+=======
+                        <h3>Tag</h3>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                         <input name="tagsinput" id="tagsinput" class="tagsinput" value="" />
                     </div>
                     <!-- Tags //End -->
@@ -103,6 +138,7 @@
                         </select>
                     </div>
                     <!-- Category End -->
+<<<<<<< HEAD
 
                     <!-- Social -->
                     <div class="atricle_attribute_box">
@@ -111,6 +147,25 @@
                             <ul>
                                 <li>
                                     <label class="share-label" for="share-toggle2">Facebook</label>
+=======
+                    
+                    
+                    <!-- Description -->
+                    <div class="atricle_attribute_box">
+                        <h3>Description</h3>
+                        <textarea maxlength="70" ng-model="newarticleadata.description" style="width:580px;"></textarea>
+                    </div>
+                    <!-- Description //End -->
+                    
+
+                    <!-- Social -->
+                    <div class="atricle_attribute_box">
+                        <h3>SNS Sync up</h3>
+                        <div class="share mrl">
+                            <ul>
+                                <li>
+                                    <label class="share-label" for="share-toggle2"><img src="app/img/sns-facebook.png"></label>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                                     <div class="toggle">
                                         <label class="toggle-radio" for="share-toggle2">ON</label>
                                         <input type="radio" name="share-toggles" id="share-toggle2" value="toggle1">
@@ -119,7 +174,11 @@
                                     </div>
                                 </li>
                                 <li>
+<<<<<<< HEAD
                                     <label class="share-label" for="share-toggle4">Twitter</label>
+=======
+                                    <label class="share-label" for="share-toggle4"><img src="app/img/sns-twitter.png"></label>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                                     <div class="toggle">
                                         <label class="toggle-radio" for="share-toggle4">ON</label>
                                         <input type="radio" name="share-toggles2" id="share-toggle4" value="toggle1" checked="checked">
@@ -127,6 +186,7 @@
                                         <input type="radio" name="share-toggles2" id="share-toggle3" value="toggle2">
                                     </div>
                                 </li>
+<<<<<<< HEAD
                                 <li>
                                     <label class="share-label" for="share-toggle6">新浪微博</label>
                                     <div class="toggle">
@@ -145,6 +205,8 @@
                                         <input type="radio" name="share-toggles4" id="share-toggle7" value="toggle2" checked="checked">
                                     </div>
                                 </li>
+=======
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                             </ul>
                         </div>
                     </div>
@@ -159,7 +221,12 @@
         </div>
         <div class="article-footer">
             <div class="article_btn">
+<<<<<<< HEAD
                 <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="conformNewArticle(newArticleForm)">
+=======
+            	  <!-- <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="conformNewArticle(newArticleForm)"> -->
+                <input type="submit" value="SAVE DRAFT" class="btn btn-save" ng-click="conformNewArticle(newArticleForm)">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                 <input type="submit" value="PUBLISH" class="btn-publish" style="display: none;" ng-click="conformNewArticle(newArticleForm)">
             </div>
             <!-- 版本节点 -->

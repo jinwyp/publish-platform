@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <form name="newFeed">
+=======
+<form name="ArticleForm">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     <!-- Content -->
 	<div class="article" >
     
@@ -13,14 +17,24 @@
 
             <!-- Left  -->
             <div class="article-span9">
+<<<<<<< HEAD
                 <div class="article-title">PREVIEW
+=======
+                <div class="article-title">Preview
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                     <!--<i class="article-title-ico">520 Words</i>-->
                 </div>
                 <!-- 预览区 -->
                 <div id="article-cont-preview" class="article-cont">
+<<<<<<< HEAD
                     <div class="article-templete">
                         <div class="tagbox">
                             May 05 2013  |  Tag »
+=======
+                    <div class="article-templete CkeditorPreview">
+                        <div class="tagbox">
+                            {{ articledata.created | date:'yyyy/MM/dd HH:mm' }}  |  Tag »
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                             <a href="#/tag/{{tag.tagid}}" ng-repeat="tag in articledata.tags">{{tag.tagname}}</a>
                         </div>
                         <p id="contentpreview"  ng-bind-html-unsafe="showeditpreview(articledata.contentbody)">
@@ -36,25 +50,44 @@
         
             <!-- Right -->
             <div class="article-span9" ng-hide="cssTagsPanel">
+<<<<<<< HEAD
                 <div class="article-title">CKeditor
                     <i class="article-title-ico">
                         <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="openModal()" ></a>
+=======
+                <div class="article-title">Editor
+                    <i class="article-title-ico">
+                        <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="openDelModal()" ></a>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                         <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = true"></a>
                         <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = false"></a>
                     </i>
                     <div modal="cssmodalshow" options="cssmodalslide" >
                         <div class="modal-header">
+<<<<<<< HEAD
                             <button type="button" class="close" ng-click="closeModal()">&times;</button>
+=======
+                            <button type="button" class="close" ng-click="closeDelModal()">&times;</button>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                             <h3 >Delete Article </h3>
                         </div>
 
                         <div class="modal-body">
+<<<<<<< HEAD
                             <h4>Are you sure delete this article "{{articledata.title}}" ?</h4>
                         </div>
 
                         <div class="modal-footer">
                             <button class="btn" ng-click="closeModal()">Cancel</button>
                             <button class="btn btn-danger"  ng-click="delArticle(articledata.id)">Delete</button>
+=======
+                            <h4>Are you sure delete  "{{articledata.title}}" ?</h4>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-cancel" ng-click="closeDelModal()">Cancel</button>
+                            <button class="btn btn-save"  ng-click="delArticle(articledata.id)">Delete</button>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                         </div>
                     </div>
                 </div>
@@ -69,6 +102,7 @@
             <!-- Right Hide Panel -->
             <div class="article-span9" ng-show="cssTagsPanel">
                 <!-- Tags & Category -->
+<<<<<<< HEAD
                 <div class="article-title">ARTICLE ATTRIBUTE
                     <i class="article-title-ico">
                         <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="delArticle(articledata.id)"></a>
@@ -79,16 +113,37 @@
                         <div class="modal-header">
                             <button type="button" class="close" ng-click="closecomments()">&times;</button>
                             <h3 >Version Comment</h3>
+=======
+                <div class="article-title">Article Data
+                    <i class="article-title-ico">
+                        <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="openDelModal()"></a>
+                        <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = true"></a>
+                        <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = false"></a>
+                    </i>
+                    <div modal="cssshowmodifymodal" options="cssmodalslide" >
+                        <div class="modal-header">
+                            <button type="button" class="close" ng-click="closecomments()">&times;</button>
+                            <h3 >Article Comment</h3>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                         </div>
 
                         <div class="modal-body">
                             <!-- <input type="text" ng-model="articledata.versioncomment" /> -->
+<<<<<<< HEAD
                             <textarea rows="3" ng-model="articledata.versioncomment" style="width:96%"></textarea>
                         </div>
 
                         <div class="modal-footer">
                             <button class="btn" ng-click="closecomments()">Cancel</button>
                             <button class="btn btn-danger" ng-click="savedata()">Save</button>
+=======
+                            <textarea rows="3" ng-model="newversioncomment" style="width:96%"></textarea>
+                        </div>
+
+                        <div class="modal-footer">
+                           <!-- <button class="btn" ng-click="closecomments()">Cancel</button>-->
+                            <button class="btn btn-save" ng-click="saveModifyArticle()">Save</button>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                         </div>
                     </div>
                 </div>
@@ -96,7 +151,11 @@
                 <div class="article-cont">
                     <!-- Tags -->
                     <div class="atricle_attribute_box">
+<<<<<<< HEAD
                         <h3>Tags</h3>
+=======
+                        <h3>Tag</h3>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                         <!-- 测试用，不用管这段 ->
                         <input type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
                         -->
@@ -128,6 +187,7 @@
                     </div>
                     <!-- Category End -->
 
+<<<<<<< HEAD
 
                     <!-- Social -->
                     <div class="atricle_attribute_box">
@@ -136,15 +196,38 @@
                             <ul>
                                 <li>
                                     <label class="share-label" for="share-toggle2">Facebook</label>
+=======
+                    <!-- Description -->
+                    <div class="atricle_attribute_box">
+                        <h3>Description</h3>
+                        <textarea maxlength="70" ng-model="articledata.description" style="width:580px;"></textarea>
+                    </div>
+                    <!-- Description //End -->
+
+                    <!-- Social -->
+                    <div class="atricle_attribute_box">
+                        <h3>SNS Sync Up</h3>
+                        <div class="share mrl">
+                            <ul>
+                                <li>
+                                    <label class="share-label" for="share-toggle2"><img src="app/img/sns-facebook.png"></label>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                                     <div class="toggle">
                                         <label class="toggle-radio" for="share-toggle2">ON</label>
                                         <input type="radio" name="share-toggles" id="share-toggle2" value="toggle1">
                                         <label class="toggle-radio" for="share-toggle1">OFF</label>
                                         <input type="radio" name="share-toggles" id="share-toggle1" value="toggle2" checked="checked">
+<<<<<<< HEAD
                                     </div>
                                 </li>
                                 <li>
                                     <label class="share-label" for="share-toggle4">Twitter</label>
+=======
+                                    </div> 
+                                </li>
+                                <li>
+                                    <label class="share-label" for="share-toggle4"><img src="app/img/sns-twitter.png"></label>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                                     <div class="toggle">
                                         <label class="toggle-radio" for="share-toggle4">ON</label>
                                         <input type="radio" name="share-toggles2" id="share-toggle4" value="toggle1" checked="checked">
@@ -152,6 +235,7 @@
                                         <input type="radio" name="share-toggles2" id="share-toggle3" value="toggle2">
                                     </div>
                                 </li>
+<<<<<<< HEAD
                                 <li>
                                     <label class="share-label" for="share-toggle6">新浪微博</label>
                                     <div class="toggle">
@@ -170,6 +254,8 @@
                                         <input type="radio" name="share-toggles4" id="share-toggle7" value="toggle2" checked="checked">
                                     </div>
                                 </li>
+=======
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
                             </ul>
                         </div>
@@ -190,14 +276,24 @@
     <div class="article-footer">
         <!-- 发布按钮 -->
         <div class="article_btn">
+<<<<<<< HEAD
             <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="saveArticle(newFeed)">
             <input type="submit" value="PUBLISH" class="btn-publish" style="display:none;" ng-click="publisharticle(newFeed)">
+=======
+            <input type="submit" value="SAVE DRAFT" class="btn btn-save" ng-click="confirmModifyArticle(ArticleForm)">
+            <!-- <input type="submit" value="SAVE DRAFT" class="btn-savedraft" ng-click="confirmModifyArticle(ArticleForm)"> -->
+            <!--<input type="submit" value="PUBLISH" class="btn-publish" style="display:none;" ng-click="publisharticle(ArticleForm)">-->
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
         </div>
         
         <!-- 版本节点 -->
         <div class="vernode">
         	<div class="line">
+<<<<<<< HEAD
                 <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}" ng-click="displayversioninfo(revision);"  ng-repeat="revision in articledata.revision"  title="{{revision.author}} {{revision.updated | date:'MM/dd/yyyy HH:mm:ss'}} {{revision.versioncomment}}">{{revision.versionnum}}</a>
+=======
+                <a href="" class="node" rel="tooltip" ng-class="{last:$last, current:$last}" ng-click="displayversioninfo(revision);"  ng-repeat="revision in articledata.revision"  title="{{revision.editor}} {{revision.updated | date:'MM/dd/yyyy HH:mm:ss'}} {{revision.lastversioncomment}}">{{revision.versionnum}}</a>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
         	</div>
         </div>
     </div>

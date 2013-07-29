@@ -3,8 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>VCP</title>
+<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="lib/flatui/bootstrap.css" rel="stylesheet">
+=======
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link href="lib/bootstrap/bootstrap.css" rel="stylesheet">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     <link href="lib/flatui/flat-ui.css" rel="stylesheet">
     <link href="app/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="app/img/favicon.ico">
@@ -13,27 +18,54 @@
     <![endif]-->
     <!-- 默认 Site Theme -->
     <link href="theme/default/site-theme.css" rel="stylesheet">
+<<<<<<< HEAD
   </head>
 <body style="background:url(app/img/pagebg.jpg) center 60px repeat;">
+=======
+    <style type="text/css">
+  <!-- 
+  html { overflow-y:scroll}
+  -->
+  </style>
+  </head>
+<body style="background:fixed url(app/img/pagebg.jpg) center 60px repeat;">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
 
 
 <!-- Header -->
 <header class="header">
+<<<<<<< HEAD
 	<h1 class="logo"><a href="../demo/index.html">VCP</a></h1>
     <a href="../demo/index.html" class="preview">preview</a>
     <ul class="menu clearfix">
     	<li id="menuUser"><a href="user.html" class="current">User</a></li>
+=======
+	<h1 class="logo"><a href="index.html">VCP</a></h1>
+    <a href="###" class="preview">preview</a>
+    <div class="preview_Item">
+    	<a href="#" class="forMobile">Preview on Mobile</a>
+        <a href="#" class="forPad">Preview on Pad</a>
+    	<a href="../demo/index.html" class="forPC">PC</a>
+    </div>
+    <ul class="menu clearfix">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     	<li id="menuSite"><a href="site.html">Site</a></li>
         <li id="menuPage"><a href="page.html">Page</a></li>
         <li id="menuArticle"><a href="article_list_index.html">Article</a></li>
         <li id="menuReports"><a href="reports.html">Reports</a></li>
+<<<<<<< HEAD
         <li id="menuStore"><a href="#">Store</a>
         	<ul class="subMenuStore">
             	<li><a href="store.html">Style 1: Fixed width</a></li>
                 <li style="border:0;"><a href="store2.html">Style 2: Adaptive width</a></li>
             </ul>
         </li>
+=======
+        <li id="menuStore"><a href="store.html">Store</a>
+        <li id="menuUser"><a href="user.html" class="current">User</a></li>
+        <li id="menuAppGenerate"><a href="#">App Generate</a></li>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     </ul>
 </header>
         
@@ -45,6 +77,7 @@
     	<!-- 头像、基本信息 -->
         <form name="userinfo">
             <div class="userBox userAccount">
+<<<<<<< HEAD
                 <h1 class="titlename">account information</h1>
                 <!-- userFormBox -->
                 <div class="userFormBox clearfix">
@@ -54,12 +87,27 @@
                         <div class="userPhoto empty"  ng-hide = "csshaveavatar">
                             <h6>drop here</h6>
                             <input type="submit" class="userUploadBtn" value="browser" ng-click="uploadavator()">
+=======
+                <h1 class="title_name">User Information</h1>
+                <!-- userFormBox -->
+                <div class="userFormBox clearfix">
+                    <div class="userFormFloat">
+						  <h6>User Picture</h6>
+                        <!-- 无头像时: class="userPhoto empty" -->
+                        <div class="userPhoto empty"  ng-hide = "csshaveavatar">
+                            <h6>drop here</h6>
+                            <input type="submit" class="btn" value="Browse" ng-click="uploadavator()">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                         </div>
 
                         <!-- 有头像时: class="userPhoto full" -->
                         <div class="userPhoto full" ng-cloak ng-show = "csshaveavatar">
                             <img src="app/img/temp/1.jpg">
+<<<<<<< HEAD
                             <input type="submit" class="userChangePhoto" value="change">
+=======
+                            <input type="submit" class="btn" value="change photo">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                         </div>
 
                     </div>
@@ -79,7 +127,11 @@
                             <!-- 编辑状态时显示：--><input type="text" required ng-model="userdata.mobilenumber">
                             <!-- 保存后显示：<p>010-62068000</p> -->
                             <h6>&nbsp;</h6>
+<<<<<<< HEAD
                             <input type="button" id="changepwd" class="btn" value="Change Password" ng-click="changepassword()">
+=======
+                            <a href="#" id="changepwd" class="chagePWD" ng-click="changepassword()">Change Password</a>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                         </div>
                     </div>
                 </div>
@@ -88,6 +140,10 @@
                 <div class="userBox userPassword" ng-cloak ng-show="cssshowpasswordbox">
                     <!-- <h1 class="titlename">change password</h1> -->
                     <div class="userFormBox clearfix">
+<<<<<<< HEAD
+=======
+                    	<!--<a href="#" class="panel_close">X</a>-->
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                         <div class="userChangePassword">
                             <h6>old password</h6>
                             <input id="oldpassword" type="password" ng-model="userdata.oldpassword">
@@ -96,6 +152,7 @@
                             <input id="newpassword" type="password" ng-model="userdata.newpassword1">
                             <h6>confirm new password</h6>
                             <input id="conformpassword" type="password" ng-model="userdata.newpassword2">
+<<<<<<< HEAD
                             <h6 ng-show="cssoldpassword" style="color:#ff0000;">Old password error !</h6>
                             <h6 ng-show="cssnewpassword" style="color:#ff0000;">Please input new password !</h6>
                             <h6 ng-show="cssnewpassword2" style="color:#ff0000;">Please input new password again !</h6>
@@ -104,15 +161,37 @@
                     </div>
                     <div class="UserBoxButton savePWD">
                         <input type="submit" id="savepwd" class="btn btn-danger" value="save PassWord" ng-click="modifypassword()">
+=======
+                            
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="wrongTip" ng-show="cssoldpassword">Old password error !</div>
+                    <div class="wrongTip" ng-show="cssnewpassword">Please input new password !</div>
+                    <div class="wrongTip" ng-show="cssnewpassword2">Please input new password again !</div>
+                    <div class="wrongTip" ng-show="cssshowinconsistent">Password inconsistent!</div>
+                            
+                            
+                    <div class="submitbox savePWD">
+                        <input type="submit" id="savepwd" class="btn btn-save" value="save" ng-click="modifypassword()">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                     </div>
                 </div>
                 <!-- 更改密码 //End -->
             
             
                 <!-- userFormBox // End -->
+<<<<<<< HEAD
                 <div class="UserBoxButton">
                     <input type="submit" class="saveUserBtn" value="save changes" ng-click="saveuserinfo(userinfo)">
                     <!-- 编辑按钮：<input type="submit" class="editUserBtn" value="edit">  -->
+=======
+                <div class="submitbox UserSubmitBox">
+                    <input type="submit" class="btn btn-save" value="save" ng-click="saveuserinfo(userinfo)">
+                    <input type="submit" class="btn btn-edit" value="edit" ng-hide="true">
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
                 </div>
                 
                 
@@ -132,6 +211,11 @@
 </div>
 
     <!-- Load JS -->
+<<<<<<< HEAD
+=======
+    <script src="lib/underscore/underscore-min.js"></script>
+
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     <script src="lib/angular/1.1.5/angular.js"></script>
     <script src="app/js/usercontrollers.js"></script>
     <script src="app/js/factory.js"></script>
@@ -139,9 +223,15 @@
 
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
     <script src="lib/angularfire/angularfire.js"></script>
+<<<<<<< HEAD
 
     <script src="lib/jquery/jquery-1.8.2.min.js"></script>
     <script src="lib/boostrap/bootstrap.min.js"></script>
+=======
+	
+    <script src="lib/jquery/jquery-1.8.2.min.js"></script>
+    <script src="lib/bootstrap/bootstrap.min.js"></script>
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
     <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
     <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
     <script src="lib/flatui/custom_checkbox_and_radio.js"></script>

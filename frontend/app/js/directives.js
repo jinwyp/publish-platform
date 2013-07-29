@@ -40,9 +40,15 @@ angular.module('vcpmodule.directive', []).
                         ngModel.$setViewValue(ck.getData());
                     });
                 });
+<<<<<<< HEAD
                 ck.on('change', function(e) {
                     $("#contentpreview").html(e.editor.getData());
                 });
+=======
+          /*      ck.on('change', function(e) {
+                    $("#contentpreview").html(e.editor.getData());
+                });*/
+>>>>>>> 3420f9c74994b2729ad09b0cfaf595a2871cc1a1
 
                 ngModel.$render = function(value) {
                     ck.setData(ngModel.$viewValue);
