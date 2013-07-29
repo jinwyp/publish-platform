@@ -514,17 +514,16 @@ vcpapp.factory('modelSite',  function(){
     factory.addfooterMenu = function (menudata) {
         sitedata.footerdata.push(menudata);
         localStorage.setItem("siteData",JSON.stringify(sitedata));
-        return;
+
     };
 
     factory.savesitedata = function(menudata){
         localStorage.setItem("siteData",JSON.stringify(menudata));
-        return;
-    }
+    };
 
     factory.saveLastUserAccount = function(account){
            localStorage.setItem("user",JSON.stringify(account));
-    }
+    };
 
     factory.getLastLoginUserAccount = function(){
         if(window.localStorage){
@@ -534,7 +533,7 @@ vcpapp.factory('modelSite',  function(){
                   return JSON.parse(localStorage.getItem("user"));
             }
         }
-    }
+    };
 
 
     return factory;

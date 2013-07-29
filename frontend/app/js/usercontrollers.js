@@ -207,16 +207,13 @@ page.c.userRegisterController = function($scope, $location, $timeout, angularFir
     //注册用户 保存密码和邮箱
     $scope.saveemailinfo = function(callback){
         var usersdata = $scope.usersFirebase;
-
+        var usercheckexist = _.where(usersdata, {email: $scope.userdata.email, password: $scope.userdata.password1});
+        console.log(usercheckexist, callback.$valid);
         if (callback.$valid) {
-            var usercheckexist = _.where(usersdata, {email: $scope.userdata.email, password: $scope.userdata.password1});
-            console.log(usercheckexist, callback.$valid);
 
             if(usercheckexist.length >= 1){
                 $scope.cssemailprompt = true;
-            }else if($scope.userdata.password1 != $scope.userdata.password2){
-                $scope.csspasswordprompt = true;
-            }else{
+            }else if($scope.userdata.password1 == $scope.userdata.password2){
                 $scope.csspasswordprompt = false ;
                 $scope.cssemailprompt = false;
 
@@ -246,9 +243,12 @@ page.c.userRegisterController = function($scope, $location, $timeout, angularFir
 
                 //$scope.site.userinfo = $scope.userdata;  // use firebase for database
                 //modelSite.updateSite($scope.site);     // use firebase for database
+
+            }else{
+                $scope.csspasswordprompt = true;
             }
         }else{
-            $scope.csspasswordprompt = true ;
+
         }
     }
 
