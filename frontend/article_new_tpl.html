@@ -3,7 +3,7 @@
     <div class="article" >
 
         <div class="write_title">
-            <a href="article_list_index.html" class="showlist" rel="tooltip" title="Article List"></a>
+            <a href="article_list_index.html" class="showlist" rel="tooltip"></a>
             <!--<h1 >{{newarticleadata.title}}</h1>-->
             <input class="title_input" placeholder="Title name" ng-model="newarticleadata.title" type="text" required>
         </div>
@@ -34,8 +34,8 @@
             <div class="article-span9" ng-hide="cssTagsPanel">
                 <div class="article-title">Editor
                     <i class="article-title-ico">
-                        <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = true"></a>
-                        <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = false"></a>
+                        <a href="" class="ico-article-setup" rel="tooltip" ng-click="cssTagsPanel = true"></a>
+                        <a href="" class="ico-article-backedit" rel="tooltip" ng-click="cssTagsPanel = false"></a>
                     </i>
                     <div modal="cssmodalshow" options="cssmodalslide" >
                         <div class="modal-header">
@@ -65,8 +65,8 @@
                 <!-- Tags & Category -->
                 <div class="article-title">Article Data
                     <i class="article-title-ico">
-                        <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = true"></a>
-                        <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = false"></a>
+                        <a href="" class="ico-article-setup" rel="tooltip" ng-click="cssTagsPanel = true"></a>
+                        <a href="" class="ico-article-backedit" rel="tooltip" ng-click="cssTagsPanel = false"></a>
                     </i>
                 </div>
 
