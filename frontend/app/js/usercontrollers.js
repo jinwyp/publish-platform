@@ -133,32 +133,37 @@ page.c.userInfoController = function($scope, $location, angularFire, modelSite) 
         }
     };
 
-
 };
 
 
 
+
+
 page.c.userLoginController = function($scope, $location, $timeout, angularFire, modelSite) {
-    var singleuserurl = "https://vcplatform.firebaseIO.com/usernow";
-    $scope.userFirebase = angularFire(singleuserurl, $scope, 'userFirebase', {});
+    var usersessionurl = "https://vcplatform.firebaseIO.com/usernow";
+    $scope.usersessionFirebase = angularFire(usersessionurl, $scope, 'usersessionFirebase', {});
 
     var usersurl = "https://vcplatform.firebaseIO.com/users";
     $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
 
     $scope.userdata = {
-        email : modelSite.getaccount(),
-        password : ''
+        email : modelSite.getLastLoginUserAccount(),
+        password : '',
+        rememberusername : false
     };
+
     //登录
     $scope.userlogin = function(callback){
         var usersdata = $scope.usersFirebase;
-        var usercheckexist = _.where($scope.usersFirebase, {email: $scope.userdata.email, password: $scope.userdata.password});
+        var usercheckexist = _.where(usersdata, {email: $scope.userdata.email, password: $scope.userdata.password});
+
         if (callback.$valid) {
-            if(usercheckexist.length == 0){
+            console.log(usercheckexist);
+            if(usercheckexist.length < 1){
                 alert('Email Or Password Error!');
-                return;
+
             }else{
-                $scope.userFirebase ={
+                $scope.usersessionFirebase ={
                     email : usercheckexist[0].email,
                     password : usercheckexist[0].password,
                     firstname : usercheckexist[0].firstname,
@@ -166,15 +171,17 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire, 
                     mobilenumber : usercheckexist[0].mobilenumber,
                     gender : usercheckexist[0].gender
                 };
-                if($scope.remember){
-                    modelSite.saveaccount($scope.userdata.email);
-                }else{
-                    modelSite.saveaccount('');
+
+                if($scope.userdata.rememberusername){
+                    modelSite.saveLastUserAccount($scope.userdata.email);
                 }
+
                 $timeout(function() {
                     location.href = "user.html";
                 }, 1000);
             }
+        }else{
+            alert('Email Or Password Error!');
         }
     }
 };
@@ -184,8 +191,8 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire, 
 
 page.c.userRegisterController = function($scope, $location, $timeout, angularFire) {
 //    $scope.site = modelSite.getSite(); // use firebase for database
-    var singleuserurl = "https://vcplatform.firebaseIO.com/usernow";
-    $scope.userFirebase = angularFire(singleuserurl, $scope, 'userFirebase', {});
+    var usersessionurl = "https://vcplatform.firebaseIO.com/usernow";
+    $scope.usersessionFirebase = angularFire(usersessionurl, $scope, 'usersessionFirebase', {});
 
     var usersurl = "https://vcplatform.firebaseIO.com/users";
     $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
@@ -201,13 +208,11 @@ page.c.userRegisterController = function($scope, $location, $timeout, angularFir
     var usercheckexist =[] ;
 
 
-    $scope.usersFirebase.then(function() {
-
-
 
     //注册用户 保存密码和邮箱
     $scope.saveemailinfo = function(callback){
-        usercheckexist = _.where($scope.usersFirebase, {email: $scope.userdata.email, password: $scope.userdata.password1});
+        var usersdata = $scope.usersFirebase;
+        usercheckexist = _.where(usersdata, {email: $scope.userdata.email, password: $scope.userdata.password1});
         console.log(usercheckexist);
 
         if (callback.$valid) {
@@ -251,7 +256,7 @@ page.c.userRegisterController = function($scope, $location, $timeout, angularFir
         }
     }
 
-    })
+
 };
 
 

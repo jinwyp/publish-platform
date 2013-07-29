@@ -522,11 +522,11 @@ vcpapp.factory('modelSite',  function(){
         return;
     }
 
-    factory.saveaccount = function(account){
+    factory.saveLastUserAccount = function(account){
            localStorage.setItem("user",JSON.stringify(account));
     }
 
-    factory.getaccount = function(){
+    factory.getLastLoginUserAccount = function(){
         if(window.localStorage){
             if (JSON.parse(localStorage.getItem("user")) == null || JSON.parse(localStorage.getItem("user")).length == 0){
                   return '';
