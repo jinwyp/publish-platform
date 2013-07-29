@@ -125,7 +125,7 @@
             <div class="article-title">Article List
                 <i class="article-title-ico clearfix">
                     <!-- <pre>Model: {{selected| json}}</pre>-->
-                    <a href="#/newarticle/" class="ico-article-addnew" rel="tooltip" title="Add NewArticle"></a>
+                    <a href="#/newarticle/" class="ico-article-addnew" rel="tooltip"></a>
                     <!--<a href="#" class="ico-article-sequence dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>-->
                     <input class="aiticleList_search" type="text" ng-model="selected" ng-change="selectdata()" typeahead="state for state in states | filter:$viewValue">
                     <div class="ListSequence">
@@ -160,12 +160,12 @@
                             <dl>
                                 <dd style="padding-bottom: 20px;">
                                     <i class="article-title-ico" ng-show="$index == cssshowediticon">
-                                        <a href="" class="ico-article-del" rel="tooltip" title="" ng-click="openDelModal(article)" data-original-title="Delete Article"></a>
-                                        <a href="#/detail/{{article.id }}" class="ico-article-edit" rel="tooltip" title="Edit Article"></a>
+                                        <a href="" class="ico-article-del" rel="tooltip" ng-click="openDelModal(article)"></a>
+                                        <a href="#/detail/{{article.id }}" class="ico-article-edit" rel="tooltip"></a>
                                         <!-- <a href="" class="ico-article-setup" rel="tooltip" title="Tag Category"></a> -->
                                     </i>
                                 </dd>
-                                <dd><span>{{article.clickcount}}</span></dd>
+                                <dd><span>{{article.clickcount}}<b style="font-size:12px;padding-left:4px;">PV</b></span></dd>
                                 <!-- Draft状态 -->
                                 <dd ng-show="article.status=='Draft'">
                                     <div class="btn-group">

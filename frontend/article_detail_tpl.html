@@ -3,7 +3,7 @@
 	<div class="article" >
     
     	<div class="write_title">
-        	<a href="article_list_index.html" class="showlist" rel="tooltip" title="Article List"></a>
+        	<a href="article_list_index.html" class="showlist" rel="tooltip"></a>
         	<!--<h1 >{{articledata.title}} </h1>-->
             <input type="text" class="title_input" required placeholder="Please input title" ng-model="articledata.title">
         </div>
@@ -38,9 +38,9 @@
             <div class="article-span9" ng-hide="cssTagsPanel">
                 <div class="article-title">Editor
                     <i class="article-title-ico">
-                        <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="openDelModal()" ></a>
-                        <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = true"></a>
-                        <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = false"></a>
+                        <a href="" class="ico-article-del" rel="tooltip" ng-click="openDelModal()" ></a>
+                        <a href="" class="ico-article-setup" rel="tooltip" ng-click="cssTagsPanel = true"></a>
+                        <a href="" class="ico-article-backedit" rel="tooltip" ng-click="cssTagsPanel = false"></a>
                     </i>
                     <div modal="cssmodalshow" options="cssmodalslide" >
                         <div class="modal-header">
@@ -71,9 +71,9 @@
                 <!-- Tags & Category -->
                 <div class="article-title">Article Data
                     <i class="article-title-ico">
-                        <a href="" class="ico-article-del" rel="tooltip" title="Delete Article" ng-click="openDelModal()"></a>
-                        <a href="" class="ico-article-setup" rel="tooltip" title="Tags Category" ng-click="cssTagsPanel = true"></a>
-                        <a href="" class="ico-article-backedit" rel="tooltip" title="Back Edit" ng-click="cssTagsPanel = false"></a>
+                        <a href="" class="ico-article-del" rel="tooltip" ng-click="openDelModal()"></a>
+                        <a href="" class="ico-article-setup" rel="tooltip" ng-click="cssTagsPanel = true"></a>
+                        <a href="" class="ico-article-backedit" rel="tooltip" ng-click="cssTagsPanel = false"></a>
                     </i>
                     <div modal="cssshowmodifymodal" options="cssmodalslide" >
                         <div class="modal-header">
