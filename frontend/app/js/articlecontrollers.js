@@ -23,17 +23,23 @@ vcpapp.config(['$routeProvider', function($routeProvider) {
 /* Controllers */
 
 vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, modelArticle) {
-    var urluser = "https://vcplatform.firebaseIO.com/usernow";
-    $scope.userFirebase = angularFire(urluser, $scope, 'userFirebase', {});
+
+    var usersessionurl = "https://vcplatform.firebaseIO.com/usernow";
+    $scope.usersessionFirebase = angularFire(usersessionurl, $scope, 'usersessionFirebase', {});
+
+    var usersurl = "https://vcplatform.firebaseIO.com/users";
+    $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
 
     var urlartilcelist = 'https://vcplatform.firebaseIO.com/articles';
     $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
+
+
 
     var copytotaldata = [];
     var articlesinonepage;
     var pagecount;
 
-    $q.all([$scope.userFirebase, $scope.articlesFirebase]).then(function() {
+    $q.all([$scope.usersessionFirebase, $scope.usersFirebase, $scope.articlesFirebase]).then(function() {
         $scope.articlestotaldata = $scope.articlesFirebase;
 //    $scope.articlestotaldata = modelArticle.getArticleList();     // use firebase for database
 
