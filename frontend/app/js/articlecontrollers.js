@@ -23,6 +23,7 @@ vcpapp.config(['$routeProvider', function($routeProvider) {
 /* Controllers */
 
 vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, modelArticle) {
+
     var usersessionurl = "https://vcplatform.firebaseIO.com/usernow";
     $scope.usersessionFirebase = angularFire(usersessionurl, $scope, 'usersessionFirebase', {});
 
@@ -31,6 +32,8 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
 
     var urlartilcelist = 'https://vcplatform.firebaseIO.com/articles';
     $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
+
+
 
     var copytotaldata = [];
     var articlesinonepage;

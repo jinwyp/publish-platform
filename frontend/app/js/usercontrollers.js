@@ -164,11 +164,7 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire, 
                 $scope.cssloginprompt = false;
                 $scope.usersessionFirebase ={
                     email : usercheckexist[0].email,
-                    password : usercheckexist[0].password,
-                    firstname : usercheckexist[0].firstname,
-                    lastname : usercheckexist[0].lastname,
-                    mobilenumber : usercheckexist[0].mobilenumber,
-                    gender : usercheckexist[0].gender
+                    password : usercheckexist[0].password
                 };
 
                 if($scope.userdata.rememberusername){
@@ -229,11 +225,7 @@ page.c.userRegisterController = function($scope, $location, $timeout, angularFir
 
                 $scope.usersessionFirebase = {
                     email : $scope.userdata.email,
-                    password : $scope.userdata.password1,
-                    firstname : "",
-                    lastname : "",
-                    mobilenumber : "",
-                    gender : ""
+                    password : $scope.userdata.password1
                 };
 
                 $timeout(function() {
