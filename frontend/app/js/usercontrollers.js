@@ -161,6 +161,7 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire, 
             if(usercheckexist.length < 1){
                 $scope.cssloginprompt = true;
             }else{
+                $scope.cssloginprompt = false;
                 $scope.usersessionFirebase ={
                     email : usercheckexist[0].email,
                     password : usercheckexist[0].password,
@@ -178,8 +179,6 @@ page.c.userLoginController = function($scope, $location, $timeout, angularFire, 
                     location.href = "user.html";
                 }, 1000);
             }
-        }else{
-            $scope.cssloginprompt = true;
         }
     }
 };
