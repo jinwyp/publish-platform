@@ -10,23 +10,25 @@ vcpapp.controller(page.c);
 
 
 /* Controllers */
-page.c.userInfoController = function($scope, $location, angularFire) {
-    $scope.csshaveavatar = false;
-    $scope.cssshowpasswordbox = false;
+page.c.userInfoController = function($scope, $location, $timeout, angularFire) {
 //    $scope.site = modelSite.getSite(); // use firebase for database
 //    $scope.user = $scope.site.userinfo;
 
-    var url = "https://vcplatform.firebaseIO.com/usernow";
-    $scope.userFirebase = angularFire(url, $scope, 'userFirebase', {});
+    var usersessionurl = "https://vcplatform.firebaseIO.com/usernow";
+    $scope.usersessionFirebase = angularFire(usersessionurl, $scope, 'usersessionFirebase', {});
 
     var usersurl = "https://vcplatform.firebaseIO.com/users";
     $scope.usersFirebase = angularFire(usersurl, $scope, 'usersFirebase', []);
 
     $scope.userdata = {};
+
+    $scope.csshaveavatar = false;
+    $scope.cssshowpasswordbox = false;
+
     var usercheckexist;
     $scope.usersFirebase.then(function() {
-        usercheckexist = _.findWhere($scope.usersFirebase, {email: $scope.userFirebase.email});
-
+        usercheckexist = _.findWhere($scope.usersFirebase, {email: $scope.usersessionFirebase.email});
+        console.log(usercheckexist);
         $scope.userdata = {
             firstname : usercheckexist.firstname,
             lastname : usercheckexist.lastname,
@@ -37,11 +39,6 @@ page.c.userInfoController = function($scope, $location, angularFire) {
             newpassword2 : '',
             gender : usercheckexist.gender
         };
-
-        console.log(usercheckexist);
-
-
-
     });
 
 
@@ -62,7 +59,7 @@ page.c.userInfoController = function($scope, $location, angularFire) {
     //保存用户基本信息
     $scope.saveuserinfo = function(callback){
         if (callback.$valid) {
-            usercheckexist = {
+            var currentuser = {
                 email : usercheckexist.email,
                 password : usercheckexist.password,
                 firstname : $scope.userdata.firstname,
@@ -71,19 +68,19 @@ page.c.userInfoController = function($scope, $location, angularFire) {
                 gender : $scope.userdata.gender
             };
 
-            console.log(usercheckexist, $scope.userdata);
-            $(".userAccount").animate({left:"28%"});
-            $(".userPassword").animate({left:"0%"});
-
             //保存到firebase中
             for(var i = $scope.usersFirebase.length; i--; i>=0){
-                if ($scope.usersFirebase[i].email == usercheckexist.email) {
-                    $scope.usersFirebase[i] = usercheckexist;
+                if ($scope.usersFirebase[i].email == currentuser.email) {
+                    $scope.usersFirebase[i] = currentuser;
+                    break;
                 }
             }
-           // console.log(usercheckexist);
+
 //            modelSite.updateSite($scope.site);    // use firebase for database
-            location.href = "site.html";
+
+            $timeout(function() {
+                location.href = "site.html";
+            }, 1000);
         }
     };
 
@@ -94,7 +91,8 @@ page.c.userInfoController = function($scope, $location, angularFire) {
         $scope.cssnewpassword = false;
         $scope.cssnewpassword2 = false;
         $scope.cssshowinconsistent = false;
-        if($scope.userdata.oldpassword != $scope.userFirebase.password){
+
+        if($scope.userdata.oldpassword != usercheckexist.password){
             $scope.cssoldpassword = true;
             $("#oldpassword").focus();
 
@@ -111,7 +109,7 @@ page.c.userInfoController = function($scope, $location, angularFire) {
             $("#conformpassword").focus();
 
         }else{
-            $scope.usercheckexist = {
+            var currentuser = {
                 email : usercheckexist.email,
                 password : $scope.userdata.newpassword1,
                 firstname :usercheckexist.firstname,
@@ -121,10 +119,11 @@ page.c.userInfoController = function($scope, $location, angularFire) {
             };
 
             $scope.cssshowpasswordbox = false;
+
             //保存到firebase中
             for(var i = $scope.usersFirebase.length; i--; i>=0){
-                if ($scope.usersFirebase[i].email == usercheckexist.email) {
-                    $scope.usersFirebase[i] = usercheckexist;
+                if ($scope.usersFirebase[i].email == currentuser.email) {
+                    $scope.usersFirebase[i] = currentuser;
                 }
             }
             $(".userAccount").animate({left:"28%"});
@@ -132,7 +131,6 @@ page.c.userInfoController = function($scope, $location, angularFire) {
 //              modelSite.updateSite($scope.site);     // use firebase for database
         }
     };
-
 };
 
 
