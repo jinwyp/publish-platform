@@ -774,9 +774,9 @@ ul.layout_list .active:hover:after{ content:''; display:block; position:absolute
 .block_footer.footer_full:hover	{ border:0px solid #fff;}
 
 /* Block */
-.block_content		{ position:relative; margin-bottom:10px; z-index:1; min-height:140px; }
+.block_content		{ position:relative; margin-bottom:10px; min-height:140px; }
 
-.blockempty			{ border:2px dashed #cbcdca !important;      background:url(img/null_block.png) center center no-repeat !important;}
+.blockempty			{ border:2px dashed #cbcdca !important;background:url(img/null_block.png) center center no-repeat !important;}
 
 .hoverempty			{ border:2px dashed transparent !important; border:1px solid #999\9;  background:none !important; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.6); 
 -webkit-transition: all 0.2s ease-in-out;
@@ -800,9 +800,13 @@ ul.layout_list .active:hover:after{ content:''; display:block; position:absolute
 .attribute_panel{ position:absolute; right:-1px; top:-36px;}
 .attribute_panel.editors{ top:-67px;}
 /* 插入推荐位 */
-.editor_inset{ width:704px; margin-right:-7px; height:32px; padding:4px;}
-.editor_inset input{ border-color:#888; border-radius:4px; margin:0; padding:4px; width:98%; background:#fff; border-width:2px;}
-.editor_inset input:focus{ border-color:#94c23b; background:#fff;}
+.span9 .editor_inset{ width:704px; margin-right:-7px; height:32px; padding:4px;}
+.span9 .editor_inset input{ border-color:#888; border-radius:4px; margin:0; padding:4px; width:98%; background:#fff; border-width:2px;}
+.span9 .editor_inset input:focus{ border-color:#94c23b; background:#fff;}
+
+.span3 .editor_inset{ width:215px; margin-right:2px; height:32px; padding:4px;}
+.span3 .editor_inset input{ border-color:#888; border-radius:4px; margin:0; padding:4px; width:98%; background:#fff; border-width:2px;}
+.span3 .editor_inset input:focus{ border-color:#94c23b; background:#fff;}
 
 .block_header .attribute_panel{ top:-34px;}
 .block_footer .attribute_panel{ top:-34px;}
