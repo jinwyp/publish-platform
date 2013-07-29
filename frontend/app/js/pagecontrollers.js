@@ -402,7 +402,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     $scope.hideaddblockmenubutton = function() {
         this.cssblockaddmenubutton = false;
         this.cssblocktipadd = false;
-        $(".tip_box").fadeOut(300);
+        $scope.cssblocktipbox = '';
     };
 
     $scope.showblocksettingmenu = function( blocktype, event1, layoutcontainer ) {
@@ -1003,6 +1003,11 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
     $scope.closetipheader = function(){
         $scope.csstitleform=false;
+        $scope.footerlia = -1;
+        $scope.footerli = -1;
+        $scope.showli = -1;
+        $scope.showa = -1;
+        $scope.showchilda = -1;
     }
 
     $scope.showfootmenusetting=function(){

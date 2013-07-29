@@ -35,7 +35,12 @@
 <!-- Header -->
 <header class="header">
 	<h1 class="logo"><a href="index.html">VCP</a></h1>
-    <a href="../demo/index.html" class="preview">preview</a>
+    <a href="###" class="preview">preview</a>
+    <div class="preview_Item">
+    	<a href="#" class="forMobile">Preview on Mobile</a>
+        <a href="#" class="forPad">Preview on Pad</a>
+    	<a href="../demo/index.html" class="forPC">PC</a>
+    </div>
     <ul class="menu clearfix">
     	<li id="menuSite"><a href="site.html">Site</a></li>
         <li id="menuPage"><a href="page.html" class="current">Page</a></li>
@@ -95,7 +100,7 @@
                 <dl class="clearfix">
                     <dt>Category :</dt>
                     <dd>
-                        <div class="tipbox_filter"> 
+                        <div class="tipbox_filter">
                             <select ng-model="newblock.blockcategory" >
                                 <option>Cosmetics</option>
                                 <option>Insurance</option>
@@ -253,7 +258,7 @@
             <dt>Layout :</dt>
             <dd>
                 <div class="tipbox_layout">
-                    <a href="#"  ng-repeat="blocklayout in blocklayouts" ng-click="addblocktopage('RSS', currentlayoutcontainer, $index)">
+                    <a href="#" ng-show="blocklayout.id == 101"  ng-repeat="blocklayout in blocklayouts" ng-click="addblocktopage('RSS', currentlayoutcontainer, $index)">
                         <img ng-src="{{ blocklayout.layoutimage }}" alt="">
                     </a>
                 </div>
@@ -485,8 +490,9 @@
                             <div class="attribute_panel" ng-show="cssblockeditmenubutton" ng-class="{editors: block.blocktype=='editor'}">
                                 <a href="##" class="icon_delete" ng-click="delblock(block, layoutcontainer);">delete</a>
                                <!-- <a href="##" class="icon_move" ng-click="showfilleditform();">move</a>-->
+                                <a href="##" class="icon_setup">edit</a>
                                 <!--<a href="##" class="icon_setup" ng-click="updateshowblcoksetting(block, $event );">setup</a>-->
-                                <!-- <a href="##" class="icon_editor" ng-click="showfilleditform();">editors</a>-->
+                               <!-- <a href="##" class="icon_editor" ng-click="showfilleditform();">editors</a>-->
                                 <div class="editor_inset" ng-show="block.blocktype=='editor'" >
                                     <input type="text" placeholder="pls input article title" value="" ng-model="newarticle" typeahead="article as article.title for article in localarticles | filter:$viewValue"   enter-Keypress="{enter: addAritcleToEditorBlock(block, currentlayoutcontainer)}">
                                 </div>
@@ -695,6 +701,20 @@
 				  //关闭TipBox
 					$(".TipBoxClose").click(function(){
 						 $(".tip_box").fadeOut(300);
+					});
+					
+					
+					
+					
+					$(".preview").hover(function(){
+						 	$(".preview").fadeOut(300);
+						 	$(".preview_Item").fadeIn(300);
+					});
+					
+					$(".preview_Item").hover(function(){
+						 }, function() {
+						 	$(".preview").fadeIn(300);
+							$(".preview_Item").fadeOut(300);
 					});
 				
 				  
