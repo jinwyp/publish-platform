@@ -1,7 +1,16 @@
 
 ;jQuery(function($){
 
-
+	$(".preview").hover(function(){
+			$(".preview_Item").fadeIn(300);
+	});
+	
+	$(".preview_Item").hover(function(){
+		 //...
+		 }, function() {
+			$(".preview_Item").fadeOut(300);
+	});
+					
 
        var selectheadertheme=true;
 /*
