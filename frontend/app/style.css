@@ -915,7 +915,7 @@ ul.nav_structure a:hover .ico_edit:hover{ background-position:0 0; -ms-filter:"p
 /* Name & Radio & Input & Select */
 .newlink_panel_name	{ padding:12px;}
 .newlink_panel_form	{ padding:8px; margin:0;  background:#343434; border-radius:0 0 6px 6px;}
-.newlink_panel_btn	{ padding-left:34px;}
+.newlink_panel_btn	{ text-align:right;}
 
 .newlink_panel_name .input_newlink		{ width:122px; margin:0 auto;}
 
