@@ -278,7 +278,7 @@ h1.PopupTitle .TipBoxClose:active	{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); o
 .banner_box	{ position:relative; width:100%; height:600px; background:url(img/index_banner.jpg) center top repeat; z-index:0;}
 .banner			{ width:1366px; height:600px; margin:0 auto; padding:0; position:relative;}
 .slide_01		{ position:absolute; left:-60px; bottom:-26px; width:823px; height:506px; background:url(img/slide_01.png) no-repeat;}
-.bannerTxt		{ position:absolute; right:30px; top:60px; width:640px; height:100px;}
+.bannerTxt		{ position:absolute; right:-100px; top:60px; width:704px; height:100px;}
 .bannerTxt	h1,
 .bannerTxt	h4	{ color:#fff; font-weight:200; line-height:1.4em; text-shadow:0 1px 2px rgba(0,0,0,0.5);}
 .bannerTxt	h1	{ font-size:32px;}
