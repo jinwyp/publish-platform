@@ -42,7 +42,7 @@ page.c.GlobalCtrl = function($scope, $q, angularFire){
                  return $scope.pages[i];
              }
          }
-     }
+     };
 
      var copysinglepage='';
 
