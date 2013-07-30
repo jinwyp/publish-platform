@@ -25,7 +25,7 @@ page.c.GlobalCtrl = function($scope, $q, angularFire){
         $scope.footer = site.footerdata;
         if(!($scope.footer == undefined)){
             $scope.footermaxindex = $scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
-        };
+        }
         $scope.cssblocklayoutselected = 0;
 
 
