@@ -169,8 +169,7 @@
                                 <!-- Draft状态 -->
                                 <dd ng-show="article.status=='Draft'">
                                     <div class="btn-group">
-                                    	<button class="btn btn-info" disabled>Draft</button>
-                                    	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
+                                    	<button class="btn btn-info"  data-toggle="dropdown">Draft</button>
                                     	<ul class="dropdown-menu pull-right clearfix">
                                           <li><input type="submit" value="Need Review" class="btn btn-block btn-warning" ng-click="clickarticlestatus('Need Review', article)"></li>
                                         </ul>
@@ -179,8 +178,7 @@
                                <!--  Need Review 状态-->
                                 <dd ng-show="article.status=='Need Review'">
                                     <div class="btn-group">
-                                    	<button class="btn btn-warning" disabled>Need Review</button>
-                                    	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
+                                    	<button class="btn btn-warning"  data-toggle="dropdown">Need Review</button>
                                     	<ul class="dropdown-menu pull-right clearfix">
                                           <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickarticlestatus('Draft', article)"></li>
                                           <li><input type="submit" value="Published" class="btn btn-block btn-success" ng-click="clickarticlestatus('Published', article)"></li>
@@ -190,8 +188,8 @@
                                 <!-- Published 状态-->
                                 <dd ng-show="article.status=='Published'">
                                     <div class="btn-group">
-                                    	<button class="btn btn-success" disabled>Published</button>
-                                    	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
+                                    	<button class="btn btn-success" data-toggle="dropdown">Published</button>
+                                    	<!--<button class="btn dropdown-toggle" data-toggle="dropdown"></button>-->
                                     	<ul class="dropdown-menu pull-right clearfix">
                                           <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickarticlestatus('Draft',article)"></li>
                                         </ul>
