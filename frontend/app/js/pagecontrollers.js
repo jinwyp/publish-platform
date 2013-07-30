@@ -280,9 +280,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         }
     };
 
-    $scope.showaddpageinput = function() {
-        $scope.cssshowpageaddinput = true;       //添加page的输入框显示
-    };
     $scope.showeditpageattribute = function() {
         $scope.csspageattribute = true;       //添加page的输入框显示
     };
@@ -293,6 +290,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
     //left side bar add page
     $scope.showaddpageinput = function() {
+        $scope.newpage.pagename = '';
         $scope.cssshowpageaddinput = true;       //添加page的输入框显示
     };
 
