@@ -173,7 +173,8 @@ color: #ffffff;
 background:#bd362f url(../../../app/img/icon_attribute.png) center -594px no-repeat;
 }
 
-a.cke_dialog_ui_button_cancel { 
+a.cke_dialog_ui_button_cancel {
+	display:none;
 	font-size: 14px; 
 	line-height: 20px; 
 	text-align: center;
