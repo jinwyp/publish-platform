@@ -129,8 +129,8 @@
                     <!--<a href="#" class="ico-article-sequence dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>-->
                     <input class="aiticleList_search" type="text" ng-model="selected" ng-change="selectdata()" typeahead="state for state in states | filter:$viewValue">
                     <div class="ListSequence">
-                        <input ng-hide="cssshowupdate" class="ico-article-UP_default" type="button" value="Update" ng-click="orderbytype('updated','desc')">
-                        <input ng-show="cssshowupdate" class="ico-article-DOWN_default" type="button" value="Update" ng-click="orderbytype('updated','asc')">
+                        <input ng-hide="cssshowupdate" class="ico-article-UP_default" type="button" value="Updated" ng-click="orderbytype('updated','desc')">
+                        <input ng-show="cssshowupdate" class="ico-article-DOWN_default" type="button" value="Updated" ng-click="orderbytype('updated','asc')">
                         <input ng-hide="cssshowpublish" class="ico-article-UP_default" type="button" value="Published" ng-click="orderbytype('published','desc')">
                         <input ng-show="cssshowpublish" class="ico-article-DOWN_default" type="button" value="Published" ng-click="orderbytype('published','asc')">
                         <input ng-hide="cssshowclick" class="ico-article-UP_default" type="button" value="Click" ng-click="orderbytype('clickcount','desc')">
@@ -150,8 +150,8 @@
                             <h1><a href="" >{{article.title}}</a></h1>
                             <dl>
                                 <dd><p class="titlename">Created</p><p>{{article.created | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
-                                <dd><p class="titlename">Published</p><p>{{article.published | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
                                 <dd><p class="titlename">Updated</p><p>{{article.updated | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
+                                <dd><p class="titlename">Published</p><p>{{article.published | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
                                 <dd><p class="titlename">Author</p><p>{{article.author}}</p></dd>
                                 <dd><p class="titlename">Editor</p><p>{{article.editor}}</p></dd>
                             </dl>
