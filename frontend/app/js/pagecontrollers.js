@@ -89,14 +89,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
         var articlelist = $scope.articlesFirebase;
 
-        articlesresulttag = _.filter(articlelist, function(aritcle){
-            var singlearticletags = _.filter(aritcle.tags, function(singletag){
-                var tagresult = _.where(taglistdata, {tagname: singletag.tagname});
-                return tagresult.length;
-            });
-            return  singlearticletags.length;
-        });
-
         if(blockcategory !== 'All'){
             articlesresultcategory = _.filter(articlelist, function(aritcle){
                 if (aritcle.category == blockcategory){
@@ -104,11 +96,21 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
                 }
             });
         }else{
-            articlesresultcategory = [];
+            articlesresultcategory = articlelist;
         }
 
-        articlesresultunion = _.union(articlesresulttag, articlesresultcategory);
-        articlesresultfinal = _.where(articlesresultunion, {status: "Published"});
+        articlesresulttag = _.filter(articlesresultcategory, function(aritcle){
+            var singlearticletags = _.filter(aritcle.tags, function(singletag){
+                var tagresult = _.where(taglistdata, {tagname: singletag.tagname});
+                return tagresult.length;
+            });
+            return  singlearticletags.length;
+        });
+
+
+
+//        articlesresultunion = _.union(articlesresulttag, articlesresultcategory);
+        articlesresultfinal = _.where(articlesresulttag, {status: "Published"});
 
         if(articlesresultfinal.length > quantity){
             articlesresultfinal.splice(0, articlesresultfinal.length - quantity);    //判断文章数量
