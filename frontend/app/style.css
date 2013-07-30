@@ -811,8 +811,8 @@ ul.layout_list .active:hover:after{ content:''; display:block; position:absolute
 .z-index-1			{ z-index:1;}
 .z-index-999		{ z-index:999;}
 .z-index-999999		{ z-index:999999;}
-.zindextop{z-index:999;}
-.zindexbottom{z-index:1;}
+/*.zindextop{z-index:999;}
+.zindexbottom{z-index:1;}*/
 
 /* Header */
 .block_header					{ position:relative; margin-bottom:10px; min-height:80px; }
