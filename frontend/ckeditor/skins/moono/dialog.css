@@ -24,9 +24,9 @@ background: -o-linear-gradient(top, #f7f7f7 0%,#e2e2e2 100%);
 background: -ms-linear-gradient(top, #f7f7f7 0%,#e2e2e2 100%);
 background: linear-gradient(to bottom, #f7f7f7 0%,#e2e2e2 100%);
 box-shadow: 0px 5px 60px #000;
-overflow: auto; padding: 15px 10px 5px 10px; margin-top: 30px; border-top: 11px solid #bfbfbf; -moz-border-radius: 0 0 3px 3px; -webkit-border-radius: 0 0 3px 3px; border-radius: 0 0 3px 3px }
+overflow: auto; padding: 15px 20px 5px 20px; margin-top: 31px;  -moz-border-radius: 0 0 3px 3px; -webkit-border-radius: 0 0 3px 3px; border-radius: 0 0 3px 3px }
 
-.cke_dialog_contents_body { overflow: auto; padding: 17px 10px 5px 10px; margin-top: 22px }
+.cke_dialog_contents_body { overflow: auto; padding: 17px 20px 5px 20px; margin-top: 22px }
 
 .cke_dialog_footer { text-align: right; position: relative; border: 0; outline: 1px solid #bfbfbf; -moz-box-shadow: 0 1px 0 #fff inset; -webkit-box-shadow: 0 1px 0 #fff inset; box-shadow: 0 1px 0 #fff inset; -moz-border-radius: 0 0 2px 2px; -webkit-border-radius: 0 0 2px 2px; border-radius: 0 0 2px 2px; background: #cfd1cf; background-image: -webkit-gradient(linear, left top, left bottom, from(#ebebeb), to(#cfd1cf)); background-image: -moz-linear-gradient(top, #ebebeb, #cfd1cf); background-image: -webkit-linear-gradient(top, #ebebeb, #cfd1cf); background-image: -o-linear-gradient(top, #ebebeb, #cfd1cf); background-image: -ms-linear-gradient(top, #ebebeb, #cfd1cf); background-image: linear-gradient(top, #ebebeb, #cfd1cf); filter:progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#ffebebeb', endColorstr='#cfd1cf')
 }
@@ -173,7 +173,8 @@ color: #ffffff;
 background:#bd362f url(../../../app/img/icon_attribute.png) center -594px no-repeat;
 }
 
-a.cke_dialog_ui_button_cancel { 
+a.cke_dialog_ui_button_cancel {
+	display:none;
 	font-size: 14px; 
 	line-height: 20px; 
 	text-align: center;
