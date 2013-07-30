@@ -6,7 +6,6 @@ vcpapp.controller(page.c);
 
 
 page.c.GlobalCtrl = function($scope, $q, angularFire){
-
     var urlartilcelist = "https://vcplatform.firebaseIO.com/articles";
     $scope.articlesFirebase = angularFire(urlartilcelist, $scope, 'articlesFirebase', [] );
 
@@ -18,14 +17,15 @@ page.c.GlobalCtrl = function($scope, $q, angularFire){
 
     var site = {};
     $q.all([$scope.sitedataFirebase, $scope.articlesFirebase, $scope.pages]).then(function() {
-
         site = $scope.sitedataFirebase;
 
         $scope.header = site.headerdata;
 
         //加载底部内容
         $scope.footer = site.footerdata;
-        $scope.footermaxindex=$scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
+        if(!($scope.footer == undefined)){
+            $scope.footermaxindex = $scope.footer.length-1 < 0 ? 0 : $scope.footer.length-1;
+        };
         $scope.cssblocklayoutselected = 0;
 
 
