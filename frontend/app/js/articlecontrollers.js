@@ -234,6 +234,11 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
     //点击更改文章状态按钮事件
     $scope.clickarticlestatus = function(status1, article){
         $scope.cssshowcomments = true;
+        if(status1 == 'Published'){
+            article.published = modelArticle.getDateNow();
+        }else{
+            article.published = 0;
+        }
         $scope.currentarticle  = article;
         $scope.currentarticlestatus = status1;
         $scope.currentarticlereviewcomment = "";

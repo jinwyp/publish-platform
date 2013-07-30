@@ -151,7 +151,7 @@
                             <dl>
                                 <dd><p class="titlename">Created</p><p>{{article.created | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
                                 <dd><p class="titlename">Updated</p><p>{{article.updated | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
-                                <dd><p class="titlename">Published</p><p>{{article.published | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
+                                <dd><p class="titlename">Published</p><p>{{(article.published == 0 ? '--' : article.published) | date:'MM/dd/yyyy HH:mm:ss' }}</p></dd>
                                 <dd><p class="titlename">Author</p><p>{{article.author}}</p></dd>
                                 <dd><p class="titlename">Editor</p><p>{{article.editor}}</p></dd>
                             </dl>
