@@ -39,7 +39,7 @@
     <div class="preview_Item">
         <a href="#" class="forMobile">On Mobile</a>
         <a href="#" class="forPad">On Pad</a>
-        <a href="../demo/index.html" class="forPC" target="">On PC</a>
+        <a href="../demo/index.html" class="forPC" target="_blank">On PC</a>
     </div>
     <ul class="menu clearfix">
     	<li id="menuSite"><a href="site.html">Site</a></li>
@@ -313,7 +313,7 @@
                             <div class="header_panel" ngCloak  ng-show="cssheadermenubutton">
 
                                 <!-- Theme -->
-                                <div class="theme_panel">
+                                <div class="theme_panel" ng-show="cssheadersetting">
                                     <a href="#" ng-repeat="theme in headerthemes" ng-class="{select: $index==cssheaderthemeindex, 'last':$last}" ng-click="clickheadertheme($index, theme)">
                                         <img ng-src="{{theme.image}}">
                                     </a>
@@ -398,6 +398,7 @@
                                                 <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="#">{{ article.title }}</a></h6>
                                                 <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_06.jpg" alt="" /></a>
                                                 <p>{{ article.description }}...<a href="###">more</a></p>
+                                                <p><span>Author:&nbsp;<i>{{ article.author }}</i></span></p>
                                             </li>
                                         </ul>
                                     </div>
@@ -555,7 +556,7 @@
                             </div>
 
                             <!-- FooterNavSettings 设置面板区 -->
-                            <div class="footer_panel" ng-show="cssfootermenubutton">
+                            <div class="footer_panel" ng-show="cssfootersetting">
                                 <!-- 选择Theme -->
                                 <div class="theme_panel">
                                     <a href="#" ng-repeat="theme in footerthemes" ng-class="{select: $index==cssfooterthemeindex,last:$last}" ng-click="clickfootertheme($index, theme)">
