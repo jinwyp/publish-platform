@@ -140,6 +140,8 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
     $scope.$watch('currentPage', function(newPage){
         $scope.watchPage = newPage;
         $scope.loadcurrentpagedata();
+        $scope.articlepreviewdata = $scope.articlesdata[0];
+        $scope.cssarticleindex = 0;
     });
 
 
@@ -173,6 +175,7 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
         $scope.cssshowediticon = index;
     };
 
+    $scope.cssarticleindex = 0;
     $scope.clickArticle = function(article, index) {
         $scope.articlepreviewdata = article;
         $scope.cssarticleindex = index;
@@ -281,17 +284,6 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
     //搜索提示
     $scope.selected = undefined;
     $scope.states = [];
-    /*  $scope.states.length = 0;
-    var author1=[];
-    for(var i = 0;i < copytotaldata.length; i++){
-        $scope.states[i] = copytotaldata[i].title;
-        author1[i] = copytotaldata[i].author;
-    }
-    author1= _.union(author1);
-    $scope.states=_.union($scope.states);
-    for(var i = 0;i < author1.length; i++){
-        $scope.states.push(author1[i]);
-    }*/
 
     $scope.selectdata=function(){
         var titledata=[],data=[],articledata=[];
