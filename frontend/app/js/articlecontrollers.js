@@ -142,6 +142,7 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
         $scope.loadcurrentpagedata();
         $scope.articlepreviewdata = $scope.articlesdata[0];
         $scope.cssarticleindex = 0;
+        window.scrollTo(0,0);  //滚动条置顶
     });
 
 
