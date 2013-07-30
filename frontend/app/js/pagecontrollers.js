@@ -92,20 +92,20 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         articlesresulttag = _.filter(articlelist, function(aritcle){
             var singlearticletags = _.filter(aritcle.tags, function(singletag){
                 var tagresult = _.where(taglistdata, {tagname: singletag.tagname});
-
                 return tagresult.length;
             });
             return  singlearticletags.length;
         });
-//        console.log(articlesresulttag);
 
-        articlesresultcategory = _.filter(articlelist, function(element1){
-            if (element1.category.toString() == blockcategory){
-//                console.log(blockcategory, element1.category);
-                return true
-            }
-        });
-//        console.log(articlesresultcategory);
+        if(blockcategory !== 'All'){
+            articlesresultcategory = _.filter(articlelist, function(aritcle){
+                if (aritcle.category == blockcategory){
+                    return true
+                }
+            });
+        }else{
+            articlesresultcategory = [];
+        }
 
         articlesresultunion = _.union(articlesresulttag, articlesresultcategory);
         articlesresultfinal = _.where(articlesresultunion, {status: "Published"});
@@ -113,7 +113,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         if(articlesresultfinal.length > quantity){
             articlesresultfinal.splice(0, articlesresultfinal.length - quantity);    //判断文章数量
         }
-
 
         return articlesresultfinal;
     }
@@ -131,7 +130,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         blocklayout : 10,
         blockquantity : 6,
         blocktag : [],
-        blockcategory : 'Health and leisure',
+        blockcategory : 'All',
         blocksortby : 'bydate',
         apiurl : "",
         adsname : "",
@@ -398,9 +397,9 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         this.cssblockaddmenubutton = true;
     };
     $scope.hideaddblockmenubutton = function() {
-        this.cssblockaddmenubutton = false;
-        this.cssblocktipadd = false;
-        $scope.cssblocktipbox = '';
+//        this.cssblockaddmenubutton = false;
+//        this.cssblocktipadd = false;
+//        $scope.cssblocktipbox = '';
     };
 
     $scope.showblocksettingmenu = function( blocktype, event1, layoutcontainer ) {
@@ -436,7 +435,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
         var blockcontent = $(event1.target).parent().parent();     //获取id 为 blockcontent DIV .
         blockcontent.append($(".tip_box"));
-        var blocktypemenu = $(".tip_"+ blocktype)     //获取样式名称拼接 .
+        var blocktypemenu = $(".tip_"+ blocktype);     //获取样式名称拼接 .
         var left =  ( parseInt(blockcontent.width() ) - parseInt( blocktypemenu.width() ) )/2;
         blocktypemenu.css({"left":left+"px", "top":-(blocktypemenu.height()), "position":"absolute"});
 //        console.log(blockcontent.height(), blocktypemenu.height());
@@ -447,10 +446,10 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         switch(divid)
         {
             case 'tab-layout':
-                heightdiff = 306;
+                heightdiff = 274;
                 break;
             case 'tab-filter':
-                heightdiff = 210;
+                heightdiff = 249;
                 break;
             case 'tab-Sort':
                 heightdiff = 101;
@@ -474,7 +473,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
             blocklayout : blocklayoutid,
             blockquantity : 0,
             blocktag : [],
-            blockcategory : 'Health and leisure',
+            blockcategory : 'All',
             blocksortby : 'date',
             blockarticles : [],
             apiurl : "",
@@ -489,6 +488,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
                 newblock.blockname = $scope.newblock.blockname;
                 newblock.blockquantity = Number($scope.newblock.blockquantity);
                 newblock.blockcategory = $scope.newblock.blockcategory;
+
                 //检查Tags
                 var temptagslistname = $(".tagsinput").exportTags();
 
@@ -509,7 +509,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
                 //通过Tags 获取文章
 //                newblock.blockarticles = modelArticle.getArticlesByTags(newblock.blocktag, newblock.blockquantity, newblock.blockcategory);
-                newblock.blockarticles = fireBaseGetArticlesByTags(newblock.blocktag, newblock.blockquantity, newblock.blockcategory);     // Use FireBase
+                newblock.blockarticles = fireBaseGetArticlesByTags(newblock.blocktag, newblock.blockcategory, newblock.blockquantity );     // Use FireBase
 
 /*                if (temptagslistname.length == 0 || newblock.blockquantity == ''){
                     newblock.blockarticles = modelArticle.getArticles(newblock.blockquantity);
@@ -668,7 +668,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         var blockcontent = $(event1.target).parent().parent();     //获取id 为 blockcontent DIV .
         blockcontent.append($(".tip_box"));
         console.log($(".tip_box"));
-        var blocktypemenu = $(".tip_"+ blocktype)     //获取样式名称拼接 .
+        var blocktypemenu = $(".tip_"+ blocktype);     //获取样式名称拼接 .
         var left =  ( parseInt(blockcontent.width() ) - parseInt( blocktypemenu.width() ) )/2;
         blocktypemenu.css({"left":left+"px", "top":-(blocktypemenu.height()), "position":"absolute"});
     }
