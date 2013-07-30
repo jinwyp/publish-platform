@@ -632,7 +632,7 @@ ul.ts_preview li img	{ display:block; width:383px; height:260px; margin:0; paddi
 /* 有头像 */
 .userPhoto.full			{ margin-bottom:40px; position:relative; border:4px solid #2a2e31; border-radius:4px;}
 .userPhoto.full img		{ width:242px; height:182px; border-radius:2px;  }
-.userPhoto.full .btn	{ display:block; position:absolute; left:35%; bottom:-54px; margin:0 auto; }
+.userPhoto.full .btn	{ display:block; position:absolute; left:26%; bottom:-54px; margin:0 auto; }
 
 .userInfo							{ padding-left:30px;}
 .userInfo label						{ margin:0 20px 14px 0; display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline;}
