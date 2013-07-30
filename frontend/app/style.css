@@ -505,10 +505,10 @@ background:#fff url(img/site_Thumbnails.png) 20px 12px no-repeat; z-index:1;}
 .RssFeedLabel input[type="radio"] { vertical-align:0px; margin-right:4px;}
 .RssFeedOn_Box		{  border:1px solid #bfe3ab; border-radius:4px; padding:10px; background:#e6f2dc; font-weight:bold; color:#000; max-width:180px; word-wrap:break-word;}
 
-.appLabel				{ width:40%; text-align:center; display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline; }
+.appLabel				{ width:30%; text-align:center; display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline; }
 .appLabel input[type="checkbox"]{ display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline; }
 .appLabel .iOSApp, 
-.appLabel .AndroidApp	{ width:32px; height:32px; margin:0 auto; overflow:hidden; text-indent:-9999px; background:url(img/icon_app.png) no-repeat;}
+.appLabel .AndroidApp	{ display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline; width:32px; height:32px; margin:0 auto; overflow:hidden; text-indent:-9999px; background:url(img/icon_app.png) no-repeat;}
 .appLabel .iOSApp		{ background-position:center 0;}
 .appLabel .AndroidApp	{ background-position:center -74px;}
 
@@ -521,6 +521,7 @@ background:#fff url(img/site_Thumbnails.png) 20px 12px no-repeat; z-index:1;}
 .site_form table td			{ border:0; margin:0; padding:20px 10px; vertical-align:middle;}
 .site_form table tr.last	{ border-bottom:0;}
 .site_form table .titlename	{ width:76px; padding:20px 0; color:#ddd; font-weight:bold; text-align:center; background:#8c8d91;}
+.site_form table .siteiconTD { text-align:center;}
 
 /* 输入框 */
 .site_form input.site_input	{ margin:0 auto; display:block; padding:6px; width:86%; height:auto; vertical-align:baseline;}
@@ -566,6 +567,12 @@ ul.ts_preview li img	{ display:block; width:383px; height:260px; margin:0; paddi
 .site_workflow p	{ text-align:center; margin:0; padding-bottom:20px;}
 
 .site_workflow .btn	{ width:220px;padding-left:0; padding-right:0; text-decoration:none;}
+
+.site_workflow [class^="btn-"],
+.site_workflow [class*="btn-"]	{ position:relative;}
+
+.site_workflow [class^="icon-"],
+.site_workflow [class*="icon-"]	{ position:absolute; left:6px; top:6px;}
 
 .site_workflow .btn-success.workFlowSelect,
 .site_workflow .btn-success.workFlowSelect:hover{ color: #ffffff; background-color: #51a351; *background-color: #499249; background-image: none; outline: 0; -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);}
