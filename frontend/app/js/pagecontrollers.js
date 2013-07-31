@@ -145,7 +145,12 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
 //    var site = modelSite.getSite();
     var site = {};
-
+	
+	// The default page is entered, the display animation
+	$scope.cssloading = true; //Block Loading GIF
+	$scope.csspagelayout = false; //Loading start: hide PageLayout 
+	$scope.csspagelist = false; //Loading end: show PageList
+	
     $q.all([$scope.sitedataFirebase, $scope.articlesFirebase, $scope.pages]).then(function() {
         site = $scope.sitedataFirebase ;
         $scope.get_site = site;
@@ -222,11 +227,12 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         }
 
         $scope.localarticles = $scope.articlesFirebase;    // Use FireBase
-		
-		 $scope.cssloading = false;  // Block Content Loading ...
+		 
+		 $scope.cssloading = false;  //Block Loading GIF
+		 $scope.csspagelayout = true; //Loading end: show PageLayout
+		 $scope.csspagelist = true; //Loading end: show PageList
 
     });
-	$scope.cssloading = true;
 
 
 

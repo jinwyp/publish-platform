@@ -97,8 +97,11 @@
             </div>
             <!-- 预览区 -->
             <div id="article-cont-preview" class="article-cont" >
-                <div ng-show="articlepreviewdata.title == undefined" style="width:580px; margin:40px auto;">
-                    <img src="app/img/temp/article_default_pic.jpg" alt="">
+                <div ng-show="articlepreviewdata.title == undefined">
+                	   <div class="loading">
+                	  		<div class="loadingCont"><img src="app/img/loading.gif"><h6>Loading...</h6></div>
+                      </div>
+                    <!-- <img src="app/img/temp/article_default_pic.jpg" alt=""> -->
                 </div>
                 <div class="article-templete CkeditorPreview" ng-hide="articlepreviewdata.title == undefined">
 
@@ -142,7 +145,13 @@
 
             <!-- Aritcles列表 -->
             <div class="article-cont">
-
+            
+				  <!-- Loading -->
+                <div class="loading" ng-show="cssloading" ng-animate="'fade'">
+                	<div class="loadingCont"><img src="app/img/loading.gif"><h6>Loading...</h6></div>
+                </div>
+                <!-- Loading //End -->
+                
                 <ul class="article-list">
                     
                     <li ng-mouseenter="showEditIcon($index)"  ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata track by $index | filter:query"  ng-click="clickArticle(article, $index)" >

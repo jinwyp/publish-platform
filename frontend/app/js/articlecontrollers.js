@@ -21,7 +21,6 @@ vcpapp.config(['$routeProvider', function($routeProvider) {
 
 
 /* Controllers */
-
 vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, modelArticle) {
 
     var usersessionurl = "https://vcplatform.firebaseIO.com/usernow";
@@ -39,7 +38,9 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
     var articlesinonepage;
     var pagecount;
     var usersession;
-
+	
+	$scope.cssloading = true;  ////Articlesdata Loading GIF: Start
+	
     $q.all([$scope.usersessionFirebase, $scope.usersFirebase, $scope.articlesFirebase]).then(function() {
         $scope.articlestotaldata = $scope.articlesFirebase;
         var usersdata = $scope.usersFirebase;
@@ -95,10 +96,14 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
                        }
                    }
                }
+			    
         }
+		
+		
     };
-
+	
     $scope.loadinit('updated','desc');
+	
 
     //页面总数
     articlesinonepage = 10;  // 文章每页数量
@@ -134,7 +139,8 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
 
     $scope.loadcurrentpagedata();
     $scope.articlepreviewdata = $scope.articlesdata[0];
-
+	
+	
 
     //检测currentPage值
     $scope.$watch('currentPage', function(newPage){
@@ -145,7 +151,8 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
         window.scrollTo(0,0);  //滚动条置顶
     });
 
-
+	$scope.cssloading = false;  //Articlesdata Loading GIF: End
+	
     });//firebase then End
 
 
@@ -155,6 +162,8 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
     $scope.cssshowupdate = true;
     $scope.cssshowpublish = true;
     $scope.cssshowclick = true;
+	
+	
 
     //按类型排序
     $scope.orderbytype = function(flag,sort){
