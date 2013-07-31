@@ -34,7 +34,6 @@ page.c.GlobalCtrl = function($scope, $q, angularFire){
 
 
     //加载block内容
-//    var site = modelSite.getSite();
 
      $scope.serachlinkdom = function(currentpage){
          for(var i = 0; i < $scope.pages.length; i++){
@@ -44,16 +43,29 @@ page.c.GlobalCtrl = function($scope, $q, angularFire){
          }
      };
 
-     var copysinglepage='';
+     $scope.searcharticle = function(){
+         for(var i = 0; i < $scope.pages.length; i++){
+             if($scope.pages[i].pagetype == 11){
+                 return $scope.pages[i];
+             }
+         }
+     }
 
+     var copysinglepage='';
+     $scope.pagename = '';
+     $scope.pageindex = 0;
+     $scope.pagelink = '';
      if($scope.header.length > 0){
          $scope.singlepage = $scope.serachlinkdom($scope.header[0].linkedurl);
+         $scope.pagename = $scope.header[0].menuname;
+         $scope.pageindex = 0;
+         $scope.pagelink = $scope.header[0].linkedurl;
+         $scope.singledetailpage = $scope.searcharticle();
          copysinglepage = $scope.singlepage;
      }
 
      //链接页面
-     $scope.showCurrent = function(currentpage, index){
-         //debugger;
+     $scope.showCurrent = function(currentpage, index, name){
          $scope.showdetails = false;
          $scope.showlist = true;
          $scope.singlepage = $scope.serachlinkdom(currentpage);
@@ -61,11 +73,13 @@ page.c.GlobalCtrl = function($scope, $q, angularFire){
              $scope.singlepage = copysinglepage;
              window.open(currentpage);
          }else{
+             $scope.pagelink = currentpage;
+             $scope.pagename = name;
+             $scope.pageindex = index;
              copysinglepage = $scope.singlepage;
          }
          $scope.cssblocklayoutselected = index;
      };
-
     });
      $scope.showheader = '';
      $scope.showtags = '';
@@ -83,11 +97,5 @@ page.c.GlobalCtrl = function($scope, $q, angularFire){
          $scope.showlist = false;
          $scope.showblockname = blockname;
          document.getElementById("articledetail").innerHTML =content.contentbody;
-     }
-
-     //显示列表页面
-     $scope.hidearticledetail = function(){
-         $scope.showdetails = false;
-         $scope.showlist = true;
      }
 }

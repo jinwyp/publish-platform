@@ -262,7 +262,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     //left side bar
     $scope.isarticle = '';
     $scope.clickpage = function(indexid, page, layout) {
-
         $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
         $scope.defaultselectedpageindex = indexid;
         $scope.singlepage = page;

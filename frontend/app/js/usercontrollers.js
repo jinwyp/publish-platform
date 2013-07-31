@@ -258,6 +258,9 @@ page.c.siteController = function($scope, $location, angularFire) {
     $scope.selectpublish = false;
     $scope.selectone = false;
     $scope.selectcomplex = false;
+    $scope.selectlogo = false;
+    $scope.selectwebicon = false;
+
 
     $scope.clickpublish = function(){
         $scope.selectpublish = true;

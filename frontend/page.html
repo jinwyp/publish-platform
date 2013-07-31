@@ -445,43 +445,41 @@
 
 
                                 <!-- 幻灯片 Slider Banner -->
-                                <div  ng-show="block.blockstatictype=='slideshow'" id="content-slider">
-                                    <div id="slider">
-                                        <div id="mask">
+                                <div  ng-show="block.blockstatictype=='slideshow'" class="content-slider">
+                                    <div class="slider">
+                                        <div class="mask">
                                             <ul>
-                                            <li id="first" class="firstanimation">
-                                            <a href="#">
-                                            <img src="app/img/temp/img_1.jpg" alt="Cougar"/>
-                                            </a>
-                                            <div class="tooltip">
-                                            <h1>Cougar</h1>
-                                            </div>
-                                            </li>
+                                                <li class="firstanimation">
+                                                    <a href="#">
+                                                        <img src="../frontend/app/img/temp/img_1.jpg" alt="Cougar"/>
+                                                    </a>
+                                                    <div class="tooltip">
+                                                        <h1>Cougar</h1>
+                                                    </div>
+                                                </li>
 
-                                            <li id="second" class="secondanimation">
-                                            <a href="#">
-                                            <img src="app/img/temp/img_2.jpg" alt="Lions"/>
-                                            </a>
-                                            <div class="tooltip">
-                                            <h1>Lions</h1>
-                                            </div>
-                                            </li>
+                                                <li class="secondanimation">
+                                                    <a href="#">
+                                                        <img src="../frontend/app/img/temp/img_2.jpg" alt="Lions"/>
+                                                    </a>
+                                                    <div class="tooltip">
+                                                        <h1>Lions</h1>
+                                                    </div>
+                                                </li>
 
-                                            <li id="third" class="thirdanimation">
-                                            <a href="#">
-                                            <img src="app/img/temp/img_3.jpg" alt="Snowalker"/>
-                                            </a>
-                                            <div class="tooltip">
-                                            <h1>Snowalker</h1>
-                                            </div>
-                                            </li>
-
+                                                <li class="thirdanimation">
+                                                    <a href="#">
+                                                        <img src="../frontend/app/img/temp/img_3.jpg" alt="Snowalker"/>
+                                                    </a>
+                                                    <div class="tooltip">
+                                                        <h1>Snowalker</h1>
+                                                    </div>
+                                                </li>
                                             </ul>
                                         </div>
                                         <div class="progress-bar"></div>
                                     </div>
                                 </div>
-
 
                             </div>
 
@@ -497,7 +495,7 @@
                                 <!--<a href="##" class="icon_setup" ng-click="updateshowblcoksetting(block, $event );">setup</a>-->
                                <!-- <a href="##" class="icon_editor" ng-click="showfilleditform();">editors</a>-->
                                 <div class="editor_inset" ng-show="block.blocktype=='editor'" >
-                                    <input type="text" placeholder="pls input article title" value="" ng-model="newarticle" typeahead="article as article.title for article in localarticles | filter:$viewValue"   enter-Keypress="{enter: addAritcleToEditorBlock(block, currentlayoutcontainer)}">
+                                    <input type="text" placeholder="Please input article title" value="" ng-model="newarticle" typeahead="article as article.title for article in localarticles | filter:$viewValue"   enter-Keypress="{enter: addAritcleToEditorBlock(block, currentlayoutcontainer)}">
                                 </div>
                             </div>
                             <!-- Block Menu Attribute Panel //End -->
