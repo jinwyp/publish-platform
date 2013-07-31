@@ -172,11 +172,11 @@
                     <table class="table">
                         <tr>
                         	<td class="titlename">Logo</td>
-                        	<td class="siteiconTD"><a href="#" class="site_logo_btn"><span>Click here to add</span></a><img src="app/img/symptomfind/logo_fillbg.png"></td>
+                        	<td class="siteiconTD"><a ng-hide="selectlogo" href="#" class="site_logo_btn" ng-click="selectlogo = true"><span>Click here to add</span></a><img ng-show="selectlogo" src="app/img/symptomfind/logo_fillbg.png"></td>
                         </tr>
                         <tr class="last">
                         	<td class="titlename">Web Icon</td>
-                        	<td class="siteiconTD"><a href="#" class="site_logo_btn"><span>Click here to add</span></a><img src="app/img/symptomfind/logo_webicon.png"></td>
+                        	<td class="siteiconTD"><a ng-hide="selectwebicon" href="#" class="site_logo_btn" ng-click="selectwebicon = true"><span>Click here to add</span></a><img ng-show="selectwebicon" src="app/img/symptomfind/logo_webicon.png"></td>
                         </tr>
                     </table>
                 </div>
