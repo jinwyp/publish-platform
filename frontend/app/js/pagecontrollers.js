@@ -98,7 +98,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         }else{
             articlesresultcategory = articlelist;
         }
-
+        console.dir(articlesresultcategory);
         articlesresulttag = _.filter(articlesresultcategory, function(aritcle){
             var singlearticletags = _.filter(aritcle.tags, function(singletag){
                 var tagresult = _.where(taglistdata, {tagname: singletag.tagname});
@@ -117,7 +117,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         }
 
 
-        articlesresultfinal = _.sortBy(articlesresultfinal, function(article){ return article.updated });
+        articlesresultfinal = _.sortBy(articlesresultfinal, function(article){ return -article.updated });
 
         return articlesresultfinal;
     }
