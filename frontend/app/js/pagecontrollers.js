@@ -399,7 +399,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         this.cssblockaddmenubutton = true;
     };
     $scope.hideaddblockmenubutton = function() {
-//        this.cssblockaddmenubutton = false;
+        this.cssblockaddmenubutton = false;
 //        this.cssblocktipadd = false;
 //        $scope.cssblocktipbox = '';
     };
