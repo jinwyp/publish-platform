@@ -15,7 +15,7 @@ h1.PopupTitle .TipBoxClose:active	{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); o
 .submitbox						{ background:#393a3e; padding:14px 28px; border-radius:0 0 6px 6px; text-align:right;}
 
 /* ----- Loading ----- */
-.loading{ position:absolute; left:0; top:0; width:100%; height:100%; border-radius:8px; background:rgba(255,255,255,1); z-index:99998; text-align:center; line-height:400px;}
+.loading{ position:absolute; left:0; top:0; width:100%; height:100%; border-radius:8px; background:rgba(255,255,255,0.9); z-index:99998; text-align:center; line-height:400px; box-shadow:inset 0 0 100px rgba(0,0,0,0.2);}
 
 
 

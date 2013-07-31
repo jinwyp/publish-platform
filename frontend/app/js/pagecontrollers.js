@@ -222,13 +222,15 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         }
 
         $scope.localarticles = $scope.articlesFirebase;    // Use FireBase
+		
+		$scope.cssloading = false;
 
     });
+	$scope.cssloading = true;
 
 
 
-
-
+	
     $scope.cssheadermenubutton = false;
     $scope.cssfootermenubutton=false;
 
