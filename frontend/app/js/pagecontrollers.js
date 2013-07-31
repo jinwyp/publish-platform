@@ -223,7 +223,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
         $scope.localarticles = $scope.articlesFirebase;    // Use FireBase
 		
-		$scope.cssloading = false;
+		 $scope.cssloading = false;  // Block Content Loading ...
 
     });
 	$scope.cssloading = true;
