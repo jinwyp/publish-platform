@@ -277,7 +277,13 @@
 
 		<!-- Page -->
         <div class="pagewrap" >
-
+				  
+                <!-- Loading -->
+                <div class="loading" ng-show="cssloading" ng-animate="'fade'">
+                	<div class="loadingCont"><img src="app/img/loading.gif"><h6>Loading...</h6></div>
+                </div>
+                <!-- Loading //End -->
+                
                 <!-- Page: Navigation -->
                 <div class="row">
                     <div class="span12">
@@ -589,7 +595,7 @@
         </div>
         <!-- Page //End -->
         <!-- SideBar:Page List -->
-		<div class="pagelist" >
+		<div class="pagelist" ng-show="csspagelist">
         		<ul class="pagelistbox">
                 	<!-- ArticlePage -->
 					<!--<li><a href="#{{page.pageurl}}" class="pagelist_btn articlepage_btn" ng-repeat="page in pages | filter:pagefilterarticle | orderBy:'pageorder'" ng-class="{active: $index==defaultselectedpageindex}" ng-click="clickpage($index)">-->
@@ -647,7 +653,7 @@
         </div>
         <!-- SideBar:Page List//End -->
         <!-- Page Layout -->
-        <div class="pagelayout" >
+        <div class="pagelayout" ng-show="csspagelayout" ng-animate="'fade'"> 
             <ul class="layout_list">
                 <li class="" ng-repeat="layout in layouts | filter:layoutfilterlisttype " ng-class="{ active: $index==defaultselectedlayoutindex } " ng-click="clicklayout($index, layout)"  >
                     <img ng-src="{{layout.layoutimage}}">
