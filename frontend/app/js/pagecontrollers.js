@@ -116,6 +116,9 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
             articlesresultfinal.splice(0, articlesresultfinal.length - quantity);    //判断文章数量
         }
 
+
+        articlesresultfinal = _.sortBy(articlesresultfinal, function(article){ return article.updated });
+
         return articlesresultfinal;
     }
 
