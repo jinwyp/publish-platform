@@ -237,8 +237,8 @@
         	<dt>Layout :</dt>
             <dd>
                 <div class="tipbox_layout">
-                    <a href="#" ng-click="addblocktopage('ads', currentlayoutcontainer, 0, 1001)"><img src="app/img/layoutadbig.png" alt=""></a>
-                    <a href="#" ng-click="addblocktopage('ads', currentlayoutcontainer, 0, 1002)"><img src="app/img/layoutadsmall.png" alt=""></a>
+                    <a href="#" ng-hide="currentlayoutcontainer.layoutcontainerclass == 'span3'" ng-click="addblocktopage('ads', currentlayoutcontainer, 0, 1001)"><img src="app/img/layoutadbig.png" alt=""></a>
+                    <a href="#" ng-hide="currentlayoutcontainer.layoutcontainerclass == 'span9'" ng-click="addblocktopage('ads', currentlayoutcontainer, 0, 1002)"><img src="app/img/layoutadsmall.png" alt=""></a>
                 </div>
             </dd>
         </dl>
