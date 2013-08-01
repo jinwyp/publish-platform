@@ -144,7 +144,7 @@ h1.PopupTitle .TipBoxClose:active	{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); o
     *background:url(img/pagebg.jpg) center top repeat;
      background-size:cover;*/ }
 .container		{ position:relative;}
-.pagewrap		{ margin-top:210px; margin-bottom:40px; min-height:600px; padding:10px; background:#fff; border-radius:8px; position:relative; z-index:99; box-shadow:0 5px 5px rgba(0,0,0,0.3);}
+.pagewrap		{ margin-top:240px; margin-bottom:40px; min-height:600px; padding:10px; background:#fff; border-radius:8px; position:relative; z-index:99; box-shadow:0 5px 5px rgba(0,0,0,0.3);}
 
 
 
@@ -719,7 +719,7 @@ ul.ts_preview li img	{ display:block; width:383px; height:260px; margin:0; paddi
 /* =========================================================================================== */
 /*                                          Page List                                          */
 /* =========================================================================================== */
-.pagelist		{ position:absolute; left:-164px; top:230px; width:164px; height:auto;}
+.pagelist		{ position:absolute; left:-164px; top:250px; width:164px; height:auto;}
 .pagelistbox	{ margin-bottom:14px; padding:0; list-style:none;}
 .pagelistbox > li	{ margin:0; padding:0; position:relative;}
 
@@ -796,7 +796,7 @@ ul.ts_preview li img	{ display:block; width:383px; height:260px; margin:0; paddi
 /* =========================================================================================== */
 /*                                          Page Layout                                        */
 /* =========================================================================================== */
-.pagelayout				{ position:absolute; right:-151px; top:230px; width:151px; }
+.pagelayout				{ position:absolute; right:-151px; top:250px; width:151px; }
 
 ul.layout_list			{ display:block; position:absolute; left:0px; width:90px; margin:0;  padding:20px 0; background:#ddd; list-style:none; border-radius:0 8px 8px 0; box-shadow:0 2px 5px rgba(0,0,0,0.3);}
 ul.layout_list li		{ position:relative; margin:0 auto 20px; padding:4px; width:53px; height:45px;  border:1px solid #bbb; border-radius:6px; background:#fff; cursor:pointer; overflow:hidden; 		
