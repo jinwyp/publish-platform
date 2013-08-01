@@ -15,7 +15,7 @@ h1.PopupTitle .TipBoxClose:active	{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); o
 .submitbox						{ background:#393a3e; padding:14px 28px; border-radius:0 0 6px 6px; text-align:right;}
 
 /* ----- Loading ----- */
-.loading{ position:absolute; left:0; top:0; width:100%; height:100%; border-radius:8px; background:rgba(255,255,255,1); z-index:99998; text-align:center; /* box-shadow:inset 0 0 100px rgba(0,0,0,0.2); */}
+.loading{ position:absolute; left:0; top:0; width:100%; height:100%; border-radius:8px; background:rgba(255,255,255,1); z-index:99; text-align:center; /* box-shadow:inset 0 0 100px rgba(0,0,0,0.2); */}
 .loadingCont{ width:200px; height:100px; margin:120px auto 0; text-align:center;}
 .loadingCont h6{ margin-top:10px; font-size:14px; color:#888; text-transform:capitalize; font-weight:500;}
 
@@ -876,7 +876,52 @@ ul.layout_list .active:hover:after{ content:''; display:block; position:absolute
 	-moz-transition: all 0.2s ease-in-out;
 	 -ms-transition: all 0.2s ease-in-out;
 	  -o-transition: all 0.2s ease-in-out;
-	     transition: all 0.2s ease-in-out;}
+	     transition: all 0.2s ease-in-out;
+		 }
+
+
+/* Block Mask */
+.span9 .masklayer img	{ max-width:680px;}
+.span3 .masklayer img	{ max-width:100px;}
+.masklayer			{ position:relative; margin:0; padding:0; overflow:hidden;} 
+.masklayer:before	{ content:''; display:block; position:absolute; width:100%; height:100%; border-radius:4px; z-index:1; background:rgba(0,0,0,0.3); }	
+.masklayer img		{ margin:10px auto;}
+.masklayer .btn	{ position:absolute; left:50%; top:60px; margin:0 0 0 -42px; padding:0; border-radius:100px; width:84px; height:84px; border-radius:100%; z-index:2; border:0; box-shadow:none; background:#f27e11 url(img/masksave.png) center center no-repeat; box-shadow:0 0 100px rgba(0,0,0,0.75), 0 0 100px rgba(255,255,255,0);  
+-webkit-transition: all 0.15s ease-in-out;
+	-moz-transition: all 0.15s ease-in-out;
+	 -ms-transition: all 0.15s ease-in-out;
+	  -o-transition: all 0.15s ease-in-out;
+	     transition: all 0.15s ease-in-out;}
+
+.masklayer .btn:hover,
+.masklayer .btn:focus{ box-shadow:0 0 20px rgba(0,0,0,0.75), 0 0 150px 20px rgba(255,255,255,1); 
+-webkit-transform:scale(1.15);
+	-moz-transition:scale(1.15);
+	 -ms-transition:scale(1.15);
+	  -o-transition:scale(1.15);
+	     transition:scale(1.15);
+		 }
+
+.masklayer .btn:active{ box-shadow:0 0 20px rgba(0,0,0,0.75), 0 0 150px 20px rgba(255,255,255,1), inset 0 0 7px rgba(0,0,0,0.5);
+-webkit-transform:scale(1.1);
+	-moz-transition:scale(1.1);
+	 -ms-transition:scale(1.1);
+	  -o-transition:scale(1.1);
+	     transition:scale(1.1);
+}
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
 
 /* =========================================================================================== */
 /*                                 Block：Setup + Move + Delete                                */
@@ -1098,8 +1143,9 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-f
     background:url(img/icon_createblock.png) no-repeat;
     border-radius:8px; cursor:pointer;
     zoom:1;
-	-moz-opacity:0.5;
-	opacity:0.5;
+	-moz-opacity:0.4;
+	opacity:0.4;
+	box-shadow:inset 0 0 30px rgba(0,0,0,0);
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
 	 -ms-transition: all 0.2s ease-in-out;
