@@ -1607,7 +1607,8 @@ input[type="button"].btn-block { width: 100%; }
 .btn-save.active,
 .btn-cancel.active,
 .btn-edit.active,
-.btn-delete.active { color: rgba(255, 255, 255, 0.75); }
+.btn-delete.active,
+.btn-addnew.active { color: rgba(255, 255, 255, 0.75); }
 
 /* btn-primary */
 .btn-primary { 
@@ -1763,6 +1764,26 @@ input[type="button"].btn-block { width: 100%; }
 .btn-inverse[disabled] { color: #ffffff; background-color: #222222; *background-color: #151515;}
 .btn-inverse:active,
 .btn-inverse.active { background-color: #080808 \9; }
+
+/* btn-Addnew */
+.btn-addnew {
+	padding:6px 24px;
+	color: #000; 
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background:#363636 url(../../app/img/icon_attribute.png) center -1444px no-repeat;
+	border-color: #222222 #222222 #000000; 
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); 
+	overflow:hidden;
+	text-indent:-99999px;
+}
+
+.btn-addnew:hover,
+.btn-addnew:active,
+.btn-addnew.active,
+.btn-addnew.disabled,
+.btn-addnew[disabled] { color: #000; background:#222222 url(../../app/img/icon_attribute.png) center -1444px no-repeat;}
+.btn-addnew:active,
+.btn-addnew.active { background-position:center -1444px; }
 
 /* btn-save */
 .btn-save {
@@ -1935,6 +1956,7 @@ padding-left: 8px; -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125),
 .btn-group.open .btn-cancel.dropdown-toggle 	{ background-color: #900; }
 .btn-group.open .btn-edit.dropdown-toggle 		{ background-color: #900; }
 .btn-group.open .btn-delete.dropdown-toggle 	{ background-color: #900; }
+.btn-group.open .btn-addnew.dropdown-toggle 	{ background-color: #900; }
 
 .btn .caret { margin-top: 8px; margin-left: 0; }
 
@@ -1955,7 +1977,8 @@ padding-left: 8px; -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125),
 .btn-save .caret,
 .btn-cancel .caret,
 .btn-edit .caret,
-.btn-delete .caret { border-top-color: #ffffff; border-bottom-color: #ffffff; }
+.btn-delete .caret,
+.btn-addnew .caret { border-top-color: #ffffff; border-bottom-color: #ffffff; }
 
 .btn-group-vertical { display: inline-block; *display: inline;
   /* IE7 inline-block hack */ *zoom: 1;}
