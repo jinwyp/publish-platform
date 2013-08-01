@@ -305,7 +305,7 @@
                             <!-- 有header //End -->
 
                             <!-- 空header 无数据-->
-                            <div class="header_view" ngCloak  ng-hide="cssheadermenuhavadata" ng-class="{hover_view:cssheadermenubutton} "></div>
+                            <div class="header_view" ngCloak ng-class="{covervid:cssheadermenubutton}"  ng-hide="cssheadermenuhavadata" ng-class="{hover_view:cssheadermenubutton} "></div>
                             <!-- 空header //End -->
 
 
@@ -542,7 +542,7 @@
                            <!-- footer_full footer_empty-->
 
                         	<!-- 有 Footer -->
-                        	<div class="site-theme b-footer" ng-show="cssfootermenuhavadata">
+                        	<div class="site-theme b-footer" ng-class="{covervid:cssfootersetting}" ng-show="cssfootermenuhavadata">
                             	<p>
                                     <span ng-repeat="footer in footer"><a href="#">{{footer.footername}}</a><span ng-hide="$last">&nbsp;|</span></span>
                                 </p>
@@ -550,7 +550,7 @@
                             </div>
                             <!-- 有 Footer //End -->
                             <!-- 空 Footer -->
-                        	<div class="footer_view" ng-hide="cssfootermenuhavadata" ng-class="{hover_view:cssfootermenubutton} "></div>
+                        	<div class="footer_view" ng-class="{covervid:cssfootersetting}" ng-hide="cssfootermenuhavadata" ng-class="{hover_view:cssfootermenubutton} "></div>
                             <!-- 空 Foote //Endr -->
 
                             <!-- Menu 右上角button ========== Block Attribute Panel ======================================= -->
@@ -560,7 +560,7 @@
                                 <!--<a href="#" class="icon_delete">delete</a>-->
                             </div>
 
-                            <!-- FooterNavSettings 设置面板区 -->  {{ cssfootersetting }}
+                            <!-- FooterNavSettings 设置面板区 -->
                             <div class="footer_panel" ng-show="cssfootersetting">
                                 <!-- 选择Theme -->
                                 <div class="theme_panel">
@@ -571,7 +571,7 @@
                                 <!-- 选择Theme //End -->
 
                                 <!-- Nav Link -->
-                                <div class="footerlink_panel" ng-show="cssfootersetting" ng-animate="{show: 'fade-show', hide: ''}" >
+                                <div class="footerlink_panel" ng-show="showfooternavsetting" ng-animate="{show: 'fade-show', hide: ''}" >
                                     <ul class="footer_structure clearfix">
                                         <li ng-repeat="foot in footer" class="classid">
                                             <a ng-hide='foot==footerlia' href="#" class="pagelink">

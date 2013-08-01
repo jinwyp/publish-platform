@@ -1023,9 +1023,11 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
     $scope.showfootmenusetting=function(){
         $scope.cssfootermenubutton = true;
+        $scope.cssfootersetting = true;
     }
     $scope.hidefootmenusetting=function(){
         $scope.cssfootermenubutton = false;
+        $scope.showfooternavsetting = false;
         $scope.cssfootersetting = false; //隐藏footer的设置面板
     }
     $scope.clickfootertheme = function(indexid, themedata){
@@ -1034,8 +1036,9 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
         $scope.sitedataFirebase.defaultsettings.footerthemeindex = indexid;
     }
+    $scope.showfooternavsetting = false;
     $scope.slideshowfootersetting = function(){
-        $scope.cssfootersetting = true;
+        $scope.showfooternavsetting = true;
     }
     $scope.footercommonfunction=function(){
         $scope.showli=-1;
