@@ -98,9 +98,13 @@
             <!-- 预览区 -->
             <div id="article-cont-preview" class="article-cont" >
                 <div ng-show="articlepreviewdata.title == undefined">
+                		
+                     <!-- Loading GIF -->
                 	   <div class="loading">
                 	  		<div class="loadingCont"><img src="app/img/loading.gif"><h6>Loading...</h6></div>
                       </div>
+                      <!-- Loading GIF //End -->
+                      
                     <!-- <img src="app/img/temp/article_default_pic.jpg" alt=""> -->
                 </div>
                 <div class="article-templete CkeditorPreview" ng-hide="articlepreviewdata.title == undefined">
@@ -146,11 +150,11 @@
             <!-- Aritcles列表 -->
             <div class="article-cont">
             
-				  <!-- Loading -->
+				  <!-- Loading GIF -->
                 <div class="loading" ng-show="cssloading" ng-animate="'fade'">
                 	<div class="loadingCont"><img src="app/img/loading.gif"><h6>Loading...</h6></div>
                 </div>
-                <!-- Loading //End -->
+                <!-- Loading GIF //End -->
                 
                 <ul class="article-list">
                     
