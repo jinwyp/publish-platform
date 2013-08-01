@@ -506,7 +506,7 @@
                             </div>
                             <!-- Block Menu Attribute Panel //End -->
                         </div>
-                        <div ng-show="layoutcontainer.layoutcontainerclass == 'span9'" ng-class="{displaynone:singlepage.pagetype == 10}">
+                        <div ng-show="layoutcontainer.layoutcontainerclass == 'span9'" ng-class="{displaynone:singlepage.pagetype != 11}">
                              <img src="app/img/ArticleLaytouDefault_pic.jpg">
                         </div>
                         <!-- Add Block Box -->
@@ -563,7 +563,7 @@
                             </div>
 
                             <!-- FooterNavSettings 设置面板区 -->
-                            <div class="footer_panel" ng-show="cssfootersetting">
+                            <div class="footer_panel" ng-show="showfooternavsetting">
                                 <!-- 选择Theme -->
                                 <div class="theme_panel">
                                     <a href="#" ng-repeat="theme in footerthemes" ng-class="{select: $index==cssfooterthemeindex,last:$last}" ng-click="clickfootertheme($index, theme)">
