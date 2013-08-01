@@ -1366,7 +1366,7 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .write_title input.title_input:hover,
 .write_title input.title_input:active{ box-shadow: 0 0 2px rgba(0,0,0,0.2); border:3px solid transparent; }
 .write_title input.title_input:focus{ color:#2e9a00; box-shadow:inset 0 0 2px rgba(0,0,0,0.4); border:3px solid #37b900; }
-.write_title .showlist	{ display:block; float:right; margin:20px 20px 0 0; width:20px; height:20px; background:url(img/icon_attribute.png) 0 -750px no-repeat; text-indent:-9999px;}
+.write_title .showlist	{ display:block; float:right; margin:0; width:56px; height:70px; background:#f6f6f6 url(img/icon_attribute.png) center -724px no-repeat; text-indent:-9999px; box-shadow:inset 1px 0px 0 rgba(0,0,0,0.1); border-radius:0 4px 4px 0;}
 .write_title .showlist:hover{ }
 
 /* 预览&编辑器 左右laytou */
@@ -1438,17 +1438,17 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .ico-article-UP_default,
 .ico-article-UP_current,
 .ico-article-DOWN_default,
-.ico-article-DOWN_current	{ margin-bottom:8px; padding:0 20px 0 8px; border:1px solid #ccc; color:#888; font-size:12px; border-radius:4px; background:#fff url(img/icon_attribute.png) no-repeat; }
+.ico-article-DOWN_current	{ padding:2px 20px 1px 8px; border:1px solid #ccc; color:#888; font-size:12px; border-radius:2px; background:#fff url(img/icon_attribute.png) no-repeat; }
 
-.ico-article-UP_default			{ background-position:right -1250px;}
+.ico-article-UP_default			{ background-position:right -1249px;}
 .ico-article-UP_current			{ background-position:right -1300px;}
-.ico-article-DOWN_default			{ background-position:right -1150px;}
-.ico-article-DOWN_current			{ background-position:right -1200px;}
+.ico-article-DOWN_default			{ background-position:right -1148px;}
+.ico-article-DOWN_current			{ background-position:right -1198px;}
 
-.ico-article-UP_default:hover		{ background-position:right -1300px; color:#fff; background-color:#444; border:1px solid #333;}
+.ico-article-UP_default:hover		{ background-position:right -1300px; color:#fff; background-color:#319800; border:1px solid #338000;}
 .ico-article-UP_current:hover		{ background-position:right -1300px; }
-.ico-article-DOWN_default:hover		{ background-position:right -1200px; color:#fff; background-color:#444; border:1px solid #333;}
-.ico-article-DOWN_current:hover		{ background-position:right -1200px;}
+.ico-article-DOWN_default:hover		{ background-position:right -1198px; color:#fff; background-color:#319800; border:1px solid #338000;}
+.ico-article-DOWN_current:hover		{ background-position:right -1198px;}
 
 
 /* Version node */
@@ -1508,8 +1508,10 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 
 /* li active */
 .article-list > li.active		{ position:relative; border-bottom:1px solid #d8d8d8;
-background: -webkit-gradient(linear, 0 0, 0 100%, from(#ececec), to(#f6f6f6));
-background: -moz-linear-gradient(top, #ececec, #f6f6f6); /* border-bottom:1px solid #d8d8d8; background:#f4f4f4; box-shadow:inset 0 0 10px rgba(0,0,0,0.08); */}
+		background: -webkit-gradient(linear, 0 0, 0 100%, from(#f6f6f6), to(#ececec));
+		background: -moz-linear-gradient(top, #f6f6f6, #ececec); 
+/* border-bottom:1px solid #d8d8d8; background:#f4f4f4; box-shadow:inset 0 0 10px rgba(0,0,0,0.08); */
+}
 .article-list > li.active:before{ display:block; position:absolute; left:-1px; top:0; width:5px; height:100%; background:#6ed740; overflow:hidden; }
 .article-list > li.active .list-date h1 a	{ color:#31a300 !important;}
 .article-list > li.active .list-date p		{ color:#000 !important;}
