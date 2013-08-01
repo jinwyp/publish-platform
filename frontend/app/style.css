@@ -1396,6 +1396,9 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 /* Article List Search */
 .aiticleList_search{ display:block; float:right; position:relative; top:-4px; margin-right:60px; padding-right:30px !important; width:148px; background:url(img/icon_attribute.png) no-repeat; background-position:160px -1096px;}
 
+/* Article ADD New Button */
+.ico-article-addnew{}
+
 /* Container */
 .article-cont				{ background:#fff; border-radius:4px; min-height:600px; position:relative;}
 .atricle_attribute_box	{ padding:40px; border-bottom:1px dashed #ddd;}
@@ -1411,7 +1414,6 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .ico-article-list,
 .ico-article-search,
 .ico-article-setup,
-.ico-article-addnew,
 .ico-article-sequence { display:block; float:right; width:20px; height:20px; text-indent:-9999px; background:url(img/icon_attribute.png) no-repeat; -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)"; filter:alpha(opacity=60); opacity:0.6;}
 
 .ico-article-edit	 { background-position:0px -500px;}
@@ -1420,7 +1422,6 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .ico-article-list	 { background-position:0px -750px;}
 .ico-article-search  { background-position:0px -950px;}
 .ico-article-setup	 { background-position:0px -50px; }
-.ico-article-addnew  { background-position:0px -1050px;}
 .ico-article-sequence { background-position:0px -1350px;}
 
 .ico-article-edit:hover,
@@ -1429,7 +1430,6 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .ico-article-list:hover,
 .ico-article-search:hover,
 .ico-article-setup:hover,
-.ico-article-addnew:hover,
 .ico-article-sequence:hover{ -ms-filter:"progid: DXImageTransform.Microsoft.Alpha(Opacity=100)"; filter:alpha(opacity=100); opacity:1; }
 
 .ico-article-UP_default,
