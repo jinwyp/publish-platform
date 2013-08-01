@@ -52,7 +52,7 @@
 		// Additional space specified by user.
 		newHeight += ( editor.config.autoGrow_bottomSpace || 0 );
 
-		var min = editor.config.autoGrow_minHeight != undefined ? editor.config.autoGrow_minHeight : 200,
+		var min = editor.config.autoGrow_minHeight != undefined ? editor.config.autoGrow_minHeight : 498,
 			max = editor.config.autoGrow_maxHeight || Infinity;
 
 		newHeight = Math.max( newHeight, min );
