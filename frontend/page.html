@@ -595,7 +595,7 @@
         </div>
         <!-- Page //End -->
         <!-- SideBar:Page List -->
-		<div class="pagelist" ng-show="csspagelist">
+		<div class="pagelist" ng-show="csspagelist" ng-animate="'fade'">
         		<ul class="pagelistbox">
                 	<!-- ArticlePage -->
 					<!--<li><a href="#{{page.pageurl}}" class="pagelist_btn articlepage_btn" ng-repeat="page in pages | filter:pagefilterarticle | orderBy:'pageorder'" ng-class="{active: $index==defaultselectedpageindex}" ng-click="clickpage($index)">-->
@@ -603,7 +603,7 @@
                     <!--</a></li>-->
                     <!-- PageList -->
 
-                    <li ng-cloak ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'"  ng-animate="'repeat'">
+                    <li ng-cloak ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'" >
                         <i class="ico_edit" ng-click="showeditpageattribute($index)"></i>
                         <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:11==page.pagetype}" ng-click="clickpage($index, page)">
                             <i class="drag"></i>{{page.pagename}}

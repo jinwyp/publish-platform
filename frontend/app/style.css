@@ -1384,9 +1384,9 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .article-title-ico [class^="ico-article"],
 .article-title-ico [class*="ico-article"]{ margin-left:20px;}
 
-.article-title-ico .ListSequence	{ position:absolute; right:260px; top:12px; }
+.article-title-ico .ListSequence	{ position:absolute; right:320px; top:13px; }
 .article-title-ico .ListSequence [class^="ico-article"],
-.article-title-ico .ListSequence [class*="ico-article"]{ margin:0 2px;}
+.article-title-ico .ListSequence [class*="ico-article"]{ margin:0;}
 
 .radio.searchradio	{ float:left; }
 .article-title .well{ margin:0; padding:10px;}
@@ -1394,7 +1394,7 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .article-title-ico .dropdown-menu li{ text-align:left;}
 
 /* Article List Search */
-.aiticleList_search{ display:block; float:right; position:relative; top:-4px; padding-right:30px !important; width:148px; background:url(img/icon_attribute.png) no-repeat; background-position:160px -1096px;}
+.aiticleList_search{ display:block; float:right; position:relative; top:-4px; margin-right:60px; padding-right:30px !important; width:148px; background:url(img/icon_attribute.png) no-repeat; background-position:160px -1096px;}
 
 /* Container */
 .article-cont				{ background:#fff; border-radius:4px; min-height:600px; position:relative;}
@@ -1412,8 +1412,7 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .ico-article-search,
 .ico-article-setup,
 .ico-article-addnew,
-.ico-article-sequence { display:block; float:right; width:20px; height:20px; text-indent:-9999px; background:url(img/icon_attribute.png) no-repeat;
-    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)"; filter:alpha(opacity=60); opacity:0.6;}
+.ico-article-sequence { display:block; float:right; width:20px; height:20px; text-indent:-9999px; background:url(img/icon_attribute.png) no-repeat; -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)"; filter:alpha(opacity=60); opacity:0.6;}
 
 .ico-article-edit	 { background-position:0px -500px;}
 .ico-article-backedit{ background-position:0px -850px;}
@@ -1436,17 +1435,17 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .ico-article-UP_default,
 .ico-article-UP_current,
 .ico-article-DOWN_default,
-.ico-article-DOWN_current	{ margin-bottom:8px; padding:2px 20px 2px 8px; border:1px solid #ccc; color:#888; border-radius:4px; background:#fff url(img/icon_attribute.png) no-repeat; }
+.ico-article-DOWN_current	{ margin-bottom:8px; padding:0 20px 0 8px; border:1px solid #ccc; color:#888; font-size:12px; border-radius:4px; background:#fff url(img/icon_attribute.png) no-repeat; }
 
-.ico-article-UP_default				{ background-position:right -1248px;}
-.ico-article-UP_current				{ background-position:right -1298px;}
-.ico-article-DOWN_default			{ background-position:right -1148px;}
-.ico-article-DOWN_current			{ background-position:right -1198px;}
+.ico-article-UP_default			{ background-position:right -1250px;}
+.ico-article-UP_current			{ background-position:right -1300px;}
+.ico-article-DOWN_default			{ background-position:right -1150px;}
+.ico-article-DOWN_current			{ background-position:right -1200px;}
 
-.ico-article-UP_default:hover		{ background-position:right -1298px; color:#fff; background-color:#444; border:1px solid #333;}
-.ico-article-UP_current:hover		{ background-position:right -1298px; }
-.ico-article-DOWN_default:hover		{ background-position:right -1198px; color:#fff; background-color:#444; border:1px solid #333;}
-.ico-article-DOWN_current:hover		{ background-position:right -1198px;}
+.ico-article-UP_default:hover		{ background-position:right -1300px; color:#fff; background-color:#444; border:1px solid #333;}
+.ico-article-UP_current:hover		{ background-position:right -1300px; }
+.ico-article-DOWN_default:hover		{ background-position:right -1200px; color:#fff; background-color:#444; border:1px solid #333;}
+.ico-article-DOWN_current:hover		{ background-position:right -1200px;}
 
 
 /* Version node */

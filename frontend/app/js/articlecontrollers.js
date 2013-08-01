@@ -39,7 +39,7 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
     var pagecount;
     var usersession;
 	
-	$scope.cssloading = true;  ////Articlesdata Loading GIF: Start
+	$scope.cssloading = true;  //Article data Loading GIF animate: Start
 	
     $q.all([$scope.usersessionFirebase, $scope.usersFirebase, $scope.articlesFirebase]).then(function() {
         $scope.articlestotaldata = $scope.articlesFirebase;
@@ -151,7 +151,7 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
         window.scrollTo(0,0);  //滚动条置顶
     });
 
-	$scope.cssloading = false;  //Articlesdata Loading GIF: End
+	$scope.cssloading = false;  //Article data Loading GIF animate: End
 	
     });//firebase then End
 
