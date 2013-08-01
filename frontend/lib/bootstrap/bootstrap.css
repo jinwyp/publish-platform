@@ -1768,7 +1768,7 @@ input[type="button"].btn-block { width: 100%; }
 /* btn-Addnew */
 .btn-addnew {
 	padding:6px 24px;
-	color: #ffffff; 
+	color: #000; 
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	background:#363636 url(../../app/img/icon_attribute.png) center -1444px no-repeat;
 	border-color: #222222 #222222 #000000; 
@@ -1781,7 +1781,7 @@ input[type="button"].btn-block { width: 100%; }
 .btn-addnew:active,
 .btn-addnew.active,
 .btn-addnew.disabled,
-.btn-addnew[disabled] { color: #ffffff; background:#222222 url(../../app/img/icon_attribute.png) center -1444px no-repeat;}
+.btn-addnew[disabled] { color: #000; background:#222222 url(../../app/img/icon_attribute.png) center -1444px no-repeat;}
 .btn-addnew:active,
 .btn-addnew.active { background-position:center -1444px; }
 
