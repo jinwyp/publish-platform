@@ -1437,16 +1437,16 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .ico-article-UP_default,
 .ico-article-UP_current,
 .ico-article-DOWN_default,
-.ico-article-DOWN_current	{ padding:2px 20px 1px 8px; border:1px solid #ccc; color:#888; font-size:12px; border-radius:2px; background:#fff url(img/icon_attribute.png) no-repeat; }
+.ico-article-DOWN_current	{ padding:2px 20px 1px 8px; border:1px solid #ddd; color:#888; font-size:12px; border-radius:2px; background:#fff url(img/icon_attribute.png) no-repeat; }
 
 .ico-article-UP_default			{ background-position:right -1249px;}
 .ico-article-UP_current			{ background-position:right -1300px;}
 .ico-article-DOWN_default			{ background-position:right -1148px;}
 .ico-article-DOWN_current			{ background-position:right -1198px;}
 
-.ico-article-UP_default:hover		{ background-position:right -1300px; color:#fff; background-color:#319800; border:1px solid #338000;}
+.ico-article-UP_default:hover		{ background-position:right -1300px; color:#fff; background-color:#3ab300; border:1px solid transparent;}
 .ico-article-UP_current:hover		{ background-position:right -1300px; }
-.ico-article-DOWN_default:hover		{ background-position:right -1198px; color:#fff; background-color:#319800; border:1px solid #338000;}
+.ico-article-DOWN_default:hover		{ background-position:right -1198px; color:#fff; background-color:#3ab300; border:1px solid transparent;}
 .ico-article-DOWN_current:hover		{ background-position:right -1198px;}
 
 
