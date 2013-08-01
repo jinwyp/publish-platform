@@ -289,10 +289,10 @@
                     <div class="span12">
 
                         <!-- Header Block 2 -->
-                        <div class="block_header" ng-class="{header_full: cssheadermenuhavadata, header_empty:!cssheadermenuhavadata, zindextop: cssheadermenubutton, zindexbottom: !cssheadermenubutton}" ng-mouseenter="showheadermenusetting()" ng-mouseleave="hideheadermenusetting()">
+                        <div class="block_header" ng-class="{header_full: cssheadermenuhavadata, header_empty:!cssheadermenuhavadata}" ng-mouseenter="showheadermenusetting()" ng-mouseleave="hideheadermenusetting()">
 
                            <!-- 有header 数据 -->
-                            <div class="site-theme b-header" ngCloak  ng-show="cssheadermenuhavadata" ng-class="{zindextop:cssheadermenuhavadata}">
+                            <div class="site-theme b-header" ngCloak ng-class="{covervid:cssheadermenubutton}"  ng-show="cssheadermenuhavadata" ng-class="{zindextop:cssheadermenuhavadata}">
                                 <h1 class="b-h-logo"><img src="theme/default/img/logo.png" alt="SymptomFind"></h1>
                                 <div class="b-h-information">
                                 	<input type="text" class="search" value="" placeholder="search...">
@@ -538,11 +538,11 @@
                 <div class="row">
                     <div class="span12">
                         <!-- Footer Block 1 -->
-                    	<div class="block_footer" ng-class="{footer_full:cssfootermenuhavadata,footer_empty:!cssfootermenuhavadata,zindextop:cssfootermenubutton,zindexbottom:!cssfootermenubutton}" ng-mouseenter="showfootmenusetting()" ng-mouseleave="hidefootmenusetting()">
+                    	<div class="block_footer" ng-class="{footer_full:cssfootermenuhavadata,footer_empty:!cssfootermenuhavadata}" ng-mouseenter="showfootmenusetting()" ng-mouseleave="hidefootmenusetting()">
                            <!-- footer_full footer_empty-->
 
                         	<!-- 有 Footer -->
-                        	<div class="site-theme b-footer" ng-show="cssfootermenuhavadata" ng-class="{zindextop:cssfootermenuhavadata}">
+                        	<div class="site-theme b-footer" ng-show="cssfootermenuhavadata">
                             	<p>
                                     <span ng-repeat="footer in footer"><a href="#">{{footer.footername}}</a><span ng-hide="$last">&nbsp;|</span></span>
                                 </p>
@@ -560,7 +560,7 @@
                                 <!--<a href="#" class="icon_delete">delete</a>-->
                             </div>
 
-                            <!-- FooterNavSettings 设置面板区 -->
+                            <!-- FooterNavSettings 设置面板区 -->  {{ cssfootersetting }}
                             <div class="footer_panel" ng-show="cssfootersetting">
                                 <!-- 选择Theme -->
                                 <div class="theme_panel">
