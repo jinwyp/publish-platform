@@ -506,7 +506,9 @@
                             </div>
                             <!-- Block Menu Attribute Panel //End -->
                         </div>
-
+                        <div ng-show="layoutcontainer.layoutcontainerclass == 'span9'" ng-class="{displaynone:singlepage.pagetype == 10}">
+                             <img src="app/img/ArticleLaytouDefault_pic.jpg">
+                        </div>
                         <!-- Add Block Box -->
                         <div ng-hide="layoutcontainer.layoutcontainerclass == isarticle" id="blockcontent" class="block_content blockempty" ng-class="{hoverempty:cssblockaddmenubutton}"  ng-mouseenter="showaddblockmenubutton()" ng-mouseleave="hideaddblockmenubutton()">
 
