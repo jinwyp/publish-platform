@@ -412,8 +412,8 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     };
     $scope.hideaddblockmenubutton = function() {
         this.cssblockaddmenubutton = false;
-//        this.cssblocktipadd = false;
-//        $scope.cssblocktipbox = '';
+        $scope.cssblocktipbox = ''; //隐藏弹出框
+        this.cssblocktipadd = ''; //移除block图标选中的样式
     };
 
     $scope.showblocksettingmenu = function( blocktype, event1, layoutcontainer ) {
@@ -452,7 +452,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         var blocktypemenu = $(".tip_"+ blocktype);     //获取样式名称拼接 .
         var left =  ( parseInt(blockcontent.width() ) - parseInt( blocktypemenu.width() ) )/2;
         blocktypemenu.css({"left":left+"px", "top":-(blocktypemenu.height()), "position":"absolute"});
-//        console.log(blockcontent.height(), blocktypemenu.height());
     };
 
     $scope.clickblocklayouttab = function(event1, divid) {
