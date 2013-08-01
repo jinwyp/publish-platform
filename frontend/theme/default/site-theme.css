@@ -64,7 +64,7 @@
 
 
 /* Page Block */
-.site-theme.b-block h2		{ position:relative; display:block; margin:0;  width:100%; height:40px; font-size:18px; line-height:40px; text-indent:34px; color:#454545; border-bottom:2px solid #43bcb7; background:#edf8fa url(img/title_icon.png) 10px center no-repeat; z-index:100; }
+.site-theme.b-block h2		{ position:relative; display:block; margin:0;  width:100%; height:40px; font-size:18px; line-height:40px; text-indent:34px; color:#454545; border-bottom:2px solid #43bcb7; background:#edf8fa url(img/title_icon.png) 10px center no-repeat; }
 .site-theme.b-block h2:before{ display:block; content:''; width:0; height:0; position:absolute; left:30px; bottom:-24px; border-width:12px; border-style:solid; border-color:#43bcb7  transparent  transparent  transparent; }
 .site-theme.b-block h2:after { display:block; content:''; width:0; height:0; position:absolute; left:32px; bottom:-20px; border-width:10px; border-style:solid; border-color:#edf9f9  transparent  transparent  transparent; }
 .site-theme.b-block ul.listarticle		{ border:1px solid #d7d7d7; list-style:none; margin:0; padding:10px 20px 0;}
