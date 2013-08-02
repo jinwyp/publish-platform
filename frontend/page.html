@@ -229,7 +229,7 @@
 
 <!-- ======================================= tip_RSS ======================================= -->
 <div class="tip_box tip_RSS" ng-cloak  ng-show="'RSS'==cssblocktipbox">
-    <h1 class="PopupTitle"><a href="###" class="TipBoxClose">X</a>RSS Block Data</h1>
+    <h1 class="PopupTitle"><a href="###" class="TipBoxClose" ng-click="closerssblock()">X</a>RSS Block Data</h1>
     <div class="tab-content">
         <dl class="clearfix">
             <dt>Block name :</dt>
@@ -243,7 +243,7 @@
             <dt>Layout :</dt>
             <dd>
                 <div class="tipbox_layout">
-                    <a href="#" ng-show="blocklayout.id == 101"  ng-repeat="blocklayout in blocklayouts" ng-click="addblocktopage('RSS', currentlayoutcontainer, $index)">
+                    <a href="#" class="selected" ng-show="blocklayout.id == 101"  ng-repeat="blocklayout in blocklayouts" ng-click="selectlayout($index,blocklayout.id)">
                         <img ng-src="{{ blocklayout.layoutimage }}" alt="">
                     </a>
                 </div>
@@ -395,15 +395,7 @@
                                                 	<p><span>Author:&nbsp;<i>{{ article.author }}</i></span></p>
                                                 </div>
                                             </li>
-                                            
-                                        	<!-- 
-                                            <li ng-repeat="article in block.blockarticles ">
-                                                <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="#">{{ article.title }}</a></h6>
-                                                <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_06.jpg" alt="" /></a>
-                                                <p>{{ article.description }}...<a href="###">more</a></p>
-                                                <p><span>Author:&nbsp;<i>{{ article.author }}</i></span></p>
-                                            </li>
-                                            -->
+
                                         </ul>
                                     </div>
                             </div>
@@ -541,6 +533,12 @@
                                 <img ng-show="selecteditorblockicon == 2" src="app/img/temp/blocklayout_preview3.jpg" alt="">
                                 <!--无图两列-->
                                 <img ng-show="selecteditorblockicon == 3" src="app/img/temp/blocklayout_preview4.jpg" alt="">
+                            </div>
+
+                            <div class="masklayer" ng-click="addblocktopage('RSS', currentlayoutcontainer, selectrssblockicon, rsseditorblocklayout)" ng-show="showrssblockstyle">
+                                <a href="#" class="btn btn-save"></a>
+                                <!--无图一列-->
+                                <img ng-show="selectrssblockicon == 1" src="app/img/temp/blocklayout_preview2.jpg" alt="">
                             </div>
                             <!--insert here-->
                         </div>

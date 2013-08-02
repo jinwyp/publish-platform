@@ -327,9 +327,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
             ]
         };
         $scope.pages.push(newpage);
-
-//        modelSite.addSinglePage(newpage);
-//        $scope.layouts = modelSite.getLayoutList();
     };
 
 
@@ -344,7 +341,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
     $scope.editsavepage = function(page) {
         $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
-//        modelSite.updateSinglePage(page);
 
     };
     $scope.delpage = function( page) {
@@ -353,10 +349,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
             //首页和内容页面都是无法删除的
             var pageindex = $scope.pages.indexOf(page);
             $scope.pages.splice(pageindex, 1);
-
         }
-
-//        modelSite.delSinglePage(page);
     };
 
     //right side bar
@@ -371,13 +364,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
                 $scope.singlepage = page;
             }
         });
-
-//        var pageindex = $scope.pages.indexOf($scope.singlepage);
-//        console.log($scope.singlepage, pageindex);
-
-
-//        modelSite.saveSinglePageLayout($scope.singlepage, angular.copy(layout));
-
     };
 
 
@@ -410,7 +396,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     $scope.showcontenticon = false;//是否显示centent icon
     $scope.showaddblockmenubutton = function() {
         this.cssblockaddmenubutton = true;
-        if(this.showautoblockstyle || this.showeditorblockstyle){
+        if(this.showautoblockstyle || this.showeditorblockstyle || this.showrssblockstyle){
             this.showcontenticon = false;
         }else{
             this.showcontenticon = true;
@@ -418,7 +404,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     };
 
     $scope.hideaddblockmenubutton = function() {
-        if(this.showautoblockstyle || this.showeditorblockstyle){
+        if(this.showautoblockstyle || this.showeditorblockstyle || this.showrssblockstyle){
             this.cssblockaddmenubutton = true;
         }else{
             this.cssblockaddmenubutton = false;
@@ -438,16 +424,30 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         $scope.cssblocktipbox = '';
     }
 
+    $scope.closerssblock = function(){
+        copythis.showrssblockstyle = false;
+        $scope.cssblocktipbox = '';
+    }
+
     $scope.showautoblockstyle = false;
     $scope.showeditorblockstyle = false;
-     var copythis = '';
+    $scope.showrssblockstyle = false;
+    var copythis = '';
     $scope.showblocksettingmenu = function( blocktype, event1, layoutcontainer ) {
+        $scope.selectblockicon = 0;
+        $scope.autoblocklayout = 100;
+        $scope.selecteditorblockicon = 0;
+        $scope.autoeditorblocklayout = 100;
+        $scope.selectrssblockicon = 1;
+        $scope.rsseditorblocklayout = 101;
+
         this.cssblocktipadd = false;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipbox = false;
         copythis = this;
         $scope.currentlayoutcontainer = layoutcontainer;
         this.showautoblockstyle = false;
         this.showeditorblockstyle = false;
+        this.showrssblockstyle = false;
         switch(blocktype)
         {
             case 'auto':
@@ -474,6 +474,8 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 			case 'RSS':
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 $scope.cssblocktipbox = blocktype;
+                this.showrssblockstyle = true;
+                this.showcontenticon = false;
                 break;
             default:
         }
@@ -526,8 +528,16 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         $scope.autoeditorblocklayout = blocklayout;
     }
 
-    // add a block to page
+    $scope.selectrssblockicon = 1;    //设定rss选中图标
+    $scope.rsseditorblocklayout = 101; //设定rss layout id
 
+    //选中RSS layout 图标事件
+    $scope.selectrsslayout = function(index,blocklayout){
+        $scope.selectrssblockicon = index;
+        $scope.rsseditorblocklayout = blocklayout;
+    }
+
+    // add a block to page
     $scope.addblocktopage = function(blocktype, layoutcontainer, indexid, blocklayoutid ) {
         var newblock = {
             blockid : getMaxBlockId(),
@@ -622,6 +632,8 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
                 newblock.blocktype = 'RSS';
                 newblock.blockname = $scope.newblock.blockname;
                 newblock.urlapi = $scope.newblock.urlapi;
+                this.showrssblockstyle = false;
+                $scope.cssblocktipbox = '';
                 break;
 
             default:
