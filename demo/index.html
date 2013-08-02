@@ -5,8 +5,7 @@
     <title>VCP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../frontend/app/style.css" rel="stylesheet">
-    <link href="lib/flatui/bootstrap.css" rel="stylesheet">
-    <link href="lib/flatui/flat-ui.css" rel="stylesheet">
+    <link href="../frontend/lib/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="../frontend/lib/angularslider/angular-slider.css" rel="stylesheet">
     <link rel="shortcut icon" href="../frontend/app/img/favicon.ico">
     <!--[if lt IE 9]>
@@ -19,6 +18,12 @@
 
 <div class="vcpbox nomag">
 <div class="container bgwhite">
+
+<!-- Loading -->
+<div class="loading" ng-show="cssloading" ng-animate="'fade'">
+    <div class="loadingCont"><img src="../frontend/app/img/loading.gif"><h6>Loading...</h6></div>
+</div>
+<!-- Loading //End -->
                 <!-- Page: Row -->
                 <div class="row">
                     <div class="span12">
@@ -272,22 +277,6 @@
                             </div>
                         </div>
                     </div>
-
-
-                    <!--<div class="span3">
-                        <div class="site-theme b-block block-layout-1">
-                            <img src="../frontend/app/img/temp/pic.jpg">
-                        </div>
-                        <div class="site-theme b-block block-layout-1">
-
-                            <h2 class="ng-binding"></h2>
-                            <h4 class="b-block-staticTitle">Seasonal Allergy Symptoms</h4>
-                            <p class="b-block-staticTxt">SymptomFind.com is one of the leading providers of health information on the Web. </p>
-                            <h4 class="b-block-staticTitle">Our Mission</h4>
-                            <p class="b-block-staticTxt">At SymptomFind.com, we are committed to providing the most accurate and authoritative information regarding health and nutrition to suit the needs of the everyday person.</p>
-
-                        </div>
-                    </div>-->
                 </div>
 				<div class="row">
                     <div class="span12">
