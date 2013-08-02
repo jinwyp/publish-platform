@@ -194,7 +194,7 @@
 
 <!-- ======================================= tip_static ======================================= -->
 <div class="tip_box tip_static" ng-cloak ng-show="'static'==cssblocktipbox">
-    <h1 class="PopupTitle"><a href="###" class="TipBoxClose">X</a>Static</h1>
+    <h1 class="PopupTitle"><a href="###" class="TipBoxClose" ng-click="closestaticblock()">X</a>Static</h1>
     <ul class="StaticElementBlock clearfix">
      	<li><a href="#" class="icon_static_txt" ng-click="addblocktopage('statictext', currentlayoutcontainer, 0) ">TXT</a></li>
         <li><a href="#" class="icon_static_pic" ng-click="addblocktopage('staticpic', currentlayoutcontainer, 0)">PIC</a></li>
@@ -205,7 +205,7 @@
 
 <!-- ======================================= tip_ad ======================================= -->
 <div class="tip_box tip_ads" ng-cloak ng-show="'ads'==cssblocktipbox">
-    <h1 class="PopupTitle"><a href="###" class="TipBoxClose">X</a>Ad Block Data</h1>
+    <h1 class="PopupTitle"><a href="###" class="TipBoxClose" ng-click="closeadblock()">X</a>Ad Block Data</h1>
     <div class="tab-content">
         <dl class="clearfix">
             <dt>Ad Name:</dt>
