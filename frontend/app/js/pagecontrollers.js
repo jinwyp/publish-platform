@@ -410,7 +410,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     $scope.showcontenticon = false;//是否显示centent icon
     $scope.showaddblockmenubutton = function() {
         this.cssblockaddmenubutton = true;
-        if($scope.showautoblockstyle){
+        if(this.showautoblockstyle){
             this.showcontenticon = false;
         }else{
             this.showcontenticon = true;
@@ -418,7 +418,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     };
 
     $scope.hideaddblockmenubutton = function() {
-        if($scope.showautoblockstyle){
+        if(this.showautoblockstyle){
             this.cssblockaddmenubutton = true;
         }else{
             this.cssblockaddmenubutton = false;
@@ -429,23 +429,25 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
     //关闭Auto block弹出框
     $scope.closeautoblock = function() {
-        $scope.showautoblockstyle = false;
+        debugger;
+        copythis.showautoblockstyle = false;
         $scope.cssblocktipbox = '';
     }
 
-    $scope.showautoblockstyle = false;
-
+    this.showautoblockstyle = false;
+     var copythis = '';
     $scope.showblocksettingmenu = function( blocktype, event1, layoutcontainer ) {
         this.cssblocktipadd = false;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipbox = false;
+        copythis = this;
         $scope.currentlayoutcontainer = layoutcontainer;
-        $scope.showautoblockstyle = false;
+        this.showautoblockstyle = false;
         switch(blocktype)
         {
             case 'auto':
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 $scope.cssblocktipbox = blocktype;
-                $scope.showautoblockstyle = true;
+                this.showautoblockstyle = true;
                 this.cssblockaddmenubutton = true;
                 this.showcontenticon = false;
                 break;
@@ -555,7 +557,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 //                newblock.blockarticles = modelArticle.getArticlesByTags(newblock.blocktag, newblock.blockquantity, newblock.blockcategory);
                 newblock.blockarticles = fireBaseGetArticlesByTags(newblock.blocktag, newblock.blockcategory, newblock.blockquantity );     // Use FireBase
 
-                $scope.showautoblockstyle = false;
+                this.showautoblockstyle = false;
                 $scope.cssblocktipbox = '';
 /*                if (temptagslistname.length == 0 || newblock.blockquantity == ''){
                     newblock.blockarticles = modelArticle.getArticles(newblock.blockquantity);
