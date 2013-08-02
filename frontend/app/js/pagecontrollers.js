@@ -408,24 +408,37 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
     //show add New Blocks Menu BOX
     $scope.showaddblockmenubutton = function() {
-        this.cssblockaddmenubutton = true;
+        if(this.showautoblockstyle){
+            this.cssblockaddmenubutton = false;
+        }else{
+            this.cssblockaddmenubutton = true;
+        }
     };
     $scope.hideaddblockmenubutton = function() {
         this.cssblockaddmenubutton = false;
-        $scope.cssblocktipbox = ''; //隐藏弹出框
+        //$scope.cssblocktipbox = ''; //隐藏弹出框
         this.cssblocktipadd = ''; //移除block图标选中的样式
     };
+
+    //关闭Auto block弹出框
+    $scope.closeautoblock = function() {
+        $scope.showautoblockstyle = false;
+    }
+
+    $scope.showautoblockstyle = false;
 
     $scope.showblocksettingmenu = function( blocktype, event1, layoutcontainer ) {
         this.cssblocktipadd = false;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipbox = false;
         $scope.currentlayoutcontainer = layoutcontainer;
-
+        $scope.showautoblockstyle = false;
         switch(blocktype)
         {
             case 'auto':
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 $scope.cssblocktipbox = blocktype;
+                $scope.showautoblockstyle = true;
+                this.cssblockaddmenubutton = false;
                 break;
             case 'editor':
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
@@ -475,6 +488,12 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         blocktypemenu2.css({"top":-(heightdiff), "position":"absolute"});
 //        console.log(blockcontent2.height(), blocktypemenu2.height(), heightdiff);
     };
+    //默认选中layout icon
+    $scope.selectblockicon = 0;
+    //选中layout图标事件
+    $scope.selectlayout = function(index){
+        $scope.selectblockicon = index;
+    }
 
     // add a block to page
     $scope.addblocktopage = function(blocktype, layoutcontainer, indexid, blocklayoutid ) {
