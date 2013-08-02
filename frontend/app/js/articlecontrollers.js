@@ -21,7 +21,6 @@ vcpapp.config(['$routeProvider', function($routeProvider) {
 
 
 /* Controllers */
-
 vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, modelArticle) {
 
     var usersessionurl = "https://vcplatform.firebaseIO.com/usernow";
@@ -39,7 +38,9 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
     var articlesinonepage;
     var pagecount;
     var usersession;
-
+	
+	$scope.cssloading = true;  //Article data Loading GIF animate: Start
+	
     $q.all([$scope.usersessionFirebase, $scope.usersFirebase, $scope.articlesFirebase]).then(function() {
         $scope.articlestotaldata = $scope.articlesFirebase;
         var usersdata = $scope.usersFirebase;
@@ -95,10 +96,14 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
                        }
                    }
                }
+			    
         }
+		
+		
     };
-
+	
     $scope.loadinit('updated','desc');
+	
 
     //页面总数
     articlesinonepage = 10;  // 文章每页数量
@@ -134,15 +139,20 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
 
     $scope.loadcurrentpagedata();
     $scope.articlepreviewdata = $scope.articlesdata[0];
-
+	
+	
 
     //检测currentPage值
     $scope.$watch('currentPage', function(newPage){
         $scope.watchPage = newPage;
         $scope.loadcurrentpagedata();
+        $scope.articlepreviewdata = $scope.articlesdata[0];
+        $scope.cssarticleindex = 0;
+        window.scrollTo(0,0);  //滚动条置顶
     });
 
-
+	$scope.cssloading = false;  //Article data Loading GIF animate: End
+	
     });//firebase then End
 
 
@@ -152,6 +162,8 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
     $scope.cssshowupdate = true;
     $scope.cssshowpublish = true;
     $scope.cssshowclick = true;
+	
+	
 
     //按类型排序
     $scope.orderbytype = function(flag,sort){
@@ -173,6 +185,7 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
         $scope.cssshowediticon = index;
     };
 
+    $scope.cssarticleindex = 0;
     $scope.clickArticle = function(article, index) {
         $scope.articlepreviewdata = article;
         $scope.cssarticleindex = index;
@@ -234,6 +247,11 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
     //点击更改文章状态按钮事件
     $scope.clickarticlestatus = function(status1, article){
         $scope.cssshowcomments = true;
+        if(status1 == 'Published'){
+            article.published = modelArticle.getDateNow();
+        }else{
+            article.published = 0;
+        }
         $scope.currentarticle  = article;
         $scope.currentarticlestatus = status1;
         $scope.currentarticlereviewcomment = "";
@@ -276,17 +294,6 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
     //搜索提示
     $scope.selected = undefined;
     $scope.states = [];
-    /*  $scope.states.length = 0;
-    var author1=[];
-    for(var i = 0;i < copytotaldata.length; i++){
-        $scope.states[i] = copytotaldata[i].title;
-        author1[i] = copytotaldata[i].author;
-    }
-    author1= _.union(author1);
-    $scope.states=_.union($scope.states);
-    for(var i = 0;i < author1.length; i++){
-        $scope.states.push(author1[i]);
-    }*/
 
     $scope.selectdata=function(){
         var titledata=[],data=[],articledata=[];
@@ -620,7 +627,7 @@ vcpapp.controller.articleCreateNew = function ($scope, $routeParams, $location, 
             "author": usersession.firstname ,
             "editor": usersession.firstname ,
             "clickcount": 0,
-            "category" : "Cosmetics",
+            "category" : "--",
             "categoryid" : 1000,
             "tags": [],
             "revision" : [],

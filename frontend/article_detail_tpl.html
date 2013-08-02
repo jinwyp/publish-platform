@@ -5,7 +5,7 @@
     	<div class="write_title">
         	<a href="article_list_index.html" class="showlist" rel="tooltip"></a>
         	<!--<h1 >{{articledata.title}} </h1>-->
-            <input type="text" class="title_input" required placeholder="Please input title" ng-model="articledata.title">
+            <input type="text" class="title_input" required placeholder="Title" ng-model="articledata.title">
         </div>
         
         <div class="article-row">
@@ -109,6 +109,7 @@
                     <div class="atricle_attribute_box">
                         <h3>Category</h3>
                         <select ng-model="articledata.category">
+                            <option>--</option>
                             <option>Cosmetics</option>
                             <option>Insurance</option>
                             <option>Healthcare</option>
@@ -131,13 +132,13 @@
                     <!-- Description -->
                     <div class="atricle_attribute_box">
                         <h3>Description</h3>
-                        <textarea maxlength="70" ng-model="articledata.description" style="width:580px;"></textarea>
+                        <textarea maxlength="70" ng-model="articledata.description" style="width:580px; font-family:Arial, Helvetica, sans-serif;"></textarea>
                     </div>
                     <!-- Description //End -->
 
                     <!-- Social -->
-                    <div class="atricle_attribute_box">
-                        <h3>SNS Sync Up</h3>
+                    <div class="atricle_attribute_box clearfix">
+                        <h3>SNS Sync up</h3>
                         <div class="share mrl">
                             <ul>
                                 <li>
@@ -147,18 +148,39 @@
                                         <input type="radio" name="share-toggles" id="share-toggle2" value="toggle1">
                                         <label class="toggle-radio" for="share-toggle1">OFF</label>
                                         <input type="radio" name="share-toggles" id="share-toggle1" value="toggle2" checked="checked">
-                                    </div> 
+                                    </div>
                                 </li>
                                 <li>
                                     <label class="share-label" for="share-toggle4"><img src="app/img/sns-twitter.png"></label>
                                     <div class="toggle">
                                         <label class="toggle-radio" for="share-toggle4">ON</label>
-                                        <input type="radio" name="share-toggles2" id="share-toggle4" value="toggle1" checked="checked">
+                                        <input type="radio" name="share-toggles2" id="share-toggle4" value="toggle3">
                                         <label class="toggle-radio" for="share-toggle3">OFF</label>
-                                        <input type="radio" name="share-toggles2" id="share-toggle3" value="toggle2">
+                                        <input type="radio" name="share-toggles2" id="share-toggle3" value="toggle4" checked="checked">
                                     </div>
                                 </li>
-
+                            </ul>
+                        </div>
+                        <div class="share">
+                        	<ul>
+                                <li>
+                                    <label class="share-label" for="share-toggle6"><img src="https://secure.shared.live.com/~Live.SiteContent.Explore/~15.40.70/header/logo_sky.png"></label>
+                                    <div class="toggle">
+                                        <label class="toggle-radio" for="share-toggle6">ON</label>
+                                        <input type="radio" name="share-toggles3" id="share-toggle6" value="toggle5">
+                                        <label class="toggle-radio" for="share-toggle5">OFF</label>
+                                        <input type="radio" name="share-toggles3" id="share-toggle5" value="toggle6" checked="checked">
+                                    </div>
+                                </li>
+                                <li>
+                                    <label class="share-label" for="share-toggle8"><img src="http://evernote.com/media/img/logo.png"></label>
+                                    <div class="toggle">
+                                        <label class="toggle-radio" for="share-toggle8">ON</label>
+                                        <input type="radio" name="share-toggles4" id="share-toggle8" value="toggle7" checked="checked">
+                                        <label class="toggle-radio" for="share-toggle7">OFF</label>
+                                        <input type="radio" name="share-toggles4" id="share-toggle7" value="toggle8">
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>

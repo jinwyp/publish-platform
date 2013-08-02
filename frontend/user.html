@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>VCP</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="viewport" content="target-densitydpi=device-dpi" />
     <link href="lib/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="lib/flatui/flat-ui.css" rel="stylesheet">
     <link href="app/style.css" rel="stylesheet">
@@ -28,9 +28,9 @@
 	<h1 class="logo"><a href="index.html">VCP</a></h1>
     <a href="###" class="preview">preview</a>
     <div class="preview_Item">
-    	<a href="#" class="forMobile">Preview on Mobile</a>
-        <a href="#" class="forPad">Preview on Pad</a>
-    	<a href="../demo/index.html" class="forPC">PC</a>
+        <a href="#" class="forMobile">On Mobile</a>
+        <a href="#" class="forPad">On Pad</a>
+        <a href="../demo/index.html" class="forPC" target="_blank">On PC</a>
     </div>
     <ul class="menu clearfix">
     	<li id="menuSite"><a href="site.html">Site</a></li>
@@ -39,7 +39,7 @@
         <li id="menuReports"><a href="reports.html">Report</a></li>
         <li id="menuStore"><a href="store.html">Store</a>
         <li id="menuUser"><a href="user.html" class="current">User</a></li>
-        <li id="menuAppGenerate"><a href="#">App Generate</a></li>
+        <li id="menuAppGenerate"><a href="app.html">App</a></li>
     </ul>
 </header>
         
@@ -65,7 +65,7 @@
 
                         <!-- 有头像时: class="userPhoto full" -->
                         <div class="userPhoto full" ng-cloak ng-show = "csshaveavatar">
-                            <img src="app/img/temp/1.jpg">
+                            <img src="app/img/photo/photohead.png">
                             <input type="submit" class="btn" value="change photo">
                         </div>
 

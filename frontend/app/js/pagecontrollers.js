@@ -1,3 +1,4 @@
+
 'use strict';
 
 var vcpapp = angular.module('vcpmodule', ['ui.bootstrap', 'firebase']);
@@ -89,31 +90,35 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
         var articlelist = $scope.articlesFirebase;
 
-        articlesresulttag = _.filter(articlelist, function(aritcle){
+        if(blockcategory !== 'All'){
+            articlesresultcategory = _.filter(articlelist, function(aritcle){
+                if (aritcle.category == blockcategory){
+                    return true
+                }
+            });
+        }else{
+            articlesresultcategory = articlelist;
+        }
+        console.dir(articlesresultcategory);
+        articlesresulttag = _.filter(articlesresultcategory, function(aritcle){
             var singlearticletags = _.filter(aritcle.tags, function(singletag){
                 var tagresult = _.where(taglistdata, {tagname: singletag.tagname});
-
                 return tagresult.length;
             });
             return  singlearticletags.length;
         });
-//        console.log(articlesresulttag);
 
-        articlesresultcategory = _.filter(articlelist, function(element1){
-            if (element1.category.toString() == blockcategory){
-//                console.log(blockcategory, element1.category);
-                return true
-            }
-        });
-//        console.log(articlesresultcategory);
 
-        articlesresultunion = _.union(articlesresulttag, articlesresultcategory);
-        articlesresultfinal = _.where(articlesresultunion, {status: "Published"});
+
+//        articlesresultunion = _.union(articlesresulttag, articlesresultcategory);
+        articlesresultfinal = _.where(articlesresulttag, {status: "Published"});
 
         if(articlesresultfinal.length > quantity){
             articlesresultfinal.splice(0, articlesresultfinal.length - quantity);    //判断文章数量
         }
 
+
+        articlesresultfinal = _.sortBy(articlesresultfinal, function(article){ return -article.updated });
 
         return articlesresultfinal;
     }
@@ -131,7 +136,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         blocklayout : 10,
         blockquantity : 6,
         blocktag : [],
-        blockcategory : 'Health and leisure',
+        blockcategory : 'All',
         blocksortby : 'bydate',
         apiurl : "",
         adsname : "",
@@ -141,7 +146,12 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
 //    var site = modelSite.getSite();
     var site = {};
-
+	
+	// The default page is entered, the display animation
+	$scope.cssloading = true; //Block Loading GIF
+	$scope.csspagelayout = false; //Loading start: hide PageLayout 
+	$scope.csspagelist = false; //Loading end: show PageList
+	
     $q.all([$scope.sitedataFirebase, $scope.articlesFirebase, $scope.pages]).then(function() {
         site = $scope.sitedataFirebase ;
         $scope.get_site = site;
@@ -218,13 +228,16 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         }
 
         $scope.localarticles = $scope.articlesFirebase;    // Use FireBase
+		 
+		 $scope.cssloading = false;  //Block Loading GIF
+		 $scope.csspagelayout = true; //Loading end: show PageLayout
+		 $scope.csspagelist = true; //Loading end: show PageList
 
     });
 
 
 
-
-
+	
     $scope.cssheadermenubutton = false;
     $scope.cssfootermenubutton=false;
 
@@ -280,9 +293,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         }
     };
 
-    $scope.showaddpageinput = function() {
-        $scope.cssshowpageaddinput = true;       //添加page的输入框显示
-    };
     $scope.showeditpageattribute = function() {
         $scope.csspageattribute = true;       //添加page的输入框显示
     };
@@ -293,6 +303,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
     //left side bar add page
     $scope.showaddpageinput = function() {
+        $scope.newpage.pagename = '';
         $scope.cssshowpageaddinput = true;       //添加page的输入框显示
     };
 
@@ -316,9 +327,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
             ]
         };
         $scope.pages.push(newpage);
-
-//        modelSite.addSinglePage(newpage);
-//        $scope.layouts = modelSite.getLayoutList();
     };
 
 
@@ -333,7 +341,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
     $scope.editsavepage = function(page) {
         $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
-//        modelSite.updateSinglePage(page);
 
     };
     $scope.delpage = function( page) {
@@ -342,10 +349,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
             //首页和内容页面都是无法删除的
             var pageindex = $scope.pages.indexOf(page);
             $scope.pages.splice(pageindex, 1);
-
         }
-
-//        modelSite.delSinglePage(page);
     };
 
     //right side bar
@@ -360,13 +364,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
                 $scope.singlepage = page;
             }
         });
-
-//        var pageindex = $scope.pages.indexOf($scope.singlepage);
-//        console.log($scope.singlepage, pageindex);
-
-
-//        modelSite.saveSinglePageLayout($scope.singlepage, angular.copy(layout));
-
     };
 
 
@@ -396,41 +393,125 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     };
 
     //show add New Blocks Menu BOX
+    $scope.showcontenticon = false;//是否显示centent icon
     $scope.showaddblockmenubutton = function() {
         this.cssblockaddmenubutton = true;
-    };
-    $scope.hideaddblockmenubutton = function() {
-        this.cssblockaddmenubutton = false;
-        this.cssblocktipadd = false;
-        $scope.cssblocktipbox = '';
+        if(this.showautoblockstyle || this.showeditorblockstyle || this.showrssblockstyle){
+            this.showcontenticon = false;
+        }else{
+            this.showcontenticon = true;
+        }
     };
 
+
+    $scope.hideaddblockmenubutton = function() {
+        if(this.showautoblockstyle || this.showeditorblockstyle || this.showrssblockstyle){
+            this.cssblockaddmenubutton = true;
+        }else{
+            this.cssblockaddmenubutton = false;
+        }
+        if(this.showstaticblockstyle || this.showadblockstyle){
+            this.cssblockaddmenubutton = true;
+            this.showcontenticon = true;
+        }else{
+            this.showcontenticon = false;
+        }
+        this.cssblocktipadd = ''; //移除block图标选中的样式
+    };
+
+    //关闭Auto block弹出框
+    $scope.closeautoblock = function() {
+        copythis.showautoblockstyle = false;
+        $scope.cssblocktipbox = '';
+    }
+    //关闭editor block
+    $scope.closeeditorblock = function(){
+        copythis.showeditorblockstyle = false;
+        $scope.cssblocktipbox = '';
+    }
+    //关闭rss block
+    $scope.closerssblock = function(){
+        copythis.showrssblockstyle = false;
+        $scope.cssblocktipbox = '';
+    }
+    //关闭static block
+    $scope.closestaticblock = function(){
+        copythis.showstaticblockstyle = false;
+        $scope.cssblocktipbox = '';
+    }
+    //关闭ad block
+    $scope.closeadblock = function(){
+        copythis.showadblockstyle = false;
+        $scope.cssblocktipbox = '';
+    }
+
+    $scope.showautoblockstyle = false;
+    $scope.showeditorblockstyle = false;
+    $scope.showrssblockstyle = false;
+    $scope.showstaticblockstyle = false;
+    $scope.showadblockstyle = false;
+    var copythis = '';
     $scope.showblocksettingmenu = function( blocktype, event1, layoutcontainer ) {
+        $scope.selectblockicon = 0;
+        $scope.autoblocklayout = 100;
+        $scope.selecteditorblockicon = 0;
+        $scope.autoeditorblocklayout = 100;
+        $scope.selectrssblockicon = 1;
+        $scope.rsseditorblocklayout = 101;
+        $scope.newblock.blockname = '';
+        if(copythis !== ''){
+             copythis.showautoblockstyle = false;
+             copythis.showeditorblockstyle = false;
+             copythis.showrssblockstyle = false;
+             copythis.showstaticblockstyle = false;
+             copythis.showadblockstyle = false;
+             copythis.cssblockaddmenubutton = false;
+             copythis.showcontenticon = false;
+        }
         this.cssblocktipadd = false;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipbox = false;
-        $scope.currentlayoutcontainer = layoutcontainer;
+        copythis = this;
 
+        $scope.currentlayoutcontainer = layoutcontainer;
+        this.showautoblockstyle = false;
+        this.showeditorblockstyle = false;
+        this.showrssblockstyle = false;
         switch(blocktype)
         {
             case 'auto':
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 $scope.cssblocktipbox = blocktype;
+                this.showautoblockstyle = true;
+                this.cssblockaddmenubutton = true;
+                this.showcontenticon = false;
                 break;
             case 'editor':
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 $scope.cssblocktipbox = blocktype;
+                this.showeditorblockstyle = true;
+                this.cssblockaddmenubutton = true;
+                this.showcontenticon = false;
                 break;
             case 'static':
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 $scope.cssblocktipbox = blocktype;
+                this.cssblockaddmenubutton = true;
+                this.showcontenticon = true;
+                this.showstaticblockstyle = true;
                 break;
             case 'ads':
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 $scope.cssblocktipbox = blocktype;
+                this.cssblockaddmenubutton = true;
+                this.showcontenticon = true;
+                this.showadblockstyle = true;
                 break;
 			case 'RSS':
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 $scope.cssblocktipbox = blocktype;
+                this.showrssblockstyle = true;
+                this.cssblockaddmenubutton = true;
+                this.showcontenticon = false;
                 break;
             default:
         }
@@ -438,10 +519,9 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
         var blockcontent = $(event1.target).parent().parent();     //获取id 为 blockcontent DIV .
         blockcontent.append($(".tip_box"));
-        var blocktypemenu = $(".tip_"+ blocktype)     //获取样式名称拼接 .
+        var blocktypemenu = $(".tip_"+ blocktype);     //获取样式名称拼接 .
         var left =  ( parseInt(blockcontent.width() ) - parseInt( blocktypemenu.width() ) )/2;
         blocktypemenu.css({"left":left+"px", "top":-(blocktypemenu.height()), "position":"absolute"});
-//        console.log(blockcontent.height(), blocktypemenu.height());
     };
 
     $scope.clickblocklayouttab = function(event1, divid) {
@@ -449,10 +529,10 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         switch(divid)
         {
             case 'tab-layout':
-                heightdiff = 306;
+                heightdiff = 274;
                 break;
             case 'tab-filter':
-                heightdiff = 210;
+                heightdiff = 249;
                 break;
             case 'tab-Sort':
                 heightdiff = 101;
@@ -465,6 +545,33 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         blocktypemenu2.css({"top":-(heightdiff), "position":"absolute"});
 //        console.log(blockcontent2.height(), blocktypemenu2.height(), heightdiff);
     };
+    //默认选中layout icon
+    $scope.selectblockicon = 0;
+    $scope.autoblocklayout = 100;
+    //选中layout图标事件
+    $scope.selectlayout = function(index,blocklayout){
+        $scope.selectblockicon = index;
+        $scope.autoblocklayout = blocklayout;
+    }
+
+
+    $scope.selecteditorblockicon = 0;  //设定editor选中图标
+    $scope.autoeditorblocklayout = 100;    //设定editor layout id
+
+    //选中Editor layout图标事件
+    $scope.selecteditorlayout = function(index,blocklayout){
+        $scope.selecteditorblockicon = index;
+        $scope.autoeditorblocklayout = blocklayout;
+    }
+
+    $scope.selectrssblockicon = 1;    //设定rss选中图标
+    $scope.rsseditorblocklayout = 101; //设定rss layout id
+
+    //选中RSS layout 图标事件
+    $scope.selectrsslayout = function(index,blocklayout){
+        $scope.selectrssblockicon = index;
+        $scope.rsseditorblocklayout = blocklayout;
+    }
 
     // add a block to page
     $scope.addblocktopage = function(blocktype, layoutcontainer, indexid, blocklayoutid ) {
@@ -476,14 +583,13 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
             blocklayout : blocklayoutid,
             blockquantity : 0,
             blocktag : [],
-            blockcategory : 'Health and leisure',
+            blockcategory : 'All',
             blocksortby : 'date',
             blockarticles : [],
             apiurl : "",
             adsname : "",
             adscode : ""
         };
-
         switch(blocktype)
         {
             case 'auto':
@@ -491,6 +597,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
                 newblock.blockname = $scope.newblock.blockname;
                 newblock.blockquantity = Number($scope.newblock.blockquantity);
                 newblock.blockcategory = $scope.newblock.blockcategory;
+
                 //检查Tags
                 var temptagslistname = $(".tagsinput").exportTags();
 
@@ -511,8 +618,10 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
                 //通过Tags 获取文章
 //                newblock.blockarticles = modelArticle.getArticlesByTags(newblock.blocktag, newblock.blockquantity, newblock.blockcategory);
-                newblock.blockarticles = fireBaseGetArticlesByTags(newblock.blocktag, newblock.blockquantity, newblock.blockcategory);     // Use FireBase
+                newblock.blockarticles = fireBaseGetArticlesByTags(newblock.blocktag, newblock.blockcategory, newblock.blockquantity );     // Use FireBase
 
+                this.showautoblockstyle = false;
+                $scope.cssblocktipbox = '';
 /*                if (temptagslistname.length == 0 || newblock.blockquantity == ''){
                     newblock.blockarticles = modelArticle.getArticles(newblock.blockquantity);
                 }*/
@@ -523,6 +632,8 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
                 newblock.blocktype = 'editor';
                 newblock.blockname = $scope.newblock.blockname;
                 newblock.blockquantity = Number($scope.newblock.blockquantity);
+                this.showeditorblockstyle = false;
+                $scope.cssblocktipbox = '';
                 break;
 
             case 'statictext':
@@ -556,6 +667,8 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
                 newblock.blocktype = 'RSS';
                 newblock.blockname = $scope.newblock.blockname;
                 newblock.urlapi = $scope.newblock.urlapi;
+                this.showrssblockstyle = false;
+                $scope.cssblocktipbox = '';
                 break;
 
             default:
@@ -670,7 +783,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         var blockcontent = $(event1.target).parent().parent();     //获取id 为 blockcontent DIV .
         blockcontent.append($(".tip_box"));
         console.log($(".tip_box"));
-        var blocktypemenu = $(".tip_"+ blocktype)     //获取样式名称拼接 .
+        var blocktypemenu = $(".tip_"+ blocktype);     //获取样式名称拼接 .
         var left =  ( parseInt(blockcontent.width() ) - parseInt( blocktypemenu.width() ) )/2;
         blocktypemenu.css({"left":left+"px", "top":-(blocktypemenu.height()), "position":"absolute"});
     }
@@ -1012,9 +1125,11 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
     $scope.showfootmenusetting=function(){
         $scope.cssfootermenubutton = true;
+        $scope.cssfootersetting = true;
     }
     $scope.hidefootmenusetting=function(){
         $scope.cssfootermenubutton = false;
+        $scope.showfooternavsetting = false;
         $scope.cssfootersetting = false; //隐藏footer的设置面板
     }
     $scope.clickfootertheme = function(indexid, themedata){
@@ -1023,8 +1138,9 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
         $scope.sitedataFirebase.defaultsettings.footerthemeindex = indexid;
     }
+    $scope.showfooternavsetting = false;
     $scope.slideshowfootersetting = function(){
-        $scope.cssfootersetting = true;
+        $scope.showfooternavsetting = true;
     }
     $scope.footercommonfunction=function(){
         $scope.showli=-1;
@@ -1046,4 +1162,5 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         }
         setupLabel();  //选中radio 按钮方法
     }
+
 }

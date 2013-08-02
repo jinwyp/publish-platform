@@ -97,8 +97,15 @@
             </div>
             <!-- 预览区 -->
             <div id="article-cont-preview" class="article-cont" >
-                <div ng-show="articlepreviewdata.title == undefined" style="width:580px; margin:40px auto;">
-                    <img src="app/img/temp/article_default_pic.jpg" alt="">
+                <div ng-show="articlepreviewdata.title == undefined">
+                		
+                     <!-- Loading GIF -->
+                	   <div class="loading">
+                	  		<div class="loadingCont"><img src="app/img/loading.gif"><h6>Loading...</h6></div>
+                      </div>
+                      <!-- Loading GIF //End -->
+                      
+                    <!-- <img src="app/img/temp/article_default_pic.jpg" alt=""> -->
                 </div>
                 <div class="article-templete CkeditorPreview" ng-hide="articlepreviewdata.title == undefined">
 
@@ -125,12 +132,13 @@
             <div class="article-title">Article List
                 <i class="article-title-ico clearfix">
                     <!-- <pre>Model: {{selected| json}}</pre>-->
-                    <a href="#/newarticle/" class="ico-article-addnew" rel="tooltip"></a>
+                    <a href="#/newarticle/" class="btn btn-addnew" rel="tooltip"></a>
+                    <!-- <a href="#/newarticle/" class="ico-article-addnew" rel="tooltip"></a> -->
                     <!--<a href="#" class="ico-article-sequence dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>-->
                     <input class="aiticleList_search" type="text" ng-model="selected" ng-change="selectdata()" typeahead="state for state in states | filter:$viewValue">
                     <div class="ListSequence">
-                        <input ng-hide="cssshowupdate" class="ico-article-UP_default" type="button" value="Update" ng-click="orderbytype('updated','desc')">
-                        <input ng-show="cssshowupdate" class="ico-article-DOWN_default" type="button" value="Update" ng-click="orderbytype('updated','asc')">
+                        <input ng-hide="cssshowupdate" class="ico-article-UP_default" type="button" value="Updated" ng-click="orderbytype('updated','desc')">
+                        <input ng-show="cssshowupdate" class="ico-article-DOWN_default" type="button" value="Updated" ng-click="orderbytype('updated','asc')">
                         <input ng-hide="cssshowpublish" class="ico-article-UP_default" type="button" value="Published" ng-click="orderbytype('published','desc')">
                         <input ng-show="cssshowpublish" class="ico-article-DOWN_default" type="button" value="Published" ng-click="orderbytype('published','asc')">
                         <input ng-hide="cssshowclick" class="ico-article-UP_default" type="button" value="Click" ng-click="orderbytype('clickcount','desc')">
@@ -142,7 +150,13 @@
 
             <!-- Aritcles列表 -->
             <div class="article-cont">
-
+            
+				  <!-- Loading GIF -->
+                <div class="loading" ng-show="cssloading" ng-animate="'fade'">
+                	<div class="loadingCont"><img src="app/img/loading.gif"><h6>Loading...</h6></div>
+                </div>
+                <!-- Loading GIF //End -->
+                
                 <ul class="article-list">
                     
                     <li ng-mouseenter="showEditIcon($index)"  ng-class="{active:$index == cssarticleindex}" ng-repeat="article in articlesdata track by $index | filter:query"  ng-click="clickArticle(article, $index)" >
@@ -150,8 +164,8 @@
                             <h1><a href="" >{{article.title}}</a></h1>
                             <dl>
                                 <dd><p class="titlename">Created</p><p>{{article.created | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
-                                <dd><p class="titlename">Published</p><p>{{article.published | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
                                 <dd><p class="titlename">Updated</p><p>{{article.updated | date:'MM/dd/yyyy HH:mm:ss'}}</p></dd>
+                                <dd><p class="titlename">Published</p><p>{{(article.published == 0 ? '--' : article.published) | date:'MM/dd/yyyy HH:mm:ss' }}</p></dd>
                                 <dd><p class="titlename">Author</p><p>{{article.author}}</p></dd>
                                 <dd><p class="titlename">Editor</p><p>{{article.editor}}</p></dd>
                             </dl>
@@ -169,8 +183,7 @@
                                 <!-- Draft状态 -->
                                 <dd ng-show="article.status=='Draft'">
                                     <div class="btn-group">
-                                    	<button class="btn btn-info" disabled>Draft</button>
-                                    	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
+                                    	<button class="btn btn-info"  data-toggle="dropdown">Draft</button>
                                     	<ul class="dropdown-menu pull-right clearfix">
                                           <li><input type="submit" value="Need Review" class="btn btn-block btn-warning" ng-click="clickarticlestatus('Need Review', article)"></li>
                                         </ul>
@@ -179,8 +192,7 @@
                                <!--  Need Review 状态-->
                                 <dd ng-show="article.status=='Need Review'">
                                     <div class="btn-group">
-                                    	<button class="btn btn-warning" disabled>Need Review</button>
-                                    	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
+                                    	<button class="btn btn-warning"  data-toggle="dropdown">Need Review</button>
                                     	<ul class="dropdown-menu pull-right clearfix">
                                           <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickarticlestatus('Draft', article)"></li>
                                           <li><input type="submit" value="Published" class="btn btn-block btn-success" ng-click="clickarticlestatus('Published', article)"></li>
@@ -190,8 +202,8 @@
                                 <!-- Published 状态-->
                                 <dd ng-show="article.status=='Published'">
                                     <div class="btn-group">
-                                    	<button class="btn btn-success" disabled>Published</button>
-                                    	<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
+                                    	<button class="btn btn-success" data-toggle="dropdown">Published</button>
+                                    	<!--<button class="btn dropdown-toggle" data-toggle="dropdown"></button>-->
                                     	<ul class="dropdown-menu pull-right clearfix">
                                           <li><input type="submit" value="Draft" class="btn btn-block btn-info" ng-click="clickarticlestatus('Draft',article)"></li>
                                         </ul>
@@ -205,7 +217,7 @@
                 </ul>
 
                 <!-- 翻页 -->
-                <div class="pagination pagination-centered">
+                <div class="pagination pagination-centered" style="cursor: pointer;">
                     <pagination num-pages="noOfPages" current-page="currentPage"></pagination>
                 </div>
                 <!-- 翻页 / End -->
