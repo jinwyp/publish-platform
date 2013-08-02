@@ -162,7 +162,7 @@
 
 <!-- ======================================= tip_editor ======================================= -->
 <div class="tip_box tip_editor" ng-cloak ng-show="'editor'==cssblocktipbox">
-    <h1 class="PopupTitle"><a href="###" class="TipBoxClose">X</a>Editor's Pick Block Data</h1>
+    <h1 class="PopupTitle"><a href="###" class="TipBoxClose" ng-click="closeeditorblock()">X</a>Editor's Pick Block Data</h1>
     <div class="tab-content">
         <dl class="clearfix">
             <dt>Block name :</dt>
@@ -176,7 +176,8 @@
             <dt>Layout :</dt>
             <dd>
                 <div class="tipbox_layout">
-                    <a href="#"  ng-repeat="blocklayout in blocklayouts"  ng-click="addblocktopage('editor', currentlayoutcontainer, $index, blocklayout.id)">
+                   <!--2222 <a href="#"  ng-repeat="blocklayout in blocklayouts"  ng-click="addblocktopage('editor', currentlayoutcontainer, $index, blocklayout.id)">-->
+                    <a href="#" ng-class="{selected:selecteditorblockicon == $index}"  ng-repeat="blocklayout in blocklayouts" ng-click="selecteditorlayout($index,blocklayout.id)">
                         <img ng-src="{{ blocklayout.layoutimage }}" alt="">
                     </a>
                 </div>
@@ -529,6 +530,17 @@
                                 <img ng-show="selectblockicon == 2" src="app/img/temp/blocklayout_preview3.jpg" alt="">
                                 <!--无图两列-->
                                 <img ng-show="selectblockicon == 3" src="app/img/temp/blocklayout_preview4.jpg" alt="">
+                            </div>
+                            <div class="masklayer" ng-show="showeditorblockstyle">
+                                <a href="#" class="btn btn-save" ng-click="addblocktopage('editor', currentlayoutcontainer, selecteditorblockicon, autoeditorblocklayout)"></a>
+                                <!--有图一列-->
+                                <img ng-show="selecteditorblockicon == 0" src="app/img/temp/blocklayout_preview1.jpg" alt="">
+                                <!--无图一列-->
+                                <img ng-show="selecteditorblockicon == 1" src="app/img/temp/blocklayout_preview2.jpg" alt="">
+                                <!--有图三列-->
+                                <img ng-show="selecteditorblockicon == 2" src="app/img/temp/blocklayout_preview3.jpg" alt="">
+                                <!--无图两列-->
+                                <img ng-show="selecteditorblockicon == 3" src="app/img/temp/blocklayout_preview4.jpg" alt="">
                             </div>
                             <!--insert here-->
                         </div>

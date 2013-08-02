@@ -410,7 +410,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     $scope.showcontenticon = false;//是否显示centent icon
     $scope.showaddblockmenubutton = function() {
         this.cssblockaddmenubutton = true;
-        if(this.showautoblockstyle){
+        if(this.showautoblockstyle || this.showeditorblockstyle){
             this.showcontenticon = false;
         }else{
             this.showcontenticon = true;
@@ -418,7 +418,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     };
 
     $scope.hideaddblockmenubutton = function() {
-        if(this.showautoblockstyle){
+        if(this.showautoblockstyle || this.showeditorblockstyle){
             this.cssblockaddmenubutton = true;
         }else{
             this.cssblockaddmenubutton = false;
@@ -429,12 +429,17 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
     //关闭Auto block弹出框
     $scope.closeautoblock = function() {
-        debugger;
         copythis.showautoblockstyle = false;
         $scope.cssblocktipbox = '';
     }
 
-    this.showautoblockstyle = false;
+    $scope.closeeditorblock = function(){
+        copythis.showeditorblockstyle = false;
+        $scope.cssblocktipbox = '';
+    }
+
+    $scope.showautoblockstyle = false;
+    $scope.showeditorblockstyle = false;
      var copythis = '';
     $scope.showblocksettingmenu = function( blocktype, event1, layoutcontainer ) {
         this.cssblocktipadd = false;      //点击当前block按钮显示对应block类型菜单
@@ -442,6 +447,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         copythis = this;
         $scope.currentlayoutcontainer = layoutcontainer;
         this.showautoblockstyle = false;
+        this.showeditorblockstyle = false;
         switch(blocktype)
         {
             case 'auto':
@@ -454,6 +460,8 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
             case 'editor':
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 $scope.cssblocktipbox = blocktype;
+                this.showeditorblockstyle = true;
+                this.showcontenticon = false;
                 break;
             case 'static':
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
@@ -501,11 +509,21 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     };
     //默认选中layout icon
     $scope.selectblockicon = 0;
-    $scope.autoblocklayout = '';
+    $scope.autoblocklayout = 100;
     //选中layout图标事件
     $scope.selectlayout = function(index,blocklayout){
         $scope.selectblockicon = index;
         $scope.autoblocklayout = blocklayout;
+    }
+
+
+    $scope.selecteditorblockicon = 0;  //设定editor选中图标
+    $scope.autoeditorblocklayout = 100;    //设定editor layout id
+
+    //选中Editor layout图标事件
+    $scope.selecteditorlayout = function(index,blocklayout){
+        $scope.selecteditorblockicon = index;
+        $scope.autoeditorblocklayout = blocklayout;
     }
 
     // add a block to page
@@ -569,6 +587,8 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
                 newblock.blocktype = 'editor';
                 newblock.blockname = $scope.newblock.blockname;
                 newblock.blockquantity = Number($scope.newblock.blockquantity);
+                this.showeditorblockstyle = false;
+                $scope.cssblocktipbox = '';
                 break;
 
             case 'statictext':
