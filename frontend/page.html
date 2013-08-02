@@ -61,7 +61,7 @@
 
 <!-- =======================================  tip_auto ======================================= -->
 <div class="tip_box tip_auto" ng-cloak ng-show="'auto'==cssblocktipbox" >
-    <h1 class="PopupTitle"><a href="###" class="TipBoxClose">X</a>Auto Block Data</h1>
+    <h1 class="PopupTitle"><a href="###" class="TipBoxClose" ng-click="closeautoblock()">X</a>Auto Block Data</h1>
     <div class="tabbable tabs-below">
         <div class="tab-content">
             <!-- Tab1: Layout -->
@@ -78,7 +78,8 @@
                     <dt>Layout :</dt>
                     <dd>
                         <div class="tipbox_layout">
-                            <a href="#"  ng-repeat="blocklayout in blocklayouts"  ng-click="addblocktopage('auto', currentlayoutcontainer, $index, blocklayout.id)">
+                            <!--<a href="#"  ng-repeat="blocklayout in blocklayouts"  ng-click="addblocktopage('auto', currentlayoutcontainer, $index, blocklayout.id)">-->
+                            <a href="#" ng-class="{selected:selectblockicon == $index}" ng-repeat="blocklayout in blocklayouts" ng-click="selectlayout($index)">
                                 <img ng-src="{{ blocklayout.layoutimage }}" >
                             </a>
                          <!--   <a href="#" class="selected">
@@ -90,10 +91,6 @@
                 <dl class="clearfix">
                     <dt>Article Quantity :</dt>
                     <dd><input type="text" ng-model="newblock.blockquantity" ></dd>
-                </dl>
-                <dl class="clearfix">
-                    <dt>&nbsp;</dt>
-                    <dd><input type="submit" class="btn btn-save" value=""></dd>
                 </dl>
             </div>
             <!-- Tab1: Layout //End -->
@@ -145,19 +142,6 @@
                         </div>
                     </dd>
                 </dl>
-                <dl class="clearfix">
-                    <dt>&nbsp;</dt>
-                    <dd><input type="submit" class="btn btn-save" value=""></dd>
-                </dl>
-                <!--
-                <dl class="clearfix">
-                    <dt>Author :</dt>
-                    <dd>
-                        <div class="tipbox_filter">
-                            <input type="text" data-provide="typeahead" data-items="10" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-                        </div>
-                    </dd>
-                </dl> -->
             </div>
             <!-- Tab2: Filter //End -->
             <!-- Tab3: Sort 
@@ -207,10 +191,6 @@
                 <input type="text" ng-model="newblock.blockquantity" >
             </dd>
         </dl>
-        <dl class="clearfix">
-                    <dt>&nbsp;</dt>
-                    <dd><input type="submit" class="btn btn-save" value=""></dd>
-                </dl>
     </div>
 </div>
 
@@ -245,15 +225,7 @@
         <dl class="clearfix">
             <dt>Ad Code :</dt>
             <dd><textarea rows="3" ng-model="newblock.adscode"></textarea></dd>
-            <!--
-        	<dt>&nbsp;</dt>
-            <dd><input type="submit" class="btn btn-success" value="Add" style=" height:30px; margin:0 0 10px 0;" ng-click="addblocktopage('ads', currentlayoutcontainer, 0)"></dd>
-            -->
         </dl>
-        <dl class="clearfix">
-                    <dt>&nbsp;</dt>
-                    <dd><input type="submit" class="btn btn-save" value=""></dd>
-                </dl>
     </div>
 </div>
 
@@ -284,10 +256,6 @@
             <dd><input type="text" data-provide="typeahead" data-items="10" ng-model="newblock.urlapi">
             </dd>
         </dl>
-        <dl class="clearfix">
-                    <dt>&nbsp;</dt>
-                    <dd><input type="submit" class="btn btn-save" value=""></dd>
-                </dl>
     </div>
 </div>
 
@@ -540,55 +508,20 @@
                             </div>
                             <!-- ICO //End -->
 
+                            <div class="masklayer" ng-show="showautoblockstyle">
+                                <a href="#" class="btn btn-save"></a>
+                                <!--有图一列-->
+                                <img ng-show="selectblockicon == 0" src="app/img/temp/blocklayout_preview1.jpg" alt="">
+                                <!--无图一列-->
+                                <img ng-show="selectblockicon == 1" src="app/img/temp/blocklayout_preview2.jpg" alt="">
+                                <!--有图三列-->
+                                <img ng-show="selectblockicon == 2" src="app/img/temp/blocklayout_preview3.jpg" alt="">
+                                <!--无图两列-->
+                                <img ng-show="selectblockicon == 3" src="app/img/temp/blocklayout_preview4.jpg" alt="">
+                            </div>
                             <!--insert here-->
                         </div>
                         <!-- Add Block Box //End -->
-                        
-                        <!-- Mask 测试 -->
-                        <div class="block_content blockempty">
-                        	   <!-- Mask -->
-                            <div class="masklayer">
-                                  <a href="#" class="btn btn-save"></a>
-                                  <img src="app/img/temp/blocklayout_preview1.jpg" alt="">
-                            </div>
-                            <!-- Mask //End -->
-                        </div>
-                        <!-- 测试 //End -->
-                        
-                        <!-- Mask 测试 -->
-                        <div class="block_content blockempty">
-                        	   <!-- Mask -->
-                            <div class="masklayer">
-                                  <a href="#" class="btn btn-save"></a>
-                                  <img src="app/img/temp/blocklayout_preview2.jpg" alt="">
-                            </div>
-                            <!-- Mask //End -->
-                        </div>
-                        <!-- 测试 //End -->
-                        
-                        <!-- Mask 测试 -->
-                        <div class="block_content blockempty">
-                        	   <!-- Mask -->
-                            <div class="masklayer">
-                                  <a href="#" class="btn btn-save"></a>
-                                  <img src="app/img/temp/blocklayout_preview3.jpg" alt="">
-                            </div>
-                            <!-- Mask //End -->
-                        </div>
-                        <!-- 测试 //End -->
-                        
-                        <!-- Mask 测试 -->
-                        <div class="block_content blockempty">
-                        	   <!-- Mask -->
-                            <div class="masklayer">
-                                  <a href="#" class="btn btn-save"></a>
-                                  <img src="app/img/temp/blocklayout_preview4.jpg" alt="">
-                            </div>
-                            <!-- Mask //End -->
-                        </div>
-                        <!-- 测试 //End -->
-                        
-                        
 
                     </div>
                 </div>
