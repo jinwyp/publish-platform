@@ -1448,6 +1448,9 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .article-cont				{ background:#fff; border-radius:4px; min-height:600px; position:relative;}
 .atricle_attribute_box	{ padding:40px; border-bottom:1px dashed #ddd;}
 
+/* SNS Share */
+.atricle_attribute_box .share{ float:left;}
+
 /* article-templete */
 .article-templete	{ padding:0px;}
 .article-templete.CkeditorPreview{ padding:20px;}
