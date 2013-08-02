@@ -407,22 +407,30 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     };
 
     //show add New Blocks Menu BOX
+    $scope.showcontenticon = false;//是否显示centent icon
     $scope.showaddblockmenubutton = function() {
-        if(this.showautoblockstyle){
-            this.cssblockaddmenubutton = false;
+        this.cssblockaddmenubutton = true;
+        if($scope.showautoblockstyle){
+            this.showcontenticon = false;
         }else{
-            this.cssblockaddmenubutton = true;
+            this.showcontenticon = true;
         }
     };
+
     $scope.hideaddblockmenubutton = function() {
-        this.cssblockaddmenubutton = false;
-        //$scope.cssblocktipbox = ''; //隐藏弹出框
+        if($scope.showautoblockstyle){
+            this.cssblockaddmenubutton = true;
+        }else{
+            this.cssblockaddmenubutton = false;
+        }
+        this.showcontenticon = false;
         this.cssblocktipadd = ''; //移除block图标选中的样式
     };
 
     //关闭Auto block弹出框
     $scope.closeautoblock = function() {
         $scope.showautoblockstyle = false;
+        $scope.cssblocktipbox = '';
     }
 
     $scope.showautoblockstyle = false;
@@ -438,7 +446,8 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 $scope.cssblocktipbox = blocktype;
                 $scope.showautoblockstyle = true;
-                this.cssblockaddmenubutton = false;
+                this.cssblockaddmenubutton = true;
+                this.showcontenticon = false;
                 break;
             case 'editor':
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
@@ -490,12 +499,15 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     };
     //默认选中layout icon
     $scope.selectblockicon = 0;
+    $scope.autoblocklayout = '';
     //选中layout图标事件
-    $scope.selectlayout = function(index){
+    $scope.selectlayout = function(index,blocklayout){
         $scope.selectblockicon = index;
+        $scope.autoblocklayout = blocklayout;
     }
 
     // add a block to page
+
     $scope.addblocktopage = function(blocktype, layoutcontainer, indexid, blocklayoutid ) {
         var newblock = {
             blockid : getMaxBlockId(),
@@ -512,7 +524,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
             adsname : "",
             adscode : ""
         };
-
+          debugger;
         switch(blocktype)
         {
             case 'auto':
@@ -543,6 +555,8 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 //                newblock.blockarticles = modelArticle.getArticlesByTags(newblock.blocktag, newblock.blockquantity, newblock.blockcategory);
                 newblock.blockarticles = fireBaseGetArticlesByTags(newblock.blocktag, newblock.blockcategory, newblock.blockquantity );     // Use FireBase
 
+                $scope.showautoblockstyle = false;
+                $scope.cssblocktipbox = '';
 /*                if (temptagslistname.length == 0 || newblock.blockquantity == ''){
                     newblock.blockarticles = modelArticle.getArticles(newblock.blockquantity);
                 }*/
