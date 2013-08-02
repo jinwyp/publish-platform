@@ -465,7 +465,8 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
              copythis.showrssblockstyle = false;
              copythis.showstaticblockstyle = false;
              copythis.showadblockstyle = false;
-             copythis.cssblockaddmenubutton = '';
+             copythis.cssblockaddmenubutton = false;
+             copythis.showcontenticon = false;
         }
         this.cssblocktipadd = false;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipbox = false;
