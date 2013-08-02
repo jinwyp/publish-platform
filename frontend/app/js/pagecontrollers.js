@@ -403,13 +403,19 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         }
     };
 
+
     $scope.hideaddblockmenubutton = function() {
         if(this.showautoblockstyle || this.showeditorblockstyle || this.showrssblockstyle){
             this.cssblockaddmenubutton = true;
         }else{
             this.cssblockaddmenubutton = false;
         }
-        this.showcontenticon = false;
+        if(this.showstaticblockstyle || this.showadblockstyle){
+            this.cssblockaddmenubutton = true;
+            this.showcontenticon = true;
+        }else{
+            this.showcontenticon = false;
+        }
         this.cssblocktipadd = ''; //移除block图标选中的样式
     };
 
@@ -418,20 +424,32 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         copythis.showautoblockstyle = false;
         $scope.cssblocktipbox = '';
     }
-
+    //关闭editor block
     $scope.closeeditorblock = function(){
         copythis.showeditorblockstyle = false;
         $scope.cssblocktipbox = '';
     }
-
+    //关闭rss block
     $scope.closerssblock = function(){
         copythis.showrssblockstyle = false;
+        $scope.cssblocktipbox = '';
+    }
+    //关闭static block
+    $scope.closestaticblock = function(){
+        copythis.showstaticblockstyle = false;
+        $scope.cssblocktipbox = '';
+    }
+    //关闭ad block
+    $scope.closeadblock = function(){
+        copythis.showadblockstyle = false;
         $scope.cssblocktipbox = '';
     }
 
     $scope.showautoblockstyle = false;
     $scope.showeditorblockstyle = false;
     $scope.showrssblockstyle = false;
+    $scope.showstaticblockstyle = false;
+    $scope.showadblockstyle = false;
     var copythis = '';
     $scope.showblocksettingmenu = function( blocktype, event1, layoutcontainer ) {
         $scope.selectblockicon = 0;
@@ -440,10 +458,19 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         $scope.autoeditorblocklayout = 100;
         $scope.selectrssblockicon = 1;
         $scope.rsseditorblocklayout = 101;
-
+        $scope.newblock.blockname = '';
+        if(copythis !== ''){
+             copythis.showautoblockstyle = false;
+             copythis.showeditorblockstyle = false;
+             copythis.showrssblockstyle = false;
+             copythis.showstaticblockstyle = false;
+             copythis.showadblockstyle = false;
+             copythis.cssblockaddmenubutton = '';
+        }
         this.cssblocktipadd = false;      //点击当前block按钮显示对应block类型菜单
         $scope.cssblocktipbox = false;
         copythis = this;
+
         $scope.currentlayoutcontainer = layoutcontainer;
         this.showautoblockstyle = false;
         this.showeditorblockstyle = false;
@@ -461,20 +488,28 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 $scope.cssblocktipbox = blocktype;
                 this.showeditorblockstyle = true;
+                this.cssblockaddmenubutton = true;
                 this.showcontenticon = false;
                 break;
             case 'static':
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 $scope.cssblocktipbox = blocktype;
+                this.cssblockaddmenubutton = true;
+                this.showcontenticon = true;
+                this.showstaticblockstyle = true;
                 break;
             case 'ads':
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 $scope.cssblocktipbox = blocktype;
+                this.cssblockaddmenubutton = true;
+                this.showcontenticon = true;
+                this.showadblockstyle = true;
                 break;
 			case 'RSS':
                 this.cssblocktipadd = blocktype;      //点击当前block按钮显示对应block类型菜单
                 $scope.cssblocktipbox = blocktype;
                 this.showrssblockstyle = true;
+                this.cssblockaddmenubutton = true;
                 this.showcontenticon = false;
                 break;
             default:
@@ -554,7 +589,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
             adsname : "",
             adscode : ""
         };
-          debugger;
         switch(blocktype)
         {
             case 'auto':
