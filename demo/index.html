@@ -19,11 +19,6 @@
 <div class="vcpbox nomag">
 <div class="container bgwhite">
 
-<!-- Loading -->
-<div class="loading" ng-show="cssloading" ng-animate="'fade'">
-    <div class="loadingCont"><img src="../frontend/app/img/loading.gif"><h6>Loading...</h6></div>
-</div>
-<!-- Loading //End -->
                 <!-- Page: Row -->
                 <div class="row">
                     <div class="span12">
@@ -70,12 +65,18 @@
 
 
 
-                <div class="row" ng-show="showlist">
+                <div class="row" ng-show="showlist" style="position: relative; min-height:400px;">
 
-
+                    <!-- Loading -->
+                    <div class="loading" ng-show="cssloading" ng-animate="'fade'">
+                        <div class="loadingCont"><img src="../frontend/app/img/loading.gif"><h6>Loading...</h6></div>
+                    </div>
+                    <!-- Loading //End -->
 
                     <div ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
                         <div class="block_content block-full" ng-repeat="block in layoutcontainer.blocks track by $index">
+
+
                             <!-- Block Layou: 无图列表 class="PageBlockLayout_Row_noIMG" -->
                             <div class="site-theme b-block block-layout-1" ng-class="{displaynone:block.blocktype == 'RSS', displaynone2:block.blocktype == 'ads', displaynone3:block.blocktype == 'static'}">
                                 <div class="globalTitle GT_blue clearfix">
