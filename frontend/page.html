@@ -418,12 +418,26 @@
                             		</div>
                                     <div class="globalContBox">
                                         <ul ng-class="{PageBlockLayout_Row_noIMG:block.blocklayout == '101',PageBlockLayout_Row:block.blocklayout == '100',PageBlockLayout_Column2_noIMG:block.blocklayout == '103',PageBlockLayout_Column3:block.blocklayout == '102'}" class="clearfix">
+                                        
+                                        	<li ng-repeat="article in block.blockarticles " class="clearfix">
+                                            	<div class="layoutIMG">
+                                                	<a href="#" class="linkImg"><img src="app/img/symptomfind/temp_06.jpg" alt="" /></a>
+                                                </div>
+                                                <div class="layoutContext">
+                                                	<h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="#">{{ article.title }}</a></h6>
+                                                	<p>{{ article.description }}...<a href="###">more</a></p>
+                                                	<p><span>Author:&nbsp;<i>{{ article.author }}</i></span></p>
+                                                </div>
+                                            </li>
+                                            
+                                        	<!-- 
                                             <li ng-repeat="article in block.blockarticles ">
                                                 <h6><span class="time">{{ article.created | date:'MM/dd/yyyy' }}</span><a href="#">{{ article.title }}</a></h6>
                                                 <a href="#" class="linkImg"><img src="app/img/symptomfind/temp_06.jpg" alt="" /></a>
                                                 <p>{{ article.description }}...<a href="###">more</a></p>
                                                 <p><span>Author:&nbsp;<i>{{ article.author }}</i></span></p>
                                             </li>
+                                            -->
                                         </ul>
                                     </div>
                             </div>
