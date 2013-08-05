@@ -45,10 +45,8 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
         $scope.articlestotaldata = $scope.articlesFirebase;
         var usersdata = $scope.usersFirebase;
         usersession = _.findWhere(usersdata, {email: $scope.usersessionFirebase.email});
-        console.log(usersession);
-//    $scope.articlestotaldata = modelArticle.getArticleList();     // use firebase for database
 
-    copytotaldata = $scope.articlestotaldata;
+        copytotaldata = $scope.articlestotaldata;
 
     //排序所有数据
     $scope.loadinit = function(flag,sort){
@@ -96,10 +94,7 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
                        }
                    }
                }
-			    
         }
-		
-		
     };
 	
     $scope.loadinit('updated','desc');
@@ -155,10 +150,6 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
 	
     });//firebase then End
 
-
-
-
-
     $scope.cssshowupdate = true;
     $scope.cssshowpublish = true;
     $scope.cssshowclick = true;
@@ -207,15 +198,10 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
 
 
     $scope.delArticle = function(article) {
-
-
         var getdeleteindex=$scope.searchdeleteindex(article);
 
         $scope.cssshowdelmodal = false;      //关闭弹出提示框 Modal
-//        modelArticle.delArticleById(articleid);
         $scope.articlestotaldata.splice(getdeleteindex, 1);
-        //$scope.articlestotaldata.splice(article, 1);
-//        $scope.articlestotaldata = modelArticle.getArticleList();
 
         copytotaldata = $scope.articlestotaldata;
         var pagecount1 = $scope.articlestotaldata.length/articlesinonepage;
@@ -279,9 +265,6 @@ vcpapp.controller.articleList = function ($scope, $filter, $q, angularFire, mode
         $scope.currentarticle.editor =  usersession.firstname;
         $scope.currentarticle.reviewhistory.push(newstatus);
 
-/*        $scope.currentarticle.revision.push(newrevision);
-        modelArticle.saveArticle(nowdata1);          //使用firebase
-*/
         $scope.cssshowcomments = false;
         //保存到firebase中
         for(var i = $scope.articlestotaldata.length; i--; i>=0){

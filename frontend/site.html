@@ -201,9 +201,9 @@
                 <div class="site_form_Box">
                     <div class="site_workflow">
                         <h6></h6>
-                        <p ng-click="clickpublish();"><a href="###" class="btn btn-info"><i ng-show="selectpublish" class="icon-ok-sign icon-white"></i>1-Step</a></p>
-                        <p ng-click="clickone();"><a href="###" class="btn btn-success"><i ng-show="selectone" class="icon-ok-sign icon-white"></i>Single Review and Publish</a></p>
-                        <p ng-click="clickcomplex();"><a href="###" class="btn btn-warning"><i ng-show="selectcomplex" class="icon-ok-sign icon-white"></i> Complex Review and Publish</a></p>
+                        <p ng-click="clickpublish();"><a href="###" class="btn btn-info" ng-class="{selectbtninfo:selectpublish}"><i ng-show="selectpublish" class="icon-ok-sign icon-white"></i>1-Step</a></p>
+                        <p ng-click="clickone();"><a href="###" class="btn btn-success" ng-class="{selectbtnsuccess:selectone}"><i ng-show="selectone" class="icon-ok-sign icon-white"></i>Single Review and Publish</a></p>
+                        <p ng-click="clickcomplex();"><a href="###" class="btn btn-warning" ng-class="{selectbtnwarning:selectcomplex}"><i ng-show="selectcomplex" class="icon-ok-sign icon-white"></i> Complex Review and Publish</a></p>
                     </div>
                 </div>
                 <div class="submitbox SiteSubmitBox"><input type="submit" class="btn btn-save" id="save_step4" value="save" onclick="location.href='page.html'"></div>
