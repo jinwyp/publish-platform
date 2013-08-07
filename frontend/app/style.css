@@ -669,7 +669,7 @@ ul.ts_preview li img	{ display:block; width:383px; height:260px; margin:0; paddi
 .userBaseInfoFloat .chagePWD					{ margin:0; padding:0; line-height:14px; font-size:12px; font-weight:bold; color:#c90; text-decoration:underline;}
 
 /* ----- Base Information ----- */
-.userBaseInfo			{ position:relative; padding:30px; min-width:310px; color:#aaa; font-size:16px; border-radius:8px; box-shadow:0 0 30px rgba(0,0,0,0.4); background:#444549; }
+.userBaseInfo			{ position:relative; z-index:1; padding:30px; min-width:500px; color:#aaa; font-size:16px; border-radius:8px; box-shadow:0 0 30px rgba(0,0,0,0.4); background:#444549; }
 .userBaseInfo h6		{ margin:0 0 10px 0; font-size:14px; font-weight:bold; text-transform:capitalize; cursor:default;}
 
 .userBaseInfoFloat		{ float:left;}
@@ -687,7 +687,7 @@ ul.ts_preview li img	{ display:block; width:383px; height:260px; margin:0; paddi
 .userBaseInfo .userPhoto.full .btn	{ display:block; position:absolute; left:26%; bottom:-54px; margin:0 auto; }
 
 /* ----- Password ----- */
-.userPassword							{ position:absolute; padding:30px; border-radius:0 8px 8px 0; z-index:-1; top:0; color:#aaa; font-size:16px; box-shadow:0 10px 20px rgba(0,0,0,0.4); background:#444549;}
+.userPassword							{ position:absolute; padding:30px; border-radius:0 8px 8px 0; z-index:0; top:0; color:#aaa; font-size:16px; box-shadow:0 10px 20px rgba(0,0,0,0.4); background:#444549;}
 .userPassword hr						{ border-top: 1px solid #3b3c3f; border-bottom: 1px solid #505154; }
 .userPassword h6						{ font-size:14px; font-weight:bold; margin:0 0 10px 0; text-transform:capitalize; cursor:default;}
 .userPassword input[type="password"]	{ padding:6px;font-size:18px; }
@@ -695,6 +695,7 @@ ul.ts_preview li img	{ display:block; width:383px; height:260px; margin:0; paddi
 .userPassword input						{ margin-bottom:16px;}
 .userPassword input,					
 .userPassword p							{ margin-bottom:16px;}
+.userPassword .wrongTip					{ position:relative; margin:0 -30px 0; z-index:1}
 
 .userPassword .panel_close	{ display:block; position:absolute; right:0; top:0; width:40px; height:34px; background:#222 url(img/icon_attribute.png) 10px -1394px no-repeat; border-radius:0px 8px 0px 8px; overflow:hidden; text-indent:-9999px; opacity:0.5;}
 .userPassword .panel_close:hover,
@@ -703,7 +704,7 @@ ul.ts_preview li img	{ display:block; width:383px; height:260px; margin:0; paddi
 .userBaseInfo .submitbox,
 .userPassword .submitbox{ position:relative; margin:0 -30px -30px;}
 
-.wrongTip				{ display:block; padding:8px 0; border-top:1px solid #600; border-bottom:1px solid #600; background:#930; color:#fff; text-align:center; box-shadow:inset 0 0 10px rgba(0,0,0,0.15);}
+.wrongTip				{ font-size:12px; display:block; padding:8px 0; border-top:1px solid #600; border-bottom:1px solid #600; background:#930; color:#fff; text-align:center; box-shadow:inset 0 0 10px rgba(0,0,0,0.15);}
 
 
 
