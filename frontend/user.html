@@ -55,6 +55,7 @@
             
                 <!-- HeadPhoto、BaseInformation -->
                 <div class="userBaseInfo clearfix">
+                
                 	<!-- HeadPhoto -->
                     <div class="userBaseInfoFloat">
 					    <h6>User Picture</h6>
@@ -72,7 +73,7 @@
                     <!-- HeadPhoto //End -->
                     
                     <!-- BaseInformation -->
-                    <div class="userBaseInfoFloat">
+                    <div class="userBaseInfoFloat" style="margin-left:30px;">
                           <h6>first name</h6>
                           <!-- 编辑状态时显示：--><input type="text" required ng-model="userdata.firstname">
                           <!-- 保存后显示：<p>Melvon</p> -->
@@ -91,11 +92,19 @@
                     </div>
                     <!-- BaseInformation //End -->
                     
+                    <div class="clearfix"></div>
+                    
+                    <!-- userFormBox // End -->
+                    <div class="submitbox">
+                        <input type="submit" class="btn btn-save" value="save" ng-click="saveuserinfo(userinfo)">
+                        <input type="submit" class="btn btn-edit" value="edit" ng-hide="true">
+                    </div>
+                    
                 </div>
                 <!-- HeadPhoto、BaseInfo //End -->
                 
                 <!-- Change Password -->
-                <div class="userPasswordBox" ng-cloak ng-show="cssshowpasswordbox">
+                <div class="userPassword" ng-cloak ng-show="cssshowpasswordbox">
                     <a href="#" class="panel_close">X</a>
                     <h6>old password</h6>
                     <input id="oldpassword" type="password" ng-model="userdata.oldpassword">
@@ -112,18 +121,14 @@
                     <div class="wrongTip" ng-show="cssshowinconsistent">Password inconsistent!</div>
                     
                     <!-- Submit -->     
-                    <div class="submitbox savePWD">
+                    <div class="submitbox">
                         <input type="submit" id="savepwd" class="btn btn-save" value="save" ng-click="modifypassword()">
                     </div>
                 </div>
                 <!-- Change Password //End -->
             
             
-                <!-- userFormBox // End -->
-                <div class="submitbox UserSubmitBox">
-                    <input type="submit" class="btn btn-save" value="save" ng-click="saveuserinfo(userinfo)">
-                    <input type="submit" class="btn btn-edit" value="edit" ng-hide="true">
-                </div>
+                
             
             
         	</form>

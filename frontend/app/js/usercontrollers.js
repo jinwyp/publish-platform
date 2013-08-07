@@ -46,8 +46,8 @@ page.c.userInfoController = function($scope, $location, $timeout, angularFire) {
     //显示修改密码form
     $scope.changepassword = function(){
         $scope.cssshowpasswordbox = true;
-        $(".userAccount").animate({left:"20%"});
-        $(".userPassword").animate({left:"99.3%"});
+        $(".userBaseInfo").animate({left:"-30%"});
+        $(".userPassword").animate({left:"68%"});
     };
 
     //显示头像是否上传
