@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<title>VCP - HTML&CSS</title>
+	<!-- 元素基础样式 -->
+	<link rel="stylesheet" href="css/base.css">
+    <!-- 页面默认布局样式 -->
+    <link rel="stylesheet" href="css/layout.css">
+	<script src="js/bootstrap.js"></script>
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+	  
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <!-- 响应式布局 -->
+    <link rel="stylesheet" href="css/layout-responsive.css">
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50"><!-- #BeginLibraryItem "/Library/tophead.lbi" --><!-- Header -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+    	<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </a>
+        <span class="brand">VCP<span>&nbsp;|&nbsp;Front-end design specifications</span></span>
+		<div class="nav-collapse">
+        <ul class="nav">
+          <li class="divider-vertical"></li>
+          <li><a href="HTML_Document_Specification.html">HTML&CSS</a></li>
+          <li class="divider-vertical"></li>
+          <li><a href="Interactive.html">Interactive</a></li>
+          <li class="divider-vertical"></li>
+          <li><a href="visual.html">Visual</a></li>
+          <li class="divider-vertical"></li>
+        </ul>
+		
+        </div>
+      
+    </div>
+  </div>
+</div>
+<!-- Header End --><!-- #EndLibraryItem --><!-- container -->
+<div class="container">
+
+	
+    
+	<!-- Navigation -->
+    <header class="jumbotron subhead" id="overview">
+    <div class="subnav">
+    <ul class="nav nav-pills">
+      <li><a href="#Document_html">HTML</a></li>
+      <li><a href="#Documentl_cij">CSS</a></li>
+      <li><a href="#Documentl_cij">JavaScript</a></li>
+      <li><a href="#Documentl_cij">AngularJS</a></li>
+      <li><a href="#Documentl_cij">站点目录</a></li>
+      <li><a href="#Document_seo">注重SEO搜索优化的命名规则</a></li>
+      <li><a href="#Document_qa">常见问题</a></li>
+    </ul>
+  	</div>
+    </header>
+    <!-- Navigation End -->
+    
+    <div class="alert alert-info"><span class="label label-important">重要</span> Linux系统对文件名的大小写作严格判断，为方便将来对平台进行更新、优化和维护，建议在文件夹/文件命名以及书写css的时候全部采用小写。</div>
+     					
+    <section id="Document_html">
+    <div class="page-header"><h2>HTML文件命名</h2></div>
+    
+    <h4>一级菜单命名规则</h4>
+    <p><span class="label">1</span> 用英文单词的全部小写</p>
+    <p><span class="label">2</span> 用英文词组的全部小写无空格</p>
+    
+    <h4>二级菜单命名规则</h4>
+    <p><span class="label">1</span> 一级菜单名字的首字母小写+下划线“_”+二级英文单词的全部小写</p>
+    <p><span class="label">2</span> 一级菜单名字的首字母小写+下划线“_”+二级英文词组的全部小写无空格</p>
+    
+    <h4>三级菜单命名规则</h4>
+    <p><span class="label">1</span> 一级菜单名字的首字母小写+二级菜单名字的首字母小写+下划线“_”+三级英文单词的全部小写</p>
+    <p><span class="label">2</span> 一级菜单名字的首字母小写+二级菜单名字的首字母小写+下划线“_”+三级英文词组的全部小写无空格</p>
+    
+    <div class="bs-docs-example">
+    <dl class="dl-horizontal">
+    <dt>一级菜单：学校</dt>
+    <dd>命名：school</dd>
+    <dt>二级菜单：英语系</dt>
+    <dd>命名：s_english</dd>
+    <dt>三级菜单：09级三班</dt>
+    <dd>命名：se_classthree</dd>
+    <dt>三级菜单：09级三班的添加事件</dt>
+    <dd>命名：se_classthree_add</dd>
+    </dl>
+    </div>
+    
+    
+    <h4>LMS 系统端文件夹 [system]</h4>
+    
+        <div class="bs-docs-example">
+        <ol>
+        <li>弹出层：overlay_*.html
+        	<ul>
+        	<li>一级菜单下弹出层，一个小写字母+下划线+overlay_*.html </li>
+        	<li>二级菜单下弹出层，二个小写字母+下划线+overlay_*.html (例：项目管理的弹出层 p_overlay_*.html )</li>
+            </ul>
+        </li>
+        <li>首页：Index.html</li>
+        <li>项目管理：projectmanage.html
+        	<ul>
+            <li>二级页：p_*.html</li>
+            </ul>
+        </li>
+        <li>招生管理：admissionsmanage.html
+        	<ul>
+            <li>二级页：a_*.html</li>
+            </ul>
+        </li>
+        <li>学籍管理：enrollmentmanage.html
+        	<ul>
+            <li>二级页：e_*.html</li>
+            </ul>
+        </li>
+        <li>教学管理：teachingtmanage.html
+        	<ul>
+            <li>二级页：t_*.html</li>
+            </ul>
+        </li>
+        <li>考务管理：examination_manage.html
+        	<ul>
+            <li>二级页：e_*.html</li>
+            </ul>
+        </li>
+        <li>课程资源管理：resourcesmanage.html
+        	<ul>
+            <li>二级页：r_*.html</li>
+            </ul>
+        </li>
+        <li>财务管理：financialmanage.html
+        	<ul>
+            <li>二级页：f_*.html</li>
+            </ul>
+        </li>
+        <li>教材管理：materialmanage.html
+        	<ul>
+            <li>二级页：m_*.html</li>
+            </ul>
+        </li>
+        <li>系统管理：systemmanage.html
+        	<ul>
+            <li>二级页：s_*.html</li>
+            </ul>
+        </li>
+        </ol>
+        </div>
+    
+	</section>
+    
+    
+    
+    
+    <section id="Documentl_cij">
+    <div class="page-header"><h2>CSS/Images/Javascript</h2></div>
+    
+    	<div class="row-fluid">
+        <div class="span4">
+    	<h4>图片文件夹 [images]</h4>
+        <ol>
+        <li>通用图片 /*.gif *.png *.jpg</li>
+        <li>头像 ../[photo]</li>
+        <li>系统端 ../[system]</li>
+        <li>教师端 ../[teacher]
+        	<ul>
+            <li>默认 /../[default]</li>
+            <li>蓝色 /../[blue]</li>
+            <li>红色 /../[red]</li>
+            <li>绿色 /../[green]</li>
+            <li>灰色 /../[gray]</li>
+            </ul>
+        </li>
+		<li>学员端 ../[student]
+        	<ul>
+            <li>默认 /../[default]</li>
+            <li>蓝色 /../[blue]</li>
+            <li>红色 /../[red]</li>
+            <li>绿色 /../[green]</li>
+            <li>灰色 /../[gray]</li>
+            </ul>
+        </li>
+		<li>用户上传图片 ../[upload]</li>
+        <li>帮助中心 ../[help]</li>
+        <li>Flash格式 ../[flash]</li>
+        <li>Banner ../[banner]</li>
+        <li>新闻/公告 ../[news]</li>
+        <li>AD ../[ad]</li>
+        </ol>
+        </div>
+        
+        <div class="span4">
+       <h4>样式表 [CSS]</h4>
+       		<ol>
+          <li>全局通用样式 default.css</li>
+          <li>独立样式 系统端 system.css</li>
+          <li>独立样式 学员端 student.css
+          	<ul>
+              <li>学员端-默认 [student]/default.css</li>
+              <li>学员端-蓝色 [student]/blue.css</li>
+              <li>学员端-红色 [student]/red.css</li>
+              <li>学员端-绿色 [student]/green.css</li>
+              <li>学员端-灰色 [student]/gray.css</li>
+              </ul>
+          </li>
+          <li>通用样式 &#8211; 教师端 teacher.css
+          		<ul>
+              <li>教师端-默认 [teacher]/default.css</li>
+              <li>教师端-蓝色 [teacher]/blue.css</li>
+              <li>教师端-红色 [teacher]/red.css</li>
+              <li>教师端-绿色 [teacher]/green.css</li>
+              <li>教师端-灰色 [teacher]/gray.css</li>
+              </ul>
+          </li>
+            </ol>
+         </div>
+         
+         <div class="span4">
+         	<h4>JavaScript [js]</h4>
+            <p>JavaScript文件仅处于一级文件夹，不再细化深层文件夹。</p>
+            
+            <hr>
+            
+            <h4>用户可能需要下载的文档， PDF、DOC、XLS之类 [download]</h4>
+            <p>可被下载的文档仅处于一级文件夹，不再细化深层文件夹。</p>
+         </div>
+         
+         </div>
+    </section>
+    
+    
+    
+    
+    <section id="Document_seo">
+    <div class="page-header"><h2>注重SEO搜索优化的命名规则</h2></div>
+    	<div class="row-fluid">
+        <div class="span4">
+    	<ul>
+        	<li>页面主体：main</li>
+            <li>页头：header</li>
+            <li>页脚：footer</li>
+            <li>整个页面：content</li>
+            <li>容器：container</li>
+            <li>菜单：menu</li>
+            <li>子菜单：submenu</li>
+            <li>菜单容量：menucontainer</li>
+            <li>导航：nav</li>
+            <li>主导航：mainnav</li>
+        </ul>
+        </div>
+        <div class="span4">
+        <ul>
+            <li>顶导航：topnav</li>
+            <li>子导航：subnav</li>
+            <li>边导航：sidebar</li>
+            <li>左导航：leftsideBar</li>
+            <li>右导航：rightsideBar</li>
+            <li>新闻：news</li>
+            <li>状态：status</li>
+            <li>搜索：search</li>
+            <li>版权：copyright</li>
+            <li>按钮：btn</li>
+        </ul>
+        </div>
+        <div class="span4">
+        <ul>
+            <li>广告：banner</li>
+            <li>注册：regsiter</li>
+            <li>滚动：scroll</li>
+            <li>标签页：tab</li>
+            <li>文章列表：list</li>
+            <li>提示信息：msg</li>
+            <li>小技巧：tips</li>
+            <li>栏目标题：title</li>
+            <li>热点：hot</li>
+            <li>面包屑：breadcrumb</li>
+            <li>当前的：current</li>
+        </ul>
+        </div>
+        </div>
+        <div class="row-fluid">
+        	<div class="alert alert-success">
+        		<span class="label label-important">补充</span> 
+        		<p>1、所有的文件命名一律采用小写，不采用大小写混用的方式。</p>
+				<p>2、除非js调用需要，不得使用ID来定义CSS样式，全部采用class的方式。 </p>
+				<p>3、参考css命名规范.doc，采用英文命名，不得采用拼音及缩写。</p>
+				<p>4、命名应尽量简洁，采用下划线进行分段，分段数不超过3段，文件名字符数不过30个英文字符。</p>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    <section id="Document_qa">
+    <div class="page-header"><h2>常见问题</h2></div>
+    
+    <h4>CSS Reset 格式化</h4>
+    <div class="bs-docs-example">
+<p>/* 结构 */</p>
+<p>
+html, body, div, span, object, iframe,<br />
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,<br />
+abbr, address, cite, code,<br />
+del, dfn, em, img, kbd, q, samp,<br />
+small, strong, sub, sup, var,<br />
+b, i,<br />
+dl, dt, dd, ol, ul, li,<br />
+fieldset, form, label, legend,<br />
+table, caption, tbody, tfoot, thead, tr, th, td,<br />
+article, aside, canvas, details, figcaption, figure,<br />
+footer, header, hgroup, menu, nav, section, summary,<br />
+time, mark, audio, video <br />{<br />
+
+    margin:0;<br />
+    padding:0;<br />
+    border:0;<br />
+    outline:0;<br />
+	font-size:100%; <br />
+	font: 12px/1.5em Helvetica,"宋体","Lucida Grande",Arial,sans-serif;<br />
+}
+<br /><br />
+
+/* 统一等宽字体 */<br />
+code, kbd, pre, samp 				{ font-family:courier new, courier, monospace; } 
+<br /><br />
+
+/* 小于 12px 的中文很难阅读，让 small 正常化 */<br />
+small 										{ font-size:12px; } 
+<br /><br />
+
+ /* 斜体扶正 */<br />
+address, cite, dfn, em, var 		{ font-style:normal; }
+<br /><br />
+
+/* 重置列表元素 */<br />
+ul, ol 										{ list-style:none; }
+<br /><br />
+
+/* 使表单元素在 ie 下能继承字体大小；optgroup 无法扶正 */<br />
+button, input, select, textarea  { font-size:100%; } <br />
+input, select , button 				{ vertical-align:middle; }
+<br /><br />
+
+/* Clear Fix */<br />
+.clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}<br />
+.clearfix 		 { display:inline-block; }/* Safari, Chrome, Opera, FF  */<br />
+.clearfix 		 {display:block;} /* IE */
+<br /><br />
+
+/* HTML 5 */<br />
+article,aside,details,figcaption,figure,<br />
+footer,header,hgroup,menu,nav,section { display:block; }<br />
+command,datalist,keygen,mark,meter,progress,rp,rt,ruby,time,wbr{display:inline;}<br />
+nav ul { list-style:none; }
+<br /><br />
+
+
+blockquote, q { quotes:none;}<br />
+blockquote:before, blockquote:after,<br />
+q:before, q:after { content:''; content:none; }<br />
+mark 	{ background-color:#ff9; color:#000;  font-style:italic; font-weight:bold;}<br />
+del 		{ text-decoration:line-through; }<br />
+abbr[title], dfn[title] { border-bottom:1px dotted; cursor:help;}<br />
+a  			{ margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent; text-decoration:none; outline:none;}<br />
+a:hover{ text-decoration:underline;}
+<br /><br />
+
+table  	{ border-collapse:collapse; border-spacing:0; }<br />
+hr 		{ display:block; height:1px; border:0; border-top:1px solid #cccccc; margin:1em 0; padding:0;}
+<br /><br />
+
+p { word-spacing:0.125em; hyphenate:auto; hyphenate-lines:3; margin-top:1em;}<br />
+</p>
+	</div>
+
+	<h4>清除浮动方案</h4>
+    <div class="bs-docs-example">
+    		<p>.clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}</p>
+            <p>.clearfix 		 { display:inline-block; }<span>/* Safari, Chrome, Opera, FF  */</span></p>
+            <p>.clearfix 		 {display:block;} <span>/* IE */</span></p>
+    </div>
+    
+    <h4>尽可能采用派生选择器</h4>
+    <div class="bs-docs-example">
+    		<p>简化命名的同时也使结构更加的清晰化： .mainMenu ul li {background:url(images/bg.gif;)}</p>
+    </div>
+    
+    <h4>DOCTYPE 申明选择</h4>
+    <div class="bs-docs-example">
+    		<p>XHTML 1.0 提供了三种DTD声明可供选择：过渡的(Transitional)：要求非常宽松的DTD，它允许你继续使用HTML4.01的标识（但是要符合xhtml的写法）。严格的(Strict)：要求严格的DTD，你不能使用任何表现层的标识和属性。框架的(Frameset)：专门针对框架页面设计使用的DTD，如果你的页面中包含有框架，需要采用这种DTD。理想情况当然是严格的DTD，但对于我们大多数刚接触web标准的设计师来说，过渡的DTD(XHTML 1.0 Transitional)是目前理想选择（包括本站，使用的也是过渡型DTD）。因为这种DTD还允许我们使用表现层的标识、元素和属性，也比较容易通过W3C的代码校验。</p>
+            <p><i><</i>!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"<i>></i></p>
+            <p><i><</i>html xmlns="http://www.w3.org/1999/xhtml"<i>></i></p>
+    </div>
+    
+    <h4>指定语言及字符集</h4>
+    <div class="bs-docs-example">
+    		<p>为文档指定语言： 为了被浏览器正确解释和通过W3C代码校验，所有的XHTML文档都必须声明它们所使用的编码语言；标准的XML文档语言定义：  针对老版本的浏览器的语言定义：为提高字符集，建议采用"utf-8"。标准的XML文档语言定义： 针对老版本的浏览器的语言定义：为提高字符集，建议采用"utf-8"。</p>
+            <p><i><</i>meta http-equiv="Content-Type" content="text/html; charset=utf-8"<i>&nbsp;/></i></p>
+    </div>
+    
+    </section><!-- #BeginLibraryItem "/Library/footer.lbi" --><footer class="footer navbar-fixed-bottom">
+        <p class="pull-right"><a href="#">顶端</a></p>
+        <p><span>VCP Team</span></p>
+        <p>
+        <a href="#a">Jin</a>/&nbsp;&nbsp;
+        <a href="#a">Jerome</a>/&nbsp;&nbsp;
+        <a href="#a">Susa</a>/&nbsp;&nbsp;
+        <a href="#a">Antares</a>/&nbsp;&nbsp;
+        <a href="#a">Vincent</a>/&nbsp;&nbsp;
+        <a href="#a">Melvon</a>
+        </p>
+          
+      </footer><!-- #EndLibraryItem --></div>
+<!-- container End -->
+	<!-- 核心库 -->
+	<script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <!-- 浮动式导航 -->
+    <script src="js/application.js"></script>
+    <script src="js/customize.js"></script>
+</body>
+</html>

@@ -46,81 +46,77 @@
 
 <!-- Container -->
 <div class="vcpbox" ng-controller="userInfoController">
-	<div class="userWrap">
+	<div class="user_Box">
     	
        
-    	<!-- 头像、基本信息 -->
-        <form name="userinfo">
-            <div class="userBox userAccount">
-                <h1 class="title_name">User Information</h1>
-                <!-- userFormBox -->
-                <div class="userFormBox clearfix">
-                    <div class="userFormFloat">
-						  <h6>User Picture</h6>
+        <div class="user_stepbox">
+        	<div class="user_step_title clearfix"><h1 class="title_name">User Information</h1></div>
+        	<form name="userForm">
+            
+                <!-- HeadPhoto、BaseInformation -->
+                <div class="userBaseInfo clearfix">
+                	<!-- HeadPhoto -->
+                    <div class="userBaseInfoFloat">
+					    <h6>User Picture</h6>
                         <!-- 无头像时: class="userPhoto empty" -->
                         <div class="userPhoto empty"  ng-hide = "csshaveavatar">
                             <h6>drop here</h6>
                             <input type="submit" class="btn" value="Browse" ng-click="uploadavator()">
                         </div>
-
                         <!-- 有头像时: class="userPhoto full" -->
                         <div class="userPhoto full" ng-cloak ng-show = "csshaveavatar">
                             <img src="app/img/photo/photohead.png">
                             <input type="submit" class="btn" value="change photo">
                         </div>
-
                     </div>
-                    <div class="userFormFloat">
-                        <div class="userInfo">
-                            <h6>first name</h6>
-                            <!-- 编辑状态时显示：--><input type="text" required ng-model="userdata.firstname">
-                            <!-- 保存后显示：<p>Melvon</p> -->
-                            <h6>last name</h6>
-                            <!-- 编辑状态时显示：--><input type="text" required ng-model="userdata.lastname">
-                            <!-- 保完后显示：<p>Melvon</p> -->
-                            <h6>gender</h6>
-                            <!-- 编辑状态时显示：--><label><input type="radio" ng-model="userdata.gender" value="male" name="gender">Male</label>
-                            <!-- 编辑状态时显示：--><label><input type="radio" ng-model="userdata.gender" value="female" name="gender">Female</label>
-                            <!-- 保存后显示：<p>Male</p> -->
-                            <h6>telephone</h6>
-                            <!-- 编辑状态时显示：--><input type="text" required ng-model="userdata.mobilenumber">
-                            <!-- 保存后显示：<p>010-62068000</p> -->
-                            <h6>&nbsp;</h6>
-                            <a href="#" id="changepwd" class="chagePWD" ng-click="changepassword()">Change Password</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 更改密码  -->
-                <div class="userBox userPassword" ng-cloak ng-show="cssshowpasswordbox">
-                    <!-- <h1 class="titlename">change password</h1> -->
-                    <div class="userFormBox clearfix">
-                    	<!--<a href="#" class="panel_close">X</a>-->
-                        <div class="userChangePassword">
-                            <h6>old password</h6>
-                            <input id="oldpassword" type="password" ng-model="userdata.oldpassword">
-                            <hr>
-                            <h6>new password</h6>
-                            <input id="newpassword" type="password" ng-model="userdata.newpassword1">
-                            <h6>confirm new password</h6>
-                            <input id="conformpassword" type="password" ng-model="userdata.newpassword2">
-                            
-                            
-                            
-                        </div>
-                    </div>
+                    <!-- HeadPhoto //End -->
                     
+                    <!-- BaseInformation -->
+                    <div class="userBaseInfoFloat">
+                          <h6>first name</h6>
+                          <!-- 编辑状态时显示：--><input type="text" required ng-model="userdata.firstname">
+                          <!-- 保存后显示：<p>Melvon</p> -->
+                          <h6>last name</h6>
+                          <!-- 编辑状态时显示：--><input type="text" required ng-model="userdata.lastname">
+                          <!-- 保完后显示：<p>Melvon</p> -->
+                          <h6>gender</h6>
+                          <!-- 编辑状态时显示：--><label><input type="radio" ng-model="userdata.gender" value="male" name="gender">Male</label>
+                          <!-- 编辑状态时显示：--><label><input type="radio" ng-model="userdata.gender" value="female" name="gender">Female</label>
+                          <!-- 保存后显示：<p>Male</p> -->
+                          <h6>telephone</h6>
+                          <!-- 编辑状态时显示：--><input type="text" required ng-model="userdata.mobilenumber">
+                          <!-- 保存后显示：<p>010-62068000</p> -->
+                          <h6>&nbsp;</h6>
+                          <a href="#" id="changepwd" class="chagePWD" ng-click="changepassword()">Change Password</a>
+                    </div>
+                    <!-- BaseInformation //End -->
+                    
+                </div>
+                <!-- HeadPhoto、BaseInfo //End -->
+                
+                <!-- Change Password -->
+                <div class="userPasswordBox" ng-cloak ng-show="cssshowpasswordbox">
+                    <a href="#" class="panel_close">X</a>
+                    <h6>old password</h6>
+                    <input id="oldpassword" type="password" ng-model="userdata.oldpassword">
+                    <hr>
+                    <h6>new password</h6>
+                    <input id="newpassword" type="password" ng-model="userdata.newpassword1">
+                    <h6>confirm new password</h6>
+                    <input id="conformpassword" type="password" ng-model="userdata.newpassword2">
+                    
+                    <!-- Wrong Tip -->
                     <div class="wrongTip" ng-show="cssoldpassword">Old password error !</div>
                     <div class="wrongTip" ng-show="cssnewpassword">Please input new password !</div>
                     <div class="wrongTip" ng-show="cssnewpassword2">Please input new password again !</div>
                     <div class="wrongTip" ng-show="cssshowinconsistent">Password inconsistent!</div>
-                            
-                            
+                    
+                    <!-- Submit -->     
                     <div class="submitbox savePWD">
                         <input type="submit" id="savepwd" class="btn btn-save" value="save" ng-click="modifypassword()">
                     </div>
                 </div>
-                <!-- 更改密码 //End -->
+                <!-- Change Password //End -->
             
             
                 <!-- userFormBox // End -->
@@ -128,17 +124,10 @@
                     <input type="submit" class="btn btn-save" value="save" ng-click="saveuserinfo(userinfo)">
                     <input type="submit" class="btn btn-edit" value="edit" ng-hide="true">
                 </div>
-                
-                
-            </div>
             
             
-            
-        
-        
-        </form>
-        <!-- 头像、基本信息 //End-->
-        
+        	</form>
+        </div>
         
         
         
