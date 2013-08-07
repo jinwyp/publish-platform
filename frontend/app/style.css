@@ -666,7 +666,7 @@ ul.ts_preview li img	{ display:block; width:383px; height:260px; margin:0; paddi
 .userBaseInfoFloat p							{ color:#fff; font-size:18px;}
 .userBaseInfoFloat input						{ color:#333; font-size:18px;}
 .userBaseInfoFloat p							{ margin-bottom:16px;}
-.userBaseInfoFloat .chagePWD					{ margin:0; padding:0; line-height:14px; font-size:12px; font-weight:bold; color:#c90; text-decoration:underline;}
+.userBaseInfoFloat .chagePWD					{ display:block; margin:10px 0 20px; padding:; line-height:14px; font-size:12px; font-weight:bold; color:#c90; text-decoration:underline;}
 
 /* ----- Base Information ----- */
 .userBaseInfo			{ position:relative; z-index:1; padding:30px; min-width:500px; color:#aaa; font-size:16px; border-radius:8px; box-shadow:0 0 30px rgba(0,0,0,0.4); background:#444549; }
