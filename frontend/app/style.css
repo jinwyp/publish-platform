@@ -690,10 +690,8 @@ ul.ts_preview li img	{ display:block; width:383px; height:260px; margin:0; paddi
 .userPassword							{ position:absolute; padding:30px; border-radius:0 8px 8px 0; z-index:0; top:0; color:#aaa; font-size:16px; box-shadow:0 10px 20px rgba(0,0,0,0.4); background:#444549;}
 .userPassword hr						{ border-top: 1px solid #3b3c3f; border-bottom: 1px solid #505154; }
 .userPassword h6						{ font-size:14px; font-weight:bold; margin:0 0 10px 0; text-transform:capitalize; cursor:default;}
-.userPassword input[type="password"]	{ padding:6px;font-size:18px; }
-.userPassword input[type="password"]:focus{ background:#fff;}
-.userPassword input						{ margin-bottom:16px;}
-.userPassword input,					
+.userPassword input[type="password"]	{ padding:6px;font-size:18px; margin-bottom:16px;}
+.userPassword input[type="password"]:focus{ background:#fff;}					
 .userPassword p							{ margin-bottom:16px;}
 .userPassword .wrongTip					{ position:relative; margin:0 -30px 0; z-index:1}
 
