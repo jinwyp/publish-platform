@@ -784,10 +784,10 @@ ul.ts_preview li img	{ display:block; width:383px; height:260px; margin:0; paddi
 .user_Box				{ }
 
 /* === Side Menu === */
-.user_sideMenu			{ position:fixed; left:0; top:60px; height:100%; background:#2e2e2e; z-index:9999;}
+.user_sideMenu			{ position:fixed; left:0; top:60px; height:100%; background:#2e2e2e; z-index:9999; border-right:1px solid #222; box-shadow:5px 0 0 rgba(0,0,0,0.2);}
 
-ul.sideMenuUL		{ margin:0; padding:0; list-style:none;}
-ul.sideMenuUL ul li	{ text-indent:0;}
+ul.sideMenuUL			{ margin:0; padding:0; list-style:none;}
+ul.sideMenuUL ul li		{ text-indent:0;}
 
 .user_sideMenu ul li.titleico	{ margin:0; padding:10px 0; color:#38b800; font-size:20px; text-align:center; text-indent:0; 
 background-image: -moz-linear-gradient(top, #111, #222);
@@ -799,6 +799,9 @@ background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#111), to(#222));
 
 .user_sideMenu ul li.current a,
 .user_sideMenu ul li.current a:hover{  background:#008aa9; color:#7ae3fd; font-weight:bold;}
+
+/* === User Relogin content === */
+.reuserContent{ position:relative; width:100%; height:1000px; background:#fff; z-index:9998;}
 
 
 .user_stepbox			{ position:absolute; top:22%; left:32%; }
