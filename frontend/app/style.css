@@ -302,7 +302,7 @@ h1.PopupTitle .TipBoxClose:active	{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); o
 /* =========================================================================================== */
 /*                                          VCP Header                                         */
 /* =========================================================================================== */
-.header			{ position:fixed; left:0; top:0; width:100%; min-width:1024px; height:60px; margin:0; padding:0; background:#111 url(img/header_bg.jpg) repeat-x; box-shadow:0 2px 4px rgba(0,0,0,0.4); z-index:100;}
+.header			{ position:fixed; left:0; top:0; width:100%; min-width:1024px; height:60px; margin:0; padding:0; background:#111 url(img/header_bg.jpg) repeat-x; box-shadow:0 2px 4px rgba(0,0,0,0.4); z-index:999999;}
 .header .logo	{ display:block; margin:0; padding:0; position:absolute; left:0; top:0; width:100px; height:60px; background:url(img/logo.png) 20px center no-repeat; text-indent:-99999px;}
 .header .logo a { display:block; width:100px; height:60px;}
 .header .signin { display:block; position:absolute; right:0; top:0; width:80px; height:60px; text-align:center; line-height:60px; border-left:1px solid #444; background:#000;}
@@ -784,9 +784,10 @@ ul.ts_preview li img	{ display:block; width:383px; height:260px; margin:0; paddi
 .user_Box				{ }
 
 /* === Side Menu === */
-.user_sideMenu			{ position:fixed; left:0; top:60px; height:100%; background:#2e2e2e;}
-.user_sideMenu ul		{ margin:0; padding:0; list-style:none;}
-.user_sideMenu ul li	{ text-indent:0;}
+.user_sideMenu			{ position:fixed; left:0; top:60px; height:100%; background:#2e2e2e; z-index:9999;}
+
+ul.sideMenuUL		{ margin:0; padding:0; list-style:none;}
+ul.sideMenuUL ul li	{ text-indent:0;}
 
 .user_sideMenu ul li.titleico	{ margin:0; padding:10px 0; color:#38b800; font-size:20px; text-align:center; text-indent:0; 
 background-image: -moz-linear-gradient(top, #111, #222);
