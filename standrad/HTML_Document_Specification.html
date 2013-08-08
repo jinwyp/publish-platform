@@ -12,15 +12,11 @@
 	<link rel="stylesheet" href="css/base.css">
     <!-- 页面默认布局样式 -->
     <link rel="stylesheet" href="css/layout.css">
-	<script src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/icon.css">
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
-      }
-	  
-      .sidebar-nav {
-        padding: 9px 0;
       }
     </style>
     <!-- 响应式布局 -->
@@ -45,6 +41,8 @@
           <li class="divider-vertical"></li>
           <li><a href="visual.html">Visual</a></li>
           <li class="divider-vertical"></li>
+          <li><a href="icon.html">ICON</a></li>
+          <li class="divider-vertical"></li>
         </ul>
 		
         </div>
@@ -61,13 +59,12 @@
     <header class="jumbotron subhead" id="overview">
     <div class="subnav">
     <ul class="nav nav-pills">
-      <li><a href="#Document_html">HTML</a></li>
-      <li><a href="#Documentl_cij">CSS</a></li>
-      <li><a href="#Documentl_javascript">JavaScript</a></li>
-      <li><a href="#Documentl_angularjs">AngularJS</a></li>
-      <li><a href="#Documentl_filepath">站点目录</a></li>
-      <li><a href="#Document_seo">注重SEO搜索优化的命名规则</a></li>
-      <li><a href="#Document_qa">常见问题</a></li>
+      <li><a href="#Document_html">XHTML</a></li>
+      <li><a href="#Document_css">CSS</a></li>
+      <li><a href="#Document_javascript">JavaScript</a></li>
+      <li><a href="#Document_angularjs">AngularJS</a></li>
+      <li><a href="#Document_QA">常见问题</a></li>
+      <li><a href="#Document_tools">生产力工具推荐</a></li>
     </ul>
   	</div>
     </header>
@@ -76,348 +73,721 @@
     <div class="alert alert-info"><span class="label label-important">重要</span> Linux系统对文件名的大小写作严格判断，为方便将来对平台进行更新、优化和维护，建议在文件夹/文件命名以及书写css的时候全部采用小写。</div>
      					
     <section id="Document_html">
-    <div class="page-header"><h2>HTML文件命名</h2></div>
-    
-    <h4>一级菜单命名规则</h4>
-    <p><span class="label">1</span> 用英文单词的全部小写</p>
-    <p><span class="label">2</span> 用英文词组的全部小写无空格</p>
-    
-    <h4>二级菜单命名规则</h4>
-    <p><span class="label">1</span> 一级菜单名字的首字母小写+下划线“_”+二级英文单词的全部小写</p>
-    <p><span class="label">2</span> 一级菜单名字的首字母小写+下划线“_”+二级英文词组的全部小写无空格</p>
-    
-    <h4>三级菜单命名规则</h4>
-    <p><span class="label">1</span> 一级菜单名字的首字母小写+二级菜单名字的首字母小写+下划线“_”+三级英文单词的全部小写</p>
-    <p><span class="label">2</span> 一级菜单名字的首字母小写+二级菜单名字的首字母小写+下划线“_”+三级英文词组的全部小写无空格</p>
-    
-    <div class="bs-docs-example">
-    <dl class="dl-horizontal">
-    <dt>一级菜单：学校</dt>
-    <dd>命名：school</dd>
-    <dt>二级菜单：英语系</dt>
-    <dd>命名：s_english</dd>
-    <dt>三级菜单：09级三班</dt>
-    <dd>命名：se_classthree</dd>
-    <dt>三级菜单：09级三班的添加事件</dt>
-    <dd>命名：se_classthree_add</dd>
-    </dl>
-    </div>
-    
-    
-    <h4>LMS 系统端文件夹 [system]</h4>
-    
+        <div class="page-header"><h1>XHTML</h1></div>
+        
+        <h2>项目结构</h2>
         <div class="bs-docs-example">
-        <ol>
-        <li>弹出层：overlay_*.html
-        	<ul>
-        	<li>一级菜单下弹出层，一个小写字母+下划线+overlay_*.html </li>
-        	<li>二级菜单下弹出层，二个小写字母+下划线+overlay_*.html (例：项目管理的弹出层 p_overlay_*.html )</li>
-            </ul>
-        </li>
-        <li>首页：Index.html</li>
-        <li>项目管理：projectmanage.html
-        	<ul>
-            <li>二级页：p_*.html</li>
-            </ul>
-        </li>
-        <li>招生管理：admissionsmanage.html
-        	<ul>
-            <li>二级页：a_*.html</li>
-            </ul>
-        </li>
-        <li>学籍管理：enrollmentmanage.html
-        	<ul>
-            <li>二级页：e_*.html</li>
-            </ul>
-        </li>
-        <li>教学管理：teachingtmanage.html
-        	<ul>
-            <li>二级页：t_*.html</li>
-            </ul>
-        </li>
-        <li>考务管理：examination_manage.html
-        	<ul>
-            <li>二级页：e_*.html</li>
-            </ul>
-        </li>
-        <li>课程资源管理：resourcesmanage.html
-        	<ul>
-            <li>二级页：r_*.html</li>
-            </ul>
-        </li>
-        <li>财务管理：financialmanage.html
-        	<ul>
-            <li>二级页：f_*.html</li>
-            </ul>
-        </li>
-        <li>教材管理：materialmanage.html
-        	<ul>
-            <li>二级页：m_*.html</li>
-            </ul>
-        </li>
-        <li>系统管理：systemmanage.html
-        	<ul>
-            <li>二级页：s_*.html</li>
-            </ul>
-        </li>
-        </ol>
+         <pre><code>--- 
+         |---- index.html             入口页    
+         |---- js/                    JS //具体见JS细化结构                 
+         |---- css/                   CSS //具体见CSS细化结构
+        </code></pre>
         </div>
-    
+        
+        <h2>重构步骤约定</h2>
+        <div class="bs-docs-example">
+            <ol>
+            <li>
+            <code>index.html</code> 全部样式附着于 <code>class="xxx"</code> <strong>注：</strong> <em>此时文件中不包含任何一个 id="xxx"</em>
+            </li>
+            <li>为上一步书写 CSS style<br><strong>[至此重构完成]</strong>
+            </li>
+            <li>开始书写<code>js</code>交互文件，使用 <code>ID</code> 和 <code>Class</code> 定位被操作句柄</li>
+            <li>向 <code>index.html</code> 中需要的地方添加 <code>id="xxx"</code> 及 <code>data-xxx="xxx"</code><br><strong>[至此交互效果完成]</strong>
+            </li>
+            </ol>
+        </div>
+        
+        <h2>命名规范</h2>
+        <div class="bs-docs-example">
+        	<ul>
+            <li>文件及文件夹: 全部英文小写字母+数字或连接符"<code>-</code> , <code>_</code> "，不可出现其他字符
+            如：<code>../css/style.css, jquery.1.x.x.js</code> </li>
+            <li>文件：调用 <code>/libs</code> 文件需包含版本号，压缩文件需包含<code>min</code>关键词，其他插件则可不包含
+            如：<code>/libs/jquery.1.9.1.js</code> <code>/libs/modernizr-1.7.min.js</code> <code>fileuploader.js</code> <code>plugins.js</code>
+            </li>
+            <li>ID: <a href="http://zh.wikipedia.org/wiki/%E5%8C%88%E7%89%99%E5%88%A9%E5%91%BD%E5%90%8D%E6%B3%95" title="Wiki:匈牙利命名法">匈牙利命名法</a> &amp; <a href="http://zh.wikipedia.org/wiki/%E9%A7%9D%E5%B3%B0%E5%BC%8F%E5%A4%A7%E5%B0%8F%E5%AF%AB" title="小駝峰式命名法">小駝峰式命名法</a><br>
+            如：<code>firstName</code> <code>topBoxList</code> <code>footerCopyright</code>
+            </li>
+            <li>Class: [减号连接符]<br>
+            如：<code>top-item</code> <code>main-box</code> <code>box-list-item-1</code>
+            </li>
+            <li>尽量使用语义明确的单词命名，避免 <code>left</code> <code>bottom</code> 等方位性的词语</li>
+            </ul>
+        </div>
+        
+        
+        <h2>格式&编码</h2>
+        <div class="bs-docs-example">
+        	<ul>
+            <li>文本文件： <code>.xxx</code> UTF-8_(无BOM)_ 编码</li>
+            <li>图片文件： <code>.png</code> <em>(PNG-24)</em> <code>.jpg</code> <em>(压缩率8-12)</em>
+            </li>
+            <li>动态图片： <code>.gif</code>
+            </li>
+            <li>压缩文件： <code>.tar.gz</code> <code>.zip</code>
+            </li>
+            </ul>
+        </div>
+        
+        <h2>XHTML 注释格式约定</h2>
+        <p>HTML换行缩进：**采用 2 空格**</p>
+        <div class="bs-docs-example">
+        	<pre><code>&lt;!--
+@name: Drop Down Menu
+@description: Style of top bar drop down menu.
+@author: Andy Huang(andyahung@geekpark.net)
+--&gt;
+
+&lt;div id="header"&gt;
+    &lt;div class="xxx"&gt;
+        &lt;span&gt;HTML行内注释格式&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;&lt;!-- #header end--&gt;
+</code></pre>
+        </div>
+        
+        
+        
+        <h2>HTML嵌套规则</h2>
+        <div class="bs-docs-example">
+        	<pre><code>/* 推荐嵌套层级 */
+  &lt;ul class="ui-nav"&gt;
+    &lt;li class="ui-nav-item"&gt; some text
+      &lt;ul class="ui-nav-item-child"&gt;
+        &lt;li&gt; some text
+          &lt;ul class="ui-list"&gt;
+            &lt;li class="ui-list-item"&gt; some text&lt;/li&gt;
+          &lt;/ul
+        ...
+       &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li
+    ...
+  &lt;/ul&gt;
+</code></pre>
+        </div>
+        
+        
+        <h2>* 第一行统一使用HTML5标准：&lt;!DOCTYPE html&gt;</h2>
+        <div class="bs-docs-example">
+        		<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html dir="ltr" lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;极客公园 | 创新者社区&lt;/title&gt;
+    &lt;meta name="keywords" content="xxxx, xxx, xxxxx" /&gt;
+    &lt;meta name="description" content="xxxxxxxxxxxxxxxxxxxx" /&gt;
+</code></pre>
+        </div>
+        
+        
+        <h2>Meta 的使用</h2>
+        <div class="bs-docs-example">
+        	<pre><code>&lt;meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"&gt;
+&lt;meta http-equiv="Cache-Control" content="max-age=7200" /&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://feeds.geekpark.net/" /&gt;
+&lt;link rel="shortcut icon" href="favicon.ico"&gt;
+&lt;link rel="apple-touch-icon" href="/apple-touch-icon.png"&gt;
+
+&lt;script type="text/javascript" src="/js/xxx.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="/css/xxx.css"&gt;
+
+&lt;script type="text/javascript"&gt;
+    Google 统计代码 的位置在离&lt;/head&gt;最近的位置
+&lt;/script&gt;
+&lt;/head&gt;
+</code></pre>
+
+<p><span class="badge">1</span> &lt;img&gt;标签默认缺省格式：&lt;img src="xxx.png" alt="缺省时文字" /&gt; 避免出现src="" 问题
+<p><span class="badge">2</span> &lt;a&gt;标签缺省格式：&lt;a href="###" title="链接名称"&gt;xxx&lt;/&gt; 注：target="_blank" 根据需求决定
+<p><span class="badge">3</span> 标签预留链接占位符使用###，参见：a标签占位符问题
+<p><span class="badge">4</span> 所有标签需要符合XHTML标准闭合
+<p><span class="badge">5</span> 一律统一标签结尾斜杠的书写形式：&lt;br /&gt; &lt;hr /&gt; 注意之间空格
+<p><span class="badge">6</span> 避免使用已过时标签，如：&lt;b&gt; &lt;u&gt; &lt;i&gt; 而用 &lt;strong&gt; &lt;em&gt;等代替
+<p><span class="badge">7</span> 使用data-xxx来添加自定义数据，如：&lt;input data-xxx="yyy"/&gt;
+<p><span class="badge">8</span> 避免使用style="xxx:xxx;"的内联样式表
+<p><span class="badge">9</span> 特殊符号使用参考HTML 符号实体
+
+        </div>
+        
+        <h2>HTML 细化规范</h2>
+        <div class="bs-docs-example">
+            <ul>
+            <li>HTML <code>head</code>部分的结构参看：<a href="https://github.com/hzlzh/cool-head">cool-head</a> (摘取必要内容即可)</li>
+            <li>
+            <code>css</code> 文件置于都 <strong>头部</strong>
+            </li>
+            <li>
+            <code>jQuery</code> 及 <code>Google Analytics</code>引用置于 <strong>头部</strong>
+            </li>
+            <li>其他效果<code>js</code>及<code>统计代码</code> 文件置于 <strong>尾部</strong>
+            </li>
+            <li>HTML 代码尽量过一遍<a href="http://html5.validator.nu/">HTML5 验证</a>
+            </li>
+            <li>HTML 占位图片使用 <a href="http://temp.im/">temp.im</a> &amp; <a href="http://placehold.us/">placehold.us</a> 图片服务</li>
+            </ul>
+        </div>
+        
+        
 	</section>
     
     
     
     
-    <section id="Documentl_cij">
-    <div class="page-header"><h2>CSS/Images/Javascript</h2></div>
-    
-    	<div class="row-fluid">
-        <div class="span4">
-    	<h4>图片文件夹 [images]</h4>
-        <ol>
-        <li>通用图片 /*.gif *.png *.jpg</li>
-        <li>头像 ../[photo]</li>
-        <li>系统端 ../[system]</li>
-        <li>教师端 ../[teacher]
-        	<ul>
-            <li>默认 /../[default]</li>
-            <li>蓝色 /../[blue]</li>
-            <li>红色 /../[red]</li>
-            <li>绿色 /../[green]</li>
-            <li>灰色 /../[gray]</li>
-            </ul>
-        </li>
-		<li>学员端 ../[student]
-        	<ul>
-            <li>默认 /../[default]</li>
-            <li>蓝色 /../[blue]</li>
-            <li>红色 /../[red]</li>
-            <li>绿色 /../[green]</li>
-            <li>灰色 /../[gray]</li>
-            </ul>
-        </li>
-		<li>用户上传图片 ../[upload]</li>
-        <li>帮助中心 ../[help]</li>
-        <li>Flash格式 ../[flash]</li>
-        <li>Banner ../[banner]</li>
-        <li>新闻/公告 ../[news]</li>
-        <li>AD ../[ad]</li>
-        </ol>
-        </div>
+    <section id="Document_css">
+    	<div class="page-header"><h1>CSS</h1></div>
         
-        <div class="span4">
-       <h4>样式表 [CSS]</h4>
-       		<ol>
-          <li>全局通用样式 default.css</li>
-          <li>独立样式 系统端 system.css</li>
-          <li>独立样式 学员端 student.css
-          	<ul>
-              <li>学员端-默认 [student]/default.css</li>
-              <li>学员端-蓝色 [student]/blue.css</li>
-              <li>学员端-红色 [student]/red.css</li>
-              <li>学员端-绿色 [student]/green.css</li>
-              <li>学员端-灰色 [student]/gray.css</li>
-              </ul>
-          </li>
-          <li>通用样式 &#8211; 教师端 teacher.css
-          		<ul>
-              <li>教师端-默认 [teacher]/default.css</li>
-              <li>教师端-蓝色 [teacher]/blue.css</li>
-              <li>教师端-红色 [teacher]/red.css</li>
-              <li>教师端-绿色 [teacher]/green.css</li>
-              <li>教师端-灰色 [teacher]/gray.css</li>
-              </ul>
-          </li>
-            </ol>
-         </div>
-         
-         <div class="span4">
-         	<h4>JavaScript [js]</h4>
-            <p>JavaScript文件仅处于一级文件夹，不再细化深层文件夹。</p>
-            
-            <hr>
-            
-            <h4>用户可能需要下载的文档， PDF、DOC、XLS之类 [download]</h4>
-            <p>可被下载的文档仅处于一级文件夹，不再细化深层文件夹。</p>
-         </div>
-         
-         </div>
-    </section>
-    
-    
-    
-    
-    <section id="Document_seo">
-    <div class="page-header"><h2>注重SEO搜索优化的命名规则</h2></div>
-    	<div class="row-fluid">
-        <div class="span4">
-    	<ul>
-        	<li>页面主体：main</li>
-            <li>页头：header</li>
-            <li>页脚：footer</li>
-            <li>整个页面：content</li>
-            <li>容器：container</li>
-            <li>菜单：menu</li>
-            <li>子菜单：submenu</li>
-            <li>菜单容量：menucontainer</li>
-            <li>导航：nav</li>
-            <li>主导航：mainnav</li>
-        </ul>
-        </div>
-        <div class="span4">
-        <ul>
-            <li>顶导航：topnav</li>
-            <li>子导航：subnav</li>
-            <li>边导航：sidebar</li>
-            <li>左导航：leftsideBar</li>
-            <li>右导航：rightsideBar</li>
-            <li>新闻：news</li>
-            <li>状态：status</li>
-            <li>搜索：search</li>
-            <li>版权：copyright</li>
-            <li>按钮：btn</li>
-        </ul>
-        </div>
-        <div class="span4">
-        <ul>
-            <li>广告：banner</li>
-            <li>注册：regsiter</li>
-            <li>滚动：scroll</li>
-            <li>标签页：tab</li>
-            <li>文章列表：list</li>
-            <li>提示信息：msg</li>
-            <li>小技巧：tips</li>
-            <li>栏目标题：title</li>
-            <li>热点：hot</li>
-            <li>面包屑：breadcrumb</li>
-            <li>当前的：current</li>
-        </ul>
-        </div>
-        </div>
-        <div class="row-fluid">
-        	<div class="alert alert-success">
-        		<span class="label label-important">补充</span> 
-        		<p>1、所有的文件命名一律采用小写，不采用大小写混用的方式。</p>
-				<p>2、除非js调用需要，不得使用ID来定义CSS样式，全部采用class的方式。 </p>
-				<p>3、参考css命名规范.doc，采用英文命名，不得采用拼音及缩写。</p>
-				<p>4、命名应尽量简洁，采用下划线进行分段，分段数不超过3段，文件名字符数不过30个英文字符。</p>
+        
+        <h2>注重SEO搜索优化的命名规则</h2>
+        <div class="bs-docs-example">
+        	<div class="row-fluid">
+            <div class="span4">
+            <ul>
+                <li>页面主体：main</li>
+                <li>页头：header</li>
+                <li>页脚：footer</li>
+                <li>整个页面：content</li>
+                <li>容器：container</li>
+                <li>菜单：menu</li>
+                <li>子菜单：submenu</li>
+                <li>菜单容量：menucontainer</li>
+                <li>导航：nav</li>
+                <li>主导航：mainnav</li>
+            </ul>
+            </div>
+            <div class="span4">
+            <ul>
+                <li>顶导航：topnav</li>
+                <li>子导航：subnav</li>
+                <li>边导航：sidebar</li>
+                <li>左导航：leftsideBar</li>
+                <li>右导航：rightsideBar</li>
+                <li>新闻：news</li>
+                <li>状态：status</li>
+                <li>搜索：search</li>
+                <li>版权：copyright</li>
+                <li>按钮：btn</li>
+            </ul>
+            </div>
+            <div class="span4">
+            <ul>
+                <li>广告：banner</li>
+                <li>注册：regsiter</li>
+                <li>滚动：scroll</li>
+                <li>标签页：tab</li>
+                <li>文章列表：list</li>
+                <li>提示信息：msg</li>
+                <li>小技巧：tips</li>
+                <li>栏目标题：title</li>
+                <li>热点：hot</li>
+                <li>面包屑：breadcrumb</li>
+                <li>当前的：current</li>
+            </ul>
+            </div>
+            </div>
+            <div class="row-fluid">
+                <div class="alert alert-success">
+                    <span class="label label-important">补充</span> 
+                    <p>1、所有的文件命名一律采用小写，不采用大小写混用的方式。</p>
+                    <p>2、除非js调用需要，不得使用ID来定义CSS样式，全部采用class的方式。 </p>
+                    <p>3、参考css命名规范.doc，采用英文命名，不得采用拼音及缩写。</p>
+                    <p>4、命名应尽量简洁，采用下划线进行分段，分段数不超过3段，文件名字符数不过30个英文字符。</p>
+                </div>
             </div>
         </div>
+        
+        
+    	
+        <h2>CSS 文件结构</h2>
+        <div class="bs-docs-example">
+        	<pre><code>--- ../css/
+ |---- css/libs/reset.css                  CSS reset文件
+ |---- … … 
+ |---- css/images/                         主 CSS-sprite 图片     
+ |---- css/style.css                       主 CSS 样式表
+ |---- … … 
+ |---- css/images/xxx/sprite.png           xxx 的 CSS-sprite 图片
+ |---- css/xxx-style.css                   xxx 的 样式表
+</code></pre>
+        </div>
+        
+        
+        
+        <h2>CSS(含Less) 文件结构</h2>
+        <div class="bs-docs-example">
+        	<pre><code>--- ../css/
+ |---- css/libs/reset.less            CSS reset文件
+ |---- css/libs/elements.less         Less 函数复用文件
+ |---- … … 
+ |---- css/images/                         主 CSS-sprite 图片     
+ |---- css/style.less                      主样式Less
+ |---- css/style.css                       less -&gt; css 自动生成
+ |---- … … 
+ |---- css/images/xxx/sprite.png           xxx 的 CSS-sprite 图片
+ |---- css/xxx-style.less                  xxx 的 Less
+ |---- css/xxx-style.css                   less -&gt; css 自动生成
+</code></pre>
+        </div>
+        
+        <h2>使用Less</h2>
+        <p>在 .less文件头部引入 reset.less&elements.less，之后调用如下属性传参即可，具体使用说明见->Lesselements官方文档</p>
+        <div class="bs-docs-example">
+        	<pre><code>@import "reset.less";  
+@import "elements.less";
+</code></pre>
+        </div>
+        
+        
+        <h2>CSS reset</h2>
+        <p>CSS reset 文件使用：reset.css 或 reset.less</p>
+        <div class="bs-docs-example">
+        	<ul>
+<li>reset文件用于重设各个浏览器的默认样式方案，解决其引起的耦合问题。<br>
+</li>
+<li>也可使用 <code>.clearfix</code> 清除浮动</li>
+</ul>
+        </div>
+        
+        
+        <h2>CSS 注释格式约定</h2>
+        <div class="bs-docs-example">
+        	<pre><code>/*
+@name: Drop Down Menu
+@description: Style of top bar drop down menu.
+@require: reset.css
+@author: Andy Huang(andyahung@geekpark.net)
+*/
+</code></pre>
+        <ul>
+        <li>CSS换行制表：使用 2 <del>或4</del> 个空格，而非[Tab]</li>
+        <li>书写格式：
+        
+        <ul>
+        <li>CSS名称+冒号+属性<br>
+        如：<code>.box1 {float:left;}</code>
+        </li>
+        <li>建议保留<code>{</code>左侧空格，字体名用<code>\</code>包含<br>
+        如：<code>.box1,.box2,.box3 {font-family:Courier,'Courier New';}</code>
+        </li>
+        <li>避免中文，或使用转义，推荐前者<br>
+        如：<code>font-family: "Microsoft YaHei";</code> <code>font-family:\5fae\8f6f\96c5\9ed1;</code>
+        </li>
+        </ul>
+        </li>
+        </ul>
+        </div>
+        
+        
+        
+        <h2>CSS各属性的排列顺序：不做硬性要求</h2>
+        <p>如：以下2种顺序均可</p>
+        <div class="bs-docs-example">
+        	<pre><code>.box {
+  /* 顺序1 */
+  background: none repeat scroll 0 0 transparent;
+  bottom: 11px;
+  position: relative;
+  width: 22px;
+  z-index: 33;
+}
+.box {
+  /* 顺序2 */
+  z-index: 33;
+  width: 22px;
+  bottom: 11px;
+  background: transparent none repeat scroll 0 0 ;
+  position: relative;
+}
+</code></pre>
+        </div>
+        
+        
+        
+        <h2>CSS嵌套规则</h2>
+        <div class="bs-docs-example">
+        	<pre><code>/* 推荐嵌套层级 */
+.ui-icon-rarr{}
+.ui-icon-larr{}
+.ui-title{}
+.ui-nav .ui-list{}
+.ui-table .ui-list{}
+
+/* 不推荐 */
+.ui-icon-rarr{}
+.ui-icon-larr{}
+.ui-title{}
+.ui-list{}
+.ui-nav{}
+</code></pre>
+        </div>
+        
+        
+        <h2>CSS格式化</h2>
+        <p>勿格式化，保留下面这种格式，增加可读性和可维护性，后期后台程序(如：PHP/Python)会将CSS压缩成 一行 输出：</p>
+        <div class="bs-docs-example">
+        	<pre><code>.box{
+  /* 勿格式化，增加可读性 */
+  background: none repeat scroll 0 0 transparent;
+  bottom: 11px;
+  position: relative;
+  width: 22px;
+  z-index: 33;
+}
+</code></pre>
+        </div>
+        
+        
+        
+        <h2>类型选择符</h2>
+        <p>若无必要，不要把元素名与ID或者class连在一起使用：</p>
+        <div class="bs-docs-example">
+        	<pre><span class="c">/* Not recommended */</span>
+<span class="nt">ul</span><span class="nf">#example</span> <span class="p">{}</span>
+<span class="nt">div</span><span class="nc">.error</span> <span class="p">{}</span>
+
+<span class="c">/* Recommended */</span>
+<span class="nf">#example</span> <span class="p">{}</span>
+<span class="nc">.error</span> <span class="p">{}</span>
+</pre>
+        </div>
+        
+        <h2>@import</h2>
+        <div class="bs-docs-example">
+        	禁止使用@import组织代码CSS代码，使用LESS等CSS预编译器除外。
+        </div>
+        
+        <h2>分号</h2>
+        <div class="bs-docs-example">
+        	<ul>
+<li><p>每个属性声明后必须添加分号<code>;</code><a href="http://www.w3.org/TR/CSS21/syndata.html#q10">CSS语法</a>；</p></li>
+<li><p>大括号之外不能写分号<code>;</code>。</p></li>
+</ul>
+        </div>
+        
+        <h2>hack</h2>
+        <p>hack样式需遵照一定的顺序。</p>
+        <p>尽量少用浏览器hack，可以考虑的一种方式：</p>
+        <div class="bs-docs-example">
+        	<pre><span class="c">&lt;!--[if lt IE 7 ]&gt; &lt;html class="ie6"&gt; &lt;![endif]--&gt;</span>
+<span class="c">&lt;!--[if IE 7 ]&gt; &lt;html class="ie7"&gt; &lt;![endif]--&gt;</span>
+<span class="c">&lt;!--[if IE 8 ]&gt; &lt;html class="ie8"&gt; &lt;![endif]--&gt;</span>
+<span class="c">&lt;!--[if IE 9 ]&gt; &lt;html class="ie9"&gt; &lt;![endif]--&gt;</span>
+<span class="c">&lt;!--[if (gt IE 9)|!(IE)]&gt;&lt;!--&gt;</span> <span class="nt">&lt;html&gt;</span> <span class="c">&lt;!--&lt;![endif]--&gt;</span>
+</pre>
+        </div>
+        
+        <h2>风格</h2>
+        <p>可用的两种CSS编写格式，在同一个文件中只能使用其中一种：</p>
+        <div class="bs-docs-example">
+            <pre><span class="o">//</span> <span class="nt">This</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">good</span> <span class="nt">example</span><span class="o">!</span>
+            <span class="nc">.styleguide-format</span> <span class="p">{</span>
+              <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#0f0</span><span class="p">;</span>
+              <span class="k">color</span><span class="o">:</span> <span class="m">#000</span><span class="p">;</span>
+              <span class="k">background</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">.</span><span class="m">5</span><span class="p">);</span>
+            <span class="p">}</span>
+            
+            <span class="o">//</span><span class="nt">in</span> <span class="nt">a</span> <span class="nt">line</span>
+            <span class="nc">.styleguide-format</span><span class="p">{</span><span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#0f0</span><span class="p">;</span><span class="k">color</span><span class="o">:</span> <span class="m">#000</span><span class="p">;</span><span class="k">background</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">.</span><span class="m">5</span><span class="p">);}</span>
+            </pre>
+        </div>
+        <p>小写字母，使用短横线-链接单词：</p>
+        <div class="bs-docs-example">
+            <pre><span class="c">/* Not recommended: does not separate the words “demo” and “image” */</span>
+            <span class="nc">.demoimage</span> <span class="p">{}</span>
+            
+            <span class="c">/* Not recommended: uses underscore instead of hyphen */</span>
+            <span class="nc">.error_status</span> <span class="p">{}</span>
+            <span class="c">/* Recommended */</span>
+            <span class="nf">#video-id</span> <span class="p">{}</span>
+            <span class="nc">.ads-sample</span> <span class="p">{}</span>
+            </pre>
+        </div>
+        <p>不建议将类命名为 .class1, .box2, .class-one，大多数情况下，这是偷懒的表现。事实上，几乎所有情况，我们都可以为他们取一个好名字。</p>
+        
+        <h2>注释</h2>
+        <div class="bs-docs-example">
+        	<p>/*---------------- footer ----------------*/
+...
+/*---------------- /footer ----------------*/</p>
+        </div>
+        
+        <h2>Class 和 ID</h2>
+        <p>在能够表达清楚功能或者作用的前提下，名称越短越好：</p>
+        <div class="bs-docs-example">
+        	<pre><span class="c">/* Not recommended */</span>
+            <span class="nf">#navigation</span> <span class="p">{}</span>
+            <span class="nc">.atr</span> <span class="p">{}</span>
+            
+            <span class="c">/* Recommended */</span>
+            <span class="nf">#nav</span> <span class="p">{}</span>
+            <span class="nc">.author</span> <span class="p">{}</span>
+            </pre>
+        </div>
+        
+        <h2>属性</h2>
+        <p>只要可能，尽量简写（高效且易于理解），注：全局样式不能使用简写，避免业务样式难于覆盖：</p>
+        <div class="bs-docs-example">
+        		<pre><span class="c">/* Not recommended */</span>
+                <span class="nt">border-top-style</span><span class="o">:</span> <span class="nt">none</span><span class="o">;</span>
+                <span class="nt">font-family</span><span class="o">:</span> <span class="nt">palatino</span><span class="o">,</span> <span class="nt">georgia</span><span class="o">,</span> <span class="nt">serif</span><span class="o">;</span>
+                <span class="nt">font-size</span><span class="o">:</span> <span class="nt">100</span><span class="o">%;</span>
+                <span class="nt">line-height</span><span class="o">:</span> <span class="nt">1</span><span class="nc">.6</span><span class="o">;</span>
+                <span class="nt">padding-bottom</span><span class="o">:</span> <span class="nt">2em</span><span class="o">;</span>
+                <span class="nt">padding-left</span><span class="o">:</span> <span class="nt">1em</span><span class="o">;</span>
+                <span class="nt">padding-right</span><span class="o">:</span> <span class="nt">1em</span><span class="o">;</span>
+                <span class="nt">padding-top</span><span class="o">:</span> <span class="nt">0</span><span class="o">;</span>
+                
+                <span class="c">/* Recommended */</span>
+                <span class="nt">border-top</span><span class="o">:</span> <span class="nt">0</span><span class="o">;</span>
+                <span class="nt">font</span><span class="o">:</span> <span class="nt">100</span><span class="o">%/</span><span class="nt">1</span><span class="nc">.6</span> <span class="nt">palatino</span><span class="o">,</span> <span class="nt">georgia</span><span class="o">,</span> <span class="nt">serif</span><span class="o">;</span>
+                <span class="nt">padding</span><span class="o">:</span> <span class="nt">0</span> <span class="nt">1em</span> <span class="nt">2em</span><span class="o">;</span>
+                </pre>
+        </div>
+        
+        <h2>值为"0"时，可以不指定单位（除非有必要）：</h2>
+        <div class="bs-docs-example">
+        	<pre><span class="nt">margin</span><span class="o">:</span> <span class="nt">0</span><span class="o">;</span>
+<span class="nt">padding</span><span class="o">:</span> <span class="nt">0</span><span class="o">;</span>
+</pre>
+        </div>
+        
+        <h2>图片</h2>
+        <div class="bs-docs-example">
+        	<ul>
+            <li><p>切图时必须合理的压缩每张图片，提高页面加载速度，如果能用1像素的就切成1像素；</p></li>
+            <li><p>一般情况下，请保存为 <code>png-8</code> 格式，所有能保存为静态<code>gif</code>的图像，都应该保存为<code>png-8</code>格式；</p></li>
+            <li><p><code>png-24</code>与<code>jpg</code>都是一种压缩图像格式，但是与<code>jpg</code>不同，<code>png-24</code> 是无损压缩，因此不会降低图像的品质（比如jpg图像锐利边缘的噪点），这也是要求效果图使用<code>png-24</code>格式保存的原因；</p></li>
+            <li><p><code>jpg</code>作为一种有损压缩格式，在每次使用它压缩的时候，均会再次降低图像的品质。多次编辑同一个<code>jpg</code>图像，情况会变得越来越糟糕。所以一定要从设计师手中拿到无损格式的设计稿再进行工作。一般不应该为<code>jpg</code>格式，除非这个图像：色值远超过256色(鲜艳而华丽)，保存为索引颜色会出现明显的梯度变化（梯田），颜色抖动（点状渐变）；</p></li>
+            <li><p>一般<code>CSS</code>背景图不使用<code>jpg</code>格式的图像。</p></li>
+            </ul>
+        </div>
+        
+        
+        
+    	
     </section>
     
     
     
-    <section id="Document_qa">
-    <div class="page-header"><h2>常见问题</h2></div>
     
-    <h4>CSS Reset 格式化</h4>
-    <div class="bs-docs-example">
-<p>/* 结构 */</p>
-<p>
-html, body, div, span, object, iframe,<br />
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,<br />
-abbr, address, cite, code,<br />
-del, dfn, em, img, kbd, q, samp,<br />
-small, strong, sub, sup, var,<br />
-b, i,<br />
-dl, dt, dd, ol, ul, li,<br />
-fieldset, form, label, legend,<br />
-table, caption, tbody, tfoot, thead, tr, th, td,<br />
-article, aside, canvas, details, figcaption, figure,<br />
-footer, header, hgroup, menu, nav, section, summary,<br />
-time, mark, audio, video <br />{<br />
+    <section id="Document_javascript">
+    <div class="page-header"><h1>javascript</h1></div>
+    
+    	<h2>JS 文件结构</h2>
+        <div class="bs-docs-example">
+        	<pre><code>---/js/
+|---- /libs/plugin-1/       使用到的js插件1  
+|---- /libs/plugin-2/       使用到的js插件2  
+|---- /libs/plugin-3/       使用到的js插件3  
+|---- script.js             单独书写的js  
+|---- plugins.js            调用的plugins汇总  
+|---- juqery-1.9.x.min.js   调用jq库文件  
+</code></pre>
+		<ul>
+<li>JS 换行缩进：采用 4 空格</li>
+<li>结束行需添加分号<code>;</code>
+</li>
+<li>jQuery变量要求首字符为 <code>$</code>, 私有变量:首字符为<code>_</code>; 尽量避免全局变量.</li>
+<li>避免使用 eval()，setTimeOut使用调用函数，考虑重绘，回流 操作对页面影响  参看：<a href="http://www.zhangxinxu.com/wordpress/2010/01/%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E7%BB%98%EF%BC%9Acss%E6%80%A7%E8%83%BD%E8%AE%A9javascript%E5%8F%98%E6%85%A2%EF%BC%9F/" title="重绘,回流参考">reflows，repaints</a>
+</li>
+<li>JS调试使用<code>console.log()</code>及<code>console.dir()</code>进行，避免使用弹出框，线上版需要注释所有调试代码</li>
+<li>JS压缩混淆工具: <a href="http://javascriptcompressor.com/" title="JS 压缩和混淆">JS Compressor</a>  如果使用了压缩，需要留 <code>name-src.js</code>在同路径供今后修改使用</li>
+</ul>
+        </div>
+        
+        
+        <h2>jQuery Plugin</h2>
+        <div class="bs-docs-example">
+        	<ul>
+            <li>IE对HTML5标签支持，以及浏览器特性检测：<a href="http://modernizr.com/download/">Modernizr</a> &amp; <a href="https://github.com/aFarkas/html5shiv">html5shiv</a>
+            </li>
+            <li>IE6 PNG 图片支持：<a href="http://www.dillerdesign.com/experiment/DD_belatedPNG/">DD_belatedPNG</a>
+            </li>
+            <li>定制&amp;统一 浏览器的滚动条样式：<a href="https://github.com/thomd/jquery-scroll/">jquery-scroll</a> &amp; <a href="https://github.com/Charuru/lionbars">Lionbars</a>
+            </li>
+            <li>hover提示效果文字：<a href="http://twitter.github.com/bootstrap/javascript.html#tooltips">bootstrap-tooltips</a> &amp; <a href="https://github.com/jaz303/tipsy">tipsy</a>
+            </li>
+            <li>滚动条跟随nav效果：<a href="http://twitter.github.com/bootstrap/javascript.html#scrollspy">bootstrap-scrollspy</a>
+            </li>
+            <li>提示冒泡文字：<a href="https://github.com/jamescryer/grumble.js">grumble.js</a>
+            </li>
+            <li>导航栏过渡效果：<a href="http://www.gmarwaha.com/blog/2007/08/23/lavalamp-for-jquery-lovers/">lavalamp</a>
+            </li>
+            <li>移动设备的滚动效果：<a href="https://github.com/cubiq/iscroll">iscroll 4</a>
+            </li>
+            <li>Mac OS Lion 风格的滚动条：<a href="https://github.com/Charuru/lionbars">Lionbars</a>
+            </li>
+            <li>弹性SlideShow：<a href="https://github.com/Mottie/Kwicks">kwicks for jQuery</a>
+            </li>
+            <li>瀑布流：<a href="https://github.com/desandro/isotope">isotope</a>
+            </li>
+            <li>抖动效果：<a href="https://gist.github.com/3270711">jQ shake</a>
+            </li>
+            <li>LightBox：<a href="https://github.com/fancyapps/fancyBox">fancyBox</a>
+            </li>
+            <li>KenDo UI：<a href="http://www.kendoui.com/purchase.aspx">KenDo UI</a>
+            </li>
+            <li>textarea自适应高度：<a href="http://unwrongest.com/projects/elastic/">elastic</a>
+            </li>
+            <li>提示区域 &amp; 提示层：<a href="https://github.com/needim/noty">noty</a>
+            </li>
+            <li>浮动话题泡：<a href="https://github.com/jamescryer/grumble.js">jQuery grumble</a>
+            </li>
+            <li>旋转进度：<a href="https://github.com/aterrien/jQuery-Knob">jQuery Knob</a>
+            </li>
+            </ul>
+        </div>
+        
+        
+        
+        
+    </section>
+    
+    
+    
+    <section id="Document_QA">
+    <div class="page-header"><h1>常见问题</h1></div>
+    
+    
 
-    margin:0;<br />
-    padding:0;<br />
-    border:0;<br />
-    outline:0;<br />
-	font-size:100%; <br />
-	font: 12px/1.5em Helvetica,"宋体","Lucida Grande",Arial,sans-serif;<br />
-}
-<br /><br />
-
-/* 统一等宽字体 */<br />
-code, kbd, pre, samp 				{ font-family:courier new, courier, monospace; } 
-<br /><br />
-
-/* 小于 12px 的中文很难阅读，让 small 正常化 */<br />
-small 										{ font-size:12px; } 
-<br /><br />
-
- /* 斜体扶正 */<br />
-address, cite, dfn, em, var 		{ font-style:normal; }
-<br /><br />
-
-/* 重置列表元素 */<br />
-ul, ol 										{ list-style:none; }
-<br /><br />
-
-/* 使表单元素在 ie 下能继承字体大小；optgroup 无法扶正 */<br />
-button, input, select, textarea  { font-size:100%; } <br />
-input, select , button 				{ vertical-align:middle; }
-<br /><br />
-
-/* Clear Fix */<br />
-.clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}<br />
-.clearfix 		 { display:inline-block; }/* Safari, Chrome, Opera, FF  */<br />
-.clearfix 		 {display:block;} /* IE */
-<br /><br />
-
-/* HTML 5 */<br />
-article,aside,details,figcaption,figure,<br />
-footer,header,hgroup,menu,nav,section { display:block; }<br />
-command,datalist,keygen,mark,meter,progress,rp,rt,ruby,time,wbr{display:inline;}<br />
-nav ul { list-style:none; }
-<br /><br />
-
-
-blockquote, q { quotes:none;}<br />
-blockquote:before, blockquote:after,<br />
-q:before, q:after { content:''; content:none; }<br />
-mark 	{ background-color:#ff9; color:#000;  font-style:italic; font-weight:bold;}<br />
-del 		{ text-decoration:line-through; }<br />
-abbr[title], dfn[title] { border-bottom:1px dotted; cursor:help;}<br />
-a  			{ margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent; text-decoration:none; outline:none;}<br />
-a:hover{ text-decoration:underline;}
-<br /><br />
-
-table  	{ border-collapse:collapse; border-spacing:0; }<br />
-hr 		{ display:block; height:1px; border:0; border-top:1px solid #cccccc; margin:1em 0; padding:0;}
-<br /><br />
-
-p { word-spacing:0.125em; hyphenate:auto; hyphenate-lines:3; margin-top:1em;}<br />
-</p>
-	</div>
-
-	<h4>清除浮动方案</h4>
+	<h2>清除浮动方案</h2>
+    <p>原则上所有的浮动都需要做好清除浮动的工作，使用统一的清除浮动样式：</p>
     <div class="bs-docs-example">
     		<p>.clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}</p>
             <p>.clearfix 		 { display:inline-block; }<span>/* Safari, Chrome, Opera, FF  */</span></p>
             <p>.clearfix 		 {display:block;} <span>/* IE */</span></p>
     </div>
     
-    <h4>尽可能采用派生选择器</h4>
+    <h2>跨浏览器的inline-block</h2>
     <div class="bs-docs-example">
-    		<p>简化命名的同时也使结构更加的清晰化： .mainMenu ul li {background:url(images/bg.gif;)}</p>
+    	<p>display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline;</p>
     </div>
     
-    <h4>DOCTYPE 申明选择</h4>
+    
+    <h2>超出自动隐藏</h2>
     <div class="bs-docs-example">
-    		<p>XHTML 1.0 提供了三种DTD声明可供选择：过渡的(Transitional)：要求非常宽松的DTD，它允许你继续使用HTML4.01的标识（但是要符合xhtml的写法）。严格的(Strict)：要求严格的DTD，你不能使用任何表现层的标识和属性。框架的(Frameset)：专门针对框架页面设计使用的DTD，如果你的页面中包含有框架，需要采用这种DTD。理想情况当然是严格的DTD，但对于我们大多数刚接触web标准的设计师来说，过渡的DTD(XHTML 1.0 Transitional)是目前理想选择（包括本站，使用的也是过渡型DTD）。因为这种DTD还允许我们使用表现层的标识、元素和属性，也比较容易通过W3C的代码校验。</p>
-            <p><i><</i>!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"<i>></i></p>
-            <p><i><</i>html xmlns="http://www.w3.org/1999/xhtml"<i>></i></p>
+    	<p>overflow:hidden;/*注意不要写在最后了*/ white-space:nowrap; -o-text-overflow:ellipsis; text-overflow:ellipsis;/*IE专有*/</p>
     </div>
     
-    <h4>指定语言及字符集</h4>
+    
+    <h2>Table表格自动换行</h2>
     <div class="bs-docs-example">
-    		<p>为文档指定语言： 为了被浏览器正确解释和通过W3C代码校验，所有的XHTML文档都必须声明它们所使用的编码语言；标准的XML文档语言定义：  针对老版本的浏览器的语言定义：为提高字符集，建议采用"utf-8"。标准的XML文档语言定义： 针对老版本的浏览器的语言定义：为提高字符集，建议采用"utf-8"。</p>
-            <p><i><</i>meta http-equiv="Content-Type" content="text/html; charset=utf-8"<i>&nbsp;/></i></p>
+    	<p>table-layout:fixed; word-break:break-all; word-wrap:break-word;</p>
     </div>
+    
+    
+    <h2>滤镜</h2>
+    <div class="bs-docs-example">
+    	filter:Alpha(opacity=10); /* IE */<br>
+        -moz-opacity:0.1; /* Moz+FF */<br>
+        opacity:0.1; /* 支持css3的浏览器(FF 1.5也支持) */<br>
+        <br>
+        or<br>
+        <br>
+        -ms-filter:"progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";  filter:alpha(opacity=100); -moz-opacity:0.1; opacity:1;
+
+    </div>
+    
+    </section>
+	
+	
+	
+    
+    <section id="Document_tools">
+    <div class="page-header"><h1>生产力工具推荐(MAC)</h1></div>
+    
+    	<h2>前端相关工具</h2>
+        <div class="bs-docs-example">
+        	<ul>
+            <li>编辑器：<a href="http://www.sublimetext.com/2">Sublime Text 2</a> / <a href="https://github.com/textmate/textmate">TextMate 2</a> / <a href="http://macvim.org/">Vim</a>
+            </li>
+            <li>命令行：<a href="http://www.iterm2.com/">iTerm2</a>
+            </li>
+            <li>浏览器调试环境：<a href="http://www.google.com/chrome">Chrome</a> / <a href="http://www.mozilla.org/">Firefox</a> + <a href="http://getfirebug.com/">Firebug</a>
+            </li>
+            <li>移动设备浏览器：<a href="http://www.mozilla.org/projects/fennec">Mozilla Fennec</a>
+            </li>
+            <li>兼容性测试：<a href="https://www.virtualbox.org/">VirtualBox</a> + Win XP（IE 8）</li>
+            <li>版本控制工具：<a href="http://mac.github.com/">GitHub for Mac</a> / <a href="http://versionsapp.com/">Versions</a> / <a href="http://www.sourcetreeapp.com/">SourceTree</a>
+            </li>
+            <li>FTP工具：<a href="http://filezilla-project.org/">Filezilla</a> / <a href="http://itunes.apple.com/us/app/forklift/id412448059?mt=12">ForkLift</a>
+            </li>
+            <li>HTTP抓包及Post/Get模拟：<a href="http://www.charlesproxy.com/">Charles</a>
+            </li>
+            <li>PHP集成环境：<a href="http://www.apachefriends.org/en/xampp-macosx.html">XAMPP for Mac</a>
+            </li>
+            <li>SQL数据库管理：<a href="http://www.sequelpro.com/">Sequel Pro</a>
+            </li>
+            <li>标注工具：<a href="http://www.getmarkman.com/">Mark Man</a> / <a href="http://itunes.apple.com/us/app/xscope/id447661441?mt=12">xScope</a>
+            </li>
+            <li>取色拾色器：<a href="http://itunes.apple.com/app/sip/id507257563?mt=12">Sip</a> / <a href="http://itunes.apple.com/us/app/snip/id512505421?mt=12">Snip</a> / <a href="http://itunes.apple.com/us/app/xscope/id447661441?mt=12">xScope</a>
+            </li>
+            <li>MarkDown编辑器：<a href="http://mouapp.com/">Mou</a>
+            </li>
+            <li>浏览器免刷新开发环境：<a href="http://http://livereload.com/">LiveReLoad</a> / <a href="http://incident57.com/codekit/">CodeKit</a>
+            </li>
+            <li>CSS Sprite切图工具：<a href="http://itunes.apple.com/us/app/spriteright/id488584662?mt=12">SpriteRight</a>
+            </li>
+            <li>Less -&gt; CSS 编译：<a href="http://incident57.com/codekit/">CodeKit</a> / <a href="http://http://livereload.com/">LiveReLoad</a> / <a href="http://incident57.com/less/">Less</a>
+            </li>
+            <li>配色方案工具：<a href="http://itunes.apple.com/us/app/colorschemer-studio/id417896628?mt=12">ColorSchemer Studio</a>
+            </li>
+            <li>多浏览器Cookie管理：<a href="http://itunes.apple.com/us/app/cookie/id415585910?mt=12">Cookie</a>
+            </li>
+            <li>图片素材收集：<a href="http://seesparkbox.com/">Sparkbox</a> / <a href="http://www.pixa-app.com/">Pixa</a>
+            </li>
+            </ul>
+        </div>
+        
+        <h2>其他效率工具</h2>
+        <div class="bs-docs-example">
+        	<ul>
+            <li>快速启动及切换app：<a href="http://www.alfredapp.com/">Alfred</a>
+            </li>
+            <li>笔记：<a href="http://www.evernote.com/">Evernote</a>
+            </li>
+            <li>压缩解压：<a href="https://itunes.apple.com/us/app/keka/id470158793?mt=12">Keka</a> / <a href="https://itunes.apple.com/us/app/ipack/id433386677?mt=12">iPack</a>
+            </li>
+            </ul>
+        </div>
+        
+        
+        <h2>其他收集</h2>
+        <div class="bs-docs-example">
+        	<ul>
+            <li>Firefox 扩展收藏集 -&gt; <a href="https://addons.mozilla.org/en-US/firefox/collections/hzlzh/hzlzh/">Firefox Add-ons collections</a>
+            </li>
+            <li>Chrome 扩展 -&gt; 待添加</li>
+            <li>Sublime Text 2 技巧  -&gt; <a href="http://www.douban.com/group/topic/28027863/">ST2 资源技巧汇总</a>
+            </li>
+            </ul>
+        </div>
+        
+        
+        <h2>相关技巧</h2>
+        <div class="bs-docs-example">
+        	<ul>
+            <li>
+            <a href="https://github.com/GeekPark/Doc/wiki/%5B%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E7%BC%93%E5%AD%98%5D%E5%90%84%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B5%8B%E8%AF%95%E7%BD%91%E9%A1%B5%E6%97%B6%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98%E7%9A%84%E6%96%B9%E6%B3%95">各浏览器的缓存清除方法</a><br>
+            </li>
+            <li>
+            <a href="https://github.com/GeekPark/Doc/wiki/%5B%E6%B5%8B%E8%AF%95%E6%8A%80%E5%B7%A7%5DGmail-%E6%B7%BB%E5%8A%A0%E8%AF%8D%E7%BC%80(.--)%E8%8E%B7%E5%BE%97%E5%A4%9A%E4%B8%AA%E9%82%AE%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95">测试技巧Gmail 添加词缀(.+)获得多个邮件的方法</a><br>
+            </li>
+            <li>
+            <a href="https://github.com/GeekPark/Doc/wiki/%E5%85%B3%E4%BA%8E%5BMac%5D-%5BWin%5D-%5BLinux%5D%E8%B7%A8%E7%B3%BB%E7%BB%9F%E4%BC%A0%E6%96%87%E4%BB%B6%EF%BC%8C%E6%96%87%E4%BB%B6%E5%90%8D%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">关于Mac Win Linux跨系统传文件，文件名乱码的解决方案</a><br>
+            </li>
+            <li><a href="https://github.com/GeekPark/Doc/wiki/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%5B%E8%B7%AF%E7%94%B1%E4%BB%A3%E7%90%86%5D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%92%8C%E4%BD%BF%E7%94%A8%E9%A1%BB%E7%9F%A5">技术团队"路由代理"解决方案和使用须知</a></li>
+            </ul>
+        </div>
+        
+    
     
     </section><!-- #BeginLibraryItem "/Library/footer.lbi" --><footer class="footer navbar-fixed-bottom">
         <p class="pull-right"><a href="#">顶端</a></p>
-        <p><span>VCP Team</span></p>
         <p>
+        <span>VCP Team</span>
         <a href="#a">Jin</a>/&nbsp;&nbsp;
         <a href="#a">Jerome</a>/&nbsp;&nbsp;
         <a href="#a">Susa</a>/&nbsp;&nbsp;
@@ -434,5 +804,17 @@ p { word-spacing:0.125em; hyphenate:auto; hyphenate-lines:3; margin-top:1em;}<br
     <!-- 浮动式导航 -->
     <script src="js/application.js"></script>
     <script src="js/customize.js"></script>
+    <script type="text/jscript">
+			 //$('.fancyinput_vcp :input').val('').fancyInput()[0].focus();
+			
+			$(function() {
+				
+					
+					
+			});
+					
+			
+        	
+	</script>
 </body>
 </html>
