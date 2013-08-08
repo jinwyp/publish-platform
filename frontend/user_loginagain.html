@@ -13,19 +13,13 @@
     <![endif]-->
     <!-- 默认 Site Theme -->
     <link href="theme/default/site-theme.css" rel="stylesheet">
-    <!-- <link href="lib/boostrap/bootstrap-combined.min.css" rel="stylesheet">-->
-    
-
-
-      
-  </head>
-  <style type="text/css">
+    <style type="text/css">
   <!-- 
   html { overflow-y:scroll}
   -->
   </style>
-<!-- <body style="background:#e9e8e4;"> -->
-<body style="background: fixed url(app/img/pagebg.jpg) center 60px repeat;">
+  </head>
+<body style="background:#fff;">
 
 
 
@@ -34,17 +28,17 @@
 	<h1 class="logo"><a href="index.html">VCP</a></h1>
     <a href="###" class="preview">preview</a>
     <div class="preview_Item">
-    	<a href="#" class="forMobile">On Mobile</a>
+        <a href="#" class="forMobile">On Mobile</a>
         <a href="#" class="forPad">On Pad</a>
-    	<a href="../demo/index.html" class="forPC" target="_blank">On PC</a>
+        <a href="../demo/index.html" class="forPC" target="_blank">On PC</a>
     </div>
     <ul class="menu clearfix">
     	<li id="menuSite"><a href="site.html">Site</a></li>
         <li id="menuPage"><a href="page.html">Page</a></li>
-        <li id="menuArticle"><a href="article_list_index.html" class="current">Article</a></li>
+        <li id="menuArticle"><a href="article_list_index.html">Article</a></li>
         <li id="menuReports"><a href="reports.html">Report</a></li>
         <li id="menuStore"><a href="store.html">Store</a>
-        <li id="menuUser"><a href="user.html">User</a>
+        <li id="menuUser"><a href="user.html" class="current">User</a>
         	<ul class="subMenu">
            <li><a href="user_loginagain.html">User Login Again</a></li>
            </ul>
@@ -52,45 +46,79 @@
         <li id="menuAppGenerate"><a href="app.html">App</a></li>
     </ul>
 </header>
-
+        
 
 <!-- Container -->
-<div class="vcpbox" ng-view>
+<div class="vcpbox" ng-controller="userInfoController">
+	<div class="user_Box">
+    	
+        
+    	<!-- SideMenu -->
+        <div class="user_sideMenu">
+        	<div class="sideMenuList">
+                <!-- <span class="titleico"><i class="icon-user"></i></span> -->
+                <a href="#" class="current">Site Info</a>
+                <a href="#">Site Theme</a>
+                <a href="#">Mobile App</a>
+                <a href="#">Contributors</a>
+                <a href="#">Workflow</a>
+                <a href="#">Domain</a>
+                <a href="#">RSS</a>
+            </div>
+        </div>
+        <!-- SideMenu //End -->
+        
+        
+        <div class="userContent">
+        	<h1>Content</h1>
+        </div>
+       
+        
+        
+    </div>
 </div>
 
+    <!-- Load JS -->
+    <script src="lib/underscore/underscore-min.js"></script>
+
     <script src="lib/angular/1.1.5/angular.js"></script>
-    <script src="lib/angularui/ui-bootstrap-tpls-0.4.0.min.js"></script>
-	<script src="app/js/articlecontrollers.js"></script>
+    <script src="app/js/usercontrollers.js"></script>
     <script src="app/js/factory.js"></script>
     <script src="app/js/directives.js"></script>
 
-
-
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
     <script src="lib/angularfire/angularfire.js"></script>
-
-    <script src="lib/underscore/underscore-min.js"></script>
-
+	
     <script src="lib/jquery/jquery-1.8.2.min.js"></script>
-	<!-- Load JS -->
+    <script src="lib/bootstrap/bootstrap.min.js"></script>
     <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
-
-    <script src="ckeditor/ckeditor.js"></script>
-
-    <!-- Bootstrap Plug -->
-    <script src="lib/bootstrap/bootstrap.js"></script>
-    <!-- FlatUI Plug -->
-    <!--<script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>-->
+    <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
     <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
     <script src="lib/flatui/custom_radio.js"></script>
     <script src="lib/flatui/jquery.tagsinput.js"></script>
     <script src="lib/flatui/jquery.placeholder.js"></script>
-
-	<script src="app/js/custom.js"></script>
+    <script src="lib/flatui/application.js"></script>
     <!--[if lt IE 8]>
-      <script src="lib/flatui/icon-font-ie7.js"></script>
-      <script src="lib/flatui/lte-ie7-24.js"></script>
+    <script src="lib/flatui/icon-font-ie7.js"></script>
+    <script src="lib/flatui/lte-ie7-24.js"></script>
     <![endif]-->
+    <script src="app/js/custom.js"></script>
+    
+    <script type="text/javascript">
+	
+		$(function(){
+			
+			//sideMenuUL
+			$(".sideMenuList a").click(function() {
+				$(this).addClass("current").siblings("a").removeClass("current");
+			});
+			
+			
+			
+			
+		})
+	
+	</script>
 
-</body>
+ </body>
 </html>
