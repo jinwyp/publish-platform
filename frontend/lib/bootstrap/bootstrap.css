@@ -1119,6 +1119,8 @@ table th[class*="span"],
 .table-hover tbody tr.info:hover td { background-color: #c4e3f3; }
 
 
+
+/* ICON 
  [class^="icon-"], 
  [class*=" icon-"] {
  display: inline-block;
@@ -1133,7 +1135,6 @@ table th[class*="span"],
  background-repeat: no-repeat;
 }
 
-/* White icons with optional class, or on hover/active states of certain elements */
 
 .icon-white, 
 .nav-pills > .active > a > [class^="icon-"], 
@@ -1428,6 +1429,16 @@ table th[class*="span"],
 .icon-briefcase { background-position: -432px -144px; }
 
 .icon-fullscreen { background-position: -456px -144px; }
+
+*/
+
+
+
+
+
+
+
+
 
 .dropup,
 .dropdown { position: relative; }
