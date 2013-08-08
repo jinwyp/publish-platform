@@ -55,6 +55,7 @@ ol.linenums li {
   margin-bottom: 0;
 }
 .subnav .nav > li > a {
+  text-decoration:none;
   color:#666;
   margin: 0;
   padding-left:8px;
@@ -71,6 +72,7 @@ ol.linenums li {
 
 .subnav .nav > .active > a,
 .subnav .nav > .active > a:hover {
+  
   padding-left: 9px;
   color: #000;
   background-color: #e3e3e3;
@@ -361,10 +363,11 @@ hr.soften {
 
 
 /* Footer */
-.footer { padding:0px 30px; border-top: 1px solid #fff; background:#444;}
+.footer { padding:6px 30px; border-top: 1px solid #fff; background:rgba(0,0,0,0.75); border-top:1px solid #000;}
 .footer p { margin-bottom: 0; color: #888; line-height:24px; }
 .footer p span{ color:#aaa; font-weight:bold;}
 .footer p a { color:#aaa; text-decoration:none; padding-right:10px;}
+.footer p a:hover{ color:#fff;}
 
 
 /* url_link */

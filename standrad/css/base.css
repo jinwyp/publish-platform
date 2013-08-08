@@ -106,7 +106,7 @@ textarea {
 }
 body {
   margin: 0;
-  font-family: "Microsoft YaHei", "宋体", Helvetica, Arial, sans-serif;
+  font-family: Ubuntu, 'Microfost YaHei' Arial, sans-serif;
   font-size: 12px;
   line-height: 18px;
   color: #333333;
@@ -622,7 +622,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family:inherit;
 }
 
 label {
@@ -1823,6 +1823,8 @@ table [class*=span],
   background-color: #c4e3f3;
 }
 
+
+/* 
 [class^="icon-"],
 [class*=" icon-"] {
   display: inline-block;
@@ -1837,7 +1839,6 @@ table [class*=span],
   background-repeat: no-repeat;
 }
 
-/* White icons with optional class, or on hover/active states of certain elements */
 
 .icon-white,
 .nav-tabs > .active > a > [class^="icon-"],
@@ -1995,6 +1996,8 @@ table [class*=span],
 .icon-filter 			{ background-position: -408px -144px; } 
 .icon-briefcase 		{ background-position: -432px -144px; } 
 .icon-fullscreen 		{ background-position: -456px -144px; }
+
+*/
 
 /* 下拉菜单 */
 .dropup,
@@ -2988,7 +2991,7 @@ input[type="submit"].btn.btn-mini {
   display: block;
 }
 .nav > li > a:hover {
-  text-decoration: none;
+  text-decoration: ;
   background-color: #eeeeee;
 }
 
@@ -3804,6 +3807,8 @@ input[type="submit"].btn.btn-mini {
 
 .navbar-inverse .nav > li > a {
   color: #fff;
+  text-transform:uppercase;
+  font-weight:bold;
 }
 
 
