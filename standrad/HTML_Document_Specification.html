@@ -77,11 +77,45 @@
         
         <h2>项目结构</h2>
         <div class="bs-docs-example">
-         <pre><code>--- 
-         |---- index.html             入口页    
-         |---- js/                    JS //具体见JS细化结构                 
-         |---- css/                   CSS //具体见CSS细化结构
-        </code></pre>
+            <ul>
+                <li>整个项目从总体功能上分为  </li>
+                <li>1 给Publisher 使用的建站和发布文章的后台管理系统
+                </li>
+                <li>2 Publisher 完成建站后 正式的对外发布的网站
+                </li>
+                <li>3 给Reader 使用的浏览和发布文章系统
+                </li>
+                <li>4 给VCP管理员 使用的后台管理系统
+                </li>
+            </ul>
+        </div>
+
+        <h2>项目结构 前端Html, CSS, Javascript 代码</h2>
+        <div class="bs-docs-example">
+            <ul>
+                <li>根据上面4种功能, 每个功能为一个独立的APP应用 结构如下</li>
+            </ul>
+         <pre><code>---
+ |---- publisheradmin/         给Publisher 使用的建站和发布文章的后台管理系统
+ |---- publisherpreview/       Publisher 完成建站后 正式的对外发布的网站
+ |---- readeradmin/            给Reader 使用的浏览和发布文章系统
+ |---- vcpadmin/               给VCP管理员 使用的后台管理系统
+         </code></pre>
+
+            <ul>
+                <li>针对每一个APP 文件夹结构如下</li>
+            </ul>
+             <pre><code>---
+|---- app/         该应用下的所有图片,CSS,Javascript文件,但不包括需要引用的库文件
+    |---- font/    该应用下需要的字体文件
+    |---- img/     该应用下需要的图片文件
+    |---- js/      该应用下需要的AngularJS文件
+|---- lib/         所有第三方的库文件,库文件不仅仅包括Javascript文件,也包括该库需要的CSS和图片
+|---- theme/       publisheradmin下有的独立主题文件
+|---- index.html   Html文件
+|---- page.html    Html文件
+             </code></pre>
+
         </div>
         
         <h2>重构步骤约定</h2>
