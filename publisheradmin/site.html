@@ -27,7 +27,32 @@
 
 <!-- Header -->
 <header class="header">
-	<h1 class="logo"><a href="index.html">VCP</a></h1>
+	<h1 class="logo"><a href="index.html">VCP</a>
+      <!-- #BeginLibraryItem "/app/temp/project_select.lbi" -->
+      <select class="melvon_select" onchange="self.location.href=options[selectedIndex].value">
+        <optgroup label="Publish Admin">
+          <option value="index.html">Index</option>
+          <option value="register.html">Register</option>
+          <option value="site.html">Site</option>
+          <option value="page.html">Page</option>
+          <option value="article_list_index.html">Article</option>
+          <option value="user.html">User</option>
+          <option value="app.html">App</option>
+        </optgroup>
+        <optgroup label="Publisher Preview">
+          <option value="../publisherpreview/index.html">Preview</option>
+        </optgroup>
+        <optgroup label="Reader Admin">
+          <option value="../readeradmin/index.html">Reader Admin</option>
+        </optgroup>
+        <optgroup label="Standrad">
+          <option value="../standrad/standrad.html">HTML/CSS/Javascript</option>
+          <option value="../standrad/Interactive.html">Interactive</option>
+          <option value="../standrad/icon.html">Icon</option>
+          <option value="../standrad/visual.html">Visual</option>
+        </optgroup>
+      </select>
+    <!-- #EndLibraryItem --> </h1>
     <a href="###" class="preview">preview</a>
     <div class="preview_Item">
         <a href="#" class="forMobile">On Mobile</a>

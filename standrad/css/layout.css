@@ -452,3 +452,11 @@ hr.soften {
 .gohome_current { display:block; margin-right:0; height:19px; background:url(../img/gohome.png) no-repeat;}
 .gohome 		{ background-position:-54px 8px;}
 .gohome_current { background-position:0px 8px;}
+
+
+
+
+/* melvon_select */
+.melvon_select { width:200px; background:#111; color:#666; border:1px solid #444;}
+.melvon_select optgroup{  font-size:14px; color:#888; background:#444;}
+.melvon_select option{ color:#ccc; background:#333; }
