@@ -22,6 +22,24 @@ vcpapp.directive('enterKeypress', function(){
         };
     });
 
+vcpapp.directive( 'addFooter', function () {
+    return {
+        scope: false,
+        restrict:'EA',
+        template: '<a ng-hide="footer.length > 4" href="#" class="sub_addlink" ng-click="showheaderform($index)">+</a>',
+        link: function ( scope, element, attrs ) {
+           // debugger;
+            scope.showheaderform = function($index){
+                scope.csstitleform = true;
+            }
+           /* scope.on = false;
+
+            scope.toggle = function () {
+                scope.on = !$scope.on;
+            };*/
+        }
+    };
+});
 
 
 /* Controllers */
