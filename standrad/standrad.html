@@ -13,7 +13,8 @@
     <!-- 页面默认布局样式 -->
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/icon.css">
-    <style type="text/css">
+    <link rel="stylesheet" href="lib/google-code-prettify/prettify.css">
+    <style type="text/css" >
       body {
         padding-top: 60px;
         padding-bottom: 40px;
@@ -22,7 +23,7 @@
     <!-- 响应式布局 -->
     <link rel="stylesheet" href="css/layout-responsive.css">
 </head>
-<body data-spy="scroll" data-target=".subnav" data-offset="50"><!-- #BeginLibraryItem "/Library/tophead.lbi" --><!-- Header -->
+<body  data-spy="scroll" data-target=".subnav" data-offset="50"><!-- #BeginLibraryItem "/Library/tophead.lbi" --><!-- Header -->
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
@@ -619,15 +620,17 @@
     <section id="Document_javascript">
     <div class="page-header"><h1>javascript</h1></div>
     
-    	<h2>JS 文件结构</h2>
+    	<h2>Javascript Lib 库文件结构</h2>
         <div class="bs-docs-example">
-        	<pre><code>---/js/
-|---- /libs/plugin-1/       使用到的js插件1  
-|---- /libs/plugin-2/       使用到的js插件2  
-|---- /libs/plugin-3/       使用到的js插件3  
-|---- script.js             单独书写的js  
-|---- plugins.js            调用的plugins汇总  
-|---- juqery-1.9.x.min.js   调用jq库文件  
+        	<pre><code>---/lib/
+|---- /libs/jquery/         使用jQuery库,如果库要升级可以直接用带版本号的文件名称,放到改目录下,或建立版本号的子目录,放到下面.
+|---- /libs/jqueryui/       使用jQueryUI, jQuery的插件独立与jQuery的目录
+|---- /libs/plugin-1/       使用到的jQuery插件1
+|---- /libs/angular/        使用angular 框架
+|---- /libs/angularui/      使用angular UI框架
+|---- /libs/bootstrap/      使用 <a href="http://getbootstrap.com/2.3.2/">bootstrap  2.3.2 框架</a>
+|---- /libs/underscore/     使用 <a href="http://underscorejs.org/">underscore 1.5.1 框架</a>
+
 </code></pre>
 		<ul>
 <li>JS 换行缩进：采用 4 空格</li>
@@ -695,14 +698,79 @@
     
     
     <section id="Document_angularjs">
-    	<div class="page-header"><h1>ANgularJs</h1></div>
+    	<div class="page-header"><h1>AngularJS</h1></div>
     
     
-    	<h2>1111</h2>
+    	<h2>每个App 文件结构</h2>
         <div class="bs-docs-example">
-        111
+             <pre><code>---
+ |---- app/         该应用下的所有图片,CSS,Javascript文件,但不包括需要引用的库文件
+ |---- font/        该应用下需要的字体文件
+ |---- img/         该应用下需要的图片文件
+ |---- js/app.js                *如果整个APP项目是SPA项目,那么app.js是该项目的入口文件, 否则该文件没有作用.入口文件则是控制器文件
+ |---- js/pagecontrollers.js    *AngularJS控制器文件,命名以xxxcontrollers.js, 如果没有前端路由,控制器文件则为入口文件.
+ |---- js/directives.js         *AngularJS 自定义指令文件.
+ |---- js/factory.js            *AngularJS 工厂文件,主要用于Model 数据层的服务.
+ |---- js/custom.js             *jQuery思想写法的js文件, 应该被弃用.
+
+ |---- lib/         所有第三方的库文件,库文件不仅仅包括Javascript文件,也包括该库需要的CSS和图片
+ |---- theme/       publisheradmin下有的独立主题文件
+ |---- index.html   Html文件
+ |---- page.html    Html文件
+             </code></pre>
         </div>
-    
+
+        <h2>使用AngularJS 之前 请先进入 "Angular的思维"</h2>
+        <p><a href="http://www.angulargirl.com/bbs/forum.php?mod=viewthread&tid=195">对于前端开发, 如果之前有过jQuery的经验,转型学习 AngularJS /EmberJS ,需要有哪些思维上的转变?</a> </p>
+        <ul>
+            <li>1 不要直接设计页面上的操作DOM功能 </li>
+            <li>2 不要在AngularJS,过度使用jQuery  </li>
+            <li>3 时刻要从结构上思考问题</li>
+            <li>4 Test-driven development - 总是采用TDD 测试驱动开发模式</li>
+            <li>5 理论上,指令directives 并不是仅仅把jQuery打包.</li>
+        </ul>
+
+
+        <h2>AngularJS 变量 函数 方法命名规范</h2>
+
+        <h3>Angular由模板文件和js文件组成  </h3>
+        <h3>命名禁止使用缩写,包括英文和汉语拼音缩写, 请使用英文全写命名 </h3>
+            <ul>
+                <li>1 模板文件中的变量,全部用小写,而且不要用缩写, 如果变量是与样式有关, 例如给ngClass或ngShow使用的变量请以css前缀开头, 例如 "cssmodalshow" </li>
+                <pre class="prettyprint linenums Lang-html">
+&lt;div&nbsp;modal=&quot;cssmodalshow&quot;&nbsp;options=&quot;cssmodalslide&quot;&nbsp;&gt;&lt;/div&gt;
+                </pre>
+
+                <li>2 模板中的ngRepeat中的变量 也全部使用小写  </li>
+                <pre class="prettyprint linenums Lang-html">
+&lt;li&nbsp;&nbsp;ng-repeat=&quot;layout&nbsp;in&nbsp;layouts&nbsp;|&nbsp;filter:layoutfilterlisttype&nbsp;&quot;&gt;&lt;/li&gt;
+                </pre>
+
+                <li>3 模板中的事件, javascript 控制器中的事件函数全部使用驼峰命名 例如 ng-click="clickLayout()" .  事件函数的参数名称请使用全部小写命名</li>
+                <pre class="prettyprint linenums Lang-html">
+&lt;li&nbsp;&nbsp;ng-click=&quot;clickLayout($index,&nbsp;layout)&quot;&nbsp;&nbsp;&gt;&lt;/li&gt;
+                </pre>
+
+                <pre class="prettyprint linenums Lang-js">
+$scope.clickayout = function(indexid, layout) {
+ // some code here
+};
+                </pre>
+
+                <li>4 AngularJS 的数据层 Factory和Service中 函数全部使用驼峰命名</li>
+                <pre class="prettyprint linenums Lang-js">
+var factory = {
+    getArticlesByTags : function(){//some code here},
+    getArticleById : function(){//some code here}
+};
+return factory;
+                </pre>
+
+                <li>5  请认真看 <a href="http://agentzh.org/misc/slides/naming/naming.html#1">"命名的艺术" "想成为一个好的程序员，必须先成为一个好的诗人。"</a> </li>
+            </ul>
+
+
+
     </section>
     
     
@@ -860,20 +928,15 @@
 	<!-- 核心库 -->
 	<script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
-    <!-- 浮动式导航 -->
+    <script src="lib/google-code-prettify/prettify.js"></script>
     <script src="js/application.js"></script>
-    <script src="js/customize.js"></script>
-    <script type="text/jscript">
-			 //$('.fancyinput_vcp :input').val('').fancyInput()[0].focus();
-			
-			$(function() {
-				
-					
-					
-			});
-					
-			
-        	
-	</script>
+
+
+    <!-- 浮动式导航 -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            prettyPrint();
+        })
+    </script>
 </body>
 </html>

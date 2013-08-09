@@ -676,7 +676,8 @@
         </div>
         <!-- SideBar:Page List//End -->
         <!-- Page Layout -->
-        <div class="pagelayout" ng-show="csspagelayout" ng-animate="'fade'"> 
+        <div class="pagelayout" ng-show="csspagelayout" ng-animate="'fade'">
+
             <ul class="layout_list">
                 <li class="" ng-repeat="layout in layouts | filter:layoutfilterlisttype " ng-class="{ active: $index==defaultselectedlayoutindex } " ng-click="clicklayout($index, layout)"  >
                     <img ng-src="{{layout.layoutimage}}">

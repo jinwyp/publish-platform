@@ -89,7 +89,12 @@ vcpapp.factory('modelArticle', function(){
         }
     }
 
-    var factory = {};
+    var factory = {
+        getArticlesByTags : function(){},
+        getArticleById : function(){}
+    };
+
+    return factory;
 
     factory.getArticlesByTags = function (taglistdata, quantity, blockcategory) {
         var articlesresultfinal = [];
