@@ -5,7 +5,7 @@
     <title>VCP</title>
     <meta name="viewport" content="target-densitydpi=device-dpi" />
     <link href="lib/bootstrap/bootstrap.css" rel="stylesheet">
-    <link href="lib/flatui/flat-ui.css" rel="stylesheet">
+   <!-- <link href="lib/flatui/flat-ui.css" rel="stylesheet">-->
     <link href="app/style.css" rel="stylesheet">
     <link href="lib/angularslider/angular-slider.css" rel="stylesheet">
     <link rel="shortcut icon" href="app/img/favicon.ico">
@@ -358,7 +358,7 @@
                                             </ul>
                                         </li>
                                         <li ng-hide="$index==showli"><a ng-hide="header.length > 4" href="#" class="sub_addlink" ng-click="showheaderform($index,true,$event,true)">+</a></li>
-                                        <li class="newlink_panel" ng-show="csstitleform">
+                                        <!--<li class="newlink_panel" ng-show="csstitleform">
                                             <form action="" method="get">
                                                 <h1 class="PopupTitle"><a href="#" class="TipBoxClose" ng-click="closetipheader();"></a>Link Data</h1>
                                                 <div class="newlink_panel_name">
@@ -381,7 +381,7 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                        </li>
+                                        </li>-->
                                     </ul>
                                 </div>
                                 <!-- Nav Link //End -->
@@ -626,8 +626,34 @@
                                                 {{foot.footername}}<i class="ico_edit" ng-click="openfooterinfo($event,foot,$index);"></i>
                                             </a>
                                         </li>
-                                        <li ng-hide="$index==footerli">
-                                            <a ng-hide="footer.length > 4" href="#" class="sub_addlink" ng-click="showheaderform($index,'',$event,false)">+</a>
+                                        <li style="width: 160px;" ng-hide="$index==footerli">
+                                            <add-Footer></add-Footer>
+                                            <form action="" method="get" class="newlink_panel">
+                                                <h1 class="PopupTitle"><a href="#" class="TipBoxClose" ng-click="closetipheader();"></a>Link Data</h1>
+                                                <div class="newlink_panel_name">
+                                                    <input type="text" class="input_newlink" maxlength="10" required ng-model="newheaderdata.menuname" placeholder="Nav link name">
+                                                </div>
+                                                <div class="newlink_panel_form">
+                                                    <label class="radio clearfix">
+                                                        <input type="radio" id="urltype1" ng-model="newheaderdata.menutype" value="other">
+                                                        <input type="url" ng-model="newheaderdata.linkedurl" required class="input_url" placeholder="URL">
+                                                    </label>
+                                                    <label class="radio clearfix">
+                                                        <input type="radio" id="urltype2" ng-model="newheaderdata.menutype" value="local">
+                                                        <select style="width:110px;" ng-model="headerlocalurl" ng-options="page.pagename as page.pagename for page in pages">
+                                                        </select>
+                                                    </label>
+                                                    <div class="newlink_panel_btn">
+                                                        <span id="error" ng-show="showerror" style="color:red;font-size:12px;">Please delete it's all child menu.</span><br>
+                                                        <input type="submit" value="save" class="btn btn-save" ng-click="saveheaderinfo()">
+                                                        <input id="delete" ng-show="cssshowdeleteicon" type="button" value="cancel" class="btn btn-delete" ng-click="deleteparentmenu($event)">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <!--<a ng-hide="footer.length > 4" href="#" class="sub_addlink" ng-click="showheaderform($index,'',$event,false)">+</a>-->
+                                        </li>
+                                        <li class="newlink_panel" ng-show="csstitleform">
+
                                         </li>
                                     </ul>
                                 </div>
@@ -735,10 +761,10 @@
 
     <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
 
-    <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
-  <!--  <script src="lib/flatui/custom_radio.js"></script>-->
+<!-- <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
+  <script src="lib/flatui/custom_radio.js"></script>-->
     <script src="lib/flatui/jquery.tagsinput.js"></script>
-    <script src="lib/flatui/jquery.placeholder.js"></script>
+   <!-- <script src="lib/flatui/jquery.placeholder.js"></script>-->
 
     <!-- Bootstrap Plug -->
     <script src="lib/bootstrap/bootstrap.js"></script>
