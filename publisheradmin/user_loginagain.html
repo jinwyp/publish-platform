@@ -19,7 +19,7 @@
   -->
   </style>
   </head>
-<body style="background:#fff;">
+<body style="background:fixed url(app/img/pagebg.jpg) center 60px repeat;">
 
 
 
@@ -77,25 +77,24 @@
 <div class="vcpbox" ng-controller="userInfoController">
 	<div class="user_Box">
     	
-        
-    	<!-- SideMenu -->
-        <div class="user_sideMenu">
-        	<div class="sideMenuList">
-                <!-- <span class="titleico"><i class="icon-user"></i></span> -->
-                <a href="#" id="userinfo" class="current">User Info</a>
-                <a href="#" id="userrole">User Role</a>
-                <a href="#" id="socialbinding">Social Binding</a>
-            </div>
-        </div>
-        <!-- SideMenu //End -->
-        
-        
         <div class="userContent">
-        	
+        
+            <!-- SideMenu -->
+            <div class="user_sideMenu">
+                <div class="sideMenuList">
+                    <span class="titleico"><i class="icon-user"></i></span>
+                    <a href="#" id="userinfo" class="current">User Info</a>
+                    <a href="#" id="userpassword">Passwrod</a>
+                    <a href="#" id="userrole">User Role</a>
+                    <a href="#" id="socialbinding">Social Binding</a>
+                </div>
+            </div>
+            <!-- SideMenu //End -->
+            
+                
             <!-- User Info -->
             <div class="userInfoBox">
-            
-            		<form class="userInfoBoxForm">
+                    <form class="userInfoBoxForm">
                       <fieldset>
                         <legend>Personal Information</legend>
                         <div class="media">
@@ -107,14 +106,14 @@
                           </div>
                         </div>
                         <div class="control-group error">
-                        	<label>Nickname</label>
+                            <label>Nickname</label>
                             <div class="controls">
                                 <input type="text" class="span4" placeholder="Type something…">
                                 <span class="help-inline"><i class="icon-exclamation-sign"></i> Something may have gone wrong</span>
                             </div>
                         </div>
                         <div class="control-group">
-                        	<label>Email</label>
+                            <label>Email</label>
                             <div class="controls">
                                 <input type="text" class="span4" placeholder="Type something…">
                             </div>
@@ -122,21 +121,21 @@
                          <div class="control-group">
                             <label>Introduction</label>
                             <div class="controls">
-                            	<textarea rows="3" class="span4"></textarea>
+                                <textarea rows="3" class="span4"></textarea>
                             </div>
                         </div>
                         
                         <div class="control-group">
-                        	<label>Introduction</label>
+                            <label>Introduction</label>
                             <div class="controls">
-                            	<input type="text" class="span4" placeholder="Type something…">
+                                <input type="text" class="span4" placeholder="Type something…">
                             </div>
                         </div>
                         
                         <div class="control-group">
-                        	<label>Password</label>
+                            <label>Password</label>
                             <div class="controls">
-                            	<button type="button" class="btn" id="changePasswrodBtn">Chage Password</button>
+                                <button type="button" class="btn" id="changePasswrodBtn">Chage Password</button>
                             </div>
                         </div>
                         
@@ -149,9 +148,13 @@
                       </fieldset>
                     </form>
                     
-                    <!-- Change Passwrod -->
-                    <div class="changePasswrodLayer">
-                    	<form>
+            </div>
+            <!-- User Info //End -->
+            
+            
+            <!-- User Password -->
+            <div class="userPasswordBox">
+                    <form>
                         <fieldset>
                             <legend>Change Password</legend>
                             <div class="control-group error">
@@ -179,16 +182,14 @@
                             <button type="button" class="btn btn-large" id="cancelChangePasswrod">Cancel</button>
                         </fieldset>
                         </form>
-                    </div>
-                    <!-- Change Passwrod //End -->
-            		
             </div>
-            <!-- User Info //End -->
+            <!-- User Role //End -->
+            
             
             
             <!-- User Role -->
             <div class="userRoleBox">
-            		<form>
+                    <form>
                       <fieldset>
                         <legend>User Role</legend>
                        
@@ -202,7 +203,7 @@
             
             <!-- Social Binding -->
             <div class="socialBindingBox">
-            		<form>
+                    <form>
                       <fieldset>
                         <legend>Social Binding</legend>
                        
@@ -212,11 +213,9 @@
                     </form>
             </div>
             <!-- Social Binding //End -->
-            
+                
         </div>
        
-        
-        
     </div>
 </div>
 
@@ -234,12 +233,6 @@
     <script src="lib/jquery/jquery-1.8.2.min.js"></script>
     <script src="lib/bootstrap/bootstrap.min.js"></script>
     <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
-    <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
-    <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
-    <script src="lib/flatui/custom_radio.js"></script>
-    <script src="lib/flatui/jquery.tagsinput.js"></script>
-    <script src="lib/flatui/jquery.placeholder.js"></script>
-    <script src="lib/flatui/application.js"></script>
     <!--[if lt IE 8]>
     <script src="lib/flatui/icon-font-ie7.js"></script>
     <script src="lib/flatui/lte-ie7-24.js"></script>
@@ -262,8 +255,9 @@
 			
 			$("#userinfo").click(function() {
 				$(".userContent .userInfoBox").addClass("displaytrue").siblings("div").removeClass("displaytrue");
-				$(".changePasswrodLayer").animate({left:'350px', opacity:'0'}, 300).css({"z-index":"-1000"});
-				$(".userInfoBoxForm").animate({opacity:'1',}, 0);
+			});
+			$("#userpassword").click(function() {
+				$(".userContent .userPasswordBox").addClass("displaytrue").siblings("div").removeClass("displaytrue");
 			});
 			$("#userrole").click(function() {
 				$(".userContent .userRoleBox").addClass("displaytrue").siblings("div").removeClass("displaytrue");
@@ -273,18 +267,6 @@
 			});
 			
 			
-			
-			// ChangePasswrod
-			$("#changePasswrodBtn").click(function() {
-				$(".changePasswrodLayer").animate({left:'230px', opacity:'1'}, 300).css({"z-index":"1"});
-				$(".userInfoBoxForm").animate({opacity:'0.3',}, 300);
-			});
-			
-			// ChangePasswrod
-			$("#saveChangePasswrod, #cancelChangePasswrod").click(function() {
-				$(".changePasswrodLayer").animate({left:'350px', opacity:'0'}, 300).css({"z-index":"-1000"});
-				$(".userInfoBoxForm").delay(500).animate({opacity:'1',}, 300);
-			});
 			
 			
 			
