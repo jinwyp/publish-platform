@@ -807,19 +807,27 @@ background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#111), to(#222));
 .userInfoBox,
 .userPasswordBox,
 .userRoleBox,
-.socialBindingBox		{ display:none; min-height:500px;  padding:40px 40px 40px 200px; background:#fff; border-radius:8px;}
+.socialBindingBox		{ display:none; min-height:500px; padding:40px 40px 40px 200px; background:#fff; border-radius:8px;}
 
 /* === user Table === */
 table.user_table		{}
 table.user_table thead th { font-size:16px; color:#fff; padding:16px 20px; background:#444; font-weight:normal; }
-table.user_table tbody td { padding:16px 20px; text-align:center; }
-table.user_table tbody td h5		{ font-weight:bold;}
-table.user_table tbody td .site_icon{ width:50px; height:55px; margin-right:6px; background:url('img/badges_sprite.png') -22px -622px no-repeat; display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline;}
+table.user_table tbody td { padding:16px 20px; }
+table.user_table tbody td h5{ font-weight:bold; margin-bottom:6px; padding-left:44px;}
+table.user_table tbody td .icon-sitemap{ float:left; font-size:30px; margin:16px 0 0 0; color:#ccc; }
+table.user_table tbody td p	{ color:#888; font-size:13px; padding-left:44px;}
 
 /* === user Role === */
-.selectuserrole			{ width:100px; height:60px; color:#888; font-size:18px; font-weight:bold; line-height:60px; background:#fff; margin:0 20px; border:5px solid #eee; border-radius:8px; display: display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline;}
-.selectuserrole:hover	{ border:5px solid #38b800;}
-.userrole_current		{ color:#fff; background:#38b800;}
+.userRoleStatus_yes,
+.userRoleStatus_none	{ position:relative; width:120px; height:60px; font-size:18px; font-weight:bold; line-height:60px; margin:0 20px; border-radius:8px; display: display:-moz-inline-stack; display:inline-block; vertical-align:middle; zoom:1; *display:inline; text-align:center; }
+
+.userRoleStatus_yes .icon-group,
+.userRoleStatus_none .icon-group{ font-weight:normal !important;}
+
+.userRoleStatus_yes		{ color:#fff; background:#aed079; box-shadow:0 1px 2px rgba(0,0,0,0.2); }
+.userRoleStatus_none	{ color:#bbb; background:#eeeeee; box-shadow:inset 0 0 10px rgba(0,0,0,0.2);}
+
+.userRoleStatus_yes:before{ content:''; display:block; position:absolute; right:0; bottom:0; width:39px; height:34px; background:url(img/userrole_select.png) no-repeat; z-index:1;}
 
 
 /* === user Step === */
