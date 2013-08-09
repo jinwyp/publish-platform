@@ -27,7 +27,32 @@
 
 <!-- Header -->
 <header class="header">
-	<h1 class="logo"><a href="index.html">VCP</a></h1>
+	<h1 class="logo"><a href="index.html">VCP</a>
+      <!-- #BeginLibraryItem "/app/temp/project_select.lbi" -->
+      <select class="melvon_select" onchange="self.location.href=options[selectedIndex].value">
+        <optgroup label="Publish Admin">
+          <option value="index.html">Index</option>
+          <option value="register.html">Register</option>
+          <option value="site.html">Site</option>
+          <option value="page.html">Page</option>
+          <option value="article_list_index.html">Article</option>
+          <option value="user.html">User</option>
+          <option value="app.html">App</option>
+        </optgroup>
+        <optgroup label="Publisher Preview">
+          <option value="../publisherpreview/index.html">Preview</option>
+        </optgroup>
+        <optgroup label="Reader Admin">
+          <option value="../readeradmin/index.html">Reader Admin</option>
+        </optgroup>
+        <optgroup label="Standrad">
+          <option value="../standrad/standrad.html">HTML/CSS/Javascript</option>
+          <option value="../standrad/Interactive.html">Interactive</option>
+          <option value="../standrad/icon.html">Icon</option>
+          <option value="../standrad/visual.html">Visual</option>
+        </optgroup>
+      </select>
+    <!-- #EndLibraryItem --> </h1>
     <!-- 
     <div class="dropdown toprightlogin">
     	  <a href="user.html" class="signin" data-toggle="dropdown">Login</a>
@@ -134,12 +159,6 @@
     <script src="lib/jquery/jquery-1.8.2.min.js"></script>
     <script src="lib/bootstrap/bootstrap.min.js"></script>
     <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
-    <script src="lib/flatui/jquery.dropkick-1.0.0.js"></script>
-    <script src="lib/flatui/custom_checkbox_and_radio.js"></script>
-    <script src="lib/flatui/custom_radio.js"></script>
-    <script src="lib/flatui/jquery.tagsinput.js"></script>
-    <script src="lib/flatui/jquery.placeholder.js"></script>
-    <script src="lib/flatui/application.js"></script>
     <!-- <script src="lib/jqueryplugin/fancyInput.js"></script>-->
     <!--[if lt IE 8]>
     <script src="lib/flatui/icon-font-ie7.js"></script>
