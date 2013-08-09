@@ -237,7 +237,7 @@
 			
 			$("#userinfo").click(function() {
 				$(".userContent .userInfoBox").addClass("displaytrue").siblings("div").removeClass("displaytrue");
-				$(".changePasswrodLayer").animate({left:'300px', opacity:'0'}, 300);
+				$(".changePasswrodLayer").animate({left:'350px', opacity:'0'}, 300).css({"z-index":"-1000"});
 				$(".userInfoBoxForm").animate({opacity:'1',}, 0);
 			});
 			$("#userrole").click(function() {
@@ -251,14 +251,14 @@
 			
 			// ChangePasswrod
 			$("#changePasswrodBtn").click(function() {
-				$(".changePasswrodLayer").animate({left:'230px', opacity:'1'}, 300);
+				$(".changePasswrodLayer").animate({left:'230px', opacity:'1'}, 300).css({"z-index":"1"});
 				$(".userInfoBoxForm").animate({opacity:'0.3',}, 300);
 			});
 			
 			// ChangePasswrod
 			$("#saveChangePasswrod, #cancelChangePasswrod").click(function() {
-				$(".changePasswrodLayer").delay(100).animate({left:'300px', opacity:'0'}, 300);
-				$(".userInfoBoxForm").delay(300).animate({opacity:'1',}, 300);
+				$(".changePasswrodLayer").animate({left:'350px', opacity:'0'}, 300).css({"z-index":"-1000"});
+				$(".userInfoBoxForm").delay(500).animate({opacity:'1',}, 300);
 			});
 			
 			

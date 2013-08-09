@@ -807,7 +807,7 @@ background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#111), to(#222));
 .userRoleBox,
 .socialBindingBox		{ display:none; padding:40px 0 0 200px;}
 
-.changePasswrodLayer	{ position:absolute; left:300px; opacity:0; top:0; width:100%; height:100%;  z-index:1; padding:100px; background:#fff; border-left:1px solid #bbb; box-shadow:-15px 0 50px rgba(0,0,0,0.2);}
+.changePasswrodLayer	{ position:absolute; left:350px; opacity:0; top:0; width:100%; height:100%;  z-index:-1000; padding:100px; background:#fff; border-left:1px solid #bbb; box-shadow:-15px 0 50px rgba(0,0,0,0.2);}
 
 .user_stepbox			{ position:absolute; top:22%; left:32%; }
 .user_step_title		{ position:absolute; top:-80px; left:0; color:#fff; text-shadow:0 0 28px rgba(0,0,0,0.6); text-transform:capitalize; text-align:center; width:100%;}
