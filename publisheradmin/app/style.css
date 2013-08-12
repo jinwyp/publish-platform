@@ -1312,8 +1312,8 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-f
 .tip_box .nav-tabs 		{ border-bottom:0;}
 .tip_box .nav-tabs > li 	{ float: left; margin-bottom:0;}
 
-.tip_box .nav-tabs > li#layout > a{ border-radius:0 0 0 8px; box-shadow:inset 1px -1px 0 rgba(0,0,0,0.3),inset 0 2px 3px rgba(0,0,0,0.15);}
-.tip_box .nav-tabs > li#filter > a{ border-radius:0 0 8px 0; box-shadow:inset -1px -1px 0 rgba(0,0,0,0.3),inset 0 2px 3px rgba(0,0,0,0.15);}
+.tip_box .nav-tabs > li#layout > a{ border-radius:0 8px 0 8px; box-shadow:inset 1px -1px 0 rgba(0,0,0,0.3),inset 0 2px 3px rgba(0,0,0,0.15);}
+.tip_box .nav-tabs > li#filter > a{ border-radius:8px 0 8px 0; box-shadow:inset -1px -1px 0 rgba(0,0,0,0.3),inset 0 2px 3px rgba(0,0,0,0.15);}
 
 .tip_box .nav-tabs > li#layout > a:hover{ box-shadow:inset 1px -1px 0 rgba(0,0,0,0.3), inset 0 4px 6px rgba(0,0,0,0.15); }
 .tip_box .nav-tabs > li#filter > a:hover{ box-shadow:inset -1px -1px 0 rgba(0,0,0,0.3), inset 0 4px 6px rgba(0,0,0,0.15); }
