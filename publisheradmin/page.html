@@ -334,19 +334,19 @@
                                         <img ng-src="{{theme.image}}">
                                     </a>
                                 </div>
-                                <!-- ??Theme //End -->
+                                <!-- Theme //End -->
 
                                 <!-- Nav Link -->
                                 <div class="navlink_panel" ng-show="cssheadersetting" ng-animate="{show: 'fade-show', hide: ''}" >
                                 	<ul class="nav_structure clearfix">
                                         <li ng-repeat="head in header track by $index" class="classid">
                                             <a ng-hide='$index==showa' href="#" class="pagelink">
-                                                {{head.menuname}}<i class="ico_edit" ng-click="openheaderinfo($index,head,$event)"></i>
+                                                {{head.menuname}}<i class="icon-gear" ng-click="openheaderinfo($index,head,$event)"></i>
                                             </a>
                                             <ul>
                                                 <li ng-repeat="child in head.childdata">
                                                     <a ng-hide='child==showchilda' href="#" class="urllink">
-                                                        {{child.menuname}}<i class="ico_edit" ng-click="openchildinfo($index,child,head.childdata,$event)"></i>
+                                                        {{child.menuname}}<i class="icon-gear" ng-click="openchildinfo($index,child,head.childdata,$event)"></i>
                                                     </a>
                                                 </li>
                                                 <li ng-hide="$index==showli">
@@ -539,7 +539,7 @@
                             <!-- ICO //End -->
 
                             <div class="masklayer" ng-show="showautoblockstyle">
-                                <a href="#" class="btn btn-save" ng-click="addblocktopage('auto', currentlayoutcontainer, selectblockicon, autoblocklayout)"></a>
+                                <a href="#" class="icon-save" ng-click="addblocktopage('auto', currentlayoutcontainer, selectblockicon, autoblocklayout)"></a>
                                 <!--有图一列-->
                                 <img ng-show="selectblockicon == 0" src="app/img/temp/blocklayout_preview1.jpg" alt="">
                                 <!--无图一列-->
@@ -550,7 +550,7 @@
                                 <img ng-show="selectblockicon == 3" src="app/img/temp/blocklayout_preview4.jpg" alt="">
                             </div>
                             <div class="masklayer" ng-show="showeditorblockstyle">
-                                <a href="#" class="btn btn-save" ng-click="addblocktopage('editor', currentlayoutcontainer, selecteditorblockicon, autoeditorblocklayout)"></a>
+                                <a href="#" class="icon-save" ng-click="addblocktopage('editor', currentlayoutcontainer, selecteditorblockicon, autoeditorblocklayout)"></a>
                                 <!--有图一列-->
                                 <img ng-show="selecteditorblockicon == 0" src="app/img/temp/blocklayout_preview1.jpg" alt="">
                                 <!--无图一列-->
@@ -562,7 +562,7 @@
                             </div>
 
                             <div class="masklayer" ng-click="addblocktopage('RSS', currentlayoutcontainer, selectrssblockicon, rsseditorblocklayout)" ng-show="showrssblockstyle">
-                                <a href="#" class="btn btn-save"></a>
+                                <a href="#" class="icon-save"></a>
                                 <!--无图一列-->
                                 <img ng-show="selectrssblockicon == 1" src="app/img/temp/blocklayout_preview2.jpg" alt="">
                             </div>
@@ -685,20 +685,18 @@
                             <h1 class="PopupTitle"><a href="" class="TipBoxClose" ng-click="closeeditpageattribute($index)">X</a>Page Data</h1>
                             <div class="page_attri_cont">
                                 <form>
-                                		<ul class="clearfix">
-                                        <li>
-                                            <h6>name</h6>
-                                            <input type="text" class="" placeholder="Page Name" ng-model="page.pagename">
-                                        </li>
-                                        <li>
-                                            <h6>title</h6>
-                                        	<input type="text"  class="" placeholder="Page Title" ng-model="page.pagetitle">
-                                        </li>
-                                        <li>
-                                            <h6>URL</h6>
-                                        	 <input type="text" class="" placeholder="Page Url" ng-model="page.pageurl">
-                                        </li>
-                                    </ul>
+                                		<dl class="clearfix">
+                                        <dt>name</dt>
+                                        <dd><input type="text" class="" placeholder="Page Name" ng-model="page.pagename"></dd>
+                                    </dl>
+                                    <dl class="clearfix">
+                                        <dt>title</dt>
+                                        <dd><input type="text"  class="" placeholder="Page Title" ng-model="page.pagetitle"></dd>
+                                    </dl>
+                                    <dl class="clearfix">
+                                        <dt>URL</dt>
+                                        <dd><input type="text" class="" placeholder="Page Url" ng-model="page.pageurl"></dd>
+                                    </dl>
                                     <div class="btn_box">
                                         <a href="#" class="btn btn-save" ng-click="editsavepage(page)">Save</a>
                                     	<a href="#" class="btn btn-delete" ng-click="delpage(page)">Del</a>
