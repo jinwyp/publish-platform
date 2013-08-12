@@ -26,17 +26,70 @@ vcpapp.directive( 'addFooter', function () {
     return {
         scope: false,
         restrict:'EA',
-        template: '<a ng-hide="footer.length > 4" href="#" class="sub_addlink" ng-click="showheaderform($index)">+</a>',
+        template: '<a ng-hide="csstitleform" ng-class="{displaynone: footer.length > 4}" href="#" class="sub_addlink" ng-click="showAddFooterForm()">+</a>'+
+                '<form name="form" ng-show="csstitleform" action="" method="get" class="newlink_panel">'+
+                '<h1 class="PopupTitle"><a href="#" class="TipBoxClose" ng-click="hideAddFooterForm();"></a>Link Data</h1>'+
+                '<div class="newlink_panel_name">'+
+                '<input type="text" class="input_newlink" maxlength="10" required ng-model="menuname" placeholder="Nav link name">'+
+                '</div><div class="newlink_panel_form"><label class="radio clearfix">'+
+                '<input type="radio" ng-model="menutype" value="other">'+
+                '<input type="url" ng-model="linkedurl" class="input_url" placeholder="URL">'+
+                '</label><label class="radio clearfix">'+
+                '<input type="radio" ng-model="menutype" value="local">'+
+                '<select style="width:110px;" ng-model="localurl" ng-options="page.pagename as page.pagename for page in pages">'+
+                '</select></label><div class="newlink_panel_btn">'+
+                '<span ng-show="showerror" style="color:red;font-size:12px;">Please delete it is all child menu.</span><br>'+
+                '<input type="submit" value="save" class="btn btn-save" ng-click="saveAddFooterForm(form)">'+
+                '</div></div></form>',
         link: function ( scope, element, attrs ) {
-           // debugger;
-            scope.showheaderform = function($index){
+
+            //显示添加footer form
+            scope.showAddFooterForm = function(){
+                //初始化默认值
+                scope.localurl="Homepage";
+                scope.menutype = "local";
+                scope.linkedurl = "";
+                scope.menuname = "";
+
                 scope.csstitleform = true;
             }
-           /* scope.on = false;
 
-            scope.toggle = function () {
-                scope.on = !$scope.on;
-            };*/
+            //隐藏添加footer form
+            scope.hideAddFooterForm = function(){
+                scope.csstitleform = false;
+            }
+
+            //保存footer nav
+            scope.saveAddFooterForm = function(back){
+                if (back.$valid) {
+                    if(scope.footer.length==0){
+                        var footeridindex=1;
+                    }else{
+                        var footeridindex=scope.footer[scope.footer.length-1].footerid+1;
+                    }
+                   // debugger;
+                    if(scope.menutype=="other"){
+                        scope.linkedpageid=0;
+                    }else{
+                        scope.linkedpageid=scope.checkpargeid(scope.localurl);
+                        scope.linkedurl = scope.localurl;
+                    }
+                    var newfooterdata={
+                        footerid:footeridindex,
+                        footername:scope.menuname,
+                        footertype:scope.menutype,
+                        linkedurl:scope.linkedurl,
+                        linkedpageid:scope.linkedpageid,
+                        linkedpagename:scope.linkedpagename
+                    };
+                    if(typeof(scope.sitedataFirebase.footerdata) == "undefined"){
+                        scope.sitedataFirebase.footerdata=[];
+                    }
+                    scope.sitedataFirebase.footerdata.push(newfooterdata);
+                    scope.footer = scope.sitedataFirebase.footerdata;
+                    scope.csstitleform = false;
+                }
+            }
         }
     };
 });
@@ -141,7 +194,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         return articlesresultfinal;
     }
 
-
+    $scope.cssaddfooterform = false;
 
     $('#tagsinput').tagsInput();
 
@@ -886,9 +939,9 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     $scope.newheaderdata ={};
 
     //查找page id
-    $scope.checkpargeid=function(){
+    $scope.checkpargeid=function(url){
         for(var i=0;i<$scope.pages.length;i++){
-            if($scope.pages[i].pagename== $scope.headerlocalurl){
+            if($scope.pages[i].pagename== url){
                 return $scope.pages[i].pageid;
             }
         }

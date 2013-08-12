@@ -625,33 +625,33 @@
                                         </li>
                                         <li style="width: 160px;" ng-hide="$index==footerli">
                                             <add-Footer></add-Footer>
-                                            <form action="" method="get" class="newlink_panel">
+                                            <!--<form action="" method="get" class="newlink_panel">
                                                 <h1 class="PopupTitle"><a href="#" class="TipBoxClose" ng-click="closetipheader();"></a>Link Data</h1>
                                                 <div class="newlink_panel_name">
                                                     <input type="text" class="input_newlink" maxlength="10" required ng-model="newheaderdata.menuname" placeholder="Nav link name">
                                                 </div>
                                                 <div class="newlink_panel_form">
                                                     <label class="radio clearfix">
-                                                        <input type="radio" id="urltype1" ng-model="newheaderdata.menutype" value="other">
+                                                        <input type="radio" ng-model="newheaderdata.menutype" value="other">
                                                         <input type="url" ng-model="newheaderdata.linkedurl" required class="input_url" placeholder="URL">
                                                     </label>
                                                     <label class="radio clearfix">
-                                                        <input type="radio" id="urltype2" ng-model="newheaderdata.menutype" value="local">
+                                                        <input type="radio" ng-model="newheaderdata.menutype" value="local">
                                                         <select style="width:110px;" ng-model="headerlocalurl" ng-options="page.pagename as page.pagename for page in pages">
                                                         </select>
                                                     </label>
                                                     <div class="newlink_panel_btn">
-                                                        <span id="error" ng-show="showerror" style="color:red;font-size:12px;">Please delete it's all child menu.</span><br>
+                                                        <span ng-show="showerror" style="color:red;font-size:12px;">Please delete it's all child menu.</span><br>
                                                         <input type="submit" value="save" class="btn btn-save" ng-click="saveheaderinfo()">
-                                                        <input id="delete" ng-show="cssshowdeleteicon" type="button" value="cancel" class="btn btn-delete" ng-click="deleteparentmenu($event)">
+                                                        <input ng-show="cssshowdeleteicon" type="button" value="cancel" class="btn btn-delete" ng-click="deleteparentmenu($event)">
                                                     </div>
                                                 </div>
                                             </form>
-                                            <!--<a ng-hide="footer.length > 4" href="#" class="sub_addlink" ng-click="showheaderform($index,'',$event,false)">+</a>-->
+                                            <a ng-hide="footer.length > 4" href="#" class="sub_addlink" ng-click="showheaderform($index,'',$event,false)">+</a>-->
                                         </li>
-                                        <li class="newlink_panel" ng-show="csstitleform">
+                                        <!--<li class="newlink_panel" ng-show="csstitleform">
 
-                                        </li>
+                                        </li>-->
                                     </ul>
                                 </div>
                                 <!-- Nav Link //End -->
