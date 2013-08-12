@@ -675,8 +675,8 @@
                     <!-- PageList -->
 
                     <li ng-cloak ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'" >
-                        <i class="ico_edit" ng-click="showeditpageattribute($index)"></i>
-                        <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:11==page.pagetype}" ng-click="clickpage($index, page)">
+                        
+                        <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:11==page.pagetype}" ng-click="clickpage($index, page)"><i class="icon-gear" ng-click="showeditpageattribute($index)"></i>
                             <i class="drag"></i>{{page.pagename}}
                         </a>
 
