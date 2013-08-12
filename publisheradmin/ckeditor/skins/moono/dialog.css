@@ -6,13 +6,13 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 
 .cke_dialog { visibility: visible }
 
-.cke_dialog_body { z-index: 1; background: #eaeaea; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; -moz-box-shadow: 0 0 3px rgba(0,0,0,.15); -webkit-box-shadow: 0 0 3px rgba(0,0,0,.15); box-shadow: 0 0 3px rgba(0,0,0,.15); box-shadow: 0px 5px 60px #000; }
+.cke_dialog_body { z-index: 1; background: #eaeaea; -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; -moz-box-shadow: 0 0 3px rgba(0,0,0,.15); -webkit-box-shadow: 0 0 3px rgba(0,0,0,.15); box-shadow: 0 0 3px rgba(0,0,0,.15); box-shadow: 0px 5px 60px #000; }
 
 .cke_browser_gecko19 .cke_dialog_body { position: relative }
 
 .cke_dialog strong { font-weight: bold }
 
-.cke_dialog_title { font-weight: bold; font-size: 18px; text-align:center; cursor: move; position: relative; color:#fff; padding: 8px 10px; -moz-border-radius: 2px 2px 0 0; -webkit-border-radius: 2px 2px 0 0; border-radius: 2px 2px 0 0; background:#5a99a8;/* background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#cfd1cf)); background-image: -moz-linear-gradient(top, #f5f5f5, #cfd1cf); background-image: -webkit-linear-gradient(top, #f5f5f5, #cfd1cf); background-image: -o-linear-gradient(top, #f5f5f5, #cfd1cf); background-image: -ms-linear-gradient(top, #f5f5f5, #cfd1cf); background-image: linear-gradient(top, #f5f5f5, #cfd1cf); filter:progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#fff5f5f5', endColorstr='#ffcfd1cf') */
+.cke_dialog_title { font-weight:normal; font-size: 18px; text-align:center; cursor: move; position: relative; color:#fff; padding: 8px 10px; -moz-border-radius: 2px 2px 0 0; -webkit-border-radius: 2px 2px 0 0; border-radius: 6px 6px 0 0; background:#343434;/* background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#cfd1cf)); background-image: -moz-linear-gradient(top, #f5f5f5, #cfd1cf); background-image: -webkit-linear-gradient(top, #f5f5f5, #cfd1cf); background-image: -o-linear-gradient(top, #f5f5f5, #cfd1cf); background-image: -ms-linear-gradient(top, #f5f5f5, #cfd1cf); background-image: linear-gradient(top, #f5f5f5, #cfd1cf); filter:progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#fff5f5f5', endColorstr='#ffcfd1cf') */
 }
 
 .cke_dialog_contents { 
@@ -64,9 +64,21 @@ a.cke_dialog_tab_selected:hover { background: #ededed; background: -moz-linear-g
 
 .cke_single_page .cke_dialog_contents { padding-top: 5px; margin-top: 0; border-top: 0 }
 
-.cke_dialog_close_button { border-radius:100%;  background:rgba(0,0,0,0.4) url(../../../app/img/icon_attribute.png) 2px -1398px no-repeat;  position: absolute; cursor: pointer; text-align: center; height: 24px; width: 24px; top: 10px; z-index: 5; opacity:0.65; }
+.cke_dialog_close_button { border-radius:100%;  background:rgba(0,0,0,0.4) url(../../../app/img/icon_attribute.png) 2px -1398px no-repeat;  position: absolute; cursor: pointer; text-align: center; height: 24px; width: 24px; top: 10px; z-index: 5; opacity:0.65; 
+-webkit-transition:all 0.3s ease-in-out; 	
+		-moz-transition:all 0.25s ease-in-out;
+	      -o-transition:all 0.25s ease-in-out;
+	 	 -ms-transition:all 0.25s ease-in-out;
+		     transition:all 0.25s ease-in-out;
+			 }
 .cke_dialog_close_button:hover,
-.cke_dialog_close_button:active	{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); opacity:1;}
+.cke_dialog_close_button:active	{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); opacity:1;
+-webkit-transform: rotate(90deg); 
+			   -moz-transform: rotate(90deg);
+			    -ms-transform: rotate(90deg);
+			   	 -o-transform: rotate(90deg);
+			   		transform: rotate(90deg); 
+					}
 
 .cke_dialog_close_button span { display: none }
 
@@ -76,7 +88,7 @@ a.cke_dialog_tab_selected:hover { background: #ededed; background: -moz-linear-g
 
 .cke_rtl .cke_dialog_close_button { left: 6px }
 
-.cke_dialog_close_button { top: 4px }
+.cke_dialog_close_button { top: 6px }
 
 div.cke_disabled .cke_dialog_ui_labeled_content div * { background-color: #ddd; cursor: default }
 
@@ -157,21 +169,20 @@ a.cke_dialog_ui_button_ok {
 	padding:6px 24px;
 	color: #ffffff; 
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	background:#da4f49 url(../../../app/img/icon_attribute.png) center -594px no-repeat;
-	border-color: #bd362f #bd362f #802420; 
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); 
+	background:#5cb85c url(../../../app/img/icon_attribute.png) center -594px no-repeat;
 	-webkit-border-radius: 3px; 
 	-moz-border-radius: 3px; 
 	border-radius: 3px;
-	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); 
-	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); 
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); 
+	border-color:transparent;
+	box-shadow:none; 
 	overflow:hidden;
 	text-indent:-99999px;
 }
 a.cke_dialog_ui_button_ok:hover { 
-color: #ffffff; 
-background:#bd362f url(../../../app/img/icon_attribute.png) center -594px no-repeat;
+	color: #ffffff; 
+	border-color:transparent;
+	box-shadow:none; 
+	background:#47a447 url(../../../app/img/icon_attribute.png) center -594px no-repeat;
 }
 
 a.cke_dialog_ui_button_cancel {
