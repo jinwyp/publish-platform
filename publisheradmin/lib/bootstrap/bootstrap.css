@@ -1820,7 +1820,7 @@ fieldset[disabled] .btn-link:focus { color: #999999; text-decoration: none; }
 	padding:6px 24px 8px;
 	color: #ffffff; 
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	background:#428bca url(../../app/img/icon_attribute.png) center -594px no-repeat;
+	background:#5cb85c url(../../app/img/icon_attribute.png) center -594px no-repeat;
 	border:none;
 	box-shadow:none;
 	overflow:hidden;
@@ -1831,7 +1831,7 @@ fieldset[disabled] .btn-link:focus { color: #999999; text-decoration: none; }
 .btn-save:active,
 .btn-save.active,
 .btn-save.disabled,
-.btn-save[disabled] { color: #ffffff; background:#3276b1 url(../../app/img/icon_attribute.png) center -594px no-repeat;}
+.btn-save[disabled] { color: #ffffff; background:#47a447 url(../../app/img/icon_attribute.png) center -594px no-repeat;}
 .btn-save:active,
 .btn-save.active { background-position:center -593px; }
 
