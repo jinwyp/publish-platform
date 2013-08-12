@@ -1593,9 +1593,9 @@ screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-rati
 .ico-article-DOWN_default			{ background-position:right -1148px;}
 .ico-article-DOWN_current			{ background-position:right -1198px;}
 
-.ico-article-UP_default:hover		{ background-position:right -1300px; color:#fff; background-color:#5bc0de; border:1px solid transparent;}
+.ico-article-UP_default:hover		{ background-position:right -1300px; color:#fff; background-color:#97c256; border:1px solid transparent;}
 .ico-article-UP_current:hover		{ background-position:right -1300px; }
-.ico-article-DOWN_default:hover		{ background-position:right -1198px; color:#fff; background-color:#5bc0de; border:1px solid transparent;}
+.ico-article-DOWN_default:hover		{ background-position:right -1198px; color:#fff; background-color:#97c256; border:1px solid transparent;}
 .ico-article-DOWN_current:hover		{ background-position:right -1198px;}
 
 
