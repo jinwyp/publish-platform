@@ -6,7 +6,10 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 
 .cke_dialog { visibility: visible }
 
-.cke_dialog_body { z-index: 1; background: #eaeaea; -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; -moz-box-shadow: 0 0 3px rgba(0,0,0,.15); -webkit-box-shadow: 0 0 3px rgba(0,0,0,.15); box-shadow: 0 0 3px rgba(0,0,0,.15); box-shadow: 0px 5px 60px #000; }
+.cke_dialog_body { z-index: 1; background: #eaeaea; -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; 
+-moz-box-shadow:0px 5px 60px rgba(0,0,0,.5);
+-webkit-box-shadow: 0px 5px 60px rgba(0,0,0,.5);
+box-shadow: 0px 5px 60px rgba(0,0,0,.5); }
 
 .cke_browser_gecko19 .cke_dialog_body { position: relative }
 
