@@ -120,7 +120,7 @@ vcpapp.factory('modelArticle', function(){
             }
         });
 
-        articlesresultfinal = _.union(articlesresult, articlesresult2)
+        articlesresultfinal = _.union(articlesresult, articlesresult2);
 
         if(articlesresultfinal.length > quantity){
             articlesresultfinal.splice(0, articlesresultfinal.length - quantity);    //判断文章数量
@@ -180,7 +180,7 @@ vcpapp.factory('modelArticle', function(){
     factory.createNewArticle = function (articledata) {
         articlelist.push(articledata);
         localStorage.setItem("articlesData",JSON.stringify(articlelist));
-        return ;
+
     };
 
     factory.getDateNow = function () {
