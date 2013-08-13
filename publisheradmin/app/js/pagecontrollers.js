@@ -1137,7 +1137,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         $scope.assignmentform(obj);
 
         $scope.cssshowdeleteicon = true;
-    }
+    };
 
     var headchildclass='';
     //edit child menu
@@ -1160,7 +1160,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         $scope.assignmentform(obj);
 
         $scope.cssshowdeleteicon = true;
-    }
+    };
 
     //delete menu
     $scope.deleteparentmenu=function(evt){
