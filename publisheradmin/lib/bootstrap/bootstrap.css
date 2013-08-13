@@ -2609,7 +2609,7 @@ background-image: -moz-linear-gradient(top, #151515, #040404); background-image:
 .modal-backdrop,
 .modal-backdrop.fade.in { opacity:0.5; filter:alpha(opacity=50); }
 
-.modal { position: fixed; bottom: 6%; right:5%; z-index: 999999; width: 600px; margin-left: -300px; border-radius:8px; outline: none; 
+.modal { position:fixed; bottom:10%; right:5%; z-index: 999999; width: 600px; margin-left: -300px; border-radius:8px; outline: none; 
 -webkit-box-shadow: 0 5px 60px rgba(0, 0, 0, 0.5);
  -moz-box-shadow: 0 5px 60px rgba(0, 0, 0, 0.5);
  box-shadow: 0 5px 60px rgba(0, 0, 0, 0.5);
@@ -2617,11 +2617,11 @@ background-image: -moz-linear-gradient(top, #151515, #040404); background-image:
   -moz-background-clip: padding-box; 
   background-clip: padding-box; }
 
-.modal.fade { bottom: 0%; -webkit-transition: opacity 0.3s linear, bottom 0.3s ease-out; -moz-transition: opacity 0.3s linear, bottom 0.3s ease-out; -o-transition: opacity 0.3s linear, bottom 0.3s ease-out; transition: opacity 0.3s linear, bottom 0.3s ease-out; }
+.modal.fade { bottom:0%; -webkit-transition: opacity 0.3s linear, bottom 0.3s ease-out; -moz-transition: opacity 0.3s linear, bottom 0.3s ease-out; -o-transition: opacity 0.3s linear, bottom 0.3s ease-out; transition: opacity 0.3s linear, bottom 0.3s ease-out; }
 
-.modal.fade.in { bottom: 6%; }
+.modal.fade.in { bottom:10%; }
 
-.modal-header { padding: 4px 15px; border-bottom: 1px solid #eee; background:#343434; border-radius:6px 6px 0 0; }
+.modal-header { padding:4px 15px; border-bottom: 1px solid #eee; background:#343434; border-radius:6px 6px 0 0; }
 
 .modal-header .close { margin-top: 2px; width:24px; height:24px; border-radius:100%; background:#222 url(../../app/img/icon_attribute.png) 2px -1398px no-repeat; overflow:hidden; text-indent:-9999px; opacity:0.65;
 -webkit-transition:all 0.3s ease-in-out; 	
