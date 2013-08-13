@@ -40,13 +40,6 @@
 					
                     <div class="modal-body">
 
-                        <!--
-                        <div class="alert alert-success">
-                        	<button type="button" class="close" data-dismiss="alert">&times;</button>
-                        	Well done! You successfully write this comment.
-                        </div>
-                        -->
-
                         <textarea rows="3" id="comments" style="width:96%" ng-model="currentarticlereviewcomment"></textarea>
 
                         <table class="table table-condensed">
@@ -133,8 +126,6 @@
                 <i class="article-title-ico clearfix">
                     <!-- <pre>Model: {{selected| json}}</pre>-->
                     <a href="#/newarticle/" class="btn btn-addnew" rel="tooltip"></a>
-                    <!-- <a href="#/newarticle/" class="ico-article-addnew" rel="tooltip"></a> -->
-                    <!--<a href="#" class="ico-article-sequence dropdown-toggle" rel="tooltip" title="Search Article" ng-click="isCollapsed = !isCollapsed" data-toggle="dropdown"></a>-->
                     <input class="aiticleList_search" type="text" ng-model="selected" ng-change="selectdata()" typeahead="state for state in states | filter:$viewValue">
                     <div class="ListSequence">
                         <input ng-hide="cssshowupdate" class="ico-article-UP_default" type="button" value="Updated" ng-click="orderbytype('updated','desc')">

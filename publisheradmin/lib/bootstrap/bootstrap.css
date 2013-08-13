@@ -1800,11 +1800,11 @@ fieldset[disabled] .btn-link:focus { color: #999999; text-decoration: none; }
 	font-family:FontAwesome;
 	font-weight:normal;
 	font-style:normal;
-	font-size:18px;
+	font-size:20px;
 	text-decoration:inherit;
 	-webkit-font-smoothing:antialiased;
 	padding:4px 18px;
-	color: #fff; 
+	color:#fff; 
 	text-shadow:none;
 	background:#555;
 	border:none;
@@ -1822,23 +1822,28 @@ fieldset[disabled] .btn-link:focus { color: #999999; text-decoration: none; }
 
 /* btn-save */
 .btn-save {
-	padding:6px 24px 8px;
-	color: #ffffff; 
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	background:#5cb85c url(../../app/img/icon_attribute.png) center -594px no-repeat;
+	font-family:FontAwesome;
+	font-weight:normal;
+	font-style:normal;
+	font-size:20px;
+	text-decoration:inherit;
+	-webkit-font-smoothing:antialiased;
+	padding:4px 18px;
+	color:#fff;
+	background:#5cb85c;
 	border:none;
 	box-shadow:none;
 	overflow:hidden;
-	text-indent:-99999px;
 }
+.btn-save:before,
+.btn-save:before { content: "\f0c7"; text-decoration:inherit; display:inline-block; speak:none }
 
 .btn-save:hover,
 .btn-save:active,
 .btn-save.active,
 .btn-save.disabled,
-.btn-save[disabled] { color: #ffffff; background:#47a447 url(../../app/img/icon_attribute.png) center -594px no-repeat;}
-.btn-save:active,
-.btn-save.active { background-position:center -593px; }
+.btn-save[disabled] { color: #ffffff; background:#47a447;}
+
 
 /* btn-cancel */
 .btn-cancel {
@@ -1881,22 +1886,27 @@ fieldset[disabled] .btn-link:focus { color: #999999; text-decoration: none; }
 
 /* btn-delete */
 .btn-delete {
-	padding:6px 24px; 
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); 
-	background:#f5f5f5 url(../../app/img/icon_attribute.png) center -244px no-repeat;
-	border-color: #e6e6e6 #e6e6e6 #bfbfbf; 
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); 
+	font-family:FontAwesome;
+	font-weight:normal;
+	font-style:normal;
+	font-size:20px;
+	text-decoration:inherit;
+	-webkit-font-smoothing:antialiased;
+	color:#343434;
+	padding:4px 18px; 
+	background:#fff;
+	border:1px solid #ccc;
+	box-shadow:none;
 	overflow:hidden;
-	text-indent:-99999px;
 }
+.btn-delete:before,
+.btn-delete:before { content: "\f014"; text-decoration:inherit; display:inline-block; speak:none }
 
 .btn-delete:hover,
 .btn-delete:active,
 .btn-delete.active,
 .btn-delete.disabled,
-.btn-delete[disabled] { background:#e6e6e6 url(../../app/img/icon_attribute.png) center -244px no-repeat;}
-.btn-delete:active,
-.btn-delete.active { background-position:center -243px; }
+.btn-delete[disabled] { color:#343434; background:#e6e6e6;}
 
 
 
