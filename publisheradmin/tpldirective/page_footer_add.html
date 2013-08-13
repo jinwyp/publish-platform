@@ -1,5 +1,5 @@
 <a ng-hide="csstitleform" ng-class="{displaynone: footer.length > 4}" href="#" class="sub_addlink" ng-click="showAddFooterForm()">+</a>
-<form name="form" ng-show="csstitleform" action="" method="get" class="newlink_panel">
+<form name="form" ng-show="cssaddfooterform" method="get" class="newlink_panel">
     <h1 class="PopupTitle"><a href="#" class="TipBoxClose" ng-click="hideAddFooterForm();"></a>Link Data</h1>
 
     <div class="newlink_panel_name">
@@ -17,7 +17,6 @@
         </label>
 
         <div class="newlink_panel_btn">
-            <span ng-show="showerror" style="color:red;font-size:12px;">Please delete it is all child menu.</span><br>
             <input type="submit" value="save" class="btn btn-save" ng-click="saveAddFooterForm(form)">
         </div>
     </div>

@@ -22,13 +22,72 @@ vcpapp.directive('enterKeypress', function(){
         };
     });
 
+vcpapp.directive('addHeader', function(){
+    return {
+        scope: false,
+        restrict:'EA',
+        templateUrl:'tpldirective/page_header_add.html',
+        link: function ( scope, element, attrs ) {
+            scope.cssaddheaderform = false;
+            //显示添加header form
+            scope.showAddHeaderForm = function(){
+                scope.localurl="Homepage";
+                scope.menutype = "local";
+                scope.linkedurl = "";
+                scope.menuname = "";
+
+                scope.cssaddheaderform = true;
+            }
+
+            //隐藏添加header form
+            scope.hideAddHeaderForm = function(){
+                scope.cssaddheaderform = false;
+            }
+
+            //保存header nav
+            scope.saveAddHeaderForm = function(back){
+                 if(back.$valid){
+                     if(scope.header.length == 0){
+                         var headeridindex=1;
+                     }else{
+                         var headeridindex=scope.header[scope.header.length-1].headerid+1;
+                     }
+                     if(scope.menutype=="other"){
+                         scope.linkedpageid=0;
+                         scope.linkedpagename ="Homepage";
+                     }else{
+                         scope.linkedpageid=scope.checkpargeid(scope.localurl);
+                         scope.linkedurl = '';
+                         scope.linkedpagename = scope.localurl;
+                     }
+                     var newheaderdata={
+                         headerid:headeridindex,
+                         menuname:scope.menuname,
+                         menutype:scope.menutype,
+                         linkedurl:scope.linkedurl,
+                         linkedpageid:scope.linkedpageid,
+                         linkedpagename:scope.linkedpagename,
+                         childdata:[]
+                     };
+                     if(typeof(scope.sitedataFirebase.headerdata) == "undefined"){
+                         scope.sitedataFirebase.headerdata=[];
+                     }
+                     scope.sitedataFirebase.headerdata.push(newheaderdata);
+
+                     scope.hideAddHeaderForm();
+                 }
+            }
+        }
+    };
+});
+
 vcpapp.directive( 'addFooter', function () {
     return {
         scope: false,
         restrict:'EA',
         templateUrl:'tpldirective/page_footer_add.html',
         link: function ( scope, element, attrs ) {
-
+            scope.cssaddfooterform = false;
             //显示添加footer form
             scope.showAddFooterForm = function(){
                 //初始化默认值
@@ -37,12 +96,12 @@ vcpapp.directive( 'addFooter', function () {
                 scope.linkedurl = "";
                 scope.menuname = "";
 
-                scope.csstitleform = true;
+                scope.cssaddfooterform = true;
             }
 
             //隐藏添加footer form
             scope.hideAddFooterForm = function(){
-                scope.csstitleform = false;
+                scope.cssaddfooterform = false;
             }
 
             //保存footer nav
@@ -74,7 +133,8 @@ vcpapp.directive( 'addFooter', function () {
                     }
                     scope.sitedataFirebase.footerdata.push(newfooterdata);
                     scope.footer = scope.sitedataFirebase.footerdata;
-                    scope.csstitleform = false;
+
+                    scope.hideAddFooterForm();
                 }
             }
         }
