@@ -26,21 +26,7 @@ vcpapp.directive( 'addFooter', function () {
     return {
         scope: false,
         restrict:'EA',
-        template: '<a ng-hide="csstitleform" ng-class="{displaynone: footer.length > 4}" href="#" class="sub_addlink" ng-click="showAddFooterForm()">+</a>'+
-                '<form name="form" ng-show="csstitleform" action="" method="get" class="newlink_panel">'+
-                '<h1 class="PopupTitle"><a href="#" class="TipBoxClose" ng-click="hideAddFooterForm();"></a>Link Data</h1>'+
-                '<div class="newlink_panel_name">'+
-                '<input type="text" class="input_newlink" maxlength="10" required ng-model="menuname" placeholder="Nav link name">'+
-                '</div><div class="newlink_panel_form"><label class="radio clearfix">'+
-                '<input type="radio" ng-model="menutype" value="other">'+
-                '<input type="url" ng-model="linkedurl" class="input_url" placeholder="URL">'+
-                '</label><label class="radio clearfix">'+
-                '<input type="radio" ng-model="menutype" value="local">'+
-                '<select style="width:110px;" ng-model="localurl" ng-options="page.pagename as page.pagename for page in pages">'+
-                '</select></label><div class="newlink_panel_btn">'+
-                '<span ng-show="showerror" style="color:red;font-size:12px;">Please delete it is all child menu.</span><br>'+
-                '<input type="submit" value="save" class="btn btn-save" ng-click="saveAddFooterForm(form)">'+
-                '</div></div></form>',
+        templateUrl:'tpldirective/page_footer_add.html',
         link: function ( scope, element, attrs ) {
 
             //显示添加footer form
@@ -67,12 +53,13 @@ vcpapp.directive( 'addFooter', function () {
                     }else{
                         var footeridindex=scope.footer[scope.footer.length-1].footerid+1;
                     }
-                   // debugger;
                     if(scope.menutype=="other"){
                         scope.linkedpageid=0;
+                        scope.linkedpagename ="Homepage";
                     }else{
                         scope.linkedpageid=scope.checkpargeid(scope.localurl);
-                        scope.linkedurl = scope.localurl;
+                        scope.linkedurl = '';
+                        scope.linkedpagename = scope.localurl;
                     }
                     var newfooterdata={
                         footerid:footeridindex,
@@ -94,6 +81,65 @@ vcpapp.directive( 'addFooter', function () {
     };
 });
 
+vcpapp.directive('editFooter', function(){
+    return {
+        scope: false,
+        restrict: 'EA',
+        templateUrl:'tpldirective/page_footer_edit.html',
+        link: function(scope, element, attrs){
+             //显示footer edit
+             var footerdata = '';
+             scope.showEditFooterForm = function(obj){
+                scope.menuname=obj.footername;
+                scope.menutype=obj.footertype;
+                if(scope.menutype == "other"){
+                    scope.linkedurl = obj.linkedurl;
+                    scope.localurl = "Homepage";
+                }else{
+                    scope.linkedurl = "";
+                    scope.localurl = obj.linkedpagename;
+                }
+                footerdata = obj;
+                scope.csseditfooterform = true;
+             }
+
+             //隐藏footer edit
+             scope.hideEditFooterForm = function(){
+                  scope.csseditfooterform = false;
+             }
+
+             //保存footer edit
+             scope.saveEditFooterForm = function(back){
+                 if(back.$valid){
+                     if(scope.menutype=="other"){
+                         scope.linkedpageid=0;
+                         scope.linkedpagename ="Homepage";
+                     }else{
+                         scope.linkedpageid=scope.checkpargeid(scope.localurl);
+                         scope.linkedurl = '';
+                         scope.linkedpagename = scope.localurl;
+                     }
+                     footerdata.footername = scope.menuname;
+                     footerdata.footertype = scope.menutype;
+                     footerdata.linkedurl = scope.linkedurl;
+                     footerdata.linkedpageid = scope.linkedpageid;
+                     footerdata.linkedpagename = scope.linkedpagename;
+                     scope.sitedataFirebase.footerdata = scope.get_site.footerdata;
+
+                     scope.hideEditFooterForm();
+                 }
+             }
+
+            //删除footer nav
+            scope.deleteFooterNav = function(){
+                scope.footer.splice(scope.$index,1);
+                scope.sitedataFirebase.footerdata = scope.get_site.footerdata;
+
+                scope.hideEditFooterForm();
+            }
+        }
+    }
+});
 
 /* Controllers */
 page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, angularFire) {
@@ -194,7 +240,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         return articlesresultfinal;
     }
 
-    $scope.cssaddfooterform = false;
+    $scope.csseditfooterform = false;
 
     $('#tagsinput').tagsInput();
 
@@ -1070,41 +1116,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 //                    modelSite.addHeaderMenu(newheaderdata);
     }
 
-    //添加footer nav
-    $scope.addfooternav = function(){
-        if($scope.footer.length==0){
-            var footeridindex=1;
-        }else{
-            var footeridindex=$scope.footer[$scope.footer.length-1].footerid+1;
-        }
-        var newfooterdata={
-            footerid:footeridindex,
-            footername:$scope.newheaderdata.menuname,
-            footertype:$scope.newheaderdata.menutype,
-            linkedurl:$scope.newheaderdata.linkedurl,
-            linkedpageid:$scope.newheaderdata.linkedpageid,
-            linkedpagename:$scope.newheaderdata.linkedpagename
-        };
-
-        if(typeof($scope.sitedataFirebase.footerdata) == "undefined"){
-            $scope.sitedataFirebase.footerdata=[];
-        }
-        $scope.sitedataFirebase.footerdata.push(newfooterdata);
-//                modelSite.addfooterMenu(newfooterdata);
-    }
-
-    //修改footer nav
-    $scope.editfooternav = function(){
-        footerclass.footername=$scope.newheaderdata.menuname;
-        footerclass.footertype=$scope.newheaderdata.menutype;
-        footerclass.linkedurl=$scope.newheaderdata.linkedurl;
-        footerclass.linkedpageid=$scope.newheaderdata.linkedpageid;
-        footerclass.linkedpagename=$scope.newheaderdata.linkedpagename;
-
-        $scope.sitedataFirebase.footerdata = $scope.get_site.footerdata;
-//                modelSite.savesitedata($scope.get_site);
-    }
-
     //edit parent menu
     var headclass='';
     $scope.openheaderinfo=function(parentindex,obj,evt){
@@ -1123,28 +1134,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         ishead=true;
         $scope.newheaderdata.menuname=obj.menuname;
         $scope.newheaderdata.menutype=obj.menutype;
-        $scope.assignmentform(obj);
-
-        $scope.cssshowdeleteicon = true;
-    }
-
-
-    $scope.footerlia=-1;
-    var footerclass='';
-    var footerindex='';
-    //edit footer menu
-    $scope.openfooterinfo=function(evt,obj,index){
-        insertdata=false;
-        var blockcontent = $(evt.target).parent().parent();
-        blockcontent.prepend($(".newlink_panel"));
-        $scope.csstitleform=true;
-        ishead=false;
-        footerindex=index;
-        footerclass=obj;
-        $scope.footercommonfunction();
-        $scope.footerlia=$scope.csstitleform ? obj : -1;
-        $scope.newheaderdata.menuname=obj.footername;
-        $scope.newheaderdata.menutype=obj.footertype;
         $scope.assignmentform(obj);
 
         $scope.cssshowdeleteicon = true;
@@ -1175,14 +1164,14 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
     //delete menu
     $scope.deleteparentmenu=function(evt){
-        if(ishead){
+       // if(ishead){
             $scope.deleteheadernav();
-        }else{
+  /*      }else{
             $scope.deletefooternav();
-        }
+        }*/
 
         $scope.sitedataFirebase.headerdata = $scope.get_site.headerdata;
-        $scope.sitedataFirebase.footerdata = $scope.get_site.footerdata;
+      //  $scope.sitedataFirebase.footerdata = $scope.get_site.footerdata;
 
 //        modelSite.savesitedata($scope.get_site);
         $("body").append($(".newlink_panel"));//delete before remove form position,it is must step
@@ -1211,16 +1200,8 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         }
     }
 
-    //删除footer nav
-    $scope.deletefooternav = function(){
-        $scope.footer.splice(footerindex,1);
-        $scope.csstitleform=false;
-    }
-
     $scope.closetipheader = function(){
         $scope.csstitleform=false;
-        $scope.footerlia = -1;
-        $scope.footerli = -1;
         $scope.showli = -1;
         $scope.showa = -1;
         $scope.showchilda = -1;
@@ -1253,8 +1234,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         $scope.showli=-1;
         $scope.showa=-1;
         $scope.showchilda=-1;
-        $scope.footerli=-1;
-        $scope.footerlia=-1;
     }
 
     $scope.assignmentform=function(obj){
