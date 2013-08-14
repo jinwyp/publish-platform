@@ -1,6 +1,6 @@
-<a ng-hide="cssaddheaderform" ng-class="{displaynone: header.length > 4}" href="#" class="sub_addlink" ng-click="showAddHeaderForm();">+</a>
-<form ng-show="cssaddheaderform" name="form" method="get" class="newlink_panel">
-    <h1 class="PopupTitle"><a href="#" class="TipBoxClose" ng-click="hideAddHeaderForm();"></a>Link Data</h1>
+<a ng-hide="cssaddheaderchildform" ng-class="{displaynone: head.childdata.length > 4}" href="#" class="sub_addlink" ng-click="showAddHeaderChildForm();">+</a>
+<form ng-show="cssaddheaderchildform" name="form" method="get" class="newlink_panel">
+    <h1 class="PopupTitle"><a href="#" class="TipBoxClose" ng-click="hideAddHeaderChildForm();"></a>Link Data</h1>
 
     <div class="newlink_panel_name">
         <input type="text" class="input_newlink" maxlength="10" required ng-model="menuname" placeholder="Nav link name">
@@ -17,7 +17,7 @@
         </label>
 
         <div class="newlink_panel_btn">
-            <input type="submit" value="save" class="btn btn-save" ng-click="saveAddHeaderForm(form)">
+            <input type="submit" value="save" class="btn btn-save" ng-click="saveAddHeaderChildForm(form)">
         </div>
     </div>
 </form>
