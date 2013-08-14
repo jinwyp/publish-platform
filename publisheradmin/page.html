@@ -339,22 +339,23 @@
                                 <!-- Nav Link -->
                                 <div class="navlink_panel" ng-show="cssheadersetting" ng-animate="{show: 'fade-show', hide: ''}" >
                                 	<ul class="nav_structure clearfix">
-                                        <li ng-repeat="head in header track by $index" class="classid">
-                                            <a ng-hide='$index==showa' href="#" class="pagelink">
+                                        <li ng-repeat="head in header track by $index" class="classid" >
+                                            <edit-Header></edit-Header>
+                                            <!--<a ng-hide='$index==showa' href="#" class="pagelink">
                                                 {{head.menuname}}<i class="icon-gear" ng-click="openheaderinfo($index,head,$event)"></i>
-                                            </a>
+                                            </a>-->
                                             <ul>
                                                 <li ng-repeat="child in head.childdata">
                                                     <a ng-hide='child==showchilda' href="#" class="urllink">
                                                         {{child.menuname}}<i class="icon-gear" ng-click="openchildinfo($index,child,head.childdata,$event)"></i>
                                                     </a>
                                                 </li>
-                                                <li ng-hide="$index==showli">
-                                                    <a ng-hide="head.childdata.length > 4" href="#" class="sub_addlink"  ng-click="showheaderform($index,false,$event,true)">+</a>
+                                                <li add-Header-Child>
+                                                    <!--<a ng-hide="head.childdata.length > 4" href="#" class="sub_addlink"  ng-click="showheaderform($index,false,$event,true)">+</a>-->
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li ng-hide="$index==showli" add-Header>
+                                        <li add-Header>
                                             <!--<a ng-hide="header.length > 4" href="#" class="sub_addlink" ng-click="showheaderform($index,true,$event,true)">+</a>-->
                                         </li>
                                         <!--<li class="newlink_panel" ng-show="csstitleform">

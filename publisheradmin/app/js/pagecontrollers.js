@@ -10,19 +10,76 @@ vcpapp.controller(page.c);
 
 
 vcpapp.directive('enterKeypress', function(){
-        return function(scope, element, attrs) {
-            element.bind("keypress", function(event) {
-                if(event.which === 13) {
-                    scope.$apply(function(){
-                        scope.$eval(attrs.enterKeypress);
-                    });
-                    event.preventDefault();
-                }
-            });
-        };
-    });
+    return function(scope, element, attrs) {
+        element.bind("keypress", function(event) {
+            if(event.which === 13) {
+                scope.$apply(function(){
+                    scope.$eval(attrs.enterKeypress);
+                });
+                event.preventDefault();
+            }
+        });
+    };
+});
+vcpapp.directive( 'addHeaderChild', function(){
+     return {
+         scope: false,
+         restrict:'EA',
+         templateUrl:'tpldirective/page_header_child_add.html',
+         link: function( scope, element, attrs){
+              scope.cssaddheaderchildform = false;
+              //显示header child form
+              scope.showAddHeaderChildForm = function(){
+                  scope.localurl="Homepage";
+                  scope.menutype = "local";
+                  scope.linkedurl = "";
+                  scope.menuname = "";
 
-vcpapp.directive('addHeader', function(){
+                  scope.cssaddheaderchildform = true;
+              }
+
+              //隐藏header child form
+              scope.hideAddHeaderChildForm = function(){
+                  scope.cssaddheaderchildform = false;
+              }
+
+              //保存header child form
+              scope.saveAddHeaderChildForm = function(back){
+                  if(back.$valid){
+                      if(typeof (scope.sitedataFirebase.headerdata[scope.$index].childdata) == "undefined"){
+                          scope.sitedataFirebase.headerdata[scope.$index].childdata = [];
+                      }
+                      if(scope.header[scope.$index].childdata.length == 0){
+                          var childidindex = 1;
+                      }else{
+                          var childidindex = scope.header[scope.$index].childdata[scope.header[scope.$index].childdata.length - 1].childid + 1;
+                      }
+                      if(scope.menutype=="other"){
+                          scope.linkedpageid=0;
+                          scope.linkedpagename ="Homepage";
+                      }else{
+                          scope.linkedpageid=scope.checkpargeid(scope.localurl);
+                          scope.linkedurl = '';
+                          scope.linkedpagename = scope.localurl;
+                      }
+                      var newheaderchilddata = {
+                          childid : childidindex,
+                          menuname:scope.menuname,
+                          menutype:scope.menutype,
+                          linkedurl:scope.linkedurl,
+                          linkedpageid:scope.linkedpageid,
+                          linkedpagename:scope.linkedpagename
+                      }
+                      scope.sitedataFirebase.headerdata[scope.$index].childdata.push(newheaderchilddata);
+
+                      scope.hideAddHeaderChildForm();
+                  }
+              }
+         }
+     }
+});
+
+vcpapp.directive( 'addHeader', function(){
     return {
         scope: false,
         restrict:'EA',
@@ -141,7 +198,75 @@ vcpapp.directive( 'addFooter', function () {
     };
 });
 
-vcpapp.directive('editFooter', function(){
+vcpapp.directive( 'editHeader', function(){
+    return {
+        scope: false,
+        restrict: 'EA',
+        templateUrl: 'tpldirective/page_header_edit.html',
+        link: function(scope, element, attrs){
+            scope.csseditheaderform = false;
+            scope.cssshowediterror = false;
+            //显示header edit form
+            var headerparentdata = '';
+            scope.showEditHeaderForm = function(obj){
+                headerparentdata = obj;
+                scope.menuname=obj.menuname;
+                scope.menutype=obj.menutype;
+                if(scope.menutype == "other"){
+                    scope.linkedurl = obj.linkedurl;
+                    scope.localurl = "Homepage";
+                }else{
+                    scope.linkedurl = "";
+                    scope.localurl = obj.linkedpagename;
+                }
+
+                scope.csseditheaderform = true;
+            }
+
+            //隐藏header edit form
+            scope.hideEditHeaderForm = function(){
+                scope.csseditheaderform = false;
+            }
+
+            //保存header info
+            scope.saveEditHeaderForm = function(back){
+                if(back.$valid){
+                    if(scope.menutype=="other"){
+                        scope.linkedpageid=0;
+                        scope.linkedpagename ="Homepage";
+                    }else{
+                        scope.linkedpageid=scope.checkpargeid(scope.localurl);
+                        scope.linkedurl = '';
+                        scope.linkedpagename = scope.localurl;
+                    }
+                    headerparentdata.menuname = scope.menuname;
+                    headerparentdata.menutype = scope.menutype;
+                    headerparentdata.linkedurl = scope.linkedurl;
+                    headerparentdata.linkedpageid = scope.linkedpageid;
+                    headerparentdata.linkedpagename = scope.linkedpagename;
+
+                    scope.sitedataFirebase.headerdata = scope.get_site.headerdata;
+                    scope.hideEditHeaderForm();
+                }
+            }
+
+            //删除header info
+            scope.deleteHeaderNav = function(){
+                if(scope.header[scope.$index].childdata.length > 0){
+                    scope.cssshowediterror = true;
+                    return;
+                }else{
+                    scope.header.splice(scope.$index,1);
+                    scope.sitedataFirebase.headerdata = scope.get_site.headerdata;
+                    scope.hideEditHeaderForm();
+                    scope.cssshowediterror = false;
+                }
+            }
+        }
+    };
+});
+
+vcpapp.directive( 'editFooter', function(){
     return {
         scope: false,
         restrict: 'EA',
