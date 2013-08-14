@@ -71,6 +71,7 @@ vcpapp.directive( 'addHeaderChild', function(){
                           linkedpagename:scope.linkedpagename
                       }
                       scope.sitedataFirebase.headerdata[scope.$index].childdata.push(newheaderchilddata);
+                      scope.header[scope.$index].childdata = scope.sitedataFirebase.headerdata[scope.$index].childdata;
 
                       scope.hideAddHeaderChildForm();
                   }
@@ -130,6 +131,7 @@ vcpapp.directive( 'addHeader', function(){
                          scope.sitedataFirebase.headerdata=[];
                      }
                      scope.sitedataFirebase.headerdata.push(newheaderdata);
+                     scope.header = scope.sitedataFirebase.headerdata;
 
                      scope.hideAddHeaderForm();
                  }
@@ -198,6 +200,74 @@ vcpapp.directive( 'addFooter', function () {
     };
 });
 
+vcpapp.directive( 'editHeaderChild', function(){
+    return {
+        scope: false,
+        restrict:'EA',
+        templateUrl:'tpldirective/page_header_child_edit.html',
+        link: function(scope, element, attrs){
+            scope.csseditheaderchildform = false;
+
+            //显示Edit Header Child Form
+            var headerchilddata = '';
+            var headerparentdata = '';
+            scope.showEditHeaderChildForm = function(obj,parentobj){
+                headerchilddata = obj;
+                headerparentdata = parentobj;
+                scope.csseditheaderchildform = true;
+
+                scope.menuname=obj.menuname;
+                scope.menutype=obj.menutype;
+                if(scope.menutype == "other"){
+                    scope.linkedurl = obj.linkedurl;
+                    scope.localurl = "Homepage";
+                }else{
+                    scope.linkedurl = "";
+                    scope.localurl = obj.linkedpagename;
+                }
+            }
+
+            //隐藏Edit Header Child Form
+            scope.hideEditHeaderChildForm = function(){
+                scope.csseditheaderchildform = false;
+            }
+
+            //保存Header Child
+            scope.saveEditHeaderChildForm = function(back){
+                if(back.$valid){
+                    if(scope.menutype=="other"){
+                        scope.linkedpageid=0;
+                        scope.linkedpagename ="Homepage";
+                    }else{
+                        scope.linkedpageid=scope.checkpargeid(scope.localurl);
+                        scope.linkedurl = '';
+                        scope.linkedpagename = scope.localurl;
+                    }
+                    headerchilddata.menuname = scope.menuname;
+                    headerchilddata.menutype = scope.menutype;
+                    headerchilddata.linkedurl = scope.linkedurl;
+                    headerchilddata.linkedpageid = scope.linkedpageid;
+                    headerchilddata.linkedpagename = scope.linkedpagename;
+                    scope.sitedataFirebase.headerdata = scope.get_site.headerdata;
+                    scope.header[scope.$index].childdata = scope.sitedataFirebase.headerdata[scope.$index].childdata;
+
+                    scope.hideEditHeaderChildForm();
+                }
+            }
+
+            //删除Header nav
+            scope.deleteHeaderChildNav = function(){
+                headerparentdata.splice(scope.$index, 1);
+                scope.sitedataFirebase.headerdata = scope.get_site.headerdata;
+                scope.header = scope.sitedataFirebase.headerdata;
+                scope.header[scope.$index].childdata = scope.sitedataFirebase.headerdata[scope.$index].childdata;
+
+                scope.hideEditHeaderChildForm();
+            }
+        }
+    }
+});
+
 vcpapp.directive( 'editHeader', function(){
     return {
         scope: false,
@@ -246,21 +316,26 @@ vcpapp.directive( 'editHeader', function(){
                     headerparentdata.linkedpagename = scope.linkedpagename;
 
                     scope.sitedataFirebase.headerdata = scope.get_site.headerdata;
+                    scope.header = scope.sitedataFirebase.headerdata;
+
                     scope.hideEditHeaderForm();
                 }
             }
 
             //删除header info
             scope.deleteHeaderNav = function(){
-                if(scope.header[scope.$index].childdata.length > 0){
-                    scope.cssshowediterror = true;
-                    return;
-                }else{
-                    scope.header.splice(scope.$index,1);
-                    scope.sitedataFirebase.headerdata = scope.get_site.headerdata;
-                    scope.hideEditHeaderForm();
-                    scope.cssshowediterror = false;
+                if(scope.header[scope.$index].childdata !== undefined){
+                    if(scope.header[scope.$index].childdata.length > 0){
+                        scope.cssshowediterror = true;
+                        return;
+                    }
                 }
+                scope.header.splice(scope.$index,1);
+                scope.sitedataFirebase.headerdata = scope.get_site.headerdata;
+                scope.header = scope.sitedataFirebase.headerdata;
+
+                scope.hideEditHeaderForm();
+                scope.cssshowediterror = false;
             }
         }
     };
@@ -1090,84 +1165,32 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         blocktypemenu.css({"left":left+"px", "top":-(blocktypemenu.height()), "position":"absolute"});
     }
 
-    $scope.check = function( ) {
-        console.log(this.blockarticles);
-    };
 
 
 
-
-    //header
-    var headerflag=false;
-    var headerparentid='';
-    var parentmenuindex='';
-    var childmenudata='';
-    var childmenuindex='';
-    var classidhtml='';
-    $scope.showli=-1;
-    $scope.showa=-1;
-    $scope.showchilda=-1;
-    $scope.showerror=false;
-    $scope.headerlocalurl='';
-
-    //show header menu and theme
+    //显示header 编辑按钮
     $scope.showheadermenusetting = function(){
-        //$scope.cssheadermenuhavadata = false;      //Header是否有数据
-//       $scope.cssheadersetting = false;          //Header设置面板是否显示
-        $scope.cssheadermenubutton = true;      //Header右上角mouseover按钮     //所有Header Block经过时显示Attribute Panel Icon
+        $scope.cssheadermenubutton = true;
     };
 
+    //鼠标移走时隐藏 header nav 编辑框
     $scope.hideheadermenusetting = function(){
         $scope.cssheadermenubutton = false;      //Header右上角mouseover按钮
         $scope.cssheadersetting = false;          //Header设置面板是否显示
     };
 
+    //选中header 主题
     $scope.clickheadertheme = function(indexid, themedata){
-        //点击Nav 的每个Theme
         $scope.cssheaderthemeindex = indexid;      //Header选中的theme
         $scope.cssheadermenuhavadata = true;      //Header是否有数据已有数据了
 
         $scope.sitedataFirebase.defaultsettings.headerthemeindex = indexid;
-//        modelSite.setheadertheme(indexid);
     };
 
+    //显示header nav 编辑框
     $scope.slideshowheadersetting = function(){
-        //点击Nav Block的设置图标
         $scope.cssheadersetting = true;
     };
-
-    //insert header data form
-    var insertdata=false;   //是否新增还是修改
-    var ishead=false;   //是否是头部还是底部
-    $scope.footerli=-1;  // 选中footer菜单索引值
-    $scope.cssshowdeleteicon = false;//显示delete 按钮
-    $scope.showheaderform=function(index,ischild,evt,isheader){
-        var blockcontent = $(evt.target).parent().parent();
-        blockcontent.append($(".newlink_panel"));
-        $scope.csstitleform=true;
-        ishead=isheader;
-        $scope.footercommonfunction();
-        if(isheader){
-            $scope.showli=$scope.csstitleform ? index : -1;//  选中header菜单索引值
-            $scope.showerror=false;  //显示删除出错的信息
-            headerflag=ischild;     //是否header还是child
-            headerparentid=index; //header parentid
-        }else{
-            $scope.footerli=$scope.csstitleform ? index : -1;
-        }
-        $scope.newheaderdata.menutype='local';
-        $scope.newheaderdata.menuname="";
-        $scope.newheaderdata.linkedurl="";
-        $scope.headerlocalurl="Homepage";
-        $("#urltype1").attr("checked",false);
-        $("#urltype2").attr("checked",true);
-        setupLabel();
-        insertdata=true;
-
-        $scope.cssshowdeleteicon = false;
-
-    };
-    $scope.newheaderdata ={};
 
     //查找page id
     $scope.checkpargeid=function(url){
@@ -1177,232 +1200,21 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
             }
         }
     };
-    //save data
-    $scope.saveheaderinfo=function(){
-        if($scope.newheaderdata.menuname == ""){
-            return;
-        }
-        if($scope.newheaderdata.menutype=="other"){
-            $scope.newheaderdata.menutype='other';
-            if($scope.newheaderdata.linkedurl==""){
-                return;
-            }
-            $scope.newheaderdata.linkedurl=$scope.newheaderdata.linkedurl;
-            $scope.newheaderdata.linkedpagename=$scope.newheaderdata.linkedurl;
-            $scope.newheaderdata.linkedpageid=0;
-        }else{
-            $scope.newheaderdata.menutype='local';
-            $scope.newheaderdata.linkedurl=$scope.headerlocalurl;
-            $scope.newheaderdata.linkedpagename= $scope.headerlocalurl;
-            $scope.newheaderdata.linkedpageid=$scope.checkpargeid();
-        }
-        $scope.csstitleform=false;
-        $scope.footercommonfunction();
 
-        if(ishead){  //当前保存是否是header还是footer
-            if(headerflag){ //是否header还是child
-                if(insertdata){    //是否是添加还是修改
-                    $scope.addheaderparentnav();
-                }else{
-                    $scope.editheaderparentnav();
-                }
-            }else{ //child 添加和修改方法
-                if(insertdata){
-                    $scope.addheaderchildnav();
-                }else{
-                    $scope.editheaderchildnav();
-                }
-            }
-        }else{  //footer修改和添加方法
-            if(insertdata){
-                $scope.addfooternav();
-            }else{
-                $scope.editfooternav();
-            }
-        }
-        $scope.header = $scope.sitedataFirebase.headerdata;
-        $scope.footer = $scope.sitedataFirebase.footerdata;
-    };
-
-    //子菜单修改
-    $scope.editheaderchildnav = function(){
-        headchildclass.menuname=$scope.newheaderdata.menuname;
-        headchildclass.menutype=$scope.newheaderdata.menutype;
-        headchildclass.linkedurl=$scope.newheaderdata.linkedurl;
-        headchildclass.linkedpageid=$scope.newheaderdata.linkedpageid;
-        headchildclass.linkedpagename=$scope.newheaderdata.linkedpagename;
-
-        $scope.sitedataFirebase.headerdata = $scope.get_site.headerdata;
-//                    modelSite.savesitedata($scope.get_site);
-    }
-
-    //子菜单添加
-    $scope.addheaderchildnav = function(){
-        if(typeof($scope.sitedataFirebase.headerdata) == "undefined"){
-            $scope.sitedataFirebase.headerdata = [];
-        }
-        if(typeof($scope.sitedataFirebase.headerdata[headerparentid].childdata) == "undefined"){
-            $scope.sitedataFirebase.headerdata[headerparentid].childdata=[];
-        }
-
-        if($scope.header[headerparentid].childdata.length==0){
-            var childidindex=1;
-        }else{
-            var childidindex=$scope.header[headerparentid].childdata[$scope.header[headerparentid].childdata.length-1].childid+1;
-        }
-        var newheaderdata={
-            childid:childidindex,
-            menuname:$scope.newheaderdata.menuname,
-            menutype:$scope.newheaderdata.menutype,
-            linkedurl:$scope.newheaderdata.linkedurl,
-            linkedpageid:$scope.newheaderdata.linkedpageid,
-            linkedpagename:$scope.newheaderdata.linkedpagename
-        };
-
-
-        $scope.sitedataFirebase.headerdata[headerparentid].childdata.push(newheaderdata);
-
-//                    modelSite.addHeaderChildMenu(headerparentid,newheaderdata);
-    }
-
-    //一级菜单修改
-    $scope.editheaderparentnav = function(){
-        headclass.menuname=$scope.newheaderdata.menuname;
-        headclass.menutype=$scope.newheaderdata.menutype;
-        headclass.linkedurl=$scope.newheaderdata.linkedurl;
-        headclass.linkedpageid=$scope.newheaderdata.linkedpageid;
-        headclass.linkedpagename=$scope.newheaderdata.linkedpagename;
-
-        $scope.sitedataFirebase.headerdata = $scope.get_site.headerdata;
-//                    modelSite.savesitedata($scope.get_site);
-    }
-
-    //一级菜单添加
-    $scope.addheaderparentnav = function(){
-        if($scope.header.length==0){
-            var headeridindex=1;
-        }else{
-            var headeridindex=$scope.header[$scope.header.length-1].headerid+1;
-        }
-        var newheaderdata={
-            headerid:headeridindex,
-            menuname:$scope.newheaderdata.menuname,
-            menutype:$scope.newheaderdata.menutype,
-            linkedurl:$scope.newheaderdata.linkedurl,
-            linkedpageid:$scope.newheaderdata.linkedpageid,
-            linkedpagename:$scope.newheaderdata.linkedpagename,
-            childdata:[]
-        };
-
-        if(typeof($scope.sitedataFirebase.headerdata) == "undefined"){
-            $scope.sitedataFirebase.headerdata=[];
-        }
-        $scope.sitedataFirebase.headerdata.push(newheaderdata);
-//                    modelSite.addHeaderMenu(newheaderdata);
-    }
-
-    //edit parent menu
-    var headclass='';
-    $scope.openheaderinfo=function(parentindex,obj,evt){
-        insertdata=false;   //当前是操作是修改（方便保存判断）
-        headerflag=true;
-        var blockcontent = $(evt.target).parent().parent();
-        blockcontent.prepend($(".newlink_panel"));
-        $scope.csstitleform=true;
-        $scope.footercommonfunction();
-        $scope.showa=$scope.csstitleform ? parentindex : -1; //选中header当前index
-        $scope.showerror=false;
-        parentmenuindex=parentindex;   //保存或删除用到时候，parentid
-        childmenuindex='';    //判断是否是parent index
-        childmenudata='';  //复制当前child所有信息
-        headclass=obj;  //复制当前header所有信息
-        ishead=true;
-        $scope.newheaderdata.menuname=obj.menuname;
-        $scope.newheaderdata.menutype=obj.menutype;
-        $scope.assignmentform(obj);
-
-        $scope.cssshowdeleteicon = true;
-    };
-
-    var headchildclass='';
-    //edit child menu
-    $scope.openchildinfo=function(childindex,obj,childdata,evt){
-        insertdata=false;
-        var blockcontent = $(evt.target).parent().parent();
-        blockcontent.append($(".newlink_panel"));
-        headerflag=false;
-        ishead=true;
-        headchildclass=obj;
-        $scope.csstitleform=true;
-        $scope.footercommonfunction();
-        $scope.showchilda=$scope.csstitleform ? obj : -1;
-        $scope.showerror=false;
-        childmenuindex=childindex;
-        childmenudata=childdata;
-        $("#delete")[0].value='Delete';
-        $scope.newheaderdata.menuname=obj.menuname;
-        $scope.newheaderdata.menutype=obj.menutype;
-        $scope.assignmentform(obj);
-
-        $scope.cssshowdeleteicon = true;
-    };
-
-    //delete menu
-    $scope.deleteparentmenu=function(evt){
-       // if(ishead){
-            $scope.deleteheadernav();
-  /*      }else{
-            $scope.deletefooternav();
-        }*/
-
-        $scope.sitedataFirebase.headerdata = $scope.get_site.headerdata;
-      //  $scope.sitedataFirebase.footerdata = $scope.get_site.footerdata;
-
-//        modelSite.savesitedata($scope.get_site);
-        $("body").append($(".newlink_panel"));//delete before remove form position,it is must step
-        $scope.footercommonfunction();
-    }
-
-
-    //删除header nav
-    $scope.deleteheadernav = function(){
-        if(childmenuindex===''){
-            if(typeof($scope.header[parentmenuindex].childdata) == "undefined"){
-                $scope.header[parentmenuindex].childdata = [];
-            }
-            if($scope.header[parentmenuindex].childdata.length>0){
-                $scope.showerror=true;
-                return;
-            }else{
-                $scope.header.splice(parentmenuindex,1);
-                $scope.csstitleform=false;
-            }
-            childmenuindex='';
-            childmenudata='';
-        }else{
-            childmenudata.splice(childmenuindex,1);
-            $scope.csstitleform=false;
-        }
-    }
-
-    $scope.closetipheader = function(){
-        $scope.csstitleform=false;
-        $scope.showli = -1;
-        $scope.showa = -1;
-        $scope.showchilda = -1;
-    }
-
+    //显示footer 编辑按钮
     $scope.showfootmenusetting=function(){
         $scope.cssfootermenubutton = true;
         $scope.cssfootersetting = true;
     }
 
+    //鼠标移走时隐藏 footer nav 编辑框
     $scope.hidefootmenusetting=function(){
         $scope.cssfootermenubutton = false;
         $scope.showfooternavsetting = false;
         $scope.cssfootersetting = false; //隐藏footer的设置面板
     }
 
+    //选中footer 主题
     $scope.clickfootertheme = function(indexid, themedata){
         $scope.cssfooterthemeindex = indexid;
         $scope.cssfootermenuhavadata = true;
@@ -1410,28 +1222,9 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
         $scope.sitedataFirebase.defaultsettings.footerthemeindex = indexid;
     }
 
+    //显示footer nav 编辑框
     $scope.showfooternavsetting = false;
     $scope.slideshowfootersetting = function(){
         $scope.showfooternavsetting = true;
-    }
-
-    $scope.footercommonfunction=function(){
-        $scope.showli=-1;
-        $scope.showa=-1;
-        $scope.showchilda=-1;
-    }
-
-    $scope.assignmentform=function(obj){
-        if($scope.newheaderdata.menutype=="other"){
-            $("#urltype1").attr("checked",true);
-            $("#urltype2").attr("checked",false);
-            $scope.newheaderdata.linkedurl=obj.linkedurl;
-        }else{
-            $scope.newheaderdata.linkedurl="";
-            $("#urltype1").attr("checked",false);
-            $("#urltype2").attr("checked",true);
-            $scope.headerlocalurl=obj.linkedpagename;
-        }
-        setupLabel();  //选中radio 按钮方法
     }
 }
