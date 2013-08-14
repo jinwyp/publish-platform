@@ -145,12 +145,32 @@
         </div>
 
 
-        <h2>项目结构 后端全站 PHP, Html, CSS, Javascript 代码 （结构会参考Lavavel框架的最佳实践）</h2>
+        <h2>Lavavel3 项目结构 后端全站 PHP, Html, CSS, Javascript 代码 （结构会参考Lavavel3 框架的最佳实践）</h2>
+        <a href="http://codehappy.daylerees.com/project-structure">Lavavel3 Project Structure </a>
         <div class="bs-docs-example">
-            <ul>
-                <li>未完成</li>
-            </ul>
+             <pre><code>---
+                 |---- application/     该项目(应用APP)的所有我们自己的代码,包括路由,数据层,视图.大部分编码都是在这个目录下面完成
+                    |----config             配置文件目录
+                    |----controllers        控制器和路由, 包括控制器的类,
+                    |----language           多语言,默认包括分页和表单验证的英语界面
+                    |----libraries          一些简单的可以在一个类文件完成的功能的库, 如果功能很大请做成Bundle. 默认库文件start.php被Autoloader调用
+                    |----migrations         用来迁移数据库. 迁移的逻辑必须手动创建.或用命令行"php artisan migrate:make "创建
+                    |----models             数据层,Laravel提供一个可以用PHP语法使用SQL查询器叫"Fluent", 同时用Eloquent ORM 可以把表转换成对象.默认该目录文件通过start.php被Autoloader调用
+                    |----tasks              通过Laravel Artisan创建自己的任务.
+                    |----tests              Unit 单元测试 , 如果你用PHPUnit,可以使用Artisan命令行执行测试
+                    |----views              视图 HTML 模板 , 同时可以修改为使用 blade.php 模板引擎Blade 解析HTML
+                    |----bundles.php [文件] 包管理,编辑该文件管理引入的包
+                    |----routes.php [文件]  路由文件,包括出错502文件管理
+                    |----start.php [文件]   开始程序启动文件,包括auto-loading, config 目录调用文件,可以根据情况修改
 
+                 |---- bundles/        Bundles 包管理, Bundles一个包是一个Laravel的应用,可以与自己的应用分离出来成为一个包.
+                 |---- laravel/        Laravel 框架核心文件,很少会改动,但有时会需要查看Laravel API的类和方法
+                 |---- public/         网站静态文件,包括首页index.php, html, css, js 图片文件等
+                 |---- storage/        用于文件储存的目录,例如Sessions,或缓存文件, 这个目录必须可写权限,一般不需要修改里面的文件.
+                 |---- vendor/         Laravel 框架会用到的文件,但一般不是Laravel开发小组而是其他贡献者开发的功能
+                 |---- artisan [file]  Laravel命令行功能, 通过命令行可以运行许多任务,同时可以创建你自己的任务.只要键入 "php artisan"
+                 |---- paths.php [file]   Laravel 框架需要定义的路径, 一般不需要修改.
+             </code></pre>
 
         </div>
         
