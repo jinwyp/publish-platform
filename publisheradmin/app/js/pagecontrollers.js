@@ -296,6 +296,7 @@ vcpapp.directive( 'editHeader', function(){
             //隐藏header edit form
             scope.hideEditHeaderForm = function(){
                 scope.csseditheaderform = false;
+                scope.cssshowediterror = false;
             }
 
             //保存header info
