@@ -10,6 +10,8 @@
 	<title>VCP - HTML&CSS</title>
 	<!-- 元素基础样式 -->
 	<link rel="stylesheet" href="css/base.css">
+    <!-- 响应式布局 -->
+    <link rel="stylesheet" href="css/layout-responsive.css">
     <!-- 页面默认布局样式 -->
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/icon.css">
@@ -20,8 +22,6 @@
         padding-bottom: 40px;
       }
     </style>
-    <!-- 响应式布局 -->
-    <link rel="stylesheet" href="css/layout-responsive.css">
 </head>
 <body  data-spy="scroll" data-target=".subnav" data-offset="50"><!-- #BeginLibraryItem "/Library/tophead.lbi" --><!-- Header -->
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -780,39 +780,38 @@
 
         <h3>Angular由模板文件和js文件组成  </h3>
         <h3>命名禁止使用缩写,包括英文和汉语拼音缩写, 请使用英文全写命名 </h3>
-            <ul>
-                <li>1 模板文件中的变量,全部用小写,而且不要用缩写, 如果变量是与样式有关, 例如给ngClass或ngShow使用的变量请以css前缀开头, 例如 "cssmodalshow" </li>
-                <pre class="prettyprint linenums Lang-html">
+        模板文件中的变量,全部用小写,而且不要用缩写, 如果变量是与样式有关, 例如给ngClass或ngShow使用的变量请以css前缀开头, 例如 "cssmodalshow" 
+        <pre class="prettyprint linenums">
 &lt;div&nbsp;modal=&quot;cssmodalshow&quot;&nbsp;options=&quot;cssmodalslide&quot;&nbsp;&gt;&lt;/div&gt;
-                </pre>
+</pre>
 
-                <li>2 模板中的ngRepeat中的变量 也全部使用小写  </li>
-                <pre class="prettyprint linenums Lang-html">
+
+        模板中的ngRepeat中的变量 也全部使用小写
+        <pre class="prettyprint linenums">
 &lt;li&nbsp;&nbsp;ng-repeat=&quot;layout&nbsp;in&nbsp;layouts&nbsp;|&nbsp;filter:layoutfilterlisttype&nbsp;&quot;&gt;&lt;/li&gt;
-                </pre>
+</pre>
 
-                <li>3 模板中的事件, javascript 控制器中的事件函数全部使用驼峰命名 例如 ng-click="clickLayout()" .  事件函数的参数名称请使用全部小写命名</li>
-                <pre class="prettyprint linenums Lang-html">
+        模板中的事件, javascript 控制器中的事件函数全部使用驼峰命名 例如 ng-click="clickLayout()" .  事件函数的参数名称请使用全部小写命名
+        <pre class="prettyprint linenums">
 &lt;li&nbsp;&nbsp;ng-click=&quot;clickLayout($index,&nbsp;layout)&quot;&nbsp;&nbsp;&gt;&lt;/li&gt;
-                </pre>
+</pre>
 
-                <pre class="prettyprint linenums Lang-js">
+        <pre class="prettyprint linenums Lang-js">
 $scope.clickayout = function(indexid, layout) {
- // some code here
+    // some code here
 };
-                </pre>
+</pre>
 
-                <li>4 AngularJS 的数据层 Factory和Service中 函数全部使用驼峰命名</li>
-                <pre class="prettyprint linenums Lang-js">
+        AngularJS 的数据层 Factory和Service中 函数全部使用驼峰命名
+        <pre class="prettyprint linenums Lang-js">
 var factory = {
     getArticlesByTags : function(){//some code here},
     getArticleById : function(){//some code here}
 };
 return factory;
-                </pre>
+</pre>
 
-                <li>5  请认真看 <a href="http://agentzh.org/misc/slides/naming/naming.html#1">"命名的艺术" "想成为一个好的程序员，必须先成为一个好的诗人。"</a> </li>
-            </ul>
+        请认真看 <a href="http://agentzh.org/misc/slides/naming/naming.html#1">"命名的艺术" "想成为一个好的程序员，必须先成为一个好的诗人。"</a>
 
 
 
@@ -975,13 +974,5 @@ return factory;
     <script src="js/bootstrap.js"></script>
     <script src="lib/google-code-prettify/prettify.js"></script>
     <script src="js/application.js"></script>
-
-
-    <!-- 浮动式导航 -->
-    <script type="text/javascript">
-        $(document).ready(function(){
-            prettyPrint();
-        })
-    </script>
 </body>
 </html>
