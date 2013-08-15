@@ -621,17 +621,26 @@
                             <h1 class="PopupTitle"><a href="" class="TipBoxClose" ng-click="closeeditpageattribute($index)">X</a>Page Data</h1>
                             <div class="page_attri_cont">
                                 <form>
-                                		<dl class="clearfix">
+                                    <dl class="clearfix">
                                         <dt>name</dt>
-                                        <dd><input type="text" class="" placeholder="Page Name" ng-model="page.pagename"></dd>
+                                        <dd>
+                                        	<div class="alert alert-block">111</div>
+                                            <input type="text" class="" placeholder="Page Name" ng-model="page.pagename">
+                                        </dd>
                                     </dl>
                                     <dl class="clearfix">
                                         <dt>title</dt>
-                                        <dd><input type="text"  class="" placeholder="Page Title" ng-model="page.pagetitle"></dd>
+                                        <dd>
+                                        	<div class="alert alert-error">111</div>
+                                        	<input type="text"  class="" placeholder="Page Title" ng-model="page.pagetitle">
+                                        </dd>
                                     </dl>
                                     <dl class="clearfix">
                                         <dt>URL</dt>
-                                        <dd><input type="text" class="" placeholder="Page Url" ng-model="page.pageurl"></dd>
+                                        <dd>
+                                        	<div class="alert alert-info">111</div>
+                                        	<input type="text" class="" placeholder="Page Url" ng-model="page.pageurl">
+                                        </dd>
                                     </dl>
                                     <div class="btn_box">
                                         <a href="#" class="btn btn-save" ng-click="editsavepage(page)"></a>

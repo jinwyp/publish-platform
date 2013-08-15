@@ -133,11 +133,16 @@
 	
 
 
-	
-/* ----- Global ----- */
+
+
+
+
+/* =========================================================================================== */
+/*                                        G l o g a l                                          */
+/* =========================================================================================== */
 .nomag		{ margin: 0 0 0 0 !important; }
 .nopad		{ padding:0 0 0 0 !important; }
-.bgwhite	{ background:#fff !important;}
+.bgwhite	{ background:#fff !important; }
 
 /* ----- All Popup Layer Style ----- */
 h1.PopupTitle { display:block; font-size:18px; height:36px; line-height:34px; text-align:center; color:#fff; margin:0; padding:0; border-radius:6px 6px 0 0; background:#343434; /* background:#5a99a8; */}
@@ -164,6 +169,28 @@ h1.PopupTitle .TipBoxClose:active	{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); o
 .loading{ position:absolute; left:0; top:0; width:100%; height:100%; border-radius:8px; background:rgba(255,255,255,1); z-index:99; text-align:center; /* box-shadow:inset 0 0 100px rgba(0,0,0,0.2); */}
 .loadingCont{ width:200px; height:100px; margin:120px auto 0; text-align:center;}
 .loadingCont h6{ margin-top:10px; font-size:14px; color:#888; text-transform:capitalize; font-weight:500;}
+
+/* ----- All All Submit Box ----- */
+.form_tip{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -216,6 +243,12 @@ h1.PopupTitle .TipBoxClose:active	{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); o
 .repeat-enter { left:164px; opacity:0; }
 
 .repeat-enter-active { left:0; opacity:1; }
+
+
+
+
+
+
 
 
 
@@ -870,16 +903,16 @@ table.user_table tbody td p	{ color:#888; font-size:13px; padding-left:44px;}
 .addpage_btn:hover{ color:#fff; background:rgba(0,0,0,1); background:#000\9; box-shadow:0 0 3px rgba(255,255,255,0.4); text-decoration:none;}
 
 /* Page Attribute Panel */
-.page_attri_panel					{ position:absolute; left:138px; top:-20px; padding:0; background:#343434; z-index:99; border-radius:8px; box-shadow:2px 2px 30px rgba(0,0,0,0.6); cursor:default;}
+.page_attri_panel				{ position:absolute; left:138px; top:-20px; padding:0; background:#343434; z-index:99; border-radius:8px; box-shadow:2px 2px 30px rgba(0,0,0,0.6); cursor:default;}
 .page_attri_panel:after			{ content:''; position:absolute; left:3px; top:37px; margin-left:-12px; width:0; height:0; border-width:10px 10px 10px 0; border-color:transparent #e8e8e8 transparent transparent; border-style:solid; z-index:2;}
-.page_attri_panel:before			{ content:''; position:absolute; left:2px; top:37px; margin-left:-12px; width:0; height:0; border-width:10px 10px 10px 0; border-color:transparent #666 transparent transparent; border-style:solid; z-index:1;}
+.page_attri_panel:before		{ content:''; position:absolute; left:2px; top:37px; margin-left:-12px; width:0; height:0; border-width:10px 10px 10px 0; border-color:transparent #666 transparent transparent; border-style:solid; z-index:1;}
 
-.page_attri_cont			{ padding:20px 30px 10px; width:202px; background:#f8f8f8; border-radius:0 0 6px 6px; box-shadow:inset 0 0 100px rgba(0,0,0,0.1), inset 0 0 1px 1px rgba(0,0,0,0.4); } 
+.page_attri_cont		{ padding:20px 30px 10px; width:202px; background:#f8f8f8; border-radius:0 0 6px 6px; box-shadow:inset 0 0 100px rgba(0,0,0,0.1), inset 0 0 1px 1px rgba(0,0,0,0.4); } 
 .page_attri_cont dl		{ margin-bottom:10px;}
 .page_attri_cont dt		{ width:40px; float:left; text-align:right; font-size: 14px; font-weight:normal; color:#888; text-transform:capitalize; line-height:30px;}
 .page_attri_cont dd		{ width:140px; float:left; text-align:left; }
 .page_attri_cont dd input{ width:140px;}
-.page_attri_cont .btn_box			{ padding:0; text-align:right;}
+.page_attri_cont .btn_box{ padding:0; text-align:right;}
 
 
 
