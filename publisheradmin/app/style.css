@@ -1476,7 +1476,10 @@ ul.footer_structure a:hover .ico_edit:hover{ background-position:0 -400px; -ms-f
 .article-title-ico .ListSequence [class*="ico-article"]{ margin:0;}
 
 /* Article List Search */
-.aiticleList_search{ display:block; float:right; position:relative; top:-4px; margin-right:60px; padding-right:30px !important; width:148px; background:url(img/icon_attribute.png) no-repeat; background-position:160px -1096px;}
+.aiticleList_search_Wrap						{ float:right; position:relative; top:-4px; margin-right:50px;}
+.aiticleList_search_Wrap .aiticleList_search	{ display:block; width:148px; padding-right:34px;}
+.aiticleList_search_Wrap .icon-search			{ position:absolute; top:-2px; right:0; background:none; border:none;}
+.aiticleList_search_Wrap .icon-search:hover		{ background:none; border:none;}
 
 /* Article ADD New Button */
 .article-title-ico .btn-addnew{ float:right; margin:-8px -6px 0 0; }
