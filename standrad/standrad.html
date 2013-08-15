@@ -21,6 +21,16 @@
         padding-top: 60px;
         padding-bottom: 40px;
       }
+	  .circleBox {
+
+height: 168px;
+width: 168px;
+background:#f00;
+background-size: 168px;
+background-image: -webkit-canvas(bubble_206_231_254_blurredTo2);
+-webkit-transform: translateX(269.66122884974465px) translateY(230.5654543208563px) translateZ(0px) scale(2.4718873074390495);
+opacity: 1;
+}
     </style>
 </head>
 <body  data-spy="scroll" data-target=".subnav" data-offset="50"><!-- #BeginLibraryItem "/Library/tophead.lbi" --><!-- Header -->
@@ -423,11 +433,10 @@
         
         <h2>使用Less</h2>
         <p>在 .less文件头部引入 reset.less&elements.less，之后调用如下属性传参即可，具体使用说明见->Lesselements官方文档</p>
-        <div class="bs-docs-example">
-        	<pre><code>@import "reset.less";  
+<pre class="prettyprint linenums">
+@import "reset.less";  
 @import "elements.less";
-</code></pre>
-        </div>
+</pre>
         
         
         <h2>CSS reset</h2>
@@ -442,14 +451,13 @@
         
         
         <h2>CSS 注释格式约定</h2>
-        <div class="bs-docs-example">
-        	<pre><code>/*
+<pre class="prettyprint linenums">/*
 @name: Drop Down Menu
 @description: Style of top bar drop down menu.
 @require: reset.css
 @author: Andy Huang(andyahung@geekpark.net)
 */
-</code></pre>
+</pre>
         <ul>
         <li>CSS换行制表：使用 2 <del>或4</del> 个空格，而非[Tab]</li>
         <li>书写格式：
@@ -467,37 +475,35 @@
         </ul>
         </li>
         </ul>
-        </div>
         
         
         
         <h2>CSS各属性的排列顺序：不做硬性要求</h2>
         <p>如：以下2种顺序均可</p>
-        <div class="bs-docs-example">
-        	<pre><code>.box {
-  /* 顺序1 */
-  background: none repeat scroll 0 0 transparent;
-  bottom: 11px;
-  position: relative;
-  width: 22px;
-  z-index: 33;
+        <pre class="prettyprint linenums">
+.box {
+	/* 顺序1 */
+	background: none repeat scroll 0 0 transparent;
+	bottom: 11px;
+	position: relative;
+	width: 22px;
+	z-index: 33;
 }
 .box {
-  /* 顺序2 */
-  z-index: 33;
-  width: 22px;
-  bottom: 11px;
-  background: transparent none repeat scroll 0 0 ;
-  position: relative;
+	/* 顺序2 */
+	z-index: 33;
+	width: 22px;
+	bottom: 11px;
+	background: transparent none repeat scroll 0 0 ;
+	position: relative;
 }
-</code></pre>
-        </div>
+</pre>
         
         
         
         <h2>CSS嵌套规则</h2>
-        <div class="bs-docs-example">
-        	<pre><code>/* 推荐嵌套层级 */
+<pre class="prettyprint linenums">
+/* 推荐嵌套层级 */
 .ui-icon-rarr{}
 .ui-icon-larr{}
 .ui-title{}
@@ -510,14 +516,13 @@
 .ui-title{}
 .ui-list{}
 .ui-nav{}
-</code></pre>
-        </div>
+</pre>
         
         
         <h2>CSS格式化</h2>
         <p>勿格式化，保留下面这种格式，增加可读性和可维护性，后期后台程序(如：PHP/Python)会将CSS压缩成 一行 输出：</p>
-        <div class="bs-docs-example">
-        	<pre><code>.box{
+<pre class="prettyprint linenums">
+.box{
   /* 勿格式化，增加可读性 */
   background: none repeat scroll 0 0 transparent;
   bottom: 11px;
@@ -525,23 +530,20 @@
   width: 22px;
   z-index: 33;
 }
-</code></pre>
-        </div>
+</pre>
         
         
         
         <h2>类型选择符</h2>
         <p>若无必要，不要把元素名与ID或者class连在一起使用：</p>
-        <div class="bs-docs-example">
-        	<pre><span class="c">/* Not recommended */</span>
-<span class="nt">ul</span><span class="nf">#example</span> <span class="p">{}</span>
-<span class="nt">div</span><span class="nc">.error</span> <span class="p">{}</span>
-
-<span class="c">/* Recommended */</span>
-<span class="nf">#example</span> <span class="p">{}</span>
-<span class="nc">.error</span> <span class="p">{}</span>
+<pre class="prettyprint linenums">
+/* Not recommended */
+ul#example{}
+div.error{}
+/* Recommended */
+#example{}
+.error{}
 </pre>
-        </div>
         
         <h2>@import</h2>
         <div class="bs-docs-example">
@@ -559,62 +561,60 @@
         <h2>hack</h2>
         <p>hack样式需遵照一定的顺序。</p>
         <p>尽量少用浏览器hack，可以考虑的一种方式：</p>
-        <div class="bs-docs-example">
-        	<pre><span class="c">&lt;!--[if lt IE 7 ]&gt; &lt;html class="ie6"&gt; &lt;![endif]--&gt;</span>
-<span class="c">&lt;!--[if IE 7 ]&gt; &lt;html class="ie7"&gt; &lt;![endif]--&gt;</span>
-<span class="c">&lt;!--[if IE 8 ]&gt; &lt;html class="ie8"&gt; &lt;![endif]--&gt;</span>
-<span class="c">&lt;!--[if IE 9 ]&gt; &lt;html class="ie9"&gt; &lt;![endif]--&gt;</span>
-<span class="c">&lt;!--[if (gt IE 9)|!(IE)]&gt;&lt;!--&gt;</span> <span class="nt">&lt;html&gt;</span> <span class="c">&lt;!--&lt;![endif]--&gt;</span>
+<pre class="prettyprint linenums">
+&lt;!--[if lt IE 7 ]&gt; &lt;html class="ie6"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 7 ]&gt; &lt;html class="ie7"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 8 ]&gt; &lt;html class="ie8"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 9 ]&gt; &lt;html class="ie9"&gt; &lt;![endif]--&gt;
+&lt;!--[if (gt IE 9)|!(IE)]&gt;&lt;!--&gt;&lt;html&gt;&lt;!--&lt;![endif]--&gt;
 </pre>
-        </div>
         
         <h2>风格</h2>
         <p>可用的两种CSS编写格式，在同一个文件中只能使用其中一种：</p>
-        <div class="bs-docs-example">
-            <pre><span class="o">//</span> <span class="nt">This</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">good</span> <span class="nt">example</span><span class="o">!</span>
-            <span class="nc">.styleguide-format</span> <span class="p">{</span>
-              <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#0f0</span><span class="p">;</span>
-              <span class="k">color</span><span class="o">:</span> <span class="m">#000</span><span class="p">;</span>
-              <span class="k">background</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">.</span><span class="m">5</span><span class="p">);</span>
-            <span class="p">}</span>
-            
-            <span class="o">//</span><span class="nt">in</span> <span class="nt">a</span> <span class="nt">line</span>
-            <span class="nc">.styleguide-format</span><span class="p">{</span><span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#0f0</span><span class="p">;</span><span class="k">color</span><span class="o">:</span> <span class="m">#000</span><span class="p">;</span><span class="k">background</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">.</span><span class="m">5</span><span class="p">);}</span>
-            </pre>
-        </div>
+<pre class="prettyprint linenums">
+// This is a good example!
+.styleguide-format {
+	border: 1px solid #0f0;
+	color: #000;
+	background: rgba(0,0,0,0.5);
+}
+
+//in a line
+.styleguide-format{border: 1px solid #0f0;color: #000;background: rgba(0,0,0,0.5);}
+</pre>
+
         <p>小写字母，使用短横线-链接单词：</p>
-        <div class="bs-docs-example">
-            <pre><span class="c">/* Not recommended: does not separate the words “demo” and “image” */</span>
-            <span class="nc">.demoimage</span> <span class="p">{}</span>
-            
-            <span class="c">/* Not recommended: uses underscore instead of hyphen */</span>
-            <span class="nc">.error_status</span> <span class="p">{}</span>
-            <span class="c">/* Recommended */</span>
-            <span class="nf">#video-id</span> <span class="p">{}</span>
-            <span class="nc">.ads-sample</span> <span class="p">{}</span>
-            </pre>
-        </div>
+<pre class="prettyprint linenums">
+/* Not recommended: does not separate the words “demo” and “image” */
+.demoimage {}
+
+/* Not recommended: uses underscore instead of hyphen */
+.error_status {}
+/* Recommended */
+#video-id {}
+.ads-sample {}
+</pre>
+
         <p>不建议将类命名为 .class1, .box2, .class-one，大多数情况下，这是偷懒的表现。事实上，几乎所有情况，我们都可以为他们取一个好名字。</p>
         
         <h2>注释</h2>
-        <div class="bs-docs-example">
-        	<p>/*---------------- footer ----------------*/
+<pre class="prettyprint linenums">
+/*---------------- footer ----------------*/ 
 ...
-/*---------------- /footer ----------------*/</p>
-        </div>
+ /*---------------- /footer ----------------*/
+</pre>
         
         <h2>Class 和 ID</h2>
         <p>在能够表达清楚功能或者作用的前提下，名称越短越好：</p>
-        <div class="bs-docs-example">
-        	<pre><span class="c">/* Not recommended */</span>
-            <span class="nf">#navigation</span> <span class="p">{}</span>
-            <span class="nc">.atr</span> <span class="p">{}</span>
-            
-            <span class="c">/* Recommended */</span>
-            <span class="nf">#nav</span> <span class="p">{}</span>
-            <span class="nc">.author</span> <span class="p">{}</span>
-            </pre>
-        </div>
+<pre class="prettyprint linenums">
+/* Not recommended */
+#navigation {}
+.atr {}
+
+/* Recommended */
+#nav {}
+.author {}
+</pre>
         
         <h2>属性</h2>
         <p>只要可能，尽量简写（高效且易于理解），注：全局样式不能使用简写，避免业务样式难于覆盖：</p>
@@ -952,7 +952,7 @@ return factory;
             <li><a href="https://github.com/GeekPark/Doc/wiki/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%5B%E8%B7%AF%E7%94%B1%E4%BB%A3%E7%90%86%5D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%92%8C%E4%BD%BF%E7%94%A8%E9%A1%BB%E7%9F%A5">技术团队"路由代理"解决方案和使用须知</a></li>
             </ul>
         </div>
-        
+
     
     
     </section><!-- #BeginLibraryItem "/Library/footer.lbi" --><footer class="footer navbar-fixed-bottom">
