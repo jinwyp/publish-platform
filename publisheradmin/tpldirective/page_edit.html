@@ -1,7 +1,6 @@
 <ul class="pagelistbox">
     <li ng-cloak ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'">
-        <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-click="showPageBlock($index, page)"
-           ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:11==page.pagetype}" ng-click="editNewPage(page)">
+        <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-click="showPageBlock($index, page)" ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:11==page.pagetype}" ng-click="editNewPage(page)">
             <i class="icon-gear" ng-click="showEditPage($index)"></i>
             <i class="drag"></i>{{page.pagename}}
         </a>
@@ -10,17 +9,20 @@
         <div class="page_attri_panel" ng-cloak ng-show="selectedpageattributeindex == $index">
             <h1 class="PopupTitle"><a href="" class="TipBoxClose" ng-click="hideEditPage();">X</a>Page Data</h1>
             <div class="page_attri_cont">
-                <form>
+                <form class="page_edit_form">
                     <dl class="clearfix">
                         <dt>name</dt>
+                        <dd class="tipFormBox tip_page_wrong"><i class="icon-minus-sign"></i> context</dd>
                         <dd><input type="text" placeholder="Page Name" ng-model="page.pagename"></dd>
                     </dl>
                     <dl class="clearfix">
                         <dt>title</dt>
+                        <dd class="tipFormBox tip_page_attention"><i class="icon-exclamation-sign"></i> context</dd>
                         <dd><input type="text" placeholder="Page Title" ng-model="page.pagetitle"></dd>
                     </dl>
                     <dl class="clearfix">
                         <dt>URL</dt>
+                        <dd class="tipFormBox tip_page_information"><i class="icon-question-sign"></i> context</dd>
                         <dd><input type="text" placeholder="Page Url" ng-model="page.pageurl"></dd>
                     </dl>
                     <div class="btn_box">
