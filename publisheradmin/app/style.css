@@ -171,7 +171,7 @@ h1.PopupTitle .TipBoxClose:active	{ box-shadow:inset 0 0 12px rgba(0,0,0,0.5); o
 .loadingCont h6{ margin-top:10px; font-size:14px; color:#888; text-transform:capitalize; font-weight:500;}
 
 /* ----- All Submit Box ----- */
-.tipFormBox{ position:absolute; padding:4px; border-width:1px; font-size:12px; border-style:solid; border-radius:4px;}
+.tipFormBox{ position:absolute; padding:4px; border-width:1px; font-size:12px; border-style:solid; border-radius:4px; width:auto !important; word-break:keep-all; white-space:nowrap;}
 .tipFormBox:after{ content:''; display:block; position:absolute; left:4px; bottom:-6px; width:0; height:0; border-width:6px 6px 0 6px; border-style:solid; }
 
 
@@ -947,7 +947,7 @@ table.user_table tbody td p	{ color:#888; font-size:13px; padding-left:44px;}
 /* Wrong Tip */
 .tip_page_wrong,
 .tip_page_attention,
-.tip_page_information		{ left:40px; top:-29px;}
+.tip_page_information		{ left:40px; top:-30px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);}
 
 .tip_page_wrong				{ color:#b94a48; border-color:#debec3; background:#f2dede;}			
 .tip_page_attention			{ color:#c09853; border-color:#e6d7bb; background:#fcf8e3;}			
