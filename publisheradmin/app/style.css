@@ -963,7 +963,7 @@ table.user_table tbody td p		{ color:#888; font-size:13px; padding-left:44px;}
 /* Wrong Tip */
 .page_attri_cont .tipFormBox_wrong,
 .page_attri_cont .tipFormBox_attention,
-.page_attri_cont .tipFormBox_information			{ left:40px; bottom:50px; width:144px;}
+.page_attri_cont .tipFormBox_information			{ left:40px; bottom:50px; width:144px !important;}
 
 
 
