@@ -641,11 +641,23 @@
 
     <!-- Bootstrap Plug -->
     <script src="lib/bootstrap/bootstrap.js"></script>
+    
+    <!-- jQuery Plug: niceScroll -->
+    <script src="lib/jqueryplugin/jquery.nicescroll.min.js"></script>
+    
     <script src="app/js/custom.js"></script>
 
 
 
     <script type="text/jscript">
+			
+			// niceScroll
+			jQuery(document).ready(
+				  function() {  
+					jQuery("html").niceScroll({cursorcolor:"#ffffff"});
+				  }
+			);
+			
 			// Block mask
             $(".melvon").click(function(){
                 $(".blockmask").show();

@@ -1,7 +1,6 @@
 <ul class="pagelistbox">
     <li ng-cloak ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'">
-        <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-click="showPageBlock($index, page)"
-           ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:11==page.pagetype}" ng-click="editNewPage(page)">
+        <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-click="showPageBlock($index, page)" ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:11==page.pagetype}" ng-click="editNewPage(page)">
             <i class="icon-gear" ng-click="showEditPage($index)"></i>
             <i class="drag"></i>{{page.pagename}}
         </a>
@@ -10,18 +9,40 @@
         <div class="page_attri_panel" ng-cloak ng-show="selectedpageattributeindex == $index">
             <h1 class="PopupTitle"><a href="" class="TipBoxClose" ng-click="hideEditPage();">X</a>Page Data</h1>
             <div class="page_attri_cont">
-                <form>
+                <form class="page_edit_form">
                     <dl class="clearfix">
                         <dt>name</dt>
-                        <dd><input type="text" placeholder="Page Name" ng-model="page.pagename"></dd>
+                        <dd>
+                        	<div class="control-group">
+                              <div class="controls">
+                                <input type="text" id="inputError" placeholder="Page Name" ng-model="page.pagename">
+                              </div>
+                            </div>
+                        </dd>
                     </dl>
                     <dl class="clearfix">
                         <dt>title</dt>
-                        <dd><input type="text" placeholder="Page Title" ng-model="page.pagetitle"></dd>
+                        
+                        <dd class="tipFormBox tipFormBox_wrong"><i class="icon-exclamation-sign"></i> <strong>Oh snap!</strong> Change a few things up and try submitting again.</dd>
+                        <!--<dd class="tipFormBox tipFormBox_attention"><i class="icon-exclamation-sign"></i> <strong>Heads up!</strong> This alert needs your attention, but it's not super important.</dd>-->
+                        <!--<dd class="tipFormBox tipFormBox_information"><i class="icon-question-sign"></i> This alert needs your attention, but it's not super important.</dd>-->
+                        <dd>
+                            <div class="control-group error">
+                              <div class="controls">
+                                <input type="text" id="inputError" placeholder="Page Title" ng-model="page.pagetitle">
+                              </div>
+                            </div>
+                        </dd>
                     </dl>
                     <dl class="clearfix">
                         <dt>URL</dt>
-                        <dd><input type="text" placeholder="Page Url" ng-model="page.pageurl"></dd>
+                        <dd>
+                        	<div class="control-group">
+                              <div class="controls">
+                                <input type="text" id="inputError" placeholder="Page Url" ng-model="page.pageurl">
+                              </div>
+                            </div>
+                        </dd>
                     </dl>
                     <div class="btn_box">
                         <a href="#" class="btn btn-save" ng-click="editSavePage(page)"></a>

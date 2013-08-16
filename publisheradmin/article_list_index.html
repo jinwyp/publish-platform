@@ -105,12 +105,19 @@
     <script src="lib/bootstrap/bootstrap.js"></script>
     <!-- FlatUI Plug -->
     <script src="lib/flatui/jquery.tagsinput.js"></script>
+    
+    <!-- jQuery Plug: niceScroll -->
+    <script src="lib/jqueryplugin/jquery.nicescroll.min.js"></script>
 
 	<script src="app/js/custom.js"></script>
-    <!--[if lt IE 8]>
-      <script src="lib/flatui/icon-font-ie7.js"></script>
-      <script src="lib/flatui/lte-ie7-24.js"></script>
-    <![endif]-->
+    <script type="text/jscript">
+				// niceScroll
+				jQuery(document).ready(
+					  function() {  
+						jQuery("html").niceScroll({cursorcolor:"#ffffff"});
+					  }
+				);
+			</script>
 
 </body>
 </html>

@@ -133,7 +133,7 @@
                         
                         <hr>
                         
-                        <button type="submit" class="btn btn-save">Save</button>
+                        <button type="submit" class="btn btn-save"></button>
                     
                         
                       </fieldset>
@@ -169,7 +169,7 @@
                             </div>
                             <hr>
                         
-                            <button type="submit" class="btn btn-save">Save</button>
+                            <button type="submit" class="btn btn-save"></button>
                         </fieldset>
                         </form>
             </div>
@@ -257,8 +257,44 @@
                     <form>
                       <fieldset>
                         <legend>Social Binding</legend>
-                       
-                        
+                        			
+                                    <h6>Show social accounts on your personal page.</h6>
+                                    
+                                    <div class="user_SocialBinding clearfix">
+                                    	<a href="#" class="social_brand select">
+                                        	<i class="social_brand_icon icon-facebook-sign"></i>
+                                        </a>
+                                        <a href="#" class="social_brand select">
+                                        	<i class="social_brand_icon icon-weibo"></i>
+                                        </a>
+                                        <a href="#" class="social_brand">
+                                        	<i class="social_brand_icon icon-twitter"></i>
+                                        </a>
+                                        <a href="#" class="social_brand">
+                                        	<i class="social_brand_icon icon-github-alt"></i>
+                                        </a>
+                                        <a href="#" class="social_brand">
+                                        	<i class="social_brand_icon icon-google-plus"></i>
+                                        </a>
+                                        <!--
+                                    	<div class="user_socialBindingInner">
+                                        <img src="http://img.t.sinajs.cn/t4/style/images/staticlogo/groups3.png" alt="">
+                                        </div>
+                                        -->
+                                    </div>
+                                    
+                                    <hr>
+                                    
+                                    
+                                    <div class="control-group">
+                                      <div class="controls">
+                                        <label class="checkbox">
+                                          <input type="checkbox"> Receive email notification when your note is recommended by our editors or liked by other readers.
+                                        </label>
+                                        <br>
+                                        <button type="submit" class="btn btn-save"></button>
+                                      </div>
+                                    </div>
                         
                       </fieldset>
                     </form>
@@ -284,11 +320,17 @@
     <script src="lib/jquery/jquery-1.8.2.min.js"></script>
     <script src="lib/bootstrap/bootstrap.min.js"></script>
     <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
+    
+    <!-- jQuery Plug: niceScroll -->
+    <script src="lib/jqueryplugin/jquery.nicescroll.min.js"></script>
+            
     <script src="app/js/custom.js"></script>
     
     <script type="text/javascript">
 	
 		$(function(){
+			
+			jQuery("html").niceScroll({cursorcolor:"#ffffff"});
 			
 			//sideMenuUL
 			$(".sideMenuList > a").click(function() {
