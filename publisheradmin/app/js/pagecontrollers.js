@@ -200,6 +200,68 @@ vcpapp.directive( 'addFooter', function () {
     };
 });
 
+vcpapp.directive( 'addPage', function(){
+    return {
+        scope: false,
+        restrict: 'EA',
+        templateUrl:'tpldirective/page_add.html',
+        link: function( scope, element, attrs){
+        }
+    }
+});
+
+vcpapp.directive( 'editPage', function(){
+     return {
+         scope: false,
+         restrict: 'EA',
+         templateUrl: 'tpldirective/page_edit.html',
+         link: function( scope, element, attrs){
+              //显示编辑提示框
+              scope.showEditPage = function(index){
+                  scope.selectedpageattributeindex = index;
+              }
+
+             //隐藏编辑提示框
+             scope.hideEditPage = function(){
+                 scope.selectedpageattributeindex = -1;
+             }
+
+             //显示选中页面的布局
+             scope.showPageBlock = function(index,page){
+                 $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
+                 scope.defaultselectedpageindex = index;
+                 scope.singlepage = page;
+                 if(page.pagetype == 11){
+                     scope.isarticle = 'span9';
+
+                 }else{
+                     scope.isarticle = '';
+                 }
+             }
+
+             //显示添加页面的输入框
+             scope.showAddPageInput = function() {
+                 scope.newpage.pagename = '';
+                 scope.cssshowpageaddinput = true;       //添加page的输入框显示
+             };
+
+             //保存edit form信息
+             scope.editSavePage = function(page){
+                 scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
+             }
+
+             //删除Page页面
+             scope.delPage = function(page, index) {
+                 if(page.pagetype >= 20){
+                     scope.pages.splice(index, 1);
+                 }
+
+                 scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
+             }
+         }
+     }
+});
+
 vcpapp.directive( 'editHeaderChild', function(){
     return {
         scope: false,
@@ -651,7 +713,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
     //left side bar
     $scope.isarticle = '';
-    $scope.clickpage = function(indexid, page, layout) {
+    $scope.clickpage = function(indexid, page) {
 
         $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
         $scope.defaultselectedpageindex = indexid;
@@ -680,10 +742,10 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
 
     //left side bar add page
-    $scope.showaddpageinput = function() {
+/*    $scope.showaddpageinput = function() {
         $scope.newpage.pagename = '';
         $scope.cssshowpageaddinput = true;       //添加page的输入框显示
-    };
+    };*/
 
     $scope.addpage = function() {
         $(".container").prepend($(".tip_box"));  //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
@@ -709,7 +771,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
 
     //left side bar add page attribute
-    $scope.showeditpageattribute = function(indexid) {
+/*    $scope.showeditpageattribute = function(indexid) {
         $scope.selectedpageattributeindex = indexid;    //点击显示当前的page 属性面板
     };
 
@@ -728,7 +790,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
             var pageindex = $scope.pages.indexOf(page);
             $scope.pages.splice(pageindex, 1);
         }
-    };
+    };*/
 
     //right side bar
     $scope.clicklayout = function(indexid, layout) {
