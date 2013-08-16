@@ -1,6 +1,16 @@
 
 ;jQuery(function($){
-
+	
+	//niceScroll
+	$("html").niceScroll({cursorcolor:"#ffffff"});
+	
+	
+	//Select Jump page
+	$(".melvon").click(function(){
+		$(".blockmask").show();
+	});
+			
+	
 	$(".preview").hover(function(){
 			$(".preview_Item").fadeIn(300);
 	});
