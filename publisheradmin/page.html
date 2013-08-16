@@ -608,66 +608,7 @@
         <!-- Page //End -->
         <!-- SideBar:Page List -->
 		<div class="pagelist" ng-show="csspagelist" ng-animate="'fade'">
-<<<<<<< HEAD
-        		<ul class="pagelistbox">
-
-                    <li ng-cloak ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'" >
-                        
-                        <a href="#{{page.pageurl}}" class="pagelist_btn listpage_01"  ng-class="{active: $index==defaultselectedpageindex, articlepage_btn:11==page.pagetype}" ng-click="clickpage($index, page)"><i class="icon-gear" ng-click="showeditpageattribute($index)"></i>
-                            <i class="drag"></i>{{page.pagename}}
-                        </a>
-
-                        <!-- ======================================= Page Attribute Panel ======================================= -->
-                        <div class="page_attri_panel" ng-cloak ng-show="$index == selectedpageattributeindex">
-                            <h1 class="PopupTitle"><a href="" class="TipBoxClose" ng-click="closeeditpageattribute($index)">X</a>Page Data</h1>
-                            <div class="page_attri_cont">
-                                <form>
-                                    <dl class="clearfix">
-                                        <dt>name</dt>
-                                        <dd>
-                                        	<div class="alert alert-block">111</div>
-                                            <input type="text" class="" placeholder="Page Name" ng-model="page.pagename">
-                                        </dd>
-                                    </dl>
-                                    <dl class="clearfix">
-                                        <dt>title</dt>
-                                        <dd>
-                                        	<div class="alert alert-error">111</div>
-                                        	<input type="text"  class="" placeholder="Page Title" ng-model="page.pagetitle">
-                                        </dd>
-                                    </dl>
-                                    <dl class="clearfix">
-                                        <dt>URL</dt>
-                                        <dd>
-                                        	<div class="alert alert-info">111</div>
-                                        	<input type="text" class="" placeholder="Page Url" ng-model="page.pageurl">
-                                        </dd>
-                                    </dl>
-                                    <div class="btn_box">
-                                        <a href="#" class="btn btn-save" ng-click="editsavepage(page)"></a>
-                                    	<a href="#" class="btn btn-delete" ng-click="delpage(page)"></a>
-                                        <!-- 
-                                        <a href="#" class="btn attri_del" ng-click="delpage(page)"></a>
-                                        <a href="#" class="btn attri_save" ng-click="editsavepage(page)"></a>
-                                        -->
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </li>
-
-                    <!-- Add new page -->
-
-                    <li ng-cloak ng-show="cssshowpageaddinput"><a href="#" class="pagelist_btn newpage">
-                        <i class="drag">1</i><input type="text" class="input_addnew" ng-model="newpage.pagename"  placeholder="NewPage" enter-Keypress="{enter: addpage()}"/>
-                    </a></li>
-
-                </ul>
-
-                <a href="#" class="addpage_btn" ng-hide="cssshowpageaddinput" ng-click="showaddpageinput()">+</a>
-=======
              <edit-Page></edit-Page>
->>>>>>> 13081501
         </div>
         <!-- SideBar:Page List//End -->
         <!-- Page Layout -->
