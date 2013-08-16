@@ -16,7 +16,7 @@
   </head>
 
   <style type="text/css">
-  <!-- 
+  <!--
   html { overflow-y:scroll}
   #kinMaxShow{width:100%; height:500px; overflow:hidden;}
   -->
@@ -167,7 +167,7 @@
                 </dl>
             </div>
             <!-- Tab2: Filter //End -->
-            <!-- Tab3: Sort 
+            <!-- Tab3: Sort
             <div class="tab-pane" id="tab-Sort">
 
             </div>
@@ -286,13 +286,13 @@
 
 		<!-- Page -->
         <div class="pagewrap" >
-				  
+
                 <!-- Loading -->
                 <div class="loading" ng-show="cssloading" ng-animate="'fade'">
                 	<div class="loadingCont"><img src="app/img/loading.gif"><h6>Loading...</h6></div>
                 </div>
                 <!-- Loading //End -->
-                
+
                 <!-- Page: Navigation -->
                 <div class="row">
                     <div class="span12">
@@ -360,13 +360,13 @@
                     </div>
                 </div>
                 <!-- Page: Navigation//End -->
-                
-                
-                
 
-                
-                
-                    
+
+
+
+
+
+
                 <!-- Page: Row -->
                 <div class="row">
                     <div ng-repeat="layoutcontainer in singlepage.pagelayoutdata" ng-class="layoutcontainer.layoutcontainerclass">
@@ -381,7 +381,7 @@
                             		</div>
                                     <div class="globalContBox">
                                         <ul ng-class="{PageBlockLayout_Row_noIMG:block.blocklayout == '101',PageBlockLayout_Row:block.blocklayout == '100',PageBlockLayout_Column2_noIMG:block.blocklayout == '103',PageBlockLayout_Column3:block.blocklayout == '102'}" class="clearfix">
-                                        
+
                                         	<li ng-repeat="article in block.blockarticles " class="clearfix">
                                             	<div class="layoutIMG">
                                                 	<a href="#" class="linkImg"><img src="app/img/symptomfind/temp_06.jpg" alt="" /></a>
@@ -397,7 +397,7 @@
                                     </div>
                             </div>
                             <!-- Block Layou: 无图列表 // End -->
-                            
+
 
                             <div class="site-theme b-block block-layout-1" ng-show="block.blocktype=='RSS'">
                                 <h3>{{ block.blockname}}</h3>
@@ -544,7 +544,7 @@
                     </div>
                 </div>
             	<!-- Page: Row //End -->
-                
+
 
 
 
@@ -603,11 +603,12 @@
                     </div>
                 </div>
                 <!-- Page: Footer 1 //End -->
-                
+
         </div>
         <!-- Page //End -->
         <!-- SideBar:Page List -->
 		<div class="pagelist" ng-show="csspagelist" ng-animate="'fade'">
+<<<<<<< HEAD
         		<ul class="pagelistbox">
 
                     <li ng-cloak ng-repeat="page in pages | orderBy:'pagetype' | orderBy:'pageorder'" >
@@ -664,6 +665,9 @@
                 </ul>
 
                 <a href="#" class="addpage_btn" ng-hide="cssshowpageaddinput" ng-click="showaddpageinput()">+</a>
+=======
+             <edit-Page></edit-Page>
+>>>>>>> 13081501
         </div>
         <!-- SideBar:Page List//End -->
         <!-- Page Layout -->
@@ -677,8 +681,8 @@
             <!-- <span href="##" class="ico_layout_close ico_layout_open"></span> -->
         </div>
         <!-- Page Layout//End -->
-        
-        				  
+
+
 </div>
 </div>
 
@@ -707,8 +711,8 @@
     <script src="lib/bootstrap/bootstrap.js"></script>
     <script src="app/js/custom.js"></script>
 
-    
-    
+
+
     <script type="text/jscript">
 			// Block mask
             $(".melvon").click(function(){
