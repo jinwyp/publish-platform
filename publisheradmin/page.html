@@ -22,13 +22,6 @@
   -->
   </style>
 <body style="background: fixed url(app/img/pagebg.jpg) center 60px repeat;">
-
-
-
-
-
-
-
 <!-- Header -->
 <header class="header">
 	<h1 class="logo"><a href="index.html">VCP</a>
@@ -81,9 +74,7 @@
 
 <!-- Container -->
 <div class="vcpbox">
-<div class="container" ng-controller="pageListcontroller" >
-
-
+    <div class="container" ng-controller="pageListcontroller" >
 
 <!-- =======================================  tip_auto ======================================= -->
 <div class="tip_box tip_auto" ng-cloak ng-show="'auto'==cssblocktipbox" >
@@ -287,7 +278,7 @@
 		<!-- Page -->
         <div class="pagewrap" >
 
-                <!-- Loading -->
+               <!-- Loading -->
                 <div class="loading" ng-show="cssloading" ng-animate="'fade'">
                 	<div class="loadingCont"><img src="app/img/loading.gif"><h6>Loading...</h6></div>
                 </div>
@@ -613,13 +604,13 @@
         <!-- SideBar:Page List//End -->
         <!-- Page Layout -->
         <div class="pagelayout" ng-show="csspagelayout" ng-animate="'fade'">
-
-            <ul class="layout_list">
+            <set-Layout></set-Layout>
+            <!--<ul class="layout_list">
                 <li class="" ng-repeat="layout in layouts | filter:layoutfilterlisttype " ng-class="{ active: $index==defaultselectedlayoutindex } " ng-click="clicklayout($index, layout)"  >
                     <img ng-src="{{layout.layoutimage}}">
                 </li>
-            </ul>
-            <!-- <span href="##" class="ico_layout_close ico_layout_open"></span> -->
+            </ul>-->
+
         </div>
         <!-- Page Layout//End -->
 

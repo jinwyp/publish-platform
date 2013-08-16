@@ -210,6 +210,34 @@ vcpapp.directive( 'addPage', function(){
     }
 });
 
+vcpapp.directive( 'setLayout', function(){
+    return {
+        scope: false,
+        restrict: 'EA',
+        templateUrl: 'tpldirective/page_layout_setting.html',
+        link: function( scope, element, attrs){
+             scope.clickLayout = function(indexid, layout){
+                 $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
+                 scope.cssshowdelmodal = false;
+                 scope.defaultselectedlayoutindex = indexid;
+
+                 _.each(scope.pages, function(page){
+                     if(page.pageid == scope.singlepage.pageid){
+                         debugger;
+                         for(var i = 0; i < page.pagelayoutdata.length; i++){
+                              if(page.pagelayoutdata[i].blocks !== undefined && page.pagelayoutdata[i].blocks.length > 0){
+                                  scope.cssshowdelmodal = true;
+                                  //return;
+                              }
+                         }
+                         //page.pagelayoutdata = angular.copy(layout.layoutdata);
+                     }
+                 });
+             }
+        }
+    }
+});
+
 vcpapp.directive( 'editPage', function(){
      return {
          scope: false,
@@ -217,6 +245,8 @@ vcpapp.directive( 'editPage', function(){
          templateUrl: 'tpldirective/page_edit.html',
          link: function( scope, element, attrs){
               //显示编辑提示框
+              scope.isarticle = '';
+              scope.selectedpageattributeindex = -1;
               scope.showEditPage = function(index){
                   scope.selectedpageattributeindex = index;
               }
@@ -675,9 +705,6 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
 
     });
 
-
-
-	
     $scope.cssheadermenubutton = false;
     $scope.cssfootermenubutton=false;
 
@@ -689,8 +716,7 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     $scope.blocklayouts = modelSite.getBlockLayout();
     $scope.currentlayoutcontainer = {};
 
-
-    $scope.selectedpageattributeindex = -1;    //默认隐藏所有page的属性面板
+    //$scope.selectedpageattributeindex = -1;    //默认隐藏所有page的属性面板
     $scope.selectedpageblockindex = -1;
 
 
@@ -704,93 +730,10 @@ page.c.pageListcontroller = function($scope, $location, $http, $q, modelSite, an
     $scope.cssblockeditmenubutton = false;     //点击当前编辑block的 设置的按钮
 
     $scope.cssheadersetting = false;      //Header设置nav下拉界面
-    $scope.cssheadernavindex = 0;      //Header默认菜单的颜色为首页
 
     $scope.cssfootersetting = false;
 
 
-
-
-    //left side bar
-    $scope.isarticle = '';
-    $scope.clickpage = function(indexid, page) {
-
-        $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
-        $scope.defaultselectedpageindex = indexid;
-        $scope.singlepage = page;
-
-        if(page.pagetype === $scope.pagearticletype) {
-            $scope.layoutfilterlisttype = {layouttype:1 };
-        }else{
-            $scope.layoutfilterlisttype = {layouttype:0 };
-        }
-        $scope.cssshowpageaddinput = false;       //添加page的输入框不显示
-        if(page.pagetype == 11){
-            $scope.isarticle = 'span9';
-
-        }else{
-            $scope.isarticle = '';
-        }
-    };
-
-    $scope.showeditpageattribute = function() {
-        $scope.csspageattribute = true;       //添加page的输入框显示
-    };
-    $scope.closeeditpageattribute = function() {
-        $scope.csspageattribute = false;       //添加page的输入框显示
-    };
-
-
-    //left side bar add page
-/*    $scope.showaddpageinput = function() {
-        $scope.newpage.pagename = '';
-        $scope.cssshowpageaddinput = true;       //添加page的输入框显示
-    };*/
-
-    $scope.addpage = function() {
-        $(".container").prepend($(".tip_box"));  //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
-        $scope.cssblocktipbox = false;
-
-        $scope.cssshowpageaddinput = false;       //添加page的输入框显示
-        var newpage = {
-            siteid : 1,
-            pagename : $scope.newpage.pagename,
-            pageid : getMaxPageId(),
-            pagetype : 100,
-            pagetitle : $scope.newpage.pagetitle,
-            pageurl : $scope.newpage.pageurl,
-            pageorder : 100,
-            pagelayoutid : 10,
-            pagelayoutdata:[
-                {layoutcontainerclass:"span9", layoutcontainerid:1000 , blocks:[] },
-                {layoutcontainerclass:"span3", layoutcontainerid:1001, blocks:[] }
-            ]
-        };
-        $scope.pages.push(newpage);
-    };
-
-
-    //left side bar add page attribute
-/*    $scope.showeditpageattribute = function(indexid) {
-        $scope.selectedpageattributeindex = indexid;    //点击显示当前的page 属性面板
-    };
-
-    $scope.closeeditpageattribute = function(indexid) {
-        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
-    };
-
-    $scope.editsavepage = function(page) {
-        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
-
-    };
-    $scope.delpage = function( page) {
-        $scope.selectedpageattributeindex = -1;    //关闭当前的page 属性面板
-        if(page.pagetype >= 20){
-            //首页和内容页面都是无法删除的
-            var pageindex = $scope.pages.indexOf(page);
-            $scope.pages.splice(pageindex, 1);
-        }
-    };*/
 
     //right side bar
     $scope.clicklayout = function(indexid, layout) {
