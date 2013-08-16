@@ -264,9 +264,18 @@
     <script src="lib/jqueryplugin/jquery.easing.1.3.js"></script>
     <script src="lib/bootstrap/bootstrap.min.js"></script>
     <script src="lib/jqueryui/jquery-ui-1.10.0.custom.min.js"></script>
+    <!-- jQuery Plug: niceScroll -->
+    <script src="lib/jqueryplugin/jquery.nicescroll.min.js"></script>
     <script src="app/js/custom.js"></script>
 
     <script type="text/javascript">
+			// niceScroll
+			jQuery(document).ready(
+				  function() {  
+					jQuery("html").niceScroll({cursorcolor:"#ffffff"});
+				  }
+			);
+			
 			(function($) {
 				$.fn.thumbnailSlider = function(options) {
 					var opts = $.extend({}, $.fn.thumbnailSlider.defaults, options);
@@ -406,6 +415,8 @@
 			</script>
         
     <script type="text/jscript">
+	
+			
 			 //$('.fancyinput_vcp :input').val('').fancyInput()[0].focus();
 			
 			$(function() {

@@ -775,11 +775,40 @@ table.user_table tbody td p	{ color:#888; font-size:13px; padding-left:44px;}
 .userRoleStatus_yes:before{ content: "\f00c"; display:block; position:absolute; right:2px; bottom:0; width:20px; height:20px; line-height:20px; font-family: FontAwesome; font-weight:normal !important; font-style: normal; -webkit-font-smoothing:antialiased; z-index:1;}
 
 .userRoleStatus_yes.roleiswrite		{ background:#5bc0de; }
-.userRoleStatus_yes.roleiseditor		{ background:#e96465; }
+.userRoleStatus_yes.roleiseditor	{ background:#e96465; }
 
-.userRoleStatus_none.roleiswrite	,
+.userRoleStatus_none.roleiswrite,
 .userRoleStatus_none.roleiseditor	{ background:#eee; }
 
+/* === user Social Binding === */
+.socialBindingBox h6				{ color:#888; text-transform:none;}
+
+.user_SocialBinding					{ }
+
+.user_SocialBinding .social_brand	{ display:block; float:left; margin:10px 40px 40px 0; text-align:center; line-height:50px; position:relative; width:60px; height:60px; padding:8px 8px 0;  background:#fff; border-radius:8px; text-decoration:none; box-shadow:inset 0 0 0 1px #ccc; overflow:hidden; }
+.user_SocialBinding .social_brand .social_brand_icon{ margin:0 auto; color:#888; font-size:36px; }
+
+/* default */
+.user_SocialBinding .social_brand:after,
+.user_SocialBinding .social_brand:before{ display:block; position:absolute; }
+.user_SocialBinding .social_brand:before{ content:''; right:-45px; bottom:-45px; width:80px; height:80px;
+	-webkit-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	transform:rotate(45deg);
+}
+/* hover */
+.user_SocialBinding .social_brand:hover			{ box-shadow:inset 0 0 0 3px #38b800;}
+.user_SocialBinding .social_brand:hover .social_brand_icon{ color:#38b800;}
+
+/* Select */
+.user_SocialBinding .social_brand.select 		{ display:block; float:left; margin:10px 40px 40px 0; text-align:center; line-height:50px; position:relative; width:60px; height:60px; padding:8px 8px 0; border-radius:8px; text-decoration:none; box-shadow:none; overflow:hidden; border-radius:8px; background:#38B800;}
+.user_SocialBinding .social_brand.select:before	{ display:block; position:absolute; content:''; right:-45px; bottom:-45px; width:80px; height:80px; background:#309e00;
+	-webkit-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	transform:rotate(45deg); 
+	}
+.user_SocialBinding .social_brand.select:after	{ content: "\f00c"; height:20px; line-height:20px; font-size:20px; color:#fff; right:4px; bottom:4px; font-family: FontAwesome; font-weight: normal; font-style: normal; text-decoration: inherit; -webkit-font-smoothing: antialiased; }
+.user_SocialBinding .social_brand.select .social_brand_icon	{ color:#afe399;}
 
 
 /* === user Step === */
