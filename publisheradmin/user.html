@@ -5,20 +5,15 @@
     <title>VCP</title>
     <meta name="viewport" content="target-densitydpi=device-dpi" />
     <link href="lib/bootstrap/bootstrap.css" rel="stylesheet">
-    <link href="app/style.css" rel="stylesheet">
+    <link href="app/style.css" rel="stylesheet" id="skinCss">
     <link rel="shortcut icon" href="app/img/favicon.ico">
     <!--[if lt IE 9]>
       <script src="lib/other/html5shiv.js"></script>
     <![endif]-->
     <!-- 默认 Site Theme -->
     <link href="theme/default/site-theme.css" rel="stylesheet">
-    <style type="text/css">
-  <!-- 
-  html { overflow-y:scroll}
-  -->
-  </style>
   </head>
-<body style="background:fixed url(app/img/pagebg.jpg) center 60px repeat;">
+<body class="vcpbody">
 
 
 
@@ -169,9 +164,16 @@
         </div>
         
         
-        
+          
     </div>
 </div>
+
+
+
+    <ul id="skin">
+    	<li id="style" class="selected"></li>
+    	<li id="style_1"></li>
+    </ul>
 
     <!-- Load JS -->
     <script src="lib/underscore/underscore-min.js"></script>
@@ -197,12 +199,11 @@
 	
 		$(function(){
 			
-			jQuery("html").niceScroll({cursorcolor:"#ffffff"});
-			
 			$(".panel_close").click(function() {
 				$(".userBaseInfo").animate({left:'0'});
 				$(".userPassword").animate({left:'0'});
 			});
+			
 			
 		})
 	

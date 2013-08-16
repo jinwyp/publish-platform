@@ -5,6 +5,22 @@
 	$("html").niceScroll({cursorcolor:"#ffffff"});
 	
 	
+	//Skin CSS
+	$('#skin li').click(function(){
+		$("#"+this.id).addClass("selected").siblings().removeClass("selected");
+		$('#skinCss').attr("href","app/"+(this.id)+".css");
+	});
+	
+	/*		
+	$("#styles li").click(function(){ 
+		var style = $(this).attr("id"); 
+		$("link[title='"+style+"']").removeAttr("disabled"); 
+		$("link[title!='"+style+"']").attr("disabled","disabled"); 
+		$.cookie("mystyle",style,{expires:30}); 
+		$(this).addClass("cur").siblings().removeClass("cur"); 
+	}); 
+	*/
+	
 	//Select Jump page
 	$(".melvon").click(function(){
 		$(".blockmask").show();

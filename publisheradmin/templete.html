@@ -5,8 +5,7 @@
     <title>VCP</title>
     <meta name="viewport" content="target-densitydpi=device-dpi" />
     <link href="lib/bootstrap/bootstrap.css" rel="stylesheet">
-    <link href="lib/flatui/flat-ui.css" rel="stylesheet">
-    <link href="app/style.css" rel="stylesheet">
+    <link href="app/style.css" rel="stylesheet" id="skinCss">
     <link rel="shortcut icon" href="app/img/favicon.ico">
     <!--[if lt IE 9]>
       <script src="lib/other/html5shiv.js"></script>
@@ -534,7 +533,11 @@ products. </h6>
     </div>
 </div>
 
-
+	<ul id="skin">
+    	<li id="style" class="selected"></li>
+    	<li id="style_1"></li>
+    </ul>
+    
     <script src="lib/angular/1.1.5/angular.js"></script>
     <script src="lib/angularui/ui-bootstrap-tpls-0.4.0.min.js"></script>
 	<script src="app/js/articlecontrollers.js"></script>
