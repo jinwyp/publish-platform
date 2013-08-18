@@ -132,7 +132,10 @@
 	}
 	
 
-
+body { -webkit-transition: all 0.6s ease-in-out; /* Safari/Chrome */
+    -moz-transition: all 0.6s ease-in-out; /* Firefox */
+    -o-transition: all 0.6s ease-in-out; /* Opera */
+    transition: all 0.6s ease-in-out;}
 
 
 
