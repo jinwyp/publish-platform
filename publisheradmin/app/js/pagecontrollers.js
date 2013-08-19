@@ -216,24 +216,42 @@ vcpapp.directive( 'setLayout', function(){
         restrict: 'EA',
         templateUrl: 'tpldirective/page_layout_setting.html',
         link: function( scope, element, attrs){
-             scope.clickLayout = function(indexid, layout){
+            scope.clonelayout = '';
+            scope.clickLayout = function(indexid, layout){
                  $(".container").prepend($(".tip_box")); //移动 Tip Box DOM , 防止因为刷新页面而丢失DOM
                  scope.cssshowdelmodal = false;
                  scope.defaultselectedlayoutindex = indexid;
-
+                 scope.clonelayout = layout;
                  _.each(scope.pages, function(page){
+                     debugger;
                      if(page.pageid == scope.singlepage.pageid){
-                         debugger;
                          for(var i = 0; i < page.pagelayoutdata.length; i++){
                               if(page.pagelayoutdata[i].blocks !== undefined && page.pagelayoutdata[i].blocks.length > 0){
                                   scope.cssshowdelmodal = true;
-                                  //return;
+                                  return;
                               }
                          }
                          //page.pagelayoutdata = angular.copy(layout.layoutdata);
                      }
                  });
              }
+
+            //关闭 form
+            scope.closeLayoutForm = function(){
+                scope.cssshowdelmodal = false;
+            }
+
+            //清空 layout
+            scope.clearCurrentLayout = function(){
+                _.each(scope.pages, function(page){
+                     if(page.pageid == scope.singlepage.pageid){
+                         page.pagelayoutdata = angular.copy(scope.clonelayout.layoutdata);
+                     }
+                  });
+                scope.cssshowdelmodal = false;
+            }
+
+
         }
     }
 });
