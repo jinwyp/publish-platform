@@ -236,6 +236,7 @@
 
   $.fn.button.defaults = {
     loadingText: 'loading...'
+    completeText: 'SAVE!'
   }
 
   $.fn.button.Constructor = Button
