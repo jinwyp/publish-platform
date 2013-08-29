@@ -8,7 +8,7 @@
         btn.button('loading')
         setTimeout(function () {
         btn.button('complete')
-        }, 1000)
+        }, 2000)
       });
 
 
