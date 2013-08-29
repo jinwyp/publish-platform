@@ -287,7 +287,11 @@
                                           <input type="checkbox"> Receive email notification when your note is recommended by our editors or liked by other readers.
                                         </label>
                                         <br>
-                                        <button type="submit" class="btn btn-save"></button>
+                                        <!-- 
+                                        <button type="submit" class="btn btn-save" data-loading-text="Loading..."></button>
+                                        <button type="button" class="btn btn-primary" data-complete-text="finished!">Loading state</button>
+                                        -->
+                                        <button type="button" data-loading-text="SAVEING..."  data-complete-text="SAVED!" class="btn btn-save">SAVE</button>
                                       </div>
                                     </div>
                         
@@ -324,9 +328,7 @@
 			$(".sideMenuList > a").click(function() {
 				$(this).addClass("current").siblings("a").removeClass("current");
 			});
-			
-			
-			
+
 			//Content
 			$(".userContent .userInfoBox").addClass("displaytrue");
 			
@@ -342,13 +344,6 @@
 			$("#socialbinding").click(function() {
 				$(".userContent .socialBindingBox").addClass("displaytrue").siblings("div").removeClass("displaytrue");
 			});
-			
-			
-			
-			// Select User Role
-			
-			
-			
 			
 			
 		})

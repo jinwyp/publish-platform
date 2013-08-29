@@ -128,7 +128,9 @@
                         </tr>
                 </table>
                 </div>
-                <div class="submitbox SiteSubmitBox"><a href="#" class="btn btn-save"><input type="submit" class="btn btn-save" id="save_step1" ng-click="savesiteinfo(siteinfoform)" value="save"></a></div>
+                <div class="submitbox SiteSubmitBox">
+                    <input type="submit" class="btn btn-save" id="save_step1" data-loading-text="SAVEING..."  data-complete-text="SAVED!" ng-click="savesiteinfo(siteinfoform)" value="SAVE">
+                </div>
             </form>
             
         </div>
@@ -177,7 +179,9 @@
                         </ul>
                     </div>
                 </div>
-                <div class="submitbox SiteSubmitBox"><a href="#" class="btn btn-save"><input type="submit" class="btn btn-save" id="save_step2" value="save"></a></div>
+                <div class="submitbox SiteSubmitBox">
+                    <input type="submit" class="btn btn-save" id="save_step2" data-loading-text="SAVEING..."  data-complete-text="SAVED!" value="SAVE">
+                </div>
             </form>
         </div>
         
@@ -207,7 +211,9 @@
                         </tr>
                     </table>
                 </div>
-                <div class="submitbox SiteSubmitBox"><a href="#" class="btn btn-save"><input type="submit" class="btn btn-save" id="save_step3" value="save"></a></div>
+                <div class="submitbox SiteSubmitBox">
+                    <input type="submit" class="btn btn-save" id="save_step3" data-loading-text="SAVEING..."  data-complete-text="SAVED!" value="SAVE">
+                </div>
             </form>
         </div>
         
@@ -229,7 +235,9 @@
                         <p ng-click="clickcomplex();"><a href="###" class="btn btn-warning" ng-class="{selectbtnwarning:selectcomplex}"><i ng-show="selectcomplex" class="icon-ok-sign"></i> Complex Review and Publish</a></p>
                     </div>
                 </div>
-                <div class="submitbox SiteSubmitBox"><a href="#" class="btn btn-save"><input type="submit" class="btn btn-save" id="save_step4" value="save" onclick="location.href='page.html'"></a></div>
+                <div class="submitbox SiteSubmitBox">
+                    <input type="submit" class="btn btn-save" id="save_step4" data-loading-text="SAVEING..."  data-complete-text="SAVED!" value="SAVE" onclick="location.href='page.html'">
+                </div>
             </form>
         </div>
         

@@ -1603,6 +1603,9 @@ input[type="button"].btn-block { width: 100%;}
 .btn-delete.active,
 .btn-addnew.active { color: rgba(255, 255, 255, 0.75); }
 
+/* Waiting Status .... */
+
+
 
 /* .btn-default */
 .btn-default { color: #333333; background-color: #ffffff; border-color: #cccccc; }
@@ -1821,6 +1824,29 @@ fieldset[disabled] .btn-link:focus { color: #999999; text-decoration: none; }
 .btn-addnew[disabled] { color: #fff; background:#343434;}
 
 /* btn-save */
+.btn-save { color: #ffffff; background-color: #d9534f; border-color: #d43f3a; }
+
+.btn-save:hover,
+.btn-save:focus,
+.btn-save:active,
+.btn-save.active { color: #ffffff; background-color: #d2322d; border-color: #ac2925; }
+
+.btn-save.disabled,
+.btn-save[disabled],
+fieldset[disabled] .btn-save,
+.btn-save.disabled:hover,
+.btn-save[disabled]:hover,
+fieldset[disabled] .btn-save:hover,
+.btn-save.disabled:focus,
+.btn-save[disabled]:focus,
+fieldset[disabled] .btn-save:focus,
+.btn-save.disabled:active,
+.btn-save[disabled]:active,
+fieldset[disabled] .btn-save:active,
+.btn-save.disabled.active,
+.btn-save[disabled].active,
+fieldset[disabled] .btn-save.active { background-color: #d9534f; border-color: #d43f3a; }
+/*
 .btn-save {
 	font-family:FontAwesome;
 	font-weight:normal;
@@ -1834,16 +1860,17 @@ fieldset[disabled] .btn-link:focus { color: #999999; text-decoration: none; }
 	border:none;
 	box-shadow:none;
 	overflow:hidden;
+	text-indent: -9999px;
 }
 .btn-save:before,
-.btn-save:before { content: "\f0c7"; text-decoration:inherit; display:inline-block; speak:none }
+.btn-save:before { content: "\f0c7"; text-decoration:inherit; display:inline-block; speak:none;}
 
 .btn-save:hover,
 .btn-save:active,
 .btn-save.active,
 .btn-save.disabled,
 .btn-save[disabled] { color: #ffffff; background:#47a447;}
-
+*/
 
 /* btn-cancel */
 .btn-cancel {
